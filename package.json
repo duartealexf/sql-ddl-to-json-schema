@@ -1,0 +1,36 @@
+{
+  "name": "nearley-sql-parser",
+  "version": "0.0.1",
+  "description": "A grammar and stream-friendly SQL parser.",
+  "main": "index.js",
+  "scripts": {
+    "test": "./node_modules/ava/cli.js test/**/*.js --color=always",
+    "build": "./node_modules/nearley/bin/nearleyc.js lib/grammar.ne > lib/grammar.js --color=always",
+    "test:watch": "nodemon -w lib -e ne,js --exec 'yarn run test'",
+    "build:watch": "nodemon -w lib -e ne,js --exec 'yarn run nearley'",
+    "prerelease": "yarn run lint",
+    "release": "./node_modules/.bin/standard-version && git push --follow-tags",
+    "lint": "./node_modules/.bin/eslint lib test",
+    "example": "node lib/example.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/duartealexf/nearley-sql-parser.git"
+  },
+  "author": "duartealexf",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/duartealexf/nearley-sql-parser/issues"
+  },
+  "dependencies": {
+    "nearley": "^2.11.0"
+  },
+  "devDependencies": {
+    "ava": "^0.22.0",
+    "commitizen": "^2.9.6",
+    "cz-conventional-changelog": "^2.1.0",
+    "eslint": "^4.7.0",
+    "nodemon": "^1.14.11",
+    "standard-version": "^4.3.0"
+  }
+}

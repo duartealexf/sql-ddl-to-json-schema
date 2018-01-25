@@ -32,5 +32,10 @@
     "eslint": "^4.7.0",
     "nodemon": "^1.14.11",
     "standard-version": "^4.3.0"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
   }
 }

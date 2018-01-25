@@ -8,3 +8,4 @@ A grammar and stream-friendly SQL parser.
 
 # Links
 - [Grammars](http://www.antlr3.org/grammar/list.html)
+- [Basic MySQL Parser](https://www.safaribooksonline.com/library/view/flex-bison/9780596805418/ch04.html)

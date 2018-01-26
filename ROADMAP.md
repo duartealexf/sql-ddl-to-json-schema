@@ -2,7 +2,7 @@
 
 ## SQL dialects
 
-There are several SQL dialects that this project will cover, ordered:
+There are several SQL dialects that this project will cover, in this order:
 
 - MySQL 5.7
 - PostgreSQL 
@@ -10,30 +10,31 @@ There are several SQL dialects that this project will cover, ordered:
 - Oracle
 - ...
 
-Roadmap for each variant is still in WIP.
+Roadmap for each one is still in WIP.
 
 ## MySQL
 
-### DDL
-
-
-
-### DML
+- [ ] ALTER DATABASE
+- [ ] ALTER TABLE
+- [ ] ALTER VIEW
+- [ ] CREATE DATABASE
+- [ ] CREATE INDEX
+- [ ] CREATE TABLE
+- [ ] CREATE VIEW
+- [ ] DROP DATABASE
+- [ ] DROP INDEX
+- [ ] DROP TABLE
+- [ ] DROP VIEW
+- [ ] RENAME TABLE
 
 ## PostgreSQL
 
-### DDL
-
-### DML
+TODO
 
 ## MSSQL
 
-### DDL
-
-### DML
+TODO
 
 ## Oracle
 
-### DDL
-
-### DML
+TODO

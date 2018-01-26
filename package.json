@@ -4,7 +4,7 @@
   "description": "A grammar and stream-friendly SQL parser.",
   "main": "index.js",
   "scripts": {
-    "test": "./node_modules/ava/cli.js test/**/*.js --color=always",
+    "test": "./node_modules/ava/cli.js --color=always",
     "build": "./node_modules/nearley/bin/nearleyc.js lib/grammar.ne > lib/grammar.js --color=always",
     "test:watch": "nodemon -w lib -e ne,js --exec 'yarn run test'",
     "build:watch": "nodemon -w lib -e ne,js --exec 'yarn run nearley'",

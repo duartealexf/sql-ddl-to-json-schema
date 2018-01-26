@@ -1,5 +1,5 @@
 {
-  "name": "nearley-sql-parser",
+  "name": "sql-ddl-to-json-schema",
   "version": "0.0.1",
   "description": "A grammar and stream-friendly SQL parser.",
   "main": "index.js",
@@ -15,12 +15,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/duartealexf/nearley-sql-parser.git"
+    "url": "git+https://github.com/duartealexf/sql-ddl-to-json-schema.git"
   },
   "author": "duartealexf",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/duartealexf/nearley-sql-parser/issues"
+    "url": "https://github.com/duartealexf/sql-ddl-to-json-schema/issues"
   },
   "dependencies": {
     "nearley": "^2.11.0"

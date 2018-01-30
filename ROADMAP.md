@@ -14,7 +14,7 @@ Roadmap for each one is still in WIP.
 
 ## MySQL
 
-- [ ] CREATE DATABASE
+- [X] CREATE DATABASE
 - [ ] CREATE INDEX
 - [ ] CREATE TABLE
 - [ ] CREATE VIEW
@@ -29,7 +29,18 @@ Roadmap for each one is still in WIP.
 
 ## PostgreSQL
 
-TODO
+- [ ] CREATE DATABASE
+- [ ] CREATE INDEX
+- [ ] CREATE TABLE
+- [ ] CREATE VIEW
+- [ ] ALTER DATABASE
+- [ ] ALTER TABLE
+- [ ] ALTER VIEW
+- [ ] DROP DATABASE
+- [ ] DROP INDEX
+- [ ] DROP TABLE
+- [ ] DROP VIEW
+- [ ] RENAME TABLE
 
 ## MSSQL
 

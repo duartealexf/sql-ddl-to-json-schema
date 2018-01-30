@@ -3,14 +3,17 @@
 A grammar and stream-friendly SQL parser based on [nearley](nearley.js.org) that transforms DDL statements into JSON Schema.
 No SQL client or DMS required.
 
-# Installation
+## Installation
 
 `yarn add sql-ddl-to-json-schema`;
 or
 `npm i sql-ddl-to-json-schema`;
 
+## Development
 
-# Links
+`yarn run build`
+
+## Links
 - [Grammars](http://www.antlr3.org/grammar/list.html)
 - [Basic MySQL Parser](https://www.safaribooksonline.com/library/view/flex-bison/9780596805418/ch04.html)
 - [MySQL Formatter](https://github.com/TeamSQL/sql-formatter/blob/master/src/languages/MySQLFormatter.js)

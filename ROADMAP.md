@@ -14,13 +14,13 @@ Roadmap for each one is still in WIP.
 
 ## MySQL
 
-- [ ] ALTER DATABASE
-- [ ] ALTER TABLE
-- [ ] ALTER VIEW
 - [ ] CREATE DATABASE
 - [ ] CREATE INDEX
 - [ ] CREATE TABLE
 - [ ] CREATE VIEW
+- [ ] ALTER DATABASE
+- [ ] ALTER TABLE
+- [ ] ALTER VIEW
 - [ ] DROP DATABASE
 - [ ] DROP INDEX
 - [ ] DROP TABLE

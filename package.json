@@ -7,7 +7,7 @@
     "test": "./node_modules/ava/cli.js --color=always",
     "build": "./node_modules/nearley/bin/nearleyc.js lib/grammar.ne > lib/grammar.js --color=always",
     "test:watch": "nodemon -w lib -e ne,js --exec 'yarn run test'",
-    "build:watch": "nodemon -w lib -e ne,js --exec 'yarn run nearley'",
+    "build:watch": "nodemon -w lib -e ne --exec 'yarn run build'",
     "prerelease": "yarn run lint",
     "release": "./node_modules/.bin/standard-version && git push --follow-tags",
     "lint": "./node_modules/.bin/eslint lib test",

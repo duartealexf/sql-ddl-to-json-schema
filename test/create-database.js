@@ -18,6 +18,9 @@ const testsRun = new Set();
 
       'create database test CHARACTER SET utf8',
       'create database test CHARACTER SET = utf8',
+
+      'create database test COLLATE utf8_general_ci ',
+      'create database test COLLATE = utf8_general_ci',
     ],
     x: {
       database: 'test'

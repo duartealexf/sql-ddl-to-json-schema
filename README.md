@@ -31,6 +31,7 @@ To commit, use commitizen: `git cz`.
 - To build and watch for changes: `yarn run build:watch`
 - To test: `yarn run test`
 - To build and test and watch for changes: `yarn run build-test:watch`
+- To test against nearley tester: `yarn run nearley-test --input 'CREATE TABLE test'`
 
 
 ## Links

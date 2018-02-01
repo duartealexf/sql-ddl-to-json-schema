@@ -14,14 +14,13 @@
 @include "./includes/keywords.ne"
 @include "./includes/datatypes.ne"
 
-main -> O_DATATYPE
-# main -> P_DDS:+
-#   {% d => {
-#     return {
-#       type: 'main',
-#       def: d[0]
-#     }
-#   }%}
+main -> P_DDS:+
+  {% d => {
+    return {
+      type: 'main',
+      def: d[0]
+    }
+  }%}
 
 # =============================================================
 # Data definition statements

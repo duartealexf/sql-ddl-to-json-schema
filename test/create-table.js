@@ -2,23 +2,10 @@ const ava = require('ava');
 const Parser = require('../lib');
 
 const tests = {
-  'Should create test database': {
+  'Should create test database with null specs': {
     queries: [
-      'CREATE DATABASE test',
-      'CREATE DATABASE IF EXISTS test',
-      'CREATE DATABASE IF NOT EXISTS test',
-      'CREATE DATABASE `test`',
-
-      'create database test',
-      'create database if exists test',
-      'create database if not exists test',
-      'create database `test`',
-
-      'create database test CHARACTER SET utf8',
-      'create database test CHARACTER SET = utf8',
-
-      'create database test COLLATE utf8_general_ci ',
-      'create database test COLLATE = utf8_general_ci',
+      'CREATE TABLE test',
+      'create table test',
     ],
     expect: {
       type: 'main',
@@ -26,9 +13,10 @@ const tests = {
         {
           type: 'P_DDS',
           def: {
-            type: 'P_CREATE_DB',
+            type: 'P_CREATE_TABLE',
             def: {
-              database: 'test'
+              table: 'test',
+              spec: []
             }
           }
         }

@@ -16,30 +16,7 @@ const tests = {
             type: 'P_CREATE_TABLE',
             def: {
               table: 'test',
-              specs: null
-            }
-          }
-        }
-      ]
-    }
-  },
-
-  'Should create test database with empty specs': {
-    queries: [
-      'CREATE TABLE test ()',
-    ],
-    expect: {
-      type: 'main',
-      def: [
-        {
-          type: 'P_DDS',
-          def: {
-            type: 'P_CREATE_TABLE',
-            def: {
-              table: 'test',
-              spec: [
-                []
-              ]
+              spec: []
             }
           }
         }

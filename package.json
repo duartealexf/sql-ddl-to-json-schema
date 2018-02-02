@@ -6,14 +6,13 @@
   "scripts": {
     "test": "./node_modules/ava/cli.js --color=always",
     "build": "./node_modules/nearley/bin/nearleyc.js lib/grammar.ne > lib/grammar.js --color=always",
-    "test:watch": "nodemon -w lib -e ne,js --exec 'yarn run test'",
-    "build:watch": "nodemon -w lib -e ne --exec 'yarn run build'",
-    "build-test:watch": "nodemon -w lib -e ne --exec 'yarn run build && yarn run test'",
+    "test:watch": "nodemon -w lib -e ne,js --ignore lib/grammar.js --exec 'yarn run build && yarn run test'",
+    "build:watch": "nodemon -w lib -e ne,js --ignore lib/grammar.js --exec 'yarn run build'",
     "nearley-test": "./node_modules/nearley/bin/nearley-test.js ./lib/grammar.js",
+    "example": "node lib/example.js",
     "prerelease": "yarn run lint",
     "release": "./node_modules/.bin/standard-version && git push --follow-tags",
-    "lint": "./node_modules/.bin/eslint lib test",
-    "example": "node lib/example.js"
+    "lint": "./node_modules/.bin/eslint lib test"
   },
   "repository": {
     "type": "git",
@@ -32,6 +31,7 @@
     "commitizen": "^2.9.6",
     "cz-conventional-changelog": "^2.1.0",
     "eslint": "^4.7.0",
+    "moo": "^0.4.3",
     "nodemon": "^1.14.11",
     "standard-version": "^4.3.0"
   },

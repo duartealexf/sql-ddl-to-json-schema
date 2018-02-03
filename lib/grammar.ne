@@ -12,8 +12,8 @@
 
 @lexer lexer
 
-@include "./rules/datatypes.ne"
 @include "./rules/create-database.ne"
+@include "./rules/create-table.ne"
 
 # =============================================================
 # Statements wrapper
@@ -31,6 +31,7 @@ main -> P_DDS:+
 
 P_DDS -> (
     P_CREATE_DB {% id %}
+  | P_CREATE_TABLE {% id %}
 )
   {% d => {
     return {

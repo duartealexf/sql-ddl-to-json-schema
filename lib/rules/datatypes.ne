@@ -56,7 +56,7 @@ O_INTEGER_DATATYPE -> (
 O_FIXED_POINT_DATATYPE -> (
   (%K_DECIMAL {% id %} | %K_NUMERIC {% id %})
   (
-      _ "(" _ %S_NUMBER _ "," _ %S_NUMBER _ ")"
+      _ %S_LPARENS _ %S_NUMBER _ %S_COMMA _ %S_NUMBER _ %S_RPARENS
         {% d => {
           return {
             digits: d[3] + d[7],
@@ -64,7 +64,7 @@ O_FIXED_POINT_DATATYPE -> (
           }
         }%}
 
-    | _ "(" _ %S_NUMBER _ ")"
+    | _ %S_LPARENS _ %S_NUMBER _ %S_RPARENS
         {% d => {
           return {
             digits: d[3],
@@ -90,7 +90,7 @@ O_FIXED_POINT_DATATYPE -> (
 O_FLOATING_POINT_DATATYPE -> (
   (%K_FLOAT {% id %} | %K_DOUBLE {% id %})
   (
-      _ "(" _ %S_NUMBER _ "," _ %S_NUMBER _ ")"
+      _ %S_LPARENS _ %S_NUMBER _ %S_COMMA _ %S_NUMBER _ %S_RPARENS
         {% d => {
           return {
             digits: d[3] + d[7],
@@ -114,7 +114,7 @@ O_FLOATING_POINT_DATATYPE -> (
 # https://dev.mysql.com/doc/refman/5.7/en/bit-type.html
 
 O_BIT_DATATYPE ->
-  %K_BIT _ "(" _ %S_NUMBER _ ")"
+  %K_BIT _ %S_LPARENS _ %S_NUMBER _ %S_RPARENS
     {% d => {
       return {
         type: 'O_BIT_DATATYPE',
@@ -133,7 +133,7 @@ O_BIT_DATATYPE ->
 
 O_DATETIME_DATATYPE ->
   ( %K_DATE {% id %} | %K_TIME {% id %} | %K_DATETIME {% id %} | %K_TIMESTAMP {% id %} )
-  ( _ "(" _ %S_NUMBER _ ")" {% d => d[3] %} ):?
+  ( _ %S_LPARENS _ %S_NUMBER _ %S_RPARENS {% d => d[3] %} ):?
     {% d => {
       return {
         type: 'O_DATETIME_DATATYPE',
@@ -151,7 +151,7 @@ O_DATETIME_DATATYPE ->
 
 O_YEAR_DATATYPE -> _
   %K_YEAR
-  ( _ "(" _ %S_NUMBER _ ")" {% d => d[3] %} ):? _
+  ( _ %S_LPARENS _ %S_NUMBER _ %S_RPARENS {% d => d[3] %} ):? _
     {% d => {
       return {
         type: 'O_YEAR_DATATYPE',
@@ -171,7 +171,7 @@ O_YEAR_DATATYPE -> _
 
 O_VARIABLE_STRING_DATATYPE ->
   ( %K_CHAR {% id %} | %K_VARCHAR {% id %} | %K_BINARY {% id %} | %K_VARBINARY {% id %} )
-  _ "(" _ %S_NUMBER _ ")"
+  _ %S_LPARENS _ %S_NUMBER _ %S_RPARENS
     {% d => {
       return {
         type: 'O_VARIABLE_STRING_DATATYPE',
@@ -214,7 +214,7 @@ O_FIXED_STRING_DATATYPE ->
 
 O_ENUM_DATATYPE ->
   %K_ENUM
-  ( _ "(" _ %S_SQUOTE_STRING (_ "," _ %S_SQUOTE_STRING _ {% d => d[4] %} ):* _ ")"
+  ( _ %S_LPARENS _ %S_SQUOTE_STRING (_ %S_COMMA _ %S_SQUOTE_STRING _ {% d => d[4] %} ):* _ %S_RPARENS
     {% d => [d[4]].concat(d[6]) %}
   )
   {% d => {
@@ -238,9 +238,9 @@ O_ENUM_DATATYPE ->
 O_SET_DATATYPE ->
   %K_SET _
   (
-      "(" _ %S_SQUOTE_STRING _ ")"
+      %S_LPARENS _ %S_SQUOTE_STRING _ %S_RPARENS
         {% d => [d[3]] %}
-    | "(" _ %S_SQUOTE_STRING (_ "," _ %S_SQUOTE_STRING _ {% d => d[4] %} ):* _ ")"
+    | %S_LPARENS _ %S_SQUOTE_STRING (_ %S_COMMA _ %S_SQUOTE_STRING _ {% d => d[4] %} ):* _ %S_RPARENS
         {% d => Array.isArray(d[5]) ? [d[3]].concat(d[5]) : [d[3]] %}
   )
   {% d => {

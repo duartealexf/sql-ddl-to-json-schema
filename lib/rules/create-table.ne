@@ -11,9 +11,7 @@ _ -> %WS:*
 __ -> %WS:+
 
 P_CREATE_TABLE ->
-    _ %K_CREATE (__ %K_TEMPORARY):? __ %K_TABLE (__ %K_IF __ %K_NOT:? __ %K_EXISTS):? __ %S_IDENTIFIER %S_EOS:?
-#    _ %K_CREATE (__ %K_TEMPORARY):? __ %K_TABLE (__ %K_IF __ %K_NOT:? __ %K_EXISTS):? __ %S_IDENTIFIER_ST %CHAR:* %S_IDENTIFIER_EN %S_EOS:?
-#    _ %K_CREATE (__ %K_TEMPORARY):? __ %K_TABLE (__ %K_IF __ %K_NOT:? __ %K_EXISTS):? __ %S_IDENTIFIER _ P_CREATE_TABLE_SPEC (__ P_CREATE_TABLE_OPTIONS):? (__ P_CREATE_TABLE_PART_OPTIONS):? %S_EOS
+    %K_CREATE (__ %K_TEMPORARY):? __ %K_TABLE (__ %K_IF __ %K_NOT:? __ %K_EXISTS):? __ %S_IDENTIFIER _ P_SPEC_CREATE_TABLE# (__ P_CREATE_TABLE_OPTIONS):? (__ P_CREATE_TABLE_PART_OPTIONS):? %S_EOS
       {% d => {
         return {
           type: 'P_CREATE_TABLE',
@@ -26,12 +24,16 @@ P_CREATE_TABLE ->
 
 # =============================================================
 # Create table spec (a line in create table)
+#
+# A space between the identifier and column definition
+# is not required, as long as the identifier is
+# enclosed in backticks. - duartealexf
 
-P_CREATE_TABLE_SPEC ->
-    _ "(" _ (%S_IDENTIFIER __ P_COLUMN_DEFINITION %S_EOS ",":? %S_EOS ):+ _ ")" _
+P_SPEC_CREATE_TABLE ->
+    %S_LPARENS _ %S_IDENTIFIER _ P_COLUMN_DEFINITION _ %S_RPARENS
       {% d => {
         return {
-          type: 'P_CREATE_TABLE_SPEC',
+          type: 'P_SPEC_CREATE_TABLE',
           def: d[3]
         }
       }%}
@@ -39,14 +41,14 @@ P_CREATE_TABLE_SPEC ->
 # =============================================================
 # Column definition
 
-P_COLUMN_DEFINITION -> "TODO"
+P_COLUMN_DEFINITION -> %S_IDENTIFIER
 
 # =============================================================
 # Create table options
 
-P_CREATE_TABLE_OPTIONS -> "TODO"
+# P_CREATE_TABLE_OPTIONS -> "TODO"
 
 # =============================================================
 # Create table partition options
 
-P_CREATE_TABLE_PART_OPTIONS -> "TODO"
+# P_CREATE_TABLE_PART_OPTIONS -> "TODO"

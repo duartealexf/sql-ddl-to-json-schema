@@ -9,7 +9,7 @@ const symbols = require('./dictionary/symbols');
 
 const rules = {
   ...keywords,
-  ...symbols
+  ...symbols,
 }
 
 const lexer = moo.compile(rules);

@@ -14,7 +14,6 @@
 
 @include "./rules/datatypes.ne"
 @include "./rules/create-database.ne"
-@include "./rules/create-table.ne"
 
 # =============================================================
 # Statements wrapper
@@ -23,7 +22,7 @@ main -> P_DDS:+
   {% d => {
     return {
       type: 'MAIN',
-      def: d[0][0]
+      def: d[0]
     }
   }%}
 
@@ -32,7 +31,6 @@ main -> P_DDS:+
 
 P_DDS -> (
     P_CREATE_DB {% id %}
-  | P_CREATE_TABLE {% id %}
 )
   {% d => {
     return {

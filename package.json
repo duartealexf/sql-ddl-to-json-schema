@@ -4,15 +4,22 @@
   "description": "A grammar and stream-friendly SQL parser.",
   "main": "index.js",
   "scripts": {
-    "test": "./node_modules/ava/cli.js --color=always",
-    "build": "./node_modules/nearley/bin/nearleyc.js lib/grammar.ne > lib/grammar.js --color=always",
-    "test:watch": "nodemon -w lib -e ne,js --ignore lib/grammar.js --exec 'yarn run build && yarn run test'",
-    "build:watch": "nodemon -w lib -e ne,js --ignore lib/grammar.js --exec 'yarn run build'",
-    "nearley-test": "./node_modules/nearley/bin/nearley-test.js ./lib/grammar.js",
-    "example": "node lib/example.js",
+    "standard-version": "node_modules/.bin/standard-version",
+    "nearley-test": "node_modules/nearley/bin/nearley-test.js lib/compiled/grammar.js",
+    "node-watch": "nodemon -w lib -e ne,js --ignore lib/compiled",
+    "nearleyc": "node_modules/nearley/bin/nearleyc.js",
+    "eslint": "node_modules/.bin/eslint",
+    "ava": "node_modules/ava/cli.js",
+    "test": "ava --color=always",
+    "lint": "eslint lib test",
+    "assemble": "node src/assembly.js",
+    "prebuild": "yarn run assemble",
+    "build": "nearleyc lib/compiled/grammar.ne > lib/compiled/grammar.js --color=always",
+    "test:watch": "node-watch --exec 'yarn run build && yarn run test'",
+    "build:watch": "node-watch --exec 'yarn run build'",
+    "example": "yarn run assemble; node lib/example.js",
     "prerelease": "yarn run lint",
-    "release": "./node_modules/.bin/standard-version && git push --follow-tags",
-    "lint": "./node_modules/.bin/eslint lib test"
+    "release": "standard-version && git push --follow-tags"
   },
   "repository": {
     "type": "git",
@@ -31,9 +38,11 @@
     "commitizen": "^2.9.6",
     "cz-conventional-changelog": "^2.1.0",
     "eslint": "^4.7.0",
+    "fs-extra": "^5.0.0",
     "moo": "^0.4.3",
     "nodemon": "^1.14.11",
-    "standard-version": "^4.3.0"
+    "standard-version": "^4.3.0",
+    "winston": "^3.0.0-rc0"
   },
   "config": {
     "commitizen": {

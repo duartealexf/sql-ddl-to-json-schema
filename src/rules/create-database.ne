@@ -3,13 +3,6 @@
 #
 # https://dev.mysql.com/doc/refman/5.7/en/create-database.html
 
-@include "./rules/index.ne"
-
-@lexer lexer
-
-_ -> %WS:*
-__ -> %WS:+
-
 P_CREATE_DB -> _ %K_CREATE __ %K_DATABASE ( __ %K_IF ( __ %K_NOT ):? __ %K_EXISTS):? __ %S_IDENTIFIER ( __ P_SPEC_CREATE_DB {% d => d[1] %} ):? %S_EOS:?
   {% d => {
     return {

@@ -3,13 +3,6 @@
 #
 # https://dev.mysql.com/doc/refman/5.7/en/data-types.html
 
-@include "./rules/index.ne"
-
-@lexer lexer
-
-_ -> %WS:*
-__ -> %WS:+
-
 O_DATATYPE -> (
     O_INTEGER_DATATYPE
   | O_FIXED_POINT_DATATYPE

@@ -4,11 +4,10 @@ const Parser = require('../lib');
 const tests = {
   'Should create test database with null specs': {
     queries: [
-      'CREATE TABLE test',
-      'create table test',
+      'CREATE TABLE test (test test)', // WIP!
     ],
     expect: {
-      type: 'main',
+      type: 'MAIN',
       def: [
         {
           type: 'P_DDS',
@@ -16,7 +15,12 @@ const tests = {
             type: 'P_CREATE_TABLE',
             def: {
               table: 'test',
-              spec: []
+              spec: {
+                type: 'P_SPEC_CREATE_TABLE',
+                def: {
+                  column: 'test'
+                }
+              }
             }
           }
         }
@@ -41,4 +45,3 @@ Object.getOwnPropertyNames(tests).forEach(description => {
     });
   });
 });
-

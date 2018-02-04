@@ -15,12 +15,7 @@ P_CREATE_DB -> _ %K_CREATE __ %K_DATABASE ( __ %K_IF ( __ %K_NOT ):? __ %K_EXIST
   }%}
 
 # =============================================================
-# Create database spec (charset and collate)
-#
-# https://dev.mysql.com/doc/refman/5.7/en/charset-charsets.html
-
-O_CHARSET -> ( %S_DQUOTE_STRING | %S_SQUOTE_STRING | %S_IDENTIFIER ) {% d => d[0][0] %}
-O_COLLATION -> ( %S_DQUOTE_STRING | %S_SQUOTE_STRING | %S_IDENTIFIER ) {% d => d[0][0] %}
+# Create database spec
 
 P_SPEC_CREATE_DB -> (
     ( %K_DEFAULT __ ):? %K_CHARACTER __ %K_SET ( __ | _ %S_EQUAL _ ) O_CHARSET

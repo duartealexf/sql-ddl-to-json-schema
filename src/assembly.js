@@ -3,9 +3,8 @@
  * concatenating them all to lib/compiled/grammar.ne, so it can be
  * later compiled to grammar.js by nearleyc.
  *
- * It is also responsible for copying the dictionary folder (normally
- * read by lexer.ne) to lib/compiled folder (so it can be read by
- * the compiled grammar files).
+ * It is also responsible for copying the dictionary and shared folder to
+ * lib/compiled folder (so it can be read by the compiled grammar files).
  */
 
 const fs = require('fs-extra');
@@ -44,8 +43,7 @@ const nearleyGrammar = path.join(compiledFolder, 'grammar.ne');
 logger.log('info', 'Sarting grammar assembly...');
 
 /**
- * Main function for concatenating lexer.ne, the
- * rules and place them in lib/compiled folder.
+ * Main function for this script.
  *
  * @returns {void}
  */
@@ -147,20 +145,39 @@ const main = async() => {
   /**
    * Copy dictionary folder.
    */
-  logger.log('info', 'Copying dictionary...');
+  logger.log('info', 'Copying dictionary folder...');
 
   await new Promise(resolve =>
     fs.copy(
       path.join(projectRoot, 'src', 'dictionary'),
       path.join(projectRoot, 'lib', 'compiled', 'dictionary')
-    ).catch(error => {
-      lastError = error;
-      resolve();
-    })
+    )
+      .then(resolve)
+      .catch(error => {
+        lastError = error;
+        resolve();
+      })
+  );
+
+  /**
+   * Copy shared folder.
+   */
+  logger.log('info', 'Copying shared folder...');
+
+  await new Promise(resolve =>
+    fs.copy(
+      path.join(projectRoot, 'src', 'shared'),
+      path.join(projectRoot, 'lib', 'compiled', 'shared')
+    )
+      .then(resolve)
+      .catch(error => {
+        lastError = error;
+        resolve();
+      })
   );
 
   if (lastError) {
-    logger.log('error', `Error copying dictionary folder: ${lastError}`);
+    logger.log('error', `Error copying shared folder: ${lastError}`);
     process.exit(1);
   }
 };

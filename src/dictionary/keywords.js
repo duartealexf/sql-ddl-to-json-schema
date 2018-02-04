@@ -4,7 +4,7 @@
  * Keywords are case insensitive and prepended with 'K_'.
  */
 
-const utils = require('../utils');
+const utils = require('../shared/utils');
 
 const keywords = utils.arrayToObject(
   [

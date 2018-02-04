@@ -35,7 +35,6 @@ const lexer = moo.compile(rules);
 _ -> %WS:*
 __ -> %WS:+
 
-
 # =============================================================
 # Main parser rule (entrypoint).
 
@@ -60,6 +59,14 @@ P_DDS -> (
       def: d[0]
     }
   }%}
+
+# =============================================================
+# Valid options for charset and collations.
+#
+# https://dev.mysql.com/doc/refman/5.7/en/charset-charsets.html
+
+O_CHARSET -> ( %S_DQUOTE_STRING | %S_SQUOTE_STRING | %S_IDENTIFIER ) {% d => d[0][0] %}
+O_COLLATION -> ( %S_DQUOTE_STRING | %S_SQUOTE_STRING | %S_IDENTIFIER ) {% d => d[0][0] %}
 
 # =============================================================
 # Other rules will be appended below when compiling.

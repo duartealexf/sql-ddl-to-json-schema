@@ -19,7 +19,7 @@ If you want to contribute, create an issue, a PR or fork.
 
 ## Contributing
 
-This README assumes you are using yarn, but you may switch to corresponding npm commands.
+This project assumes you are using yarn, as all scripts in `package.json` are run through yarn.
 
 - Clone this repo
 - Install nodemon: `yarn global add nodemon`
@@ -42,12 +42,13 @@ Folder structure:
 |  |- compiled/       Contains compiled grammar.ne and grammar.js files.
 |
 |- src/
-|  |- assembly.js     File that concatenates all .ne files to grammar.ne.
+|  |- assembly.js     Script that concatenates all .ne files to grammar.ne.
 |  |- example.js      Serves development purpose for testing isolated statements.
 |  |- lexer.ne        Entrypoint and first lines of the grammar.
 |  |- utils.js        Utilities used by dictionary .js files.
 |  |- dictionary/     Contains .js files with array of keywords used in lexer.ne.
 |  |- rules/          Contains .ne files with grammar rules.
+|  |- shared/         Shared files among other js files.
 |
 |- test/              Tests.
 ```
@@ -65,11 +66,10 @@ S_ -> Symbol (not a keyword, but chars and other matches by RegExp's)
 
 1. The `dictionary/keywords.js` file contains keywords, but they are prepended with K_ when used in .ne files. Make sure you understand how it is exported.
 
-1. The compiled `grammar.ne` file comprises a concatenation of `lexer.ne` and files in `rules` folder. So don't worry about importing .ne files in other .ne files. This prevents circular dependency and grammar rules in `lexer.ne` are scoped to all files (thus not having to repeat them in every file).
+1. The compiled `grammar.ne` file comprises an assembly (concatenation) of `lexer.ne` and files in `rules` folder. So don't worry about importing .ne files in other .ne files. This prevents circular dependency and grammar rules in `lexer.ne` are scoped to all files (thus not having to repeat them in every file).
 
 ### Scripts at hand
 
-- Assemble `grammar.ne`: `yarn run assemble`
 - Assemble `grammar.ne` and compile to `grammar.js`: `yarn run build`
 - Same as above, but watch for changes: `yarn run build:watch`
 - Assemble, build and test: `yarn run test`

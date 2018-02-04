@@ -9,7 +9,7 @@
  * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions#special-white-space
  */
 
-const utils = require('../utils');
+const utils = require('../shared/utils');
 
 module.exports = {
   WS              : { match: /[\s]/, lineBreaks: true },

@@ -9,8 +9,8 @@ P_CREATE_TABLE ->
         return {
           type: 'P_CREATE_TABLE',
           def: {
-            table: d[7],
-            spec: d[9]
+            table: d[6].value,
+            spec: d[8]
           }
         }
       }%}
@@ -21,20 +21,24 @@ P_CREATE_TABLE ->
 # A space between the identifier and column definition
 # is not required, as long as the identifier is
 # enclosed in backticks. - duartealexf
+#
+# WIP!
 
 P_SPEC_CREATE_TABLE ->
     %S_LPARENS _ %S_IDENTIFIER _ P_COLUMN_DEFINITION _ %S_RPARENS
       {% d => {
         return {
           type: 'P_SPEC_CREATE_TABLE',
-          def: d[3]
+          def: {
+            column: d[2].value
+          }
         }
       }%}
 
 # =============================================================
 # Column definition
 
-P_COLUMN_DEFINITION -> %S_IDENTIFIER
+P_COLUMN_DEFINITION -> %S_IDENTIFIER {% d => d[0] %}
 
 # =============================================================
 # Create table options

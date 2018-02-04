@@ -40,7 +40,7 @@ const rulesFolder = path.join(projectRoot, 'src', 'rules');
 const compiledFolder = path.join(projectRoot, 'lib', 'compiled');
 const nearleyGrammar = path.join(compiledFolder, 'grammar.ne');
 
-logger.log('info', 'Sarting grammar assembly...');
+logger.log('info', 'Starting grammar assembly...');
 
 /**
  * Main function for this script.

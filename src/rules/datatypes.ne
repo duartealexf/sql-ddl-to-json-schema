@@ -18,7 +18,7 @@ O_DATATYPE -> (
   | O_JSON_DATATYPE
 ) {% d => {
   return {
-    type: 'O_DATATYPE',
+    id: 'O_DATATYPE',
     def: d[0][0]
   }
 }%}
@@ -29,15 +29,16 @@ O_DATATYPE -> (
 # https://dev.mysql.com/doc/refman/5.7/en/integer-types.html
 
 O_INTEGER_DATATYPE -> (
-    %K_INTEGER
+    %K_INT
+  | %K_INTEGER
   | %K_SMALLINT
   | %K_TINYINT
   | %K_MEDIUMINT
   | %K_BIGINT
 ) {% d => {
   return {
-    type: 'O_INTEGER_DATATYPE',
-    def: d[0][0]
+    id: 'O_INTEGER_DATATYPE',
+    def: d[0][0].value
   }
 }%}
 
@@ -67,10 +68,10 @@ O_FIXED_POINT_DATATYPE -> (
   ):?
 ) {% d => {
   return {
-    type: 'O_FIXED_POINT_DATATYPE',
+    id: 'O_FIXED_POINT_DATATYPE',
     def: {
       datatype: d[0][0],
-      spec: d[0][1]
+      def: d[0][1]
     }
   }
 }%}
@@ -93,10 +94,10 @@ O_FLOATING_POINT_DATATYPE -> (
   ):?
 ) {% d => {
   return {
-    type: 'O_FLOATING_POINT_DATATYPE',
+    id: 'O_FLOATING_POINT_DATATYPE',
     def: {
       datatype: d[0][0],
-      spec: d[0][1]
+      def: d[0][1]
     }
   }
 }%}
@@ -110,7 +111,7 @@ O_BIT_DATATYPE ->
   %K_BIT _ %S_LPARENS _ %S_NUMBER _ %S_RPARENS
     {% d => {
       return {
-        type: 'O_BIT_DATATYPE',
+        id: 'O_BIT_DATATYPE',
         def: {
           values: d[4]
         }
@@ -129,7 +130,7 @@ O_DATETIME_DATATYPE ->
   ( _ %S_LPARENS _ %S_NUMBER _ %S_RPARENS {% d => d[3] %} ):?
     {% d => {
       return {
-        type: 'O_DATETIME_DATATYPE',
+        id: 'O_DATETIME_DATATYPE',
         def: {
           datatype: d[0],
           fractional: d[1]
@@ -147,7 +148,7 @@ O_YEAR_DATATYPE -> _
   ( _ %S_LPARENS _ %S_NUMBER _ %S_RPARENS {% d => d[3] %} ):? _
     {% d => {
       return {
-        type: 'O_YEAR_DATATYPE',
+        id: 'O_YEAR_DATATYPE',
         def: {
           datatype: d[1],
           digits: d[2] || 4
@@ -167,10 +168,10 @@ O_VARIABLE_STRING_DATATYPE ->
   _ %S_LPARENS _ %S_NUMBER _ %S_RPARENS
     {% d => {
       return {
-        type: 'O_VARIABLE_STRING_DATATYPE',
+        id: 'O_VARIABLE_STRING_DATATYPE',
         def: {
-          datatype: d[0],
-          length: d[4]
+          datatype: d[0].value,
+          length: d[4].value
         }
       }
     }%}
@@ -193,7 +194,7 @@ O_FIXED_STRING_DATATYPE ->
   )
     {% d => {
       return {
-        type: 'O_FIXED_STRING_DATATYPE',
+        id: 'O_FIXED_STRING_DATATYPE',
         def: {
           datatype: d[0][0],
         }
@@ -212,7 +213,7 @@ O_ENUM_DATATYPE ->
   )
   {% d => {
     return {
-      type: 'O_ENUM_DATATYPE',
+      id: 'O_ENUM_DATATYPE',
       def: {
         datatype: d[0],
         values: d[1],
@@ -238,7 +239,7 @@ O_SET_DATATYPE ->
   )
   {% d => {
     return {
-      type: 'O_SET_DATATYPE',
+      id: 'O_SET_DATATYPE',
       def: {
         datatype: d[0],
         values: d[2],
@@ -265,7 +266,7 @@ O_SPATIAL_DATATYPE ->
   | %K_GEOMETRYCOLLECTION
 ) {% d => {
       return {
-        type: 'O_SPATIAL_DATATYPE',
+        id: 'O_SPATIAL_DATATYPE',
         def: {
           datatype: d[0][0],
         }
@@ -280,7 +281,7 @@ O_SPATIAL_DATATYPE ->
 O_JSON_DATATYPE -> %K_JSON
   {% d => {
     return {
-      type: 'O_JSON_DATATYPE',
+      id: 'O_JSON_DATATYPE',
       def: {
         datatype: d[0],
       }

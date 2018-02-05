@@ -35,7 +35,7 @@ const lexer = moo.compile(rules);
 P_MAIN -> P_DDS:+
   {% d => {
     return {
-      type: 'MAIN',
+      id: 'MAIN',
       def: d[0]
     }
   }%}
@@ -49,7 +49,7 @@ P_DDS -> (
 )
   {% d => {
     return {
-      type: 'P_DDS',
+      id: 'P_DDS',
       def: d[0]
     }
   }%}
@@ -70,3 +70,13 @@ __ -> %WS:+
 
 O_CHARSET -> ( %S_DQUOTE_STRING | %S_SQUOTE_STRING | %S_IDENTIFIER ) {% d => d[0][0] %}
 O_COLLATION -> ( %S_DQUOTE_STRING | %S_SQUOTE_STRING | %S_IDENTIFIER ) {% d => d[0][0] %}
+
+# =============================================================
+# Valid ways to set a default value for a column.
+
+O_DEFAULT_VALUE -> ( %S_DQUOTE_STRING | %S_SQUOTE_STRING | %S_NUMBER ) {% d => d[0][0] %}
+
+# =============================================================
+# Valid ways to set comment for column.
+
+O_COMMENT -> ( %S_DQUOTE_STRING | %S_SQUOTE_STRING ) {% d => d[0][0] %}

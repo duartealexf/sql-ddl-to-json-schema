@@ -10,12 +10,12 @@ const tests = {
       'create database `test`;',
     ],
     expect: {
-      type: 'MAIN',
+      id: 'MAIN',
       def: [
         {
-          type: 'P_DDS',
+          id: 'P_DDS',
           def: {
-            type: 'P_CREATE_DB',
+            id: 'P_CREATE_DB',
             def: {
               database: 'test',
               meta: null
@@ -35,16 +35,16 @@ const tests = {
       "CREATE DATABASE test CHARACTER SET 'utf8';",
     ],
     expect: {
-      type: 'MAIN',
+      id: 'MAIN',
       def: [
         {
-          type: 'P_DDS',
+          id: 'P_DDS',
           def: {
-            type: 'P_CREATE_DB',
+            id: 'P_CREATE_DB',
             def: {
               database: 'test',
               meta: {
-                type: 'P_SPEC_CREATE_DB',
+                id: 'O_CREATE_DB_SPEC',
                 def: {
                   charset: 'utf8',
                 }
@@ -64,16 +64,16 @@ const tests = {
       "CREATE DATABASE test DEFAULT COLLATE 'utf8_general_ci';",
     ],
     expect: {
-      type: 'MAIN',
+      id: 'MAIN',
       def: [
         {
-          type: 'P_DDS',
+          id: 'P_DDS',
           def: {
-            type: 'P_CREATE_DB',
+            id: 'P_CREATE_DB',
             def: {
               database: 'test',
               meta: {
-                type: 'P_SPEC_CREATE_DB',
+                id: 'O_CREATE_DB_SPEC',
                 def: {
                   collation: 'utf8_general_ci'
                 }
@@ -92,16 +92,16 @@ const tests = {
       'CREATE DATABASE test COLLATE utf8_cirylic_ci CHARACTER SET utf8 COLLATE utf8_general_ci;',
     ],
     expect: {
-      type: 'MAIN',
+      id: 'MAIN',
       def: [
         {
-          type: 'P_DDS',
+          id: 'P_DDS',
           def: {
-            type: 'P_CREATE_DB',
+            id: 'P_CREATE_DB',
             def: {
               database: 'test',
               meta: {
-                type: 'P_SPEC_CREATE_DB',
+                id: 'O_CREATE_DB_SPEC',
                 def: {
                   charset: 'utf8',
                   collation: 'utf8_general_ci'

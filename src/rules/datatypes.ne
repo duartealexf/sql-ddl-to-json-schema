@@ -29,16 +29,21 @@ O_DATATYPE -> (
 # https://dev.mysql.com/doc/refman/5.7/en/integer-types.html
 
 O_INTEGER_DATATYPE -> (
-    %K_INT
-  | %K_INTEGER
-  | %K_SMALLINT
-  | %K_TINYINT
-  | %K_MEDIUMINT
-  | %K_BIGINT
+    ( %K_INT {% id %} | %K_INTEGER {% id %} ) ( _ %S_LPARENS _ %S_NUMBER _ %S_RPARENS {% d => d[3].value %} ):?
+      {% d => {
+        return {
+          datatype: d[0].value,
+          width: d[1] || 4
+        }
+      }%}
+  | %K_TINYINT    {% d => { return { datatype: d[0].value, width: 1 }} %}
+  | %K_SMALLINT   {% d => { return { datatype: d[0].value, width: 2 }} %}
+  | %K_MEDIUMINT  {% d => { return { datatype: d[0].value, width: 3 }} %}
+  | %K_BIGINT     {% d => { return { datatype: d[0].value, width: 8 }} %}
 ) {% d => {
   return {
     id: 'O_INTEGER_DATATYPE',
-    def: d[0][0].value
+    def: d[0]
   }
 }%}
 
@@ -84,13 +89,13 @@ O_FIXED_POINT_DATATYPE -> (
 O_FLOATING_POINT_DATATYPE -> (
   (%K_FLOAT {% id %} | %K_DOUBLE {% id %})
   (
-      _ %S_LPARENS _ %S_NUMBER _ %S_COMMA _ %S_NUMBER _ %S_RPARENS
-        {% d => {
-          return {
-            digits: d[3] + d[7],
-            decimals: d[7]
-          }
-        }%}
+    _ %S_LPARENS _ %S_NUMBER _ %S_COMMA _ %S_NUMBER _ %S_RPARENS
+      {% d => {
+        return {
+          digits: d[3] + d[7],
+          decimals: d[7]
+        }
+      }%}
   ):?
 ) {% d => {
   return {

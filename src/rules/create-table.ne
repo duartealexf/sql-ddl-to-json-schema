@@ -20,11 +20,7 @@ P_CREATE_TABLE ->
 # =============================================================
 # Create table spec (statements in parenthesis)
 #
-# A space between the identifier and column definition
-# is not required, as long as the identifier is
-# enclosed in backticks. - duartealexf
-#
-# WIP!
+# In MySQL docs this is the '(create_definition,...)'.
 
 O_CREATE_TABLE_DEFINITION ->
   %S_LPARENS _ (
@@ -47,9 +43,13 @@ O_CREATE_TABLE_DEFINITION ->
 # Create table definition options
 #
 # In MySQL docs these options are 'create_definition'.
+#
+# A space between the identifier and column definition
+# is not required, as long as the identifier is
+# enclosed in backticks. - duartealexf
 
 O_CREATE_TABLE_DEFINITION_SPEC -> (
-    %S_IDENTIFIER __ (
+    %S_IDENTIFIER _ (
         # In MySQL docs these options are 'column_definition'.
         O_DATATYPE ( __ O_COLUMN_DEFINITION_COMMON:+ {% d => d[1] %} ):? _
           {% d => { return { datatype: d[0], def: d[1] }} %}

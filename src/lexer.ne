@@ -95,5 +95,5 @@ O_COMMENT -> ( %S_DQUOTE_STRING | %S_SQUOTE_STRING ) {% d => d[0][0] %}
 # fallback to consider it as an identifier. - duartealexf
 
 S_IDENTIFIER ->
-    %IDENTIFIER
-# | all $K_ will be appended here
+    %IDENTIFIER {% id %}
+# | all %K_ will be appended here

@@ -154,13 +154,13 @@ const keywords = utils.stringArrayToMapping(
    * Make case insensitive regexp from a keyword.
    * Example: WORD -> /[Ww][Oo][Rr][Dd]/
    */
-  string => new RegExp(
+  string => new RegExp('\\b' +
     string.split('')
       .reduce((str, char) => {
         str += `[${char.toUpperCase()}${char.toLowerCase()}]`;
         return str;
       }, '')
-  )
+  + '\\b')
 );
 
 module.exports = keywords;

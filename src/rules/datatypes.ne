@@ -3,25 +3,26 @@
 #
 # https://dev.mysql.com/doc/refman/5.7/en/data-types.html
 
-O_DATATYPE ->
-    O_INTEGER_DATATYPE
-  | O_FIXED_POINT_DATATYPE
-  | O_FLOATING_POINT_DATATYPE
-  | O_BIT_DATATYPE
-  | O_DATETIME_DATATYPE
-  | O_YEAR_DATATYPE
-  | O_VARIABLE_STRING_DATATYPE
-  | O_FIXED_STRING_DATATYPE
-  | O_ENUM_DATATYPE
-  | O_SET_DATATYPE
-  | O_SPATIAL_DATATYPE
-  | O_JSON_DATATYPE
-{% d => {
-  return {
-    id: 'O_DATATYPE',
-    def: d[0]
-  }
-}%}
+O_DATATYPE -> (
+    O_INTEGER_DATATYPE          {% id %}
+  | O_FIXED_POINT_DATATYPE      {% id %}
+  | O_FLOATING_POINT_DATATYPE   {% id %}
+  | O_BIT_DATATYPE              {% id %}
+  | O_DATETIME_DATATYPE         {% id %}
+  | O_YEAR_DATATYPE             {% id %}
+  | O_VARIABLE_STRING_DATATYPE  {% id %}
+  | O_FIXED_STRING_DATATYPE     {% id %}
+  | O_ENUM_DATATYPE             {% id %}
+  | O_SET_DATATYPE              {% id %}
+  | O_SPATIAL_DATATYPE          {% id %}
+  | O_JSON_DATATYPE             {% id %}
+)
+  {% d => {
+    return {
+      id: 'O_DATATYPE',
+      def: d[0]
+    }
+  }%}
 
 # =============================================================
 # Integer data types
@@ -188,23 +189,24 @@ O_VARIABLE_STRING_DATATYPE ->
 #
 # https://dev.mysql.com/doc/refman/5.7/en/blob.html
 
-O_FIXED_STRING_DATATYPE ->
-    %K_TINYBLOB
-  | %K_BLOB
-  | %K_MEDIUMBLOB
-  | %K_LONGBLOB
-  | %K_TINYTEXT
-  | %K_TEXT
-  | %K_MEDIUMTEXT
-  | %K_LONGTEXT
-    {% d => {
-      return {
-        id: 'O_FIXED_STRING_DATATYPE',
-        def: {
-          datatype: d[0].value,
-        }
+O_FIXED_STRING_DATATYPE -> (
+    %K_TINYBLOB     {% id %}
+  | %K_BLOB         {% id %}
+  | %K_MEDIUMBLOB   {% id %}
+  | %K_LONGBLOB     {% id %}
+  | %K_TINYTEXT     {% id %}
+  | %K_TEXT         {% id %}
+  | %K_MEDIUMTEXT   {% id %}
+  | %K_LONGTEXT     {% id %}
+)
+  {% d => {
+    return {
+      id: 'O_FIXED_STRING_DATATYPE',
+      def: {
+        datatype: d[0].value,
       }
-    }%}
+    }
+  }%}
 
 # =============================================================
 # Enum type
@@ -259,23 +261,24 @@ O_SET_DATATYPE ->
 # https://dev.mysql.com/doc/refman/5.7/en/creating-spatial-columns.html
 # https://dev.mysql.com/doc/refman/5.7/en/gis-geometry-class-hierarchy.html
 
-O_SPATIAL_DATATYPE ->
-    %K_GEOMETRY
-  | %K_POINT
-  | %K_LINESTRING
-  | %K_POLYGON
-  | %K_MULTIPOINT
-  | %K_MULTILINESTRING
-  | %K_MULTIPOLYGON
-  | %K_GEOMETRYCOLLECTION
-{% d => {
-      return {
-        id: 'O_SPATIAL_DATATYPE',
-        def: {
-          datatype: d[0].value,
-        }
+O_SPATIAL_DATATYPE -> (
+    %K_GEOMETRY             {% id %}
+  | %K_POINT                {% id %}
+  | %K_LINESTRING           {% id %}
+  | %K_POLYGON              {% id %}
+  | %K_MULTIPOINT           {% id %}
+  | %K_MULTILINESTRING      {% id %}
+  | %K_MULTIPOLYGON         {% id %}
+  | %K_GEOMETRYCOLLECTION   {% id %}
+)
+  {% d => {
+    return {
+      id: 'O_SPATIAL_DATATYPE',
+      def: {
+        datatype: d[0].value,
       }
-    }%}
+    }
+  }%}
 
 # =============================================================
 # JSON type

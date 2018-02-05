@@ -16,9 +16,9 @@ const tests = {
             def: {
               table: 'test',
               def: {
-                id: 'O_CREATE_TABLE_DEFINITION',
+                id: 'O_CREATE_TABLE_COLUMNS_WRAPPER',
                 def: [
-                  { id: 'O_CREATE_TABLE_DEFINITION_SPEC',
+                  { id: 'O_CREATE_TABLE_COLUMN_DEFINITION',
                     def: {
                       column: 'age',
                       datatype: {
@@ -48,7 +48,7 @@ const tests = {
                     }
                   },
                   {
-                    id: 'O_CREATE_TABLE_DEFINITION_SPEC',
+                    id: 'O_CREATE_TABLE_COLUMN_DEFINITION',
                     def: {
                       column: 'name',
                       datatype: {

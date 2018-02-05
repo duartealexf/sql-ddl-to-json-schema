@@ -39,16 +39,15 @@ Folder structure:
 |- lib/
 |  |- index.js        Imports parser class.
 |  |- parser.js       Parser class, which will be used by users.
-|  |- compiled/       Contains compiled grammar.ne and grammar.js files.
+|  |- compiled/       Contains compiled grammar files.
 |
 |- src/
 |  |- assembly.js     Script that concatenates all .ne files to grammar.ne.
 |  |- example.js      Serves development purpose for testing isolated statements.
 |  |- lexer.ne        Entrypoint and first lines of the grammar.
-|  |- utils.js        Utilities used by dictionary .js files.
 |  |- dictionary/     Contains .js files with array of keywords used in lexer.ne.
 |  |- rules/          Contains .ne files with grammar rules.
-|  |- shared/         Shared files among other js files.
+|  |- shared/         Shared files used by dictionary .js files.
 |
 |- test/              Tests.
 ```

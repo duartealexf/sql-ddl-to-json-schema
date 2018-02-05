@@ -5,7 +5,7 @@
 
 P_CREATE_TABLE ->
     %K_CREATE (__ %K_TEMPORARY):? __ %K_TABLE (__ %K_IF __ %K_NOT:? __ %K_EXISTS):? __ S_IDENTIFIER _
-    O_CREATE_TABLE_DEFINITION %S_EOS:?# (__ P_CREATE_TABLE_OPTIONS):? (__ P_CREATE_TABLE_PART_OPTIONS):? %S_EOS
+    O_CREATE_TABLE_COLUMNS_WRAPPER %S_EOS:?# (__ P_CREATE_TABLE_OPTIONS):? (__ P_CREATE_TABLE_PART_OPTIONS):? %S_EOS
       {% d => {
         return {
           id: 'P_CREATE_TABLE',
@@ -18,13 +18,13 @@ P_CREATE_TABLE ->
   # | TODO: add other types of CREATE TABLE
 
 # =============================================================
-# Create table spec (statements in parenthesis)
+# Create table spec - (wrapper for statements in parenthesis)
 #
-# In MySQL docs this is the '(create_definition,...)'.
+# In MySQL docs this is the '(create_definition,...)' part.
 
-O_CREATE_TABLE_DEFINITION ->
+O_CREATE_TABLE_COLUMNS_WRAPPER ->
   %S_LPARENS _ (
-      O_CREATE_TABLE_DEFINITION_SPEC ( _ %S_COMMA _ O_CREATE_TABLE_DEFINITION_SPEC:+ {% d => d[3] %} ):?
+      O_CREATE_TABLE_COLUMN_DEFINITION ( _ %S_COMMA _ O_CREATE_TABLE_COLUMN_DEFINITION {% d => d[3] %} ):*
         {% d => {
           return [d[0]].concat(d[1] || [])
         }%}
@@ -33,7 +33,7 @@ O_CREATE_TABLE_DEFINITION ->
   ) _ %S_RPARENS
       {% d => {
         return {
-          id: 'O_CREATE_TABLE_DEFINITION',
+          id: 'O_CREATE_TABLE_COLUMNS_WRAPPER',
           def: d[2] // array of statements in parenthesis
         }
       }%}
@@ -48,9 +48,9 @@ O_CREATE_TABLE_DEFINITION ->
 # is not required, as long as the identifier is
 # enclosed in backticks. - duartealexf
 
-O_CREATE_TABLE_DEFINITION_SPEC -> (
+O_CREATE_TABLE_COLUMN_DEFINITION -> (
     S_IDENTIFIER _ (
-        # In MySQL docs these options are 'column_definition'.
+        # In MySQL docs these two options are 'column_definition'.
         O_DATATYPE ( __ O_COLUMN_DEFINITION_COMMON:+ {% d => d[1] %} ):? _
           {% d => { return { datatype: d[0], def: d[1] }} %}
       | O_DATATYPE ( __ P_COLUMN_DEFINITION_GENERATED:+ {% d => d[1] %} ):? _
@@ -66,7 +66,7 @@ O_CREATE_TABLE_DEFINITION_SPEC -> (
 )
   {% d => {
     return {
-      id: 'O_CREATE_TABLE_DEFINITION_SPEC',
+      id: 'O_CREATE_TABLE_COLUMN_DEFINITION',
       def: d[0]
     }
   } %}

@@ -33,9 +33,12 @@ module.exports = {
   S_SQUOTE_STRING : { match: /''|'(?:(?:'')|[^'\\]|\\.)*'/, value: v => utils.trimString(v, "'") },
 
   /**
+   * We don't prepend S_ to IDENTIFIER yet because of the way MySQL
+   * treats identifiers. See S_IDENTIFIER in lexer.ne file.
+   *
    * I've noticed through tests in the MySQL CLI that escaped backticks are not
    * supported, they are interpreted as non-escaped backticks. - duartealexf
    */
-  S_IDENTIFIER    : { match: /[0-9a-zA-Z$_]+|`.*?`/, value: v => utils.trimString(v, "`") },
+  IDENTIFIER    : { match: /[0-9a-zA-Z$_]+|`.*?`/, value: v => utils.trimString(v, "`") },
 
 };

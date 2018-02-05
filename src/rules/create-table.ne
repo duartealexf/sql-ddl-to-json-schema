@@ -4,7 +4,7 @@
 # https://dev.mysql.com/doc/refman/5.7/en/create-table.html
 
 P_CREATE_TABLE ->
-    %K_CREATE (__ %K_TEMPORARY):? __ %K_TABLE (__ %K_IF __ %K_NOT:? __ %K_EXISTS):? __ %S_IDENTIFIER _
+    %K_CREATE (__ %K_TEMPORARY):? __ %K_TABLE (__ %K_IF __ %K_NOT:? __ %K_EXISTS):? __ S_IDENTIFIER _
     O_CREATE_TABLE_DEFINITION %S_EOS:?# (__ P_CREATE_TABLE_OPTIONS):? (__ P_CREATE_TABLE_PART_OPTIONS):? %S_EOS
       {% d => {
         return {
@@ -49,7 +49,7 @@ O_CREATE_TABLE_DEFINITION ->
 # enclosed in backticks. - duartealexf
 
 O_CREATE_TABLE_DEFINITION_SPEC -> (
-    %S_IDENTIFIER _ (
+    S_IDENTIFIER _ (
         # In MySQL docs these options are 'column_definition'.
         O_DATATYPE ( __ O_COLUMN_DEFINITION_COMMON:+ {% d => d[1] %} ):? _
           {% d => { return { datatype: d[0], def: d[1] }} %}
@@ -113,7 +113,7 @@ P_COLUMN_DEFINITION_GENERATED -> __
 # Reference of a column
 
 P_COLUMN_REFERENCE ->
-  %K_REFERENCES __ %S_IDENTIFIER __ %S_IDENTIFIER ( _ %S_COMMA _ %S_IDENTIFIER ):* (__ (
+  %K_REFERENCES __ S_IDENTIFIER __ S_IDENTIFIER ( _ %S_COMMA _ S_IDENTIFIER ):* (__ (
       ( %K_MATCH __ ( %K_FULL | %K_PARTIAL | %K_SIMPLE ) )
     | %K_ON __ ( %K_DELETE | %K_UPDATE ) __
       ( %K_RESTRICT | %K_CASCADE | %K_SET __ %K_NULL | %K_NO __ %K_ACTION | %K_SET __ %K_DEFAULT )

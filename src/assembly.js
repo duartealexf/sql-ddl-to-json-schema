@@ -12,6 +12,12 @@ const path = require('path');
 const winston = require('winston');
 
 /**
+ * Get keywords to be matched as an identifier where
+ * needed (see S_IDENTIFIER in lexer.ne file).
+ */
+const keywords = require('./dictionary/keywords');
+
+/**
  * Set up logger.
  */
 winston.configure({
@@ -40,7 +46,7 @@ const rulesFolder = path.join(projectRoot, 'src', 'rules');
 const compiledFolder = path.join(projectRoot, 'lib', 'compiled');
 const nearleyGrammar = path.join(compiledFolder, 'grammar.ne');
 
-logger.log('info', 'Starting grammar assembly...');
+logger.info('Starting grammar assembly...');
 
 /**
  * Main function for this script.
@@ -49,7 +55,7 @@ logger.log('info', 'Starting grammar assembly...');
  */
 const main = async() => {
 
-  logger.log('info', 'Obtaining rules...');
+  logger.info('Obtaining rules...');
 
   let lastError = null;
 
@@ -65,7 +71,7 @@ const main = async() => {
   );
 
   if (lastError) {
-    logger.log('error', `Error reading rules files: ${lastError}`);
+    logger.error(`Error reading rules files: ${lastError}`);
     process.exit(1);
   }
 
@@ -76,7 +82,7 @@ const main = async() => {
     .filter(file => file.split('.').pop() === 'ne')
     .map(file => path.join(rulesFolder, file));
 
-  logger.log('info', 'Obtaining lexer...');
+  logger.info('Obtaining lexer...');
 
   /**
    * Lexer file contents.
@@ -90,11 +96,11 @@ const main = async() => {
   );
 
   if (lastError) {
-    logger.log('error', `Error reading lexer file: ${lastError}`);
+    logger.error(`Error reading lexer file: ${lastError}`);
     process.exit(1);
   }
 
-  logger.log('info', 'Appending lexer to grammar...');
+  logger.info('Appending lexer to grammar...');
 
   /**
    * Clear output file and start by writing lexer contents into it.
@@ -102,7 +108,26 @@ const main = async() => {
   lastError = await new Promise(resolve => fs.writeFile(nearleyGrammar, lexer, resolve));
 
   if (lastError) {
-    logger.log('error', `Error writing grammar file: ${lastError}`);
+    logger.error(`Error writing grammar file: ${lastError}`);
+    process.exit(1);
+  }
+
+  /**
+   * Append keywords to S_IDENTIFIER rule (see rule in lexer.ne).
+   */
+  logger.info('Appending keywords as identifier rule...');
+
+  const ruleString = ' ' +
+    Object.keys(keywords).reduce((concat, key) => {
+      concat += ` | %${key} {% id %}`;
+      return concat;
+    }, '') +
+    '\n\n';
+
+  lastError = await new Promise(resolve => fs.appendFile(nearleyGrammar, ruleString, resolve));
+
+  if (lastError) {
+    logger.error(`Error appending identifier rule to file: ${lastError}`);
     process.exit(1);
   }
 
@@ -114,7 +139,7 @@ const main = async() => {
     const file = files[i];
 
     const filename = file.split(path.delimiter).pop();
-    logger.log('info', `Obtaining contents of ${filename}...`);
+    logger.info(`Obtaining contents of ${filename}...`);
 
     /**
      * Get file contents.
@@ -128,16 +153,16 @@ const main = async() => {
     );
 
     if (lastError) {
-      logger.log('error', `Error reading rules file (${file}): ${lastError}`);
+      logger.error(`Error reading rules file (${file}): ${lastError}`);
       process.exit(1);
     }
 
-    logger.log('info', `Writing contents to grammar...`);
+    logger.info(`Writing contents to grammar...`);
 
     lastError = await new Promise(resolve => fs.appendFile(nearleyGrammar, contents, resolve));
 
     if (lastError) {
-      logger.log('error', `Error appeding rules of file (${file}) to grammar: ${lastError}`);
+      logger.error(`Error appeding rules of file (${file}) to grammar: ${lastError}`);
       process.exit(1);
     }
   }
@@ -145,7 +170,7 @@ const main = async() => {
   /**
    * Copy dictionary folder.
    */
-  logger.log('info', 'Copying dictionary folder...');
+  logger.info('Copying dictionary folder...');
 
   await new Promise(resolve =>
     fs.copy(
@@ -162,7 +187,7 @@ const main = async() => {
   /**
    * Copy shared folder.
    */
-  logger.log('info', 'Copying shared folder...');
+  logger.info('Copying shared folder...');
 
   await new Promise(resolve =>
     fs.copy(
@@ -177,11 +202,11 @@ const main = async() => {
   );
 
   if (lastError) {
-    logger.log('error', `Error copying shared folder: ${lastError}`);
+    logger.error(`Error copying shared folder: ${lastError}`);
     process.exit(1);
   }
 };
 
 main().then(async() => {
-  logger.log('info', 'Grammar assembled successfully!');
+  logger.info('Grammar assembled successfully!');
 });

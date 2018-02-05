@@ -1,6 +1,7 @@
 const Parser = require('../lib/parser');
 
 const parser = new Parser();
-parser.feed("CREATE temporary TABLE `test` (`id` INT(10) AUTO_INCREMENT NOT NULL PRIMARY KEY, `name` VARCHAR(12) NOT NULL)");
+// parser.feed("CREATE TABLE create (pk_action_type int(10) NOT NULL AUTO_INCREMENT, name varchar(255) NOT NULL, deleted tinyint(3) DEFAULT 0 NOT NULL, created_at timestamp(19) DEFAULT CURRENT_TIMESTAMP NOT NULL, updated_at timestamp(19) NULL)");
+parser.feed("CREATE TABLE create (pk_action_type int(10) NOT NULL AUTO_INCREMENT)");
 const value = parser.results;
 console.log(JSON.stringify(value, null, 2));

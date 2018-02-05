@@ -118,7 +118,7 @@ const main = async() => {
   logger.info('Appending keywords as identifier rule...');
 
   const ruleString = ' ' +
-    Object.keys(keywords).reduce((concat, key) => {
+    Object.keys(keywords).reduceRight((concat, key) => {
       concat += ` | %${key} {% id %}`;
       return concat;
     }, '') +

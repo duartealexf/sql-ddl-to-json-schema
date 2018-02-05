@@ -11,6 +11,7 @@ const keywords = utils.stringArrayToMapping(
     'STATS_SAMPLE_PAGES',
     'GEOMETRYCOLLECTION',
     'STATS_AUTO_RECALC',
+    'CURRENT_TIMESTAMP',
     'STATS_PERSISTENT',
     'MULTILINESTRING',
     'DELAY_KEY_WRITE',

@@ -3,7 +3,7 @@
 #
 # https://dev.mysql.com/doc/refman/5.7/en/data-types.html
 
-O_DATATYPE -> (
+O_DATATYPE ->
     O_INTEGER_DATATYPE
   | O_FIXED_POINT_DATATYPE
   | O_FLOATING_POINT_DATATYPE
@@ -16,10 +16,10 @@ O_DATATYPE -> (
   | O_SET_DATATYPE
   | O_SPATIAL_DATATYPE
   | O_JSON_DATATYPE
-) {% d => {
+{% d => {
   return {
     id: 'O_DATATYPE',
-    def: d[0][0]
+    def: d[0]
   }
 }%}
 
@@ -28,55 +28,57 @@ O_DATATYPE -> (
 #
 # https://dev.mysql.com/doc/refman/5.7/en/integer-types.html
 
-O_INTEGER_DATATYPE -> (
-    ( %K_INT {% id %} | %K_INTEGER {% id %} ) ( _ %S_LPARENS _ %S_NUMBER _ %S_RPARENS {% d => d[3].value %} ):?
-      {% d => {
-        return {
-          datatype: d[0].value,
-          width: d[1] || 4
+O_INTEGER_DATATYPE ->
+  (
+      %K_INT        {% d => { return { datatype: d[0].value, width: 4 }} %}
+    | %K_INTEGER    {% d => { return { datatype: d[0].value, width: 4 }} %}
+    | %K_TINYINT    {% d => { return { datatype: d[0].value, width: 1 }} %}
+    | %K_SMALLINT   {% d => { return { datatype: d[0].value, width: 2 }} %}
+    | %K_MEDIUMINT  {% d => { return { datatype: d[0].value, width: 3 }} %}
+    | %K_BIGINT     {% d => { return { datatype: d[0].value, width: 8 }} %}
+  )
+  ( _ %S_LPARENS _ %S_NUMBER _ %S_RPARENS {% d => d[3].value %} ):?
+
+    {% d => {
+      return {
+        id: 'O_INTEGER_DATATYPE',
+        def: {
+          datatype: d[0].datatype,
+          width: d[1] ? d[1] : d[0].width
         }
-      }%}
-  | %K_TINYINT    {% d => { return { datatype: d[0].value, width: 1 }} %}
-  | %K_SMALLINT   {% d => { return { datatype: d[0].value, width: 2 }} %}
-  | %K_MEDIUMINT  {% d => { return { datatype: d[0].value, width: 3 }} %}
-  | %K_BIGINT     {% d => { return { datatype: d[0].value, width: 8 }} %}
-) {% d => {
-  return {
-    id: 'O_INTEGER_DATATYPE',
-    def: d[0]
-  }
-}%}
+      }
+    }%}
 
 # =============================================================
 # Fixed-point data types
 #
 # https://dev.mysql.com/doc/refman/5.7/en/fixed-point-types.html
 
-O_FIXED_POINT_DATATYPE -> (
+O_FIXED_POINT_DATATYPE ->
   (%K_DECIMAL {% id %} | %K_NUMERIC {% id %})
   (
       _ %S_LPARENS _ %S_NUMBER _ %S_COMMA _ %S_NUMBER _ %S_RPARENS
         {% d => {
           return {
-            digits: d[3] + d[7],
-            decimals: d[7]
+            digits: d[3].value + d[7].value,
+            decimals: d[7].value
           }
         }%}
 
     | _ %S_LPARENS _ %S_NUMBER _ %S_RPARENS
         {% d => {
           return {
-            digits: d[3],
+            digits: d[3].value,
             decimals: 0
           }
         }%}
   ):?
-) {% d => {
+{% d => {
   return {
     id: 'O_FIXED_POINT_DATATYPE',
     def: {
-      datatype: d[0][0],
-      def: d[0][1]
+      datatype: d[0].value,
+      def: d[1]
     }
   }
 }%}
@@ -86,23 +88,23 @@ O_FIXED_POINT_DATATYPE -> (
 #
 # https://dev.mysql.com/doc/refman/5.7/en/floating-point-types.html
 
-O_FLOATING_POINT_DATATYPE -> (
-  (%K_FLOAT {% id %} | %K_DOUBLE {% id %})
+O_FLOATING_POINT_DATATYPE ->
+  ( %K_FLOAT {% id %} | %K_DOUBLE {% id %} )
   (
     _ %S_LPARENS _ %S_NUMBER _ %S_COMMA _ %S_NUMBER _ %S_RPARENS
       {% d => {
         return {
-          digits: d[3] + d[7],
-          decimals: d[7]
+          digits: d[3].value + d[7].value,
+          decimals: d[7].value
         }
       }%}
   ):?
-) {% d => {
+{% d => {
   return {
     id: 'O_FLOATING_POINT_DATATYPE',
     def: {
-      datatype: d[0][0],
-      def: d[0][1]
+      datatype: d[0].value,
+      def: d[1]
     }
   }
 }%}
@@ -118,7 +120,7 @@ O_BIT_DATATYPE ->
       return {
         id: 'O_BIT_DATATYPE',
         def: {
-          values: d[4]
+          values: d[4].value
         }
       }
     }%}
@@ -132,12 +134,12 @@ O_BIT_DATATYPE ->
 
 O_DATETIME_DATATYPE ->
   ( %K_DATE {% id %} | %K_TIME {% id %} | %K_DATETIME {% id %} | %K_TIMESTAMP {% id %} )
-  ( _ %S_LPARENS _ %S_NUMBER _ %S_RPARENS {% d => d[3] %} ):?
+  ( _ %S_LPARENS _ %S_NUMBER _ %S_RPARENS {% d => d[3].value %} ):?
     {% d => {
       return {
         id: 'O_DATETIME_DATATYPE',
         def: {
-          datatype: d[0],
+          datatype: d[0].value,
           fractional: d[1]
         }
       }
@@ -148,15 +150,15 @@ O_DATETIME_DATATYPE ->
 #
 # https://dev.mysql.com/doc/refman/5.7/en/year.html
 
-O_YEAR_DATATYPE -> _
+O_YEAR_DATATYPE ->
   %K_YEAR
-  ( _ %S_LPARENS _ %S_NUMBER _ %S_RPARENS {% d => d[3] %} ):? _
+  ( _ %S_LPARENS _ %S_NUMBER _ %S_RPARENS {% d => d[3].value %} ):? _
     {% d => {
       return {
         id: 'O_YEAR_DATATYPE',
         def: {
-          datatype: d[1],
-          digits: d[2] || 4
+          datatype: d[0].value,
+          digits: d[1] || 4
         }
       }
     }%}
@@ -187,21 +189,19 @@ O_VARIABLE_STRING_DATATYPE ->
 # https://dev.mysql.com/doc/refman/5.7/en/blob.html
 
 O_FIXED_STRING_DATATYPE ->
-  (
-      %K_TINYBLOB
-    | %K_BLOB
-    | %K_MEDIUMBLOB
-    | %K_LONGBLOB
-    | %K_TINYTEXT
-    | %K_TEXT
-    | %K_MEDIUMTEXT
-    | %K_LONGTEXT
-  )
+    %K_TINYBLOB
+  | %K_BLOB
+  | %K_MEDIUMBLOB
+  | %K_LONGBLOB
+  | %K_TINYTEXT
+  | %K_TEXT
+  | %K_MEDIUMTEXT
+  | %K_LONGTEXT
     {% d => {
       return {
         id: 'O_FIXED_STRING_DATATYPE',
         def: {
-          datatype: d[0][0],
+          datatype: d[0].value,
         }
       }
     }%}
@@ -213,14 +213,14 @@ O_FIXED_STRING_DATATYPE ->
 
 O_ENUM_DATATYPE ->
   %K_ENUM
-  ( _ %S_LPARENS _ %S_SQUOTE_STRING (_ %S_COMMA _ %S_SQUOTE_STRING _ {% d => d[4] %} ):* _ %S_RPARENS
-    {% d => [d[4]].concat(d[6]) %}
+  ( _ %S_LPARENS _ %S_SQUOTE_STRING (_ %S_COMMA _ %S_SQUOTE_STRING _ {% d => d[3].value %} ):* _ %S_RPARENS
+    {% d => [d[3].value].concat(d[4]) %}
   )
   {% d => {
     return {
       id: 'O_ENUM_DATATYPE',
       def: {
-        datatype: d[0],
+        datatype: d[0].value,
         values: d[1],
       }
     }
@@ -238,15 +238,15 @@ O_SET_DATATYPE ->
   %K_SET _
   (
       %S_LPARENS _ %S_SQUOTE_STRING _ %S_RPARENS
-        {% d => [d[3]] %}
-    | %S_LPARENS _ %S_SQUOTE_STRING (_ %S_COMMA _ %S_SQUOTE_STRING _ {% d => d[4] %} ):* _ %S_RPARENS
-        {% d => Array.isArray(d[5]) ? [d[3]].concat(d[5]) : [d[3]] %}
+        {% d => [d[2].value] %}
+    | %S_LPARENS _ %S_SQUOTE_STRING (_ %S_COMMA _ %S_SQUOTE_STRING _ {% d => d[3].value %} ):* _ %S_RPARENS
+        {% d => Array.isArray(d[3]) ? [d[2].value].concat(d[3]) : [d[2].value] %}
   )
   {% d => {
     return {
       id: 'O_SET_DATATYPE',
       def: {
-        datatype: d[0],
+        datatype: d[0].value,
         values: d[2],
       }
     }
@@ -260,7 +260,6 @@ O_SET_DATATYPE ->
 # https://dev.mysql.com/doc/refman/5.7/en/gis-geometry-class-hierarchy.html
 
 O_SPATIAL_DATATYPE ->
-  (
     %K_GEOMETRY
   | %K_POINT
   | %K_LINESTRING
@@ -269,11 +268,11 @@ O_SPATIAL_DATATYPE ->
   | %K_MULTILINESTRING
   | %K_MULTIPOLYGON
   | %K_GEOMETRYCOLLECTION
-) {% d => {
+{% d => {
       return {
         id: 'O_SPATIAL_DATATYPE',
         def: {
-          datatype: d[0][0],
+          datatype: d[0].value,
         }
       }
     }%}
@@ -288,7 +287,7 @@ O_JSON_DATATYPE -> %K_JSON
     return {
       id: 'O_JSON_DATATYPE',
       def: {
-        datatype: d[0],
+        datatype: d[0].value,
       }
     }
   }%}

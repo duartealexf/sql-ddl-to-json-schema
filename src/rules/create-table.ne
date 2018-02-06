@@ -250,8 +250,8 @@ P_INDEX_COLUMN -> S_IDENTIFIER
         id: 'P_INDEX_COLUMN',
         def: {
           column: d[0].value,
-          length: d[1] ? d[1].length : null,
-          sort: d[1] ? d[1].sort : null
+          length: d[1] && d[1].length ? d[1].length : null,
+          sort: d[1] && d[1].sort ? d[1].sort : null
         }
       }
     }%}

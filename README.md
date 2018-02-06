@@ -82,12 +82,22 @@ Taking the example file as an example, you may debug with the following configur
 
 #### Visual Studio Code
 
-Place the following launch config:
+Place the launch config below.
+To debug tests you may want to change the args as you go.
 
 ```json
 {
     "version": "0.2.0",
     "configurations": [
+      {
+        "type": "node",
+        "request": "launch",
+        "name": "Debug Tests",
+        "args": [
+          "test/create-table.js"
+        ],
+        "program": "${workspaceFolder}/node_modules/ava/profile.js"
+      },
       {
         "type": "node",
         "request": "launch",

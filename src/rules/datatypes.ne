@@ -142,7 +142,7 @@ O_DATETIME_DATATYPE ->
         id: 'O_DATETIME_DATATYPE',
         def: {
           datatype: d[0].value,
-          fractional: d[1]
+          fractional: d[1] || 0
         }
       }
     }%}

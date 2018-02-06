@@ -3,41 +3,56 @@
 #
 # https://dev.mysql.com/doc/refman/5.7/en/create-table.html
 
-P_CREATE_TABLE ->
-    %K_CREATE (__ %K_TEMPORARY):? __ %K_TABLE (__ %K_IF __ %K_NOT:? __ %K_EXISTS):? __ S_IDENTIFIER _
-    (
-        O_CREATE_TABLE_COLUMNS_WRAPPER
-        # P_CREATE_TABLE_OPTIONS:?
-        # P_CREATE_TABLE_PART_OPTIONS:?
-          {% d => {
-            return {
-              columns: d[0],
-              options: d[1] || null,
-              partition: d[2] || null
-            }
-          }%}
+P_CREATE_TABLE -> (
+    P_CREATE_TABLE_COMMON   {% id %}
+  # | P_CREATE_TABLE_AS       {% id %}
+  # | P_CREATE_TABLE_LIKE     {% id %}
+)
+  {% d => {
+    return {
+      id: 'P_CREATE_TABLE',
+      def: d[0]
+    }
+  }%}
 
-      # TODO: add other variants:
-      # | CREATE [TEMPORARY] TABLE [IF NOT EXISTS] tbl_name
-      #     [(create_definition,...)]
-      #     [table_options]
-      #     [partition_options]
-      #     [IGNORE | REPLACE]
-      #     [AS] query_expression
-      #
-      # | CREATE [TEMPORARY] TABLE [IF NOT EXISTS] tbl_name
-      #     { LIKE old_tbl_name | (LIKE old_tbl_name) }
+# =============================================================
+# Create common table spec
 
-    ) %S_EOS:?
+P_CREATE_TABLE_COMMON ->
+    %K_CREATE ( __ %K_TEMPORARY):? __ %K_TABLE ( __ %K_IF __ %K_NOT:? __ %K_EXISTS):? __ S_IDENTIFIER _
+    O_CREATE_TABLE_COLUMNS_WRAPPER
+    # P_CREATE_TABLE_OPTIONS:?
+    # P_CREATE_TABLE_PART_OPTIONS:?
+    %S_EOS:?
       {% d => {
         return {
-          id: 'P_CREATE_TABLE',
+          id: 'P_CREATE_TABLE_COMMON',
           def: {
             table: d[6].value,
-            def: d[8]
+            columnsDef: d[8],
+            tableOptions: d[9] || null,
+            partitionsDef: d[10] || null
           }
         }
       }%}
+
+# =============================================================
+# Create table from a query
+
+# P_CREATE_TABLE_AS -> __
+# CREATE [TEMPORARY] TABLE [IF NOT EXISTS] tbl_name
+#     [(create_definition,...)]
+#     [table_options]
+#     [partition_options]
+#     [IGNORE | REPLACE]
+#     [AS] query_expression
+
+# =============================================================
+# Create table like another one
+
+# P_CREATE_TABLE_LIKE -> __
+# CREATE [TEMPORARY] TABLE [IF NOT EXISTS] tbl_name
+#     { LIKE old_tbl_name | (LIKE old_tbl_name) }
 
 # =============================================================
 # Create table spec - (wrapper for statements in parenthesis)
@@ -47,16 +62,14 @@ P_CREATE_TABLE ->
 O_CREATE_TABLE_COLUMNS_WRAPPER ->
   %S_LPARENS _ (
     O_CREATE_TABLE_CREATE_DEFINITION ( _ %S_COMMA _ O_CREATE_TABLE_CREATE_DEFINITION {% d => d[3] %} ):*
-      {% d => {
-        return [d[0]].concat(d[1] || [])
-      }%}
+      {% d => [d[0]].concat(d[1] || []) %}
   ) _ %S_RPARENS
-      {% d => {
-        return {
-          id: 'O_CREATE_TABLE_COLUMNS_WRAPPER',
-          def: d[2]
-        }
-      }%}
+    {% d => {
+      return {
+        id: 'O_CREATE_TABLE_COLUMNS_WRAPPER',
+        def: d[2]
+      }
+    }%}
 
 
 # =============================================================
@@ -71,12 +84,10 @@ O_CREATE_TABLE_COLUMNS_WRAPPER ->
 O_CREATE_TABLE_CREATE_DEFINITION -> (
     S_IDENTIFIER _ (
 
-        # Whitespace may have been consumed by parenthesis in datatype.
-        O_DATATYPE _
-
+        O_DATATYPE
         # In MySQL docs these two options are 'column_definition'.
-        ( O_COLUMN_DATATYPE_SPEC _ {% id %} ):*
-        ( O_COLUMN_DEFINITION_COMMON _ {% id %} ):*
+        ( __ O_COLUMN_DATATYPE_SPEC {% d => d[1] %} ):*
+        ( __ O_COLUMN_DEFINITION_COMMON {% d => d[1] %} ):*
 
           {% d => {
             return {
@@ -93,6 +104,7 @@ O_CREATE_TABLE_CREATE_DEFINITION -> (
       #         def: d[2]
       #       }
       #     }%}
+
     ) {% d => {
       return {
         column: d[0].value,
@@ -172,7 +184,7 @@ O_COLUMN_DEFINITION_COMMON -> (
       | %K_MEMORY {% id %}
       | %K_DEFAULT {% id %}
     )                               {% d => { return { storage: d[2].value }} %}
-  | P_COLUMN_REFERENCE              {% d => { return { references: d[0] }} %}
+  | P_COLUMN_REFERENCE              {% d => { return { reference: d[0] }} %}
 )
   {% d => {
     return {
@@ -186,23 +198,75 @@ O_COLUMN_DEFINITION_COMMON -> (
 
 P_COLUMN_REFERENCE ->
   %K_REFERENCES __ S_IDENTIFIER
-  ( _ %S_LPARENS _ S_IDENTIFIER ( _ %S_COMMA _ S_IDENTIFIER ):* _ %S_RPARENS ):?
-  ( _ %K_MATCH __ ( %K_FULL | %K_PARTIAL | %K_SIMPLE ) ):?
   (
-    _ %K_ON __ ( %K_DELETE | %K_UPDATE ) __
-    ( %K_RESTRICT | %K_CASCADE | %K_SET __ %K_NULL | %K_NO __ %K_ACTION | %K_SET __ %K_DEFAULT )
+    _ %S_LPARENS _ P_INDEX_COLUMN ( _ %S_COMMA _ P_INDEX_COLUMN {% d => d[3] %} ):* _ %S_RPARENS
+      {% d => [d[3]].concat(d[4] || []) %}
   ):?
+  (
+    _ %K_MATCH __ ( %K_FULL {% id %} | %K_PARTIAL {% id %} | %K_SIMPLE {% id %} )
+      {% d => d[3].value %}
+  ):?
+  (
+    _ %K_ON __ ( %K_DELETE {% id %} | %K_UPDATE {% id %} ) __
+    (
+        %K_RESTRICT           {% d => d[0].value %}
+      | %K_CASCADE            {% d => d[0].value %}
+      | %K_SET __ %K_NULL     {% d => d[0].value + ' ' + d[2].value %}
+      | %K_NO __ %K_ACTION    {% d => d[0].value + ' ' + d[2].value %}
+      | %K_SET __ %K_DEFAULT  {% d => d[0].value + ' ' + d[2].value %}
+    )
+      {% d => { return { trigger: d[3].value, action: d[5] }} %}
+  ):?
+    {% d => {
+      return {
+        id: 'P_COLUMN_REFERENCE',
+        def: {
+          table: d[2].value,
+          columns: d[3],
+          match: d[4],
+          on: d[5]
+        }
+      }
+    }%}
+
+# =============================================================
+# Reference to foreign keys
+#
+# In MySQL docs this is the 'index_col_name'.
+
+P_INDEX_COLUMN -> S_IDENTIFIER
+  (
+    __ %S_NUMBER
+    ( __ %K_ASC {% id %} | __ %K_DESC {% id %} ):?
+      {% d => {
+        return {
+          length: d[1].value,
+          sort: d[2] ? d[2].value : null
+        }
+      }%}
+  ):?
+    {% d => {
+      return {
+        id: 'P_INDEX_COLUMN',
+        def: {
+          column: d[0].value,
+          length: d[1] ? d[1].length : null,
+          sort: d[1] ? d[1].sort : null
+        }
+      }
+    }%}
+
 
 # =============================================================
 # Generated definition for generated columns
 #
+# https://dev.mysql.com/doc/refman/5.7/en/create-table-generated-columns.html
 
-# P_COLUMN_DEFINITION_GENERATED -> __
-# TODO: Implement me:
-# [GENERATED ALWAYS] AS (expression)
-#       [VIRTUAL | STORED] [NOT NULL | NULL]
-#       [UNIQUE [KEY]] [[PRIMARY] KEY]
-#       [COMMENT 'string']
+# P_COLUMN_DEFINITION_GENERATED ->
+#  ( %K_GENERATED __ %K_ALWAYS __ ) %K_AS __ O_EXPRESSION
+#      [VIRTUAL | STORED] [NOT NULL | NULL]
+#      [UNIQUE [KEY]] [[PRIMARY] KEY]
+#      [COMMENT 'string']
 
 # =============================================================
 # Create table options

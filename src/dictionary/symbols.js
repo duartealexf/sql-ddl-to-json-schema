@@ -5,8 +5,12 @@
  * Identifiers may begin with a digit but, can consist solely of digits only if quoted.
  *
  * https://dev.mysql.com/doc/refman/5.7/en/identifiers.html
+ * https://dev.mysql.com/doc/refman/5.7/en/identifier-qualifiers.html
  * https://dev.mysql.com/doc/refman/5.7/en/string-literals.html
  * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions#special-white-space
+ *
+ * TODO: add qualified identifiers.
+ * TODO: allow backtick escape with double backticks.
  */
 
 const utils = require('../shared/utils');
@@ -19,6 +23,11 @@ module.exports = {
   S_LPARENS         : '(',
   S_RPARENS         : ')',
   S_COMMA           : ',',
+  S_OR              : '||',
+  S_AND             : '&&',
+  S_PIPE            : '|',
+  S_AMPERSAND       : '&',
+  S_EXCLAMATION     : '!',
 
   /**
    * Used to represent a bit datatype.

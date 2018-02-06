@@ -13,7 +13,7 @@ parser.feed(`CREATE TABLE person (
   twobits BIT(2) DEFAULT 0,
   salary DECIMAL(5) COLUMN_FORMAT DYNAMIC,
   balance FLOAT(7,2) COMMENT 'account balance',
-  city_id INTEGER REFERENCES cities (id, local_id) MATCH FULL,
+  city_id INTEGER REFERENCES cities (id 20 ASC, local_id) MATCH FULL,
   family_id INTEGER REFERENCES families (id) MATCH SIMPLE ON DELETE SET NULL,
   dog_id INTEGER REFERENCES dogs (id) ON UPDATE NO ACTION,
   birthtime TIME,

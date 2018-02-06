@@ -36,8 +36,7 @@ class Utils {
    * @param {string} chars Defult character list to trim.
    * @returns {string} Trimmed string.
    */
-  // eslint-disable-next-line
-  static trimString(string, additional = '', chars = `\s\\0\x0B`) {
+  static trimString(string, additional = '', chars = `\\s\\0\\x0B`) {
     return string.replace(
       new RegExp(`^[${additional+chars}]*|[${additional+chars}]*$`, 'gim'),
       ''

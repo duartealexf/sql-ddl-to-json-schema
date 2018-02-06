@@ -116,12 +116,13 @@ O_FLOATING_POINT_DATATYPE ->
 # https://dev.mysql.com/doc/refman/5.7/en/bit-type.html
 
 O_BIT_DATATYPE ->
-  %K_BIT _ %S_LPARENS _ %S_NUMBER _ %S_RPARENS
+  %K_BIT ( _ %S_LPARENS _ %S_NUMBER _ %S_RPARENS _ {% d => d[3].value %} ):?
     {% d => {
       return {
         id: 'O_BIT_DATATYPE',
         def: {
-          values: d[4].value
+          datatype: d[0].value,
+          length: d[1] || 1
         }
       }
     }%}
@@ -153,7 +154,7 @@ O_DATETIME_DATATYPE ->
 
 O_YEAR_DATATYPE ->
   %K_YEAR
-  ( _ %S_LPARENS _ %S_NUMBER _ %S_RPARENS {% d => d[3].value %} ):? _
+  ( _ %S_LPARENS _ %S_NUMBER _ %S_RPARENS {% d => d[3].value %} ):?
     {% d => {
       return {
         id: 'O_YEAR_DATATYPE',
@@ -171,18 +172,30 @@ O_YEAR_DATATYPE ->
 # https://dev.mysql.com/doc/refman/5.7/en/char.html
 # https://dev.mysql.com/doc/refman/5.7/en/binary-varbinary.html
 
-O_VARIABLE_STRING_DATATYPE ->
-  ( %K_CHAR {% id %} | %K_VARCHAR {% id %} | %K_BINARY {% id %} | %K_VARBINARY {% id %} )
-  _ %S_LPARENS _ %S_NUMBER _ %S_RPARENS
-    {% d => {
-      return {
-        id: 'O_VARIABLE_STRING_DATATYPE',
-        def: {
+O_VARIABLE_STRING_DATATYPE -> (
+    ( %K_CHAR {% id %} | %K_BINARY {% id %} )
+    ( _ %S_LPARENS _ %S_NUMBER _ %S_RPARENS {% d => d[3].value %} ):?
+      {% d => {
+        return {
           datatype: d[0].value,
-          length: d[4].value
+          length: d[1] || 1
         }
-      }
-    }%}
+      }%}
+  | ( %K_VARCHAR {% id %} | %K_VARBINARY {% id %} )
+    ( _ %S_LPARENS _ %S_NUMBER _ %S_RPARENS {% d => d[3].value %} )
+      {% d => {
+        return {
+          datatype: d[0].value,
+          length: d[1]
+        }
+      }%}
+)
+  {% d => {
+    return {
+      id: 'O_VARIABLE_STRING_DATATYPE',
+      def: d[0]
+    }
+  }%}
 
 # =============================================================
 # Fixed length string types
@@ -190,32 +203,39 @@ O_VARIABLE_STRING_DATATYPE ->
 # https://dev.mysql.com/doc/refman/5.7/en/blob.html
 
 O_FIXED_STRING_DATATYPE -> (
-    %K_TINYBLOB     {% id %}
-  | %K_BLOB         {% id %}
-  | %K_MEDIUMBLOB   {% id %}
-  | %K_LONGBLOB     {% id %}
-  | %K_TINYTEXT     {% id %}
-  | %K_TEXT         {% id %}
-  | %K_MEDIUMTEXT   {% id %}
-  | %K_LONGTEXT     {% id %}
+    ( %K_BLOB {% id %} | %K_TEXT {% id %} )
+    ( _ %S_LPARENS _ %S_NUMBER _ %S_RPARENS {% d => d[3].value %} ):?
+      {% d => {
+        return {
+          datatype: d[0].value,
+          length: d[1]
+        }
+      }%}
+  | %K_TINYBLOB     {% d => { return { datatype: d[0].value }} %}
+  | %K_MEDIUMBLOB   {% d => { return { datatype: d[0].value }} %}
+  | %K_LONGBLOB     {% d => { return { datatype: d[0].value }} %}
+  | %K_TINYTEXT     {% d => { return { datatype: d[0].value }} %}
+  | %K_MEDIUMTEXT   {% d => { return { datatype: d[0].value }} %}
+  | %K_LONGTEXT     {% d => { return { datatype: d[0].value }} %}
 )
   {% d => {
     return {
       id: 'O_FIXED_STRING_DATATYPE',
-      def: {
-        datatype: d[0].value,
-      }
+      def: d[0]
     }
   }%}
 
 # =============================================================
 # Enum type
 #
+# Provided string variables cannot contain commas.
+#
 # https://dev.mysql.com/doc/refman/5.7/en/enum.html
 
 O_ENUM_DATATYPE ->
   %K_ENUM
-  ( _ %S_LPARENS _ %S_SQUOTE_STRING (_ %S_COMMA _ %S_SQUOTE_STRING _ {% d => d[3].value %} ):* _ %S_RPARENS
+  (
+    _ %S_LPARENS _ %S_SQUOTE_STRING ( _ %S_COMMA _ %S_SQUOTE_STRING {% d => d[3].value %} ):* _ %S_RPARENS
     {% d => [d[3].value].concat(d[4]) %}
   )
   {% d => {
@@ -234,22 +254,19 @@ O_ENUM_DATATYPE ->
 # Provided string variables cannot contain commas.
 #
 # https://dev.mysql.com/doc/refman/5.7/en/set.html
-#
 
 O_SET_DATATYPE ->
-  %K_SET _
+  %K_SET
   (
-      %S_LPARENS _ %S_SQUOTE_STRING _ %S_RPARENS
-        {% d => [d[2].value] %}
-    | %S_LPARENS _ %S_SQUOTE_STRING (_ %S_COMMA _ %S_SQUOTE_STRING _ {% d => d[3].value %} ):* _ %S_RPARENS
-        {% d => Array.isArray(d[3]) ? [d[2].value].concat(d[3]) : [d[2].value] %}
+    _ %S_LPARENS _ %S_SQUOTE_STRING ( _ %S_COMMA _ %S_SQUOTE_STRING {% d => d[3].value %} ):* _ %S_RPARENS
+    {% d => [d[3].value].concat(d[4]) %}
   )
   {% d => {
     return {
       id: 'O_SET_DATATYPE',
       def: {
         datatype: d[0].value,
-        values: d[2],
+        values: d[1],
       }
     }
   }%}

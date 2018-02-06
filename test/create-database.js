@@ -30,9 +30,9 @@ const tests = {
     queries: [
       'CREATE DATABASE test DEFAULT CHARACTER SET utf8;',
       'CREATE DATABASE test CHARACTER SET utf8;',
-      'CREATE DATABASE test CHARACTER SET "utf8";',
-      'CREATE DATABASE test CHARACTER SET `utf8`;',
-      "CREATE DATABASE test CHARACTER SET 'utf8';",
+      'CREATE DATABASE test CHARACTER SET = "utf8";',
+      'CREATE DATABASE test CHARACTER SET =`utf8`;',
+      "CREATE DATABASE test CHARACTER SET= 'utf8';",
     ],
     expect: {
       id: 'MAIN',
@@ -59,9 +59,9 @@ const tests = {
   'Should create test database with collation utf8_general_ci': {
     queries: [
       'CREATE DATABASE test COLLATE utf8_general_ci;',
-      'CREATE DATABASE test DEFAULT COLLATE `utf8_general_ci`;',
-      'CREATE DATABASE test DEFAULT COLLATE "utf8_general_ci";',
-      "CREATE DATABASE test DEFAULT COLLATE 'utf8_general_ci';",
+      'CREATE DATABASE test DEFAULT COLLATE = `utf8_general_ci`;',
+      'CREATE DATABASE test DEFAULT COLLATE ="utf8_general_ci";',
+      "CREATE DATABASE test DEFAULT COLLATE= 'utf8_general_ci';",
     ],
     expect: {
       id: 'MAIN',

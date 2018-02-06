@@ -46,6 +46,8 @@ const keywords = utils.stringArrayToMapping(
     'DIRECTORY',
     'CHARACTER',
     'ALGORITHM',
+    'UNSIGNED',
+    'ZEROFILL',
     'TINYTEXT',
     'TINYBLOB',
     'SMALLINT',

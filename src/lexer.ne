@@ -74,7 +74,7 @@ O_COLLATION -> ( %S_DQUOTE_STRING | %S_SQUOTE_STRING | S_IDENTIFIER ) {% d => d[
 # =============================================================
 # Valid ways to set a default value for a column.
 
-O_DEFAULT_VALUE -> ( %S_DQUOTE_STRING | %S_SQUOTE_STRING | %S_NUMBER | %K_CURRENT_TIMESTAMP ) {% d => d[0][0] %}
+O_DEFAULT_VALUE -> ( %S_DQUOTE_STRING | %S_SQUOTE_STRING | %S_NUMBER | %K_CURRENT_TIMESTAMP | %S_BIT_FORMAT ) {% d => d[0][0] %}
 
 # =============================================================
 # Valid ways to set comment for column.

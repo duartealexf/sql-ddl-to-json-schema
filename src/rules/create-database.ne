@@ -2,6 +2,8 @@
 # Create database
 #
 # https://dev.mysql.com/doc/refman/5.7/en/create-database.html
+#
+# TODO: remove this merge. This should only parse.
 
 P_CREATE_DB ->
 _ %K_CREATE __ %K_DATABASE ( __ %K_IF ( __ %K_NOT ):? __ %K_EXISTS):?

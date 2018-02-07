@@ -15,8 +15,9 @@ Roadmap for each one is still in WIP.
 ## MySQL
 
 - [X] CREATE DATABASE
-- [ ] CREATE INDEX
 - [ ] CREATE TABLE
+- [ ] CREATE TABLE (GENERATED COLUMNS)*
+- [ ] CREATE INDEX
 - [ ] CREATE VIEW
 - [ ] ALTER DATABASE
 - [ ] ALTER TABLE
@@ -26,6 +27,8 @@ Roadmap for each one is still in WIP.
 - [ ] DROP TABLE
 - [ ] DROP VIEW
 - [ ] RENAME TABLE
+
+* https://dev.mysql.com/doc/refman/5.7/en/create-table-generated-columns.html
 
 ## PostgreSQL
 

@@ -7,7 +7,7 @@
 
 P_CREATE_DB ->
 _ %K_CREATE __ %K_DATABASE ( __ %K_IF ( __ %K_NOT ):? __ %K_EXISTS):?
-__ S_IDENTIFIER ( __ O_CREATE_DB_SPEC:+ {% d => utils.mergeLatestToObject(d[1]) %} ):? %S_EOS:?
+__ S_IDENTIFIER ( __ O_CREATE_DB_SPEC:+ {% d => utils.mergeLatestToObject(d[1]) %} ):? S_EOS
   {% d => {
     return {
       id: 'P_CREATE_DB',

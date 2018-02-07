@@ -698,8 +698,7 @@
                 }
               ]
             },
-            "tableOptions": null,
-            "partitionsDef": null
+            "tableOptions": null
           }
         }
       }

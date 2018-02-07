@@ -4,10 +4,13 @@ const Parser = require('../lib');
 const tests = {
   'Should create test database': {
     queries: [
-      'CREATE DATABASE test',
-      'create database test',
-      'create database `test`',
+      'CREATE DATABASE test;',
+      'create database test;',
       'create database `test`;',
+      `create
+        database
+        test
+      ;`,
     ],
     expect: {
       id: 'MAIN',

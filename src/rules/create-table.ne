@@ -21,15 +21,14 @@ P_CREATE_TABLE_COMMON ->
     %K_CREATE ( __ %K_TEMPORARY):? __ %K_TABLE ( __ %K_IF __ %K_NOT:? __ %K_EXISTS):? __ S_IDENTIFIER _
     O_CREATE_TABLE_COLUMNS_WRAPPER
     # P_CREATE_TABLE_OPTIONS:?
-    %S_EOS:?
+    S_EOS
       {% d => {
         return {
           id: 'P_CREATE_TABLE_COMMON',
           def: {
             table: d[6].value,
             columnsDef: d[8],
-            tableOptions: d[9] || null,
-            partitionsDef: d[10] || null
+            tableOptions: null
           }
         }
       }%}

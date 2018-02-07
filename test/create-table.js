@@ -29,7 +29,7 @@ const tests = {
         image BLOB(1024),
         model JSON,
         homes GEOMETRYCOLLECTION
-      )`
+      );`
     ],
     expect
   }

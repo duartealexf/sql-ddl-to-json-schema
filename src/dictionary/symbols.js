@@ -16,7 +16,6 @@ const utils = require('../shared/utils');
 
 module.exports = {
   WS                : { match: /[\s]/, lineBreaks: true },
-  S_EOS             : { match: /[\s;]/, lineBreaks: true },
   S_EQUAL           : '=',
   S_LPARENS         : '(',
   S_RPARENS         : ')',
@@ -45,6 +44,7 @@ module.exports = {
   S_RBRACE          : '}',
   S_QUESTION        : '?',
   S_TILDE           : '~',
+  S_SEMICOLON       : ';',
 
   /**
    * Used to represent a bit datatype.

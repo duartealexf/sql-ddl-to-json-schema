@@ -61,6 +61,11 @@ _ -> %WS:*
 __ -> %WS:+
 
 # =============================================================
+# End of statement
+
+S_EOS -> _ %S_SEMICOLON
+
+# =============================================================
 # Valid options for charset and collations.
 #
 # https://dev.mysql.com/doc/refman/5.7/en/charset-charsets.html

@@ -286,7 +286,7 @@
                         {
                           "id": "O_COLUMN_DEFINITION_COMMON",
                           "def": {
-                            "default": 0
+                            "default": "0b01"
                           }
                         }
                       ]

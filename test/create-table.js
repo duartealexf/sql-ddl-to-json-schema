@@ -14,7 +14,7 @@ const tests = {
         sizes SET ('S', 'M') COLLATE utf8_general_ci,
         name VARCHAR(12),
         status BIT DEFAULT b'1' STORAGE MEMORY,
-        twobits BIT(2) DEFAULT 0,
+        twobits BIT(2) DEFAULT 0b01,
         salary DECIMAL(5) COLUMN_FORMAT DYNAMIC,
         balance FLOAT(7,2) COMMENT 'account balance',
         city_id INTEGER REFERENCES cities (id 20 ASC, local_id) MATCH FULL,

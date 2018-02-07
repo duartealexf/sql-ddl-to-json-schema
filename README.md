@@ -92,6 +92,15 @@ To debug tests you may want to change the args as you go.
       {
         "type": "node",
         "request": "launch",
+        "name": "Debug Compilation",
+        "args": [
+          "lib/compiled/grammar.ne"
+        ],
+        "program": "${workspaceFolder}/node_modules/nearley/bin/nearleyc.js"
+      },
+      {
+        "type": "node",
+        "request": "launch",
         "name": "Debug Tests",
         "args": [
           "test/create-table.js"

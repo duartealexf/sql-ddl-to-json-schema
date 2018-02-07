@@ -68,13 +68,28 @@ __ -> %WS:+
 # I've tested different combinations of quotes and backticks to
 # specify CHARSET and COLLATE, and all of them worked. - duartealexf
 
-O_CHARSET -> ( %S_DQUOTE_STRING | %S_SQUOTE_STRING | S_IDENTIFIER ) {% d => d[0][0] %}
-O_COLLATION -> ( %S_DQUOTE_STRING | %S_SQUOTE_STRING | S_IDENTIFIER ) {% d => d[0][0] %}
+O_CHARSET -> (
+    %S_DQUOTE_STRING  {% id %}
+  | %S_SQUOTE_STRING  {% id %}
+  | S_IDENTIFIER      {% id %}
+) {% id %}
+
+O_COLLATION -> (
+    %S_DQUOTE_STRING {% id %}
+  | %S_SQUOTE_STRING {% id %}
+  | S_IDENTIFIER     {% id %}
+) {% id %}
 
 # =============================================================
 # Valid ways to set a default value for a column.
 
-O_DEFAULT_VALUE -> ( %S_DQUOTE_STRING | %S_SQUOTE_STRING | %S_NUMBER | %K_CURRENT_TIMESTAMP | %S_BIT_FORMAT ) {% d => d[0][0] %}
+O_DEFAULT_VALUE -> (
+    %S_DQUOTE_STRING      {% id %}
+  | %S_SQUOTE_STRING      {% id %}
+  | %S_NUMBER             {% id %}
+  | %S_BIT_FORMAT         {% id %}
+  | %K_CURRENT_TIMESTAMP  {% id %}
+) {% id %}
 
 # =============================================================
 # Valid ways to set comment for column.
@@ -86,7 +101,7 @@ O_COMMENT -> ( %S_DQUOTE_STRING | %S_SQUOTE_STRING ) {% d => d[0][0] %}
 #
 # https://dev.mysql.com/doc/refman/5.7/en/keywords.html
 #
-# TODO: don't add reserved words to this list.
+# TODO: don't include reserved words to this list.
 #
 # More or-rules will be appended to this rule during assembly. The
 # or-rules are keywords because in statements, identifiers can be
@@ -95,5 +110,5 @@ O_COMMENT -> ( %S_DQUOTE_STRING | %S_SQUOTE_STRING ) {% d => d[0][0] %}
 # fallback to consider it as an identifier. - duartealexf
 
 S_IDENTIFIER ->
-    %IDENTIFIER {% id %}
-# | all %K_ will be appended here
+    %S_IDENTIFIER_QUOTED {% id %} | %S_IDENTIFIER_UNQUOTED {% id %}
+# | all %K_ will be appended here, don't add anything after this line.

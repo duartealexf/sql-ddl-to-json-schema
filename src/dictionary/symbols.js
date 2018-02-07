@@ -10,7 +10,6 @@
  * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions#special-white-space
  *
  * TODO: add qualified identifiers.
- * TODO: allow backtick escape with double backticks.
  */
 
 const utils = require('../shared/utils');
@@ -18,7 +17,6 @@ const utils = require('../shared/utils');
 module.exports = {
   WS                : { match: /[\s]/, lineBreaks: true },
   S_EOS             : { match: /[\s;]/, lineBreaks: true },
-  S_NUMBER          : { match: /[0-9]+/, value: Number },
   S_EQUAL           : '=',
   S_LPARENS         : '(',
   S_RPARENS         : ')',
@@ -28,11 +26,35 @@ module.exports = {
   S_PIPE            : '|',
   S_AMPERSAND       : '&',
   S_EXCLAMATION     : '!',
+  S_SPACESHIP       : '<=>',
+  S_LT              : '<',
+  S_GT              : '>',
+  S_LTE             : '<=',
+  S_GTE             : '>=',
+  S_LTGT            : '<>',
+  S_DIFF            : '!=',
+  S_RBITSHIFT       : '>>',
+  S_LBITSHIFT       : '<<',
+  S_PLUS            : '+',
+  S_MINUS           : '-',
+  S_ASTERISK        : '*',
+  S_SLASH           : '/',
+  S_PERCENT         : '%',
+  S_CIRCUMFLEX      : '^',
+  S_LBRACE          : '{',
+  S_RBRACE          : '}',
+  S_QUESTION        : '?',
+  S_TILDE           : '~',
 
   /**
    * Used to represent a bit datatype.
    */
-  S_BIT_FORMAT      : { match: /b'[01]+'/ },
+  S_BIT_FORMAT      : { match: /b'[01]+'|0b[01]+/ },
+
+  /**
+   * Used to represent a bit datatype.
+   */
+  S_HEXA_FORMAT     : { match: /[Xx]'[0-9a-fA-F]+'|0x[0-9a-fA-F]+/ },
 
   /**
    * These RegExps support all types of quote escaping in MySQL.
@@ -46,13 +68,15 @@ module.exports = {
   S_DQUOTE_STRING   : { match: /""|"(?:(?:"")|[^"\\]|\\.)*"/, value: v => utils.trimString(v, '"') },
   S_SQUOTE_STRING   : { match: /''|'(?:(?:'')|[^'\\]|\\.)*'/, value: v => utils.trimString(v, "'") },
 
+  S_NUMBER          : { match: /[+-]?(?:\d+(?:\.\d+)?(?:[Ee][+-]?\d+)?)/, value: Number },
+
   /**
-   * We don't prepend S_ to IDENTIFIER yet because of the way MySQL
-   * treats identifiers. See S_IDENTIFIER in lexer.ne file.
+   * See S_IDENTIFIER in lexer.ne file.
    *
    * I've noticed through tests in the MySQL CLI that escaped backticks are not
-   * supported, they are interpreted as non-escaped backticks. - duartealexf
+   * supported, they are interpreted as non-escaped backticks. Escaping
+   * backticks is done through using double backticks. - duartealexf
    */
-  IDENTIFIER        : { match: /[0-9a-zA-Z$_]+|`.*?`/, value: v => utils.trimString(v, "`") },
-
+  S_IDENTIFIER_QUOTED     : { match: /`(?:(?:``)|[^`\\])*`/, value: v => utils.trimString(v, "`") },
+  S_IDENTIFIER_UNQUOTED   : { match: /[0-9a-zA-Z$_]+/ },
 };

@@ -1,6 +1,8 @@
 const ava = require('ava');
 const Parser = require('../lib');
-const expect = require('./expect/create-table/0.json');
+
+const expect0 = require('./expect/create-table/0.json');
+const expect1 = require('./expect/create-table/1.json');
 
 const tests = {
   'Should create test table with all types of columns.': {
@@ -31,7 +33,15 @@ const tests = {
         homes GEOMETRYCOLLECTION
       );`
     ],
-    expect
+    expect: expect0
+  },
+  'Should create table like another one.': {
+    queries: [
+      'CREATE TABLE person like people;',
+      'CREATE TABLE `person` ( like people) ;',
+      'CREATE TABLE person (like `people` );',
+    ],
+    expect: expect1
   }
 };
 

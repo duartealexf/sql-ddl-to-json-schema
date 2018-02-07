@@ -5,7 +5,7 @@
 
 P_CREATE_TABLE -> (
     P_CREATE_TABLE_COMMON   {% id %}
-  # | P_CREATE_TABLE_LIKE     {% id %}
+  | P_CREATE_TABLE_LIKE     {% id %}
 )
   {% d => {
     return {
@@ -36,9 +36,23 @@ P_CREATE_TABLE_COMMON ->
 # =============================================================
 # Create table like another one
 
-# P_CREATE_TABLE_LIKE -> __
-# CREATE [TEMPORARY] TABLE [IF NOT EXISTS] tbl_name
-#     { LIKE old_tbl_name | (LIKE old_tbl_name) }
+P_CREATE_TABLE_LIKE ->
+  %K_CREATE ( __ %K_TEMPORARY):? __ %K_TABLE ( __ %K_IF __ %K_NOT:? __ %K_EXISTS):? __ S_IDENTIFIER
+  (
+      __ %K_LIKE __ S_IDENTIFIER
+        {% d => d[3] %}
+    | _ %S_LPARENS _ %K_LIKE __ S_IDENTIFIER _ %S_RPARENS
+        {% d => d[5] %}
+  ) S_EOS
+    {% d => {
+      return {
+        id: 'P_CREATE_TABLE_LIKE',
+        def: {
+          table: d[6].value,
+          like: d[7].value
+        }
+      }
+    }%}
 
 # =============================================================
 # Create table spec - (wrapper for statements in parenthesis)

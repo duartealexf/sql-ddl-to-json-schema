@@ -1,0 +1,18 @@
+{
+  "id": "MAIN",
+  "def": [
+    {
+      "id": "P_DDS",
+      "def": {
+        "id": "P_CREATE_TABLE",
+        "def": {
+          "id": "P_CREATE_TABLE_LIKE",
+          "def": {
+            "table": "person",
+            "like": "people"
+          }
+        }
+      }
+    }
+  ]
+}

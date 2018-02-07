@@ -5,10 +5,10 @@
 There are several SQL dialects that this project will cover, in this order:
 
 - MySQL 5.7
-- PostgreSQL 
+- PostgreSQL
 - MSSQL
 - Oracle
-- ...
+- ...?
 
 Roadmap for each one is still in WIP.
 
@@ -16,7 +16,9 @@ Roadmap for each one is still in WIP.
 
 - [X] CREATE DATABASE
 - [ ] CREATE TABLE
-- [ ] CREATE TABLE (GENERATED COLUMNS)*
+  - [ ] CREATE TABLE AS (EXPRESSION)
+  - [ ] PARTITION OPTIONS
+  - [ ] GENERATED COLUMNS *
 - [ ] CREATE INDEX
 - [ ] CREATE VIEW
 - [ ] ALTER DATABASE
@@ -28,7 +30,7 @@ Roadmap for each one is still in WIP.
 - [ ] DROP VIEW
 - [ ] RENAME TABLE
 
-* https://dev.mysql.com/doc/refman/5.7/en/create-table-generated-columns.html
+\* https://dev.mysql.com/doc/refman/5.7/en/create-table-generated-columns.html
 
 ## PostgreSQL
 

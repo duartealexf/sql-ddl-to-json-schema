@@ -5,7 +5,6 @@
 
 P_CREATE_TABLE -> (
     P_CREATE_TABLE_COMMON   {% id %}
-  # | P_CREATE_TABLE_AS       {% id %}
   # | P_CREATE_TABLE_LIKE     {% id %}
 )
   {% d => {
@@ -22,7 +21,6 @@ P_CREATE_TABLE_COMMON ->
     %K_CREATE ( __ %K_TEMPORARY):? __ %K_TABLE ( __ %K_IF __ %K_NOT:? __ %K_EXISTS):? __ S_IDENTIFIER _
     O_CREATE_TABLE_COLUMNS_WRAPPER
     # P_CREATE_TABLE_OPTIONS:?
-    # P_CREATE_TABLE_PART_OPTIONS:?
     %S_EOS:?
       {% d => {
         return {
@@ -35,17 +33,6 @@ P_CREATE_TABLE_COMMON ->
           }
         }
       }%}
-
-# =============================================================
-# Create table from a query
-
-# P_CREATE_TABLE_AS -> __
-# CREATE [TEMPORARY] TABLE [IF NOT EXISTS] tbl_name
-#     [(create_definition,...)]
-#     [table_options]
-#     [partition_options]
-#     [IGNORE | REPLACE]
-#     [AS] query_expression
 
 # =============================================================
 # Create table like another one
@@ -71,7 +58,6 @@ O_CREATE_TABLE_COLUMNS_WRAPPER ->
       }
     }%}
 
-
 # =============================================================
 # Create table definition options
 #
@@ -84,26 +70,18 @@ O_CREATE_TABLE_COLUMNS_WRAPPER ->
 O_CREATE_TABLE_CREATE_DEFINITION -> (
     S_IDENTIFIER _ (
 
-        O_DATATYPE
-        # In MySQL docs these two options are 'column_definition'.
-        ( __ O_COLUMN_DATATYPE_SPEC {% d => d[1] %} ):*
-        ( __ O_COLUMN_DEFINITION_COMMON {% d => d[1] %} ):*
+      O_DATATYPE
+      # In MySQL docs these two options are 'column_definition'.
+      ( __ O_COLUMN_DATATYPE_SPEC {% d => d[1] %} ):*
+      ( __ O_COLUMN_DEFINITION_COMMON {% d => d[1] %} ):*
 
-          {% d => {
-            return {
-              datatype: d[0],
-              datatypeSpecs: d[1] || [],
-              columnDefinitions: d[2] || []
-            }
-          }%}
-
-      # | O_DATATYPE __ P_COLUMN_DEFINITION_GENERATED:+
-      #     {% d => {
-      #       return {
-      #         datatype: d[0].value,
-      #         def: d[2]
-      #       }
-      #     }%}
+        {% d => {
+          return {
+            datatype: d[0],
+            datatypeSpecs: d[1] || [],
+            columnDefinitions: d[2] || []
+          }
+        }%}
 
     ) {% d => {
       return {
@@ -230,7 +208,7 @@ P_COLUMN_REFERENCE ->
     }%}
 
 # =============================================================
-# Reference to foreign keys
+# Index column name, used to reference to foreign keys
 #
 # In MySQL docs this is the 'index_col_name'.
 
@@ -255,18 +233,6 @@ P_INDEX_COLUMN -> S_IDENTIFIER
         }
       }
     }%}
-
-
-# =============================================================
-# Generated definition for generated columns
-#
-# https://dev.mysql.com/doc/refman/5.7/en/create-table-generated-columns.html
-
-# P_COLUMN_DEFINITION_GENERATED ->
-#  ( %K_GENERATED __ %K_ALWAYS __ ) %K_AS __ O_EXPRESSION
-#      [VIRTUAL | STORED] [NOT NULL | NULL]
-#      [UNIQUE [KEY]] [[PRIMARY] KEY]
-#      [COMMENT 'string']
 
 # =============================================================
 # Create table options
@@ -297,46 +263,3 @@ P_INDEX_COLUMN -> S_IDENTIFIER
 #   | STATS_SAMPLE_PAGES [=] value
 #   | TABLESPACE tablespace_name [STORAGE {DISK|MEMORY|DEFAULT}]
 #   | UNION [=] (tbl_name[,tbl_name]...)
-
-# =============================================================
-# Create table partition options
-
-# P_CREATE_TABLE_PART_OPTIONS -> __
-# TODO: Implement me:
-# PARTITION BY
-#         { [LINEAR] HASH(expr)
-#         | [LINEAR] KEY [ALGORITHM={1|2}] (column_list)
-#         | RANGE{(expr) | COLUMNS(column_list)}
-#         | LIST{(expr) | COLUMNS(column_list)} }
-#     [PARTITIONS num]
-#     [SUBPARTITION BY
-#         { [LINEAR] HASH(expr)
-#         | [LINEAR] KEY [ALGORITHM={1|2}] (column_list) }
-#       [SUBPARTITIONS num]
-#     ]
-#     [(partition_definition [, partition_definition] ...)]
-#
-# partition_definition:
-#     PARTITION partition_name
-#         [VALUES
-#             {LESS THAN {(expr | value_list) | MAXVALUE}
-#             |
-#             IN (value_list)}]
-#         [[STORAGE] ENGINE [=] engine_name]
-#         [COMMENT [=] 'string' ]
-#         [DATA DIRECTORY [=] 'data_dir']
-#         [INDEX DIRECTORY [=] 'index_dir']
-#         [MAX_ROWS [=] max_number_of_rows]
-#         [MIN_ROWS [=] min_number_of_rows]
-#         [TABLESPACE [=] tablespace_name]
-#         [(subpartition_definition [, subpartition_definition] ...)]
-#
-# subpartition_definition:
-# SUBPARTITION logical_name
-#         [[STORAGE] ENGINE [=] engine_name]
-#         [COMMENT [=] 'string' ]
-#         [DATA DIRECTORY [=] 'data_dir']
-#         [INDEX DIRECTORY [=] 'index_dir']
-#         [MAX_ROWS [=] max_number_of_rows]
-#         [MIN_ROWS [=] min_number_of_rows]
-#         [TABLESPACE [=] tablespace_name]

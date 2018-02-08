@@ -73,44 +73,41 @@ S_EOS -> _ %S_SEMICOLON
 # I've tested different combinations of quotes and backticks to
 # specify CHARSET and COLLATE, and all of them worked. - duartealexf
 
-O_CHARSET -> (
-    O_QUOTED_STRING   {% id %}
-  | S_IDENTIFIER      {% id %}
-) {% id %}
+O_CHARSET ->
+    O_QUOTED_STRING       {% d => d[0] %}
+  | S_IDENTIFIER          {% d => d[0] %}
 
-O_COLLATION -> (
-    O_QUOTED_STRING  {% id %}
-  | S_IDENTIFIER     {% id %}
-) {% id %}
+O_COLLATION ->
+    O_QUOTED_STRING       {% d => d[0] %}
+  | S_IDENTIFIER          {% d => d[0] %}
 
-O_ENGINE -> (
-    O_QUOTED_STRING  {% id %}
-  | S_IDENTIFIER     {% id %}
-) {% id %}
+O_ENGINE ->
+    O_QUOTED_STRING       {% d => d[0] %}
+  | S_IDENTIFIER          {% d => d[0] %}
 
 # =============================================================
 # Valid ways to set a default value for a column.
 
-O_DEFAULT_VALUE -> (
-    O_QUOTED_STRING       {% id %}
-  | %S_NUMBER             {% id %}
-  | %S_BIT_FORMAT         {% id %}
-  | %K_CURRENT_TIMESTAMP  {% id %}
-) {% id %}
+O_DEFAULT_VALUE ->
+    O_QUOTED_STRING       {% d => d[0] %}
+  | %S_NUMBER             {% d => d[0].value %}
+  | %S_BIT_FORMAT         {% d => d[0].value %}
+  | %K_CURRENT_TIMESTAMP  {% d => d[0].value %}
 
 # =============================================================
 # String with any of single or double quote.
 
-O_QUOTED_STRING -> ( %S_DQUOTE_STRING | %S_SQUOTE_STRING ) {% d => d[0][0] %}
+O_QUOTED_STRING ->
+    %S_DQUOTE_STRING      {% d => d[0].value %}
+  | %S_SQUOTE_STRING      {% d => d[0].value %}
 
 # =============================================================
 # Valid ways to set a value for a table option
 
-O_TABLE_OPTION_VALUE -> (
-    O_QUOTED_STRING
-  | S_IDENTIFIER
-  | %S_NUMBER
-) {% d => d[0][0] %}
+O_TABLE_OPTION_VALUE ->
+    O_QUOTED_STRING       {% d => d[0] %}
+  | S_IDENTIFIER          {% d => d[0] %}
+  | %S_NUMBER             {% d => d[0].value %}
 
 # =============================================================
 # Identifiers
@@ -126,5 +123,5 @@ O_TABLE_OPTION_VALUE -> (
 # fallback to consider it as an identifier. - duartealexf
 
 S_IDENTIFIER ->
-    %S_IDENTIFIER_QUOTED {% id %} | %S_IDENTIFIER_UNQUOTED {% id %}
+    %S_IDENTIFIER_QUOTED {% d => d[0].value %} | %S_IDENTIFIER_UNQUOTED {% d => d[0].value %}
 # | all %K_ will be appended here, don't add anything after this line.

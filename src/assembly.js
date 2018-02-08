@@ -119,7 +119,7 @@ const main = async() => {
 
   const ruleString = ' ' +
     Object.keys(keywords).reduceRight((concat, key) => {
-      concat += ` | %${key} {% id %}`;
+      concat += ` | %${key} {% d => d[0].value %}`;
       return concat;
     }, '') +
     '\n\n';

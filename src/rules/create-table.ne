@@ -26,7 +26,7 @@ P_CREATE_TABLE_COMMON ->
         return {
           id: 'P_CREATE_TABLE_COMMON',
           def: {
-            table: d[6].value,
+            table: d[6],
             columnsDef: d[8],
             tableOptions: null
           }
@@ -48,8 +48,8 @@ P_CREATE_TABLE_LIKE ->
       return {
         id: 'P_CREATE_TABLE_LIKE',
         def: {
-          table: d[6].value,
-          like: d[7].value
+          table: d[6],
+          like: d[7]
         }
       }
     }%}
@@ -98,7 +98,7 @@ O_CREATE_TABLE_COLUMN -> (
 
     ) {% d => {
       return {
-        column: d[0].value,
+        column: d[0],
         def: d[2]
       }
     } %}
@@ -137,11 +137,11 @@ O_COLUMN_DATATYPE_SPEC -> (
       }%}
   | %K_CHARACTER __ %K_SET __ O_CHARSET
       {% d => {
-        return { charset: d[4].value }
+        return { charset: d[4] }
       }%}
   | %K_COLLATE __ O_COLLATION
       {% d => {
-        return { collation: d[2].value }
+        return { collation: d[2] }
       }%}
 )
   {% d => {
@@ -160,11 +160,11 @@ O_COLUMN_DEFINITION_COMMON -> (
         %K_NOT __ %K_NULL           {% d => { return { nullable: false }} %}
       | %K_NULL                     {% d => { return { nullable: true }} %}
     ) {% id %}
-  | %K_DEFAULT __ O_DEFAULT_VALUE   {% d => { return { default: d[2].value }} %}
+  | %K_DEFAULT __ O_DEFAULT_VALUE   {% d => { return { default: d[2] }} %}
   | %K_AUTO_INCREMENT               {% d => { return { autoincrement: true }} %}
   | %K_UNIQUE ( __ %K_KEY ):?       {% d => { return { unique: true }} %}
   | (%K_PRIMARY __):? %K_KEY        {% d => { return { primary: true }} %}
-  | %K_COMMENT __ O_QUOTED_STRING         {% d => { return { comment: d[2].value }} %}
+  | %K_COMMENT __ O_QUOTED_STRING   {% d => { return { comment: d[2] }} %}
   | %K_COLUMN_FORMAT __ (
         %K_FIXED   {% id %}
       | %K_DYNAMIC {% id %}
@@ -212,7 +212,7 @@ P_COLUMN_REFERENCE ->
       return {
         id: 'P_COLUMN_REFERENCE',
         def: {
-          table: d[2].value,
+          table: d[2],
           columns: d[3],
           match: d[4],
           on: d[5]
@@ -240,7 +240,7 @@ P_INDEX_COLUMN -> S_IDENTIFIER
       return {
         id: 'P_INDEX_COLUMN',
         def: {
-          column: d[0].value,
+          column: d[0],
           length: d[1] && d[1].length ? d[1].length : null,
           sort: d[1] && d[1].sort ? d[1].sort : null
         }

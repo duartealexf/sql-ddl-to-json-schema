@@ -19,7 +19,7 @@ P_CREATE_TABLE -> (
 
 P_CREATE_TABLE_COMMON ->
     %K_CREATE ( __ %K_TEMPORARY):? __ %K_TABLE ( __ %K_IF __ %K_NOT:? __ %K_EXISTS):? __ S_IDENTIFIER _
-    O_CREATE_TABLE_COLUMNS
+    O_CREATE_TABLE_CREATE_DEFINITIONS
     ( _ P_CREATE_TABLE_OPTIONS {% d => d[1] %} ):?
     S_EOS
       {% d => {
@@ -59,14 +59,14 @@ P_CREATE_TABLE_LIKE ->
 #
 # In MySQL docs this is the '(create_definition,...)' part.
 
-O_CREATE_TABLE_COLUMNS ->
+O_CREATE_TABLE_CREATE_DEFINITIONS ->
   %S_LPARENS _ (
-    O_CREATE_TABLE_COLUMN ( _ %S_COMMA _ O_CREATE_TABLE_COLUMN {% d => d[3] %} ):*
+    O_CREATE_TABLE_CREATE_DEFINITION ( _ %S_COMMA _ O_CREATE_TABLE_CREATE_DEFINITION {% d => d[3] %} ):*
       {% d => [d[0]].concat(d[1] || []) %}
   ) _ %S_RPARENS
     {% d => {
       return {
-        id: 'O_CREATE_TABLE_COLUMNS',
+        id: 'O_CREATE_TABLE_CREATE_DEFINITIONS',
         def: d[2]
       }
     }%}
@@ -80,7 +80,7 @@ O_CREATE_TABLE_COLUMNS ->
 # is not required, as long as the identifier is
 # enclosed in backticks. - duartealexf
 
-O_CREATE_TABLE_COLUMN -> (
+O_CREATE_TABLE_CREATE_DEFINITION -> (
     S_IDENTIFIER _ (
 
       O_DATATYPE
@@ -102,7 +102,7 @@ O_CREATE_TABLE_COLUMN -> (
         def: d[2]
       }
     } %}
-# | TODO: add other types of create_definition:
+
 # | [CONSTRAINT [symbol]] PRIMARY KEY [index_type] (index_col_name,...)
 #     [index_option] ...
 # | {INDEX|KEY} [index_name] [index_type] (index_col_name,...)
@@ -118,7 +118,7 @@ O_CREATE_TABLE_COLUMN -> (
 )
   {% d => {
     return {
-      id: 'O_CREATE_TABLE_COLUMN',
+      id: 'O_CREATE_TABLE_CREATE_DEFINITION',
       def: d[0]
     }
   }%}

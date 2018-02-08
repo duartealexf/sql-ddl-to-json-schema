@@ -10,10 +10,10 @@
           "def": {
             "table": "person",
             "columnsDef": {
-              "id": "O_CREATE_TABLE_COLUMNS",
+              "id": "O_CREATE_TABLE_CREATE_DEFINITIONS",
               "def": [
                 {
-                  "id": "O_CREATE_TABLE_COLUMN",
+                  "id": "O_CREATE_TABLE_CREATE_DEFINITION",
                   "def": {
                     "column": "initial",
                     "def": {

@@ -10,10 +10,10 @@
           "def": {
             "table": "person",
             "columnsDef": {
-              "id": "O_CREATE_TABLE_COLUMNS",
+              "id": "O_CREATE_TABLE_CREATE_DEFINITIONS",
               "def": [
                 {
-                  "id": "O_CREATE_TABLE_COLUMN",
+                  "id": "O_CREATE_TABLE_CREATE_DEFINITION",
                   "def": {
                     "column": "id",
                     "def": {
@@ -59,7 +59,7 @@
                   }
                 },
                 {
-                  "id": "O_CREATE_TABLE_COLUMN",
+                  "id": "O_CREATE_TABLE_CREATE_DEFINITION",
                   "def": {
                     "column": "age",
                     "def": {
@@ -93,7 +93,7 @@
                   }
                 },
                 {
-                  "id": "O_CREATE_TABLE_COLUMN",
+                  "id": "O_CREATE_TABLE_CREATE_DEFINITION",
                   "def": {
                     "column": "ssn",
                     "def": {
@@ -120,7 +120,7 @@
                   }
                 },
                 {
-                  "id": "O_CREATE_TABLE_COLUMN",
+                  "id": "O_CREATE_TABLE_CREATE_DEFINITION",
                   "def": {
                     "column": "story",
                     "def": {
@@ -147,7 +147,7 @@
                   }
                 },
                 {
-                  "id": "O_CREATE_TABLE_COLUMN",
+                  "id": "O_CREATE_TABLE_CREATE_DEFINITION",
                   "def": {
                     "column": "gender",
                     "def": {
@@ -184,7 +184,7 @@
                   }
                 },
                 {
-                  "id": "O_CREATE_TABLE_COLUMN",
+                  "id": "O_CREATE_TABLE_CREATE_DEFINITION",
                   "def": {
                     "column": "sizes",
                     "def": {
@@ -214,7 +214,7 @@
                   }
                 },
                 {
-                  "id": "O_CREATE_TABLE_COLUMN",
+                  "id": "O_CREATE_TABLE_CREATE_DEFINITION",
                   "def": {
                     "column": "name",
                     "def": {
@@ -234,7 +234,7 @@
                   }
                 },
                 {
-                  "id": "O_CREATE_TABLE_COLUMN",
+                  "id": "O_CREATE_TABLE_CREATE_DEFINITION",
                   "def": {
                     "column": "status",
                     "def": {
@@ -267,7 +267,7 @@
                   }
                 },
                 {
-                  "id": "O_CREATE_TABLE_COLUMN",
+                  "id": "O_CREATE_TABLE_CREATE_DEFINITION",
                   "def": {
                     "column": "twobits",
                     "def": {
@@ -294,7 +294,7 @@
                   }
                 },
                 {
-                  "id": "O_CREATE_TABLE_COLUMN",
+                  "id": "O_CREATE_TABLE_CREATE_DEFINITION",
                   "def": {
                     "column": "salary",
                     "def": {
@@ -324,7 +324,7 @@
                   }
                 },
                 {
-                  "id": "O_CREATE_TABLE_COLUMN",
+                  "id": "O_CREATE_TABLE_CREATE_DEFINITION",
                   "def": {
                     "column": "balance",
                     "def": {
@@ -354,7 +354,7 @@
                   }
                 },
                 {
-                  "id": "O_CREATE_TABLE_COLUMN",
+                  "id": "O_CREATE_TABLE_CREATE_DEFINITION",
                   "def": {
                     "column": "city_id",
                     "def": {
@@ -406,7 +406,7 @@
                   }
                 },
                 {
-                  "id": "O_CREATE_TABLE_COLUMN",
+                  "id": "O_CREATE_TABLE_CREATE_DEFINITION",
                   "def": {
                     "column": "family_id",
                     "def": {
@@ -453,7 +453,7 @@
                   }
                 },
                 {
-                  "id": "O_CREATE_TABLE_COLUMN",
+                  "id": "O_CREATE_TABLE_CREATE_DEFINITION",
                   "def": {
                     "column": "dog_id",
                     "def": {
@@ -500,7 +500,7 @@
                   }
                 },
                 {
-                  "id": "O_CREATE_TABLE_COLUMN",
+                  "id": "O_CREATE_TABLE_CREATE_DEFINITION",
                   "def": {
                     "column": "birthtime",
                     "def": {
@@ -520,7 +520,7 @@
                   }
                 },
                 {
-                  "id": "O_CREATE_TABLE_COLUMN",
+                  "id": "O_CREATE_TABLE_CREATE_DEFINITION",
                   "def": {
                     "column": "birthdate",
                     "def": {
@@ -540,7 +540,7 @@
                   }
                 },
                 {
-                  "id": "O_CREATE_TABLE_COLUMN",
+                  "id": "O_CREATE_TABLE_CREATE_DEFINITION",
                   "def": {
                     "column": "initials",
                     "def": {
@@ -567,7 +567,7 @@
                   }
                 },
                 {
-                  "id": "O_CREATE_TABLE_COLUMN",
+                  "id": "O_CREATE_TABLE_CREATE_DEFINITION",
                   "def": {
                     "column": "created_at",
                     "def": {
@@ -587,7 +587,7 @@
                   }
                 },
                 {
-                  "id": "O_CREATE_TABLE_COLUMN",
+                  "id": "O_CREATE_TABLE_CREATE_DEFINITION",
                   "def": {
                     "column": "updated_at",
                     "def": {
@@ -620,7 +620,7 @@
                   }
                 },
                 {
-                  "id": "O_CREATE_TABLE_COLUMN",
+                  "id": "O_CREATE_TABLE_CREATE_DEFINITION",
                   "def": {
                     "column": "avatar",
                     "def": {
@@ -639,7 +639,7 @@
                   }
                 },
                 {
-                  "id": "O_CREATE_TABLE_COLUMN",
+                  "id": "O_CREATE_TABLE_CREATE_DEFINITION",
                   "def": {
                     "column": "image",
                     "def": {
@@ -659,7 +659,7 @@
                   }
                 },
                 {
-                  "id": "O_CREATE_TABLE_COLUMN",
+                  "id": "O_CREATE_TABLE_CREATE_DEFINITION",
                   "def": {
                     "column": "model",
                     "def": {
@@ -678,7 +678,7 @@
                   }
                 },
                 {
-                  "id": "O_CREATE_TABLE_COLUMN",
+                  "id": "O_CREATE_TABLE_CREATE_DEFINITION",
                   "def": {
                     "column": "homes",
                     "def": {

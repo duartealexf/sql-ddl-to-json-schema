@@ -764,6 +764,8 @@ const keywords = utils.stringArrayToMapping(
     'BOTH',
     'BOOL',
     'BLOB',
+    'ZLIB',
+    'LZ4',
     'MD5',
     'NOW',
     'TAN',

@@ -66,7 +66,7 @@ __ -> %WS:+
 S_EOS -> _ %S_SEMICOLON
 
 # =============================================================
-# Valid options for charset and collations.
+# Valid options for charset and collations and engines.
 #
 # https://dev.mysql.com/doc/refman/5.7/en/charset-charsets.html
 #
@@ -74,14 +74,17 @@ S_EOS -> _ %S_SEMICOLON
 # specify CHARSET and COLLATE, and all of them worked. - duartealexf
 
 O_CHARSET -> (
-    %S_DQUOTE_STRING  {% id %}
-  | %S_SQUOTE_STRING  {% id %}
+    O_QUOTED_STRING   {% id %}
   | S_IDENTIFIER      {% id %}
 ) {% id %}
 
 O_COLLATION -> (
-    %S_DQUOTE_STRING {% id %}
-  | %S_SQUOTE_STRING {% id %}
+    O_QUOTED_STRING  {% id %}
+  | S_IDENTIFIER     {% id %}
+) {% id %}
+
+O_ENGINE -> (
+    O_QUOTED_STRING  {% id %}
   | S_IDENTIFIER     {% id %}
 ) {% id %}
 
@@ -89,17 +92,25 @@ O_COLLATION -> (
 # Valid ways to set a default value for a column.
 
 O_DEFAULT_VALUE -> (
-    %S_DQUOTE_STRING      {% id %}
-  | %S_SQUOTE_STRING      {% id %}
+    O_QUOTED_STRING       {% id %}
   | %S_NUMBER             {% id %}
   | %S_BIT_FORMAT         {% id %}
   | %K_CURRENT_TIMESTAMP  {% id %}
 ) {% id %}
 
 # =============================================================
-# Valid ways to set comment for column.
+# String with any of single or double quote.
 
-O_COMMENT -> ( %S_DQUOTE_STRING | %S_SQUOTE_STRING ) {% d => d[0][0] %}
+O_QUOTED_STRING -> ( %S_DQUOTE_STRING | %S_SQUOTE_STRING ) {% d => d[0][0] %}
+
+# =============================================================
+# Valid ways to set a value for a table option
+
+O_TABLE_OPTION_VALUE -> (
+    O_QUOTED_STRING
+  | S_IDENTIFIER
+  | %S_NUMBER
+) {% d => d[0][0] %}
 
 # =============================================================
 # Identifiers

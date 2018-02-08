@@ -19,7 +19,7 @@ P_CREATE_TABLE -> (
 
 P_CREATE_TABLE_COMMON ->
     %K_CREATE ( __ %K_TEMPORARY):? __ %K_TABLE ( __ %K_IF __ %K_NOT:? __ %K_EXISTS):? __ S_IDENTIFIER _
-    O_CREATE_TABLE_COLUMNS_WRAPPER
+    O_CREATE_TABLE_COLUMNS
     # P_CREATE_TABLE_OPTIONS:?
     S_EOS
       {% d => {
@@ -59,14 +59,14 @@ P_CREATE_TABLE_LIKE ->
 #
 # In MySQL docs this is the '(create_definition,...)' part.
 
-O_CREATE_TABLE_COLUMNS_WRAPPER ->
+O_CREATE_TABLE_COLUMNS ->
   %S_LPARENS _ (
-    O_CREATE_TABLE_CREATE_DEFINITION ( _ %S_COMMA _ O_CREATE_TABLE_CREATE_DEFINITION {% d => d[3] %} ):*
+    O_CREATE_TABLE_COLUMN ( _ %S_COMMA _ O_CREATE_TABLE_COLUMN {% d => d[3] %} ):*
       {% d => [d[0]].concat(d[1] || []) %}
   ) _ %S_RPARENS
     {% d => {
       return {
-        id: 'O_CREATE_TABLE_COLUMNS_WRAPPER',
+        id: 'O_CREATE_TABLE_COLUMNS',
         def: d[2]
       }
     }%}
@@ -80,7 +80,7 @@ O_CREATE_TABLE_COLUMNS_WRAPPER ->
 # is not required, as long as the identifier is
 # enclosed in backticks. - duartealexf
 
-O_CREATE_TABLE_CREATE_DEFINITION -> (
+O_CREATE_TABLE_COLUMN -> (
     S_IDENTIFIER _ (
 
       O_DATATYPE
@@ -118,7 +118,7 @@ O_CREATE_TABLE_CREATE_DEFINITION -> (
 )
   {% d => {
     return {
-      id: 'O_CREATE_TABLE_CREATE_DEFINITION',
+      id: 'O_CREATE_TABLE_COLUMN',
       def: d[0]
     }
   }%}
@@ -164,7 +164,7 @@ O_COLUMN_DEFINITION_COMMON -> (
   | %K_AUTO_INCREMENT               {% d => { return { autoincrement: true }} %}
   | %K_UNIQUE ( __ %K_KEY ):?       {% d => { return { unique: true }} %}
   | (%K_PRIMARY __):? %K_KEY        {% d => { return { primary: true }} %}
-  | %K_COMMENT __ O_COMMENT         {% d => { return { comment: d[2].value }} %}
+  | %K_COMMENT __ O_QUOTED_STRING         {% d => { return { comment: d[2].value }} %}
   | %K_COLUMN_FORMAT __ (
         %K_FIXED   {% id %}
       | %K_DYNAMIC {% id %}
@@ -250,29 +250,40 @@ P_INDEX_COLUMN -> S_IDENTIFIER
 # =============================================================
 # Create table options
 
-# P_CREATE_TABLE_OPTIONS -> __
-# TODO: Implement me:
-#     AUTO_INCREMENT [=] value
-#   | AVG_ROW_LENGTH [=] value
-#   | [DEFAULT] CHARACTER SET [=] charset_name
-#   | CHECKSUM [=] {0 | 1}
-#   | [DEFAULT] COLLATE [=] collation_name
-#   | COMMENT [=] 'string'
-#   | COMPRESSION [=] {'ZLIB'|'LZ4'|'NONE'}
-#   | CONNECTION [=] 'connect_string'
-#   | {DATA|INDEX} DIRECTORY [=] 'absolute path to directory'
-#   | DELAY_KEY_WRITE [=] {0 | 1}
-#   | ENCRYPTION [=] {'Y' | 'N'}
-#   | ENGINE [=] engine_name
-#   | INSERT_METHOD [=] { NO | FIRST | LAST }
-#   | KEY_BLOCK_SIZE [=] value
-#   | MAX_ROWS [=] value
-#   | MIN_ROWS [=] value
-#   | PACK_KEYS [=] {0 | 1 | DEFAULT}
-#   | PASSWORD [=] 'string'
-#   | ROW_FORMAT [=] {DEFAULT|DYNAMIC|FIXED|COMPRESSED|REDUNDANT|COMPACT}
-#   | STATS_AUTO_RECALC [=] {DEFAULT|0|1}
-#   | STATS_PERSISTENT [=] {DEFAULT|0|1}
-#   | STATS_SAMPLE_PAGES [=] value
-#   | TABLESPACE tablespace_name [STORAGE {DISK|MEMORY|DEFAULT}]
-#   | UNION [=] (tbl_name[,tbl_name]...)
+P_CREATE_TABLE_OPTIONS ->
+  P_CREATE_TABLE_OPTION ( _ %S_COMMA _ P_CREATE_TABLE_OPTION {% d => d[3] %} ):*
+    {% d => {
+      return {
+        id: 'P_CREATE_TABLE_OPTIONS',
+        def: [d[0]].concat(d[1] || [])
+      }
+    }%}
+
+# =============================================================
+# Create table option
+
+P_CREATE_TABLE_OPTION ->
+    %K_AUTO_INCREMENT ( __ | _ %S_EQUAL _ ) O_TABLE_OPTION_VALUE
+  | %K_AVG_ROW_LENGTH ( __ | _ %S_EQUAL _ ) O_TABLE_OPTION_VALUE
+  | ( %K_DEFAULT __ ):? %K_CHARACTER __ %K_SET ( __ | _ %S_EQUAL _ ) O_CHARSET
+  | %K_CHECKSUM ( __ | _ %S_EQUAL _ ) %S_NUMBER
+  | ( %K_DEFAULT __ ):? %K_COLLATE ( __ | _ %S_EQUAL _ ) O_COLLATION
+  | %K_COMMENT ( __ | _ %S_EQUAL _ ) O_QUOTED_STRING
+  | %K_COMPRESSION ( __ | _ %S_EQUAL _ ) ( %K_ZLIB | %K_LZ4 | %K_NONE )
+  | %K_CONNECTION ( __ | _ %S_EQUAL _ ) O_QUOTED_STRING
+  | ( %K_DATA __ | %K_INDEX __ ) %K_DIRECTORY ( __ | _ %S_EQUAL _ ) O_QUOTED_STRING
+  | %K_DELAY_KEY_WRITE ( __ | _ %S_EQUAL _ ) %S_NUMBER
+  | %K_ENCRYPTION ( __ | _ %S_EQUAL _ ) O_QUOTED_STRING
+  | %K_ENGINE ( __ | _ %S_EQUAL _ ) O_ENGINE
+  | %K_INSERT_METHOD ( __ | _ %S_EQUAL _ ) ( %K_NO | %K_FIRST | %K_LAST )
+  | %K_KEY_BLOCK_SIZE ( __ | _ %S_EQUAL _ ) O_TABLE_OPTION_VALUE
+  | %K_MAX_ROWS ( __ | _ %S_EQUAL _ ) O_TABLE_OPTION_VALUE
+  | %K_MIN_ROWS ( __ | _ %S_EQUAL _ ) O_TABLE_OPTION_VALUE
+  | %K_PACK_KEYS ( __ | _ %S_EQUAL _ ) ( %S_NUMBER | %K_DEFAULT )
+  | %K_PASSWORD ( __ | _ %S_EQUAL _ )
+  | %K_ROW_FORMAT ( __ | _ %S_EQUAL _ ) ( %K_DEFAULT | %K_DYNAMIC | %K_FIXED | %K_COMPRESSED | %K_REDUNDANT | %K_COMPACT )
+  | %K_STATS_AUTO_RECALC ( __ | _ %S_EQUAL _ ) ( %S_NUMBER | %K_DEFAULT )
+  | %K_STATS_PERSISTENT ( __ | _ %S_EQUAL _ ) ( %S_NUMBER | %K_DEFAULT )
+  | %K_STATS_SAMPLE_PAGES ( __ | _ %S_EQUAL _ ) O_TABLE_OPTION_VALUE
+  | %K_TABLESPACE __ S_IDENTIFIER ( __ %K_STORAGE __ ( %K_DISK | %K_MEMORY | %K_DEFAULT ) ):?
+  | %K_UNION ( __ | _ %S_EQUAL _ ) %S_LPARENS _ S_IDENTIFIER ( _ %S_COMMA _ S_IDENTIFIER ):* _ %S_RPARENS

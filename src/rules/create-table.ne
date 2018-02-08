@@ -20,7 +20,7 @@ P_CREATE_TABLE -> (
 P_CREATE_TABLE_COMMON ->
     %K_CREATE ( __ %K_TEMPORARY):? __ %K_TABLE ( __ %K_IF __ %K_NOT:? __ %K_EXISTS):? __ S_IDENTIFIER _
     O_CREATE_TABLE_COLUMNS
-    # P_CREATE_TABLE_OPTIONS:?
+    ( _ P_CREATE_TABLE_OPTIONS {% d => d[1] %} ):?
     S_EOS
       {% d => {
         return {
@@ -28,7 +28,7 @@ P_CREATE_TABLE_COMMON ->
           def: {
             table: d[6],
             columnsDef: d[8],
-            tableOptions: null
+            tableOptions: d[9]
           }
         }
       }%}
@@ -262,28 +262,120 @@ P_CREATE_TABLE_OPTIONS ->
 # =============================================================
 # Create table option
 
-P_CREATE_TABLE_OPTION ->
+P_CREATE_TABLE_OPTION -> (
     %K_AUTO_INCREMENT ( __ | _ %S_EQUAL _ ) O_TABLE_OPTION_VALUE
+      {% d => {
+        return { autoincrement: d[2] }
+      }%}
   | %K_AVG_ROW_LENGTH ( __ | _ %S_EQUAL _ ) O_TABLE_OPTION_VALUE
+      {% d => {
+        return { avgRowLength: d[2] }
+      }%}
   | ( %K_DEFAULT __ ):? %K_CHARACTER __ %K_SET ( __ | _ %S_EQUAL _ ) O_CHARSET
+      {% d => {
+        return { charset: d[5] }
+      }%}
   | %K_CHECKSUM ( __ | _ %S_EQUAL _ ) %S_NUMBER
+      {% d => {
+        return { checksum: d[2].value }
+      }%}
   | ( %K_DEFAULT __ ):? %K_COLLATE ( __ | _ %S_EQUAL _ ) O_COLLATION
+      {% d => {
+        return { collation: d[3] }
+      }%}
   | %K_COMMENT ( __ | _ %S_EQUAL _ ) O_QUOTED_STRING
-  | %K_COMPRESSION ( __ | _ %S_EQUAL _ ) ( %K_ZLIB | %K_LZ4 | %K_NONE )
+      {% d => {
+        return { comment: d[2] }
+      }%}
+  | %K_COMPRESSION ( __ | _ %S_EQUAL _ ) ( %K_ZLIB {% id %} | %K_LZ4 {% id %} | %K_NONE {% id %} )
+      {% d => {
+        return { compression: d[2].value }
+      }%}
   | %K_CONNECTION ( __ | _ %S_EQUAL _ ) O_QUOTED_STRING
-  | ( %K_DATA __ | %K_INDEX __ ) %K_DIRECTORY ( __ | _ %S_EQUAL _ ) O_QUOTED_STRING
+      {% d => {
+        return { connection: d[2] }
+      }%}
+  | ( %K_DATA __ {% id %} | %K_INDEX __ {% id %} ) %K_DIRECTORY ( __ | _ %S_EQUAL _ ) O_QUOTED_STRING
+      {% d => {
+        return {
+          directory: d[3],
+          type: d[0].value
+        }
+      }%}
   | %K_DELAY_KEY_WRITE ( __ | _ %S_EQUAL _ ) %S_NUMBER
+      {% d => {
+        return { delayKeyWrite: d[2].value }
+      }%}
   | %K_ENCRYPTION ( __ | _ %S_EQUAL _ ) O_QUOTED_STRING
+      {% d => {
+        return { encrytion: d[2] }
+      }%}
   | %K_ENGINE ( __ | _ %S_EQUAL _ ) O_ENGINE
-  | %K_INSERT_METHOD ( __ | _ %S_EQUAL _ ) ( %K_NO | %K_FIRST | %K_LAST )
+      {% d => {
+        return { engine: d[2] }
+      }%}
+  | %K_INSERT_METHOD ( __ | _ %S_EQUAL _ ) ( %K_NO {% id %} | %K_FIRST {% id %} | %K_LAST {% id %} )
+      {% d => {
+        return { insertMethod: d[2].value }
+      }%}
   | %K_KEY_BLOCK_SIZE ( __ | _ %S_EQUAL _ ) O_TABLE_OPTION_VALUE
+      {% d => {
+        return { keyBlockSize: d[2] }
+      }%}
   | %K_MAX_ROWS ( __ | _ %S_EQUAL _ ) O_TABLE_OPTION_VALUE
+      {% d => {
+        return { maxRows: d[2] }
+      }%}
   | %K_MIN_ROWS ( __ | _ %S_EQUAL _ ) O_TABLE_OPTION_VALUE
-  | %K_PACK_KEYS ( __ | _ %S_EQUAL _ ) ( %S_NUMBER | %K_DEFAULT )
-  | %K_PASSWORD ( __ | _ %S_EQUAL _ )
-  | %K_ROW_FORMAT ( __ | _ %S_EQUAL _ ) ( %K_DEFAULT | %K_DYNAMIC | %K_FIXED | %K_COMPRESSED | %K_REDUNDANT | %K_COMPACT )
-  | %K_STATS_AUTO_RECALC ( __ | _ %S_EQUAL _ ) ( %S_NUMBER | %K_DEFAULT )
-  | %K_STATS_PERSISTENT ( __ | _ %S_EQUAL _ ) ( %S_NUMBER | %K_DEFAULT )
+      {% d => {
+        return { minRows: d[2] }
+      }%}
+  | %K_PACK_KEYS ( __ | _ %S_EQUAL _ ) ( %S_NUMBER {% id %} | %K_DEFAULT {% id %} )
+      {% d => {
+        return { packKeys: d[2].value }
+      }%}
+  | %K_PASSWORD ( __ | _ %S_EQUAL _ ) O_QUOTED_STRING
+      {% d => {
+        return { password: d[2] }
+      }%}
+  | %K_ROW_FORMAT ( __ | _ %S_EQUAL _ ) ( %K_DEFAULT {% id %} | %K_DYNAMIC {% id %} | %K_FIXED {% id %} | %K_COMPRESSED {% id %} | %K_REDUNDANT {% id %} | %K_COMPACT {% id %} )
+      {% d => {
+        return { rowFormat: d[2].value }
+      }%}
+  | %K_STATS_AUTO_RECALC ( __ | _ %S_EQUAL _ ) ( %S_NUMBER {% id %} | %K_DEFAULT {% id %} )
+      {% d => {
+        return { statsAutoRecalc: d[2].value }
+      }%}
+  | %K_STATS_PERSISTENT ( __ | _ %S_EQUAL _ ) ( %S_NUMBER {% id %} | %K_DEFAULT {% id %} )
+      {% d => {
+        return { statsPersistent: d[2].value }
+      }%}
   | %K_STATS_SAMPLE_PAGES ( __ | _ %S_EQUAL _ ) O_TABLE_OPTION_VALUE
-  | %K_TABLESPACE __ S_IDENTIFIER ( __ %K_STORAGE __ ( %K_DISK | %K_MEMORY | %K_DEFAULT ) ):?
-  | %K_UNION ( __ | _ %S_EQUAL _ ) %S_LPARENS _ S_IDENTIFIER ( _ %S_COMMA _ S_IDENTIFIER ):* _ %S_RPARENS
+      {% d => {
+        return { statsSamplePages: d[2] }
+      }%}
+  | %K_TABLESPACE __ S_IDENTIFIER (
+    __ %K_STORAGE __ ( %K_DISK {% id %} | %K_MEMORY {% id %} | %K_DEFAULT {% id %} )
+      {% d => {
+        return { storage: d[3].value }
+      }%}
+    ):?
+      {% d => {
+        return {
+          tablespace: {
+            name: d[2],
+            storage: d[3] ? d[3].storage : null
+          }
+        }
+      }%}
+  | %K_UNION ( __ | _ %S_EQUAL _ ) %S_LPARENS _ S_IDENTIFIER ( _ %S_COMMA _ S_IDENTIFIER {% d => d[3] %} ):* _ %S_RPARENS
+      {% d => {
+        return { union: [d[4]].concat(d[5] || []) }
+      }%}
+)
+  {% d => {
+    return {
+      id: 'P_CREATE_TABLE_OPTION',
+      def: d[0]
+    }
+  }%}

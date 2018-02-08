@@ -1,0 +1,264 @@
+{
+  "id": "MAIN",
+  "def": [
+    {
+      "id": "P_DDS",
+      "def": {
+        "id": "P_CREATE_TABLE",
+        "def": {
+          "id": "P_CREATE_TABLE_COMMON",
+          "def": {
+            "table": "person",
+            "columnsDef": {
+              "id": "O_CREATE_TABLE_COLUMNS",
+              "def": [
+                {
+                  "id": "O_CREATE_TABLE_COLUMN",
+                  "def": {
+                    "column": "initial",
+                    "def": {
+                      "datatype": {
+                        "id": "O_DATATYPE",
+                        "def": {
+                          "id": "O_VARIABLE_STRING_DATATYPE",
+                          "def": {
+                            "datatype": "CHAR",
+                            "length": 1
+                          }
+                        }
+                      },
+                      "datatypeSpecs": [],
+                      "columnDefinitions": []
+                    }
+                  }
+                }
+              ]
+            },
+            "tableOptions": {
+              "id": "P_CREATE_TABLE_OPTIONS",
+              "def": [
+                {
+                  "id": "P_CREATE_TABLE_OPTION",
+                  "def": {
+                    "autoincrement": 2
+                  }
+                },
+                {
+                  "id": "P_CREATE_TABLE_OPTION",
+                  "def": {
+                    "avgRowLength": 1000
+                  }
+                },
+                {
+                  "id": "P_CREATE_TABLE_OPTION",
+                  "def": {
+                    "charset": "latin1"
+                  }
+                },
+                {
+                  "id": "P_CREATE_TABLE_OPTION",
+                  "def": {
+                    "charset": "utf8"
+                  }
+                },
+                {
+                  "id": "P_CREATE_TABLE_OPTION",
+                  "def": {
+                    "checksum": 0
+                  }
+                },
+                {
+                  "id": "P_CREATE_TABLE_OPTION",
+                  "def": {
+                    "checksum": 1
+                  }
+                },
+                {
+                  "id": "P_CREATE_TABLE_OPTION",
+                  "def": {
+                    "collation": "utf8_cirylic_ci"
+                  }
+                },
+                {
+                  "id": "P_CREATE_TABLE_OPTION",
+                  "def": {
+                    "collation": "utf8_general_ci"
+                  }
+                },
+                {
+                  "id": "P_CREATE_TABLE_OPTION",
+                  "def": {
+                    "comment": "test table"
+                  }
+                },
+                {
+                  "id": "P_CREATE_TABLE_OPTION",
+                  "def": {
+                    "compression": "ZLIB"
+                  }
+                },
+                {
+                  "id": "P_CREATE_TABLE_OPTION",
+                  "def": {
+                    "compression": "LZ4"
+                  }
+                },
+                {
+                  "id": "P_CREATE_TABLE_OPTION",
+                  "def": {
+                    "compression": "NONE"
+                  }
+                },
+                {
+                  "id": "P_CREATE_TABLE_OPTION",
+                  "def": {
+                    "connection": "mysql://whatever"
+                  }
+                },
+                {
+                  "id": "P_CREATE_TABLE_OPTION",
+                  "def": {
+                    "directory": "/var/lib/mysql/data",
+                    "type": "DATA"
+                  }
+                },
+                {
+                  "id": "P_CREATE_TABLE_OPTION",
+                  "def": {
+                    "directory": "/var/lib/mysql/index",
+                    "type": "INDEX"
+                  }
+                },
+                {
+                  "id": "P_CREATE_TABLE_OPTION",
+                  "def": {
+                    "delayKeyWrite": 1
+                  }
+                },
+                {
+                  "id": "P_CREATE_TABLE_OPTION",
+                  "def": {
+                    "encrytion": "Y"
+                  }
+                },
+                {
+                  "id": "P_CREATE_TABLE_OPTION",
+                  "def": {
+                    "engine": "MyISAM"
+                  }
+                },
+                {
+                  "id": "P_CREATE_TABLE_OPTION",
+                  "def": {
+                    "insertMethod": "LAST"
+                  }
+                },
+                {
+                  "id": "P_CREATE_TABLE_OPTION",
+                  "def": {
+                    "keyBlockSize": 500
+                  }
+                },
+                {
+                  "id": "P_CREATE_TABLE_OPTION",
+                  "def": {
+                    "maxRows": 1000
+                  }
+                },
+                {
+                  "id": "P_CREATE_TABLE_OPTION",
+                  "def": {
+                    "minRows": 1
+                  }
+                },
+                {
+                  "id": "P_CREATE_TABLE_OPTION",
+                  "def": {
+                    "packKeys": 0
+                  }
+                },
+                {
+                  "id": "P_CREATE_TABLE_OPTION",
+                  "def": {
+                    "packKeys": "DEFAULT"
+                  }
+                },
+                {
+                  "id": "P_CREATE_TABLE_OPTION",
+                  "def": {
+                    "password": "123456"
+                  }
+                },
+                {
+                  "id": "P_CREATE_TABLE_OPTION",
+                  "def": {
+                    "rowFormat": "DEFAULT"
+                  }
+                },
+                {
+                  "id": "P_CREATE_TABLE_OPTION",
+                  "def": {
+                    "rowFormat": "DYNAMIC"
+                  }
+                },
+                {
+                  "id": "P_CREATE_TABLE_OPTION",
+                  "def": {
+                    "statsAutoRecalc": "DEFAULT"
+                  }
+                },
+                {
+                  "id": "P_CREATE_TABLE_OPTION",
+                  "def": {
+                    "statsPersistent": 0
+                  }
+                },
+                {
+                  "id": "P_CREATE_TABLE_OPTION",
+                  "def": {
+                    "statsSamplePages": "test"
+                  }
+                },
+                {
+                  "id": "P_CREATE_TABLE_OPTION",
+                  "def": {
+                    "tablespace": {
+                      "name": "abc",
+                      "storage": null
+                    }
+                  }
+                },
+                {
+                  "id": "P_CREATE_TABLE_OPTION",
+                  "def": {
+                    "tablespace": {
+                      "name": "qwe",
+                      "storage": "DISK"
+                    }
+                  }
+                },
+                {
+                  "id": "P_CREATE_TABLE_OPTION",
+                  "def": {
+                    "union": [
+                      "address"
+                    ]
+                  }
+                },
+                {
+                  "id": "P_CREATE_TABLE_OPTION",
+                  "def": {
+                    "union": [
+                      "address",
+                      "phone"
+                    ]
+                  }
+                }
+              ]
+            }
+          }
+        }
+      }
+    }
+  ]
+}

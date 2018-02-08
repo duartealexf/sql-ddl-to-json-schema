@@ -98,23 +98,25 @@ O_CREATE_TABLE_CREATE_DEFINITION -> (
 
     ) {% d => {
       return {
-        column: d[0],
-        def: d[2]
+        column: {
+          name: d[0],
+          def: d[2]
+        }
       }
     } %}
 
-# | [CONSTRAINT [symbol]] PRIMARY KEY [index_type] (index_col_name,...)
-#     [index_option] ...
-# | {INDEX|KEY} [index_name] [index_type] (index_col_name,...)
-#     [index_option] ...
-# | [CONSTRAINT [symbol]] UNIQUE [INDEX|KEY]
-#     [index_name] [index_type] (index_col_name,...)
-#     [index_option] ...
-# | {FULLTEXT|SPATIAL} [INDEX|KEY] [index_name] (index_col_name,...)
-#     [index_option] ...
-# | [CONSTRAINT [symbol]] FOREIGN KEY
-#     [index_name] (index_col_name,...) reference_definition
-# | CHECK (expr)
+# | ( %K_CONSTRAINT ( symbol ):? ):? %K_PRIMARY __ %K_KEY ( index_type ):? ( index_col_name,... )
+#     ( index_option ):? ...
+# | ( %K_INDEX __ | %K_KEY __ ) ( index_name ):? ( index_type ):? ( index_col_name,... )
+#     ( index_option ):? ...
+# | ( %K_CONSTRAINT ( symbol ):? ):? %K_UNIQUE ( __ %K_INDEX | __ %K_KEY ):?
+#     ( index_name ):? ( index_type ):? ( index_col_name,... )
+#     ( index_option ):? ...
+# | ( %K_FULLTEXT | %K_SPATIAL ) ( __ %K_INDEX | __ %K_KEY ):? ( index_name ):? ( index_col_name,... )
+#     ( index_option ):? ...
+# | ( %K_CONSTRAINT ( symbol ):? ):? %K_FOREIGN %K_KEY
+#     ( index_name ):? ( index_col_name,... ) reference_definition
+# | %K_CHECK _ ( expr )
 )
   {% d => {
     return {

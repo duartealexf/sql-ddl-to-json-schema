@@ -15,20 +15,22 @@
                 {
                   "id": "O_CREATE_TABLE_CREATE_DEFINITION",
                   "def": {
-                    "column": "initial",
-                    "def": {
-                      "datatype": {
-                        "id": "O_DATATYPE",
-                        "def": {
-                          "id": "O_VARIABLE_STRING_DATATYPE",
+                    "column": {
+                      "name": "initial",
+                      "def": {
+                        "datatype": {
+                          "id": "O_DATATYPE",
                           "def": {
-                            "datatype": "CHAR",
-                            "length": 1
+                            "id": "O_VARIABLE_STRING_DATATYPE",
+                            "def": {
+                              "datatype": "CHAR",
+                              "length": 1
+                            }
                           }
-                        }
-                      },
-                      "datatypeSpecs": [],
-                      "columnDefinitions": []
+                        },
+                        "datatypeSpecs": [],
+                        "columnDefinitions": []
+                      }
                     }
                   }
                 }

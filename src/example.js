@@ -3,30 +3,12 @@ const Parser = require('../lib/parser');
 const parser = new Parser();
 parser.feed(
   `CREATE TABLE person (
-  id INT (10) UNSIGNED NOT NULL AUTO_INCREMENT KEY,
-  age SMALLINT ZEROFILL NULL,
-  ssn VARCHAR(255) UNIQUE,
-  story TEXT DEFAULT 'once upon a time',
-  gender ENUM ('F', 'M', 'O') CHARACTER SET utf8 COLLATE utf8_general_ci,
-  sizes SET ('S', 'M') COLLATE utf8_general_ci,
-  name VARCHAR(12),
-  status BIT DEFAULT b'1' STORAGE MEMORY,
-  twobits BIT(2) DEFAULT 0b01,
-  salary DECIMAL(5) COLUMN_FORMAT DYNAMIC,
-  balance FLOAT(7,2) COMMENT 'account balance',
-  city_id INTEGER REFERENCES cities (id 20 ASC, local_id) MATCH FULL,
-  family_id INTEGER REFERENCES families (id) MATCH SIMPLE ON DELETE SET NULL,
-  dog_id INTEGER REFERENCES dogs (id) ON UPDATE NO ACTION,
-  birthtime TIME,
-  birthdate DATE,
-  initials CHAR(5) CHARACTER SET utf8,
-  created_at DATETIME(3),
-  updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  avatar TINYBLOB,
-  image BLOB(1024),
-  model JSON,
-  homes GEOMETRYCOLLECTION
-);`
+    constraint pk_id__o_id primary key using btree (id(2), o_id(3)asc)key_block_size 1024 comment 'hi there' using hash key_block_size 1024 with parser test,
+    index ik_id__o_id using hash (id(2), o_id(3)asc) comment 'hi there',
+    key kk_id using btree (id),
+    index ik_id (id),
+    key kk_id (id)
+  );`
 );
 const value = parser.results;
 console.log(JSON.stringify(value, null, 2));

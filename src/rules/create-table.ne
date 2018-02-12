@@ -111,7 +111,7 @@ O_CREATE_TABLE_CREATE_DEFINITION -> (
       {% d => {
         return {
           key: {
-            name: d[0],
+            symbol: d[0],
             type: d[1].value + ' ' + d[3].value,
             index: d[4],
             columns: [d[8]].concat(d[9] || []),
@@ -135,9 +135,26 @@ O_CREATE_TABLE_CREATE_DEFINITION -> (
           }
         }
       }%}
-# | ( %K_CONSTRAINT ( __ S_IDENTIFIER {% d => d[1] %} ):? ):? %K_UNIQUE ( __ %K_INDEX | __ %K_KEY ):?
-#     ( index_name ):? ( index_type ):? ( index_col_name,... )
-#     ( index_option ):? ...
+  | ( %K_CONSTRAINT ( __ S_IDENTIFIER {% d => d[1] %} ):? __ {% d => d[1] %} ):? %K_UNIQUE
+    ( __ %K_INDEX {% d => d[1] %} | __ %K_KEY {% d => d[1] %} ):?
+    ( __ S_IDENTIFIER {% d => d[1] %} ):?
+    ( __ P_INDEX_TYPE {% d => d[1] %} ):?
+    _ %S_LPARENS _ P_INDEX_COLUMN ( _ %S_COMMA _ P_INDEX_COLUMN {% d => d[3] %} ):* _ %S_RPARENS
+    ( _ P_INDEX_OPTION {% d => d[1] %} ):*
+      {% d => {
+        let type = d[2] ? (' ' + d[2].value) : '';
+        type = d[1].value + (type ? type : '');
+        return {
+          key: {
+            symbol: d[0],
+            name: d[3],
+            type,
+            index: d[4],
+            columns: [d[8]].concat(d[9] || []),
+            options: d[12]
+          }
+        }
+      }%}
 # | ( %K_FULLTEXT | %K_SPATIAL ) ( __ %K_INDEX | __ %K_KEY ):? ( index_name ):? ( index_col_name,... )
 #     ( index_option ):? ...
 # | ( %K_CONSTRAINT ( __ S_IDENTIFIER {% d => d[1] %} ):? ):? %K_FOREIGN %K_KEY

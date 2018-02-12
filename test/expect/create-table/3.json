@@ -16,7 +16,7 @@
                   "id": "O_CREATE_TABLE_CREATE_DEFINITION",
                   "def": {
                     "key": {
-                      "name": "pk_id__o_id",
+                      "symbol": "pk_id__o_id",
                       "type": "primary key",
                       "index": {
                         "id": "P_INDEX_TYPE",
@@ -82,7 +82,7 @@
                   "id": "O_CREATE_TABLE_CREATE_DEFINITION",
                   "def": {
                     "key": {
-                      "name": null,
+                      "symbol": null,
                       "type": "primary key",
                       "index": null,
                       "columns": [
@@ -157,6 +157,90 @@
                     "key": {
                       "name": "kk_id",
                       "type": "key",
+                      "index": null,
+                      "columns": [
+                        {
+                          "id": "P_INDEX_COLUMN",
+                          "def": {
+                            "column": "id",
+                            "length": null,
+                            "sort": null
+                          }
+                        }
+                      ],
+                      "options": []
+                    }
+                  }
+                },
+                {
+                  "id": "O_CREATE_TABLE_CREATE_DEFINITION",
+                  "def": {
+                    "key": {
+                      "symbol": "uk_id__o_id",
+                      "name": "test_key",
+                      "type": "unique key",
+                      "index": {
+                        "id": "P_INDEX_TYPE",
+                        "def": "btree"
+                      },
+                      "columns": [
+                        {
+                          "id": "P_INDEX_COLUMN",
+                          "def": {
+                            "column": "id",
+                            "length": 2,
+                            "sort": null
+                          }
+                        },
+                        {
+                          "id": "P_INDEX_COLUMN",
+                          "def": {
+                            "column": "o_id",
+                            "length": 3,
+                            "sort": "asc"
+                          }
+                        }
+                      ],
+                      "options": [
+                        {
+                          "id": "P_INDEX_OPTION",
+                          "def": {
+                            "comment": "test"
+                          }
+                        }
+                      ]
+                    }
+                  }
+                },
+                {
+                  "id": "O_CREATE_TABLE_CREATE_DEFINITION",
+                  "def": {
+                    "key": {
+                      "symbol": null,
+                      "name": "index",
+                      "type": "unique",
+                      "index": null,
+                      "columns": [
+                        {
+                          "id": "P_INDEX_COLUMN",
+                          "def": {
+                            "column": "id",
+                            "length": null,
+                            "sort": null
+                          }
+                        }
+                      ],
+                      "options": []
+                    }
+                  }
+                },
+                {
+                  "id": "O_CREATE_TABLE_CREATE_DEFINITION",
+                  "def": {
+                    "key": {
+                      "symbol": null,
+                      "name": null,
+                      "type": "unique",
                       "index": null,
                       "columns": [
                         {

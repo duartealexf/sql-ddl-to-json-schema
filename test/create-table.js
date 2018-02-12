@@ -98,7 +98,10 @@ const tests = {
         primary key (id),
         index ik_id using hash (id(2)) comment 'test',
         index ik_id (id),
-        key kk_id (id)
+        key kk_id (id),
+        constraint uk_id__o_id unique key test_key using btree (id(2), o_id(3)asc) comment 'test',
+        unique index (id),
+        unique (id)
       );`
     ],
     expect: expect3

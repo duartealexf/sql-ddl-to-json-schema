@@ -101,7 +101,11 @@ const tests = {
         key kk_id (id),
         constraint uk_id__o_id unique key test_key using btree (id(2), o_id(3)asc) comment 'test',
         unique index (id),
-        unique (id)
+        unique (id),
+        fulltext index pk_id__o_id (id(2), o_id(3)asc) comment 'test' key_block_size 1024,
+        fulltext key (id) key_block_size 1024,
+        spatial (id),
+        fulltext (id)
       );`
     ],
     expect: expect3

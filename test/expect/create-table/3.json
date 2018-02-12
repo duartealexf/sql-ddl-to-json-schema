@@ -255,6 +255,114 @@
                       "options": []
                     }
                   }
+                },
+                {
+                  "id": "O_CREATE_TABLE_CREATE_DEFINITION",
+                  "def": {
+                    "key": {
+                      "name": "pk_id__o_id",
+                      "type": "fulltext index",
+                      "columns": [
+                        {
+                          "id": "P_INDEX_COLUMN",
+                          "def": {
+                            "column": "id",
+                            "length": 2,
+                            "sort": null
+                          }
+                        },
+                        {
+                          "id": "P_INDEX_COLUMN",
+                          "def": {
+                            "column": "o_id",
+                            "length": 3,
+                            "sort": "asc"
+                          }
+                        }
+                      ],
+                      "options": [
+                        {
+                          "id": "P_INDEX_OPTION",
+                          "def": {
+                            "comment": "test"
+                          }
+                        },
+                        {
+                          "id": "P_INDEX_OPTION",
+                          "def": {
+                            "keyBlockSize": 1024
+                          }
+                        }
+                      ]
+                    }
+                  }
+                },
+                {
+                  "id": "O_CREATE_TABLE_CREATE_DEFINITION",
+                  "def": {
+                    "key": {
+                      "name": null,
+                      "type": "fulltext key",
+                      "columns": [
+                        {
+                          "id": "P_INDEX_COLUMN",
+                          "def": {
+                            "column": "id",
+                            "length": null,
+                            "sort": null
+                          }
+                        }
+                      ],
+                      "options": [
+                        {
+                          "id": "P_INDEX_OPTION",
+                          "def": {
+                            "keyBlockSize": 1024
+                          }
+                        }
+                      ]
+                    }
+                  }
+                },
+                {
+                  "id": "O_CREATE_TABLE_CREATE_DEFINITION",
+                  "def": {
+                    "key": {
+                      "name": null,
+                      "type": "spatial",
+                      "columns": [
+                        {
+                          "id": "P_INDEX_COLUMN",
+                          "def": {
+                            "column": "id",
+                            "length": null,
+                            "sort": null
+                          }
+                        }
+                      ],
+                      "options": []
+                    }
+                  }
+                },
+                {
+                  "id": "O_CREATE_TABLE_CREATE_DEFINITION",
+                  "def": {
+                    "key": {
+                      "name": null,
+                      "type": "fulltext",
+                      "columns": [
+                        {
+                          "id": "P_INDEX_COLUMN",
+                          "def": {
+                            "column": "id",
+                            "length": null,
+                            "sort": null
+                          }
+                        }
+                      ],
+                      "options": []
+                    }
+                  }
                 }
               ]
             },

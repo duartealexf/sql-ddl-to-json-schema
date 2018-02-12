@@ -143,7 +143,7 @@ O_CREATE_TABLE_CREATE_DEFINITION -> (
     ( _ P_INDEX_OPTION {% d => d[1] %} ):*
       {% d => {
         let type = d[2] ? (' ' + d[2].value) : '';
-        type = d[1].value + (type ? type : '');
+        type = d[1].value + type;
         return {
           key: {
             symbol: d[0],
@@ -155,8 +155,23 @@ O_CREATE_TABLE_CREATE_DEFINITION -> (
           }
         }
       }%}
-# | ( %K_FULLTEXT | %K_SPATIAL ) ( __ %K_INDEX | __ %K_KEY ):? ( index_name ):? ( index_col_name,... )
-#     ( index_option ):? ...
+  | ( %K_FULLTEXT {% id %} | %K_SPATIAL {% id %} )
+    ( __ %K_INDEX {% d => d[1] %} | __ %K_KEY {% d => d[1] %} ):?
+    ( __ S_IDENTIFIER {% d => d[1] %} ):?
+    _ %S_LPARENS _ P_INDEX_COLUMN ( _ %S_COMMA _ P_INDEX_COLUMN {% d => d[3] %} ):* _ %S_RPARENS
+    ( _ P_INDEX_OPTION {% d => d[1] %} ):*
+      {% d => {
+        let type = d[1] ? (' ' + d[1].value) : '';
+        type = d[0].value + type;
+        return {
+          key: {
+            name: d[2],
+            type,
+            columns: [d[6]].concat(d[7] || []),
+            options: d[10]
+          }
+        }
+      }%}
 # | ( %K_CONSTRAINT ( __ S_IDENTIFIER {% d => d[1] %} ):? ):? %K_FOREIGN %K_KEY
 #     ( index_name ):? ( index_col_name,... ) reference_definition
 # | %K_CHECK _ ( expr )

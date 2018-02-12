@@ -363,6 +363,90 @@
                       "options": []
                     }
                   }
+                },
+                {
+                  "id": "O_CREATE_TABLE_CREATE_DEFINITION",
+                  "def": {
+                    "key": {
+                      "symbol": "fk_id__o_id",
+                      "type": "foreign key",
+                      "name": "test_key",
+                      "columns": [
+                        {
+                          "id": "P_INDEX_COLUMN",
+                          "def": {
+                            "column": "id",
+                            "length": 2,
+                            "sort": null
+                          }
+                        },
+                        {
+                          "id": "P_INDEX_COLUMN",
+                          "def": {
+                            "column": "o_id",
+                            "length": 3,
+                            "sort": "asc"
+                          }
+                        }
+                      ],
+                      "reference": {
+                        "id": "P_COLUMN_REFERENCE",
+                        "def": {
+                          "table": "other",
+                          "columns": [
+                            {
+                              "id": "P_INDEX_COLUMN",
+                              "def": {
+                                "column": "id",
+                                "length": null,
+                                "sort": null
+                              }
+                            }
+                          ],
+                          "match": null,
+                          "on": null
+                        }
+                      }
+                    }
+                  }
+                },
+                {
+                  "id": "O_CREATE_TABLE_CREATE_DEFINITION",
+                  "def": {
+                    "key": {
+                      "symbol": null,
+                      "type": "foreign key",
+                      "name": null,
+                      "columns": [
+                        {
+                          "id": "P_INDEX_COLUMN",
+                          "def": {
+                            "column": "o_id",
+                            "length": null,
+                            "sort": null
+                          }
+                        }
+                      ],
+                      "reference": {
+                        "id": "P_COLUMN_REFERENCE",
+                        "def": {
+                          "table": "other",
+                          "columns": [
+                            {
+                              "id": "P_INDEX_COLUMN",
+                              "def": {
+                                "column": "id",
+                                "length": null,
+                                "sort": null
+                              }
+                            }
+                          ],
+                          "match": null,
+                          "on": null
+                        }
+                      }
+                    }
+                  }
                 }
               ]
             },

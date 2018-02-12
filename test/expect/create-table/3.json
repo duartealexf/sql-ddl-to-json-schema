@@ -16,95 +16,12 @@
                   "id": "O_CREATE_TABLE_CREATE_DEFINITION",
                   "def": {
                     "key": {
-                      "name": {
-                        "type": "K_PRIMARY",
-                        "value": "primary",
-                        "text": "primary",
-                        "offset": 49,
-                        "lineBreaks": 0,
-                        "line": 2,
-                        "col": 28
+                      "name": "pk_id__o_id",
+                      "type": "primary key",
+                      "index": {
+                        "id": "P_INDEX_TYPE",
+                        "def": "btree"
                       },
-                      "type": "  [object Object]",
-                      "index": [
-                        [
-                          {
-                            "type": "WS",
-                            "value": " ",
-                            "text": " ",
-                            "offset": 72,
-                            "lineBreaks": 0,
-                            "line": 2,
-                            "col": 51
-                          }
-                        ]
-                      ],
-                      "columns": [
-                        [
-                          {
-                            "id": "P_INDEX_COLUMN",
-                            "def": {
-                              "column": "o_id",
-                              "length": 3,
-                              "sort": "asc"
-                            }
-                          }
-                        ],
-                        []
-                      ],
-                      "options": {
-                        "type": "S_RPARENS",
-                        "value": ")",
-                        "text": ")",
-                        "offset": 91,
-                        "lineBreaks": 0,
-                        "line": 2,
-                        "col": 70
-                      }
-                    }
-                  }
-                },
-                {
-                  "id": "O_CREATE_TABLE_CREATE_DEFINITION",
-                  "def": {
-                    "key": {
-                      "name": "ik_id__o_id",
-                      "type": {
-                        "type": "K_INDEX",
-                        "value": "index",
-                        "text": "index",
-                        "offset": 184,
-                        "lineBreaks": 0,
-                        "line": 3,
-                        "col": 5
-                      },
-                      "index": [
-                        [
-                          [
-                            {
-                              "type": "WS",
-                              "value": " ",
-                              "text": " ",
-                              "offset": 201,
-                              "lineBreaks": 0,
-                              "line": 3,
-                              "col": 22
-                            }
-                          ]
-                        ],
-                        {
-                          "id": "P_INDEX_TYPE",
-                          "def": {
-                            "type": "K_HASH",
-                            "value": "hash",
-                            "text": "hash",
-                            "offset": 208,
-                            "lineBreaks": 0,
-                            "line": 3,
-                            "col": 29
-                          }
-                        }
-                      ],
                       "columns": [
                         {
                           "id": "P_INDEX_COLUMN",
@@ -127,7 +44,34 @@
                         {
                           "id": "P_INDEX_OPTION",
                           "def": {
-                            "comment": "hi there"
+                            "keyBlockSize": 1024
+                          }
+                        },
+                        {
+                          "id": "P_INDEX_OPTION",
+                          "def": {
+                            "comment": "test"
+                          }
+                        },
+                        {
+                          "id": "P_INDEX_OPTION",
+                          "def": {
+                            "indexType": {
+                              "id": "P_INDEX_TYPE",
+                              "def": "hash"
+                            }
+                          }
+                        },
+                        {
+                          "id": "P_INDEX_OPTION",
+                          "def": {
+                            "keyBlockSize": 1024
+                          }
+                        },
+                        {
+                          "id": "P_INDEX_OPTION",
+                          "def": {
+                            "parser": "test"
                           }
                         }
                       ]
@@ -138,43 +82,9 @@
                   "id": "O_CREATE_TABLE_CREATE_DEFINITION",
                   "def": {
                     "key": {
-                      "name": "kk_id",
-                      "type": {
-                        "type": "K_KEY",
-                        "value": "key",
-                        "text": "key",
-                        "offset": 257,
-                        "lineBreaks": 0,
-                        "line": 4,
-                        "col": 5
-                      },
-                      "index": [
-                        [
-                          [
-                            {
-                              "type": "WS",
-                              "value": " ",
-                              "text": " ",
-                              "offset": 266,
-                              "lineBreaks": 0,
-                              "line": 4,
-                              "col": 14
-                            }
-                          ]
-                        ],
-                        {
-                          "id": "P_INDEX_TYPE",
-                          "def": {
-                            "type": "K_BTREE",
-                            "value": "btree",
-                            "text": "btree",
-                            "offset": 273,
-                            "lineBreaks": 0,
-                            "line": 4,
-                            "col": 21
-                          }
-                        }
-                      ],
+                      "name": null,
+                      "type": "primary key",
+                      "index": null,
                       "columns": [
                         {
                           "id": "P_INDEX_COLUMN",
@@ -194,15 +104,38 @@
                   "def": {
                     "key": {
                       "name": "ik_id",
-                      "type": {
-                        "type": "K_INDEX",
-                        "value": "index",
-                        "text": "index",
-                        "offset": 289,
-                        "lineBreaks": 0,
-                        "line": 5,
-                        "col": 5
+                      "type": "index",
+                      "index": {
+                        "id": "P_INDEX_TYPE",
+                        "def": "hash"
                       },
+                      "columns": [
+                        {
+                          "id": "P_INDEX_COLUMN",
+                          "def": {
+                            "column": "id",
+                            "length": 2,
+                            "sort": null
+                          }
+                        }
+                      ],
+                      "options": [
+                        {
+                          "id": "P_INDEX_OPTION",
+                          "def": {
+                            "comment": "test"
+                          }
+                        }
+                      ]
+                    }
+                  }
+                },
+                {
+                  "id": "O_CREATE_TABLE_CREATE_DEFINITION",
+                  "def": {
+                    "key": {
+                      "name": "ik_id",
+                      "type": "index",
                       "index": null,
                       "columns": [
                         {
@@ -223,15 +156,7 @@
                   "def": {
                     "key": {
                       "name": "kk_id",
-                      "type": {
-                        "type": "K_KEY",
-                        "value": "key",
-                        "text": "key",
-                        "offset": 311,
-                        "lineBreaks": 0,
-                        "line": 6,
-                        "col": 5
-                      },
+                      "type": "key",
                       "index": null,
                       "columns": [
                         {

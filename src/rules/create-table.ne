@@ -121,14 +121,14 @@ O_CREATE_TABLE_CREATE_DEFINITION -> (
       }%}
   | ( %K_INDEX {% id %} | %K_KEY {% id %} )
     ( __ S_IDENTIFIER {% d => d[1] %} ):?
-    ( __ P_INDEX_TYPE ):?
+    ( __ P_INDEX_TYPE {% d => d[1] %} ):?
     _ %S_LPARENS _ P_INDEX_COLUMN ( _ %S_COMMA _ P_INDEX_COLUMN {% d => d[3] %} ):* _ %S_RPARENS
     ( _ P_INDEX_OPTION {% d => d[1] %} ):*
       {% d => {
         return {
           key: {
-            name: d,
-            type: d[0],
+            name: d[1],
+            type: d[0].value,
             index: d[2],
             columns: [d[6]].concat(d[7] || []),
             options: d[10]

@@ -1,0 +1,459 @@
+{
+  "id": "MAIN",
+  "def": [
+    {
+      "id": "P_DDS",
+      "def": {
+        "id": "P_CREATE_TABLE",
+        "def": {
+          "id": "P_CREATE_TABLE_COMMON",
+          "def": {
+            "table": "person",
+            "columnsDef": {
+              "id": "O_CREATE_TABLE_CREATE_DEFINITIONS",
+              "def": [
+                {
+                  "id": "O_CREATE_TABLE_CREATE_DEFINITION",
+                  "def": {
+                    "key": {
+                      "symbol": "pk_id__o_id",
+                      "type": "primary key",
+                      "index": {
+                        "id": "P_INDEX_TYPE",
+                        "def": "btree"
+                      },
+                      "columns": [
+                        {
+                          "id": "P_INDEX_COLUMN",
+                          "def": {
+                            "column": "id",
+                            "length": 2,
+                            "sort": null
+                          }
+                        },
+                        {
+                          "id": "P_INDEX_COLUMN",
+                          "def": {
+                            "column": "o_id",
+                            "length": 3,
+                            "sort": "asc"
+                          }
+                        }
+                      ],
+                      "options": [
+                        {
+                          "id": "P_INDEX_OPTION",
+                          "def": {
+                            "keyBlockSize": 1024
+                          }
+                        },
+                        {
+                          "id": "P_INDEX_OPTION",
+                          "def": {
+                            "comment": "test"
+                          }
+                        },
+                        {
+                          "id": "P_INDEX_OPTION",
+                          "def": {
+                            "indexType": {
+                              "id": "P_INDEX_TYPE",
+                              "def": "hash"
+                            }
+                          }
+                        },
+                        {
+                          "id": "P_INDEX_OPTION",
+                          "def": {
+                            "keyBlockSize": 1024
+                          }
+                        },
+                        {
+                          "id": "P_INDEX_OPTION",
+                          "def": {
+                            "parser": "test"
+                          }
+                        }
+                      ]
+                    }
+                  }
+                },
+                {
+                  "id": "O_CREATE_TABLE_CREATE_DEFINITION",
+                  "def": {
+                    "key": {
+                      "symbol": null,
+                      "type": "primary key",
+                      "index": null,
+                      "columns": [
+                        {
+                          "id": "P_INDEX_COLUMN",
+                          "def": {
+                            "column": "id",
+                            "length": null,
+                            "sort": null
+                          }
+                        }
+                      ],
+                      "options": []
+                    }
+                  }
+                },
+                {
+                  "id": "O_CREATE_TABLE_CREATE_DEFINITION",
+                  "def": {
+                    "key": {
+                      "name": "ik_id",
+                      "type": "index",
+                      "index": {
+                        "id": "P_INDEX_TYPE",
+                        "def": "hash"
+                      },
+                      "columns": [
+                        {
+                          "id": "P_INDEX_COLUMN",
+                          "def": {
+                            "column": "id",
+                            "length": 2,
+                            "sort": null
+                          }
+                        }
+                      ],
+                      "options": [
+                        {
+                          "id": "P_INDEX_OPTION",
+                          "def": {
+                            "comment": "test"
+                          }
+                        }
+                      ]
+                    }
+                  }
+                },
+                {
+                  "id": "O_CREATE_TABLE_CREATE_DEFINITION",
+                  "def": {
+                    "key": {
+                      "name": "ik_id",
+                      "type": "index",
+                      "index": null,
+                      "columns": [
+                        {
+                          "id": "P_INDEX_COLUMN",
+                          "def": {
+                            "column": "id",
+                            "length": null,
+                            "sort": null
+                          }
+                        }
+                      ],
+                      "options": []
+                    }
+                  }
+                },
+                {
+                  "id": "O_CREATE_TABLE_CREATE_DEFINITION",
+                  "def": {
+                    "key": {
+                      "name": "kk_id",
+                      "type": "key",
+                      "index": null,
+                      "columns": [
+                        {
+                          "id": "P_INDEX_COLUMN",
+                          "def": {
+                            "column": "id",
+                            "length": null,
+                            "sort": null
+                          }
+                        }
+                      ],
+                      "options": []
+                    }
+                  }
+                },
+                {
+                  "id": "O_CREATE_TABLE_CREATE_DEFINITION",
+                  "def": {
+                    "key": {
+                      "symbol": "uk_id__o_id",
+                      "name": "test_key",
+                      "type": "unique key",
+                      "index": {
+                        "id": "P_INDEX_TYPE",
+                        "def": "btree"
+                      },
+                      "columns": [
+                        {
+                          "id": "P_INDEX_COLUMN",
+                          "def": {
+                            "column": "id",
+                            "length": 2,
+                            "sort": null
+                          }
+                        },
+                        {
+                          "id": "P_INDEX_COLUMN",
+                          "def": {
+                            "column": "o_id",
+                            "length": 3,
+                            "sort": "asc"
+                          }
+                        }
+                      ],
+                      "options": [
+                        {
+                          "id": "P_INDEX_OPTION",
+                          "def": {
+                            "comment": "test"
+                          }
+                        }
+                      ]
+                    }
+                  }
+                },
+                {
+                  "id": "O_CREATE_TABLE_CREATE_DEFINITION",
+                  "def": {
+                    "key": {
+                      "symbol": null,
+                      "name": null,
+                      "type": "unique index",
+                      "index": null,
+                      "columns": [
+                        {
+                          "id": "P_INDEX_COLUMN",
+                          "def": {
+                            "column": "id",
+                            "length": null,
+                            "sort": null
+                          }
+                        }
+                      ],
+                      "options": []
+                    }
+                  }
+                },
+                {
+                  "id": "O_CREATE_TABLE_CREATE_DEFINITION",
+                  "def": {
+                    "key": {
+                      "symbol": null,
+                      "name": null,
+                      "type": "unique",
+                      "index": null,
+                      "columns": [
+                        {
+                          "id": "P_INDEX_COLUMN",
+                          "def": {
+                            "column": "id",
+                            "length": null,
+                            "sort": null
+                          }
+                        }
+                      ],
+                      "options": []
+                    }
+                  }
+                },
+                {
+                  "id": "O_CREATE_TABLE_CREATE_DEFINITION",
+                  "def": {
+                    "key": {
+                      "name": "pk_id__o_id",
+                      "type": "fulltext index",
+                      "columns": [
+                        {
+                          "id": "P_INDEX_COLUMN",
+                          "def": {
+                            "column": "id",
+                            "length": 2,
+                            "sort": null
+                          }
+                        },
+                        {
+                          "id": "P_INDEX_COLUMN",
+                          "def": {
+                            "column": "o_id",
+                            "length": 3,
+                            "sort": "asc"
+                          }
+                        }
+                      ],
+                      "options": [
+                        {
+                          "id": "P_INDEX_OPTION",
+                          "def": {
+                            "comment": "test"
+                          }
+                        },
+                        {
+                          "id": "P_INDEX_OPTION",
+                          "def": {
+                            "keyBlockSize": 1024
+                          }
+                        }
+                      ]
+                    }
+                  }
+                },
+                {
+                  "id": "O_CREATE_TABLE_CREATE_DEFINITION",
+                  "def": {
+                    "key": {
+                      "name": null,
+                      "type": "fulltext key",
+                      "columns": [
+                        {
+                          "id": "P_INDEX_COLUMN",
+                          "def": {
+                            "column": "id",
+                            "length": null,
+                            "sort": null
+                          }
+                        }
+                      ],
+                      "options": [
+                        {
+                          "id": "P_INDEX_OPTION",
+                          "def": {
+                            "keyBlockSize": 1024
+                          }
+                        }
+                      ]
+                    }
+                  }
+                },
+                {
+                  "id": "O_CREATE_TABLE_CREATE_DEFINITION",
+                  "def": {
+                    "key": {
+                      "name": null,
+                      "type": "spatial",
+                      "columns": [
+                        {
+                          "id": "P_INDEX_COLUMN",
+                          "def": {
+                            "column": "id",
+                            "length": null,
+                            "sort": null
+                          }
+                        }
+                      ],
+                      "options": []
+                    }
+                  }
+                },
+                {
+                  "id": "O_CREATE_TABLE_CREATE_DEFINITION",
+                  "def": {
+                    "key": {
+                      "name": null,
+                      "type": "fulltext",
+                      "columns": [
+                        {
+                          "id": "P_INDEX_COLUMN",
+                          "def": {
+                            "column": "id",
+                            "length": null,
+                            "sort": null
+                          }
+                        }
+                      ],
+                      "options": []
+                    }
+                  }
+                },
+                {
+                  "id": "O_CREATE_TABLE_CREATE_DEFINITION",
+                  "def": {
+                    "key": {
+                      "symbol": "fk_id__o_id",
+                      "type": "foreign key",
+                      "name": "test_key",
+                      "columns": [
+                        {
+                          "id": "P_INDEX_COLUMN",
+                          "def": {
+                            "column": "id",
+                            "length": 2,
+                            "sort": null
+                          }
+                        },
+                        {
+                          "id": "P_INDEX_COLUMN",
+                          "def": {
+                            "column": "o_id",
+                            "length": 3,
+                            "sort": "asc"
+                          }
+                        }
+                      ],
+                      "reference": {
+                        "id": "P_COLUMN_REFERENCE",
+                        "def": {
+                          "table": "other",
+                          "columns": [
+                            {
+                              "id": "P_INDEX_COLUMN",
+                              "def": {
+                                "column": "id",
+                                "length": null,
+                                "sort": null
+                              }
+                            }
+                          ],
+                          "match": null,
+                          "on": null
+                        }
+                      }
+                    }
+                  }
+                },
+                {
+                  "id": "O_CREATE_TABLE_CREATE_DEFINITION",
+                  "def": {
+                    "key": {
+                      "symbol": null,
+                      "type": "foreign key",
+                      "name": null,
+                      "columns": [
+                        {
+                          "id": "P_INDEX_COLUMN",
+                          "def": {
+                            "column": "o_id",
+                            "length": null,
+                            "sort": null
+                          }
+                        }
+                      ],
+                      "reference": {
+                        "id": "P_COLUMN_REFERENCE",
+                        "def": {
+                          "table": "other",
+                          "columns": [
+                            {
+                              "id": "P_INDEX_COLUMN",
+                              "def": {
+                                "column": "id",
+                                "length": null,
+                                "sort": null
+                              }
+                            }
+                          ],
+                          "match": null,
+                          "on": null
+                        }
+                      }
+                    }
+                  }
+                }
+              ]
+            },
+            "tableOptions": null
+          }
+        }
+      }
+    }
+  ]
+}

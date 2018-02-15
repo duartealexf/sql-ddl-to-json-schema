@@ -44,8 +44,8 @@ P_MAIN -> P_DDS:+
 # Data definition statements
 
 P_DDS -> (
-    P_CREATE_DB {% id %}
-  | P_CREATE_TABLE {% id %}
+    P_CREATE_DB _ {% id %}
+  | P_CREATE_TABLE _ {% id %}
 )
   {% d => {
     return {

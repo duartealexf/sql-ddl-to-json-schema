@@ -95,28 +95,109 @@ O_CREATE_TABLE_CREATE_DEFINITION -> (
             columnDefinitions: d[2] || []
           }
         }%}
-
-    ) {% d => {
-      return {
-        column: {
-          name: d[0],
-          def: d[2]
+    )
+      {% d => {
+        return {
+          column: {
+            name: d[0],
+            def: d[2]
+          }
         }
-      }
-    } %}
+      }%}
+  | ( %K_CONSTRAINT ( __ S_IDENTIFIER {% d => d[1] %} ):? __ {% d => d[1] %} ):? %K_PRIMARY __ %K_KEY
+    ( __ P_INDEX_TYPE {% d => d[1] %} ):?
+    _ %S_LPARENS _ P_INDEX_COLUMN ( _ %S_COMMA _ P_INDEX_COLUMN {% d => d[3] %} ):* _ %S_RPARENS
+    ( _ P_INDEX_OPTION {% d => d[1] %} ):*
+      {% d => {
+        return {
+          key: {
+            symbol: d[0],
+            type: d[1].value + ' ' + d[3].value,
+            index: d[4],
+            columns: [d[8]].concat(d[9] || []),
+            options: d[12]
+          }
+        }
+      }%}
+  | ( %K_INDEX {% id %} | %K_KEY {% id %} )
+    ( __ S_IDENTIFIER {% d => d[1] %} ):?
+    ( __ P_INDEX_TYPE {% d => d[1] %} ):?
+    _ %S_LPARENS _ P_INDEX_COLUMN ( _ %S_COMMA _ P_INDEX_COLUMN {% d => d[3] %} ):* _ %S_RPARENS
+    ( _ P_INDEX_OPTION {% d => d[1] %} ):*
+      {% d => {
+        return {
+          key: {
+            name: d[1],
+            type: d[0].value,
+            index: d[2],
+            columns: [d[6]].concat(d[7] || []),
+            options: d[10]
+          }
+        }
+      }%}
+  | ( %K_CONSTRAINT ( __ S_IDENTIFIER {% d => d[1] %} ):? __ {% d => d[1] %} ):? %K_UNIQUE
+    ( __ %K_INDEX {% d => d[1] %} | __ %K_KEY {% d => d[1] %} ):?
+    ( __ S_IDENTIFIER {% d => d[1] %} ):?
+    ( __ P_INDEX_TYPE {% d => d[1] %} ):?
+    _ %S_LPARENS _ P_INDEX_COLUMN ( _ %S_COMMA _ P_INDEX_COLUMN {% d => d[3] %} ):* _ %S_RPARENS
+    ( _ P_INDEX_OPTION {% d => d[1] %} ):*
+      {% d => {
+        let type = d[2] ? (' ' + d[2].value) : '';
+        type = d[1].value + type;
+        return {
+          key: {
+            symbol: d[0],
+            name: d[3],
+            type,
+            index: d[4],
+            columns: [d[8]].concat(d[9] || []),
+            options: d[12]
+          }
+        }
+      }%}
+  | ( %K_FULLTEXT {% id %} | %K_SPATIAL {% id %} )
+    ( __ %K_INDEX {% d => d[1] %} | __ %K_KEY {% d => d[1] %} ):?
+    ( __ S_IDENTIFIER {% d => d[1] %} ):?
+    _ %S_LPARENS _ P_INDEX_COLUMN ( _ %S_COMMA _ P_INDEX_COLUMN {% d => d[3] %} ):* _ %S_RPARENS
+    ( _ P_INDEX_OPTION {% d => d[1] %} ):*
+      {% d => {
+        /**
+         * For some reason it parses "FULLTEXT KEY" in two ways:
+         * 1. { type: 'FULLTEXT KEY', name: NULL }
+         * 2. { type: 'FULLTEXT', name: 'KEY' }
+         *
+         * So we need this workaround below:
+         */
 
-# | ( %K_CONSTRAINT ( symbol ):? ):? %K_PRIMARY __ %K_KEY ( index_type ):? ( index_col_name,... )
-#     ( index_option ):? ...
-# | ( %K_INDEX __ | %K_KEY __ ) ( index_name ):? ( index_type ):? ( index_col_name,... )
-#     ( index_option ):? ...
-# | ( %K_CONSTRAINT ( symbol ):? ):? %K_UNIQUE ( __ %K_INDEX | __ %K_KEY ):?
-#     ( index_name ):? ( index_type ):? ( index_col_name,... )
-#     ( index_option ):? ...
-# | ( %K_FULLTEXT | %K_SPATIAL ) ( __ %K_INDEX | __ %K_KEY ):? ( index_name ):? ( index_col_name,... )
-#     ( index_option ):? ...
-# | ( %K_CONSTRAINT ( symbol ):? ):? %K_FOREIGN %K_KEY
-#     ( index_name ):? ( index_col_name,... ) reference_definition
-# | %K_CHECK _ ( expr )
+        if (d[2] && ['index', 'key'].includes(d[2].toLowerCase())) {
+          d[1] = { value: d[2] };
+          d[2] = null;
+        }
+
+        return {
+          key: {
+            name: d[2],
+            type: d[0].value + (d[1] ? (' ' + d[1].value) : ''),
+            columns: [d[6]].concat(d[7] || []),
+            options: d[10]
+          }
+        }
+      }%}
+  | ( %K_CONSTRAINT ( __ S_IDENTIFIER {% d => d[1] %} ):? __ {% d => d[1] %} ):? %K_FOREIGN __ %K_KEY
+    ( __ S_IDENTIFIER {% d => d[1] %} ):?
+    _ %S_LPARENS _ P_INDEX_COLUMN ( _ %S_COMMA _ P_INDEX_COLUMN {% d => d[3] %} ):* _ %S_RPARENS
+    __ P_COLUMN_REFERENCE
+      {% d => {
+        return {
+          key: {
+            symbol: d[0],
+            type: d[1] + ' ' + d[3],
+            name: d[4],
+            columns: [d[8]].concat(d[9] || []),
+            reference: d[13]
+          }
+        }
+      }%}
 )
   {% d => {
     return {
@@ -229,12 +310,12 @@ P_COLUMN_REFERENCE ->
 
 P_INDEX_COLUMN -> S_IDENTIFIER
   (
-    __ %S_NUMBER
-    ( __ %K_ASC {% id %} | __ %K_DESC {% id %} ):?
+    _ %S_LPARENS _ %S_NUMBER _ %S_RPARENS
+    ( _ %K_ASC {% d => d[1] %} | _ %K_DESC {% d => d[1] %} ):?
       {% d => {
         return {
-          length: d[1].value,
-          sort: d[2] ? d[2].value : null
+          length: d[3].value,
+          sort: d[6] ? d[6].value : null
         }
       }%}
   ):?
@@ -248,6 +329,57 @@ P_INDEX_COLUMN -> S_IDENTIFIER
         }
       }
     }%}
+
+# =============================================================
+# Index type
+#
+# In MySQL docs this is the 'index_type'.
+
+P_INDEX_TYPE -> %K_USING __ ( %K_BTREE {% id %} | %K_HASH {% id %} )
+  {% d => {
+      return {
+        id: 'P_INDEX_TYPE',
+        def: d[2].value
+      }
+    }%}
+
+# =============================================================
+# Index option
+#
+# In MySQL docs this is the 'index_option'.
+
+P_INDEX_OPTION -> (
+    %K_KEY_BLOCK_SIZE ( __ | _ %S_EQUAL _ ) %S_NUMBER
+    {% d => {
+      return {
+        keyBlockSize: d[2].value
+      }
+    }%}
+  | P_INDEX_TYPE
+    {% d => {
+      return {
+        indexType: d[0]
+      }
+    }%}
+  | %K_WITH __ %K_PARSER __ S_IDENTIFIER
+    {% d => {
+      return {
+        parser: d[4]
+      }
+    }%}
+  | %K_COMMENT __ O_QUOTED_STRING
+    {% d => {
+      return {
+        comment: d[2]
+      }
+    }%}
+)
+  {% d => {
+    return {
+      id: 'P_INDEX_OPTION',
+      def: d[0]
+    }
+  }%}
 
 # =============================================================
 # Create table options

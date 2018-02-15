@@ -4,6 +4,7 @@ const Parser = require('../lib');
 const expect0 = require('./expect/create-table/0.json');
 const expect1 = require('./expect/create-table/1.json');
 const expect2 = require('./expect/create-table/2.json');
+const expect3 = require('./expect/create-table/3.json');
 
 const tests = {
   'Should create test table with all types of columns.': {
@@ -20,7 +21,7 @@ const tests = {
         twobits BIT(2) DEFAULT 0b01,
         salary DECIMAL(5) COLUMN_FORMAT DYNAMIC,
         balance FLOAT(7,2) COMMENT 'account balance',
-        city_id INTEGER REFERENCES cities (id 20 ASC, local_id) MATCH FULL,
+        city_id INTEGER REFERENCES cities (id (20) ASC, local_id) MATCH FULL,
         family_id INTEGER REFERENCES families (id) MATCH SIMPLE ON DELETE SET NULL,
         dog_id INTEGER REFERENCES dogs (id) ON UPDATE NO ACTION,
         birthtime TIME,
@@ -46,7 +47,7 @@ const tests = {
     expect: expect1
   },
 
-  'Should create table with all options.': {
+  'Should create table with all table options.': {
     queries: [
       `CREATE TABLE person(
         initial CHAR(1)
@@ -88,6 +89,28 @@ const tests = {
       ;`
     ],
     expect: expect2
+  },
+
+  'Should create table with all key options.': {
+    queries: [
+      `CREATE TABLE person (
+        constraint pk_id__o_id primary key using btree (id(2), o_id(3)asc)key_block_size 1024 comment 'test' using hash key_block_size 1024 with parser test,
+        primary key (id),
+        index ik_id using hash (id(2)) comment 'test',
+        index ik_id (id),
+        key kk_id (id),
+        constraint uk_id__o_id unique key test_key using btree (id(2), o_id(3)asc) comment 'test',
+        unique index (id),
+        unique (id),
+        fulltext index pk_id__o_id (id(2), o_id(3)asc) comment 'test' key_block_size 1024,
+        fulltext key (id) key_block_size 1024,
+        spatial (id),
+        fulltext (id),
+        constraint fk_id__o_id foreign key test_key (id(2), o_id(3)asc) references other (id),
+        foreign key (o_id) references other (id)
+      );`
+    ],
+    expect: expect3
   }
 };
 

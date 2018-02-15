@@ -18,22 +18,25 @@ Roadmap for each one is still in WIP.
   - [X] CHARACTER SET
   - [X] COLLATION
 - [X] CREATE TABLE
-  - [X] COLUMN DEFINITIONS
-  - [ ] CREATE TABLE OPTIONS
-  - [ ] CREATE TABLE LIKE
-  - [ ] CREATE TABLE AS (EXPRESSION)
-  - [ ] PARTITION OPTIONS
-  - [ ] GENERATED AS (EXPRESSION) COLUMNS *
-- [ ] CREATE INDEX
+  - [X] COLUMN DEFINITIONS / KEYS / INDEX
+  - [X] CREATE TABLE OPTIONS
+  - [X] CREATE TABLE LIKE
+- [ ] CREATE INDEX *(in progress!)*
 - [ ] CREATE VIEW
-- [ ] ALTER DATABASE
-- [ ] ALTER TABLE
+- [ ] ALTER DATABASE *(in progress!)*
+- [ ] ALTER TABLE *(in progress!)*
 - [ ] ALTER VIEW
 - [ ] DROP DATABASE
 - [ ] DROP INDEX
 - [ ] DROP TABLE
 - [ ] DROP VIEW
 - [ ] RENAME TABLE
+
+More complex features (not priority)...
+
+- [ ] CREATE TABLE - AS (EXPRESSION)
+- [ ] CREATE TABLE - PARTITION OPTIONS
+- [ ] CREATE TABLE - GENERATED AS (EXPRESSION) COLUMNS *
 
 \* https://dev.mysql.com/doc/refman/5.7/en/create-table-generated-columns.html
 

@@ -217,8 +217,8 @@
                   "def": {
                     "key": {
                       "symbol": null,
-                      "name": "index",
-                      "type": "unique",
+                      "name": null,
+                      "type": "unique index",
                       "index": null,
                       "columns": [
                         {

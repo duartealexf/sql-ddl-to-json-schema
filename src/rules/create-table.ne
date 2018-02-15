@@ -161,12 +161,23 @@ O_CREATE_TABLE_CREATE_DEFINITION -> (
     _ %S_LPARENS _ P_INDEX_COLUMN ( _ %S_COMMA _ P_INDEX_COLUMN {% d => d[3] %} ):* _ %S_RPARENS
     ( _ P_INDEX_OPTION {% d => d[1] %} ):*
       {% d => {
-        let type = d[1] ? (' ' + d[1].value) : '';
-        type = d[0].value + type;
+        /**
+         * For some reason it parses "FULLTEXT KEY" in two ways:
+         * 1. { type: 'FULLTEXT KEY', name: NULL }
+         * 2. { type: 'FULLTEXT', name: 'KEY' }
+         *
+         * So we need this workaround below:
+         */
+
+        if (d[2] && ['index', 'key'].includes(d[2].toLowerCase())) {
+          d[1] = { value: d[2] };
+          d[2] = null;
+        }
+
         return {
           key: {
             name: d[2],
-            type,
+            type: d[0].value + (d[1] ? (' ' + d[1].value) : ''),
             columns: [d[6]].concat(d[7] || []),
             options: d[10]
           }

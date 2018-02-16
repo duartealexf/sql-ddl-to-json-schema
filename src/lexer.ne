@@ -32,11 +32,11 @@ const lexer = moo.compile(rules);
 # =============================================================
 # Main parser rule (entrypoint).
 
-P_MAIN -> P_DDS:+
+P_MAIN -> _ P_DDS:+
   {% d => {
     return {
       id: 'MAIN',
-      def: d[0]
+      def: d[1]
     }
   }%}
 
@@ -46,6 +46,7 @@ P_MAIN -> P_DDS:+
 P_DDS -> (
     P_CREATE_DB _ {% id %}
   | P_CREATE_TABLE _ {% id %}
+  | P_CREATE_INDEX _ {% id %}
 )
   {% d => {
     return {

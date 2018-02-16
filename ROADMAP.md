@@ -21,7 +21,7 @@ Roadmap for each one is still in WIP.
   - [X] COLUMN DEFINITIONS / KEYS / INDEX
   - [X] CREATE TABLE OPTIONS
   - [X] CREATE TABLE LIKE
-- [ ] CREATE INDEX *(in progress!)*
+- [x] CREATE INDEX
 - [ ] CREATE VIEW
 - [ ] ALTER DATABASE *(in progress!)*
 - [ ] ALTER TABLE *(in progress!)*

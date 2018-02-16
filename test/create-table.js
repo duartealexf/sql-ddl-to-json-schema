@@ -93,7 +93,8 @@ const tests = {
 
   'Should create table with all key options.': {
     queries: [
-      `CREATE TABLE person (
+      `
+      CREATE TABLE person (
         constraint pk_id__o_id primary key using btree (id(2), o_id(3)asc)key_block_size 1024 comment 'test' using hash key_block_size 1024 with parser test,
         primary key (id),
         index ik_id using hash (id(2)) comment 'test',
@@ -108,7 +109,8 @@ const tests = {
         fulltext (id),
         constraint fk_id__o_id foreign key test_key (id(2), o_id(3)asc) references other (id),
         foreign key (o_id) references other (id)
-      );`
+      );
+      `
     ],
     expect: expect3
   }

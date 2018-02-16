@@ -47,6 +47,7 @@ P_DDS -> (
     P_CREATE_DB _ {% id %}
   | P_CREATE_TABLE _ {% id %}
   | P_CREATE_INDEX _ {% id %}
+  | P_ALTER_DB _ {% id %}
 )
   {% d => {
     return {

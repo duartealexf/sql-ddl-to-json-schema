@@ -23,7 +23,7 @@ Roadmap for each one is still in WIP.
   - [X] CREATE TABLE LIKE
 - [x] CREATE INDEX
 - [ ] CREATE VIEW
-- [ ] ALTER DATABASE *(in progress!)*
+- [x] ALTER DATABASE
 - [ ] ALTER TABLE *(in progress!)*
 - [ ] ALTER VIEW
 - [ ] DROP DATABASE

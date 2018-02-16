@@ -6,9 +6,9 @@ const tests = {
     queries: [
       'CREATE DATABASE test;',
       'create database test;',
-      'create database `test`;',
+      'create SCHEMA `test`;',
       `create
-        database
+        schema
         test
       ;`,
     ],

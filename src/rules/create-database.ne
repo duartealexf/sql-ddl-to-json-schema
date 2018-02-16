@@ -4,7 +4,7 @@
 # https://dev.mysql.com/doc/refman/5.7/en/create-database.html
 
 P_CREATE_DB ->
-  %K_CREATE __ %K_DATABASE ( __ %K_IF ( __ %K_NOT ):? __ %K_EXISTS ):?
+  %K_CREATE __ ( %K_DATABASE | %K_SCHEMA ) ( __ %K_IF ( __ %K_NOT ):? __ %K_EXISTS ):?
   __ S_IDENTIFIER ( __ O_CREATE_DB_SPEC {% d => d[1] %} ):* S_EOS
     {% d => {
       return {

@@ -4,7 +4,7 @@ const Parser = require('../lib');
 const expect0 = require('./expect/create-index/0.json');
 
 const tests = {
-  'Should create test table with all types of columns.': {
+  'Should create test index with all different options.': {
     queries: [
       `
       CREATE UNIQUE INDEX test USING BTREE ON people (name (20) asc, initials) KEY_BLOCK_SIZE = 20 COMMENT 'test' ALGORITHM = DEFAULT LOCK DEFAULT;

@@ -17,7 +17,7 @@ P_CREATE_INDEX ->
     _ %S_LPARENS _ P_INDEX_COLUMN ( _ %S_COMMA _ P_INDEX_COLUMN {% d => d[3] %} ):* _ %S_RPARENS
       {% d => [d[3]].concat(d[4] || []) %}
   ):?
-  ( _ P_INDEX_OPTION {% d => d[1] %} ):*
+  ( _ O_INDEX_OPTION {% d => d[1] %} ):*
   (
       _ P_INDEX_ALGORITHM_OPTION  {% d => d[1] %}
     | _ P_LOCK_OPTION             {% d => d[1] %}
@@ -85,7 +85,7 @@ P_INDEX_TYPE -> %K_USING __ ( %K_BTREE {% id %} | %K_HASH {% id %} )
 #
 # In MySQL docs this is the 'index_option'.
 
-P_INDEX_OPTION -> (
+O_INDEX_OPTION -> (
     %K_KEY_BLOCK_SIZE ( __ | _ %S_EQUAL _ ) %S_NUMBER
     {% d => {
       return {
@@ -113,7 +113,7 @@ P_INDEX_OPTION -> (
 )
   {% d => {
     return {
-      id: 'P_INDEX_OPTION',
+      id: 'O_INDEX_OPTION',
       def: d[0]
     }
   }%}

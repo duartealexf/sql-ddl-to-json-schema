@@ -19,7 +19,7 @@ P_CREATE_TABLE -> (
 
 P_CREATE_TABLE_COMMON ->
     %K_CREATE ( __ %K_TEMPORARY):? __ %K_TABLE ( __ %K_IF __ %K_NOT:? __ %K_EXISTS):? __ S_IDENTIFIER _
-    O_CREATE_TABLE_CREATE_DEFINITIONS
+    P_CREATE_TABLE_CREATE_DEFINITIONS
     ( _ P_CREATE_TABLE_OPTIONS {% d => d[1] %} ):?
     S_EOS
       {% d => {
@@ -59,14 +59,14 @@ P_CREATE_TABLE_LIKE ->
 #
 # In MySQL docs this is the '(create_definition,...)' part.
 
-O_CREATE_TABLE_CREATE_DEFINITIONS ->
+P_CREATE_TABLE_CREATE_DEFINITIONS ->
   %S_LPARENS _ (
     O_CREATE_TABLE_CREATE_DEFINITION ( _ %S_COMMA _ O_CREATE_TABLE_CREATE_DEFINITION {% d => d[3] %} ):*
       {% d => [d[0]].concat(d[1] || []) %}
   ) _ %S_RPARENS
     {% d => {
       return {
-        id: 'O_CREATE_TABLE_CREATE_DEFINITIONS',
+        id: 'P_CREATE_TABLE_CREATE_DEFINITIONS',
         def: d[2]
       }
     }%}
@@ -102,7 +102,7 @@ O_CREATE_TABLE_CREATE_DEFINITION -> (
   | ( %K_CONSTRAINT ( __ S_IDENTIFIER {% d => d[1] %} ):? __ {% d => d[1] %} ):? %K_PRIMARY __ %K_KEY
     ( __ P_INDEX_TYPE {% d => d[1] %} ):?
     _ %S_LPARENS _ P_INDEX_COLUMN ( _ %S_COMMA _ P_INDEX_COLUMN {% d => d[3] %} ):* _ %S_RPARENS
-    ( _ P_INDEX_OPTION {% d => d[1] %} ):*
+    ( _ O_INDEX_OPTION {% d => d[1] %} ):*
       {% d => {
         return {
           key: {
@@ -118,7 +118,7 @@ O_CREATE_TABLE_CREATE_DEFINITION -> (
     ( __ S_IDENTIFIER {% d => d[1] %} ):?
     ( __ P_INDEX_TYPE {% d => d[1] %} ):?
     _ %S_LPARENS _ P_INDEX_COLUMN ( _ %S_COMMA _ P_INDEX_COLUMN {% d => d[3] %} ):* _ %S_RPARENS
-    ( _ P_INDEX_OPTION {% d => d[1] %} ):*
+    ( _ O_INDEX_OPTION {% d => d[1] %} ):*
       {% d => {
         return {
           key: {
@@ -135,7 +135,7 @@ O_CREATE_TABLE_CREATE_DEFINITION -> (
     ( __ S_IDENTIFIER {% d => d[1] %} ):?
     ( __ P_INDEX_TYPE {% d => d[1] %} ):?
     _ %S_LPARENS _ P_INDEX_COLUMN ( _ %S_COMMA _ P_INDEX_COLUMN {% d => d[3] %} ):* _ %S_RPARENS
-    ( _ P_INDEX_OPTION {% d => d[1] %} ):*
+    ( _ O_INDEX_OPTION {% d => d[1] %} ):*
       {% d => {
         let type = d[2] ? (' ' + d[2].value) : '';
         type = d[1].value + type;
@@ -154,7 +154,7 @@ O_CREATE_TABLE_CREATE_DEFINITION -> (
     ( __ %K_INDEX {% d => d[1] %} | __ %K_KEY {% d => d[1] %} ):?
     ( __ S_IDENTIFIER {% d => d[1] %} ):?
     _ %S_LPARENS _ P_INDEX_COLUMN ( _ %S_COMMA _ P_INDEX_COLUMN {% d => d[3] %} ):* _ %S_RPARENS
-    ( _ P_INDEX_OPTION {% d => d[1] %} ):*
+    ( _ O_INDEX_OPTION {% d => d[1] %} ):*
       {% d => {
         /**
          * For some reason it parses "FULLTEXT KEY" in two ways:
@@ -279,7 +279,7 @@ P_COLUMN_REFERENCE ->
 # Create table options
 
 P_CREATE_TABLE_OPTIONS ->
-  P_CREATE_TABLE_OPTION ( _ %S_COMMA _ P_CREATE_TABLE_OPTION {% d => d[3] %} ):*
+  O_CREATE_TABLE_OPTION ( _ %S_COMMA _ O_CREATE_TABLE_OPTION {% d => d[3] %} ):*
     {% d => {
       return {
         id: 'P_CREATE_TABLE_OPTIONS',
@@ -290,7 +290,7 @@ P_CREATE_TABLE_OPTIONS ->
 # =============================================================
 # Create table option
 
-P_CREATE_TABLE_OPTION -> (
+O_CREATE_TABLE_OPTION -> (
     %K_AUTO_INCREMENT ( __ | _ %S_EQUAL _ ) O_TABLE_OPTION_VALUE
       {% d => {
         return { autoincrement: d[2] }
@@ -403,7 +403,7 @@ P_CREATE_TABLE_OPTION -> (
 )
   {% d => {
     return {
-      id: 'P_CREATE_TABLE_OPTION',
+      id: 'O_CREATE_TABLE_OPTION',
       def: d[0]
     }
   }%}

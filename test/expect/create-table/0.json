@@ -10,7 +10,7 @@
           "def": {
             "table": "person",
             "columnsDef": {
-              "id": "O_CREATE_TABLE_CREATE_DEFINITIONS",
+              "id": "P_CREATE_TABLE_CREATE_DEFINITIONS",
               "def": [
                 {
                   "id": "O_CREATE_TABLE_CREATE_DEFINITION",

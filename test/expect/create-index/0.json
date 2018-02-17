@@ -33,13 +33,13 @@
           ],
           "options": [
             {
-              "id": "P_INDEX_OPTION",
+              "id": "O_INDEX_OPTION",
               "def": {
                 "keyBlockSize": 20
               }
             },
             {
-              "id": "P_INDEX_OPTION",
+              "id": "O_INDEX_OPTION",
               "def": {
                 "comment": "test"
               }

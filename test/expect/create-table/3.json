@@ -10,7 +10,7 @@
           "def": {
             "table": "person",
             "columnsDef": {
-              "id": "O_CREATE_TABLE_CREATE_DEFINITIONS",
+              "id": "P_CREATE_TABLE_CREATE_DEFINITIONS",
               "def": [
                 {
                   "id": "O_CREATE_TABLE_CREATE_DEFINITION",
@@ -42,19 +42,19 @@
                       ],
                       "options": [
                         {
-                          "id": "P_INDEX_OPTION",
+                          "id": "O_INDEX_OPTION",
                           "def": {
                             "keyBlockSize": 1024
                           }
                         },
                         {
-                          "id": "P_INDEX_OPTION",
+                          "id": "O_INDEX_OPTION",
                           "def": {
                             "comment": "test"
                           }
                         },
                         {
-                          "id": "P_INDEX_OPTION",
+                          "id": "O_INDEX_OPTION",
                           "def": {
                             "indexType": {
                               "id": "P_INDEX_TYPE",
@@ -63,13 +63,13 @@
                           }
                         },
                         {
-                          "id": "P_INDEX_OPTION",
+                          "id": "O_INDEX_OPTION",
                           "def": {
                             "keyBlockSize": 1024
                           }
                         },
                         {
-                          "id": "P_INDEX_OPTION",
+                          "id": "O_INDEX_OPTION",
                           "def": {
                             "parser": "test"
                           }
@@ -121,7 +121,7 @@
                       ],
                       "options": [
                         {
-                          "id": "P_INDEX_OPTION",
+                          "id": "O_INDEX_OPTION",
                           "def": {
                             "comment": "test"
                           }
@@ -203,7 +203,7 @@
                       ],
                       "options": [
                         {
-                          "id": "P_INDEX_OPTION",
+                          "id": "O_INDEX_OPTION",
                           "def": {
                             "comment": "test"
                           }
@@ -282,13 +282,13 @@
                       ],
                       "options": [
                         {
-                          "id": "P_INDEX_OPTION",
+                          "id": "O_INDEX_OPTION",
                           "def": {
                             "comment": "test"
                           }
                         },
                         {
-                          "id": "P_INDEX_OPTION",
+                          "id": "O_INDEX_OPTION",
                           "def": {
                             "keyBlockSize": 1024
                           }
@@ -315,7 +315,7 @@
                       ],
                       "options": [
                         {
-                          "id": "P_INDEX_OPTION",
+                          "id": "O_INDEX_OPTION",
                           "def": {
                             "keyBlockSize": 1024
                           }

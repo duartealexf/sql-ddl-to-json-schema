@@ -82,17 +82,12 @@ O_CREATE_TABLE_CREATE_DEFINITIONS ->
 
 O_CREATE_TABLE_CREATE_DEFINITION -> (
     S_IDENTIFIER _ (
-
       O_DATATYPE
-      # In MySQL docs these two options are 'column_definition'.
-      ( __ O_COLUMN_DATATYPE_SPEC {% d => d[1] %} ):*
-      ( __ O_COLUMN_DEFINITION_COMMON {% d => d[1] %} ):*
-
+      ( __ O_COLUMN_DEFINITION {% d => d[1] %} ):*
         {% d => {
           return {
             datatype: d[0],
-            datatypeSpecs: d[1] || [],
-            columnDefinitions: d[2] || []
+            columnDefinition: d[1] || []
           }
         }%}
     )
@@ -207,62 +202,39 @@ O_CREATE_TABLE_CREATE_DEFINITION -> (
   }%}
 
 # =============================================================
-# Column datatype specifications
+# Column definition
+#
+# In MySQL docs these are the 'column_definition'.
 
-O_COLUMN_DATATYPE_SPEC -> (
-    %K_UNSIGNED
-      {% d => {
-        return { unsigned: true }
-      }%}
-  | %K_ZEROFILL
-      {% d => {
-        return { zerofill: true }
-      }%}
-  | %K_CHARACTER __ %K_SET __ O_CHARSET
-      {% d => {
-        return { charset: d[4] }
-      }%}
-  | %K_COLLATE __ O_COLLATION
-      {% d => {
-        return { collation: d[2] }
-      }%}
-)
-  {% d => {
-    return {
-      id: 'O_COLUMN_DATATYPE_SPEC',
-      def: d[0]
-    }
-  }%}
-
-
-# =============================================================
-# Common column definition
-
-O_COLUMN_DEFINITION_COMMON -> (
-    (
-        %K_NOT __ %K_NULL           {% d => { return { nullable: false }} %}
-      | %K_NULL                     {% d => { return { nullable: true }} %}
+O_COLUMN_DEFINITION -> (
+    %K_UNSIGNED                           {% d => { return { unsigned: true }} %}
+  | %K_ZEROFILL                           {% d => { return { zerofill: true }} %}
+  | %K_CHARACTER __ %K_SET __ O_CHARSET   {% d => { return { charset: d[4] }} %}
+  | %K_COLLATE __ O_COLLATION             {% d => { return { collation: d[2] }} %}
+  | (
+        %K_NOT __ %K_NULL                 {% d => { return { nullable: false }} %}
+      | %K_NULL                           {% d => { return { nullable: true }} %}
     ) {% id %}
-  | %K_DEFAULT __ O_DEFAULT_VALUE   {% d => { return { default: d[2] }} %}
-  | %K_AUTO_INCREMENT               {% d => { return { autoincrement: true }} %}
-  | %K_UNIQUE ( __ %K_KEY ):?       {% d => { return { unique: true }} %}
-  | (%K_PRIMARY __):? %K_KEY        {% d => { return { primary: true }} %}
-  | %K_COMMENT __ O_QUOTED_STRING   {% d => { return { comment: d[2] }} %}
+  | %K_DEFAULT __ O_DEFAULT_VALUE         {% d => { return { default: d[2] }} %}
+  | %K_AUTO_INCREMENT                     {% d => { return { autoincrement: true }} %}
+  | %K_UNIQUE ( __ %K_KEY ):?             {% d => { return { unique: true }} %}
+  | (%K_PRIMARY __ ):? %K_KEY             {% d => { return { primary: true }} %}
+  | %K_COMMENT __ O_QUOTED_STRING         {% d => { return { comment: d[2] }} %}
   | %K_COLUMN_FORMAT __ (
         %K_FIXED   {% id %}
       | %K_DYNAMIC {% id %}
       | %K_DEFAULT {% id %}
-    )                               {% d => { return { format: d[2].value }} %}
+    )                                     {% d => { return { format: d[2].value }} %}
   | %K_STORAGE __ (
         %K_DISK {% id %}
       | %K_MEMORY {% id %}
       | %K_DEFAULT {% id %}
-    )                               {% d => { return { storage: d[2].value }} %}
-  | P_COLUMN_REFERENCE              {% d => { return { reference: d[0] }} %}
+    )                                     {% d => { return { storage: d[2].value }} %}
+  | P_COLUMN_REFERENCE                    {% d => { return { reference: d[0] }} %}
 )
   {% d => {
     return {
-      id: 'O_COLUMN_DEFINITION_COMMON',
+      id: 'O_COLUMN_DEFINITION',
       def: d[0]
     }
   } %}

@@ -28,8 +28,7 @@
                             }
                           }
                         },
-                        "datatypeSpecs": [],
-                        "columnDefinitions": []
+                        "columnDefinition": []
                       }
                     }
                   }

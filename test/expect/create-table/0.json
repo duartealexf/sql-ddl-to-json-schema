@@ -28,29 +28,27 @@
                             }
                           }
                         },
-                        "datatypeSpecs": [
+                        "columnDefinition": [
                           {
-                            "id": "O_COLUMN_DATATYPE_SPEC",
+                            "id": "O_COLUMN_DEFINITION",
                             "def": {
                               "unsigned": true
                             }
-                          }
-                        ],
-                        "columnDefinitions": [
+                          },
                           {
-                            "id": "O_COLUMN_DEFINITION_COMMON",
+                            "id": "O_COLUMN_DEFINITION",
                             "def": {
                               "nullable": false
                             }
                           },
                           {
-                            "id": "O_COLUMN_DEFINITION_COMMON",
+                            "id": "O_COLUMN_DEFINITION",
                             "def": {
                               "autoincrement": true
                             }
                           },
                           {
-                            "id": "O_COLUMN_DEFINITION_COMMON",
+                            "id": "O_COLUMN_DEFINITION",
                             "def": {
                               "primary": true
                             }
@@ -76,17 +74,15 @@
                             }
                           }
                         },
-                        "datatypeSpecs": [
+                        "columnDefinition": [
                           {
-                            "id": "O_COLUMN_DATATYPE_SPEC",
+                            "id": "O_COLUMN_DEFINITION",
                             "def": {
                               "zerofill": true
                             }
-                          }
-                        ],
-                        "columnDefinitions": [
+                          },
                           {
-                            "id": "O_COLUMN_DEFINITION_COMMON",
+                            "id": "O_COLUMN_DEFINITION",
                             "def": {
                               "nullable": true
                             }
@@ -112,10 +108,9 @@
                             }
                           }
                         },
-                        "datatypeSpecs": [],
-                        "columnDefinitions": [
+                        "columnDefinition": [
                           {
-                            "id": "O_COLUMN_DEFINITION_COMMON",
+                            "id": "O_COLUMN_DEFINITION",
                             "def": {
                               "unique": true
                             }
@@ -141,10 +136,9 @@
                             }
                           }
                         },
-                        "datatypeSpecs": [],
-                        "columnDefinitions": [
+                        "columnDefinition": [
                           {
-                            "id": "O_COLUMN_DEFINITION_COMMON",
+                            "id": "O_COLUMN_DEFINITION",
                             "def": {
                               "default": "once upon a time"
                             }
@@ -174,21 +168,20 @@
                             }
                           }
                         },
-                        "datatypeSpecs": [
+                        "columnDefinition": [
                           {
-                            "id": "O_COLUMN_DATATYPE_SPEC",
+                            "id": "O_COLUMN_DEFINITION",
                             "def": {
                               "charset": "utf8"
                             }
                           },
                           {
-                            "id": "O_COLUMN_DATATYPE_SPEC",
+                            "id": "O_COLUMN_DEFINITION",
                             "def": {
                               "collation": "utf8_general_ci"
                             }
                           }
-                        ],
-                        "columnDefinitions": []
+                        ]
                       }
                     }
                   }
@@ -212,15 +205,14 @@
                             }
                           }
                         },
-                        "datatypeSpecs": [
+                        "columnDefinition": [
                           {
-                            "id": "O_COLUMN_DATATYPE_SPEC",
+                            "id": "O_COLUMN_DEFINITION",
                             "def": {
                               "collation": "utf8_general_ci"
                             }
                           }
-                        ],
-                        "columnDefinitions": []
+                        ]
                       }
                     }
                   }
@@ -241,8 +233,7 @@
                             }
                           }
                         },
-                        "datatypeSpecs": [],
-                        "columnDefinitions": []
+                        "columnDefinition": []
                       }
                     }
                   }
@@ -263,16 +254,15 @@
                             }
                           }
                         },
-                        "datatypeSpecs": [],
-                        "columnDefinitions": [
+                        "columnDefinition": [
                           {
-                            "id": "O_COLUMN_DEFINITION_COMMON",
+                            "id": "O_COLUMN_DEFINITION",
                             "def": {
                               "default": "b'1'"
                             }
                           },
                           {
-                            "id": "O_COLUMN_DEFINITION_COMMON",
+                            "id": "O_COLUMN_DEFINITION",
                             "def": {
                               "storage": "MEMORY"
                             }
@@ -298,10 +288,9 @@
                             }
                           }
                         },
-                        "datatypeSpecs": [],
-                        "columnDefinitions": [
+                        "columnDefinition": [
                           {
-                            "id": "O_COLUMN_DEFINITION_COMMON",
+                            "id": "O_COLUMN_DEFINITION",
                             "def": {
                               "default": "0b01"
                             }
@@ -330,10 +319,9 @@
                             }
                           }
                         },
-                        "datatypeSpecs": [],
-                        "columnDefinitions": [
+                        "columnDefinition": [
                           {
-                            "id": "O_COLUMN_DEFINITION_COMMON",
+                            "id": "O_COLUMN_DEFINITION",
                             "def": {
                               "format": "DYNAMIC"
                             }
@@ -362,10 +350,9 @@
                             }
                           }
                         },
-                        "datatypeSpecs": [],
-                        "columnDefinitions": [
+                        "columnDefinition": [
                           {
-                            "id": "O_COLUMN_DEFINITION_COMMON",
+                            "id": "O_COLUMN_DEFINITION",
                             "def": {
                               "comment": "account balance"
                             }
@@ -391,10 +378,9 @@
                             }
                           }
                         },
-                        "datatypeSpecs": [],
-                        "columnDefinitions": [
+                        "columnDefinition": [
                           {
-                            "id": "O_COLUMN_DEFINITION_COMMON",
+                            "id": "O_COLUMN_DEFINITION",
                             "def": {
                               "reference": {
                                 "id": "P_COLUMN_REFERENCE",
@@ -445,10 +431,9 @@
                             }
                           }
                         },
-                        "datatypeSpecs": [],
-                        "columnDefinitions": [
+                        "columnDefinition": [
                           {
-                            "id": "O_COLUMN_DEFINITION_COMMON",
+                            "id": "O_COLUMN_DEFINITION",
                             "def": {
                               "reference": {
                                 "id": "P_COLUMN_REFERENCE",
@@ -494,10 +479,9 @@
                             }
                           }
                         },
-                        "datatypeSpecs": [],
-                        "columnDefinitions": [
+                        "columnDefinition": [
                           {
-                            "id": "O_COLUMN_DEFINITION_COMMON",
+                            "id": "O_COLUMN_DEFINITION",
                             "def": {
                               "reference": {
                                 "id": "P_COLUMN_REFERENCE",
@@ -543,8 +527,7 @@
                             }
                           }
                         },
-                        "datatypeSpecs": [],
-                        "columnDefinitions": []
+                        "columnDefinition": []
                       }
                     }
                   }
@@ -565,8 +548,7 @@
                             }
                           }
                         },
-                        "datatypeSpecs": [],
-                        "columnDefinitions": []
+                        "columnDefinition": []
                       }
                     }
                   }
@@ -587,15 +569,14 @@
                             }
                           }
                         },
-                        "datatypeSpecs": [
+                        "columnDefinition": [
                           {
-                            "id": "O_COLUMN_DATATYPE_SPEC",
+                            "id": "O_COLUMN_DEFINITION",
                             "def": {
                               "charset": "utf8"
                             }
                           }
-                        ],
-                        "columnDefinitions": []
+                        ]
                       }
                     }
                   }
@@ -616,8 +597,7 @@
                             }
                           }
                         },
-                        "datatypeSpecs": [],
-                        "columnDefinitions": []
+                        "columnDefinition": []
                       }
                     }
                   }
@@ -638,16 +618,15 @@
                             }
                           }
                         },
-                        "datatypeSpecs": [],
-                        "columnDefinitions": [
+                        "columnDefinition": [
                           {
-                            "id": "O_COLUMN_DEFINITION_COMMON",
+                            "id": "O_COLUMN_DEFINITION",
                             "def": {
                               "nullable": false
                             }
                           },
                           {
-                            "id": "O_COLUMN_DEFINITION_COMMON",
+                            "id": "O_COLUMN_DEFINITION",
                             "def": {
                               "default": "CURRENT_TIMESTAMP"
                             }
@@ -672,8 +651,7 @@
                             }
                           }
                         },
-                        "datatypeSpecs": [],
-                        "columnDefinitions": []
+                        "columnDefinition": []
                       }
                     }
                   }
@@ -694,8 +672,7 @@
                             }
                           }
                         },
-                        "datatypeSpecs": [],
-                        "columnDefinitions": []
+                        "columnDefinition": []
                       }
                     }
                   }
@@ -715,8 +692,7 @@
                             }
                           }
                         },
-                        "datatypeSpecs": [],
-                        "columnDefinitions": []
+                        "columnDefinition": []
                       }
                     }
                   }
@@ -736,8 +712,7 @@
                             }
                           }
                         },
-                        "datatypeSpecs": [],
-                        "columnDefinitions": []
+                        "columnDefinition": []
                       }
                     }
                   }

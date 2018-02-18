@@ -17,14 +17,16 @@ const expect11 = require('./expect/alter-table-fulltext-spatial/11.json');
 const tests = {
   'Should alter table adding fulltext key with two columns and options.': {
     queries: [
-      `ALTER TABLE people add fulltext key ftk_id ( id ( 2 ) asc , o_id ) key_block_size 1024 comment 'test';`
+      `ALTER TABLE people add fulltext key ftk_id ( id ( 2 ) asc , o_id ) key_block_size 1024 comment 'test';`,
+      `ALTER TABLE people add fulltext ftk_id ( id ( 2 ) asc , o_id ) key_block_size 1024 comment 'test';`
     ],
     expect: expect0
   },
 
   'Should alter table adding fulltext key with one column and options.': {
     queries: [
-      `ALTER TABLE people add fulltext key ftk_id(id)key_block_size 1024;`
+      `ALTER TABLE people add fulltext key ftk_id(id)key_block_size 1024;`,
+      `ALTER TABLE people add fulltext ftk_id (id)key_block_size 1024;`
     ],
     expect: expect1
   },
@@ -41,14 +43,16 @@ const tests = {
 
   'Should alter table adding spatial key with two columns and options.': {
     queries: [
-      `ALTER TABLE people add spatial key sk_id ( id ( 2 ) asc , o_id ) key_block_size 1024 comment 'test';`
+      `ALTER TABLE people add spatial key sk_id ( id ( 2 ) asc , o_id ) key_block_size 1024 comment 'test';`,
+      `ALTER TABLE people add spatial sk_id ( id ( 2 ) asc , o_id ) key_block_size 1024 comment 'test';`
     ],
     expect: expect3
   },
 
   'Should alter table adding spatial key with one column and options.': {
     queries: [
-      `ALTER TABLE people add spatial key sk_id(id)key_block_size 1024;`
+      `ALTER TABLE people add spatial key sk_id(id)key_block_size 1024;`,
+      `ALTER TABLE people add spatial sk_id(id)key_block_size 1024;`
     ],
     expect: expect4
   },

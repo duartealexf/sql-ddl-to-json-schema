@@ -1,0 +1,41 @@
+{
+  "id": "MAIN",
+  "def": [
+    {
+      "id": "P_DDS",
+      "def": {
+        "id": "P_ALTER_TABLE",
+        "def": {
+          "table": "people",
+          "specs": [
+            {
+              "id": "P_ALTER_TABLE_SPECS",
+              "def": {
+                "tableOptions": null,
+                "spec": {
+                  "id": "O_ALTER_TABLE_SPEC",
+                  "def": {
+                    "action": "addIndex",
+                    "name": null,
+                    "index": null,
+                    "columns": [
+                      {
+                        "id": "P_INDEX_COLUMN",
+                        "def": {
+                          "column": "id",
+                          "length": null,
+                          "sort": null
+                        }
+                      }
+                    ],
+                    "options": []
+                  }
+                }
+              }
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

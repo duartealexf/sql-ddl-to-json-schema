@@ -8,6 +8,7 @@ O_DATATYPE -> (
   | O_FIXED_POINT_DATATYPE      {% id %}
   | O_FLOATING_POINT_DATATYPE   {% id %}
   | O_BIT_DATATYPE              {% id %}
+  | O_BOOLEAN_DATATYPE          {% id %}
   | O_DATETIME_DATATYPE         {% id %}
   | O_YEAR_DATATYPE             {% id %}
   | O_VARIABLE_STRING_DATATYPE  {% id %}
@@ -126,6 +127,24 @@ O_BIT_DATATYPE ->
         }
       }
     }%}
+
+# =============================================================
+# Boolean data types
+#
+# https://dev.mysql.com/doc/refman/5.7/en/numeric-type-overview.html
+
+O_BOOLEAN_DATATYPE -> (
+    %K_BOOLEAN {% id %}
+  | %K_BOOL {% id %}
+)
+  {% d => {
+    return {
+      id: 'O_BOOLEAN_DATATYPE',
+      def: {
+        datatype: d[0].value
+      }
+    }
+  }%}
 
 # =============================================================
 # Datetime types

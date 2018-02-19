@@ -211,10 +211,14 @@ O_ALTER_TABLE_SPEC -> (
   | %K_ADD __ ( %K_CONSTRAINT ( __ S_IDENTIFIER {% d => d[1] %} ):? __ {% d => d[1] %} ):? %K_FOREIGN __ %K_KEY
     ( __ S_IDENTIFIER {% d => d[1] %} ):?
     _ %S_LPARENS _ P_INDEX_COLUMN ( _ %S_COMMA _ P_INDEX_COLUMN {% d => d[3] %} ):* _ %S_RPARENS
-    __ P_COLUMN_REFERENCE
+    _ P_COLUMN_REFERENCE
       {% d => {
         return {
-          action: 'addForeignKey'
+          action: 'addForeignKey',
+          symbol: d[2],
+          name: d[6],
+          columns: [d[10]].concat(d[11] || []),
+          reference: d[15]
         }
       }%}
 

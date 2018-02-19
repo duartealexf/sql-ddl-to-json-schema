@@ -181,7 +181,7 @@ O_CREATE_TABLE_CREATE_DEFINITION -> (
   | ( %K_CONSTRAINT ( __ S_IDENTIFIER {% d => d[1] %} ):? __ {% d => d[1] %} ):? %K_FOREIGN __ %K_KEY
     ( __ S_IDENTIFIER {% d => d[1] %} ):?
     _ %S_LPARENS _ P_INDEX_COLUMN ( _ %S_COMMA _ P_INDEX_COLUMN {% d => d[3] %} ):* _ %S_RPARENS
-    __ P_COLUMN_REFERENCE
+    _ P_COLUMN_REFERENCE
       {% d => {
         return {
           key: {

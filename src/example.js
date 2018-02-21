@@ -4,7 +4,10 @@ const parser = new Parser();
 
 parser.feed(
   `
-  ALTER TABLE people add foreign key (o_id) references other (id);
+  ALTER TABLE people enable keys , disable keys,discard tablespace,
+  import tablespace ,force,
+  with validation, without validation, rename to persons
+  ;
   `
 );
 

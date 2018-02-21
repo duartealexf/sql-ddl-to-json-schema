@@ -1,0 +1,51 @@
+{
+  "id": "MAIN",
+  "def": [
+    {
+      "id": "P_DDS",
+      "def": {
+        "id": "P_ALTER_TABLE",
+        "def": {
+          "table": "people",
+          "specs": [
+            {
+              "id": "P_ALTER_TABLE_SPECS",
+              "def": {
+                "tableOptions": null,
+                "spec": {
+                  "id": "O_ALTER_TABLE_SPEC",
+                  "def": {
+                    "action": "changeColumn",
+                    "column": "name",
+                    "newName": "fullname",
+                    "datatype": {
+                      "id": "O_DATATYPE",
+                      "def": {
+                        "id": "O_VARIABLE_STRING_DATATYPE",
+                        "def": {
+                          "datatype": "varchar",
+                          "length": 255
+                        }
+                      }
+                    },
+                    "columnDefinition": [
+                      {
+                        "id": "O_COLUMN_DEFINITION",
+                        "def": {
+                          "charset": "utf8"
+                        }
+                      }
+                    ],
+                    "position": {
+                      "after": null
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

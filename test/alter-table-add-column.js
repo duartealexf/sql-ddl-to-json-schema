@@ -1,12 +1,12 @@
 const ava = require('ava');
 const Parser = require('../lib');
 
-const expect0 = require('./expect/alter-table-column/0.json');
-const expect1 = require('./expect/alter-table-column/1.json');
-const expect2 = require('./expect/alter-table-column/2.json');
-const expect3 = require('./expect/alter-table-column/3.json');
-const expect4 = require('./expect/alter-table-column/4.json');
-const expect5 = require('./expect/alter-table-column/5.json');
+const expect0 = require('./expect/alter-table-add-column/0.json');
+const expect1 = require('./expect/alter-table-add-column/1.json');
+const expect2 = require('./expect/alter-table-add-column/2.json');
+const expect3 = require('./expect/alter-table-add-column/3.json');
+const expect4 = require('./expect/alter-table-add-column/4.json');
+const expect5 = require('./expect/alter-table-add-column/5.json');
 
 const tests = {
   'Should alter table adding one column with options and position.': {

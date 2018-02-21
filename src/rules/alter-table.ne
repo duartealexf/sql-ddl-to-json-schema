@@ -44,7 +44,8 @@ O_ALTER_TABLE_SPEC -> (
     ( __ O_COLUMN_DEFINITION {% d => d[1] %} ):*
     (
         __ %K_FIRST {% d => { return { after: null }} %}
-      | __ %K_AFTER __ S_IDENTIFIER {% d => { return { after: d[3] }} %} ):?
+      | __ %K_AFTER __ S_IDENTIFIER {% d => { return { after: d[3] }} %}
+    ):?
       {% d => {
         return {
           action: 'addColumn',
@@ -226,53 +227,79 @@ O_ALTER_TABLE_SPEC -> (
     ( %K_DEFAULT {% id %} | %K_INPLACE {% id %} | %K_COPY {% id %} )
       {% d => {
         return {
-          action: 'changeAlgorithm'
+          action: 'changeAlgorithm',
+          algorithm: d[2].value
         }
       }%}
 
   | %K_ALTER __ ( %K_COLUMN __ ):? S_IDENTIFIER __ %K_SET __ %K_DEFAULT __ O_DEFAULT_VALUE
       {% d => {
         return {
-          action: 'setDefaultColumnValue'
+          action: 'setDefaultColumnValue',
+          column: d[3],
+          value: d[9]
         }
       }%}
 
   | %K_ALTER __ ( %K_COLUMN __ ):? S_IDENTIFIER __ %K_DROP __ %K_DEFAULT
       {% d => {
         return {
-          action: 'dropDefaultColumnValue'
+          action: 'dropDefaultColumnValue',
+          column: d[3]
         }
       }%}
 
-  | %K_CHANGE __ ( %K_COLUMN __ ):? S_IDENTIFIER __ S_IDENTIFIER ( __ O_COLUMN_DEFINITION {% d => d[1] %} ):*
-    ( __ %K_FIRST {% d => d %} | __ %K_AFTER __ S_IDENTIFIER {% d => d %} ):?
+  | %K_CHANGE __ ( %K_COLUMN __ ):? S_IDENTIFIER __ S_IDENTIFIER __ O_DATATYPE
+    ( __ O_COLUMN_DEFINITION {% d => d[1] %} ):*
+    (
+        __ %K_FIRST {% d => { return { after: null }} %}
+      | __ %K_AFTER __ S_IDENTIFIER {% d => { return { after: d[3] }} %}
+    ):?
       {% d => {
         return {
-          action: 'changeColumn'
+          action: 'changeColumn',
+          column: d[3],
+          newName: d[5],
+          datatype: d[7],
+          columnDefinition: d[8],
+          position: d[9]
         }
       }%}
 
-  | %K_MODIFY __ ( %K_COLUMN __ ):? S_IDENTIFIER ( __ O_COLUMN_DEFINITION {% d => d[1] %} ):*
-    ( __ %K_FIRST {% d => d %} | __ %K_AFTER __ S_IDENTIFIER {% d => d %} ):?
+  | %K_MODIFY __ ( %K_COLUMN __ ):? S_IDENTIFIER __ O_DATATYPE
+    ( __ O_COLUMN_DEFINITION {% d => d[1] %} ):*
+    (
+        __ %K_FIRST {% d => { return { after: null }} %}
+      | __ %K_AFTER __ S_IDENTIFIER {% d => { return { after: d[3] }} %}
+    ):?
       {% d => {
         return {
-          action: 'changeColumn'
+          action: 'changeColumn',
+          column: d[3],
+          newName: null,
+          datatype: d[5],
+          columnDefinition: d[6],
+          position: d[7]
         }
       }%}
 
   | ( %K_DEFAULT __ ):? %K_CHARACTER __ %K_SET ( __ | _ %S_EQUAL _ ) O_CHARSET
-    ( __ %K_COLLATE ( __ | _ %S_EQUAL _ ) O_COLLATION ):?
+    ( __ %K_COLLATE ( __ | _ %S_EQUAL _ ) O_COLLATION {% d => d[3] %} ):?
       {% d => {
         return {
-          action: 'changeCharacterSet'
+          action: 'changeCharacterSet',
+          charset: d[5],
+          collate: d[6]
         }
       }%}
 
   | %K_CONVERT __ %K_TO __ %K_CHARACTER __ %K_SET __ O_CHARSET
-    ( __ %K_COLLATE __ O_COLLATION ):?
+    ( __ %K_COLLATE __ O_COLLATION {% d => d[3] %} ):?
       {% d => {
         return {
-          action: 'convertToCharacterSet'
+          action: 'convertToCharacterSet',
+          charset: d[8],
+          collate: d[9]
         }
       }%}
 
@@ -378,7 +405,8 @@ O_ALTER_TABLE_SPEC -> (
   | %K_RENAME __ ( %K_TO | %K_AS ) __ S_IDENTIFIER
       {% d => {
         return {
-          action: 'rename'
+          action: 'rename',
+          newName: d[4]
         }
       }%}
 

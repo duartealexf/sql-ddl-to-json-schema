@@ -11,6 +11,23 @@
             {
               "id": "P_ALTER_TABLE_SPECS",
               "def": {
+                "tableOptions": {
+                  "id": "P_CREATE_TABLE_OPTIONS",
+                  "def": [
+                    {
+                      "id": "O_CREATE_TABLE_OPTION",
+                      "def": {
+                        "comment": "test"
+                      }
+                    }
+                  ]
+                },
+                "spec": null
+              }
+            },
+            {
+              "id": "P_ALTER_TABLE_SPECS",
+              "def": {
                 "tableOptions": null,
                 "spec": {
                   "id": "O_ALTER_TABLE_SPEC",
@@ -66,6 +83,23 @@
                     "action": "force"
                   }
                 }
+              }
+            },
+            {
+              "id": "P_ALTER_TABLE_SPECS",
+              "def": {
+                "tableOptions": {
+                  "id": "P_CREATE_TABLE_OPTIONS",
+                  "def": [
+                    {
+                      "id": "O_CREATE_TABLE_OPTION",
+                      "def": {
+                        "comment": "another test"
+                      }
+                    }
+                  ]
+                },
+                "spec": null
               }
             },
             {

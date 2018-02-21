@@ -24,7 +24,7 @@ Roadmap for each one is still in WIP.
 - [x] CREATE INDEX
 - [ ] CREATE VIEW
 - [x] ALTER DATABASE
-- [ ] ALTER TABLE *(in progress!)*
+- [X] ALTER TABLE
 - [ ] ALTER VIEW
 - [ ] DROP DATABASE
 - [ ] DROP INDEX

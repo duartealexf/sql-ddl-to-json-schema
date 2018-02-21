@@ -7,6 +7,7 @@ const expect2 = require('./expect/alter-table-foreign/2.json');
 const expect3 = require('./expect/alter-table-foreign/3.json');
 const expect4 = require('./expect/alter-table-foreign/4.json');
 const expect5 = require('./expect/alter-table-foreign/5.json');
+const expect6 = require('./expect/alter-table-foreign/6.json');
 
 const tests = {
   'Should alter table adding foreign key with two columns, match and trigger.': {
@@ -50,6 +51,13 @@ const tests = {
       `ALTER TABLE people add foreign key (o_id) references other (id);`
     ],
     expect: expect5,
+  },
+
+  'Should alter table dropping foreign key.': {
+    queries: [
+      `ALTER TABLE people drop foreign key fk_oid;`
+    ],
+    expect: expect6,
   }
 };
 

@@ -5,6 +5,7 @@ const expect0 = require('./expect/alter-table-primary-key/0.json');
 const expect1 = require('./expect/alter-table-primary-key/1.json');
 const expect2 = require('./expect/alter-table-primary-key/2.json');
 const expect3 = require('./expect/alter-table-primary-key/3.json');
+const expect4 = require('./expect/alter-table-primary-key/4.json');
 
 const tests = {
   'Should alter table adding primary key with index options, two columns and options.': {
@@ -33,6 +34,13 @@ const tests = {
       `ALTER TABLE people add primary key(id);`
     ],
     expect: expect3,
+  },
+
+  'Should alter table dropping primary key.': {
+    queries: [
+      `ALTER TABLE people drop primary key;`
+    ],
+    expect: expect4,
   }
 };
 

@@ -334,21 +334,24 @@ O_ALTER_TABLE_SPEC -> (
   | %K_DROP __ ( %K_COLUMN __ ):? S_IDENTIFIER
       {% d => {
         return {
-          action: 'dropColumn'
+          action: 'dropColumn',
+          column: d[3]
         }
       }%}
 
   | %K_DROP __ %K_INDEX __ S_IDENTIFIER
       {% d => {
         return {
-          action: 'dropIndex'
+          action: 'dropIndex',
+          index: d[4]
         }
       }%}
 
   | %K_DROP __ %K_KEY __ S_IDENTIFIER
       {% d => {
         return {
-          action: 'dropKey'
+          action: 'dropKey',
+          key: d[4]
         }
       }%}
 
@@ -362,7 +365,8 @@ O_ALTER_TABLE_SPEC -> (
   | %K_DROP __ %K_FOREIGN __ %K_KEY __ S_IDENTIFIER
       {% d => {
         return {
-          action: 'dropForeignKey'
+          action: 'dropForeignKey',
+          key: d[6]
         }
       }%}
 
@@ -377,28 +381,34 @@ O_ALTER_TABLE_SPEC -> (
     ( %K_DEFAULT {% id %} | %K_NONE {% id %} | %K_SHARED {% id %} | %K_EXCLUSIVE {% id %} )
       {% d => {
         return {
-          action: 'changeLock'
+          action: 'changeLock',
+          lock: d[2].value
         }
       }%}
 
   | %K_ORDER __ %K_BY __ S_IDENTIFIER ( _ %S_COMMA _ S_IDENTIFIER {% d => d[3] %} ):*
       {% d => {
         return {
-          action: 'orderBy'
+          action: 'orderBy',
+          columns: [d[4]].concat(d[5] || [])
         }
       }%}
 
   | %K_RENAME __ %K_INDEX __ S_IDENTIFIER __ %K_TO __ S_IDENTIFIER
       {% d => {
         return {
-          action: 'renameIndex'
+          action: 'renameIndex',
+          index: d[4],
+          newName: d[8]
         }
       }%}
 
   | %K_RENAME __ %K_KEY __ S_IDENTIFIER __ %K_TO __ S_IDENTIFIER
       {% d => {
         return {
-          action: 'renameKey'
+          action: 'renameKey',
+          key: d[4],
+          newName: d[8]
         }
       }%}
 

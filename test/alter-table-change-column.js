@@ -7,7 +7,7 @@ const expect2 = require('./expect/alter-table-change-column/2.json');
 const expect3 = require('./expect/alter-table-change-column/3.json');
 const expect4 = require('./expect/alter-table-change-column/4.json');
 const expect5 = require('./expect/alter-table-change-column/5.json');
-// const expect6 = require('./expect/alter-table-change-column/6.json');
+const expect6 = require('./expect/alter-table-change-column/6.json');
 // const expect7 = require('./expect/alter-table-change-column/7.json');
 // const expect8 = require('./expect/alter-table-change-column/8.json');
 
@@ -58,6 +58,14 @@ const tests = {
       `ALTER TABLE people modify name varchar(255);`
     ],
     expect: expect5
+  },
+
+  'Should alter table dropping column.': {
+    queries: [
+      `ALTER TABLE people drop column middle_name;`,
+      `ALTER TABLE people drop middle_name;`,
+    ],
+    expect: expect6
   }
 };
 

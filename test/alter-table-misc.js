@@ -10,6 +10,10 @@ const expect5 = require('./expect/alter-table-misc/5.json');
 const expect6 = require('./expect/alter-table-misc/6.json');
 const expect7 = require('./expect/alter-table-misc/7.json');
 const expect8 = require('./expect/alter-table-misc/8.json');
+const expect9 = require('./expect/alter-table-misc/9.json');
+const expect10 = require('./expect/alter-table-misc/10.json');
+const expect11 = require('./expect/alter-table-misc/11.json');
+const expect12 = require('./expect/alter-table-misc/12.json');
 
 const tests = {
   'Should alter table algorithm.': {
@@ -85,16 +89,47 @@ const tests = {
     expect: expect7
   },
 
-  'Should run one alter table statement with several alter table specs.': {
+  'Should run one alter table statement with several alter table specs and options.': {
     queries: [
       `
-      ALTER TABLE people enable keys , disable keys,discard tablespace,
-      import tablespace ,force,
-      with validation, without validation, rename to persons
-      ;
+      ALTER TABLE people comment 'test', enable keys , disable keys,discard tablespace,
+      import tablespace ,force, comment 'another test',
+      with validation, without validation, rename to persons;
       `,
     ],
     expect: expect8
+  },
+
+  'Should run one alter table statement with only one option.': {
+    queries: [
+      `
+      ALTER TABLE people comment 'test';
+      `,
+    ],
+    expect: expect9
+  },
+
+  'Should alter table lock.': {
+    queries: [
+      `ALTER TABLE people lock default;`,
+      `ALTER TABLE people lock=default;`,
+      `ALTER TABLE people lock = default;`,
+    ],
+    expect: expect10
+  },
+
+  'Should alter table ordering by several columns.': {
+    queries: [
+      `ALTER TABLE people order by id, initials,name ,fullname , family;`,
+    ],
+    expect: expect11
+  },
+
+  'Should alter table ordering by one column.': {
+    queries: [
+      `ALTER TABLE people order by id;`,
+    ],
+    expect: expect12
   }
 };
 

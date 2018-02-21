@@ -9,6 +9,10 @@ const expect4 = require('./expect/alter-table-index-key/4.json');
 const expect5 = require('./expect/alter-table-index-key/5.json');
 const expect6 = require('./expect/alter-table-index-key/6.json');
 const expect7 = require('./expect/alter-table-index-key/7.json');
+const expect8 = require('./expect/alter-table-index-key/8.json');
+const expect9 = require('./expect/alter-table-index-key/9.json');
+const expect10 = require('./expect/alter-table-index-key/10.json');
+const expect11 = require('./expect/alter-table-index-key/11.json');
 
 const tests = {
   'Should alter table adding index key with two columns and options.': {
@@ -65,6 +69,34 @@ const tests = {
       `ALTER TABLE people add key (id);`
     ],
     expect: expect7,
+  },
+
+  'Should alter table dropping index.': {
+    queries: [
+      `ALTER TABLE people drop index i_oid;`
+    ],
+    expect: expect8,
+  },
+
+  'Should alter table dropping key.': {
+    queries: [
+      `ALTER TABLE people drop key k_oid;`
+    ],
+    expect: expect9,
+  },
+
+  'Should alter table renaming index.': {
+    queries: [
+      `ALTER TABLE people rename index i_oid to ii_oid;`
+    ],
+    expect: expect10,
+  },
+
+  'Should alter table renaming key.': {
+    queries: [
+      `ALTER TABLE people rename key k_oid to kk_oid;`
+    ],
+    expect: expect11,
   }
 };
 

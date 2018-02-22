@@ -84,6 +84,7 @@ const tests = {
       ALTER TABLE people with validation;
       ALTER TABLE people without validation;
       ALTER TABLE people rename to persons;
+      ALTER TABLE people rename persons;
       `,
     ],
     expect: expect7
@@ -94,7 +95,8 @@ const tests = {
       `
       ALTER TABLE people comment 'test', enable keys , disable keys,discard tablespace,
       import tablespace ,force, comment 'another test',
-      with validation, without validation, rename to persons;
+      with validation, without validation, rename to persons
+      ,rename persons;
       `,
     ],
     expect: expect8

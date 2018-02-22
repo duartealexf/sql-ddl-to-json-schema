@@ -52,6 +52,7 @@ P_DDS -> (
   | P_DROP_DB _ {% id %}
   | P_DROP_TABLE _ {% id %}
   | P_DROP_INDEX _ {% id %}
+  | P_RENAME_TABLE _ {% id %}
 )
   {% d => {
     return {

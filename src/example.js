@@ -4,7 +4,7 @@ const parser = new Parser();
 
 parser.feed(
   `
-  drop index i_oid on people lock default;
+  rename table people to persons, homes to houses,cats to pets ,test to tests;
   `
 );
 

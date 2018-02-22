@@ -412,11 +412,11 @@ O_ALTER_TABLE_SPEC -> (
         }
       }%}
 
-  | %K_RENAME __ ( %K_TO | %K_AS ) __ S_IDENTIFIER
+  | %K_RENAME __ ( %K_TO __ | %K_AS __ ):? S_IDENTIFIER
       {% d => {
         return {
           action: 'rename',
-          newName: d[4]
+          newName: d[3]
         }
       }%}
 

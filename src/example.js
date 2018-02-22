@@ -4,7 +4,7 @@ const parser = new Parser();
 
 parser.feed(
   `
-  drop table people;
+  drop index i_oid on people lock default;
   `
 );
 

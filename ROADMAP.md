@@ -27,7 +27,7 @@ Roadmap for each one is still in WIP.
 - [X] ALTER TABLE
 - [ ] ALTER VIEW
 - [X] DROP DATABASE
-- [ ] DROP INDEX
+- [X] DROP INDEX
 - [X] DROP TABLE
 - [ ] DROP VIEW
 - [ ] RENAME TABLE

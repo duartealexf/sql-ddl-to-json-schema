@@ -51,6 +51,7 @@ P_DDS -> (
   | P_ALTER_TABLE _ {% id %}
   | P_DROP_DB _ {% id %}
   | P_DROP_TABLE _ {% id %}
+  | P_DROP_INDEX _ {% id %}
 )
   {% d => {
     return {

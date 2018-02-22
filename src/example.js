@@ -4,7 +4,7 @@ const parser = new Parser();
 
 parser.feed(
   `
-  ALTER TABLE people comment 'test';
+  drop database app;
   `
 );
 

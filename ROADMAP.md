@@ -30,7 +30,7 @@ Roadmap for each one is still in WIP.
 - [X] DROP INDEX
 - [X] DROP TABLE
 - [ ] DROP VIEW
-- [ ] RENAME TABLE
+- [X] RENAME TABLE
 
 More complex features (not priority)...
 

@@ -12,8 +12,6 @@
  * TODO: add qualified identifiers.
  */
 
-const utils = require('../shared/utils');
-
 module.exports = {
   WS                : { match: /[\s]/, lineBreaks: true },
   S_EQUAL           : '=',
@@ -67,15 +65,18 @@ module.exports = {
    */
   S_DQUOTE_STRING   : {
     match: /""|"(?:(?:"")|[^"\\]|\\.)*"/,
-    value: v => v.substr(1, v.length - 2)
-      .replace('\\"', '"')
-      .replace('""', '"')
+    value: v => v
+      .substr(1, v.length - 2)
+      .replace(/\\"/g, '"')
+      .replace(/""/g, '"')
   },
+
   S_SQUOTE_STRING   : {
     match: /''|'(?:(?:'')|[^'\\]|\\.)*'/,
-    value: v => v.substr(1, v.length - 2)
-      .replace("\\'", "'")
-      .replace("''", "'")
+    value: v => v
+      .substr(1, v.length - 2)
+      .replace(/\\'/g, "'")
+      .replace(/''/g, "'")
   },
 
   S_NUMBER          : { match: /[+-]?(?:\d+(?:\.\d+)?(?:[Ee][+-]?\d+)?)/, value: Number },
@@ -87,6 +88,11 @@ module.exports = {
    * supported, they are interpreted as non-escaped backticks. Escaping
    * backticks is done through using double backticks. - duartealexf
    */
-  S_IDENTIFIER_QUOTED     : { match: /`(?:(?:``)|[^`\\])*`/, value: v => utils.trimString(v, "`") },
+  S_IDENTIFIER_QUOTED     : {
+    match: /`(?:(?:``)|[^`\\])*`/,
+    value: v => v
+      .substr(1, v.length - 2)
+      .replace(/``/g, "`")
+  },
   S_IDENTIFIER_UNQUOTED   : { match: /[0-9a-zA-Z$_]+/ },
 };

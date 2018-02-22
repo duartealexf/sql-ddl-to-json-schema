@@ -5,10 +5,12 @@ const tests = {
   'Should test quoting': {
     queries: [
       `
-      create table test (
+      create table \`\`\`te\`\`st\` (
+        test BOOL DEFAULT "",
         test BOOL DEFAULT "a test",
         test BOOL DEFAULT "a "" test",
         test BOOL DEFAULT "a \\" test",
+        test BOOL DEFAULT '',
         test BOOL DEFAULT 'a test',
         test BOOL DEFAULT 'a '' test',
         test BOOL DEFAULT 'a \\' test'
@@ -25,10 +27,37 @@ const tests = {
             def: {
               id: "P_CREATE_TABLE_COMMON",
               def: {
-                table: "test",
+                table: "`te`st",
                 columnsDef: {
                   id: "P_CREATE_TABLE_CREATE_DEFINITIONS",
                   def: [
+                    {
+                      id: "O_CREATE_TABLE_CREATE_DEFINITION",
+                      def: {
+                        column: {
+                          name: "test",
+                          def: {
+                            datatype: {
+                              id: "O_DATATYPE",
+                              def: {
+                                id: "O_BOOLEAN_DATATYPE",
+                                def: {
+                                  datatype: "BOOL"
+                                }
+                              }
+                            },
+                            columnDefinition: [
+                              {
+                                id: "O_COLUMN_DEFINITION",
+                                def: {
+                                  default: ""
+                                }
+                              }
+                            ]
+                          }
+                        }
+                      }
+                    },
                     {
                       id: "O_CREATE_TABLE_CREATE_DEFINITION",
                       def: {
@@ -103,6 +132,33 @@ const tests = {
                                 id: "O_COLUMN_DEFINITION",
                                 def: {
                                   default: 'a " test'
+                                }
+                              }
+                            ]
+                          }
+                        }
+                      }
+                    },
+                    {
+                      id: "O_CREATE_TABLE_CREATE_DEFINITION",
+                      def: {
+                        column: {
+                          name: "test",
+                          def: {
+                            datatype: {
+                              id: "O_DATATYPE",
+                              def: {
+                                id: "O_BOOLEAN_DATATYPE",
+                                def: {
+                                  datatype: "BOOL"
+                                }
+                              }
+                            },
+                            columnDefinition: [
+                              {
+                                id: "O_COLUMN_DEFINITION",
+                                def: {
+                                  default: ""
                                 }
                               }
                             ]

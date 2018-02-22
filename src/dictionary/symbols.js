@@ -57,7 +57,7 @@ module.exports = {
   S_HEXA_FORMAT     : { match: /[Xx]'[0-9a-fA-F]+'|0x[0-9a-fA-F]+/ },
 
   /**
-   * These RegExps support all types of quote escaping in MySQL.
+   * These RegExps support all types of quote escaping in MariaDB.
    *
    * @example
    * In the sentence below, the pointed positions are matched:
@@ -65,15 +65,25 @@ module.exports = {
    * I "match", "", "an \"escaped quote\"", also a "double double "" quote".
    *   ^^^^^^^  ^^  ^^^^^^^^^^^^^^^^^^^^^^         ^^^^^^^^^^^^^^^^^^^^^^^^
    */
-  S_DQUOTE_STRING   : { match: /""|"(?:(?:"")|[^"\\]|\\.)*"/, value: v => utils.trimString(v, '"') },
-  S_SQUOTE_STRING   : { match: /''|'(?:(?:'')|[^'\\]|\\.)*'/, value: v => utils.trimString(v, "'") },
+  S_DQUOTE_STRING   : {
+    match: /""|"(?:(?:"")|[^"\\]|\\.)*"/,
+    value: v => v.substr(1, v.length - 2)
+      .replace('\\"', '"')
+      .replace('""', '"')
+  },
+  S_SQUOTE_STRING   : {
+    match: /''|'(?:(?:'')|[^'\\]|\\.)*'/,
+    value: v => v.substr(1, v.length - 2)
+      .replace("\\'", "'")
+      .replace("''", "'")
+  },
 
   S_NUMBER          : { match: /[+-]?(?:\d+(?:\.\d+)?(?:[Ee][+-]?\d+)?)/, value: Number },
 
   /**
    * See S_IDENTIFIER in lexer.ne file.
    *
-   * I've noticed through tests in the MySQL CLI that escaped backticks are not
+   * I've noticed through tests in the MariaDB CLI that escaped backticks are not
    * supported, they are interpreted as non-escaped backticks. Escaping
    * backticks is done through using double backticks. - duartealexf
    */

@@ -32,13 +32,13 @@ const logger = winston.add(new winston.transports.Console());
 /**
  * Project root path.
  */
-const projectRoot = path.join(__dirname, '..');
+const projectRoot = path.join(__dirname, '..', '..');
 
 /**
  * Input.
  */
-const lexerFile = path.join(projectRoot, 'src', 'lexer.ne');
-const rulesFolder = path.join(projectRoot, 'src', 'rules');
+const lexerFile = path.join(projectRoot, 'src', 'parser', 'lexer.ne');
+const rulesFolder = path.join(projectRoot, 'src', 'parser', 'rules');
 
 /**
  * Output.
@@ -174,7 +174,7 @@ const main = async() => {
 
   await new Promise(resolve =>
     fs.copy(
-      path.join(projectRoot, 'src', 'dictionary'),
+      path.join(projectRoot, 'src', 'parser', 'dictionary'),
       path.join(projectRoot, 'lib', 'compiled', 'dictionary')
     )
       .then(resolve)
@@ -191,7 +191,7 @@ const main = async() => {
 
   await new Promise(resolve =>
     fs.copy(
-      path.join(projectRoot, 'src', 'shared'),
+      path.join(projectRoot, 'src', 'parser', 'shared'),
       path.join(projectRoot, 'lib', 'compiled', 'shared')
     )
       .then(resolve)

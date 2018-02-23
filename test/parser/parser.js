@@ -1,5 +1,5 @@
 const ava = require('ava');
-const Parser = require('../lib');
+const Parser = require('../../lib');
 
 const tests = {
   'Should test quoting': {

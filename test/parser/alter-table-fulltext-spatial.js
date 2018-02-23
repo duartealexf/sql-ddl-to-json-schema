@@ -1,5 +1,5 @@
 const ava = require('ava');
-const Parser = require('../lib');
+const Parser = require('../../lib');
 
 const expect0 = require('./expect/alter-table-fulltext-spatial/0.json');
 const expect1 = require('./expect/alter-table-fulltext-spatial/1.json');

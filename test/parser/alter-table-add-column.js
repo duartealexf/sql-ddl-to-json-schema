@@ -1,5 +1,5 @@
 const ava = require('ava');
-const Parser = require('../lib');
+const Parser = require('../../lib');
 
 const expect0 = require('./expect/alter-table-add-column/0.json');
 const expect1 = require('./expect/alter-table-add-column/1.json');

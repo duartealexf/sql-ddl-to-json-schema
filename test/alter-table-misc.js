@@ -14,11 +14,12 @@ const expect9 = require('./expect/alter-table-misc/9.json');
 const expect10 = require('./expect/alter-table-misc/10.json');
 const expect11 = require('./expect/alter-table-misc/11.json');
 const expect12 = require('./expect/alter-table-misc/12.json');
+const expect13 = require('./expect/alter-table-misc/13.json');
 
 const tests = {
-  'Should alter table algorithm.': {
+  'Should alter table algorithm, with online, ignore and wait keywords.': {
     queries: [
-      `ALTER TABLE people algorithm = default;`,
+      `ALTER online ignore TABLE people wait 5 algorithm = default;`,
       `ALTER TABLE people algorithm=default;`,
       `ALTER TABLE people algorithm default;`
     ],
@@ -132,6 +133,13 @@ const tests = {
       `ALTER TABLE people order by id;`,
     ],
     expect: expect12
+  },
+
+  'Should alter table adding period for system_time.': {
+    queries: [
+      `alter table test add period for system_time (test1, test2);`,
+    ],
+    expect: expect13
   }
 };
 

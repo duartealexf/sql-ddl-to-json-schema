@@ -113,20 +113,20 @@
                 {
                   "id": "O_CREATE_TABLE_OPTION",
                   "def": {
-                    "connection": "mysql://whatever"
+                    "connection": "mariadb://whatever"
                   }
                 },
                 {
                   "id": "O_CREATE_TABLE_OPTION",
                   "def": {
-                    "directory": "/var/lib/mysql/data",
+                    "directory": "/var/lib/mariadb/data",
                     "type": "DATA"
                   }
                 },
                 {
                   "id": "O_CREATE_TABLE_OPTION",
                   "def": {
-                    "directory": "/var/lib/mysql/index",
+                    "directory": "/var/lib/mariadb/index",
                     "type": "INDEX"
                   }
                 },
@@ -140,6 +140,18 @@
                   "id": "O_CREATE_TABLE_OPTION",
                   "def": {
                     "encrytion": "Y"
+                  }
+                },
+                {
+                  "id": "O_CREATE_TABLE_OPTION",
+                  "def": {
+                    "encrytionKeyId": 1
+                  }
+                },
+                {
+                  "id": "O_CREATE_TABLE_OPTION",
+                  "def": {
+                    "ietfQuotes": "YES"
                   }
                 },
                 {
@@ -193,6 +205,12 @@
                 {
                   "id": "O_CREATE_TABLE_OPTION",
                   "def": {
+                    "pageChecksum": 0
+                  }
+                },
+                {
+                  "id": "O_CREATE_TABLE_OPTION",
+                  "def": {
                     "rowFormat": "DEFAULT"
                   }
                 },
@@ -241,6 +259,12 @@
                 {
                   "id": "O_CREATE_TABLE_OPTION",
                   "def": {
+                    "transactional": 1
+                  }
+                },
+                {
+                  "id": "O_CREATE_TABLE_OPTION",
+                  "def": {
                     "union": [
                       "address"
                     ]
@@ -253,6 +277,12 @@
                       "address",
                       "phone"
                     ]
+                  }
+                },
+                {
+                  "id": "O_CREATE_TABLE_OPTION",
+                  "def": {
+                    "withSystemVersioning": true
                   }
                 }
               ]

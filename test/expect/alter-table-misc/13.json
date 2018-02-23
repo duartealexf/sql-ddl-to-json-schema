@@ -6,7 +6,7 @@
       "def": {
         "id": "P_ALTER_TABLE",
         "def": {
-          "table": "people",
+          "table": "test",
           "specs": [
             {
               "id": "P_ALTER_TABLE_SPECS",
@@ -15,8 +15,9 @@
                 "spec": {
                   "id": "O_ALTER_TABLE_SPEC",
                   "def": {
-                    "action": "dropIndex",
-                    "index": "k_oid"
+                    "action": "addPeriodForSystemTime",
+                    "startColumnName": "test1",
+                    "endColumnName": "test2"
                   }
                 }
               }

@@ -15,7 +15,7 @@
                 "spec": {
                   "id": "O_ALTER_TABLE_SPEC",
                   "def": {
-                    "action": "addUniqueIndex",
+                    "action": "addUniqueKey",
                     "symbol": null,
                     "name": null,
                     "index": null,

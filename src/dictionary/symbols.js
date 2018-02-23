@@ -4,10 +4,8 @@
  *
  * Identifiers may begin with a digit but, can consist solely of digits only if quoted.
  *
- * https://dev.mysql.com/doc/refman/5.7/en/identifiers.html
- * https://dev.mysql.com/doc/refman/5.7/en/identifier-qualifiers.html
- * https://dev.mysql.com/doc/refman/5.7/en/string-literals.html
- * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions#special-white-space
+ * https://mariadb.com/kb/en/library/sql-language-structure/
+ * https://mariadb.com/kb/en/library/operators/
  *
  * TODO: add qualified identifiers.
  */

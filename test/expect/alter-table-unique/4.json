@@ -17,7 +17,7 @@
                   "def": {
                     "action": "addUniqueKey",
                     "symbol": null,
-                    "name": "key",
+                    "name": null,
                     "index": null,
                     "columns": [
                       {

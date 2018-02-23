@@ -59,10 +59,20 @@
                           }
                         ],
                         "match": "full",
-                        "on": {
-                          "trigger": "delete",
-                          "action": "set null"
-                        }
+                        "on": [
+                          {
+                            "trigger": "delete",
+                            "action": "set null"
+                          },
+                          {
+                            "trigger": "update",
+                            "action": "no action"
+                          },
+                          {
+                            "trigger": "delete",
+                            "action": "cascade"
+                          }
+                        ]
                       }
                     }
                   }

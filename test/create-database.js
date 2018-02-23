@@ -5,6 +5,7 @@ const tests = {
   'Should create test database': {
     queries: [
       'CREATE DATABASE test;',
+      'CREATE OR replace DATABASE test;',
       'create database test;',
       'create SCHEMA `test`;',
       `create

@@ -15,7 +15,7 @@
                 "spec": {
                   "id": "O_ALTER_TABLE_SPEC",
                   "def": {
-                    "action": "addKey",
+                    "action": "addIndex",
                     "name": null,
                     "index": null,
                     "columns": [

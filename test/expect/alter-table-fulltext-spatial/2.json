@@ -15,7 +15,7 @@
                 "spec": {
                   "id": "O_ALTER_TABLE_SPEC",
                   "def": {
-                    "action": "addFulltextKey",
+                    "action": "addFulltextIndex",
                     "name": null,
                     "columns": [
                       {

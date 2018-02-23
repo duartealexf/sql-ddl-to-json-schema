@@ -1,7 +1,7 @@
 # =============================================================
 # Create table
 #
-# https://dev.mysql.com/doc/refman/5.7/en/create-table.html
+# https://mariadb.com/kb/en/library/create-table/
 
 P_CREATE_TABLE -> (
     P_CREATE_TABLE_COMMON   {% id %}
@@ -18,7 +18,12 @@ P_CREATE_TABLE -> (
 # Create common table spec
 
 P_CREATE_TABLE_COMMON ->
-    %K_CREATE ( __ %K_TEMPORARY):? __ %K_TABLE ( __ %K_IF __ %K_NOT:? __ %K_EXISTS):? __ S_IDENTIFIER _
+    %K_CREATE
+    ( __ %K_OR __ %K_REPLACE ):?
+    ( __ %K_TEMPORARY):?
+    __ %K_TABLE
+    ( __ %K_IF __ %K_NOT __ %K_EXISTS):?
+    __ S_IDENTIFIER _
     P_CREATE_TABLE_CREATE_DEFINITIONS
     ( _ P_CREATE_TABLE_OPTIONS {% d => d[1] %} ):?
     S_EOS
@@ -26,9 +31,9 @@ P_CREATE_TABLE_COMMON ->
         return {
           id: 'P_CREATE_TABLE_COMMON',
           def: {
-            table: d[6],
-            columnsDef: d[8],
-            tableOptions: d[9]
+            table: d[7],
+            columnsDef: d[9],
+            tableOptions: d[10]
           }
         }
       }%}
@@ -37,7 +42,12 @@ P_CREATE_TABLE_COMMON ->
 # Create table like another one
 
 P_CREATE_TABLE_LIKE ->
-  %K_CREATE ( __ %K_TEMPORARY):? __ %K_TABLE ( __ %K_IF __ %K_NOT:? __ %K_EXISTS):? __ S_IDENTIFIER
+  %K_CREATE
+  ( __ %K_OR __ %K_REPLACE ):?
+  ( __ %K_TEMPORARY):?
+  __ %K_TABLE
+  ( __ %K_IF __ %K_NOT __ %K_EXISTS):?
+  __ S_IDENTIFIER
   (
       __ %K_LIKE __ S_IDENTIFIER
         {% d => d[3] %}
@@ -48,8 +58,8 @@ P_CREATE_TABLE_LIKE ->
       return {
         id: 'P_CREATE_TABLE_LIKE',
         def: {
-          table: d[6],
-          like: d[7]
+          table: d[7],
+          like: d[8]
         }
       }
     }%}
@@ -57,7 +67,7 @@ P_CREATE_TABLE_LIKE ->
 # =============================================================
 # Create table spec - (wrapper for statements in parenthesis)
 #
-# In MySQL docs this is the '(create_definition,...)' part.
+# In docs this is the '(create_definition,...)' part.
 
 P_CREATE_TABLE_CREATE_DEFINITIONS ->
   %S_LPARENS _ (
@@ -74,7 +84,7 @@ P_CREATE_TABLE_CREATE_DEFINITIONS ->
 # =============================================================
 # Create table definition options
 #
-# In MySQL docs these options are 'create_definition'.
+# In docs these options are 'create_definition'.
 #
 # A space between the identifier and column definition
 # is not required, as long as the identifier is
@@ -105,25 +115,23 @@ O_CREATE_TABLE_CREATE_DEFINITION -> (
     ( _ O_INDEX_OPTION {% d => d[1] %} ):*
       {% d => {
         return {
-          key: {
+          primaryKey: {
             symbol: d[0],
-            type: d[1].value + ' ' + d[3].value,
             index: d[4],
             columns: [d[8]].concat(d[9] || []),
             options: d[12]
           }
         }
       }%}
-  | ( %K_INDEX {% id %} | %K_KEY {% id %} )
+  | ( %K_INDEX | %K_KEY )
     ( __ S_IDENTIFIER {% d => d[1] %} ):?
     ( __ P_INDEX_TYPE {% d => d[1] %} ):?
     _ %S_LPARENS _ P_INDEX_COLUMN ( _ %S_COMMA _ P_INDEX_COLUMN {% d => d[3] %} ):* _ %S_RPARENS
     ( _ O_INDEX_OPTION {% d => d[1] %} ):*
       {% d => {
         return {
-          key: {
+          index: {
             name: d[1],
-            type: d[0].value,
             index: d[2],
             columns: [d[6]].concat(d[7] || []),
             options: d[10]
@@ -131,62 +139,76 @@ O_CREATE_TABLE_CREATE_DEFINITION -> (
         }
       }%}
   | ( %K_CONSTRAINT ( __ S_IDENTIFIER {% d => d[1] %} ):? __ {% d => d[1] %} ):? %K_UNIQUE
-    ( __ %K_INDEX {% d => d[1] %} | __ %K_KEY {% d => d[1] %} ):?
+    ( __ %K_INDEX | __ %K_KEY ):?
     ( __ S_IDENTIFIER {% d => d[1] %} ):?
     ( __ P_INDEX_TYPE {% d => d[1] %} ):?
     _ %S_LPARENS _ P_INDEX_COLUMN ( _ %S_COMMA _ P_INDEX_COLUMN {% d => d[3] %} ):* _ %S_RPARENS
     ( _ O_INDEX_OPTION {% d => d[1] %} ):*
       {% d => {
-        let type = d[2] ? (' ' + d[2].value) : '';
-        type = d[1].value + type;
         return {
-          key: {
+          uniqueKey: {
             symbol: d[0],
             name: d[3],
-            type,
             index: d[4],
             columns: [d[8]].concat(d[9] || []),
             options: d[12]
           }
         }
       }%}
-  | ( %K_FULLTEXT {% id %} | %K_SPATIAL {% id %} )
-    ( __ %K_INDEX {% d => d[1] %} | __ %K_KEY {% d => d[1] %} ):?
+  | %K_FULLTEXT ( __ %K_INDEX | __ %K_KEY ):?
     ( __ S_IDENTIFIER {% d => d[1] %} ):?
     _ %S_LPARENS _ P_INDEX_COLUMN ( _ %S_COMMA _ P_INDEX_COLUMN {% d => d[3] %} ):* _ %S_RPARENS
     ( _ O_INDEX_OPTION {% d => d[1] %} ):*
       {% d => {
+
         /**
-         * For some reason it parses "FULLTEXT KEY" in two ways:
-         * 1. { type: 'FULLTEXT KEY', name: NULL }
-         * 2. { type: 'FULLTEXT', name: 'KEY' }
-         *
-         * So we need this workaround below:
+         * Sometimes it parses the key name as 'INDEX' OR 'KEY', so we need this workaround below:
          */
 
         if (d[2] && ['index', 'key'].includes(d[2].toLowerCase())) {
-          d[1] = { value: d[2] };
           d[2] = null;
         }
 
         return {
-          key: {
+          fulltextIndex: {
             name: d[2],
-            type: d[0].value + (d[1] ? (' ' + d[1].value) : ''),
             columns: [d[6]].concat(d[7] || []),
             options: d[10]
           }
         }
       }%}
-  | ( %K_CONSTRAINT ( __ S_IDENTIFIER {% d => d[1] %} ):? __ {% d => d[1] %} ):? %K_FOREIGN __ %K_KEY
+  | %K_SPATIAL
+    ( __ %K_INDEX | __ %K_KEY ):?
+    ( __ S_IDENTIFIER {% d => d[1] %} ):?
+    _ %S_LPARENS _ P_INDEX_COLUMN ( _ %S_COMMA _ P_INDEX_COLUMN {% d => d[3] %} ):* _ %S_RPARENS
+    ( _ O_INDEX_OPTION {% d => d[1] %} ):*
+      {% d => {
+
+        /**
+         * Sometimes it parses the key name as 'INDEX' OR 'KEY', so we need this workaround below:
+         */
+
+        if (d[2] && ['index', 'key'].includes(d[2].toLowerCase())) {
+          d[2] = null;
+        }
+
+        return {
+          spatialIndex: {
+            name: d[2],
+            columns: [d[6]].concat(d[7] || []),
+            options: d[10]
+          }
+        }
+      }%}
+  | ( %K_CONSTRAINT ( __ S_IDENTIFIER {% d => d[1] %} ):? __ {% d => d[1] %} ):?
+    %K_FOREIGN __ %K_KEY
     ( __ S_IDENTIFIER {% d => d[1] %} ):?
     _ %S_LPARENS _ P_INDEX_COLUMN ( _ %S_COMMA _ P_INDEX_COLUMN {% d => d[3] %} ):* _ %S_RPARENS
     _ P_COLUMN_REFERENCE
       {% d => {
         return {
-          key: {
+          foreignKey: {
             symbol: d[0],
-            type: d[1] + ' ' + d[3],
             name: d[4],
             columns: [d[8]].concat(d[9] || []),
             reference: d[13]
@@ -204,22 +226,25 @@ O_CREATE_TABLE_CREATE_DEFINITION -> (
 # =============================================================
 # Column definition
 #
-# In MySQL docs these are the 'column_definition'.
+# In docs these are the 'column_definition'.
 
 O_COLUMN_DEFINITION -> (
     %K_UNSIGNED                           {% d => { return { unsigned: true }} %}
   | %K_ZEROFILL                           {% d => { return { zerofill: true }} %}
   | %K_CHARACTER __ %K_SET __ O_CHARSET   {% d => { return { charset: d[4] }} %}
   | %K_COLLATE __ O_COLLATION             {% d => { return { collation: d[2] }} %}
-  | (
-        %K_NOT __ %K_NULL                 {% d => { return { nullable: false }} %}
-      | %K_NULL                           {% d => { return { nullable: true }} %}
-    ) {% id %}
+  | %K_NOT __ %K_NULL                     {% d => { return { nullable: false }} %}
+  | %K_NULL                               {% d => { return { nullable: true }} %}
   | %K_DEFAULT __ O_DEFAULT_VALUE         {% d => { return { default: d[2] }} %}
   | %K_AUTO_INCREMENT                     {% d => { return { autoincrement: true }} %}
   | %K_UNIQUE ( __ %K_KEY ):?             {% d => { return { unique: true }} %}
-  | (%K_PRIMARY __ ):? %K_KEY             {% d => { return { primary: true }} %}
+  | ( %K_PRIMARY __ ):? %K_KEY            {% d => { return { primary: true }} %}
   | %K_COMMENT __ O_QUOTED_STRING         {% d => { return { comment: d[2] }} %}
+  | %K_INVISIBLE __ %K_WITH __
+    %K_SYSTEM __ %K_VERSIONING            {% d => { return { invisibleWithSystemVersioning: true }} %}
+  | %K_INVISIBLE __ %K_WITHOUT __
+    %K_SYSTEM __ %K_VERSIONING            {% d => { return { invisibleWithoutSystemVersioning: true }} %}
+  | %K_INVISIBLE                          {% d => { return { invisible: true }} %}
   | %K_COLUMN_FORMAT __ (
         %K_FIXED   {% id %}
       | %K_DYNAMIC {% id %}
@@ -252,6 +277,7 @@ P_COLUMN_REFERENCE ->
     _ %K_MATCH __ ( %K_FULL {% id %} | %K_PARTIAL {% id %} | %K_SIMPLE {% id %} )
       {% d => d[3].value %}
   ):?
+
   (
     _ %K_ON __ ( %K_DELETE {% id %} | %K_UPDATE {% id %} ) __
     (
@@ -262,7 +288,7 @@ P_COLUMN_REFERENCE ->
       | %K_SET __ %K_DEFAULT  {% d => d[0].value + ' ' + d[2].value %}
     )
       {% d => { return { trigger: d[3].value, action: d[5] }} %}
-  ):?
+  ):*
     {% d => {
       return {
         id: 'P_COLUMN_REFERENCE',
@@ -270,7 +296,7 @@ P_COLUMN_REFERENCE ->
           table: d[2],
           columns: d[3],
           match: d[4],
-          on: d[5]
+          on: d[5] || []
         }
       }
     }%}
@@ -338,6 +364,14 @@ O_CREATE_TABLE_OPTION -> (
       {% d => {
         return { encrytion: d[2] }
       }%}
+  | %K_ENCRYPTION_KEY_ID ( __ | _ %S_EQUAL _ ) O_TABLE_OPTION_VALUE
+      {% d => {
+        return { encrytionKeyId: d[2] }
+      }%}
+  | %K_IETF_QUOTES ( __ | _ %S_EQUAL _ ) ( %K_YES {% id %} | %K_NO {% id %} )
+      {% d => {
+        return { ietfQuotes: d[2].value }
+      }%}
   | %K_ENGINE ( __ | _ %S_EQUAL _ ) O_ENGINE
       {% d => {
         return { engine: d[2] }
@@ -362,11 +396,16 @@ O_CREATE_TABLE_OPTION -> (
       {% d => {
         return { packKeys: d[2].value }
       }%}
+  | %K_PAGE_CHECKSUM ( __ | _ %S_EQUAL _ ) %S_NUMBER
+      {% d => {
+        return { pageChecksum: d[2].value }
+      }%}
   | %K_PASSWORD ( __ | _ %S_EQUAL _ ) O_QUOTED_STRING
       {% d => {
         return { password: d[2] }
       }%}
-  | %K_ROW_FORMAT ( __ | _ %S_EQUAL _ ) ( %K_DEFAULT {% id %} | %K_DYNAMIC {% id %} | %K_FIXED {% id %} | %K_COMPRESSED {% id %} | %K_REDUNDANT {% id %} | %K_COMPACT {% id %} )
+  | %K_ROW_FORMAT ( __ | _ %S_EQUAL _ )
+    ( %K_DEFAULT {% id %} | %K_DYNAMIC {% id %} | %K_FIXED {% id %} | %K_COMPRESSED {% id %} | %K_REDUNDANT {% id %} | %K_COMPACT {% id %} | %K_PAGE {% id %} )
       {% d => {
         return { rowFormat: d[2].value }
       }%}
@@ -381,6 +420,14 @@ O_CREATE_TABLE_OPTION -> (
   | %K_STATS_SAMPLE_PAGES ( __ | _ %S_EQUAL _ ) O_TABLE_OPTION_VALUE
       {% d => {
         return { statsSamplePages: d[2] }
+      }%}
+  | %K_TRANSACTIONAL ( __ | _ %S_EQUAL _ ) %S_NUMBER
+      {% d => {
+        return { transactional: d[2].value }
+      }%}
+  | %K_WITH __ %K_SYSTEM __ %K_VERSIONING
+      {% d => {
+        return { withSystemVersioning: true }
       }%}
   | %K_TABLESPACE __ S_IDENTIFIER (
     __ %K_STORAGE __ ( %K_DISK {% id %} | %K_MEMORY {% id %} | %K_DEFAULT {% id %} )

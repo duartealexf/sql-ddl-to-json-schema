@@ -7,10 +7,10 @@ const tests = {
   'Should create test index with all different options.': {
     queries: [
       `
-      CREATE UNIQUE INDEX test USING BTREE ON people (name (20) asc, initials) KEY_BLOCK_SIZE = 20 COMMENT 'test' ALGORITHM = DEFAULT LOCK DEFAULT;
-      create fulltext index test on people (name) algorithm= inplace lock=none;
-      create spatial index test on people (name) algorithm =copy;
-      create index test on people (name);
+      CREATE or replace online UNIQUE INDEX test USING BTREE ON people (name (20) asc, initials) KEY_BLOCK_SIZE = 20 COMMENT 'test' ALGORITHM = DEFAULT LOCK DEFAULT;
+      create offline fulltext index test on people (name) algorithm= inplace lock=none;
+      create or replace spatial index test on people (name) algorithm =copy;
+      create index if not exists test on people (name);
       `
     ],
     expect: expect0

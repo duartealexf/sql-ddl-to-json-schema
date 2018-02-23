@@ -2,17 +2,16 @@
 
 ## SQL dialects
 
-There are several SQL dialects that this project will cover, in this order:
+There are several SQL dialects that this project will eventually cover, in this order:
 
-- MySQL 5.7
+- MariaDB 10.2.13 / MySQL 5.7
 - PostgreSQL
 - MSSQL
 - Oracle
-- ...?
 
 Roadmap for each one is still in WIP.
 
-## MySQL
+## MariaDB
 
 - [X] CREATE DATABASE
   - [X] CHARACTER SET
@@ -22,23 +21,26 @@ Roadmap for each one is still in WIP.
   - [X] CREATE TABLE OPTIONS
   - [X] CREATE TABLE LIKE
 - [x] CREATE INDEX
-- [ ] CREATE VIEW
 - [x] ALTER DATABASE
 - [X] ALTER TABLE
-- [ ] ALTER VIEW
 - [X] DROP DATABASE
 - [X] DROP INDEX
 - [X] DROP TABLE
-- [ ] DROP VIEW
 - [X] RENAME TABLE
 
-More complex features (not priority)...
+More complex features are not priority, as they require parsing SELECT statements or expressions* ...
 
-- [ ] CREATE TABLE - AS (EXPRESSION)
-- [ ] CREATE TABLE - PARTITION OPTIONS
-- [ ] CREATE TABLE - GENERATED AS (EXPRESSION) COLUMNS *
+- `CREATE TABLE AS (EXPRESSION)`*
+- `CREATE TABLE GENERATED AS (EXPRESSION)` columns
+- `CREATE TABLE` partition options
+- `CREATE VIEW`
+- `ALTER VIEW`
+- `DROP VIEW`
+- `CHECK CONSTRAINTS`**
+- Expressions as column default values (MariaDB only)
 
-\* https://dev.mysql.com/doc/refman/5.7/en/create-table-generated-columns.html
+\* https://dev.mysql.com/doc/refman/5.7/en/expressions.html
+\*\* https://mariadb.com/kb/en/library/constraint/
 
 ## PostgreSQL
 

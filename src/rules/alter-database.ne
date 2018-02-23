@@ -1,7 +1,7 @@
 # =============================================================
 # Alter database
 #
-# https://dev.mysql.com/doc/refman/5.7/en/alter-database.html
+# https://mariadb.com/kb/en/library/alter-database/
 
 P_ALTER_DB ->
   %K_ALTER __ ( %K_DATABASE | %K_SCHEMA )

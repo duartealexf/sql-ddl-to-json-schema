@@ -75,7 +75,7 @@ S_EOS -> _ %S_SEMICOLON
 # =============================================================
 # Valid options for charset and collations and engines.
 #
-# https://dev.mysql.com/doc/refman/5.7/en/charset-charsets.html
+# https://mariadb.com/kb/en/library/character-sets/
 #
 # I've tested different combinations of quotes and backticks to
 # specify CHARSET and COLLATE, and all of them worked. - duartealexf
@@ -87,6 +87,11 @@ O_CHARSET ->
 O_COLLATION ->
     O_QUOTED_STRING       {% d => d[0] %}
   | S_IDENTIFIER          {% d => d[0] %}
+
+# =============================================================
+# Valid ways to write an engine in MariaDB
+#
+# https://mariadb.com/kb/en/library/show-engine/
 
 O_ENGINE ->
     O_QUOTED_STRING       {% d => d[0] %}
@@ -119,12 +124,12 @@ O_TABLE_OPTION_VALUE ->
 # =============================================================
 # Identifiers
 #
-# https://dev.mysql.com/doc/refman/5.7/en/keywords.html
+# https://mariadb.com/kb/en/library/sql-language-structure/
 #
 # TODO: don't include reserved words to this list.
 #
 # More or-rules will be appended to this rule during assembly. The
-# or-rules are keywords because in statements, identifiers can be
+# or-rules are keywords, because in statements identifiers can be
 # the same as keywords, but if we want to match a S_IDENTIFIER in
 # a rule, and end up matching a keyword, we can use this as a
 # fallback to consider it as an identifier. - duartealexf

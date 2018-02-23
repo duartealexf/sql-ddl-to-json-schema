@@ -126,7 +126,4 @@ To debug tests you may want to change the args as you go.
 
 ## Links
 - [Grammar List](http://www.antlr3.org/grammar/list.html)
-- [Basic MySQL Parser](https://www.safaribooksonline.com/library/view/flex-bison/9780596805418/ch04.html)
-- [MySQL Formatter](https://github.com/TeamSQL/sql-formatter/blob/master/src/languages/MySQLFormatter.js)
-- [SQL Parser for AlaSQL in JiSON](https://github.com/agershun/alasql/blob/develop/utils/a.jison)
 - [jSQL project](https://github.com/Pamblam/jSQL)

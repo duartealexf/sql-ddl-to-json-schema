@@ -4,7 +4,7 @@ const parser = new Parser();
 
 parser.feed(
   `
-  rename table people to persons, homes to houses,cats to pets ,test to tests;
+  CREATE OR replace table test (test bool);
   `
 );
 

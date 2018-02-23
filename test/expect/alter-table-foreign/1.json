@@ -59,7 +59,7 @@
                           }
                         ],
                         "match": "full",
-                        "on": null
+                        "on": []
                       }
                     }
                   }

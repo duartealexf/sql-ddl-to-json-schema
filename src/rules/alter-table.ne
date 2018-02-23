@@ -1,17 +1,23 @@
 # =============================================================
 # Alter table
 #
-# https://dev.mysql.com/doc/refman/5.7/en/alter-table.html
+# https://mariadb.com/kb/en/library/alter-table/
+#
+# TODO: correct, as index and key are synonyms
 
-P_ALTER_TABLE -> %K_ALTER __ %K_TABLE __ S_IDENTIFIER __
+P_ALTER_TABLE -> %K_ALTER __
+  ( %K_ONLINE __ ):?
+  ( %K_IGNORE __ ):?
+  %K_TABLE __ S_IDENTIFIER __
+  ( %K_WAIT __ %S_NUMBER __ | %K_NOWAIT __ ):?
   P_ALTER_TABLE_SPECS ( _ %S_COMMA _ P_ALTER_TABLE_SPECS {% d => d[3] %} ):*
   S_EOS
     {% d => {
       return {
         id: 'P_ALTER_TABLE',
         def: {
-          table: d[4],
-          specs: [d[6]].concat(d[7])
+          table: d[6],
+          specs: [d[9]].concat(d[10])
         }
       }
     }%}
@@ -19,7 +25,7 @@ P_ALTER_TABLE -> %K_ALTER __ %K_TABLE __ S_IDENTIFIER __
 # =============================================================
 # Alter table specifications
 #
-# In MySQL docs these options are 'alter_specification'.
+# In docs these options are 'alter_specification'.
 
 P_ALTER_TABLE_SPECS ->
   P_CREATE_TABLE_OPTIONS:?
@@ -37,7 +43,7 @@ P_ALTER_TABLE_SPECS ->
 # =============================================================
 # Options for alter table spec.
 #
-# In MySQL docs these options are in 'alter_specification'.
+# In docs these options are in 'alter_specification'.
 
 O_ALTER_TABLE_SPEC -> (
     %K_ADD ( __ %K_COLUMN ):? __ S_IDENTIFIER __ O_DATATYPE
@@ -88,7 +94,7 @@ O_ALTER_TABLE_SPEC -> (
         }
       }%}
 
-  | %K_ADD __ %K_INDEX
+  | %K_ADD __ ( %K_INDEX | %K_KEY )
     ( __ S_IDENTIFIER {% d => d[1] %} ):?
     ( __ P_INDEX_TYPE {% d => d[1] %} ):?
     _ %S_LPARENS _ P_INDEX_COLUMN ( _ %S_COMMA _ P_INDEX_COLUMN {% d => d[3] %} ):* _ %S_RPARENS
@@ -96,21 +102,6 @@ O_ALTER_TABLE_SPEC -> (
       {% d => {
         return {
           action: 'addIndex',
-          name: d[3],
-          index: d[4],
-          columns: [d[8]].concat(d[9] || []),
-          options: d[12]
-        }
-      }%}
-
-  | %K_ADD __ %K_KEY
-    ( __ S_IDENTIFIER {% d => d[1] %} ):?
-    ( __ P_INDEX_TYPE {% d => d[1] %} ):?
-    _ %S_LPARENS _ P_INDEX_COLUMN ( _ %S_COMMA _ P_INDEX_COLUMN {% d => d[3] %} ):* _ %S_RPARENS
-    ( _ O_INDEX_OPTION {% d => d[1] %} ):*
-      {% d => {
-        return {
-          action: 'addKey',
           name: d[3],
           index: d[4],
           columns: [d[8]].concat(d[9] || []),
@@ -133,12 +124,22 @@ O_ALTER_TABLE_SPEC -> (
       }%}
 
   | %K_ADD __ ( %K_CONSTRAINT ( __ S_IDENTIFIER {% d => d[1] %} ):? __ {% d => d[1] %} ):?
-    %K_UNIQUE ( __ %K_KEY ):?
+    %K_UNIQUE
+    ( __ %K_INDEX | __ %K_KEY ):?
     ( __ S_IDENTIFIER {% d => d[1] %} ):?
     ( __ P_INDEX_TYPE {% d => d[1] %} ):?
     _ %S_LPARENS _ P_INDEX_COLUMN ( _ %S_COMMA _ P_INDEX_COLUMN {% d => d[3] %} ):* _ %S_RPARENS
     ( _ O_INDEX_OPTION {% d => d[1] %} ):*
       {% d => {
+
+        /**
+         * Sometimes it parses the key name as 'INDEX' OR 'KEY', so we need this workaround below:
+         */
+
+        if (d[5] && ['index', 'key'].includes(d[5].toLowerCase())) {
+          d[5] = null;
+        }
+
         return {
           action: 'addUniqueKey',
             symbol: d[2],
@@ -149,60 +150,46 @@ O_ALTER_TABLE_SPEC -> (
         }
       }%}
 
-  | %K_ADD __ ( %K_CONSTRAINT ( __ S_IDENTIFIER {% d => d[1] %} ):? __ {% d => d[1] %} ):?
-    %K_UNIQUE __ %K_INDEX
-    ( __ S_IDENTIFIER {% d => d[1] %} ):?
-    ( __ P_INDEX_TYPE {% d => d[1] %} ):?
-    _ %S_LPARENS _ P_INDEX_COLUMN ( _ %S_COMMA _ P_INDEX_COLUMN {% d => d[3] %} ):* _ %S_RPARENS
-    ( _ O_INDEX_OPTION {% d => d[1] %} ):*
-      {% d => {
-        return {
-          action: 'addUniqueIndex',
-            symbol: d[2],
-            name: d[6],
-            index: d[7],
-            columns: [d[11]].concat(d[12] || []),
-            options: d[15]
-        }
-      }%}
-
-  | %K_ADD __ ( %K_FULLTEXT {% id %} | %K_SPATIAL {% id %} )
-    ( __ %K_INDEX {% d => d[1] %} | __ %K_KEY {% d => d[1] %} ):?
+  | %K_ADD __ %K_FULLTEXT
+    ( __ %K_INDEX | __ %K_KEY ):?
     ( __ S_IDENTIFIER {% d => d[1] %} ):?
     _ %S_LPARENS _ P_INDEX_COLUMN ( _ %S_COMMA _ P_INDEX_COLUMN {% d => d[3] %} ):* _ %S_RPARENS
     ( _ O_INDEX_OPTION {% d => d[1] %} ):*
       {% d => {
-
-        let subject = type = '';
 
         /**
-         * For some reason it parses "FULLTEXT KEY" in two ways:
-         * 1. { type: 'FULLTEXT KEY', name: NULL }
-         * 2. { type: 'FULLTEXT', name: 'KEY' }
-         *
-         * So we need this workaround below:
+         * Sometimes it parses the key name as 'INDEX' OR 'KEY', so we need this workaround below:
          */
 
-        if (d[3]) {
-          type = d[3].value;
-        }
-
         if (d[4] && ['index', 'key'].includes(d[4].toLowerCase())) {
-          type = d[4].toLowerCase();
           d[4] = null;
         }
 
-        if (!type) {
-          type = 'key';
+        return {
+          action: 'addFulltextIndex',
+          name: d[4],
+          columns: [d[8]].concat(d[9] || []),
+          options: d[12]
+        }
+      }%}
+
+  | %K_ADD __ %K_SPATIAL
+    ( __ %K_INDEX | __ %K_KEY ):?
+    ( __ S_IDENTIFIER {% d => d[1] %} ):?
+    _ %S_LPARENS _ P_INDEX_COLUMN ( _ %S_COMMA _ P_INDEX_COLUMN {% d => d[3] %} ):* _ %S_RPARENS
+    ( _ O_INDEX_OPTION {% d => d[1] %} ):*
+      {% d => {
+
+        /**
+         * Sometimes it parses the key name as 'INDEX' OR 'KEY', so we need this workaround below:
+         */
+
+        if (d[4] && ['index', 'key'].includes(d[4].toLowerCase())) {
+          d[4] = null;
         }
 
-        subject = d[2].value.toLowerCase();
-
-        subject = subject[0].toUpperCase() + subject.substr(1);
-        type = type[0].toUpperCase() + type.substr(1);
-
         return {
-          action: 'add' + subject + type,
+          action: 'addSpatialIndex',
           name: d[4],
           columns: [d[8]].concat(d[9] || []),
           options: d[12]
@@ -331,27 +318,19 @@ O_ALTER_TABLE_SPEC -> (
         }
       }%}
 
-  | %K_DROP __ ( %K_COLUMN __ ):? S_IDENTIFIER
+  | %K_DROP __ ( %K_COLUMN __ ):? ( %K_IF __ %K_EXISTS __ ):? S_IDENTIFIER
       {% d => {
         return {
           action: 'dropColumn',
-          column: d[3]
+          column: d[4]
         }
       }%}
 
-  | %K_DROP __ %K_INDEX __ S_IDENTIFIER
+  | %K_DROP __ ( %K_INDEX | %K_KEY ) __ S_IDENTIFIER
       {% d => {
         return {
           action: 'dropIndex',
           index: d[4]
-        }
-      }%}
-
-  | %K_DROP __ %K_KEY __ S_IDENTIFIER
-      {% d => {
-        return {
-          action: 'dropKey',
-          key: d[4]
         }
       }%}
 
@@ -394,20 +373,11 @@ O_ALTER_TABLE_SPEC -> (
         }
       }%}
 
-  | %K_RENAME __ %K_INDEX __ S_IDENTIFIER __ %K_TO __ S_IDENTIFIER
+  | %K_RENAME __ ( %K_INDEX | %K_KEY ) __ S_IDENTIFIER __ %K_TO __ S_IDENTIFIER
       {% d => {
         return {
           action: 'renameIndex',
           index: d[4],
-          newName: d[8]
-        }
-      }%}
-
-  | %K_RENAME __ %K_KEY __ S_IDENTIFIER __ %K_TO __ S_IDENTIFIER
-      {% d => {
-        return {
-          action: 'renameKey',
-          key: d[4],
           newName: d[8]
         }
       }%}
@@ -431,6 +401,16 @@ O_ALTER_TABLE_SPEC -> (
       {% d => {
         return {
           action: 'withoutValidation'
+        }
+      }%}
+
+  | %K_ADD __ %K_PERIOD __ %K_FOR __ %K_SYSTEM_TIME
+    _ %S_LPARENS _ S_IDENTIFIER _ %S_COMMA _ S_IDENTIFIER _ %S_RPARENS
+      {% d => {
+        return {
+          action: 'addPeriodForSystemTime',
+          startColumnName: d[10],
+          endColumnName: d[14]
         }
       }%}
 )

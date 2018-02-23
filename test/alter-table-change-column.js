@@ -62,6 +62,8 @@ const tests = {
 
   'Should alter table dropping column.': {
     queries: [
+      `ALTER TABLE people drop column if exists middle_name;`,
+      `ALTER TABLE people drop if exists middle_name;`,
       `ALTER TABLE people drop column middle_name;`,
       `ALTER TABLE people drop middle_name;`,
     ],

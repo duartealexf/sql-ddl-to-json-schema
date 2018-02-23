@@ -12,7 +12,7 @@ const expect6 = require('./expect/alter-table-foreign/6.json');
 const tests = {
   'Should alter table adding foreign key with two columns, match and trigger.': {
     queries: [
-      `ALTER TABLE people add constraint xyz foreign key fk_ax_id__ay_id (ax_id (20) asc , ay_id ) references other ( xid ( 10 ) desc , yid ) match full on delete set null;`
+      `ALTER TABLE people add constraint xyz foreign key fk_ax_id__ay_id (ax_id (20) asc , ay_id ) references other ( xid ( 10 ) desc , yid ) match full on delete set null on update no action on delete cascade;`
     ],
     expect: expect0,
   },

@@ -1,17 +1,21 @@
 # =============================================================
 # Create database
 #
-# https://dev.mysql.com/doc/refman/5.7/en/create-database.html
+# https://mariadb.com/kb/en/library/create-database/
 
 P_CREATE_DB ->
-  %K_CREATE __ ( %K_DATABASE | %K_SCHEMA ) ( __ %K_IF ( __ %K_NOT ):? __ %K_EXISTS ):?
-  __ S_IDENTIFIER ( __ O_CREATE_DB_SPEC {% d => d[1] %} ):* S_EOS
+  %K_CREATE __
+  ( %K_OR __ %K_REPLACE __ ):?
+  ( %K_DATABASE | %K_SCHEMA )
+  ( __ %K_IF ( __ %K_NOT ):? __ %K_EXISTS ):?
+  __ S_IDENTIFIER
+  ( __ O_CREATE_DB_SPEC {% d => d[1] %} ):* S_EOS
     {% d => {
       return {
         id: 'P_CREATE_DB',
         def: {
-          database: d[5],
-          meta: d[6]
+          database: d[6],
+          meta: d[7]
         }
       }
     }%}

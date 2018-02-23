@@ -43,6 +43,7 @@ const tests = {
     expect: expect3,
   },
 
+
   'Should alter table adding unnamed unique key with one column.': {
     queries: [
       `ALTER TABLE people add unique key (id);`,

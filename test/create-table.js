@@ -5,9 +5,10 @@ const expect0 = require('./expect/create-table/0.json');
 const expect1 = require('./expect/create-table/1.json');
 const expect2 = require('./expect/create-table/2.json');
 const expect3 = require('./expect/create-table/3.json');
+const expect4 = require('./expect/create-table/4.json');
 
 const tests = {
-  'Should create test table with all types of columns.': {
+  'Should create test table with all types and options of columns.': {
     queries: [
       `CREATE TABLE person (
         id INT (10) UNSIGNED NOT NULL AUTO_INCREMENT KEY,
@@ -24,6 +25,9 @@ const tests = {
         city_id INTEGER REFERENCES cities (id (20) ASC, local_id) MATCH FULL,
         family_id INTEGER REFERENCES families (id) MATCH SIMPLE ON DELETE SET NULL,
         dog_id INTEGER REFERENCES dogs (id) ON UPDATE NO ACTION,
+        has_cat BOOL invisible with system versioning,
+        has_fish BOOLEAN invisible without system versioning,
+        soul_id INT invisible,
         birthtime TIME,
         birthdate DATE,
         initials CHAR(5) CHARACTER SET utf8,
@@ -40,9 +44,13 @@ const tests = {
 
   'Should create table like another one.': {
     queries: [
-      'CREATE TABLE person like people;',
-      'CREATE TABLE `person` ( like people) ;',
-      'CREATE TABLE person (like `people` );',
+      'create or replace temporary table if not exists person like people;',
+      'create or replace temporary table person like people;',
+      'create or replace table person like people;',
+      'create temporary table person like people;',
+      'create table person like people;',
+      'create table `person` ( like people) ;',
+      'create table person (like `people` );',
     ],
     expect: expect1
   },
@@ -64,11 +72,13 @@ const tests = {
       COMPRESSION ZLIB,
       COMPRESSION LZ4,
       COMPRESSION NONE,
-      CONNECTION 'mysql://whatever',
-      DATA DIRECTORY = '/var/lib/mysql/data',
-      INDEX DIRECTORY '/var/lib/mysql/index',
+      CONNECTION 'mariadb://whatever',
+      DATA DIRECTORY = '/var/lib/mariadb/data',
+      INDEX DIRECTORY '/var/lib/mariadb/index',
       DELAY_KEY_WRITE = 1,
       ENCRYPTION = 'Y',
+      ENCRYPTION_KEY_ID = 1,
+      IETF_QUOTES = YES,
       ENGINE MyISAM,
       INSERT_METHOD LAST,
       KEY_BLOCK_SIZE = 500,
@@ -77,6 +87,7 @@ const tests = {
       PACK_KEYS = 0,
       PACK_KEYS DEFAULT,
       PASSWORD '123456',
+      PAGE_CHECKSUM = 0,
       ROW_FORMAT = DEFAULT,
       ROW_FORMAT DYNAMIC,
       STATS_AUTO_RECALC = DEFAULT,
@@ -84,8 +95,10 @@ const tests = {
       STATS_SAMPLE_PAGES 'test',
       TABLESPACE abc,
       TABLESPACE \`qwe\` STORAGE DISK,
+      TRANSACTIONAL 1,
       UNION (address),
-      UNION (address, phone)
+      UNION (address, phone),
+      WITH SYSTEM VERSIONING
       ;`
     ],
     expect: expect2
@@ -113,6 +126,15 @@ const tests = {
       `
     ],
     expect: expect3
+  },
+
+  'Should create or replace simple table.': {
+    queries: [
+      `create or replace table test (test bool);`,
+      `create or replace temporary table test (test bool);`,
+      `create or replace temporary table if not exists test (test bool);`
+    ],
+    expect: expect4
   }
 };
 

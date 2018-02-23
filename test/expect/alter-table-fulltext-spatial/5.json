@@ -15,7 +15,7 @@
                 "spec": {
                   "id": "O_ALTER_TABLE_SPEC",
                   "def": {
-                    "action": "addSpatialKey",
+                    "action": "addSpatialIndex",
                     "name": null,
                     "columns": [
                       {

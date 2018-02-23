@@ -1,7 +1,7 @@
 # =============================================================
 # Data types
 #
-# https://dev.mysql.com/doc/refman/5.7/en/data-types.html
+# https://mariadb.com/kb/en/library/data-types/
 
 O_DATATYPE -> (
     O_INTEGER_DATATYPE          {% id %}
@@ -28,7 +28,7 @@ O_DATATYPE -> (
 # =============================================================
 # Integer data types
 #
-# https://dev.mysql.com/doc/refman/5.7/en/integer-types.html
+# https://mariadb.com/kb/en/data-types-numeric-data-types/
 
 O_INTEGER_DATATYPE ->
   (
@@ -54,7 +54,7 @@ O_INTEGER_DATATYPE ->
 # =============================================================
 # Fixed-point data types
 #
-# https://dev.mysql.com/doc/refman/5.7/en/fixed-point-types.html
+# https://mariadb.com/kb/en/data-types-numeric-data-types/
 
 O_FIXED_POINT_DATATYPE ->
   (%K_DECIMAL {% id %} | %K_NUMERIC {% id %})
@@ -88,7 +88,7 @@ O_FIXED_POINT_DATATYPE ->
 # =============================================================
 # Floating-point data types
 #
-# https://dev.mysql.com/doc/refman/5.7/en/floating-point-types.html
+# https://mariadb.com/kb/en/data-types-numeric-data-types/
 
 O_FLOATING_POINT_DATATYPE ->
   ( %K_FLOAT {% id %} | %K_DOUBLE {% id %} )
@@ -114,7 +114,7 @@ O_FLOATING_POINT_DATATYPE ->
 # =============================================================
 # Bit data types
 #
-# https://dev.mysql.com/doc/refman/5.7/en/bit-type.html
+# https://mariadb.com/kb/en/data-types-numeric-data-types/
 
 O_BIT_DATATYPE ->
   %K_BIT ( _ %S_LPARENS _ %S_NUMBER _ %S_RPARENS _ {% d => d[3].value %} ):?
@@ -131,7 +131,7 @@ O_BIT_DATATYPE ->
 # =============================================================
 # Boolean data types
 #
-# https://dev.mysql.com/doc/refman/5.7/en/numeric-type-overview.html
+# https://mariadb.com/kb/en/boolean/
 
 O_BOOLEAN_DATATYPE -> (
     %K_BOOLEAN {% id %}
@@ -149,9 +149,7 @@ O_BOOLEAN_DATATYPE -> (
 # =============================================================
 # Datetime types
 #
-# https://dev.mysql.com/doc/refman/5.7/en/datetime.html
-# https://dev.mysql.com/doc/refman/5.7/en/date-and-time-literals.html
-# https://dev.mysql.com/doc/refman/5.7/en/fractional-seconds.html
+# https://mariadb.com/kb/en/date-and-time-data-types/
 
 O_DATETIME_DATATYPE ->
   ( %K_DATE {% id %} | %K_TIME {% id %} | %K_DATETIME {% id %} | %K_TIMESTAMP {% id %} )
@@ -169,7 +167,7 @@ O_DATETIME_DATATYPE ->
 # =============================================================
 # Year type
 #
-# https://dev.mysql.com/doc/refman/5.7/en/year.html
+# https://mariadb.com/kb/en/date-and-time-data-types/
 
 O_YEAR_DATATYPE ->
   %K_YEAR
@@ -187,9 +185,7 @@ O_YEAR_DATATYPE ->
 # =============================================================
 # Variable length string types
 #
-# https://dev.mysql.com/doc/refman/5.7/en/string-types.html
-# https://dev.mysql.com/doc/refman/5.7/en/char.html
-# https://dev.mysql.com/doc/refman/5.7/en/binary-varbinary.html
+# https://mariadb.com/kb/en/string-data-types/
 
 O_VARIABLE_STRING_DATATYPE -> (
     ( %K_CHAR {% id %} | %K_BINARY {% id %} )
@@ -219,7 +215,7 @@ O_VARIABLE_STRING_DATATYPE -> (
 # =============================================================
 # Fixed length string types
 #
-# https://dev.mysql.com/doc/refman/5.7/en/blob.html
+# https://mariadb.com/kb/en/string-data-types/
 
 O_FIXED_STRING_DATATYPE -> (
     ( %K_BLOB {% id %} | %K_TEXT {% id %} )
@@ -249,7 +245,7 @@ O_FIXED_STRING_DATATYPE -> (
 #
 # Provided string variables cannot contain commas.
 #
-# https://dev.mysql.com/doc/refman/5.7/en/enum.html
+# https://mariadb.com/kb/en/string-data-types/
 
 O_ENUM_DATATYPE ->
   %K_ENUM
@@ -272,7 +268,7 @@ O_ENUM_DATATYPE ->
 #
 # Provided string variables cannot contain commas.
 #
-# https://dev.mysql.com/doc/refman/5.7/en/set.html
+# https://mariadb.com/kb/en/string-data-types/
 
 O_SET_DATATYPE ->
   %K_SET
@@ -293,9 +289,7 @@ O_SET_DATATYPE ->
 # =============================================================
 # Spatial types
 #
-# https://dev.mysql.com/doc/refman/5.7/en/spatial-type-overview.html
-# https://dev.mysql.com/doc/refman/5.7/en/creating-spatial-columns.html
-# https://dev.mysql.com/doc/refman/5.7/en/gis-geometry-class-hierarchy.html
+# https://mariadb.com/kb/en/library/geometry-types/
 
 O_SPATIAL_DATATYPE -> (
     %K_GEOMETRY             {% id %}
@@ -319,7 +313,7 @@ O_SPATIAL_DATATYPE -> (
 # =============================================================
 # JSON type
 #
-# https://dev.mysql.com/doc/refman/5.7/en/json.html
+# https://mariadb.com/kb/en/library/json-data-type/
 
 O_JSON_DATATYPE -> %K_JSON
   {% d => {

@@ -405,7 +405,7 @@
                                     }
                                   ],
                                   "match": "FULL",
-                                  "on": null
+                                  "on": []
                                 }
                               }
                             }
@@ -450,10 +450,12 @@
                                     }
                                   ],
                                   "match": "SIMPLE",
-                                  "on": {
-                                    "trigger": "DELETE",
-                                    "action": "SET NULL"
-                                  }
+                                  "on": [
+                                    {
+                                      "trigger": "DELETE",
+                                      "action": "SET NULL"
+                                    }
+                                  ]
                                 }
                               }
                             }
@@ -498,12 +500,96 @@
                                     }
                                   ],
                                   "match": null,
-                                  "on": {
-                                    "trigger": "UPDATE",
-                                    "action": "NO ACTION"
-                                  }
+                                  "on": [
+                                    {
+                                      "trigger": "UPDATE",
+                                      "action": "NO ACTION"
+                                    }
+                                  ]
                                 }
                               }
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  }
+                },
+                {
+                  "id": "O_CREATE_TABLE_CREATE_DEFINITION",
+                  "def": {
+                    "column": {
+                      "name": "has_cat",
+                      "def": {
+                        "datatype": {
+                          "id": "O_DATATYPE",
+                          "def": {
+                            "id": "O_BOOLEAN_DATATYPE",
+                            "def": {
+                              "datatype": "BOOL"
+                            }
+                          }
+                        },
+                        "columnDefinition": [
+                          {
+                            "id": "O_COLUMN_DEFINITION",
+                            "def": {
+                              "invisibleWithSystemVersioning": true
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  }
+                },
+                {
+                  "id": "O_CREATE_TABLE_CREATE_DEFINITION",
+                  "def": {
+                    "column": {
+                      "name": "has_fish",
+                      "def": {
+                        "datatype": {
+                          "id": "O_DATATYPE",
+                          "def": {
+                            "id": "O_BOOLEAN_DATATYPE",
+                            "def": {
+                              "datatype": "BOOLEAN"
+                            }
+                          }
+                        },
+                        "columnDefinition": [
+                          {
+                            "id": "O_COLUMN_DEFINITION",
+                            "def": {
+                              "invisibleWithoutSystemVersioning": true
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  }
+                },
+                {
+                  "id": "O_CREATE_TABLE_CREATE_DEFINITION",
+                  "def": {
+                    "column": {
+                      "name": "soul_id",
+                      "def": {
+                        "datatype": {
+                          "id": "O_DATATYPE",
+                          "def": {
+                            "id": "O_INTEGER_DATATYPE",
+                            "def": {
+                              "datatype": "INT",
+                              "width": 4
+                            }
+                          }
+                        },
+                        "columnDefinition": [
+                          {
+                            "id": "O_COLUMN_DEFINITION",
+                            "def": {
+                              "invisible": true
                             }
                           }
                         ]

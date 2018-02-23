@@ -11,7 +11,7 @@ There are several SQL dialects that this project will eventually cover, in this 
 
 Roadmap for each one is still in WIP.
 
-## MariaDB
+## MariaDB / MySQL
 
 - [X] CREATE DATABASE
   - [X] CHARACTER SET
@@ -40,6 +40,7 @@ More complex features are not priority, as they require parsing SELECT statement
 - Expressions as column default values (MariaDB only)
 
 \* https://dev.mysql.com/doc/refman/5.7/en/expressions.html
+
 \*\* https://mariadb.com/kb/en/library/constraint/
 
 ## PostgreSQL

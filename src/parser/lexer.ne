@@ -126,8 +126,6 @@ O_TABLE_OPTION_VALUE ->
 #
 # https://mariadb.com/kb/en/library/sql-language-structure/
 #
-# TODO: don't include reserved words to this list.
-#
 # More or-rules will be appended to this rule during assembly. The
 # or-rules are keywords, because in statements identifiers can be
 # the same as keywords, but if we want to match a S_IDENTIFIER in

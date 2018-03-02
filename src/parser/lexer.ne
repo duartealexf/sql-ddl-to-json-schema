@@ -31,33 +31,23 @@ const lexer = moo.compile(rules);
 
 # =============================================================
 # Main parser rule (entrypoint).
-
-P_MAIN -> _ P_DDS:+
-  {% d => {
-    return {
-      id: 'MAIN',
-      def: d[1]
-    }
-  }%}
-
-# =============================================================
 # Data definition statements
 
-P_DDS -> (
-    P_CREATE_DB _ {% id %}
-  | P_CREATE_TABLE _ {% id %}
-  | P_CREATE_INDEX _ {% id %}
-  | P_ALTER_DB _ {% id %}
-  | P_ALTER_TABLE _ {% id %}
-  | P_DROP_DB _ {% id %}
-  | P_DROP_TABLE _ {% id %}
-  | P_DROP_INDEX _ {% id %}
-  | P_RENAME_TABLE _ {% id %}
+P_DDS -> _ (
+    P_CREATE_DB _     {% id %}
+  | P_CREATE_TABLE _  {% id %}
+  | P_CREATE_INDEX _  {% id %}
+  | P_ALTER_DB _      {% id %}
+  | P_ALTER_TABLE _   {% id %}
+  | P_DROP_DB _       {% id %}
+  | P_DROP_TABLE _    {% id %}
+  | P_DROP_INDEX _    {% id %}
+  | P_RENAME_TABLE _  {% id %}
 )
   {% d => {
     return {
       id: 'P_DDS',
-      def: d[0]
+      def: d[1]
     }
   }%}
 

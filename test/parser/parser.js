@@ -1,8 +1,11 @@
 const ava = require('ava');
 const Parser = require('../../lib');
 
+const expect0 = require('./expect/parser/0.json');
+
 const tests = {
-  'Should test quoting': {
+
+  'Should test quoting.': {
     queries: [
       `
       create table \`\`\`te\`\`st\` (
@@ -17,245 +20,7 @@ const tests = {
       );
       `,
     ],
-    expect: {
-      id: "MAIN",
-      def: [
-        {
-          id: "P_DDS",
-          def: {
-            id: "P_CREATE_TABLE",
-            def: {
-              id: "P_CREATE_TABLE_COMMON",
-              def: {
-                table: "`te`st",
-                columnsDef: {
-                  id: "P_CREATE_TABLE_CREATE_DEFINITIONS",
-                  def: [
-                    {
-                      id: "O_CREATE_TABLE_CREATE_DEFINITION",
-                      def: {
-                        column: {
-                          name: "test",
-                          def: {
-                            datatype: {
-                              id: "O_DATATYPE",
-                              def: {
-                                id: "O_BOOLEAN_DATATYPE",
-                                def: {
-                                  datatype: "BOOL"
-                                }
-                              }
-                            },
-                            columnDefinition: [
-                              {
-                                id: "O_COLUMN_DEFINITION",
-                                def: {
-                                  default: ""
-                                }
-                              }
-                            ]
-                          }
-                        }
-                      }
-                    },
-                    {
-                      id: "O_CREATE_TABLE_CREATE_DEFINITION",
-                      def: {
-                        column: {
-                          name: "test",
-                          def: {
-                            datatype: {
-                              id: "O_DATATYPE",
-                              def: {
-                                id: "O_BOOLEAN_DATATYPE",
-                                def: {
-                                  datatype: "BOOL"
-                                }
-                              }
-                            },
-                            columnDefinition: [
-                              {
-                                id: "O_COLUMN_DEFINITION",
-                                def: {
-                                  default: "a test"
-                                }
-                              }
-                            ]
-                          }
-                        }
-                      }
-                    },
-                    {
-                      id: "O_CREATE_TABLE_CREATE_DEFINITION",
-                      def: {
-                        column: {
-                          name: "test",
-                          def: {
-                            datatype: {
-                              id: "O_DATATYPE",
-                              def: {
-                                id: "O_BOOLEAN_DATATYPE",
-                                def: {
-                                  datatype: "BOOL"
-                                }
-                              }
-                            },
-                            columnDefinition: [
-                              {
-                                id: "O_COLUMN_DEFINITION",
-                                def: {
-                                  default: 'a " test'
-                                }
-                              }
-                            ]
-                          }
-                        }
-                      }
-                    },
-                    {
-                      id: "O_CREATE_TABLE_CREATE_DEFINITION",
-                      def: {
-                        column: {
-                          name: "test",
-                          def: {
-                            datatype: {
-                              id: "O_DATATYPE",
-                              def: {
-                                id: "O_BOOLEAN_DATATYPE",
-                                def: {
-                                  datatype: "BOOL"
-                                }
-                              }
-                            },
-                            columnDefinition: [
-                              {
-                                id: "O_COLUMN_DEFINITION",
-                                def: {
-                                  default: 'a " test'
-                                }
-                              }
-                            ]
-                          }
-                        }
-                      }
-                    },
-                    {
-                      id: "O_CREATE_TABLE_CREATE_DEFINITION",
-                      def: {
-                        column: {
-                          name: "test",
-                          def: {
-                            datatype: {
-                              id: "O_DATATYPE",
-                              def: {
-                                id: "O_BOOLEAN_DATATYPE",
-                                def: {
-                                  datatype: "BOOL"
-                                }
-                              }
-                            },
-                            columnDefinition: [
-                              {
-                                id: "O_COLUMN_DEFINITION",
-                                def: {
-                                  default: ""
-                                }
-                              }
-                            ]
-                          }
-                        }
-                      }
-                    },
-                    {
-                      id: "O_CREATE_TABLE_CREATE_DEFINITION",
-                      def: {
-                        column: {
-                          name: "test",
-                          def: {
-                            datatype: {
-                              id: "O_DATATYPE",
-                              def: {
-                                id: "O_BOOLEAN_DATATYPE",
-                                def: {
-                                  datatype: "BOOL"
-                                }
-                              }
-                            },
-                            columnDefinition: [
-                              {
-                                id: "O_COLUMN_DEFINITION",
-                                def: {
-                                  default: "a test"
-                                }
-                              }
-                            ]
-                          }
-                        }
-                      }
-                    },
-                    {
-                      id: "O_CREATE_TABLE_CREATE_DEFINITION",
-                      def: {
-                        column: {
-                          name: "test",
-                          def: {
-                            datatype: {
-                              id: "O_DATATYPE",
-                              def: {
-                                id: "O_BOOLEAN_DATATYPE",
-                                def: {
-                                  datatype: "BOOL"
-                                }
-                              }
-                            },
-                            columnDefinition: [
-                              {
-                                id: "O_COLUMN_DEFINITION",
-                                def: {
-                                  default: "a ' test"
-                                }
-                              }
-                            ]
-                          }
-                        }
-                      }
-                    },
-                    {
-                      id: "O_CREATE_TABLE_CREATE_DEFINITION",
-                      def: {
-                        column: {
-                          name: "test",
-                          def: {
-                            datatype: {
-                              id: "O_DATATYPE",
-                              def: {
-                                id: "O_BOOLEAN_DATATYPE",
-                                def: {
-                                  datatype: "BOOL"
-                                }
-                              }
-                            },
-                            columnDefinition: [
-                              {
-                                id: "O_COLUMN_DEFINITION",
-                                def: {
-                                  default: "a ' test"
-                                }
-                              }
-                            ]
-                          }
-                        }
-                      }
-                    }
-                  ]
-                },
-                tableOptions: null
-              }
-            }
-          }
-        }
-      ]
-    }
+    expect: expect0
   }
 };
 
@@ -275,3 +40,22 @@ Object.getOwnPropertyNames(tests).forEach(description => {
     });
   });
 });
+
+ava('Should break down statements in parser', t => {
+  const parser = new Parser();
+
+  parser.feed(`testing 'an' escape\\'d 'str\\'in"g;' end; now this `); //
+  parser.feed(`is a \`"continue;'d\` end;
+this\\`);
+  parser.feed(`'s escape is broken between "consume'd `); //
+  parser.feed(`\`strings\`" end;twice here end;`); //
+
+  t.deepEqual(parser.statements, [
+    `testing 'an' escape\\'d 'str\\'in"g;' end;`,
+    ` now this is a \`"continue;'d\` end;`,
+    `\nthis\\'s escape is broken between "consume'd \`strings\`" end;`,
+    `twice here end;`
+  ]);
+
+});
+

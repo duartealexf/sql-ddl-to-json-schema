@@ -191,8 +191,8 @@ const main = async() => {
 
   await new Promise(resolve =>
     fs.copy(
-      path.join(projectRoot, 'src', 'parser', 'shared'),
-      path.join(projectRoot, 'lib', 'compiled', 'shared')
+      path.join(projectRoot, 'src', 'shared'),
+      path.join(projectRoot, 'lib', 'shared')
     )
       .then(resolve)
       .catch(error => {

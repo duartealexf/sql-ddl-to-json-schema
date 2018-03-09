@@ -1,7 +1,11 @@
 const P_CREATE_TABLE_COMMON = require('./create-table').P_CREATE_TABLE_COMMON;
 const P_CREATE_TABLE_LIKE = require('./create-table').P_CREATE_TABLE_LIKE;
+const P_RENAME_TABLE = require('./rename-table').P_RENAME_TABLE;
+const P_ALTER_TABLE = require('./alter-table').P_ALTER_TABLE;
+const P_DROP_TABLE = require('./drop-table').P_DROP_TABLE;
+
 const P_CREATE_INDEX = require('./create-index').P_CREATE_INDEX;
-const P_ALTER_TABLE = require('./create-index').P_ALTER_TABLE;
+const P_DROP_INDEX = require('./drop-index').P_DROP_INDEX;
 
 /**
  * Formatter for main rule's parsed JSON.
@@ -33,14 +37,17 @@ const MAIN = def => {
       P_ALTER_TABLE(json.def.def, tables);
     }
 
-    // else if (json.def.id === 'P_RENAME_TABLE') {
-    // }
+    else if (json.def.id === 'P_RENAME_TABLE') {
+      P_RENAME_TABLE(json.def.def, tables);
+    }
 
-    // else if (json.def.id === 'P_DROP_TABLE') {
-    // }
+    else if (json.def.id === 'P_DROP_TABLE') {
+      P_DROP_TABLE(json.def.def, tables);
+    }
 
-    // else if (json.def.id === 'P_DROP_INDEX') {
-    // }
+    else if (json.def.id === 'P_DROP_INDEX') {
+      P_DROP_INDEX(json.def.def, tables);
+    }
   });
 
   return tables;

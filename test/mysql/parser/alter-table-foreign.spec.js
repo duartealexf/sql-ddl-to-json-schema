@@ -1,6 +1,3 @@
-const ava = require('ava');
-const Parser = require('../../lib');
-
 const expect0 = require('./expect/alter-table-foreign/0.json');
 const expect1 = require('./expect/alter-table-foreign/1.json');
 const expect2 = require('./expect/alter-table-foreign/2.json');
@@ -8,8 +5,9 @@ const expect3 = require('./expect/alter-table-foreign/3.json');
 const expect4 = require('./expect/alter-table-foreign/4.json');
 const expect5 = require('./expect/alter-table-foreign/5.json');
 const expect6 = require('./expect/alter-table-foreign/6.json');
+const runner = require('../runner');
 
-const tests = {
+runner.run({
   'Should alter table adding foreign key with two columns, match and trigger.': {
     queries: [
       `ALTER TABLE people add constraint xyz foreign key fk_ax_id__ay_id (ax_id (20) asc , ay_id ) references other ( xid ( 10 ) desc , yid ) match full on delete set null on update no action on delete cascade;`
@@ -59,21 +57,4 @@ const tests = {
     ],
     expect: expect6,
   }
-};
-
-Object.getOwnPropertyNames(tests).forEach(description => {
-  const test = tests[description];
-
-  test.queries.forEach(query => {
-
-    const testname = `${description} | ${query}`;
-
-    const parser = new Parser();
-    parser.feed(query);
-
-    ava(testname, t => {
-      const value = parser.results;
-      t.deepEqual(value, test.expect);
-    });
-  });
 });

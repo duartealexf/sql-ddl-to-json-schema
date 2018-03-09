@@ -1,6 +1,3 @@
-const ava = require('ava');
-const Parser = require('../../lib');
-
 const expect0 = require('./expect/alter-table-unique/0.json');
 const expect1 = require('./expect/alter-table-unique/1.json');
 const expect2 = require('./expect/alter-table-unique/2.json');
@@ -11,8 +8,9 @@ const expect6 = require('./expect/alter-table-unique/6.json');
 const expect7 = require('./expect/alter-table-unique/7.json');
 const expect8 = require('./expect/alter-table-unique/8.json');
 const expect9 = require('./expect/alter-table-unique/9.json');
+const runner = require('../runner');
 
-const tests = {
+runner.run({
   'Should alter table adding unique key with index option, two columns and options.': {
     queries: [
       `ALTER TABLE people add constraint xyz unique key ik_id using hash ( id ( 2 ) asc , o_id ) key_block_size 1024 comment 'test';`
@@ -89,21 +87,4 @@ const tests = {
     ],
     expect: expect9,
   }
-};
-
-Object.getOwnPropertyNames(tests).forEach(description => {
-  const test = tests[description];
-
-  test.queries.forEach(query => {
-
-    const testname = `${description} | ${query}`;
-
-    const parser = new Parser();
-    parser.feed(query);
-
-    ava(testname, t => {
-      const value = parser.results;
-      t.deepEqual(value, test.expect);
-    });
-  });
 });

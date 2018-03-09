@@ -1,6 +1,3 @@
-const ava = require('ava');
-const Parser = require('../../lib');
-
 const expect0 = require('./expect/alter-table-change-column/0.json');
 const expect1 = require('./expect/alter-table-change-column/1.json');
 const expect2 = require('./expect/alter-table-change-column/2.json');
@@ -8,10 +5,9 @@ const expect3 = require('./expect/alter-table-change-column/3.json');
 const expect4 = require('./expect/alter-table-change-column/4.json');
 const expect5 = require('./expect/alter-table-change-column/5.json');
 const expect6 = require('./expect/alter-table-change-column/6.json');
-// const expect7 = require('./expect/alter-table-change-column/7.json');
-// const expect8 = require('./expect/alter-table-change-column/8.json');
+const runner = require('../runner');
 
-const tests = {
+runner.run({
   'Should alter table changing column name and definition with options and position after another column.': {
     queries: [
       `ALTER TABLE people change column name fullname varchar(255) character set utf8 default 'John Smith' after ssn;`,
@@ -69,21 +65,4 @@ const tests = {
     ],
     expect: expect6
   }
-};
-
-Object.getOwnPropertyNames(tests).forEach(description => {
-  const test = tests[description];
-
-  test.queries.forEach(query => {
-
-    const testname = `${description} | ${query}`;
-
-    const parser = new Parser();
-    parser.feed(query);
-
-    ava(testname, t => {
-      const value = parser.results;
-      t.deepEqual(value, test.expect);
-    });
-  });
 });

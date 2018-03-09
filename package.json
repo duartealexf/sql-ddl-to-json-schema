@@ -12,7 +12,7 @@
     "ava": "node_modules/ava/cli.js",
 
     "pretest": "yarn run build",
-    "test": "ava --color",
+    "test": "ava --color test/**/*.spec.js",
 
     "lint": "eslint lib test",
 

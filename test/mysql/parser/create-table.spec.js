@@ -1,13 +1,11 @@
-const ava = require('ava');
-const Parser = require('../../lib');
-
 const expect0 = require('./expect/create-table/0.json');
 const expect1 = require('./expect/create-table/1.json');
 const expect2 = require('./expect/create-table/2.json');
 const expect3 = require('./expect/create-table/3.json');
 const expect4 = require('./expect/create-table/4.json');
+const runner = require('../runner');
 
-const tests = {
+runner.run({
   'Should create test table with all types and options of columns.': {
     queries: [
       `CREATE TABLE person (
@@ -136,21 +134,4 @@ const tests = {
     ],
     expect: expect4
   }
-};
-
-Object.getOwnPropertyNames(tests).forEach(description => {
-  const test = tests[description];
-
-  test.queries.forEach(query => {
-
-    const testname = `${description} | ${query}`;
-
-    const parser = new Parser();
-    parser.feed(query);
-
-    ava(testname, t => {
-      const value = parser.results;
-      t.deepEqual(value, test.expect);
-    });
-  });
 });

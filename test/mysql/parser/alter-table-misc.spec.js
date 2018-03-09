@@ -1,6 +1,3 @@
-const ava = require('ava');
-const Parser = require('../../lib');
-
 const expect0 = require('./expect/alter-table-misc/0.json');
 const expect1 = require('./expect/alter-table-misc/1.json');
 const expect2 = require('./expect/alter-table-misc/2.json');
@@ -15,8 +12,9 @@ const expect10 = require('./expect/alter-table-misc/10.json');
 const expect11 = require('./expect/alter-table-misc/11.json');
 const expect12 = require('./expect/alter-table-misc/12.json');
 const expect13 = require('./expect/alter-table-misc/13.json');
+const runner = require('../runner');
 
-const tests = {
+runner.run({
   'Should alter table algorithm, with online, ignore and wait keywords.': {
     queries: [
       `ALTER online ignore TABLE people wait 5 algorithm = default;`,
@@ -141,21 +139,4 @@ const tests = {
     ],
     expect: expect13
   }
-};
-
-Object.getOwnPropertyNames(tests).forEach(description => {
-  const test = tests[description];
-
-  test.queries.forEach(query => {
-
-    const testname = `${description} | ${query}`;
-
-    const parser = new Parser();
-    parser.feed(query);
-
-    ava(testname, t => {
-      const value = parser.results;
-      t.deepEqual(value, test.expect);
-    });
-  });
 });

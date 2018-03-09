@@ -1,6 +1,3 @@
-const ava = require('ava');
-const Parser = require('../../lib');
-
 const expect0 = require('./expect/alter-table-add-column/0.json');
 const expect1 = require('./expect/alter-table-add-column/1.json');
 const expect2 = require('./expect/alter-table-add-column/2.json');
@@ -8,7 +5,9 @@ const expect3 = require('./expect/alter-table-add-column/3.json');
 const expect4 = require('./expect/alter-table-add-column/4.json');
 const expect5 = require('./expect/alter-table-add-column/5.json');
 
-const tests = {
+const runner = require('../runner');
+
+runner.run({
   'Should alter table adding one column with options and position.': {
     queries: [
       `ALTER TABLE people add column uid int(10) unsigned zerofill after name;`
@@ -54,21 +53,4 @@ const tests = {
     ],
     expect: expect5
   }
-};
-
-Object.getOwnPropertyNames(tests).forEach(description => {
-  const test = tests[description];
-
-  test.queries.forEach(query => {
-
-    const testname = `${description} | ${query}`;
-
-    const parser = new Parser();
-    parser.feed(query);
-
-    ava(testname, t => {
-      const value = parser.results;
-      t.deepEqual(value, test.expect);
-    });
-  });
 });

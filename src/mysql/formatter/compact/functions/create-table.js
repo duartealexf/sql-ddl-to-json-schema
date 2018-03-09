@@ -48,6 +48,11 @@ const P_CREATE_TABLE_COMMON = def => {
       options: O_COLUMN_DEFINITION(column.def.columnDefinition)
     };
 
+    if (!utils.isDefined(column.options.nullable)) {
+      column.options.default = null;
+      column.options.nullable = true;
+    }
+
     if (utils.isDefined(column.options.unique)) {
       table.uniqueKeys.push({
         symbol: null,

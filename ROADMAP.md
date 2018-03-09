@@ -2,16 +2,18 @@
 
 ## SQL dialects
 
-There are several SQL dialects that this project will eventually cover, in this order:
+There are several SQL dialects that this project can eventually cover:
 
-- MariaDB 10.2.13 / MySQL 5.7
-- PostgreSQL
-- MSSQL
-- Oracle
+- [x] MariaDB 10.2.13 / MySQL 5.7
+- [ ] PostgreSQL
+- [ ] MSSQL
+- [ ] Oracle
 
-Roadmap for each one is still in WIP.
+You are welcome to contribute on the development to other dialects.
 
-## MariaDB / MySQL
+### MariaDB / MySQL
+
+SQL Parser:
 
 - [X] CREATE DATABASE
   - [X] CHARACTER SET
@@ -28,6 +30,11 @@ Roadmap for each one is still in WIP.
 - [X] DROP TABLE
 - [X] RENAME TABLE
 
+Postparser, JSON formatter:
+
+- [x] Compact JSON format
+- [ ] JSON Schema format
+
 More complex features are not priority, as they require parsing SELECT statements or expressions* ...
 
 - `CREATE TABLE AS (EXPRESSION)`*
@@ -43,25 +50,13 @@ More complex features are not priority, as they require parsing SELECT statement
 
 \*\* https://mariadb.com/kb/en/library/constraint/
 
-## PostgreSQL
+### PostgreSQL
+TODO
 
-- [ ] CREATE DATABASE
-- [ ] CREATE INDEX
-- [ ] CREATE TABLE
-- [ ] CREATE VIEW
-- [ ] ALTER DATABASE
-- [ ] ALTER TABLE
-- [ ] ALTER VIEW
-- [ ] DROP DATABASE
-- [ ] DROP INDEX
-- [ ] DROP TABLE
-- [ ] DROP VIEW
-- [ ] RENAME TABLE
-
-## MSSQL
+### MSSQL
 
 TODO
 
-## Oracle
+### Oracle
 
 TODO

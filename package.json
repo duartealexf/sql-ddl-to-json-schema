@@ -3,6 +3,10 @@
   "version": "0.0.1",
   "description": "A grammar and stream-friendly SQL parser.",
   "main": "index.js",
+  "author": "Alexandre Duarte <duartealexf@gmail.com> (https://github.com/duartealexf)",
+  "maintainers": [
+    "Alexandre Duarte <duartealexf@gmail.com> (https://github.com/duartealexf)"
+  ],
   "scripts": {
     "standard-version": "node_modules/.bin/standard-version",
     "nearley-test": "node_modules/nearley/bin/nearley-test.js lib/compiled/grammar.js",
@@ -25,7 +29,6 @@
     "type": "git",
     "url": "git+https://github.com/duartealexf/sql-ddl-to-json-schema.git"
   },
-  "author": "duartealexf",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/duartealexf/sql-ddl-to-json-schema/issues"

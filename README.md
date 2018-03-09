@@ -68,12 +68,13 @@ S_ -> Symbol (not a keyword, but chars and other matches by RegExp's)
 
 ### Scripts at hand
 
+Valid to all SQL dialects:
+
 - Assemble `grammar.ne` and compile to `grammar.js`: `yarn run build`
 - Same as above, but watch for changes: `yarn run build:watch`
 - Assemble, build and test: `yarn run test`
 - Same as above, but watch for changes: `yarn run test:watch`
-- Parse example file: `yarn run example`
-- Test against nearley tester: `yarn run nearley-test --input 'CREATE TABLE test (test CHAR(1));'`
+- Test against nearley tester: `yarn run nearley-test lib/mysql/parser/grammar.js --input 'CREATE TABLE test (test CHAR(1));'`
 
 ### Debugging
 

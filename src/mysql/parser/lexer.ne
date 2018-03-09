@@ -14,8 +14,8 @@
 
 @{%
 const moo = require('moo');
-const utils = require('../shared/utils');
 
+const utils = require('../../shared/utils');
 const keywords = require('./dictionary/keywords');
 const symbols = require('./dictionary/symbols');
 

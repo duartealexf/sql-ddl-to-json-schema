@@ -1,6 +1,6 @@
 /**
- * This script gets contents of lexer.ne, and .ne files in rules folder,
- * concatenating them all to lib/compiled/grammar.ne, so it can be
+ * This script gets contents of lexer.ne, and .ne files in parser / rules,
+ * folder concatenating them all to lib/compiled/grammar.ne, so it can be
  * later compiled to grammar.js by nearleyc.
  *
  * It is also responsible for copying the dictionary and shared folder to
@@ -15,7 +15,7 @@ const winston = require('winston');
  * Get keywords to be matched as an identifier where
  * needed (see S_IDENTIFIER in lexer.ne file).
  */
-const keywords = require('./dictionary/keywords');
+const keywords = require('../../src/mysql/parser/dictionary/keywords');
 
 /**
  * Set up logger.
@@ -37,14 +37,23 @@ const projectRoot = path.join(__dirname, '..', '..');
 /**
  * Input.
  */
-const lexerFile = path.join(projectRoot, 'src', 'parser', 'lexer.ne');
-const rulesFolder = path.join(projectRoot, 'src', 'parser', 'rules');
+const srcFolder = path.join(projectRoot, 'src', 'mysql');
+const rulesFolder = path.join(srcFolder, 'parser', 'rules');
+const lexerFile = path.join(srcFolder, 'parser', 'lexer.ne');
 
 /**
  * Output.
  */
-const compiledFolder = path.join(projectRoot, 'lib', 'compiled');
-const nearleyGrammar = path.join(compiledFolder, 'grammar.ne');
+const compiledFolder = path.join(projectRoot, 'lib', 'mysql');
+const nearleyGrammar = path.join(compiledFolder, 'parser', 'grammar.ne');
+
+/**
+ * Other files and folder that are also copied.
+ */
+const dictionaryFrom = path.join(srcFolder, 'parser', 'dictionary');
+const dictionaryTo = path.join(compiledFolder, 'parser', 'dictionary');
+const sharedFrom = path.join(projectRoot, 'src', 'shared');
+const sharedTo = path.join(projectRoot, 'lib', 'shared');
 
 logger.info('Starting grammar assembly...');
 
@@ -173,10 +182,7 @@ const main = async() => {
   logger.info('Copying dictionary folder...');
 
   await new Promise(resolve =>
-    fs.copy(
-      path.join(projectRoot, 'src', 'parser', 'dictionary'),
-      path.join(projectRoot, 'lib', 'compiled', 'dictionary')
-    )
+    fs.copy(dictionaryFrom, dictionaryTo)
       .then(resolve)
       .catch(error => {
         lastError = error;
@@ -184,16 +190,18 @@ const main = async() => {
       })
   );
 
+  if (lastError) {
+    logger.error(`Error copying dictionary folder: ${lastError}`);
+    process.exit(1);
+  }
+
   /**
    * Copy shared folder.
    */
   logger.info('Copying shared folder...');
 
   await new Promise(resolve =>
-    fs.copy(
-      path.join(projectRoot, 'src', 'shared'),
-      path.join(projectRoot, 'lib', 'shared')
-    )
+    fs.copy(sharedFrom, sharedTo)
       .then(resolve)
       .catch(error => {
         lastError = error;

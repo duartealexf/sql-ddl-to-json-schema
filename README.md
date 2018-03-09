@@ -35,22 +35,27 @@ Folder structure:
 
 ```md
 /
-|- index.js              Entrypoint file, imports from lib/index.js
-|- lib/
-|  |- index.js           Imports parser class.
-|  |- parser.js          Parser class, which will be used by users.
-|  |- compiled/          Contains compiled grammar files.
+|- index.js               Entrypoint file, imports from lib/index.js
+|- lib/                   Compiled (dist) library folder, product of this project.
 |
-|- src
-|  |- parser/
-|     |- assembly.js     Script that concatenates all .ne files to grammar.ne.
-|     |- example.js      Serves development purpose for testing isolated statements.
-|     |- lexer.ne        Entrypoint and first lines of the grammar.
-|     |- dictionary/     Contains .js files with array of keywords used in lexer.ne.
-|     |- rules/          Contains .ne files with grammar rules.
-|     |- shared/         Shared files used by dictionary .js files.
+|- src/
+|  |- shared/             Shared files used by dialects, parsers and formatters.
+|  |- mysql/
+|     |- example.js       Serves development purpose for testing isolated statements.
+|     |- formatter/       Formats the parsed JSON (output of parser) to other format.
+|        |- compact/      Formatter for a compact JSON format.
+|        |- jsonschema/   Formatter for a JSON Schema format (not yet implemented).
+|     |- parser/
+|        |- dictionary/   JS files with array of keywords used in lexer.ne.
+|        |- rules/        Nearley files with grammar rules.
+|        |- lexer.ne      Entrypoint and first lines of the grammar.
 |
-|- test/                 Tests.
+|- tasks/
+|  |- mysql/
+|     |- assembly.js      Script that concatenates all .ne files to grammar.ne to lib folder.
+|     |- formatters.js    Script that sends a copy of formatters to lib folder.
+|
+|- test/                  Tests.
 ```
 
 - There are naming rules for tokens in ne files, as stated in `lexer.ne`. They are prepended with:

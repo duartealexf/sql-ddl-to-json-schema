@@ -1,6 +1,6 @@
 const winston = require('winston');
 
-const utils = require('../../shared/utils.js');
+const utils = require('../../../../shared/utils');
 const P_INDEX_COLUMN = require('./create-index').P_INDEX_COLUMN;
 const O_INDEX_OPTION = require('./create-index').O_INDEX_OPTION;
 const P_INDEX_TYPE = require('./create-index').P_INDEX_TYPE;

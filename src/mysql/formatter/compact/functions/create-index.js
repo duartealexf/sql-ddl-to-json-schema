@@ -1,4 +1,4 @@
-const utils = require('../../shared/utils.js');
+const utils = require('../../../../shared/utils');
 const winston = require('winston');
 
 winston.configure({

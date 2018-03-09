@@ -1,6 +1,6 @@
 const winston = require('winston');
 
-const utils = require('../../shared/utils');
+const utils = require('../../../../shared/utils');
 const P_CREATE_TABLE_OPTIONS = require('./create-table').P_CREATE_TABLE_OPTIONS;
 const O_COLUMN_DEFINITION = require('./create-table').O_COLUMN_DEFINITION;
 const P_COLUMN_REFERENCE = require('./create-table').P_COLUMN_REFERENCE;

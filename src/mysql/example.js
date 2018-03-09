@@ -1,4 +1,4 @@
-const Parser = require('../lib');
+const Parser = require('../../lib');
 
 const parser = new Parser('mysql');
 
@@ -7,4 +7,5 @@ parser.feed(
 );
 
 const value = parser.results;
-console.log(JSON.stringify(value, null, 2));
+const json = parser.toCompactJson(value);
+console.log(JSON.stringify(json, null, 2));

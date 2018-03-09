@@ -16,7 +16,7 @@
 
     "lint": "eslint lib test",
 
-    "prebuild:mysql": "node tasks/mysql/assembly.js",
+    "prebuild:mysql": "node tasks/mysql/assembly.js && node tasks/mysql/formatters.js",
     "build:mysql": "nearleyc lib/mysql/parser/grammar.ne > lib/mysql/parser/grammar.js",
     "build": "yarn run build:mysql",
 

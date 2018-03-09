@@ -37,21 +37,21 @@ const projectRoot = path.join(__dirname, '..', '..');
 /**
  * Input.
  */
-const srcFolder = path.join(projectRoot, 'src', 'mysql');
-const rulesFolder = path.join(srcFolder, 'parser', 'rules');
-const lexerFile = path.join(srcFolder, 'parser', 'lexer.ne');
+const srcFolder = path.join(projectRoot, 'src', 'mysql', 'parser');
+const rulesFolder = path.join(srcFolder, 'rules');
+const lexerFile = path.join(srcFolder, 'lexer.ne');
 
 /**
  * Output.
  */
-const compiledFolder = path.join(projectRoot, 'lib', 'mysql');
-const nearleyGrammar = path.join(compiledFolder, 'parser', 'grammar.ne');
+const compiledFolder = path.join(projectRoot, 'lib', 'mysql', 'parser');
+const nearleyGrammar = path.join(compiledFolder, 'grammar.ne');
 
 /**
  * Other files and folder that are also copied.
  */
-const dictionaryFrom = path.join(srcFolder, 'parser', 'dictionary');
-const dictionaryTo = path.join(compiledFolder, 'parser', 'dictionary');
+const dictionaryFrom = path.join(srcFolder, 'dictionary');
+const dictionaryTo = path.join(compiledFolder, 'dictionary');
 const sharedFrom = path.join(projectRoot, 'src', 'shared');
 const sharedTo = path.join(projectRoot, 'lib', 'shared');
 

@@ -47,6 +47,10 @@ const lexerFile = path.join(srcFolder, 'lexer.ne');
 const compiledFolder = path.join(projectRoot, 'lib', 'mysql', 'parser');
 const nearleyGrammar = path.join(compiledFolder, 'grammar.ne');
 
+if (!fs.existsSync(compiledFolder)) {
+  fs.mkdirSync(compiledFolder);
+}
+
 /**
  * Other files and folder that are also copied.
  */

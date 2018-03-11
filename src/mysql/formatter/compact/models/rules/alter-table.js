@@ -45,13 +45,13 @@ class AlterTable {
    */
   handleDef(json) {
     if (json.id !== 'P_ALTER_TABLE') {
-      throw new Error(`Expected P_ALTER_TABLE rule to be handled but received ${json.id}`);
+      throw new TypeError(`Expected P_ALTER_TABLE rule to be handled but received ${json.id}`);
     }
 
     const table = this.getTable(json.def.table);
 
     if (!table) {
-      throw new Error(`Found "ALTER TABLE" statement for an unexisting table ${json.def.table}`);
+      throw new TypeError(`Found "ALTER TABLE" statement for an unexisting table ${json.def.table}`);
     }
 
     /**
@@ -187,7 +187,8 @@ class AlterTable {
     const column = table.getColumn(json.column);
 
     if (!column) {
-      throw new Error(`Found "ALTER TABLE [SET DEFAULT COLUMN VALUE]" statement for an unexisting table column ${json.column}`);
+      // throw new Error(`Found "ALTER TABLE [SET DEFAULT COLUMN VALUE]" statement for an unexisting table column ${json.column}`);
+      return;
     }
 
     column.options.default = json.value;
@@ -204,7 +205,8 @@ class AlterTable {
     const column = table.getColumn(json.column);
 
     if (!column) {
-      throw new Error(`Found "ALTER TABLE [DROP DEFAULT COLUMN VALUE]" statement for an unexisting table column ${json.column}`);
+      // throw new Error(`Found "ALTER TABLE [DROP DEFAULT COLUMN VALUE]" statement for an unexisting table column ${json.column}`);
+      return;
     }
 
     delete column.options.default;
@@ -221,7 +223,8 @@ class AlterTable {
     const column = table.getColumn(json.column);
 
     if (!column) {
-      throw new Error(`Found "ALTER TABLE [CHANGE/MODIFY COLUMN]" statement for an unexisting table column ${json.column}`);
+      // throw new Error(`Found "ALTER TABLE [CHANGE/MODIFY COLUMN]" statement for an unexisting table column ${json.column}`);
+      return;
     }
 
     if (json.newName) {
@@ -265,7 +268,8 @@ class AlterTable {
     const column = table.getColumn(json.column);
 
     if (!column) {
-      throw new Error(`Found "ALTER TABLE [DROP COLUMN]" statement referencing unexisting column ${json.column}`);
+      // throw new Error(`Found "ALTER TABLE [DROP COLUMN]" statement referencing unexisting column ${json.column}`);
+      return;
     }
 
     table.dropColumn(column);
@@ -287,7 +291,8 @@ class AlterTable {
     const index = table.getIndex(json.index);
 
     if (!index) {
-      throw new Error(`Found "ALTER TABLE [DROP INDEX]" statement referencing unexisting index ${json.index}`);
+      // throw new Error(`Found "ALTER TABLE [DROP INDEX]" statement referencing unexisting index ${json.index}`);
+      return;
     }
 
     table.dropIndex(index);
@@ -315,7 +320,8 @@ class AlterTable {
     const foreignKey = table.getForeignKey(json.key);
 
     if (!foreignKey) {
-      throw new Error(`Found "ALTER TABLE [DROP FOREIGN KEY]" statement referencing unexisting key ${json.key}`);
+      // throw new Error(`Found "ALTER TABLE [DROP FOREIGN KEY]" statement referencing unexisting key ${json.key}`);
+      return;
     }
 
     table.dropForeignKey(foreignKey);
@@ -332,7 +338,8 @@ class AlterTable {
     const index = table.getIndex(json.index);
 
     if (!index) {
-      throw new Error(`Found "ALTER TABLE [RENAME INDEX]" statement for an unexisting table index ${json.index}`);
+      // throw new Error(`Found "ALTER TABLE [RENAME INDEX]" statement for an unexisting table index ${json.index}`);
+      return;
     }
 
     index.name = json.newName;

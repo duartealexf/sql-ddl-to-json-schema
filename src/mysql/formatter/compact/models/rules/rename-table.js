@@ -35,13 +35,14 @@ class RenameTable {
    */
   handleDef(json) {
     if (json.id !== 'P_RENAME_TABLE') {
-      throw new Error(`Expected P_RENAME_TABLE rule to be handled but received ${json.id}`);
+      throw new TypeError(`Expected P_RENAME_TABLE rule to be handled but received ${json.id}`);
     }
 
     const table = this.tables.find(t => t.name === json.def.table);
 
     if (!table) {
-      throw new Error(`Found "RENAME TABLE" statement for an unexisting table ${json.def.table}`);
+      // throw new Error(`Found "RENAME TABLE" statement for an unexisting table ${json.def.table}`);
+      return;
     }
 
     table.name = json.def.newName;

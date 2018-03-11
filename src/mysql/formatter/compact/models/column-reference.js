@@ -35,7 +35,7 @@ class ColumnReference {
       return columnReference;
     }
 
-    throw new Error(`Unknown json id to build column reference from: ${json.id}`);
+    throw new TypeError(`Unknown json id to build column reference from: ${json.id}`);
   }
 
   /**

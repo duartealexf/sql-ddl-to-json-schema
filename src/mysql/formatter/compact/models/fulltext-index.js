@@ -24,7 +24,7 @@ class FulltextIndex {
       return FulltextIndex.fromObject(json.def);
     }
 
-    throw new Error(`Unknown json id to build fulltext index from: ${json.id}`);
+    throw new TypeError(`Unknown json id to build fulltext index from: ${json.id}`);
   }
 
   /**

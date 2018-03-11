@@ -25,7 +25,7 @@ class Index {
       return Index.fromObject(json.def);
     }
 
-    throw new Error(`Unknown json id to build index from: ${json.id}`);
+    throw new TypeError(`Unknown json id to build index from: ${json.id}`);
   }
 
   /**

@@ -8,7 +8,8 @@ const runner = require('../runner');
 runner.run({
   'Should create test table with all types and options of columns.': {
     queries: [
-      `CREATE TABLE person (
+      `
+      CREATE TABLE person (
         id INT (10) UNSIGNED NOT NULL AUTO_INCREMENT KEY,
         age SMALLINT ZEROFILL NULL,
         ssn VARCHAR(255) UNIQUE,
@@ -29,6 +30,9 @@ runner.run({
         birthtime TIME,
         birthdate DATE,
         initials CHAR(5) CHARACTER SET utf8,
+        initials NATIONAL CHAR(5),
+        initials NCHAR(5),
+        initials CHARACTER(5),
         created_at DATETIME(3),
         updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
         avatar TINYBLOB,

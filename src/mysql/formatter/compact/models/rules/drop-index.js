@@ -35,19 +35,21 @@ class DropIndex {
    */
   handleDef(json) {
     if (json.id !== 'P_DROP_INDEX') {
-      throw new Error(`Expected P_DROP_INDEX rule to be handled but received ${json.id}`);
+      throw new TypeError(`Expected P_DROP_INDEX rule to be handled but received ${json.id}`);
     }
 
     const table = this.getTable(json.def.table);
 
     if (!table) {
-      throw new Error(`Found "DROP INDEX" statement for an unexisting table ${json.def.table}`);
+      // throw new Error(`Found "DROP INDEX" statement for an unexisting table ${json.def.table}`);
+      return;
     }
 
     const index = table.getIndex(json.def.index);
 
     if (!index) {
-      throw new Error(`Found "DROP INDEX" statement for an unexisting index ${json.def.index} in table ${json.def.table}`);
+      // throw new Error(`Found "DROP INDEX" statement for an unexisting index ${json.def.index} in table ${json.def.table}`);
+      return;
     }
 
     table.dropIndex(index);

@@ -24,7 +24,7 @@ class UniqueKey {
       return UniqueKey.fromObject(json.def);
     }
 
-    throw new Error(`Unknown json id to build unique key from: ${json.id}`);
+    throw new TypeError(`Unknown json id to build unique key from: ${json.id}`);
   }
 
   /**

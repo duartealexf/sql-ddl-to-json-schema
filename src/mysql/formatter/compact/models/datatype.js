@@ -21,7 +21,7 @@ class Datatype {
       return datatype;
     }
 
-    throw new Error(`Unknown json id to build datatype from: ${json.id}`);
+    throw new TypeError(`Unknown json id to build datatype from: ${json.id}`);
   }
 
   /**

@@ -39,13 +39,14 @@ class CreateIndex {
    */
   handleDef(json) {
     if (json.id !== 'P_CREATE_INDEX') {
-      throw new Error(`Expected P_CREATE_INDEX rule to be handled but received ${json.id}`);
+      throw new TypeError(`Expected P_CREATE_INDEX rule to be handled but received ${json.id}`);
     }
 
     const table = this.getTable(json.def.table);
 
     if (!table) {
-      throw new Error(`Found "CREATE INDEX" statement to an unexisting table ${json.def.table}`);
+      // throw new Error(`Found "CREATE INDEX" statement to an unexisting table ${json.def.table}`);
+      return;
     }
 
     const type = json.def.type.toLowerCase();

@@ -25,7 +25,7 @@ class CreateTable {
    */
   handleDef(json) {
     if (json.id !== 'P_CREATE_TABLE') {
-      throw new Error(`Expected P_CREATE_TABLE rule to be handled but received ${json.id}`);
+      throw new TypeError(`Expected P_CREATE_TABLE rule to be handled but received ${json.id}`);
     }
 
     json = json.def;

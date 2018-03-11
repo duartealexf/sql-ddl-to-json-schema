@@ -11,6 +11,7 @@ const utils = require('../../../../shared/utils');
 
 /**
  * Class to represent a table as parsed from SQL.
+ * TODO: create method to duplicate table, for 'CREATE TABLE LIKE', remove json prop.
  */
 class Table {
 
@@ -141,14 +142,15 @@ class Table {
       const alikeTable = tables.find(t => t.name === json.like);
 
       if (alikeTable) {
-        throw new Error(`Trying to "CREATE TABLE LIKE" unexisting table ${json.like}.`);
+        // throw new Error(`Trying to "CREATE TABLE LIKE" unexisting table ${json.like}.`);
+        return;
       }
 
       const table = Table.fromCommonDef(alikeTable.json);
       return table;
     }
 
-    throw new Error(`Unknown json id to build table from: ${json.id}`);
+    throw new TypeError(`Unknown json id to build table from: ${json.id}`);
   }
 
   /**
@@ -257,7 +259,8 @@ class Table {
       const refColumn = this.columns.find(c => c.name === position.after);
 
       if (!refColumn) {
-        throw new Error(`Trying to add a column ${column.name} to table ${this.name} after unexisting column ${position.after}`);
+        // throw new Error(`Trying to add a column ${column.name} to table ${this.name} after unexisting column ${position.after}`);
+        return;
       }
 
       const pos = this.columns.indexOf(refColumn);
@@ -338,7 +341,8 @@ class Table {
     const type = this.getIndexType(name);
 
     if (!type) {
-      throw new Error(`Trying to reference an unexsisting index ${name} on table ${this.name}`);
+      // throw new Error(`Trying to reference an unexsisting index ${name} on table ${this.name}`);
+      return;
     }
 
     return this[type].find(i => i.name === name);

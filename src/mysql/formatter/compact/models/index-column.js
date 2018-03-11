@@ -23,7 +23,7 @@ class IndexColumn {
       return indexColumn;
     }
 
-    throw new Error(`Unknown json id to build index column from: ${json.id}`);
+    throw new TypeError(`Unknown json id to build index column from: ${json.id}`);
   }
 
   /**

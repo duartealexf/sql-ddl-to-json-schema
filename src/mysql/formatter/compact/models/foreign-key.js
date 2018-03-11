@@ -20,7 +20,7 @@ class ForeignKey {
       return ForeignKey.fromObject(json.def.foreignKey);
     }
 
-    throw new Error(`Unknown json id to build foreign key from: ${json.id}`);
+    throw new TypeError(`Unknown json id to build foreign key from: ${json.id}`);
   }
 
   /**

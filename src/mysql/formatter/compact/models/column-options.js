@@ -34,7 +34,6 @@ class ColumnOptions {
      * If column is not 'NOT NULL', consider it 'NULL DEFAULT NULL'.
      */
     if (!utils.isDefined(columnOptions.nullable)) {
-      columnOptions.default = null;
       columnOptions.nullable = true;
     }
 

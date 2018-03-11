@@ -21,7 +21,7 @@ class Column {
    */
   static fromDef(json) {
     if (json.id !== 'O_CREATE_TABLE_CREATE_DEFINITION') {
-      throw new Error(`Unknown json id to build column from: ${json.id}`);
+      throw new TypeError(`Unknown json id to build column from: ${json.id}`);
     }
 
     json = json.def.column;

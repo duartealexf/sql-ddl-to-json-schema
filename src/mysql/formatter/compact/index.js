@@ -18,7 +18,7 @@ class CompactFormatter {
   static format(json) {
 
     if (json.id !== 'MAIN') {
-      throw new Error('Invalid JSON format provided for CompactFormatter. ' +
+      throw new TypeError('Invalid JSON format provided for CompactFormatter. ' +
         'Please provide JSON from root element, containing { id: MAIN }.'
       );
     }

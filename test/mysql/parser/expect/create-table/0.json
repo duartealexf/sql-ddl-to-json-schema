@@ -671,6 +671,69 @@
                   "id": "O_CREATE_TABLE_CREATE_DEFINITION",
                   "def": {
                     "column": {
+                      "name": "initials",
+                      "def": {
+                        "datatype": {
+                          "id": "O_DATATYPE",
+                          "def": {
+                            "id": "O_VARIABLE_STRING_DATATYPE",
+                            "def": {
+                              "datatype": "NATIONAL CHAR",
+                              "length": 5
+                            }
+                          }
+                        },
+                        "columnDefinition": []
+                      }
+                    }
+                  }
+                },
+                {
+                  "id": "O_CREATE_TABLE_CREATE_DEFINITION",
+                  "def": {
+                    "column": {
+                      "name": "initials",
+                      "def": {
+                        "datatype": {
+                          "id": "O_DATATYPE",
+                          "def": {
+                            "id": "O_VARIABLE_STRING_DATATYPE",
+                            "def": {
+                              "datatype": "NCHAR",
+                              "length": 5
+                            }
+                          }
+                        },
+                        "columnDefinition": []
+                      }
+                    }
+                  }
+                },
+                {
+                  "id": "O_CREATE_TABLE_CREATE_DEFINITION",
+                  "def": {
+                    "column": {
+                      "name": "initials",
+                      "def": {
+                        "datatype": {
+                          "id": "O_DATATYPE",
+                          "def": {
+                            "id": "O_VARIABLE_STRING_DATATYPE",
+                            "def": {
+                              "datatype": "CHARACTER",
+                              "length": 5
+                            }
+                          }
+                        },
+                        "columnDefinition": []
+                      }
+                    }
+                  }
+                },
+                {
+                  "id": "O_CREATE_TABLE_CREATE_DEFINITION",
+                  "def": {
+                    "column": {
                       "name": "created_at",
                       "def": {
                         "datatype": {
@@ -733,7 +796,8 @@
                           "def": {
                             "id": "O_FIXED_STRING_DATATYPE",
                             "def": {
-                              "datatype": "TINYBLOB"
+                              "datatype": "TINYBLOB",
+                              "length": 255
                             }
                           }
                         },

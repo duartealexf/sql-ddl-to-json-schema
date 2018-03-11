@@ -431,15 +431,16 @@ O_CREATE_TABLE_OPTION -> (
       }%}
   | %K_TABLESPACE __ S_IDENTIFIER (
     __ %K_STORAGE __ ( %K_DISK {% id %} | %K_MEMORY {% id %} | %K_DEFAULT {% id %} )
-      {% d => {
-        return { storage: d[3].value }
-      }%}
+      {% d => d[3].value %}
     ):?
       {% d => {
-        return {
-          tablespaceName: d[2],
-          tablespaceStorage: d[3] ? d[3].storage : null
+        const obj = { tablespaceName: d[2] };
+
+        if (d[3]) {
+          obj.tablespaceStorage = d[3];
         }
+
+        return obj;
       }%}
   | %K_UNION ( __ | _ %S_EQUAL _ ) %S_LPARENS _ S_IDENTIFIER ( _ %S_COMMA _ S_IDENTIFIER {% d => d[3] %} ):* _ %S_RPARENS
       {% d => {

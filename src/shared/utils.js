@@ -127,13 +127,13 @@ class Utils {
   }
 
   /**
-   * Test whether given value is defined.
+   * Test whether given value is defined and not null.
    *
    * @param {any} value Value to be tested.
    * @returns {boolean} Whether it is defined.
    */
   static isDefined(value) {
-    return typeof value !== 'undefined';
+    return typeof value !== 'undefined' && !(value === null);
   }
 }
 

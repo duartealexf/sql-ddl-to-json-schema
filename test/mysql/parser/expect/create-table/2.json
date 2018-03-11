@@ -241,8 +241,7 @@
                 {
                   "id": "O_CREATE_TABLE_OPTION",
                   "def": {
-                    "tablespaceName": "abc",
-                    "tablespaceStorage": null
+                    "tablespaceName": "abc"
                   }
                 },
                 {

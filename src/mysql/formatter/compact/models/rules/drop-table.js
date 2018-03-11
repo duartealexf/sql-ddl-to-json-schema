@@ -35,14 +35,15 @@ class DropTable {
    */
   handleDef(json) {
     if (json.id !== 'P_DROP_TABLE') {
-      throw new Error(`Expected P_DROP_TABLE rule to be handled but received ${json.id}`);
+      throw new TypeError(`Expected P_DROP_TABLE rule to be handled but received ${json.id}`);
     }
 
     json.def.forEach(table => {
       table = this.getTable(table);
 
       if (!table) {
-        throw new Error(`Found "DROP TABLE" statement for an unexisting table ${table}`);
+        // throw new Error(`Found "DROP TABLE" statement for an unexisting table ${table}`);
+        return;
       }
 
       const end = this.tables.splice(this.tables.indexOf(table));

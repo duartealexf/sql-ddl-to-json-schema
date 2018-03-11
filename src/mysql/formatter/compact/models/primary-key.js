@@ -20,7 +20,7 @@ class PrimaryKey {
       return PrimaryKey.fromObject(json.def.primaryKey);
     }
 
-    throw new Error(`Unknown json id to build primary key from: ${json.id}`);
+    throw new TypeError(`Unknown json id to build primary key from: ${json.id}`);
   }
 
   /**

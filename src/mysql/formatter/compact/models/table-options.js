@@ -16,7 +16,7 @@ class TableOptions {
       return TableOptions.fromArray(json.def);
     }
 
-    throw new Error(`Unknown json id to build table options from: ${json.id}`);
+    throw new TypeError(`Unknown json id to build table options from: ${json.id}`);
   }
 
   /**
@@ -136,7 +136,7 @@ class TableOptions {
     this.minRows = undefined;
 
     /**
-     * @type {number}
+     * @type {number|string}
      */
     this.packKeys = undefined;
 
@@ -156,12 +156,12 @@ class TableOptions {
     this.rowFormat = undefined;
 
     /**
-     * @type {string}
+     * @type {number|string}
      */
     this.statsAutoRecalc = undefined;
 
     /**
-     * @type {number}
+     * @type {number|string}
      */
     this.statsPersistent = undefined;
 

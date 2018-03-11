@@ -57,7 +57,7 @@ O_INTEGER_DATATYPE ->
 # https://mariadb.com/kb/en/data-types-numeric-data-types/
 
 O_FIXED_POINT_DATATYPE ->
-  (%K_DECIMAL {% id %} | %K_NUMERIC {% id %})
+  ( %K_DECIMAL {% id %} | %K_NUMERIC {% id %} )
   (
       _ %S_LPARENS _ %S_NUMBER _ %S_COMMA _ %S_NUMBER _ %S_RPARENS
         {% d => {
@@ -188,11 +188,17 @@ O_YEAR_DATATYPE ->
 # https://mariadb.com/kb/en/string-data-types/
 
 O_VARIABLE_STRING_DATATYPE -> (
-    ( %K_CHAR {% id %} | %K_BINARY {% id %} )
+    (
+        %K_NCHAR {% d => d[0].value %}
+      | %K_NATIONAL __ %K_CHAR {% d => d[0].value + ' ' + d[2].value %}
+      | %K_CHARACTER {% d => d[0].value %}
+      | %K_CHAR {% d => d[0].value %}
+      | %K_BINARY {% d => d[0].value %}
+    )
     ( _ %S_LPARENS _ %S_NUMBER _ %S_RPARENS {% d => d[3].value %} ):?
       {% d => {
         return {
-          datatype: d[0].value,
+          datatype: d[0],
           length: d[1] || 1
         }
       }%}
@@ -226,12 +232,12 @@ O_FIXED_STRING_DATATYPE -> (
           length: d[1]
         }
       }%}
-  | %K_TINYBLOB     {% d => { return { datatype: d[0].value }} %}
-  | %K_MEDIUMBLOB   {% d => { return { datatype: d[0].value }} %}
-  | %K_LONGBLOB     {% d => { return { datatype: d[0].value }} %}
-  | %K_TINYTEXT     {% d => { return { datatype: d[0].value }} %}
-  | %K_MEDIUMTEXT   {% d => { return { datatype: d[0].value }} %}
-  | %K_LONGTEXT     {% d => { return { datatype: d[0].value }} %}
+  | %K_TINYBLOB     {% d => { return { datatype: d[0].value, length: 255 }} %}
+  | %K_MEDIUMBLOB   {% d => { return { datatype: d[0].value, length: 16777215 }} %}
+  | %K_LONGBLOB     {% d => { return { datatype: d[0].value, length: 4294967295 }} %}
+  | %K_TINYTEXT     {% d => { return { datatype: d[0].value, length: 255 }} %}
+  | %K_MEDIUMTEXT   {% d => { return { datatype: d[0].value, length: 16777215 }} %}
+  | %K_LONGTEXT     {% d => { return { datatype: d[0].value, length: 4294967295 }} %}
 )
   {% d => {
     return {

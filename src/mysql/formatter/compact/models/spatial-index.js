@@ -24,7 +24,7 @@ class SpatialIndex {
       return SpatialIndex.fromObject(json.def);
     }
 
-    throw new Error(`Unknown json id to build spatial index from: ${json.id}`);
+    throw new TypeError(`Unknown json id to build spatial index from: ${json.id}`);
   }
 
   /**

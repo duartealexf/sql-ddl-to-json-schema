@@ -40,6 +40,18 @@ class ColumnReferenceOn {
      */
     this.action = undefined;
   }
+
+  /**
+   * JSON casting of this object calls this method.
+   *
+   * @returns {any} JSON format.
+   */
+  toJSON() {
+    return {
+      trigger: this.trigger,
+      action: this.action
+    };
+  }
 }
 
 module.exports = ColumnReferenceOn;

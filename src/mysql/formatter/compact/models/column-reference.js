@@ -70,15 +70,16 @@ class ColumnReference {
    * @returns {any} JSON format.
    */
   toJSON() {
-    return Object.entries(this)
-      .filter(([k, v]) =>
-        (utils.isArray(this[k]) && this[k].length) ||
-        (!utils.isArray(this[k]) && utils.isDefined(this[k]))
-      )
-      .reduce((obj, [k, v]) => {
-        obj[k] = v;
-        return obj;
-      }, {});
+    const json = {};
+
+    json.table = this.table;
+
+    if (utils.isDefined(this.match)) { json.match   = this.match; }
+    if (utils.isDefined(this.on))    { json.on      = this.on.toJSON(); }
+
+    if (this.columns.length)         { json.columns = this.columns.map(c => c.toJSON()); }
+
+    return json;
   }
 }
 

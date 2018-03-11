@@ -138,19 +138,43 @@ class ColumnOptions {
    * @returns {any} JSON format.
    */
   toJSON() {
-    return Object.entries(this)
-      .filter(([k, v]) =>
-        utils.isDefined(this[k])
-      )
-      .reduce((obj, [k, v]) => {
-        obj[k] = v;
-        return obj;
-      }, {});
+    const json = {};
+
+    if (utils.isDefined(this.unsigned))      { json.unsigned      = this.unsigned; }
+    if (utils.isDefined(this.zerofill))      { json.zerofill      = this.zerofill; }
+    if (utils.isDefined(this.charset))       { json.charset       = this.charset; }
+    if (utils.isDefined(this.collation))     { json.collation     = this.collation; }
+    if (utils.isDefined(this.nullable))      { json.nullable      = this.nullable; }
+    if (utils.isDefined(this.nullable))      { json.nullable      = this.nullable; }
+    if (utils.isDefined(this.default))       { json.default       = this.default; }
+    if (utils.isDefined(this.autoincrement)) { json.autoincrement = this.autoincrement; }
+    if (utils.isDefined(this.unique))        { json.unique        = this.unique; }
+    if (utils.isDefined(this.primary))       { json.primary       = this.primary; }
+    if (utils.isDefined(this.invisible))     { json.invisible     = this.invisible; }
+    if (utils.isDefined(this.format))        { json.format        = this.format; }
+    if (utils.isDefined(this.storage))       { json.storage       = this.storage; }
+    if (utils.isDefined(this.comment))       { json.comment       = this.comment; }
+    if (utils.isDefined(this.reference))     { json.reference     = this.reference.toJSON(); }
+
+    if (utils.isDefined(this.invisibleWithSystemVersioning)) {
+      json.invisibleWithSystemVersioning = this.invisibleWithSystemVersioning;
+    }
+
+    if (utils.isDefined(this.invisibleWithoutSystemVersioning)) {
+      json.invisibleWithoutSystemVersioning = this.invisibleWithoutSystemVersioning;
+    }
+
+    return json;
   }
 
   /**
-   * Merge this option instance with another one.
-   * Common properties of this instance are overwritten.
+   * Merge this option instance with another one. {
+   * json..
+ = .this..
+;}
+
+
+return json;* Common properties of this instance are overwritten.
    *
    * @param {ColumnOptions} options JSON format parsed from SQL.
    * @returns {void}

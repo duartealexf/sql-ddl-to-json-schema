@@ -207,14 +207,42 @@ class TableOptions {
    * @returns {any} JSON format.
    */
   toJSON() {
-    return Object.entries(this)
-      .filter(([k, v]) =>
-        utils.isDefined(this[k])
-      )
-      .reduce((obj, [k, v]) => {
-        obj[k] = v;
-        return obj;
-      }, {});
+    const json = {};
+
+    if (utils.isDefined(this.autoincrement))        { json.autoincrement        = this.autoincrement; }
+    if (utils.isDefined(this.avgRowLength))         { json.avgRowLength         = this.avgRowLength; }
+    if (utils.isDefined(this.charset))              { json.charset              = this.charset; }
+    if (utils.isDefined(this.checksum))             { json.checksum             = this.checksum; }
+    if (utils.isDefined(this.collation))            { json.collation            = this.collation; }
+    if (utils.isDefined(this.comment))              { json.comment              = this.comment; }
+    if (utils.isDefined(this.compression))          { json.compression          = this.compression; }
+    if (utils.isDefined(this.connection))           { json.connection           = this.connection; }
+    if (utils.isDefined(this.directoryName))        { json.directoryName        = this.directoryName; }
+    if (utils.isDefined(this.directoryType))        { json.directoryType        = this.directoryType; }
+    if (utils.isDefined(this.delayKeyWrite))        { json.delayKeyWrite        = this.delayKeyWrite; }
+    if (utils.isDefined(this.encrytion))            { json.encrytion            = this.encrytion; }
+    if (utils.isDefined(this.encrytionKeyId))       { json.encrytionKeyId       = this.encrytionKeyId; }
+    if (utils.isDefined(this.ietfQuotes))           { json.ietfQuotes           = this.ietfQuotes; }
+    if (utils.isDefined(this.engine))               { json.engine               = this.engine; }
+    if (utils.isDefined(this.insertMethod))         { json.insertMethod         = this.insertMethod; }
+    if (utils.isDefined(this.keyBlockSize))         { json.keyBlockSize         = this.keyBlockSize; }
+    if (utils.isDefined(this.maxRows))              { json.maxRows              = this.maxRows; }
+    if (utils.isDefined(this.minRows))              { json.minRows              = this.minRows; }
+    if (utils.isDefined(this.packKeys))             { json.packKeys             = this.packKeys; }
+    if (utils.isDefined(this.pageChecksum))         { json.pageChecksum         = this.pageChecksum; }
+    if (utils.isDefined(this.password))             { json.password             = this.password; }
+    if (utils.isDefined(this.rowFormat))            { json.rowFormat            = this.rowFormat; }
+    if (utils.isDefined(this.statsAutoRecalc))      { json.statsAutoRecalc      = this.statsAutoRecalc; }
+    if (utils.isDefined(this.statsPersistent))      { json.statsPersistent      = this.statsPersistent; }
+    if (utils.isDefined(this.statsSamplePages))     { json.statsSamplePages     = this.statsSamplePages; }
+    if (utils.isDefined(this.transactional))        { json.transactional        = this.transactional; }
+    if (utils.isDefined(this.withSystemVersioning)) { json.withSystemVersioning = this.withSystemVersioning; }
+    if (utils.isDefined(this.storagetablespace))    { json.storagetablespace    = this.storagetablespace; }
+    if (utils.isDefined(this.tablespaceName))       { json.tablespaceName       = this.tablespaceName; }
+    if (utils.isDefined(this.tablespaceStorage))    { json.tablespaceStorage    = this.tablespaceStorage; }
+    if (utils.isDefined(this.union))                { json.union                = this.union; }
+
+    return json;
   }
 
   /**

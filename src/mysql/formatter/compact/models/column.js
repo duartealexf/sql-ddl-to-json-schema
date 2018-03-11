@@ -97,19 +97,6 @@ class Column {
      * @type {UniqueKey}
      */
     this.extractedUniqueKey = null;
-
-    /**
-     * Hidden properties from output JSON format.
-     */
-    this.hiddenProperties = [
-      'hiddenProperties',
-      'isPrimaryKeyExtracted',
-      'isForeignKeyExtracted',
-      'isUniqueKeyExtracted',
-      'extractedPrimaryKey',
-      'extractedForeignKey',
-      'extractedUniqueKey',
-    ];
   }
 
   /**
@@ -118,18 +105,14 @@ class Column {
    * @returns {any} JSON format.
    */
   toJSON() {
-    return Object.entries(this)
-      .filter(([k, v]) =>
-        !this.hiddenProperties.includes(k) &&
-        (
-          (utils.isArray(this[k]) && this[k].length) ||
-          (!utils.isArray(this[k]) && utils.isDefined(this[k]))
-        )
-      )
-      .reduce((obj, [k, v]) => {
-        obj[k] = v;
-        return obj;
-      }, {});
+    const json = {
+      name: this.name,
+      type: this.type.toJSON()
+    };
+
+    if (utils.isDefined(this.options)) { json.options = this.options.toJSON(); }
+
+    return json;
   }
 
   /**

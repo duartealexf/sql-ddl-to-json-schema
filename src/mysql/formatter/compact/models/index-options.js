@@ -63,14 +63,16 @@ class IndexOptions {
    * @returns {any} JSON format.
    */
   toJSON() {
-    return Object.entries(this)
-      .filter(([k, v]) =>
-        utils.isDefined(this[k])
-      )
-      .reduce((obj, [k, v]) => {
-        obj[k] = v;
-        return obj;
-      }, {});
+    const json = {};
+
+    if (utils.isDefined(this.keyBlockSize)) { json.keyBlockSize = this.keyBlockSize; }
+    if (utils.isDefined(this.indexType))    { json.indexType    = this.indexType; }
+    if (utils.isDefined(this.algorithm))    { json.algorithm    = this.algorithm; }
+    if (utils.isDefined(this.comment))      { json.comment      = this.comment; }
+    if (utils.isDefined(this.parser))       { json.parser       = this.parser; }
+    if (utils.isDefined(this.lock))         { json.lock         = this.lock; }
+
+    return json;
   }
 }
 

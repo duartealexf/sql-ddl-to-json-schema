@@ -95,14 +95,18 @@ class Datatype {
    * @returns {any} JSON format.
    */
   toJSON() {
-    return Object.entries(this)
-      .filter(([k, v]) =>
-        utils.isDefined(this[k])
-      )
-      .reduce((obj, [k, v]) => {
-        obj[k] = v;
-        return obj;
-      }, {});
+    const json = {
+      datatype: this.datatype
+    };
+
+    if (utils.isDefined(this.width))      { json.width      = this.width; }
+    if (utils.isDefined(this.digits))     { json.digits     = this.digits; }
+    if (utils.isDefined(this.decimals))   { json.decimals   = this.decimals; }
+    if (utils.isDefined(this.length))     { json.length     = this.length; }
+    if (utils.isDefined(this.fractional)) { json.fractional = this.fractional; }
+    if (utils.isDefined(this.values))     { json.values     = this.values; }
+
+    return json;
   }
 }
 

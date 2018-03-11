@@ -214,14 +214,6 @@ class Table {
      * @type {PrimaryKey}
      */
     this.primaryKey = undefined;
-
-    /**
-     * Hidden properties from output JSON format.
-     */
-    this.hiddenProperties = [
-      'hiddenProperties',
-      'json',
-    ];
   }
 
   /**
@@ -230,18 +222,21 @@ class Table {
    * @returns {any} JSON format.
    */
   toJSON() {
-    return Object.entries(this)
-      .filter(([k, v]) =>
-        !this.hiddenProperties.includes(k) &&
-        (
-          (utils.isArray(this[k]) && this[k].length) ||
-          (!utils.isArray(this[k]) && utils.isDefined(this[k]))
-        )
-      )
-      .reduce((obj, [k, v]) => {
-        obj[k] = v;
-        return obj;
-      }, {});
+    const json = {
+      name: this.name,
+      columns: this.columns.map(c => c.toJSON())
+    };
+
+    if (utils.isDefined(this.primaryKey)) { json.primaryKey      = this.primaryKey.toJSON(); }
+    if (utils.isDefined(this.options))    { json.options         = this.options.toJSON(); }
+
+    if (this.fulltextIndexes.length)      { json.fulltextIndexes = this.fulltextIndexes.map(i => i.toJSON()); }
+    if (this.spatialIndexes.length)       { json.spatialIndexes  = this.spatialIndexes.map(i => i.toJSON()); }
+    if (this.foreignKeys.length)          { json.foreignKeys     = this.foreignKeys.map(k => k.toJSON()); }
+    if (this.uniqueKeys.length)           { json.uniqueKeys      = this.uniqueKeys.map(k => k.toJSON()); }
+    if (this.indexes.length)              { json.indexes         = this.indexes.map(i => i.toJSON()); }
+
+    return json;
   }
 
   /**

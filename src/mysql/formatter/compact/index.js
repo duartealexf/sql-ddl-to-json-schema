@@ -13,7 +13,7 @@ class CompactFormatter {
    * format containing array of tables.
    *
    * @param {any} json Parsed JSON format.
-   * @returns {Table[]} Compact format.
+   * @returns {any[]} Compact format.
    */
   static format(json) {
 
@@ -25,7 +25,7 @@ class CompactFormatter {
 
     const main = new Main();
     main.parseDdsCollection(json.def);
-    return main.getTables();
+    return main.getTables().map(t => t.toJSON());
   }
 }
 

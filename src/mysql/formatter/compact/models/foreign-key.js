@@ -73,15 +73,15 @@ class ForeignKey {
    * @returns {any} JSON format.
    */
   toJSON() {
-    return Object.entries(this)
-      .filter(([k, v]) =>
-        (utils.isArray(this[k]) && this[k].length) ||
-        (!utils.isArray(this[k]) && utils.isDefined(this[k]))
-      )
-      .reduce((obj, [k, v]) => {
-        obj[k] = v;
-        return obj;
-      }, {});
+    const json = {
+      columns: this.columns.map(c => c.toJSON()),
+      reference: this.reference.toJSON()
+    };
+
+    if (utils.isDefined(this.symbol)) { json.symbol = this.symbol; }
+    if (utils.isDefined(this.name))   { json.name   = this.name; }
+
+    return json;
   }
 
   /**

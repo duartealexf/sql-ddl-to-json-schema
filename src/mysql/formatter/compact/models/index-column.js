@@ -53,14 +53,14 @@ class IndexColumn {
    * @returns {any} JSON format.
    */
   toJSON() {
-    return Object.entries(this)
-      .filter(([k, v]) =>
-        utils.isDefined(this[k])
-      )
-      .reduce((obj, [k, v]) => {
-        obj[k] = v;
-        return obj;
-      }, {});
+    const json = {
+      column: this.column
+    };
+
+    if (utils.isDefined(this.length)) { json.length = this.length; }
+    if (utils.isDefined(this.sort))   { json.sort   = this.sort; }
+
+    return json;
   }
 }
 

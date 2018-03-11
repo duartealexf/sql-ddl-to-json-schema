@@ -1,10 +1,10 @@
 /**
  * This script gets contents of lexer.ne, and .ne files in parser / rules,
- * folder concatenating them all to lib/compiled/grammar.ne, so it can be
+ * folder concatenating them all to lib/mysql/grammar.ne, so it can be
  * later compiled to grammar.js by nearleyc.
  *
  * It is also responsible for copying the dictionary and shared folder to
- * lib/compiled folder (so it can be read by the compiled grammar files).
+ * lib/mysql folder (so it can be read by the compiled grammar files).
  */
 
 const fs = require('fs-extra');

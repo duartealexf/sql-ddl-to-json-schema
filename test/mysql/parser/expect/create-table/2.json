@@ -119,15 +119,15 @@
                 {
                   "id": "O_CREATE_TABLE_OPTION",
                   "def": {
-                    "directory": "/var/lib/mariadb/data",
-                    "type": "DATA"
+                    "directoryName": "/var/lib/mariadb/data",
+                    "directoryType": "DATA"
                   }
                 },
                 {
                   "id": "O_CREATE_TABLE_OPTION",
                   "def": {
-                    "directory": "/var/lib/mariadb/index",
-                    "type": "INDEX"
+                    "directoryName": "/var/lib/mariadb/index",
+                    "directoryType": "INDEX"
                   }
                 },
                 {
@@ -241,19 +241,15 @@
                 {
                   "id": "O_CREATE_TABLE_OPTION",
                   "def": {
-                    "tablespace": {
-                      "name": "abc",
-                      "storage": null
-                    }
+                    "tablespaceName": "abc",
+                    "tablespaceStorage": null
                   }
                 },
                 {
                   "id": "O_CREATE_TABLE_OPTION",
                   "def": {
-                    "tablespace": {
-                      "name": "qwe",
-                      "storage": "DISK"
-                    }
+                    "tablespaceName": "qwe",
+                    "tablespaceStorage": "DISK"
                   }
                 },
                 {

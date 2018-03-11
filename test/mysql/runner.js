@@ -8,9 +8,9 @@ module.exports = {
 
       test.queries.forEach(query => {
 
-        const testname = `${description} | ${query}`;
+        const testname = `Parser: ${description} \n ${query}`;
 
-        const parser = new Parser();
+        const parser = new Parser('mysql');
         parser.feed(query);
 
         ava(testname, t => {

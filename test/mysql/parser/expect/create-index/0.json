@@ -46,11 +46,15 @@
             },
             {
               "id": "P_INDEX_ALGORITHM_OPTION",
-              "def": "DEFAULT"
+              "def": {
+                "algorithm": "DEFAULT"
+              }
             },
             {
               "id": "P_LOCK_OPTION",
-              "def": "DEFAULT"
+              "def": {
+                "lock": "DEFAULT"
+              }
             }
           ]
         }
@@ -78,11 +82,15 @@
           "options": [
             {
               "id": "P_INDEX_ALGORITHM_OPTION",
-              "def": "inplace"
+              "def": {
+                "algorithm": "inplace"
+              }
             },
             {
               "id": "P_LOCK_OPTION",
-              "def": "none"
+              "def": {
+                "lock": "none"
+              }
             }
           ]
         }
@@ -110,7 +118,9 @@
           "options": [
             {
               "id": "P_INDEX_ALGORITHM_OPTION",
-              "def": "copy"
+              "def": {
+                "algorithm": "copy"
+              }
             }
           ]
         }

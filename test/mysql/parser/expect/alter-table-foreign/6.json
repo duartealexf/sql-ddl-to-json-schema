@@ -1,29 +1,49 @@
-{
-  "id": "MAIN",
-  "def": [
-    {
-      "id": "P_DDS",
-      "def": {
-        "id": "P_ALTER_TABLE",
+  {
+    "id": "MAIN",
+    "def": [
+      {
+        "id": "P_DDS",
         "def": {
-          "table": "people",
-          "specs": [
-            {
-              "id": "P_ALTER_TABLE_SPECS",
-              "def": {
-                "tableOptions": null,
-                "spec": {
-                  "id": "O_ALTER_TABLE_SPEC",
-                  "def": {
-                    "action": "dropForeignKey",
-                    "key": "fk_oid"
+          "id": "P_ALTER_TABLE",
+          "def": {
+            "table": "people",
+            "specs": [
+              {
+                "id": "P_ALTER_TABLE_SPECS",
+                "def": {
+                  "tableOptions": null,
+                  "spec": {
+                    "id": "O_ALTER_TABLE_SPEC",
+                    "def": {
+                      "action": "addForeignKey",
+                      "symbol": null,
+                      "name": null,
+                      "columns": [
+                        {
+                          "id": "P_INDEX_COLUMN",
+                          "def": {
+                            "column": "o_id",
+                            "length": null,
+                            "sort": null
+                          }
+                        }
+                      ],
+                      "reference": {
+                        "id": "P_COLUMN_REFERENCE",
+                        "def": {
+                          "table": "other",
+                          "columns": [],
+                          "match": null,
+                          "on": []
+                        }
+                      }
+                    }
                   }
                 }
               }
-            }
-          ]
+            ]
+          }
         }
       }
-    }
-  ]
-}
+    ]
+  }

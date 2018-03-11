@@ -294,7 +294,7 @@ P_COLUMN_REFERENCE ->
         id: 'P_COLUMN_REFERENCE',
         def: {
           table: d[2],
-          columns: d[3],
+          columns: d[3] || [],
           match: d[4],
           on: d[5] || []
         }
@@ -352,8 +352,8 @@ O_CREATE_TABLE_OPTION -> (
   | ( %K_DATA __ {% id %} | %K_INDEX __ {% id %} ) %K_DIRECTORY ( __ | _ %S_EQUAL _ ) O_QUOTED_STRING
       {% d => {
         return {
-          directory: d[3],
-          type: d[0].value
+          directoryName: d[3],
+          directoryType: d[0].value
         }
       }%}
   | %K_DELAY_KEY_WRITE ( __ | _ %S_EQUAL _ ) %S_NUMBER
@@ -437,10 +437,8 @@ O_CREATE_TABLE_OPTION -> (
     ):?
       {% d => {
         return {
-          tablespace: {
-            name: d[2],
-            storage: d[3] ? d[3].storage : null
-          }
+          tablespaceName: d[2],
+          tablespaceStorage: d[3] ? d[3].storage : null
         }
       }%}
   | %K_UNION ( __ | _ %S_EQUAL _ ) %S_LPARENS _ S_IDENTIFIER ( _ %S_COMMA _ S_IDENTIFIER {% d => d[3] %} ):* _ %S_RPARENS

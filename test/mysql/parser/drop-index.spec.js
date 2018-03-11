@@ -15,7 +15,7 @@ runner.run({
             def: {
               index: "i_oid",
               table: "people",
-              options: null
+              options: []
             }
           }
         }
@@ -25,9 +25,9 @@ runner.run({
 
   'Should drop index with algorithm option.': {
     queries: [
-      'drop index i_oid on people algorithm default;',
-      'drop index i_oid on people algorithm=default;',
-      'drop index i_oid on people algorithm = default;',
+      'drop index i_oid on people algorithm default lock none;',
+      'drop index i_oid on people algorithm=default lock=none;',
+      'drop index i_oid on people algorithm = default lock = none;',
     ],
     expect: {
       id: "MAIN",
@@ -39,10 +39,20 @@ runner.run({
             def: {
               index: "i_oid",
               table: "people",
-              options: {
-                id: "P_INDEX_ALGORITHM_OPTION",
-                def: "default"
-              }
+              options: [
+                {
+                  id: "P_INDEX_ALGORITHM_OPTION",
+                  def: {
+                    algorithm: "default"
+                  }
+                },
+                {
+                  id: "P_LOCK_OPTION",
+                  def: {
+                    lock: "none"
+                  }
+                }
+              ]
             }
           }
         }
@@ -66,10 +76,14 @@ runner.run({
             def: {
               index: "i_oid",
               table: "people",
-              options: {
-                id: "P_LOCK_OPTION",
-                def: "default"
-              }
+              options: [
+                {
+                  id: "P_LOCK_OPTION",
+                  def: {
+                    lock: "default"
+                  }
+                }
+              ]
             }
           }
         }

@@ -5,6 +5,7 @@ const expect3 = require('./expect/alter-table-foreign/3.json');
 const expect4 = require('./expect/alter-table-foreign/4.json');
 const expect5 = require('./expect/alter-table-foreign/5.json');
 const expect6 = require('./expect/alter-table-foreign/6.json');
+const expect7 = require('./expect/alter-table-foreign/7.json');
 const runner = require('../runner');
 
 runner.run({
@@ -51,10 +52,17 @@ runner.run({
     expect: expect5,
   },
 
+  'Should alter table adding foreign key with unnamed reference column.': {
+    queries: [
+      `ALTER TABLE people add foreign key (o_id) references other;`
+    ],
+    expect: expect6,
+  },
+
   'Should alter table dropping foreign key.': {
     queries: [
       `ALTER TABLE people drop foreign key fk_oid;`
     ],
-    expect: expect6,
+    expect: expect7,
   }
 });

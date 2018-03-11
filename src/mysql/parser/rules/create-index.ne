@@ -134,7 +134,9 @@ P_INDEX_ALGORITHM_OPTION ->
     {% d => {
       return {
         id: 'P_INDEX_ALGORITHM_OPTION',
-        def: d[2].value
+        def: {
+          algorithm: d[2].value
+        }
       }
     }%}
 
@@ -149,6 +151,8 @@ P_LOCK_OPTION ->
     {% d => {
       return {
         id: 'P_LOCK_OPTION',
-        def: d[2].value
+        def: {
+          lock: d[2].value
+        }
       }
     }%}

@@ -92,39 +92,33 @@ To debug tests you may want to change the args as you go.
 
 ```json
 {
-    "version": "0.2.0",
-    "configurations": [
-      {
-        "type": "node",
-        "request": "launch",
-        "name": "Debug Compilation",
-        "args": [
-          "lib/compiled/grammar.ne"
-        ],
-        "program": "${workspaceFolder}/node_modules/nearley/bin/nearleyc.js"
-      },
-      {
-        "type": "node",
-        "request": "launch",
-        "name": "Debug Tests",
-        "args": [
-          "test/create-table.js"
-        ],
-        "program": "${workspaceFolder}/node_modules/ava/profile.js"
-      },
-      {
-        "type": "node",
-        "request": "launch",
-        "name": "Debug Example",
-        "program": "${workspaceFolder}/src/parser/example.js"
-      },
-      {
-        "type": "node",
-        "request": "launch",
-        "name": "Debug Assembly",
-        "program": "${workspaceFolder}/src/parser/assembly.js"
-      }
-    ]
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Debug Compilation",
+      "args": [
+        "lib/mysql/parser/grammar.ne"
+      ],
+      "program": "${workspaceFolder}/node_modules/nearley/bin/nearleyc.js"
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Debug Tests",
+      "args": [
+        "test/mysql/parser/parser.spec.js"
+      ],
+      "program": "${workspaceFolder}/node_modules/ava/profile.js"
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Debug Example",
+      "program": "${workspaceFolder}/src/mysql/example.js"
+    }
+  ]
 }
 
 ```

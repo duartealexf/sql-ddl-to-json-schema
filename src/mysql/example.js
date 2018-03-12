@@ -2,7 +2,9 @@ const Parser = require('../../lib');
 
 const parser = new Parser('mysql');
 
-parser.feed(`CREATE TABLE person (
+parser.feed(`
+
+CREATE TABLE person (
   id INT(10) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT KEY COMMENT 'primary key test',
   name TEXT NOT NULL DEFAULT 'Jane "Doe" O\`neil' character set utf8 collate utf8_general_ci,
   nickname VARCHAR(20) DEFAULT 'J',
@@ -13,8 +15,10 @@ parser.feed(`CREATE TABLE person (
   dob DATE INVISIBLE,
   tob TIME(3),
   initials CHAR(3) COLUMN_FORMAT FIXED,
+  prefix NCHAR(3) COLUMN_FORMAT FIXED,
+  suffix NATIONAL CHAR COLUMN_FORMAT FIXED,
   sequence VARBINARY(20) STORAGE DISK,
-  avatar BLOB,
+  avatar BLOB NULL,
   motto TEXT(50),
   history TINYTEXT,
   gender ENUM('M', 'F'),
@@ -28,8 +32,9 @@ avg_row_length 250,
 default character set utf8,
 default collate utf8_general_ci,
 checksum = 1,
-comment 'test table', engine 'XtraDB',
-compression = zlib,
+comment 'test table',
+engine 'XtraDB',
+compression = zLIB,
 insert_method lasT,
 union (pet)
 ;
@@ -75,6 +80,7 @@ CREATE TABLE house (
   pet_id TINYINT,
   coordx FLOAT (6,2),
   coordy DOUBLE,
+  letter CHARACTER,
   is_built BOOL,
   is_apartment BOOLEAN,
   updated_at TIMESTAMP,

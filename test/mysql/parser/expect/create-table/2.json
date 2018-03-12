@@ -139,13 +139,13 @@
                 {
                   "id": "O_CREATE_TABLE_OPTION",
                   "def": {
-                    "encrytion": "Y"
+                    "encryption": "Y"
                   }
                 },
                 {
                   "id": "O_CREATE_TABLE_OPTION",
                   "def": {
-                    "encrytionKeyId": 1
+                    "encryptionKeyId": 1
                   }
                 },
                 {

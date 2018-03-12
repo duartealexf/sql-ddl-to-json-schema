@@ -32,19 +32,22 @@ class Datatype {
    */
   static filterDatatype(term) {
     term = term.toLowerCase();
-    if (term === 'integer')     { return 'int'; }
-    if (term === 'tinyint')     { return 'int'; }
-    if (term === 'smallint')    { return 'int'; }
-    if (term === 'mediumint')   { return 'int'; }
-    if (term === 'bigint')      { return 'int'; }
-    if (term === 'numeric')     { return 'decimal'; }
-    if (term === 'bool')        { return 'boolean'; }
-    if (term === 'tinyblob')    { return 'blob'; }
-    if (term === 'mediumblob')  { return 'blob'; }
-    if (term === 'longblob')    { return 'blob'; }
-    if (term === 'tinytext')    { return 'text'; }
-    if (term === 'mediumtext')  { return 'text'; }
-    if (term === 'longtext')    { return 'text'; }
+    if (term === 'integer')       { return 'int'; }
+    if (term === 'tinyint')       { return 'int'; }
+    if (term === 'smallint')      { return 'int'; }
+    if (term === 'mediumint')     { return 'int'; }
+    if (term === 'bigint')        { return 'int'; }
+    if (term === 'numeric')       { return 'decimal'; }
+    if (term === 'bool')          { return 'boolean'; }
+    if (term === 'tinyblob')      { return 'blob'; }
+    if (term === 'mediumblob')    { return 'blob'; }
+    if (term === 'longblob')      { return 'blob'; }
+    if (term === 'tinytext')      { return 'text'; }
+    if (term === 'mediumtext')    { return 'text'; }
+    if (term === 'longtext')      { return 'text'; }
+    if (term === 'national char') { return 'char'; }
+    if (term === 'character')     { return 'char'; }
+    if (term === 'nchar')         { return 'char'; }
     return term;
   }
 

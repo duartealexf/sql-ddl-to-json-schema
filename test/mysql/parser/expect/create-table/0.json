@@ -132,7 +132,7 @@
                             "id": "O_FIXED_STRING_DATATYPE",
                             "def": {
                               "datatype": "TEXT",
-                              "length": null
+                              "length": 65535
                             }
                           }
                         },
@@ -312,10 +312,8 @@
                             "id": "O_FIXED_POINT_DATATYPE",
                             "def": {
                               "datatype": "DECIMAL",
-                              "def": {
-                                "digits": 5,
-                                "decimals": 0
-                              }
+                              "digits": 5,
+                              "decimals": 0
                             }
                           }
                         },
@@ -343,10 +341,8 @@
                             "id": "O_FLOATING_POINT_DATATYPE",
                             "def": {
                               "datatype": "FLOAT",
-                              "def": {
-                                "digits": 9,
-                                "decimals": 2
-                              }
+                              "digits": 7,
+                              "decimals": 2
                             }
                           }
                         },

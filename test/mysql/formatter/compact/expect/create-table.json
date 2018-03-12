@@ -19,7 +19,8 @@
       {
         "name": "name",
         "type": {
-          "datatype": "text"
+          "datatype": "text",
+          "length": 65535
         },
         "options": {
           "charset": "utf8",
@@ -62,7 +63,9 @@
       {
         "name": "weight",
         "type": {
-          "datatype": "decimal"
+          "datatype": "decimal",
+          "digits": 3,
+          "decimals": 0
         },
         "options": {
           "nullable": true
@@ -112,6 +115,28 @@
         }
       },
       {
+        "name": "prefix",
+        "type": {
+          "datatype": "char",
+          "length": 3
+        },
+        "options": {
+          "nullable": true,
+          "format": "fixed"
+        }
+      },
+      {
+        "name": "suffix",
+        "type": {
+          "datatype": "char",
+          "length": 1
+        },
+        "options": {
+          "nullable": true,
+          "format": "fixed"
+        }
+      },
+      {
         "name": "sequence",
         "type": {
           "datatype": "varbinary",
@@ -125,7 +150,8 @@
       {
         "name": "avatar",
         "type": {
-          "datatype": "blob"
+          "datatype": "blob",
+          "length": 65535
         },
         "options": {
           "nullable": true
@@ -190,30 +216,6 @@
         }
       ]
     },
-    "options": {
-      "autoincrement": 2,
-      "avgRowLength": 250,
-      "charset": "utf8",
-      "checksum": 1,
-      "collation": "utf8_general_ci",
-      "comment": "test table",
-      "compression": "zlib",
-      "engine": "XtraDB",
-      "insertMethod": "lasT",
-      "union": [
-        "pet"
-      ]
-    },
-    "fulltextIndexes": [
-      {
-        "columns": [
-          {
-            "column": "initials"
-          }
-        ],
-        "name": "fi_initials"
-      }
-    ],
     "uniqueKeys": [
       {
         "columns": [
@@ -230,12 +232,36 @@
         ],
         "symbol": "u_motto",
         "name": "unique_motto",
-        "indexType": "Btree",
+        "indexType": "btree",
         "options": {
           "comment": "be original"
         }
       }
-    ]
+    ],
+    "fulltextIndexes": [
+      {
+        "columns": [
+          {
+            "column": "initials"
+          }
+        ],
+        "name": "fi_initials"
+      }
+    ],
+    "options": {
+      "autoincrement": 2,
+      "avgRowLength": 250,
+      "charset": "utf8",
+      "checksum": 1,
+      "collation": "utf8_general_ci",
+      "comment": "test table",
+      "compression": "zlib",
+      "engine": "XtraDB",
+      "insertMethod": "last",
+      "union": [
+        "pet"
+      ]
+    }
   },
   {
     "name": "pet",
@@ -282,7 +308,9 @@
       {
         "name": "weight",
         "type": {
-          "datatype": "decimal"
+          "datatype": "decimal",
+          "digits": 4,
+          "decimals": 2
         },
         "options": {
           "nullable": true
@@ -411,25 +439,6 @@
         }
       }
     ],
-    "options": {
-      "connection": "mysql://xyz",
-      "directoryName": "/data",
-      "directoryType": "data",
-      "delayKeyWrite": 0,
-      "encrytion": "123456",
-      "encrytionKeyId": 2,
-      "ietfQuotes": "NO",
-      "insertMethod": "FIRST",
-      "packKeys": 0,
-      "rowFormat": "dYnAmiC",
-      "statsAutoRecalc": 0,
-      "withSystemVersioning": true,
-      "tablespaceName": "abc",
-      "union": [
-        "house",
-        "person"
-      ]
-    },
     "foreignKeys": [
       {
         "columns": [
@@ -464,7 +473,7 @@
         "options": {
           "comment": "good boy"
         },
-        "indexType": "BTREE",
+        "indexType": "btree",
         "name": "i_dimensions"
       },
       {
@@ -476,14 +485,30 @@
           }
         ],
         "options": {
-          "indexType": {
-            "id": "P_INDEX_TYPE",
-            "def": "BTREE"
-          }
+          "indexType": "btree"
         },
         "name": "i_birth"
       }
-    ]
+    ],
+    "options": {
+      "connection": "mysql://xyz",
+      "directoryName": "/data",
+      "directoryType": "data",
+      "delayKeyWrite": 0,
+      "encryption": "123456",
+      "encryptionKeyId": 2,
+      "ietfQuotes": "no",
+      "insertMethod": "first",
+      "packKeys": 0,
+      "rowFormat": "dynamic",
+      "statsAutoRecalc": 0,
+      "withSystemVersioning": true,
+      "tablespaceName": "abc",
+      "union": [
+        "house",
+        "person"
+      ]
+    }
   },
   {
     "name": "house",
@@ -511,7 +536,9 @@
       {
         "name": "coordx",
         "type": {
-          "datatype": "float"
+          "datatype": "float",
+          "digits": 6,
+          "decimals": 2
         },
         "options": {
           "nullable": true
@@ -521,6 +548,16 @@
         "name": "coordy",
         "type": {
           "datatype": "double"
+        },
+        "options": {
+          "nullable": true
+        }
+      },
+      {
+        "name": "letter",
+        "type": {
+          "datatype": "char",
+          "length": 1
         },
         "options": {
           "nullable": true
@@ -663,49 +700,13 @@
       ],
       "options": {
         "keyBlockSize": 1024,
-        "indexType": {
-          "id": "P_INDEX_TYPE",
-          "def": "HASH"
-        },
+        "indexType": "hash",
         "comment": "complex test",
         "parser": "myParser"
       },
-      "indexType": "HASH",
+      "indexType": "hash",
       "symbol": "pk_id"
     },
-    "options": {
-      "directoryName": "/var/data",
-      "directoryType": "index",
-      "ietfQuotes": "yes",
-      "insertMethod": "no",
-      "keyBlockSize": 1024,
-      "maxRows": 7000000000,
-      "minRows": 1,
-      "packKeys": "default",
-      "pageChecksum": 0,
-      "password": "123\"456",
-      "rowFormat": "default",
-      "statsAutoRecalc": "default",
-      "transactional": 1,
-      "tablespaceName": "abc",
-      "tablespaceStorage": "deFaULt"
-    },
-    "spatialIndexes": [
-      {
-        "columns": [
-          {
-            "column": "coordx"
-          },
-          {
-            "column": "coordy"
-          }
-        ],
-        "name": "coords",
-        "options": {
-          "comment": "hi neighbor"
-        }
-      }
-    ],
     "foreignKeys": [
       {
         "columns": [
@@ -716,10 +717,16 @@
         "reference": {
           "table": "pet",
           "match": "full",
-          "on": {
-            "trigger": "update",
-            "action": "set default"
-          },
+          "on": [
+            {
+              "trigger": "delete",
+              "action": "set null"
+            },
+            {
+              "trigger": "update",
+              "action": "set default"
+            }
+          ],
           "columns": [
             {
               "column": "height"
@@ -750,6 +757,39 @@
         "symbol": "fk_pet_id",
         "name": "fk_pet"
       }
-    ]
+    ],
+    "spatialIndexes": [
+      {
+        "columns": [
+          {
+            "column": "coordx"
+          },
+          {
+            "column": "coordy"
+          }
+        ],
+        "name": "coords",
+        "options": {
+          "comment": "hi neighbor"
+        }
+      }
+    ],
+    "options": {
+      "directoryName": "/var/data",
+      "directoryType": "index",
+      "ietfQuotes": "yes",
+      "insertMethod": "no",
+      "keyBlockSize": 1024,
+      "maxRows": 7000000000,
+      "minRows": 1,
+      "packKeys": "default",
+      "pageChecksum": 0,
+      "password": "123\"456",
+      "rowFormat": "default",
+      "statsAutoRecalc": "default",
+      "transactional": 1,
+      "tablespaceName": "abc",
+      "tablespaceStorage": "default"
+    }
   }
 ]

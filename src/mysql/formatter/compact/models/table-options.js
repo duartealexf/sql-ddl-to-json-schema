@@ -32,6 +32,33 @@ class TableOptions {
       Object.entries(option.def).forEach(([k, v]) => { tableOptions[k] = v; });
     });
 
+    [
+      'charset',
+      'collation',
+      'compression',
+      'directoryType',
+      'encryption',
+      'ietfQuotes',
+      'insertMethod',
+      'rowFormat',
+      'statsSamplePages',
+      'tablespaceStorage',
+    ].forEach(prop => {
+      if (tableOptions[prop]) {
+        tableOptions[prop] = tableOptions[prop].toLowerCase();
+      }
+    });
+
+    [
+      'packKeys',
+      'statsAutoRecalc',
+      'statsPersistent',
+    ].forEach(prop => {
+      if (tableOptions[prop] && utils.isString(tableOptions[prop])) {
+        tableOptions[prop] = tableOptions[prop].toLowerCase();
+      }
+    });
+
     return tableOptions;
   }
 
@@ -98,12 +125,12 @@ class TableOptions {
     /**
      * @type {string}
      */
-    this.encrytion = undefined;
+    this.encryption = undefined;
 
     /**
      * @type {number}
      */
-    this.encrytionKeyId = undefined;
+    this.encryptionKeyId = undefined;
 
     /**
      * @type {string}
@@ -220,8 +247,8 @@ class TableOptions {
     if (utils.isDefined(this.directoryName))        { json.directoryName        = this.directoryName; }
     if (utils.isDefined(this.directoryType))        { json.directoryType        = this.directoryType; }
     if (utils.isDefined(this.delayKeyWrite))        { json.delayKeyWrite        = this.delayKeyWrite; }
-    if (utils.isDefined(this.encrytion))            { json.encrytion            = this.encrytion; }
-    if (utils.isDefined(this.encrytionKeyId))       { json.encrytionKeyId       = this.encrytionKeyId; }
+    if (utils.isDefined(this.encryption))            { json.encryption            = this.encryption; }
+    if (utils.isDefined(this.encryptionKeyId))       { json.encryptionKeyId       = this.encryptionKeyId; }
     if (utils.isDefined(this.ietfQuotes))           { json.ietfQuotes           = this.ietfQuotes; }
     if (utils.isDefined(this.engine))               { json.engine               = this.engine; }
     if (utils.isDefined(this.insertMethod))         { json.insertMethod         = this.insertMethod; }

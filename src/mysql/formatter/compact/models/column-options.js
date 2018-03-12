@@ -21,10 +21,14 @@ class ColumnOptions {
       Object.entries(columnDefinition.def).forEach(([k, v]) => { columnOptions[k] = v; });
     });
 
-    if (columnOptions.collation) { columnOptions.collation = columnOptions.collation.toLowerCase(); }
-    if (columnOptions.charset) { columnOptions.charset = columnOptions.charset.toLowerCase(); }
-    if (columnOptions.storage) { columnOptions.storage = columnOptions.storage.toLowerCase(); }
-    if (columnOptions.format) { columnOptions.format = columnOptions.format.toLowerCase(); }
+    [
+      'collation',
+      'charset',
+      'storage',
+      'format',
+    ].forEach(prop => {
+      if (columnOptions[prop]) { columnOptions[prop] = columnOptions[prop].toLowerCase(); }
+    });
 
     if (columnOptions.reference) {
       columnOptions.reference = ColumnReference.fromDef(columnOptions.reference);
@@ -64,11 +68,6 @@ class ColumnOptions {
      * @type {string}
      */
     this.collation = undefined;
-
-    /**
-     * @type {boolean}
-     */
-    this.nullable = undefined;
 
     /**
      * @type {boolean}

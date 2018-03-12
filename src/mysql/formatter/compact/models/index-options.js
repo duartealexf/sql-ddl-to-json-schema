@@ -18,6 +18,13 @@ class IndexOptions {
       Object.entries(option.def).forEach(([k, v]) => { indexOptions[k] = v; });
     });
 
+    if (indexOptions.indexType) {
+      indexOptions.indexType = indexOptions.indexType.def.toLowerCase();
+    }
+
+    if (indexOptions.algorithm) { indexOptions.algorithm = indexOptions.algorithm.toLowerCase(); }
+    if (indexOptions.lock)      { indexOptions.lock      = indexOptions.lock.toLowerCase(); }
+
     return indexOptions;
   }
 

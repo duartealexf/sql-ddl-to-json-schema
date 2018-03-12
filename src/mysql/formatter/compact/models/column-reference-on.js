@@ -6,23 +6,19 @@ const utils = require('../../../../shared/utils');
 class ColumnReferenceOn {
 
   /**
-   * Creates column reference "on" trigger mapping from an array.
+   * Creates column reference "on" trigger from object.
+   * Object must contain properties 'trigger' and 'action'.
    *
-   * @param {any[]} onArray JSON format parsed from SQL.
-   * @returns {ColumnReferenceOn} Created reference trigger map.
+   * @param {any} on JSON format parsed from SQL.
+   * @returns {ColumnReferenceOn} Created reference trigger object.
    */
-  static fromArray(onArray) {
-    const onMapping = new ColumnReferenceOn();
+  static fromObject(on) {
+    const onInstance = new ColumnReferenceOn();
 
-    onArray.forEach(on => {
-      Object.entries(on).forEach(([k, v]) => {
-        k = k.toLowerCase();
-        v = v.toLowerCase();
-        onMapping[k] = v;
-      });
-    });
+    onInstance.action = on.action.toLowerCase();
+    onInstance.trigger = on.trigger.toLowerCase();
 
-    return onMapping;
+    return onInstance;
   }
 
   /**

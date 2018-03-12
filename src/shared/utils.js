@@ -117,6 +117,16 @@ class Utils {
   }
 
   /**
+   * Test whether given value is string.
+   *
+   * @param {any} value Value to be tested.
+   * @returns {boolean} Whether it is an string.
+   */
+  static isString(value) {
+    return typeof value === 'string';
+  }
+
+  /**
    * Test whether given value is object.
    *
    * @param {any} value Value to be tested.

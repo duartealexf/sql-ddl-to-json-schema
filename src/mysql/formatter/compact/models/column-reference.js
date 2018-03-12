@@ -29,7 +29,7 @@ class ColumnReference {
       }
 
       if (json.on.length) {
-        columnReference.on = ColumnReferenceOn.fromArray(json.on);
+        columnReference.on = json.on.map(o => ColumnReferenceOn.fromObject(o));
       }
 
       return columnReference;
@@ -59,9 +59,9 @@ class ColumnReference {
     this.match = undefined;
 
     /**
-     * @type {ColumnReferenceOn}
+     * @type {ColumnReferenceOn[]}
      */
-    this.on = undefined;
+    this.on = [];
   }
 
   /**
@@ -75,8 +75,7 @@ class ColumnReference {
     json.table = this.table;
 
     if (utils.isDefined(this.match)) { json.match   = this.match; }
-    if (utils.isDefined(this.on))    { json.on      = this.on.toJSON(); }
-
+    if (this.on.length)              { json.on      = this.on.map(o => o.toJSON()); }
     if (this.columns.length)         { json.columns = this.columns.map(c => c.toJSON()); }
 
     return json;

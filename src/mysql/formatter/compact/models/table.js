@@ -230,13 +230,12 @@ class Table {
     };
 
     if (utils.isDefined(this.primaryKey)) { json.primaryKey      = this.primaryKey.toJSON(); }
-    if (utils.isDefined(this.options))    { json.options         = this.options.toJSON(); }
-
-    if (this.fulltextIndexes.length)      { json.fulltextIndexes = this.fulltextIndexes.map(i => i.toJSON()); }
-    if (this.spatialIndexes.length)       { json.spatialIndexes  = this.spatialIndexes.map(i => i.toJSON()); }
     if (this.foreignKeys.length)          { json.foreignKeys     = this.foreignKeys.map(k => k.toJSON()); }
     if (this.uniqueKeys.length)           { json.uniqueKeys      = this.uniqueKeys.map(k => k.toJSON()); }
     if (this.indexes.length)              { json.indexes         = this.indexes.map(i => i.toJSON()); }
+    if (this.spatialIndexes.length)       { json.spatialIndexes  = this.spatialIndexes.map(i => i.toJSON()); }
+    if (this.fulltextIndexes.length)      { json.fulltextIndexes = this.fulltextIndexes.map(i => i.toJSON()); }
+    if (utils.isDefined(this.options))    { json.options         = this.options.toJSON(); }
 
     return json;
   }

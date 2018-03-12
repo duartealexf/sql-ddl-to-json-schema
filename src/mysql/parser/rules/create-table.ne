@@ -317,13 +317,13 @@ P_CREATE_TABLE_OPTIONS ->
 # Create table option
 
 O_CREATE_TABLE_OPTION -> (
-    %K_AUTO_INCREMENT ( __ | _ %S_EQUAL _ ) O_TABLE_OPTION_VALUE
+    %K_AUTO_INCREMENT ( __ | _ %S_EQUAL _ ) %S_NUMBER
       {% d => {
-        return { autoincrement: d[2] }
+        return { autoincrement: d[2].value }
       }%}
-  | %K_AVG_ROW_LENGTH ( __ | _ %S_EQUAL _ ) O_TABLE_OPTION_VALUE
+  | %K_AVG_ROW_LENGTH ( __ | _ %S_EQUAL _ ) %S_NUMBER
       {% d => {
-        return { avgRowLength: d[2] }
+        return { avgRowLength: d[2].value }
       }%}
   | ( %K_DEFAULT __ ):? %K_CHARACTER __ %K_SET ( __ | _ %S_EQUAL _ ) O_CHARSET
       {% d => {
@@ -362,11 +362,11 @@ O_CREATE_TABLE_OPTION -> (
       }%}
   | %K_ENCRYPTION ( __ | _ %S_EQUAL _ ) O_QUOTED_STRING
       {% d => {
-        return { encrytion: d[2] }
+        return { encryption: d[2] }
       }%}
-  | %K_ENCRYPTION_KEY_ID ( __ | _ %S_EQUAL _ ) O_TABLE_OPTION_VALUE
+  | %K_ENCRYPTION_KEY_ID ( __ | _ %S_EQUAL _ ) %S_NUMBER
       {% d => {
-        return { encrytionKeyId: d[2] }
+        return { encryptionKeyId: d[2].value }
       }%}
   | %K_IETF_QUOTES ( __ | _ %S_EQUAL _ ) ( %K_YES {% id %} | %K_NO {% id %} )
       {% d => {
@@ -380,17 +380,17 @@ O_CREATE_TABLE_OPTION -> (
       {% d => {
         return { insertMethod: d[2].value }
       }%}
-  | %K_KEY_BLOCK_SIZE ( __ | _ %S_EQUAL _ ) O_TABLE_OPTION_VALUE
+  | %K_KEY_BLOCK_SIZE ( __ | _ %S_EQUAL _ ) %S_NUMBER
       {% d => {
-        return { keyBlockSize: d[2] }
+        return { keyBlockSize: d[2].value }
       }%}
-  | %K_MAX_ROWS ( __ | _ %S_EQUAL _ ) O_TABLE_OPTION_VALUE
+  | %K_MAX_ROWS ( __ | _ %S_EQUAL _ ) %S_NUMBER
       {% d => {
-        return { maxRows: d[2] }
+        return { maxRows: d[2].value }
       }%}
-  | %K_MIN_ROWS ( __ | _ %S_EQUAL _ ) O_TABLE_OPTION_VALUE
+  | %K_MIN_ROWS ( __ | _ %S_EQUAL _ ) %S_NUMBER
       {% d => {
-        return { minRows: d[2] }
+        return { minRows: d[2].value }
       }%}
   | %K_PACK_KEYS ( __ | _ %S_EQUAL _ ) ( %S_NUMBER {% id %} | %K_DEFAULT {% id %} )
       {% d => {

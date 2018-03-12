@@ -35,7 +35,7 @@ class PrimaryKey {
     primaryKey.columns = json.columns.map(IndexColumn.fromDef);
 
     if (json.symbol) { primaryKey.symbol    = json.symbol; }
-    if (json.index)  { primaryKey.indexType = json.index.def; }
+    if (json.index)  { primaryKey.indexType = json.index.def.toLowerCase(); }
 
     if (json.options.length) {
       primaryKey.options = IndexOptions.fromArray(json.options);

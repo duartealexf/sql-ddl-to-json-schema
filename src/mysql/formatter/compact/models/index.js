@@ -40,7 +40,7 @@ class Index {
     index.columns = json.columns.map(IndexColumn.fromDef);
 
     if (json.name)  { index.name      = json.name; }
-    if (json.index) { index.indexType = json.index.def; }
+    if (json.index) { index.indexType = json.index.def.toLowerCase(); }
 
     if (json.options.length) {
       index.options = IndexOptions.fromArray(json.options);

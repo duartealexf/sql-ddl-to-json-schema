@@ -62,7 +62,7 @@ O_FIXED_POINT_DATATYPE ->
       _ %S_LPARENS _ %S_NUMBER _ %S_COMMA _ %S_NUMBER _ %S_RPARENS
         {% d => {
           return {
-            digits: d[3].value + d[7].value,
+            digits: d[3].value,
             decimals: d[7].value
           }
         }%}
@@ -80,7 +80,7 @@ O_FIXED_POINT_DATATYPE ->
     id: 'O_FIXED_POINT_DATATYPE',
     def: {
       datatype: d[0].value,
-      def: d[1]
+      ...d[1]
     }
   }
 }%}
@@ -96,7 +96,7 @@ O_FLOATING_POINT_DATATYPE ->
     _ %S_LPARENS _ %S_NUMBER _ %S_COMMA _ %S_NUMBER _ %S_RPARENS
       {% d => {
         return {
-          digits: d[3].value + d[7].value,
+          digits: d[3].value,
           decimals: d[7].value
         }
       }%}
@@ -106,7 +106,7 @@ O_FLOATING_POINT_DATATYPE ->
     id: 'O_FLOATING_POINT_DATATYPE',
     def: {
       datatype: d[0].value,
-      def: d[1]
+      ...d[1]
     }
   }
 }%}
@@ -229,7 +229,7 @@ O_FIXED_STRING_DATATYPE -> (
       {% d => {
         return {
           datatype: d[0].value,
-          length: d[1]
+          length: d[1] || 65535
         }
       }%}
   | %K_TINYBLOB     {% d => { return { datatype: d[0].value, length: 255 }} %}

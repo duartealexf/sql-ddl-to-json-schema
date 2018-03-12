@@ -40,7 +40,7 @@ class UniqueKey {
 
     if (json.symbol) { uniqueKey.symbol    = json.symbol; }
     if (json.name)   { uniqueKey.name      = json.name; }
-    if (json.index)  { uniqueKey.indexType = json.index.def; }
+    if (json.index)  { uniqueKey.indexType = json.index.def.toLowerCase(); }
 
     if (json.options.length) {
       uniqueKey.options = IndexOptions.fromArray(json.options);

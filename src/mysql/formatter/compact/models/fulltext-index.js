@@ -39,6 +39,7 @@ class FulltextIndex {
     fulltextIndex.columns = json.columns.map(IndexColumn.fromDef);
 
     if (json.name) { fulltextIndex.name = json.name; }
+    if (json.index)  { fulltextIndex.indexType = json.index.def.toLowerCase(); }
 
     if (json.options.length) {
       fulltextIndex.options = IndexOptions.fromArray(json.options);

@@ -47,8 +47,8 @@ class Utils {
    * Iterate collection (array of objects), deeply merging
    * into another object, containing latest properties.
    *
-   * @param {any<T>[]} collection Collection to iterate.
-   * @returns {any<T>} Merged object.
+   * @param {any[]} collection Collection to iterate.
+   * @returns {any} Merged object.
    */
   static mergeLatestToObject(collection) {
     const result = collection.reduce((obj, item) => {
@@ -62,8 +62,8 @@ class Utils {
    * Return the same instance of object without
    * the properties containing null values.
    *
-   * @param {any<T>} obj Object to be filtered.
-   * @returns {any<T>} Filtered object.
+   * @param {any} obj Object to be filtered.
+   * @returns {any} Filtered object.
    */
   static filterNullValues(obj) {
     Object.getOwnPropertyNames(obj).forEach(name => {
@@ -78,7 +78,7 @@ class Utils {
    * Object deep merge.
    *
    * @param {any} target  Destination object.
-   * @param {any} sources Origin objects.
+   * @param {any[]} sources Origin objects.
    * @returns {any} Merged destination object.
    */
   static mergeDeep(target, ...sources) {

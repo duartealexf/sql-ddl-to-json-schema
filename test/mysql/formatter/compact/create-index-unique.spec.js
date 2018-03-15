@@ -13,7 +13,6 @@ ava('Compact formatter: Should create unique index.', t => {
   parser.feed(sql);
 
   const json = parser.toCompactJson(parser.results);
-  console.log(JSON.stringify(json, null, 2));
   // for some reason t.deepEqual hangs process
   t.is(JSON.stringify(json), JSON.stringify(expect));
 });

@@ -264,7 +264,7 @@ class Table {
 
       const pos = this.columns.indexOf(refColumn);
       const end = this.columns.splice(pos + 1);
-      this.columns.push(refColumn);
+      this.columns.push(column);
       this.columns = this.columns.concat(end);
     }
   }

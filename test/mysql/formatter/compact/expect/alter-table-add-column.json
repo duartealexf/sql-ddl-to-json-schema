@@ -3,6 +3,16 @@
     "name": "person",
     "columns": [
       {
+        "name": "uuid",
+        "type": {
+          "datatype": "varchar",
+          "length": 36
+        },
+        "options": {
+          "nullable": true
+        }
+      },
+      {
         "name": "id",
         "type": {
           "datatype": "int",
@@ -137,6 +147,15 @@
         }
       },
       {
+        "name": "is_married",
+        "type": {
+          "datatype": "boolean"
+        },
+        "options": {
+          "nullable": true
+        }
+      },
+      {
         "name": "sequence",
         "type": {
           "datatype": "varbinary",
@@ -203,6 +222,16 @@
         "name": "pattern",
         "type": {
           "datatype": "multilinestring"
+        },
+        "options": {
+          "nullable": true
+        }
+      },
+      {
+        "name": "updated_at",
+        "type": {
+          "datatype": "timestamp",
+          "fractional": 0
         },
         "options": {
           "nullable": true

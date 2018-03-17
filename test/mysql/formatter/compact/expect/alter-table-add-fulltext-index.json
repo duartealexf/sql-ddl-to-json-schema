@@ -774,6 +774,35 @@
         }
       }
     ],
+    "fulltextIndexes": [
+      {
+        "columns": [
+          {
+            "column": "history",
+            "length": 200,
+            "sort": "desc"
+          },
+          {
+            "column": "photo",
+            "length": 100
+          }
+        ],
+        "name": "fi_history",
+        "options": {
+          "keyBlockSize": 1024,
+          "indexType": "hash",
+          "comment": "formatter test",
+          "parser": "myParser"
+        }
+      },
+      {
+        "columns": [
+          {
+            "column": "letter"
+          }
+        ]
+      }
+    ],
     "options": {
       "directoryName": "/var/data",
       "directoryType": "index",

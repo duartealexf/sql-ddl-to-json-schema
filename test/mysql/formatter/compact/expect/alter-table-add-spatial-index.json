@@ -246,6 +246,26 @@
           }
         ],
         "name": "fi_initials"
+      },
+      {
+        "columns": [
+          {
+            "column": "pattern",
+            "length": 21,
+            "sort": "asc"
+          },
+          {
+            "column": "shape",
+            "length": 10
+          }
+        ],
+        "name": "si_pattern",
+        "options": {
+          "keyBlockSize": 2048,
+          "indexType": "hash",
+          "comment": "spatial formatter test",
+          "parser": "spatialParser"
+        }
       }
     ],
     "options": {
@@ -488,6 +508,15 @@
           "indexType": "btree"
         },
         "name": "i_birth"
+      }
+    ],
+    "fulltextIndexes": [
+      {
+        "columns": [
+          {
+            "column": "shape"
+          }
+        ]
       }
     ],
     "options": {

@@ -758,6 +758,35 @@
         "name": "fk_pet"
       }
     ],
+    "indexes": [
+      {
+        "columns": [
+          {
+            "column": "is_built",
+            "length": 1,
+            "sort": "asc"
+          },
+          {
+            "column": "is_apartment",
+            "length": 2
+          }
+        ],
+        "options": {
+          "keyBlockSize": 16,
+          "indexType": "btree",
+          "comment": "formatter test",
+          "parser": "myParser"
+        },
+        "name": "idx_built"
+      },
+      {
+        "columns": [
+          {
+            "column": "where"
+          }
+        ]
+      }
+    ],
     "spatialIndexes": [
       {
         "columns": [

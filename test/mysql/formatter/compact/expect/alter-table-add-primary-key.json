@@ -212,7 +212,7 @@
     "primaryKey": {
       "columns": [
         {
-          "column": "id"
+          "column": "ssn"
         }
       ]
     },
@@ -439,6 +439,27 @@
         }
       }
     ],
+    "primaryKey": {
+      "columns": [
+        {
+          "column": "id",
+          "length": 6,
+          "sort": "asc"
+        },
+        {
+          "column": "species",
+          "length": 100
+        }
+      ],
+      "options": {
+        "keyBlockSize": 512,
+        "indexType": "hash",
+        "comment": "pk formatter test",
+        "parser": "myParser"
+      },
+      "indexType": "rtree",
+      "symbol": "pk_id"
+    },
     "foreignKeys": [
       {
         "columns": [

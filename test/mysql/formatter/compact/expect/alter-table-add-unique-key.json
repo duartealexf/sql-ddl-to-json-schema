@@ -458,6 +458,43 @@
         }
       }
     ],
+    "uniqueKeys": [
+      {
+        "columns": [
+          {
+            "column": "birth",
+            "length": 12,
+            "sort": "desc"
+          },
+          {
+            "column": "status",
+            "length": 1
+          }
+        ],
+        "symbol": "uq_birth",
+        "name": "unique_birth",
+        "options": {
+          "keyBlockSize": 64,
+          "indexType": "btree",
+          "comment": "unique formatter test",
+          "parser": "uniqueParser"
+        }
+      },
+      {
+        "columns": [
+          {
+            "column": "history"
+          }
+        ]
+      },
+      {
+        "columns": [
+          {
+            "column": "shape"
+          }
+        ]
+      }
+    ],
     "indexes": [
       {
         "columns": [

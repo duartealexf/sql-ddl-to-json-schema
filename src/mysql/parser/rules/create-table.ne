@@ -272,7 +272,7 @@ P_COLUMN_REFERENCE ->
   (
     _ %S_LPARENS _ P_INDEX_COLUMN ( _ %S_COMMA _ P_INDEX_COLUMN {% d => d[3] %} ):* _ %S_RPARENS
       {% d => [d[3]].concat(d[4] || []) %}
-  ):?
+  )
   (
     _ %K_MATCH __ ( %K_FULL {% id %} | %K_PARTIAL {% id %} | %K_SIMPLE {% id %} )
       {% d => d[3].value %}

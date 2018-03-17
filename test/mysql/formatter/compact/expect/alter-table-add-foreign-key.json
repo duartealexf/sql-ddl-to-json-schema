@@ -456,6 +456,77 @@
             }
           ]
         }
+      },
+      {
+        "columns": [
+          {
+            "column": "species",
+            "length": 200,
+            "sort": "asc"
+          },
+          {
+            "column": "history",
+            "length": 100
+          }
+        ],
+        "reference": {
+          "table": "species",
+          "match": "full",
+          "on": [
+            {
+              "trigger": "delete",
+              "action": "set null"
+            },
+            {
+              "trigger": "update",
+              "action": "cascade"
+            }
+          ],
+          "columns": [
+            {
+              "column": "id",
+              "length": 10,
+              "sort": "asc"
+            },
+            {
+              "column": "history",
+              "length": 100
+            }
+          ]
+        },
+        "symbol": "fk_species",
+        "name": "fk_species_id"
+      },
+      {
+        "columns": [
+          {
+            "column": "shape"
+          }
+        ],
+        "reference": {
+          "table": "house",
+          "columns": [
+            {
+              "column": "size"
+            }
+          ]
+        },
+        "symbol": "fk_shape"
+      },
+      {
+        "columns": [
+          {
+            "column": "height"
+          }
+        ],
+        "reference": {
+          "table": "house",
+          "columns": [
+            {
+              "column": "city"
+            }
+          ]
+        }
       }
     ],
     "indexes": [

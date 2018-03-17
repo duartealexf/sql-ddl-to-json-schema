@@ -2,8 +2,6 @@
 # Alter table
 #
 # https://mariadb.com/kb/en/library/alter-table/
-#
-# TODO: correct, as index and key are synonyms
 
 P_ALTER_TABLE -> %K_ALTER __
   ( %K_ONLINE __ ):?

@@ -36,18 +36,18 @@ class TableOptions {
       'charset',
       'collation',
       'compression',
-      'directoryType',
       'encryption',
       'ietfQuotes',
       'insertMethod',
       'rowFormat',
       'statsSamplePages',
       'tablespaceStorage',
-    ].forEach(prop => {
-      if (tableOptions[prop]) {
-        tableOptions[prop] = tableOptions[prop].toLowerCase();
-      }
-    });
+    ]
+      .forEach(prop => {
+        if (tableOptions[prop]) {
+          tableOptions[prop] = tableOptions[prop].toLowerCase();
+        }
+      });
 
     [
       'packKeys',
@@ -110,12 +110,12 @@ class TableOptions {
     /**
      * @type {string}
      */
-    this.directoryName = undefined;
+    this.dataDirectory = undefined;
 
     /**
      * @type {string}
      */
-    this.directoryType = undefined;
+    this.indexDirectory = undefined;
 
     /**
      * @type {number}
@@ -210,11 +210,6 @@ class TableOptions {
     /**
      * @type {string}
      */
-    this.storagetablespace = undefined;
-
-    /**
-     * @type {string}
-     */
     this.tablespaceName = undefined;
 
     /**
@@ -244,11 +239,11 @@ class TableOptions {
     if (utils.isDefined(this.comment))              { json.comment              = this.comment; }
     if (utils.isDefined(this.compression))          { json.compression          = this.compression; }
     if (utils.isDefined(this.connection))           { json.connection           = this.connection; }
-    if (utils.isDefined(this.directoryName))        { json.directoryName        = this.directoryName; }
-    if (utils.isDefined(this.directoryType))        { json.directoryType        = this.directoryType; }
+    if (utils.isDefined(this.dataDirectory))        { json.dataDirectory        = this.dataDirectory; }
+    if (utils.isDefined(this.indexDirectory))       { json.indexDirectory       = this.indexDirectory; }
     if (utils.isDefined(this.delayKeyWrite))        { json.delayKeyWrite        = this.delayKeyWrite; }
-    if (utils.isDefined(this.encryption))            { json.encryption            = this.encryption; }
-    if (utils.isDefined(this.encryptionKeyId))       { json.encryptionKeyId       = this.encryptionKeyId; }
+    if (utils.isDefined(this.encryption))           { json.encryption           = this.encryption; }
+    if (utils.isDefined(this.encryptionKeyId))      { json.encryptionKeyId      = this.encryptionKeyId; }
     if (utils.isDefined(this.ietfQuotes))           { json.ietfQuotes           = this.ietfQuotes; }
     if (utils.isDefined(this.engine))               { json.engine               = this.engine; }
     if (utils.isDefined(this.insertMethod))         { json.insertMethod         = this.insertMethod; }
@@ -264,7 +259,6 @@ class TableOptions {
     if (utils.isDefined(this.statsSamplePages))     { json.statsSamplePages     = this.statsSamplePages; }
     if (utils.isDefined(this.transactional))        { json.transactional        = this.transactional; }
     if (utils.isDefined(this.withSystemVersioning)) { json.withSystemVersioning = this.withSystemVersioning; }
-    if (utils.isDefined(this.storagetablespace))    { json.storagetablespace    = this.storagetablespace; }
     if (utils.isDefined(this.tablespaceName))       { json.tablespaceName       = this.tablespaceName; }
     if (utils.isDefined(this.tablespaceStorage))    { json.tablespaceStorage    = this.tablespaceStorage; }
     if (utils.isDefined(this.union))                { json.union                = this.union; }
@@ -280,7 +274,10 @@ class TableOptions {
    * @returns {void}
    */
   mergeWith(options) {
-    Object.entries(options).forEach(([k, v]) => { this[k] = v; });
+    const target = this;
+    Object.entries(options)
+      .filter(([, v]) => utils.isDefined(v))
+      .forEach(([k, v]) => { target[k] = v; });
   }
 }
 

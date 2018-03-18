@@ -250,14 +250,25 @@
     ],
     "options": {
       "autoincrement": 2,
-      "avgRowLength": 250,
-      "charset": "utf8",
+      "avgRowLength": 256,
+      "charset": "latin1",
       "checksum": 1,
-      "collation": "utf8_general_ci",
-      "comment": "test table",
+      "collation": "latin1_ci",
+      "comment": "alter table test",
       "compression": "zlib",
+      "connection": "my:sql//",
+      "dataDirectory": "/tmp/data",
+      "indexDirectory": "/tmp/index",
+      "delayKeyWrite": 42,
+      "encryption": "y",
+      "encryptionKeyId": 99,
+      "ietfQuotes": "yes",
       "engine": "XtraDB",
       "insertMethod": "last",
+      "keyBlockSize": 64,
+      "maxRows": 10000000,
+      "minRows": 2,
+      "packKeys": "default",
       "union": [
         "pet"
       ]
@@ -492,21 +503,26 @@
     ],
     "options": {
       "connection": "mysql://xyz",
-      "directoryName": "/data",
-      "directoryType": "data",
+      "dataDirectory": "/data",
       "delayKeyWrite": 0,
       "encryption": "123456",
       "encryptionKeyId": 2,
       "ietfQuotes": "no",
       "insertMethod": "first",
       "packKeys": 0,
-      "rowFormat": "dynamic",
-      "statsAutoRecalc": 0,
+      "pageChecksum": 8,
+      "password": "1q2w3e",
+      "rowFormat": "fixed",
+      "statsAutoRecalc": "default",
+      "statsPersistent": 11,
+      "statsSamplePages": 10,
+      "transactional": 1,
       "withSystemVersioning": true,
-      "tablespaceName": "abc",
+      "tablespaceName": "asd",
+      "tablespaceStorage": "memory",
       "union": [
-        "house",
-        "person"
+        "table1",
+        "table2"
       ]
     }
   },
@@ -775,8 +791,7 @@
       }
     ],
     "options": {
-      "directoryName": "/var/data",
-      "directoryType": "index",
+      "indexDirectory": "/var/index",
       "ietfQuotes": "yes",
       "insertMethod": "no",
       "keyBlockSize": 1024,

@@ -21,14 +21,12 @@
                       }
                     }
                   ]
-                },
-                "spec": null
+                }
               }
             },
             {
               "id": "P_ALTER_TABLE_SPECS",
               "def": {
-                "tableOptions": null,
                 "spec": {
                   "id": "O_ALTER_TABLE_SPEC",
                   "def": {
@@ -40,7 +38,6 @@
             {
               "id": "P_ALTER_TABLE_SPECS",
               "def": {
-                "tableOptions": null,
                 "spec": {
                   "id": "O_ALTER_TABLE_SPEC",
                   "def": {
@@ -52,7 +49,6 @@
             {
               "id": "P_ALTER_TABLE_SPECS",
               "def": {
-                "tableOptions": null,
                 "spec": {
                   "id": "O_ALTER_TABLE_SPEC",
                   "def": {
@@ -64,7 +60,6 @@
             {
               "id": "P_ALTER_TABLE_SPECS",
               "def": {
-                "tableOptions": null,
                 "spec": {
                   "id": "O_ALTER_TABLE_SPEC",
                   "def": {
@@ -76,7 +71,6 @@
             {
               "id": "P_ALTER_TABLE_SPECS",
               "def": {
-                "tableOptions": null,
                 "spec": {
                   "id": "O_ALTER_TABLE_SPEC",
                   "def": {
@@ -98,14 +92,12 @@
                       }
                     }
                   ]
-                },
-                "spec": null
+                }
               }
             },
             {
               "id": "P_ALTER_TABLE_SPECS",
               "def": {
-                "tableOptions": null,
                 "spec": {
                   "id": "O_ALTER_TABLE_SPEC",
                   "def": {
@@ -117,7 +109,6 @@
             {
               "id": "P_ALTER_TABLE_SPECS",
               "def": {
-                "tableOptions": null,
                 "spec": {
                   "id": "O_ALTER_TABLE_SPEC",
                   "def": {
@@ -129,7 +120,6 @@
             {
               "id": "P_ALTER_TABLE_SPECS",
               "def": {
-                "tableOptions": null,
                 "spec": {
                   "id": "O_ALTER_TABLE_SPEC",
                   "def": {
@@ -142,7 +132,6 @@
             {
               "id": "P_ALTER_TABLE_SPECS",
               "def": {
-                "tableOptions": null,
                 "spec": {
                   "id": "O_ALTER_TABLE_SPEC",
                   "def": {

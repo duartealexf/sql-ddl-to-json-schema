@@ -175,8 +175,8 @@ class ColumnOptions {
   mergeWith(options) {
     const target = this;
     Object.entries(options)
-      .filter(([k, v]) => utils.isDefined(v))
-      .forEach(([k, v]) => target[k] = v);
+      .filter(([, v]) => utils.isDefined(v))
+      .forEach(([k, v]) => { target[k] = v; });
   }
 }
 

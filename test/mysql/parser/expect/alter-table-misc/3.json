@@ -11,14 +11,22 @@
             {
               "id": "P_ALTER_TABLE_SPECS",
               "def": {
-                "tableOptions": null,
-                "spec": {
-                  "id": "O_ALTER_TABLE_SPEC",
-                  "def": {
-                    "action": "changeCharacterSet",
-                    "charset": "utf8",
-                    "collate": "utf8_general_ci"
-                  }
+                "tableOptions": {
+                  "id": "P_CREATE_TABLE_OPTIONS",
+                  "def": [
+                    {
+                      "id": "O_CREATE_TABLE_OPTION",
+                      "def": {
+                        "charset": "utf8"
+                      }
+                    },
+                    {
+                      "id": "O_CREATE_TABLE_OPTION",
+                      "def": {
+                        "collation": "utf8_general_ci"
+                      }
+                    }
+                  ]
                 }
               }
             }

@@ -492,8 +492,7 @@
     ],
     "options": {
       "connection": "mysql://xyz",
-      "directoryName": "/data",
-      "directoryType": "data",
+      "dataDirectory": "/data",
       "delayKeyWrite": 0,
       "encryption": "123456",
       "encryptionKeyId": 2,

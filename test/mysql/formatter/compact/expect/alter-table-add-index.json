@@ -492,8 +492,7 @@
     ],
     "options": {
       "connection": "mysql://xyz",
-      "directoryName": "/data",
-      "directoryType": "data",
+      "dataDirectory": "/data",
       "delayKeyWrite": 0,
       "encryption": "123456",
       "encryptionKeyId": 2,
@@ -804,8 +803,7 @@
       }
     ],
     "options": {
-      "directoryName": "/var/data",
-      "directoryType": "index",
+      "indexDirectory": "/var/index",
       "ietfQuotes": "yes",
       "insertMethod": "no",
       "keyBlockSize": 1024,

@@ -58,16 +58,24 @@ class AlterTable {
      * Runs methods in this class according to the 'action' property of the ALTER TABLE spec.
      */
     json.def.specs.forEach(spec => {
-      const def = spec.def.spec.def;
-      const action = def.action;
+      const changeSpec = spec.def.spec;
+      const tableOptions = spec.def.tableOptions;
+      if (changeSpec) {
+        const def = changeSpec.def;
+        const action = def.action;
 
-      if (typeof this[action] === 'function') {
-        this[action](def, table);
+        if (typeof this[action] === 'function') {
+          this[action](def, table);
+        }
       }
+      else if (tableOptions) {
 
-      if (spec.def.tableOptions) {
+        if (!table.options) {
+          table.options = new TableOptions();
+        }
+
         table.options.mergeWith(
-          TableOptions.fromDef(spec.def.tableOptions)
+          TableOptions.fromDef(tableOptions)
         );
       }
     });
@@ -83,6 +91,27 @@ class AlterTable {
   addColumn(json, table) {
     const column = Column.fromObject(json);
     table.addColumn(column, json.position);
+
+    /** @type {PrimaryKey} */
+    const primaryKey = column.extractPrimaryKey();
+
+    /** @type {ForeignKey} */
+    const foreignKey = column.extractForeignKey();
+
+    /** @type {UniqueKey} */
+    const uniqueKey = column.extractUniqueKey();
+
+    if (primaryKey) {
+      table.primaryKey = primaryKey;
+    }
+
+    if (foreignKey) {
+      table.pushForeignKey(foreignKey);
+    }
+
+    if (uniqueKey) {
+      table.pushUniqueKey(uniqueKey);
+    }
   }
 
   /**
@@ -94,9 +123,29 @@ class AlterTable {
    */
   addColumns(json, table) {
     json.columns.forEach(column => {
-      table.columns.push(
-        Column.fromObject(column)
-      );
+      column = Column.fromObject(column);
+      table.addColumn(column, null);
+
+      /** @type {PrimaryKey} */
+      const primaryKey = column.extractPrimaryKey();
+
+      /** @type {ForeignKey} */
+      const foreignKey = column.extractForeignKey();
+
+      /** @type {UniqueKey} */
+      const uniqueKey = column.extractUniqueKey();
+
+      if (primaryKey) {
+        table.primaryKey = primaryKey;
+      }
+
+      if (foreignKey) {
+        table.pushForeignKey(foreignKey);
+      }
+
+      if (uniqueKey) {
+        table.pushUniqueKey(uniqueKey);
+      }
     });
   }
 
@@ -260,21 +309,6 @@ class AlterTable {
 
     if (uniqueKey) {
       table.pushUniqueKey(uniqueKey);
-    }
-  }
-
-  /**
-   * Performs action in ALTER TABLE statement.
-   *
-   * @param {any} json O_ALTER_TABLE_SPEC def object in JSON.
-   * @param {Table} table Table to be altered.
-   * @returns {void}
-   */
-  changeCharacterSet(json, table) {
-    table.options.charset = json.charset;
-
-    if (json.collate) {
-      table.options.collation = json.collate;
     }
   }
 

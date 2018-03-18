@@ -29,7 +29,7 @@
   checksum = 1,
   comment 'test table',
   engine 'XtraDB',
-  compression = zLIB,
+  compression = 'zLIB',
   insert_method lasT,
   union (pet)
   ;
@@ -93,7 +93,7 @@
     SPATIAL INDEX coords (coordx, coordy) COMMENT 'hi neighbor',
     CONSTRAINT fk_pet_id FOREIGN KEY fk_pet (pet_id) REFERENCES pet (id(10) asc)
   )
-  index directory '/var/data',
+  index directory '/var/index',
   ietf_quotes yes,
   insert_method no,
   key_block_size 1024,

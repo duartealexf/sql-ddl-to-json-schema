@@ -3,13 +3,20 @@
     "name": "person",
     "columns": [
       {
-        "name": "uuid",
+        "name": "test1",
         "type": {
-          "datatype": "varchar",
-          "length": 36
+          "datatype": "int",
+          "width": 1
         },
         "options": {
-          "nullable": true
+          "unsigned": true,
+          "zerofill": true,
+          "charset": "latin1",
+          "collation": "latin_ci",
+          "nullable": true,
+          "default": 42,
+          "autoincrement": true,
+          "invisibleWithoutSystemVersioning": true
         }
       },
       {
@@ -147,15 +154,6 @@
         }
       },
       {
-        "name": "is_married",
-        "type": {
-          "datatype": "boolean"
-        },
-        "options": {
-          "nullable": true
-        }
-      },
-      {
         "name": "sequence",
         "type": {
           "datatype": "varbinary",
@@ -164,6 +162,18 @@
         "options": {
           "nullable": true,
           "storage": "disk"
+        }
+      },
+      {
+        "name": "test2",
+        "type": {
+          "datatype": "boolean"
+        },
+        "options": {
+          "nullable": false,
+          "format": "dynamic",
+          "comment": "staying alive",
+          "invisibleWithSystemVersioning": true
         }
       },
       {
@@ -228,23 +238,42 @@
         }
       },
       {
-        "name": "updated_at",
+        "name": "test3",
         "type": {
-          "datatype": "timestamp",
-          "fractional": 0
+          "datatype": "blob",
+          "length": 255
         },
         "options": {
-          "nullable": true
+          "nullable": true,
+          "invisible": true,
+          "storage": "memory"
         }
       }
     ],
     "primaryKey": {
       "columns": [
         {
-          "column": "id"
+          "column": "test2"
         }
       ]
     },
+    "foreignKeys": [
+      {
+        "columns": [
+          {
+            "column": "test3"
+          }
+        ],
+        "reference": {
+          "table": "dog",
+          "columns": [
+            {
+              "column": "avatar"
+            }
+          ]
+        }
+      }
+    ],
     "uniqueKeys": [
       {
         "columns": [
@@ -265,6 +294,13 @@
         "options": {
           "comment": "be original"
         }
+      },
+      {
+        "columns": [
+          {
+            "column": "test1"
+          }
+        ]
       }
     ],
     "fulltextIndexes": [
@@ -521,8 +557,7 @@
     ],
     "options": {
       "connection": "mysql://xyz",
-      "directoryName": "/data",
-      "directoryType": "data",
+      "dataDirectory": "/data",
       "delayKeyWrite": 0,
       "encryption": "123456",
       "encryptionKeyId": 2,
@@ -804,8 +839,7 @@
       }
     ],
     "options": {
-      "directoryName": "/var/data",
-      "directoryType": "index",
+      "indexDirectory": "/var/index",
       "ietfQuotes": "yes",
       "insertMethod": "no",
       "keyBlockSize": 1024,

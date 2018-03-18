@@ -119,15 +119,13 @@
                 {
                   "id": "O_CREATE_TABLE_OPTION",
                   "def": {
-                    "directoryName": "/var/lib/mariadb/data",
-                    "directoryType": "DATA"
+                    "dataDirectory": "/var/lib/mariadb/data"
                   }
                 },
                 {
                   "id": "O_CREATE_TABLE_OPTION",
                   "def": {
-                    "directoryName": "/var/lib/mariadb/index",
-                    "directoryType": "INDEX"
+                    "indexDirectory": "/var/lib/mariadb/index"
                   }
                 },
                 {

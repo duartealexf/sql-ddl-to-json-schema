@@ -305,7 +305,7 @@ P_COLUMN_REFERENCE ->
 # Create table options
 
 P_CREATE_TABLE_OPTIONS ->
-  O_CREATE_TABLE_OPTION ( _ %S_COMMA _ O_CREATE_TABLE_OPTION {% d => d[3] %} ):*
+  O_CREATE_TABLE_OPTION ( ( __ | _ %S_COMMA _ ) O_CREATE_TABLE_OPTION {% d => d[1] %} ):*
     {% d => {
       return {
         id: 'P_CREATE_TABLE_OPTIONS',
@@ -341,9 +341,9 @@ O_CREATE_TABLE_OPTION -> (
       {% d => {
         return { comment: d[2] }
       }%}
-  | %K_COMPRESSION ( __ | _ %S_EQUAL _ ) ( %K_ZLIB {% id %} | %K_LZ4 {% id %} | %K_NONE {% id %} )
+  | %K_COMPRESSION ( __ | _ %S_EQUAL _ ) O_QUOTED_STRING
       {% d => {
-        return { compression: d[2].value }
+        return { compression: d[2] }
       }%}
   | %K_CONNECTION ( __ | _ %S_EQUAL _ ) O_QUOTED_STRING
       {% d => {
@@ -351,10 +351,8 @@ O_CREATE_TABLE_OPTION -> (
       }%}
   | ( %K_DATA __ {% id %} | %K_INDEX __ {% id %} ) %K_DIRECTORY ( __ | _ %S_EQUAL _ ) O_QUOTED_STRING
       {% d => {
-        return {
-          directoryName: d[3],
-          directoryType: d[0].value
-        }
+        const key = d[0].value.toLowerCase() + 'Directory';
+        return { [key]: d[3] }
       }%}
   | %K_DELAY_KEY_WRITE ( __ | _ %S_EQUAL _ ) %S_NUMBER
       {% d => {

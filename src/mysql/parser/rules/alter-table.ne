@@ -25,16 +25,20 @@ P_ALTER_TABLE -> %K_ALTER __
 #
 # In docs these options are 'alter_specification'.
 
-P_ALTER_TABLE_SPECS ->
-  P_CREATE_TABLE_OPTIONS:?
-  ( _ O_ALTER_TABLE_SPEC {% d => d[1] %} ):?
+P_ALTER_TABLE_SPECS -> (
+    P_CREATE_TABLE_OPTIONS
+      {% d => {
+        return { tableOptions: d[0] }
+      }%}
+  | O_ALTER_TABLE_SPEC
+      {% d => {
+        return { spec: d[0] }
+      }%}
+)
     {% d => {
       return {
         id: 'P_ALTER_TABLE_SPECS',
-        def: {
-          tableOptions: d[0],
-          spec: d[1]
-        }
+        def: d[0]
       }
     }%}
 
@@ -265,16 +269,6 @@ O_ALTER_TABLE_SPEC -> (
           datatype: d[5],
           columnDefinition: d[6],
           position: d[7]
-        }
-      }%}
-
-  | ( %K_DEFAULT __ ):? %K_CHARACTER __ %K_SET ( __ | _ %S_EQUAL _ ) O_CHARSET
-    ( __ %K_COLLATE ( __ | _ %S_EQUAL _ ) O_COLLATION {% d => d[3] %} ):?
-      {% d => {
-        return {
-          action: 'changeCharacterSet',
-          charset: d[5],
-          collate: d[6]
         }
       }%}
 

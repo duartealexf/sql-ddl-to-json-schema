@@ -1,0 +1,73 @@
+{
+  "id": "MAIN",
+  "def": [
+    {
+      "id": "P_DDS",
+      "def": {
+        "id": "P_ALTER_TABLE",
+        "def": {
+          "table": "people",
+          "specs": [
+            {
+              "id": "P_ALTER_TABLE_SPECS",
+              "def": {
+                "spec": {
+                  "id": "O_ALTER_TABLE_SPEC",
+                  "def": {
+                    "action": "addForeignKey",
+                    "symbol": "xyz",
+                    "name": "fk_ax_id__ay_id",
+                    "columns": [
+                      {
+                        "id": "P_INDEX_COLUMN",
+                        "def": {
+                          "column": "ax_id",
+                          "length": 20,
+                          "sort": "asc"
+                        }
+                      },
+                      {
+                        "id": "P_INDEX_COLUMN",
+                        "def": {
+                          "column": "ay_id",
+                          "length": null,
+                          "sort": null
+                        }
+                      }
+                    ],
+                    "reference": {
+                      "id": "P_COLUMN_REFERENCE",
+                      "def": {
+                        "table": "other",
+                        "columns": [
+                          {
+                            "id": "P_INDEX_COLUMN",
+                            "def": {
+                              "column": "xid",
+                              "length": 10,
+                              "sort": "desc"
+                            }
+                          },
+                          {
+                            "id": "P_INDEX_COLUMN",
+                            "def": {
+                              "column": "yid",
+                              "length": null,
+                              "sort": null
+                            }
+                          }
+                        ],
+                        "match": "full",
+                        "on": []
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

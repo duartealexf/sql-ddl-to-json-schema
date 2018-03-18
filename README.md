@@ -2,12 +2,117 @@
 
 [![Build Status](https://travis-ci.org/duartealexf/sql-ddl-to-json-schema.svg?branch=master)](https://travis-ci.org/duartealexf/sql-ddl-to-json-schema)
 
-WORK IN PROGESS - [Check out the roadmap](https://github.com/duartealexf/sql-ddl-to-json-schema/blob/master/ROADMAP.md)
+Transforms SQL DDL statements into JSON format (a compact format and JSON Schema).
 
-A grammar and stream-friendly SQL parser based on [nearley](nearley.js.org) that transforms DDL statements into JSON Schema.
-No SQL client or Database Management System required.
+```sql
+CREATE TABLE users (
+  id INT(11) NOT NULL AUTO_INCREMENT,
+  nickname VARCHAR(255) NOT NULL,
+  deleted_at TIMESTAMP NULL,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
+  updated_at TIMESTAMP,
+  PRIMARY KEY (id)
+) ENGINE MyISAM COMMENT 'All system users';
 
-## Installation
+ALTER TABLE users ADD UNIQUE KEY unq_nick (nickname);
+```
+
+Outputs to a compact JSON format:
+
+```json
+[
+  {
+    "name": "users",
+    "columns": [
+      {
+        "name": "id",
+        "type": {
+          "datatype": "int",
+          "width": 11
+        },
+        "options": {
+          "nullable": false,
+          "autoincrement": true
+        }
+      },
+      {
+        "name": "nickname",
+        "type": {
+          "datatype": "varchar",
+          "length": 255
+        },
+        "options": {
+          "nullable": false
+        }
+      },
+      {
+        "name": "deleted_at",
+        "type": {
+          "datatype": "timestamp",
+          "fractional": 0
+        },
+        "options": {
+          "nullable": true
+        }
+      },
+      {
+        "name": "created_at",
+        "type": {
+          "datatype": "timestamp",
+          "fractional": 0
+        },
+        "options": {
+          "nullable": false,
+          "default": "CURRENT_TIMESTAMP"
+        }
+      },
+      {
+        "name": "updated_at",
+        "type": {
+          "datatype": "timestamp",
+          "fractional": 0
+        },
+        "options": {
+          "nullable": true
+        }
+      }
+    ],
+    "primaryKey": {
+      "columns": [
+        {
+          "column": "id"
+        }
+      ]
+    },
+    "uniqueKeys": [
+      {
+        "columns": [
+          {
+            "column": "nickname"
+          }
+        ],
+        "name": "unq_nick"
+      }
+    ],
+    "options": {
+      "comment": "All system users",
+      "engine": "MyISAM"
+    }
+  }
+]
+```
+
+Output to JSON Schema is still work in progress - [Check out the roadmap](https://github.com/duartealexf/sql-ddl-to-json-schema/blob/master/ROADMAP.md)
+
+## About
+
+This project reads, parses and interprets [SQL DDL Statements from MySQL dialect](https://github.com/duartealexf/sql-ddl-to-json-schema/blob/master/ROADMAP.md#mariadb--mysql) transforming them into JSON Format.
+
+No SQL server, client or RDMS is required.
+
+This project is a grammar and stream-friendly SQL parser based on [nearley](nearley.js.org).
+
+## Usage
 
 Not published yet - unavailable for production.
 
@@ -35,22 +140,27 @@ Folder structure:
 
 ```md
 /
-|- index.js              Entrypoint file, imports from lib/index.js
-|- lib/
-|  |- index.js           Imports parser class.
-|  |- parser.js          Parser class, which will be used by users.
-|  |- compiled/          Contains compiled grammar files.
+|- index.js               Entrypoint file, imports from lib/index.js
+|- lib/                   Compiled (dist) library folder, product of this project.
 |
-|- src
-|  |- parser/
-|     |- assembly.js     Script that concatenates all .ne files to grammar.ne.
-|     |- example.js      Serves development purpose for testing isolated statements.
-|     |- lexer.ne        Entrypoint and first lines of the grammar.
-|     |- dictionary/     Contains .js files with array of keywords used in lexer.ne.
-|     |- rules/          Contains .ne files with grammar rules.
-|     |- shared/         Shared files used by dictionary .js files.
+|- src/
+|  |- shared/             Shared files used by dialects, parsers and formatters.
+|  |- mysql/
+|     |- example.js       Serves development purpose for testing isolated statements.
+|     |- formatter/       Formats the parsed JSON (output of parser) to other format.
+|        |- compact/      Formatter for a compact JSON format.
+|        |- jsonschema/   Formatter for a JSON Schema format (not yet implemented).
+|     |- parser/
+|        |- dictionary/   JS files with array of keywords used in lexer.ne.
+|        |- rules/        Nearley files with grammar rules.
+|        |- lexer.ne      Entrypoint and first lines of the grammar.
 |
-|- test/                 Tests.
+|- tasks/
+|  |- mysql/
+|     |- assembly.js      Script that concatenates all .ne files to grammar.ne to lib folder.
+|     |- formatters.js    Script that sends a copy of formatters to lib folder.
+|
+|- test/                  Tests.
 ```
 
 - There are naming rules for tokens in ne files, as stated in `lexer.ne`. They are prepended with:
@@ -68,12 +178,13 @@ S_ -> Symbol (not a keyword, but chars and other matches by RegExp's)
 
 ### Scripts at hand
 
+Valid to all SQL dialects:
+
 - Assemble `grammar.ne` and compile to `grammar.js`: `yarn run build`
 - Same as above, but watch for changes: `yarn run build:watch`
 - Assemble, build and test: `yarn run test`
 - Same as above, but watch for changes: `yarn run test:watch`
-- Parse example file: `yarn run example`
-- Test against nearley tester: `yarn run nearley-test --input 'CREATE TABLE test (test CHAR(1));'`
+- Test against nearley tester: `yarn run nearley-test lib/mysql/parser/grammar.js --input 'CREATE TABLE test (test CHAR(1));'`
 
 ### Debugging
 
@@ -86,39 +197,33 @@ To debug tests you may want to change the args as you go.
 
 ```json
 {
-    "version": "0.2.0",
-    "configurations": [
-      {
-        "type": "node",
-        "request": "launch",
-        "name": "Debug Compilation",
-        "args": [
-          "lib/compiled/grammar.ne"
-        ],
-        "program": "${workspaceFolder}/node_modules/nearley/bin/nearleyc.js"
-      },
-      {
-        "type": "node",
-        "request": "launch",
-        "name": "Debug Tests",
-        "args": [
-          "test/create-table.js"
-        ],
-        "program": "${workspaceFolder}/node_modules/ava/profile.js"
-      },
-      {
-        "type": "node",
-        "request": "launch",
-        "name": "Debug Example",
-        "program": "${workspaceFolder}/src/parser/example.js"
-      },
-      {
-        "type": "node",
-        "request": "launch",
-        "name": "Debug Assembly",
-        "program": "${workspaceFolder}/src/parser/assembly.js"
-      }
-    ]
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Debug Compilation",
+      "args": [
+        "lib/mysql/parser/grammar.ne"
+      ],
+      "program": "${workspaceFolder}/node_modules/nearley/bin/nearleyc.js"
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Debug Tests",
+      "args": [
+        "test/mysql/parser/parser.spec.js"
+      ],
+      "program": "${workspaceFolder}/node_modules/ava/profile.js"
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Debug Example",
+      "program": "${workspaceFolder}/src/mysql/example.js"
+    }
+  ]
 }
 
 ```

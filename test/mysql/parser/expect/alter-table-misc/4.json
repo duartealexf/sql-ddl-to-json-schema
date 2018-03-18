@@ -1,0 +1,32 @@
+{
+  "id": "MAIN",
+  "def": [
+    {
+      "id": "P_DDS",
+      "def": {
+        "id": "P_ALTER_TABLE",
+        "def": {
+          "table": "people",
+          "specs": [
+            {
+              "id": "P_ALTER_TABLE_SPECS",
+              "def": {
+                "tableOptions": {
+                  "id": "P_CREATE_TABLE_OPTIONS",
+                  "def": [
+                    {
+                      "id": "O_CREATE_TABLE_OPTION",
+                      "def": {
+                        "charset": "utf8"
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

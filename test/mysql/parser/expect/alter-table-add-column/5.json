@@ -1,0 +1,42 @@
+{
+  "id": "MAIN",
+  "def": [
+    {
+      "id": "P_DDS",
+      "def": {
+        "id": "P_ALTER_TABLE",
+        "def": {
+          "table": "people",
+          "specs": [
+            {
+              "id": "P_ALTER_TABLE_SPECS",
+              "def": {
+                "spec": {
+                  "id": "O_ALTER_TABLE_SPEC",
+                  "def": {
+                    "action": "addColumns",
+                    "columns": [
+                      {
+                        "name": "status",
+                        "datatype": {
+                          "id": "O_DATATYPE",
+                          "def": {
+                            "id": "O_BOOLEAN_DATATYPE",
+                            "def": {
+                              "datatype": "boolean"
+                            }
+                          }
+                        },
+                        "columnDefinition": []
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

@@ -737,25 +737,6 @@
             }
           ]
         }
-      },
-      {
-        "columns": [
-          {
-            "column": "pet_id"
-          }
-        ],
-        "reference": {
-          "table": "pet",
-          "columns": [
-            {
-              "column": "id",
-              "length": 10,
-              "sort": "asc"
-            }
-          ]
-        },
-        "symbol": "fk_pet_id",
-        "name": "fk_pet"
       }
     ],
     "spatialIndexes": [

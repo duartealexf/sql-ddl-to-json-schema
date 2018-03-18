@@ -209,13 +209,6 @@
         }
       }
     ],
-    "primaryKey": {
-      "columns": [
-        {
-          "column": "id"
-        }
-      ]
-    },
     "uniqueKeys": [
       {
         "columns": [
@@ -223,29 +216,6 @@
             "column": "ssn"
           }
         ]
-      },
-      {
-        "columns": [
-          {
-            "column": "motto"
-          }
-        ],
-        "symbol": "u_motto",
-        "name": "unique_motto",
-        "indexType": "btree",
-        "options": {
-          "comment": "be original"
-        }
-      }
-    ],
-    "fulltextIndexes": [
-      {
-        "columns": [
-          {
-            "column": "initials"
-          }
-        ],
-        "name": "fi_initials"
       }
     ],
     "options": {
@@ -459,23 +429,6 @@
       }
     ],
     "indexes": [
-      {
-        "columns": [
-          {
-            "column": "height"
-          },
-          {
-            "column": "weight",
-            "length": 2,
-            "sort": "asc"
-          }
-        ],
-        "options": {
-          "comment": "good boy"
-        },
-        "indexType": "btree",
-        "name": "i_dimensions"
-      },
       {
         "columns": [
           {
@@ -756,22 +709,6 @@
         },
         "symbol": "fk_pet_id",
         "name": "fk_pet"
-      }
-    ],
-    "spatialIndexes": [
-      {
-        "columns": [
-          {
-            "column": "coordx"
-          },
-          {
-            "column": "coordy"
-          }
-        ],
-        "name": "coords",
-        "options": {
-          "comment": "hi neighbor"
-        }
       }
     ],
     "options": {

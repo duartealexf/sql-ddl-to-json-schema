@@ -36,8 +36,7 @@
           "length": 20
         },
         "options": {
-          "nullable": true,
-          "default": "J"
+          "nullable": true
         }
       },
       {

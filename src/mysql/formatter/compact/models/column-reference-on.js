@@ -1,5 +1,3 @@
-const utils = require('../../../../shared/utils');
-
 /**
  * Column reference's 'on' triggers of column actions.
  */

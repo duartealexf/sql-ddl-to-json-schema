@@ -26,5 +26,5 @@ ava('Compact formatter: Should drop two tables.', t => {
 
   const json = parser.toCompactJson(parser.results);
   // for some reason t.deepEqual hangs process
-  t.is(JSON.stringify(expect), JSON.stringify(expect));
+  t.is(JSON.stringify(json), JSON.stringify(expect));
 });

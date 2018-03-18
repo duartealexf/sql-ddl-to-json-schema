@@ -1,6 +1,6 @@
 [
   {
-    "name": "person",
+    "name": "people",
     "columns": [
       {
         "name": "id",
@@ -264,7 +264,7 @@
     }
   },
   {
-    "name": "pet",
+    "name": "dog",
     "columns": [
       {
         "name": "id",

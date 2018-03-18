@@ -251,9 +251,9 @@
     "options": {
       "autoincrement": 2,
       "avgRowLength": 250,
-      "charset": "utf8",
+      "charset": "latin1",
       "checksum": 1,
-      "collation": "utf8_general_ci",
+      "collation": "latin1_general_ci",
       "comment": "test table",
       "compression": "zlib",
       "engine": "XtraDB",
@@ -491,6 +491,7 @@
       }
     ],
     "options": {
+      "charset": "pet_charset",
       "connection": "mysql://xyz",
       "directoryName": "/data",
       "directoryType": "data",

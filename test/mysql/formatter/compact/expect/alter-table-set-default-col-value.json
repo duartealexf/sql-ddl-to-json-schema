@@ -37,7 +37,7 @@
         },
         "options": {
           "nullable": true,
-          "default": "J"
+          "default": "JJ"
         }
       },
       {
@@ -79,6 +79,7 @@
         },
         "options": {
           "nullable": true,
+          "default": 0,
           "invisibleWithoutSystemVersioning": true
         }
       },

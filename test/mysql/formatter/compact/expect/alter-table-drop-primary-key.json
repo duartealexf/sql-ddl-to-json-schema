@@ -209,13 +209,6 @@
         }
       }
     ],
-    "primaryKey": {
-      "columns": [
-        {
-          "column": "id"
-        }
-      ]
-    },
     "uniqueKeys": [
       {
         "columns": [

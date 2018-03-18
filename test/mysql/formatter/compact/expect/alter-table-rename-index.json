@@ -231,7 +231,7 @@
           }
         ],
         "symbol": "u_motto",
-        "name": "unique_motto",
+        "name": "unq_motto",
         "indexType": "btree",
         "options": {
           "comment": "be original"
@@ -245,7 +245,7 @@
             "column": "initials"
           }
         ],
-        "name": "fi_initials"
+        "name": "fidx_initials"
       }
     ],
     "options": {
@@ -474,7 +474,7 @@
           "comment": "good boy"
         },
         "indexType": "btree",
-        "name": "i_dimensions"
+        "name": "idx_dimensions"
       },
       {
         "columns": [
@@ -768,7 +768,7 @@
             "column": "coordy"
           }
         ],
-        "name": "coords",
+        "name": "placement",
         "options": {
           "comment": "hi neighbor"
         }

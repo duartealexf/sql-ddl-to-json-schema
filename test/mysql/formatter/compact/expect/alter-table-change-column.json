@@ -3,6 +3,23 @@
     "name": "person",
     "columns": [
       {
+        "name": "width",
+        "type": {
+          "datatype": "int",
+          "width": 1
+        },
+        "options": {
+          "unsigned": true,
+          "zerofill": true,
+          "charset": "latin1",
+          "collation": "latin_ci",
+          "nullable": true,
+          "default": 42,
+          "autoincrement": true,
+          "invisibleWithoutSystemVersioning": true
+        }
+      },
+      {
         "name": "id",
         "type": {
           "datatype": "int",
@@ -58,28 +75,6 @@
         },
         "options": {
           "nullable": true
-        }
-      },
-      {
-        "name": "weight",
-        "type": {
-          "datatype": "decimal",
-          "digits": 3,
-          "decimals": 0
-        },
-        "options": {
-          "nullable": true
-        }
-      },
-      {
-        "name": "status",
-        "type": {
-          "datatype": "bit",
-          "length": 1
-        },
-        "options": {
-          "nullable": true,
-          "invisibleWithoutSystemVersioning": true
         }
       },
       {
@@ -148,13 +143,28 @@
         }
       },
       {
-        "name": "avatar",
+        "name": "is_alive",
         "type": {
-          "datatype": "blob",
-          "length": 65535
+          "datatype": "boolean"
         },
         "options": {
-          "nullable": true
+          "nullable": false,
+          "format": "dynamic",
+          "comment": "staying alive",
+          "invisibleWithSystemVersioning": true,
+          "invisibleWithoutSystemVersioning": true
+        }
+      },
+      {
+        "name": "photo",
+        "type": {
+          "datatype": "blob",
+          "length": 255
+        },
+        "options": {
+          "nullable": true,
+          "invisible": true,
+          "storage": "memory"
         }
       },
       {
@@ -212,10 +222,27 @@
     "primaryKey": {
       "columns": [
         {
-          "column": "id"
+          "column": "is_alive"
         }
       ]
     },
+    "foreignKeys": [
+      {
+        "columns": [
+          {
+            "column": "photo"
+          }
+        ],
+        "reference": {
+          "table": "dog",
+          "columns": [
+            {
+              "column": "avatar"
+            }
+          ]
+        }
+      }
+    ],
     "uniqueKeys": [
       {
         "columns": [
@@ -236,6 +263,13 @@
         "options": {
           "comment": "be original"
         }
+      },
+      {
+        "columns": [
+          {
+            "column": "width"
+          }
+        ]
       }
     ],
     "fulltextIndexes": [
@@ -339,8 +373,8 @@
       {
         "name": "year",
         "type": {
-          "datatype": "year",
-          "digits": 2
+          "datatype": "int",
+          "width": 1
         },
         "options": {
           "nullable": true

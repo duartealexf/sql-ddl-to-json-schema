@@ -277,6 +277,13 @@ class Table {
    * @returns {void}
    */
   moveColumn(column, position) {
+    if (position && position.after) {
+      const refColumn = this.columns.find(c => c.name === position.after);
+      if (!refColumn) {
+        return;
+      }
+    }
+
     this.dropColumn(column);
     this.addColumn(column, position);
   }

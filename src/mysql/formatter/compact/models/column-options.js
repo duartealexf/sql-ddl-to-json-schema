@@ -166,21 +166,18 @@ class ColumnOptions {
   }
 
   /**
-   * Merge this option instance with another one. {
-   * json..
- = .this..
-;}
-
-
-return json;* Common properties of this instance are overwritten.
+   * Merge this option instance with another one.
+   * Common properties of this instance are overwritten.
    *
    * @param {ColumnOptions} options JSON format parsed from SQL.
    * @returns {void}
    */
   mergeWith(options) {
-    Object.entries(options).forEach(([k, v]) => { this[k] = v; });
+    const target = this;
+    Object.entries(options)
+      .filter(([k, v]) => utils.isDefined(v))
+      .forEach(([k, v]) => target[k] = v);
   }
-
 }
 
 module.exports = ColumnOptions;

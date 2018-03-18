@@ -240,6 +240,27 @@ class AlterTable {
     if (json.position) {
       table.moveColumn(column, json.position);
     }
+
+    /** @type {PrimaryKey} */
+    const primaryKey = column.extractPrimaryKey();
+
+    /** @type {ForeignKey} */
+    const foreignKey = column.extractForeignKey();
+
+    /** @type {UniqueKey} */
+    const uniqueKey = column.extractUniqueKey();
+
+    if (primaryKey) {
+      table.primaryKey = primaryKey;
+    }
+
+    if (foreignKey) {
+      table.pushForeignKey(foreignKey);
+    }
+
+    if (uniqueKey) {
+      table.pushUniqueKey(uniqueKey);
+    }
   }
 
   /**

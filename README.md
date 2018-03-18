@@ -2,12 +2,117 @@
 
 [![Build Status](https://travis-ci.org/duartealexf/sql-ddl-to-json-schema.svg?branch=master)](https://travis-ci.org/duartealexf/sql-ddl-to-json-schema)
 
-WORK IN PROGESS - [Check out the roadmap](https://github.com/duartealexf/sql-ddl-to-json-schema/blob/master/ROADMAP.md)
+Transforms SQL DDL statements into JSON format (a compact format and JSON Schema).
 
-A grammar and stream-friendly SQL parser based on [nearley](nearley.js.org) that transforms DDL statements into JSON Schema.
-No SQL client or Database Management System required.
+```sql
+CREATE TABLE users (
+  id INT(11) NOT NULL AUTO_INCREMENT,
+  nickname VARCHAR(255) NOT NULL,
+  deleted_at TIMESTAMP NULL,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
+  updated_at TIMESTAMP,
+  PRIMARY KEY (id)
+) ENGINE MyISAM COMMENT 'All system users';
 
-## Installation
+ALTER TABLE users ADD UNIQUE KEY unq_nick (nickname);
+```
+
+Outputs to a compact JSON format:
+
+```json
+[
+  {
+    "name": "users",
+    "columns": [
+      {
+        "name": "id",
+        "type": {
+          "datatype": "int",
+          "width": 11
+        },
+        "options": {
+          "nullable": false,
+          "autoincrement": true
+        }
+      },
+      {
+        "name": "nickname",
+        "type": {
+          "datatype": "varchar",
+          "length": 255
+        },
+        "options": {
+          "nullable": false
+        }
+      },
+      {
+        "name": "deleted_at",
+        "type": {
+          "datatype": "timestamp",
+          "fractional": 0
+        },
+        "options": {
+          "nullable": true
+        }
+      },
+      {
+        "name": "created_at",
+        "type": {
+          "datatype": "timestamp",
+          "fractional": 0
+        },
+        "options": {
+          "nullable": false,
+          "default": "CURRENT_TIMESTAMP"
+        }
+      },
+      {
+        "name": "updated_at",
+        "type": {
+          "datatype": "timestamp",
+          "fractional": 0
+        },
+        "options": {
+          "nullable": true
+        }
+      }
+    ],
+    "primaryKey": {
+      "columns": [
+        {
+          "column": "id"
+        }
+      ]
+    },
+    "uniqueKeys": [
+      {
+        "columns": [
+          {
+            "column": "nickname"
+          }
+        ],
+        "name": "unq_nick"
+      }
+    ],
+    "options": {
+      "comment": "All system users",
+      "engine": "MyISAM"
+    }
+  }
+]
+```
+
+Output to JSON Schema is still work in progress - [Check out the roadmap](https://github.com/duartealexf/sql-ddl-to-json-schema/blob/master/ROADMAP.md)
+
+## About
+
+This project reads, parses and interprets [SQL DDL Statements from MySQL dialect](https://github.com/duartealexf/sql-ddl-to-json-schema/blob/master/ROADMAP.md#mariadb--mysql) transforming them into JSON Format.
+
+No SQL server, client or RDMS is required.
+
+This project is a grammar and stream-friendly SQL parser based on [nearley](nearley.js.org).
+
+## Usage
 
 Not published yet - unavailable for production.
 

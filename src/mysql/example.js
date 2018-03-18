@@ -4,14 +4,18 @@ const path = require('path');
 
 const parser = new Parser('mysql');
 
-let sql = fs.readFileSync(path.join(__dirname, '../', '../', 'test', 'mysql', 'formatter', 'compact', 'sql', 'create-table.sql')).toString();
-// let sql = 'CREATE TABLE person (a bool);';
-sql += fs.readFileSync(path.join(__dirname, '../', '../', 'test', 'mysql', 'formatter', 'compact', 'sql', 'alter-table-options.sql')).toString();
-parser.feed(sql);
+parser.feed(`
+CREATE TABLE users (
+  id INT(11) NOT NULL AUTO_INCREMENT,
+  nickname VARCHAR(255) NOT NULL,
+  deleted_at TIMESTAMP NULL,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
+  updated_at TIMESTAMP,
+  PRIMARY KEY (id)
+) ENGINE MyISAM COMMENT 'All system users';
 
-// parser.feed(`
-// alter table qwe COMPRESSION 'ZLIB', COMMENT 'test' Comment 'hi';
-// `);
+ALTER TABLE users ADD UNIQUE KEY unq_nick (nickname);
+`);
 
 const value = parser.results;
 // console.log(JSON.stringify(value, null, 2));

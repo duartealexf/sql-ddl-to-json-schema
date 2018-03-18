@@ -94,16 +94,6 @@
         }
       },
       {
-        "name": "tob",
-        "type": {
-          "datatype": "time",
-          "fractional": 3
-        },
-        "options": {
-          "nullable": true
-        }
-      },
-      {
         "name": "initials",
         "type": {
           "datatype": "char",

@@ -15,7 +15,10 @@ class Datatype {
     if (json.id === 'O_DATATYPE') {
       const datatype = new Datatype();
 
-      Object.entries(json.def.def).forEach(([k, v]) => { datatype[k] = v; });
+      Object.getOwnPropertyNames(json.def.def)
+        .map(k => [k, json.def.def[k]])
+        .forEach(([k, v]) => { datatype[k] = v; });
+
       datatype.datatype = Datatype.filterDatatype(datatype.datatype);
 
       return datatype;

@@ -15,7 +15,9 @@ class IndexOptions {
     const indexOptions = new IndexOptions();
 
     options.forEach(option => {
-      Object.entries(option.def).forEach(([k, v]) => { indexOptions[k] = v; });
+      Object.getOwnPropertyNames(option.def)
+        .map(k => [k, option.def[k]])
+        .forEach(([k, v]) => { indexOptions[k] = v; });
     });
 
     if (indexOptions.indexType) {

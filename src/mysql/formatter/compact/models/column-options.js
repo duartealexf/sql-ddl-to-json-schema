@@ -18,7 +18,9 @@ class ColumnOptions {
     const columnOptions = new ColumnOptions();
 
     definitions.forEach(columnDefinition => {
-      Object.entries(columnDefinition.def).forEach(([k, v]) => { columnOptions[k] = v; });
+      Object.getOwnPropertyNames(columnDefinition.def)
+        .map(k => [k, columnDefinition.def[k]])
+        .forEach(([k, v]) => { columnOptions[k] = v; });
     });
 
     [
@@ -174,7 +176,8 @@ class ColumnOptions {
    */
   mergeWith(options) {
     const target = this;
-    Object.entries(options)
+    Object.getOwnPropertyNames(options)
+      .map(k => [k, options[k]])
       .filter(([, v]) => utils.isDefined(v))
       .forEach(([k, v]) => { target[k] = v; });
   }

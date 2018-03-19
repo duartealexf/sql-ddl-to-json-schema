@@ -29,7 +29,9 @@ class TableOptions {
     const tableOptions = new TableOptions();
 
     options.forEach(option => {
-      Object.entries(option.def).forEach(([k, v]) => { tableOptions[k] = v; });
+      Object.getOwnPropertyNames(option.def)
+        .map(k => [k, option.def[k]])
+        .forEach(([k, v]) => { tableOptions[k] = v; });
     });
 
     [
@@ -275,7 +277,8 @@ class TableOptions {
    */
   mergeWith(options) {
     const target = this;
-    Object.entries(options)
+    Object.getOwnPropertyNames(options)
+      .map(k => [k, options[k]])
       .filter(([, v]) => utils.isDefined(v))
       .forEach(([k, v]) => { target[k] = v; });
   }

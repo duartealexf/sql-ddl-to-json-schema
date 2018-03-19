@@ -51,7 +51,7 @@ const compiledFolder = path.join(projectRoot, 'lib', 'mysql', 'parser');
 const nearleyGrammar = path.join(compiledFolder, 'grammar.ne');
 
 if (!fs.existsSync(compiledFolder)) {
-  fs.mkdirSync(compiledFolder);
+  fs.mkdirpSync(compiledFolder);
 }
 
 /**

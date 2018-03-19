@@ -19,10 +19,7 @@ const utils = require('../../shared/utils');
 const keywords = require('./dictionary/keywords');
 const symbols = require('./dictionary/symbols');
 
-const rules = {
-  ...keywords,
-  ...symbols,
-}
+const rules = Object.assign({}, keywords, symbols);
 
 const lexer = moo.compile(rules);
 %}

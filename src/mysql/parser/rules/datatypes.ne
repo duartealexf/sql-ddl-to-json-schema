@@ -76,13 +76,19 @@ O_FIXED_POINT_DATATYPE ->
         }%}
   ):?
 {% d => {
-  return {
+  const obj = {
     id: 'O_FIXED_POINT_DATATYPE',
     def: {
-      datatype: d[0].value,
-      ...d[1]
+      datatype: d[0].value
     }
   }
+
+  if (d[1]) {
+    obj.def.digits = d[1].digits
+    obj.def.decimals = d[1].decimals
+  }
+
+  return obj
 }%}
 
 # =============================================================
@@ -102,13 +108,19 @@ O_FLOATING_POINT_DATATYPE ->
       }%}
   ):?
 {% d => {
-  return {
+  const obj = {
     id: 'O_FLOATING_POINT_DATATYPE',
     def: {
-      datatype: d[0].value,
-      ...d[1]
+      datatype: d[0].value
     }
   }
+
+  if (d[1]) {
+    obj.def.digits = d[1].digits
+    obj.def.decimals = d[1].decimals
+  }
+
+  return obj
 }%}
 
 # =============================================================

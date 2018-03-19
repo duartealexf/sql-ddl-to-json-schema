@@ -57,5 +57,8 @@
   "directories": {
     "lib": "./lib",
     "test": "./test"
+  },
+  "engines" : {
+    "node" : ">=6.0.0"
   }
 }

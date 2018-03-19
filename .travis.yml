@@ -1,6 +1,9 @@
 language: node_js
 node_js:
   - "6.0.0"
+  - "7.0.0"
+  - "8.0.0"
+  - "node"
 script:
   - export NODE_VERSION=$(node --version)
   - nvm install stable

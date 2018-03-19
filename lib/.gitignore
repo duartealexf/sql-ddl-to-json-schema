@@ -1,5 +1,5 @@
-./shared
-./mysql
-./pgsql
-./mssql
-./oracle
+shared
+mysql
+pgsql
+mssql
+oracle

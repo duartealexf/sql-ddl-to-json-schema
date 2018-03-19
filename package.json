@@ -58,7 +58,7 @@
     "lib": "./lib",
     "test": "./test"
   },
-  "engines" : {
-    "node" : ">=6.0.0"
+  "engines": {
+    "node": ">=6.0.0"
   }
 }

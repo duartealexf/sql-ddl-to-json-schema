@@ -1,6 +1,6 @@
 const Parser = require('../../lib');
-const fs = require('fs');
-const path = require('path');
+// const fs = require('fs');
+// const path = require('path');
 
 const parser = new Parser('mysql');
 

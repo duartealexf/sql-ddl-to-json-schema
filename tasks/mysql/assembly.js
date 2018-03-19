@@ -10,9 +10,6 @@
 const fs = require('fs-extra');
 const path = require('path');
 const winston = require('winston');
-const babel = require('babel-core');
-
-const utils = require('../../src/shared/utils');
 
 /**
  * Get keywords to be matched as an identifier where
@@ -62,19 +59,12 @@ const dictionaryTo = path.join(compiledFolder, 'dictionary');
 const sharedFrom = path.join(projectRoot, 'src', 'shared');
 const sharedTo = path.join(projectRoot, 'lib', 'shared');
 
-/**
- * Filter functions that gets only .js files.
- * @param {string} filepath Filepath.
- * @returns {boolean} Whether it is .js file.
- */
-const filter = filepath => filepath.substr(-3) === '.js';
-
 logger.info('Starting grammar assembly...');
 
 /**
  * Main function for this script.
  *
- * @returns {Promise<void>} Main function promise.
+ * @returns {void}
  */
 const main = async() => {
 
@@ -191,56 +181,42 @@ const main = async() => {
   }
 
   /**
-   * Transpile dictionary folder.
+   * Copy dictionary folder.
    */
-  logger.info('Transpiling dictionary folder...');
+  logger.info('Copying dictionary folder...');
+
+  await new Promise(resolve =>
+    fs.copy(dictionaryFrom, dictionaryTo)
+      .then(resolve)
+      .catch(error => {
+        lastError = error;
+        resolve();
+      })
+  );
+
+  if (lastError) {
+    logger.error(`Error copying dictionary folder: ${lastError}`);
+    process.exit(1);
+  }
 
   /**
-   * Get filelist from dictionary folder.
-   * @type {string[]}
+   * Copy shared folder.
    */
-  let filelist = await new Promise(resolve => {
-    resolve(utils.getFilelist(sharedFrom, filter));
-  });
+  logger.info('Copying shared folder...');
 
-  filelist.forEach(filepath => {
-    const { code } = babel.transformFileSync(filepath);
-    const filepathParts = filepath.split(path.sep);
-    const destFile = filepathParts.pop();
-    const destFolder = path.join(
-      sharedTo,
-      filepathParts.join(path.sep).substr(sharedFrom.length + 1)
-    );
+  await new Promise(resolve =>
+    fs.copy(sharedFrom, sharedTo)
+      .then(resolve)
+      .catch(error => {
+        lastError = error;
+        resolve();
+      })
+  );
 
-    logger.info(`Transpiling ${filepath}...`);
-
-    fs.mkdirpSync(destFolder);
-    fs.writeFileSync(path.join(destFolder, destFile), code);
-  });
-
-  /**
-   * Transpile shared folder.
-   */
-  logger.info('Transpiling shared folder...');
-
-  filelist = await new Promise(resolve => {
-    resolve(utils.getFilelist(dictionaryFrom, filter));
-  });
-
-  filelist.forEach(filepath => {
-    const { code } = babel.transformFileSync(filepath);
-    const filepathParts = filepath.split(path.sep);
-    const destFile = filepathParts.pop();
-    const destFolder = path.join(
-      dictionaryTo,
-      filepathParts.join(path.sep).substr(dictionaryFrom.length + 1)
-    );
-
-    logger.info(`Transpiling ${filepath}...`);
-
-    fs.mkdirpSync(destFolder);
-    fs.writeFileSync(path.join(destFolder, destFile), code);
-  });
+  if (lastError) {
+    logger.error(`Error copying shared folder: ${lastError}`);
+    process.exit(1);
+  }
 };
 
 main().then(async() => {

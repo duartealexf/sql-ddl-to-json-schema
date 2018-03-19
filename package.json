@@ -10,15 +10,13 @@
   "scripts": {
     "standard-version": "node_modules/.bin/standard-version",
     "nearley-test": "node_modules/nearley/bin/nearley-test.js",
-    "nodemon-watch": "nodemon -w src -w test -e ne,js --ignore lib",
+    "nodemon-watch": "nodemon -w lib -w src -w test -e ne,js --ignore lib",
     "nearleyc": "node_modules/nearley/bin/nearleyc.js",
     "eslint": "node_modules/.bin/eslint",
     "ava": "node_modules/ava/cli.js",
 
     "test": "ava --color test/**/*.spec.js",
-
-    "lint": "eslint src tasks test",
-
+    "lint": "eslint src tasks test lib",
     "prebuild:mysql": "node tasks/mysql/assembly.js && node tasks/mysql/formatters.js",
     "build:mysql": "nearleyc lib/mysql/parser/grammar.ne > lib/mysql/parser/grammar.js",
     "build": "yarn run build:mysql",
@@ -42,8 +40,6 @@
   },
   "devDependencies": {
     "ava": "^0.22.0",
-    "babel-core": "^6.26.0",
-    "babel-preset-env": "^1.6.1",
     "commitizen": "^2.9.6",
     "cz-conventional-changelog": "^2.1.0",
     "eslint": "^4.7.0",

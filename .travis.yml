@@ -1,7 +1,5 @@
 language: node_js
 node_js:
-  - "4.0.0"
-  - "5.0.0"
   - "6.0.0"
 script:
   - export NODE_VERSION=$(node --version)

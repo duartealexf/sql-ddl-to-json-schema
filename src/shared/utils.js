@@ -1,6 +1,3 @@
-const fs = require('fs-extra');
-const path = require('path');
-
 /**
  * Utility helper.
  */
@@ -147,35 +144,6 @@ class Utils {
    */
   static isDefined(value) {
     return typeof value !== 'undefined' && !(value === null);
-  }
-
-  /**
- * Recursively get files in synchronous fashion. An optional filter function
- * can be passed, that decides whether the file will be added to list.
- *
- * @param {string} dir Directory path.
- * @param {Function} filter Filter function.
- * @returns {string[]} File list.
- */
-  static getFilelist(dir, filter = null) {
-    const files = fs.readdirSync(dir);
-    let filelist = [];
-
-    files.forEach(file => {
-      const filepath = path.join(dir, file);
-      const stat = fs.statSync(filepath);
-
-      if (stat.isDirectory()) {
-        filelist = filelist.concat(Utils.getFilelist(filepath, filter));
-      }
-      else {
-        if (filter === null || (typeof filter === 'function' && filter(filepath))) {
-          filelist.push(filepath);
-        }
-      }
-    });
-
-    return filelist;
   }
 }
 

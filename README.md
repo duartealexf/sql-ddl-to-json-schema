@@ -17,7 +17,7 @@ CREATE TABLE users (
 ALTER TABLE users ADD UNIQUE KEY unq_nick (nickname);
 ```
 
-Outputs to a compact JSON format:
+Delivers a compact JSON format:
 
 ```json
 [
@@ -102,29 +102,48 @@ Outputs to a compact JSON format:
 ]
 ```
 
-Output to JSON Schema is still work in progress - [Check out the roadmap](https://github.com/duartealexf/sql-ddl-to-json-schema/blob/master/ROADMAP.md)
-
-## About
-
-This project reads, parses and interprets [SQL DDL Statements from MySQL dialect](https://github.com/duartealexf/sql-ddl-to-json-schema/blob/master/ROADMAP.md#mariadb--mysql) transforming them into JSON Format.
-
-No SQL server, client or RDMS is required.
-
-This project is a grammar and stream-friendly SQL parser based on [nearley](nearley.js.org).
+*Output to JSON Schema is still work in progress* - [Check out the roadmap](https://github.com/duartealexf/sql-ddl-to-json-schema/blob/master/ROADMAP.md)
 
 ## Usage
 
-Not published yet - unavailable for production.
+```yarn add sql-ddl-to-json-schema```
+or
+```npm i sql-ddl-to-json-schema```
 
-If you want to contribute, create an issue, a PR or fork.
+```js
+const Parser = require('sql-ddl-to-json-schema');
+const parser = new Parser('mysql');
 
-<!-- `yarn add sql-ddl-to-json-schema`; -->
-<!-- or -->
-<!-- `npm i sql-ddl-to-json-schema`; -->
+parser.feed(`
+CREATE TABLE users (
+  id INT(11) NOT NULL AUTO_INCREMENT,
+  nickname VARCHAR(255) NOT NULL,
+  deleted_at TIMESTAMP NULL,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
+  updated_at TIMESTAMP,
+  PRIMARY KEY (id)
+) ENGINE MyISAM COMMENT 'All system users';
+
+ALTER TABLE users ADD UNIQUE KEY unq_nick (nickname);
+`
+
+const tablesArray = parser.toCompactJson();
+// ...
+```
+
+## About
+
+**No SQL server, client or DBMS is required.**
+
+To see which DDL statements / SQL dialects are supported, [check out the roadmap](https://github.com/duartealexf/sql-ddl-to-json-schema/blob/master/ROADMAP.md).
+
+This project is a grammar and stream-friendly SQL parser based on [nearley](nearley.js.org).
 
 ## Contributing
 
-This project assumes you are using yarn, as all scripts in `package.json` are run through yarn.
+You are welcome to contribute!
+
+Preferably use `yarn` instead of `npm`, as all scripts in `package.json` are run through yarn.
 
 - Clone this repo
 - Install nodemon: `yarn global add nodemon`
@@ -230,4 +249,5 @@ To debug tests you may want to change the args as you go.
 
 ## Links
 - [Grammar List](http://www.antlr3.org/grammar/list.html)
-- [jSQL project](https://github.com/Pamblam/jSQL)
+- [moo](https://github.com/no-context/moo)
+- [nearley](https://github.com/kach/nearley)

@@ -201,8 +201,8 @@ Valid to all SQL dialects:
 
 - Assemble `grammar.ne` and compile to `grammar.js`: `yarn run build`
 - Same as above, but watch for changes: `yarn run build:watch`
-- Assemble, build and test: `yarn run test`
-- Same as above, but watch for changes: `yarn run test:watch`
+- Run tests: `yarn run test`
+- Test and watch for changes: `yarn run test:watch`
 - Test against nearley tester: `yarn run nearley-test lib/mysql/parser/grammar.js --input 'CREATE TABLE test (test CHAR(1));'`
 
 ### Debugging
@@ -248,6 +248,7 @@ To debug tests you may want to change the args as you go.
 ```
 
 ## Links
+
 - [Grammar List](http://www.antlr3.org/grammar/list.html)
 - [moo](https://github.com/no-context/moo)
 - [nearley](https://github.com/kach/nearley)

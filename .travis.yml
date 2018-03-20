@@ -4,12 +4,9 @@ node_js:
   - "7.0.0"
   - "8.0.0"
   - "node"
-before_install:
-  - yarn global add codecov
 script:
   - export NODE_VERSION=$(node --version)
   - nvm install stable
   - yarn run build
   - nvm use $NODE_VERSION
-  - yarn run coverage
-  - yarn run nyc report --reporter=text-lcov > coverage.lcov && codecov
+  - yarn run test

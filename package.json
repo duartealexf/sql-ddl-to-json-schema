@@ -22,7 +22,7 @@
     "test:watch": "yarn run nodemon-watch --exec 'yarn run test'",
     "build:watch": "yarn run nodemon-watch --exec 'yarn run build'",
     "prerelease": "yarn run lint && yarn run build",
-    "release": "standard-version && git push --follow-tags && yarn publish"
+    "release": "standard-version && git push --follow-tags && npm publish"
   },
   "repository": {
     "type": "git",

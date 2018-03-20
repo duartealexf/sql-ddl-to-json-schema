@@ -17,7 +17,7 @@ CREATE TABLE users (
 ALTER TABLE users ADD UNIQUE KEY unq_nick (nickname);
 `);
 
-const value = parser.results;
+// const value = parser.results;
 // console.log(JSON.stringify(value, null, 2));
-const json = parser.toCompactJson(value);
+const json = parser.toCompactJson();
 console.log(JSON.stringify(json, null, 2));

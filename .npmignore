@@ -1,5 +1,10 @@
 *
 !/lib/**
+!/lib/shared
+!/lib/mysql
+!/lib/pgsql
+!/lib/mssql
+!/lib/oracle
 !/index.js
 !/LICENSE
 !/README.md

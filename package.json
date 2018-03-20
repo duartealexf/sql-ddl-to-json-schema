@@ -21,10 +21,8 @@
     "build": "yarn run build:mysql",
     "test:watch": "yarn run nodemon-watch --exec 'yarn run test'",
     "build:watch": "yarn run nodemon-watch --exec 'yarn run build'",
-    "preversion": "yarn run lint && yarn run build",
-    "version": "standard-version && git push --follow-tags",
-    "prepublish": "yarn run lint && yarn run build",
-    "publish": "npm publish && yarn publish"
+    "prerelease": "yarn run lint && yarn run build",
+    "release": "yarn run prepare && standard-version && git push --follow-tags && npm publish && yarn publish"
   },
   "repository": {
     "type": "git",

@@ -12,4 +12,5 @@ script:
   - yarn run build
   - nvm use $NODE_VERSION
   - yarn run test
+  - yarn run coverage
   - yarn run nyc report --reporter=text-lcov > coverage.lcov && codecov

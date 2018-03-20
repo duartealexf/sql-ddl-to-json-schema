@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="1.0.1"></a>
+## [1.0.1](https://github.com/duartealexf/sql-ddl-to-json-schema/compare/v1.0.0...v1.0.1) (2018-03-20)
+
+
+### Bug Fixes
+
+* Changed .npmignore and .gitignore. ([e52e238](https://github.com/duartealexf/sql-ddl-to-json-schema/commit/e52e238))
+
+
+
 <a name="1.0.0"></a>
 # 1.0.0 (2018-03-19)
 

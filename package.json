@@ -1,6 +1,6 @@
 {
   "name": "sql-ddl-to-json-schema",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "A grammar and stream-friendly SQL parser.",
   "main": "index.js",
   "author": "Alexandre Duarte <duartealexf@gmail.com> (https://github.com/duartealexf)",

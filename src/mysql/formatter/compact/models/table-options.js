@@ -42,7 +42,6 @@ class TableOptions {
       'ietfQuotes',
       'insertMethod',
       'rowFormat',
-      'statsSamplePages',
       'tablespaceStorage',
     ]
       .forEach(prop => {
@@ -55,6 +54,7 @@ class TableOptions {
       'packKeys',
       'statsAutoRecalc',
       'statsPersistent',
+      'statsSamplePages',
     ].forEach(prop => {
       if (tableOptions[prop] && utils.isString(tableOptions[prop])) {
         tableOptions[prop] = tableOptions[prop].toLowerCase();
@@ -195,7 +195,7 @@ class TableOptions {
     this.statsPersistent = undefined;
 
     /**
-     * @type {string}
+     * @type {number|string}
      */
     this.statsSamplePages = undefined;
 

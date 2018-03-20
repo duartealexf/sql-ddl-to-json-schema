@@ -137,7 +137,7 @@ const tablesArray = parser.toCompactJson();
 
 To see which DDL statements / SQL dialects are supported, [check out the roadmap](https://github.com/duartealexf/sql-ddl-to-json-schema/blob/master/ROADMAP.md).
 
-This project is a grammar and stream-friendly SQL parser based on [nearley](nearley.js.org).
+This project is a grammar and stream-friendly SQL parser based on [nearley](https://github.com/kach/nearley).
 
 ## Contributing
 

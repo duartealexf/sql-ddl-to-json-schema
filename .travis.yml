@@ -4,7 +4,7 @@ node_js:
   - "7.0.0"
   - "8.0.0"
   - "node"
-install:
+before_install:
   - yarn global add codecov
 script:
   - export NODE_VERSION=$(node --version)

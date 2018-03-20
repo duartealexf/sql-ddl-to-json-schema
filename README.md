@@ -125,7 +125,7 @@ CREATE TABLE users (
 ) ENGINE MyISAM COMMENT 'All system users';
 
 ALTER TABLE users ADD UNIQUE KEY unq_nick (nickname);
-`
+`);
 
 const tablesArray = parser.toCompactJson();
 // ...

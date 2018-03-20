@@ -1,6 +1,9 @@
 # SQL DDL to JSON Schema converter
 
 [![Build Status](https://travis-ci.org/duartealexf/sql-ddl-to-json-schema.svg?branch=master)](https://travis-ci.org/duartealexf/sql-ddl-to-json-schema)
+[![npm](https://img.shields.io/npm/v/sql-ddl-to-json-schema.svg)](https://img.shields.io/npm/v/sql-ddl-to-json-schema.svg)
+[![node](https://img.shields.io/node/v/sql-ddl-to-json-schema.svg)](https://img.shields.io/node/v/sql-ddl-to-json-schema.svg)
+[![license](https://img.shields.io/npm/l/sql-ddl-to-json-schema.svg)](https://img.shields.io/npm/l/sql-ddl-to-json-schema.svg)
 
 Transforms SQL DDL statements into JSON format (a compact format and JSON Schema).
 
@@ -137,7 +140,7 @@ const tablesArray = parser.toCompactJson();
 
 To see which DDL statements / SQL dialects are supported, [check out the roadmap](https://github.com/duartealexf/sql-ddl-to-json-schema/blob/master/ROADMAP.md).
 
-This project is a grammar and stream-friendly SQL parser based on [nearley](https://github.com/kach/nearley).
+This project is a grammar and stream-friendly SQL parser based on [nearley](nearley.js.org).
 
 ## Contributing
 

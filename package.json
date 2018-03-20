@@ -22,7 +22,7 @@
     "test:watch": "yarn run nodemon-watch --exec 'yarn run test'",
     "build:watch": "yarn run nodemon-watch --exec 'yarn run build'",
     "prerelease": "yarn run lint && yarn run build",
-    "release": "standard-version && git push --follow-tags && npm publish && yarn publish"
+    "release": "standard-version && git push --follow-tags && yarn publish"
   },
   "repository": {
     "type": "git",
@@ -33,7 +33,8 @@
     "url": "https://github.com/duartealexf/sql-ddl-to-json-schema/issues"
   },
   "dependencies": {
-    "nearley": "^2.13.0"
+    "nearley": "^2.13.0",
+    "moo": "^0.4.3"
   },
   "devDependencies": {
     "ava": "^0.22.0",
@@ -41,7 +42,6 @@
     "cz-conventional-changelog": "^2.1.0",
     "eslint": "^4.7.0",
     "fs-extra": "^5.0.0",
-    "moo": "^0.4.3",
     "nodemon": "^1.14.11",
     "standard-version": "^4.3.0",
     "winston": "^3.0.0-rc0"

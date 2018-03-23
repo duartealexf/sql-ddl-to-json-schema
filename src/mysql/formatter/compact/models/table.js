@@ -373,6 +373,14 @@ class Table {
   dropColumn(column) {
     // TODO: validate FK reference (https://github.com/duartealexf/sql-ddl-to-json-schema/issues/12)
 
+    /**
+     * Should not drop the last column of table.
+     * https://github.com/duartealexf/sql-ddl-to-json-schema/issues/13
+     */
+    if (this.columns.length === 1) {
+      return;
+    }
+
     const pos = this.columns.indexOf(column);
     const end = this.columns.splice(pos);
     end.shift();

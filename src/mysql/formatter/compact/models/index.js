@@ -102,7 +102,7 @@ class Index {
 
     index.columns = this.columns.map(c => c.clone());
 
-    if (utils.isDefined(this.options))   { index.options = this.options.toJSON(); }
+    if (utils.isDefined(this.options))   { index.options = this.options.clone(); }
     if (utils.isDefined(this.indexType)) { index.indexType = this.indexType; }
     if (utils.isDefined(this.name))      { index.name    = this.name; }
 

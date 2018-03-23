@@ -20,6 +20,8 @@ ava('Compact formatter: Should alter table, adding columns.', t => {
   `);
 
   const json = parser.toCompactJson(parser.results);
+  // fs.writeFileSync(path.join(__dirname, 'expect', 'alter-table-add-columns.json'), JSON.stringify(json, null, 2));
   // for some reason t.deepEqual hangs process
   t.is(JSON.stringify(json), JSON.stringify(expect));
+  // t.pass();
 });

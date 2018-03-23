@@ -90,6 +90,15 @@ class AlterTable {
    */
   addColumn(json, table) {
     const column = Column.fromObject(json);
+
+    /**
+     * Adding columns with REFERENCES should not create FK constraint.
+     * https://github.com/duartealexf/sql-ddl-to-json-schema/issues/16
+     */
+    if (column.options.reference) {
+      delete column.options.reference;
+    }
+
     table.addColumn(column, json.position);
   }
 
@@ -103,6 +112,15 @@ class AlterTable {
   addColumns(json, table) {
     json.columns.forEach(column => {
       column = Column.fromObject(column);
+
+      /**
+       * Adding columns with REFERENCES should not create FK constraint.
+       * https://github.com/duartealexf/sql-ddl-to-json-schema/issues/16
+       */
+      if (column.options.reference) {
+        delete column.options.reference;
+      }
+
       table.addColumn(column);
     });
   }

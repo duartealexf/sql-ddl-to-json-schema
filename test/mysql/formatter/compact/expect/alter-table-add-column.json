@@ -257,23 +257,6 @@
         }
       ]
     },
-    "foreignKeys": [
-      {
-        "columns": [
-          {
-            "column": "test3"
-          }
-        ],
-        "reference": {
-          "table": "dog",
-          "columns": [
-            {
-              "column": "avatar"
-            }
-          ]
-        }
-      }
-    ],
     "uniqueKeys": [
       {
         "columns": [

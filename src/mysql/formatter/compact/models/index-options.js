@@ -83,6 +83,22 @@ class IndexOptions {
 
     return json;
   }
+
+  /**
+   * Create a deep clone of this model.
+   *
+   * @returns {IndexOptions} Clone.
+   */
+  clone() {
+    const options = new IndexOptions();
+
+    Object.getOwnPropertyNames(this)
+      .map(k => [k, this[k]])
+      .filter(([, v]) => utils.isDefined(v))
+      .forEach(([k, v]) => { options[k] = v; });
+
+    return options;
+  }
 }
 
 module.exports = IndexOptions;

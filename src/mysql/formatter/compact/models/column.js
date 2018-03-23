@@ -116,6 +116,24 @@ class Column {
   }
 
   /**
+   * Create a deep clone of this model.
+   *
+   * @returns {Column} Clone.
+   */
+  clone() {
+    const column = new Column();
+
+    column.name = this.name;
+    column.type = this.type.clone();
+
+    if (this.options) {
+      column.options = this.options.clone();
+    }
+
+    return column;
+  }
+
+  /**
    * Whether this column is primary key.
    *
    * @returns {boolean} Test result.

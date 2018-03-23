@@ -114,6 +114,26 @@ class Datatype {
 
     return json;
   }
+
+  /**
+   * Create a deep clone of this model.
+   *
+   * @returns {Datatype} Clone.
+   */
+  clone() {
+    const datatype = new Datatype();
+
+    Object.getOwnPropertyNames(this)
+      .map(k => [k, this[k]])
+      .filter(([, v]) => utils.isDefined(v))
+      .forEach(([k, v]) => { datatype[k] = v; });
+
+    if (datatype.values) {
+      datatype.values = datatype.values.slice();
+    }
+
+    return datatype;
+  }
 }
 
 module.exports = Datatype;

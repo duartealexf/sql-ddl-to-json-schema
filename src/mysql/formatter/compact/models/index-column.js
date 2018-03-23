@@ -62,6 +62,22 @@ class IndexColumn {
 
     return json;
   }
+
+  /**
+   * Create a deep clone of this model.
+   *
+   * @returns {IndexColumn} Clone.
+   */
+  clone() {
+    const indexColumn = new IndexColumn();
+
+    indexColumn.column = this.column;
+
+    if (utils.isDefined(this.length)) { indexColumn.length = this.length; }
+    if (utils.isDefined(this.sort))   { indexColumn.sort   = this.sort; }
+
+    return indexColumn;
+  }
 }
 
 module.exports = IndexColumn;

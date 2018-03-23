@@ -77,7 +77,7 @@ class ColumnOptions {
     this.nullable = undefined;
 
     /**
-     * @type {any}
+     * @type {boolean|string|number}
      */
     this.default = undefined;
 
@@ -180,6 +180,22 @@ class ColumnOptions {
       .map(k => [k, options[k]])
       .filter(([, v]) => utils.isDefined(v))
       .forEach(([k, v]) => { target[k] = v; });
+  }
+
+  /**
+   * Create a deep clone of this model.
+   *
+   * @returns {ColumnOptions} Clone.
+   */
+  clone() {
+    const options = new ColumnOptions();
+
+    Object.getOwnPropertyNames(this)
+      .map(k => [k, this[k]])
+      .filter(([, v]) => utils.isDefined(v))
+      .forEach(([k, v]) => { options[k] = v; });
+
+    return options;
   }
 }
 

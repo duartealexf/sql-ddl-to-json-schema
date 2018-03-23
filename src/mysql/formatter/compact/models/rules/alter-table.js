@@ -91,27 +91,6 @@ class AlterTable {
   addColumn(json, table) {
     const column = Column.fromObject(json);
     table.addColumn(column, json.position);
-
-    /** @type {PrimaryKey} */
-    const primaryKey = column.extractPrimaryKey();
-
-    /** @type {ForeignKey} */
-    const foreignKey = column.extractForeignKey();
-
-    /** @type {UniqueKey} */
-    const uniqueKey = column.extractUniqueKey();
-
-    if (primaryKey) {
-      table.primaryKey = primaryKey;
-    }
-
-    if (foreignKey) {
-      table.pushForeignKey(foreignKey);
-    }
-
-    if (uniqueKey) {
-      table.pushUniqueKey(uniqueKey);
-    }
   }
 
   /**
@@ -124,28 +103,7 @@ class AlterTable {
   addColumns(json, table) {
     json.columns.forEach(column => {
       column = Column.fromObject(column);
-      table.addColumn(column, null);
-
-      /** @type {PrimaryKey} */
-      const primaryKey = column.extractPrimaryKey();
-
-      /** @type {ForeignKey} */
-      const foreignKey = column.extractForeignKey();
-
-      /** @type {UniqueKey} */
-      const uniqueKey = column.extractUniqueKey();
-
-      if (primaryKey) {
-        table.primaryKey = primaryKey;
-      }
-
-      if (foreignKey) {
-        table.pushForeignKey(foreignKey);
-      }
-
-      if (uniqueKey) {
-        table.pushUniqueKey(uniqueKey);
-      }
+      table.addColumn(column);
     });
   }
 
@@ -282,34 +240,27 @@ class AlterTable {
 
     column.type = Datatype.fromDef(json.datatype);
 
-    column.options.mergeWith(
-      ColumnOptions.fromArray(json.columnDefinition)
-    );
-
-    if (json.position) {
-      table.moveColumn(column, json.position);
+    /**
+     * Alter table change column should not bring old column options.
+     * https://github.com/duartealexf/sql-ddl-to-json-schema/issues/10
+     */
+    if (json.columnDefinition) {
+      column.options = ColumnOptions.fromArray(json.columnDefinition);
     }
 
-    /** @type {PrimaryKey} */
-    const primaryKey = column.extractPrimaryKey();
-
-    /** @type {ForeignKey} */
-    const foreignKey = column.extractForeignKey();
-
-    /** @type {UniqueKey} */
-    const uniqueKey = column.extractUniqueKey();
-
-    if (primaryKey) {
-      table.primaryKey = primaryKey;
+    /**
+     * Alter table change column with reference does not add foreign key constraint.
+     * https://github.com/duartealexf/sql-ddl-to-json-schema/issues/11
+     */
+    if (column.options.reference) {
+      delete column.options.reference;
     }
 
-    if (foreignKey) {
-      table.pushForeignKey(foreignKey);
+    if (!json.position) {
+      json.position = table.getColumnPosition(column);
     }
 
-    if (uniqueKey) {
-      table.pushUniqueKey(uniqueKey);
-    }
+    table.moveColumn(column, json.position);
   }
 
   /**

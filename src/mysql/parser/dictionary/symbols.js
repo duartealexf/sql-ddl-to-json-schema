@@ -6,8 +6,6 @@
  *
  * https://mariadb.com/kb/en/library/sql-language-structure/
  * https://mariadb.com/kb/en/library/operators/
- *
- * TODO: add qualified identifiers.
  */
 
 module.exports = {

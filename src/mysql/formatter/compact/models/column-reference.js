@@ -80,6 +80,23 @@ class ColumnReference {
 
     return json;
   }
+
+  /**
+   * Create a deep clone of this model.
+   *
+   * @returns {ColumnReference} Clone.
+   */
+  clone() {
+    const reference = new ColumnReference();
+
+    reference.table = this.table;
+
+    if (utils.isDefined(this.match)) { reference.match   = this.match; }
+    if (this.on.length)              { reference.on      = this.on.map(o => o.clone()); }
+    if (this.columns.length)         { reference.columns = this.columns.map(c => c.clone()); }
+
+    return reference;
+  }
 }
 
 module.exports = ColumnReference;

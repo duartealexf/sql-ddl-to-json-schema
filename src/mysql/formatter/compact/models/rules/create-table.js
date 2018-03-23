@@ -31,14 +31,18 @@ class CreateTable {
     json = json.def;
 
     if (json.id === 'P_CREATE_TABLE_COMMON') {
-      this.tables.push(
-        Table.fromCommonDef(json)
-      );
+      const table = Table.fromCommonDef(json);
+
+      if (table) {
+        this.tables.push(table);
+      }
     }
     else if (json.id === 'P_CREATE_TABLE_LIKE') {
-      this.tables.push(
-        Table.fromAlikeDef(json, this.tables)
-      );
+      const table = Table.fromAlikeDef(json, this.tables);
+
+      if (table) {
+        this.tables.push(table);
+      }
     }
   }
 }

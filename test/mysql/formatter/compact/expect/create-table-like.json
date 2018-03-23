@@ -3,23 +3,6 @@
     "name": "person",
     "columns": [
       {
-        "name": "width",
-        "type": {
-          "datatype": "int",
-          "width": 1
-        },
-        "options": {
-          "unsigned": true,
-          "zerofill": true,
-          "charset": "latin1",
-          "collation": "latin_ci",
-          "nullable": true,
-          "default": 42,
-          "autoincrement": true,
-          "invisibleWithoutSystemVersioning": true
-        }
-      },
-      {
         "name": "id",
         "type": {
           "datatype": "int",
@@ -75,6 +58,28 @@
         },
         "options": {
           "nullable": true
+        }
+      },
+      {
+        "name": "weight",
+        "type": {
+          "datatype": "decimal",
+          "digits": 3,
+          "decimals": 0
+        },
+        "options": {
+          "nullable": true
+        }
+      },
+      {
+        "name": "status",
+        "type": {
+          "datatype": "bit",
+          "length": 1
+        },
+        "options": {
+          "nullable": true,
+          "invisibleWithoutSystemVersioning": true
         }
       },
       {
@@ -143,27 +148,13 @@
         }
       },
       {
-        "name": "is_alive",
-        "type": {
-          "datatype": "boolean"
-        },
-        "options": {
-          "nullable": false,
-          "format": "dynamic",
-          "comment": "staying alive",
-          "invisibleWithSystemVersioning": true
-        }
-      },
-      {
-        "name": "photo",
+        "name": "avatar",
         "type": {
           "datatype": "blob",
-          "length": 255
+          "length": 65535
         },
         "options": {
-          "nullable": true,
-          "invisible": true,
-          "storage": "memory"
+          "nullable": true
         }
       },
       {
@@ -221,7 +212,7 @@
     "primaryKey": {
       "columns": [
         {
-          "column": "is_alive"
+          "column": "id"
         }
       ]
     },
@@ -245,13 +236,6 @@
         "options": {
           "comment": "be original"
         }
-      },
-      {
-        "columns": [
-          {
-            "column": "width"
-          }
-        ]
       }
     ],
     "fulltextIndexes": [
@@ -355,8 +339,8 @@
       {
         "name": "year",
         "type": {
-          "datatype": "int",
-          "width": 1
+          "datatype": "year",
+          "digits": 2
         },
         "options": {
           "nullable": true
@@ -804,6 +788,252 @@
       "transactional": 1,
       "tablespaceName": "abc",
       "tablespaceStorage": "default"
+    }
+  },
+  {
+    "name": "pet",
+    "columns": [
+      {
+        "name": "id",
+        "type": {
+          "datatype": "int",
+          "width": 8
+        },
+        "options": {
+          "nullable": true
+        }
+      },
+      {
+        "name": "species",
+        "type": {
+          "datatype": "varchar",
+          "length": 200
+        },
+        "options": {
+          "nullable": true
+        }
+      },
+      {
+        "name": "owner_id",
+        "type": {
+          "datatype": "int",
+          "width": 3
+        },
+        "options": {
+          "nullable": true
+        }
+      },
+      {
+        "name": "height",
+        "type": {
+          "datatype": "decimal"
+        },
+        "options": {
+          "nullable": true
+        }
+      },
+      {
+        "name": "weight",
+        "type": {
+          "datatype": "decimal",
+          "digits": 4,
+          "decimals": 2
+        },
+        "options": {
+          "nullable": true
+        }
+      },
+      {
+        "name": "status",
+        "type": {
+          "datatype": "bit",
+          "length": 2
+        },
+        "options": {
+          "nullable": true
+        }
+      },
+      {
+        "name": "birth",
+        "type": {
+          "datatype": "datetime",
+          "fractional": 0
+        },
+        "options": {
+          "nullable": true
+        }
+      },
+      {
+        "name": "year",
+        "type": {
+          "datatype": "year",
+          "digits": 2
+        },
+        "options": {
+          "nullable": true
+        }
+      },
+      {
+        "name": "initial",
+        "type": {
+          "datatype": "char",
+          "length": 1
+        },
+        "options": {
+          "nullable": true
+        }
+      },
+      {
+        "name": "avatar",
+        "type": {
+          "datatype": "blob",
+          "length": 255
+        },
+        "options": {
+          "nullable": true
+        }
+      },
+      {
+        "name": "photo",
+        "type": {
+          "datatype": "blob",
+          "length": 16777215
+        },
+        "options": {
+          "nullable": true
+        }
+      },
+      {
+        "name": "history",
+        "type": {
+          "datatype": "text",
+          "length": 16777215
+        },
+        "options": {
+          "nullable": true
+        }
+      },
+      {
+        "name": "gender",
+        "type": {
+          "datatype": "set",
+          "values": [
+            "M",
+            "F"
+          ]
+        },
+        "options": {
+          "nullable": true
+        }
+      },
+      {
+        "name": "intelligent",
+        "type": {
+          "datatype": "set",
+          "values": [
+            "N"
+          ]
+        },
+        "options": {
+          "nullable": true
+        }
+      },
+      {
+        "name": "shape",
+        "type": {
+          "datatype": "polygon"
+        },
+        "options": {
+          "nullable": true
+        }
+      },
+      {
+        "name": "pattern",
+        "type": {
+          "datatype": "multipolygon"
+        },
+        "options": {
+          "nullable": true
+        }
+      },
+      {
+        "name": "object",
+        "type": {
+          "datatype": "json"
+        },
+        "options": {
+          "nullable": true
+        }
+      }
+    ],
+    "foreignKeys": [
+      {
+        "columns": [
+          {
+            "column": "owner_id"
+          }
+        ],
+        "reference": {
+          "table": "person",
+          "columns": [
+            {
+              "column": "id",
+              "length": 10,
+              "sort": "asc"
+            }
+          ]
+        }
+      }
+    ],
+    "indexes": [
+      {
+        "columns": [
+          {
+            "column": "height"
+          },
+          {
+            "column": "weight",
+            "length": 2,
+            "sort": "asc"
+          }
+        ],
+        "options": {
+          "comment": "good boy"
+        },
+        "indexType": "btree",
+        "name": "i_dimensions"
+      },
+      {
+        "columns": [
+          {
+            "column": "birth",
+            "length": 5,
+            "sort": "desc"
+          }
+        ],
+        "options": {
+          "indexType": "btree"
+        },
+        "name": "i_birth"
+      }
+    ],
+    "options": {
+      "connection": "mysql://xyz",
+      "dataDirectory": "/data",
+      "delayKeyWrite": 0,
+      "encryption": "123456",
+      "encryptionKeyId": 2,
+      "ietfQuotes": "no",
+      "insertMethod": "first",
+      "packKeys": 0,
+      "rowFormat": "dynamic",
+      "statsAutoRecalc": 0,
+      "withSystemVersioning": true,
+      "tablespaceName": "abc",
+      "union": [
+        "house",
+        "person"
+      ]
     }
   }
 ]

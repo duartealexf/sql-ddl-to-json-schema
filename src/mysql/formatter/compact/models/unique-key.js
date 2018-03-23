@@ -97,6 +97,44 @@ class UniqueKey {
 
     return json;
   }
+
+  /**
+   * Create a deep clone of this model.
+   *
+   * @returns {UniqueKey} Clone.
+   */
+  clone() {
+    const key = new UniqueKey();
+
+    key.columns = this.columns.map(c => c.clone());
+
+    if (utils.isDefined(this.symbol))     { key.symbol     = this.symbol; }
+    if (utils.isDefined(this.name))       { key.name       = this.name; }
+    if (utils.isDefined(this.indexType))  { key.indexType  = this.indexType; }
+    if (utils.isDefined(this.options))    { key.options    = this.options.clone(); }
+
+    return key;
+  }
+
+  /**
+   * Drops a column from key.
+   *
+   * @param {string} name Column name to be dropped.
+   * @returns {boolean} Whether column was removed.
+   */
+  dropColumn(name) {
+    let pos;
+    const found = this.columns.some((c, i) => {
+      pos = i;
+      return c.column === name;
+    });
+    if (!found) { return false; }
+
+    const end = this.columns.splice(pos);
+    end.shift();
+    this.columns = this.columns.concat(end);
+    return true;
+  }
 }
 
 module.exports = UniqueKey;

@@ -85,6 +85,23 @@ class ForeignKey {
   }
 
   /**
+   * Create a deep clone of this model.
+   *
+   * @returns {ForeignKey} Clone.
+   */
+  clone() {
+    const key = new ForeignKey();
+
+    key.columns = this.columns.map(c => c.clone());
+    key.reference = this.reference.clone();
+
+    if (utils.isDefined(this.symbol)) { key.symbol     = this.symbol; }
+    if (utils.isDefined(this.name))   { key.name       = this.name; }
+
+    return key;
+  }
+
+  /**
    * Push an index column to columns array.
    *
    * @param {IndexColumn} indexColumn Index column to be pushed.
@@ -92,6 +109,26 @@ class ForeignKey {
    */
   pushColumn(indexColumn) {
     this.columns.push(indexColumn);
+  }
+
+  /**
+   * Drops a column from index.
+   *
+   * @param {string} name Column name to be dropped.
+   * @returns {boolean} Whether column was removed.
+   */
+  dropColumn(name) {
+    let pos;
+    const found = this.columns.some((c, i) => {
+      pos = i;
+      return c.column === name;
+    });
+    if (!found) { return false; }
+
+    const end = this.columns.splice(pos);
+    end.shift();
+    this.columns = this.columns.concat(end);
+    return true;
   }
 }
 

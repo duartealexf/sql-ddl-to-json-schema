@@ -11,7 +11,6 @@ const utils = require('../../../../shared/utils');
 
 /**
  * Class to represent a table as parsed from SQL.
- * TODO: create method to duplicate table, for 'CREATE TABLE LIKE', remove json prop.
  */
 class Table {
 
@@ -27,7 +26,6 @@ class Table {
       json = json.def;
 
       const table = new Table();
-      table.json = json;
       table.name = json.table;
 
       if (json.tableOptions) {
@@ -43,28 +41,7 @@ class Table {
          */
         if (utils.isDefined(O_CREATE_TABLE_CREATE_DEFINITION.def.column)) {
           const column = Column.fromDef(O_CREATE_TABLE_CREATE_DEFINITION);
-          table.columns.push(column);
-
-          /** @type {PrimaryKey} */
-          const primaryKey = column.extractPrimaryKey();
-
-          /** @type {ForeignKey} */
-          const foreignKey = column.extractForeignKey();
-
-          /** @type {UniqueKey} */
-          const uniqueKey = column.extractUniqueKey();
-
-          if (primaryKey) {
-            table.primaryKey = primaryKey;
-          }
-
-          if (foreignKey) {
-            table.pushForeignKey(foreignKey);
-          }
-
-          if (uniqueKey) {
-            table.pushUniqueKey(uniqueKey);
-          }
+          table.addColumn(column);
         }
 
         /**
@@ -141,12 +118,12 @@ class Table {
 
       const alikeTable = tables.find(t => t.name === json.like);
 
-      if (alikeTable) {
+      if (!alikeTable) {
         // throw new Error(`Trying to "CREATE TABLE LIKE" unexisting table ${json.like}.`);
         return;
       }
 
-      const table = Table.fromCommonDef(alikeTable.json);
+      const table = alikeTable.clone();
       return table;
     }
 
@@ -157,11 +134,6 @@ class Table {
    * Table constructor.
    */
   constructor() {
-
-    /**
-     * JSON from parsed SQL that originated this model.
-     */
-    this.json = undefined;
 
     /**
      * Table name.
@@ -241,13 +213,54 @@ class Table {
   }
 
   /**
+   * Create a deep clone of this model.
+   *
+   * @returns {Table} Clone.
+   */
+  clone() {
+    const table = new Table();
+    table.name = this.name;
+    table.columns = this.columns.map(c => c.clone());
+
+    if (utils.isDefined(this.options)) {
+      table.options = this.options.clone();
+    }
+
+    if (utils.isDefined(this.primaryKey)) {
+      table.primaryKey = this.primaryKey.clone();
+    }
+
+    if (this.uniqueKeys.length) {
+      table.uniqueKeys = this.uniqueKeys.map(key => key.clone());
+    }
+
+    if (this.foreignKeys.length) {
+      table.foreignKeys = this.foreignKeys.map(key => key.clone());
+    }
+
+    if (this.fulltextIndexes.length) {
+      table.fulltextIndexes = this.fulltextIndexes.map(index => index.clone());
+    }
+
+    if (this.spatialIndexes.length) {
+      table.spatialIndexes = this.spatialIndexes.map(index => index.clone());
+    }
+
+    if (this.indexes.length) {
+      table.indexes = this.indexes.map(index => index.clone());
+    }
+
+    return table;
+  }
+
+  /**
    * Add a column to columns array, in a given position.
    *
    * @param {Column} column Column to be added.
    * @param {any} position Position object.
    * @returns {void}
    */
-  addColumn(column, position) {
+  addColumn(column, position = null) {
     if (position === null) {
       this.columns.push(column);
     }
@@ -266,6 +279,39 @@ class Table {
       const end = this.columns.splice(pos + 1);
       this.columns.push(column);
       this.columns = this.columns.concat(end);
+    }
+
+    this.extractColumnFeatures(column);
+  }
+
+  /**
+   * Extract column features like PrimaryKey, ForeignKey,
+   * UniqueKey and add them to this table instance.
+   *
+   * @param {Column} column Column to be extracted.
+   * @returns {void}
+   */
+  extractColumnFeatures(column) {
+
+    /** @type {PrimaryKey} */
+    const primaryKey = column.extractPrimaryKey();
+
+    /** @type {ForeignKey} */
+    const foreignKey = column.extractForeignKey();
+
+    /** @type {UniqueKey} */
+    const uniqueKey = column.extractUniqueKey();
+
+    if (primaryKey) {
+      this.primaryKey = primaryKey;
+    }
+
+    if (foreignKey) {
+      this.pushForeignKey(foreignKey);
+    }
+
+    if (uniqueKey) {
+      this.pushUniqueKey(uniqueKey);
     }
   }
 
@@ -289,6 +335,27 @@ class Table {
   }
 
   /**
+   * Get column position object.
+   *
+   * @param {Column} column Column.
+   * @returns {any} Column position object.
+   */
+  getColumnPosition(column) {
+    const index = this.columns.indexOf(column);
+
+    if (index === 0) {
+      return { after: null };
+    }
+    else if (index + 1 === this.columns.length) {
+      return null;
+    }
+    else {
+      const refColumn = this.columns[index - 1];
+      return { after: refColumn.name };
+    }
+  }
+
+  /**
    * Drops table's primary key.
    *
    * @returns {void}
@@ -304,10 +371,55 @@ class Table {
    * @returns {void}
    */
   dropColumn(column) {
+    // TODO: validate FK reference (https://github.com/duartealexf/sql-ddl-to-json-schema/issues/12)
+
     const pos = this.columns.indexOf(column);
     const end = this.columns.splice(pos);
     end.shift();
     this.columns = this.columns.concat(end);
+
+    /**
+     * Remove column from indexes. Also remove
+     * the index if removed column was last.
+     *
+     * https://github.com/duartealexf/sql-ddl-to-json-schema/issues/8
+     */
+
+    this.fulltextIndexes.forEach(index => {
+      if (index.dropColumn(column.name) && !index.columns.length) {
+        this.dropIndex(index);
+      }
+    });
+
+    this.spatialIndexes.forEach(index => {
+      if (index.dropColumn(column.name) && !index.columns.length) {
+        this.dropIndex(index);
+      }
+    });
+
+    this.indexes.forEach(index => {
+      if (index.dropColumn(column.name) && !index.columns.length) {
+        this.dropIndex(index);
+      }
+    });
+
+    this.uniqueKeys.forEach(key => {
+      if (key.dropColumn(column.name) && !key.columns.length) {
+        this.dropIndex(key);
+      }
+    });
+
+    this.foreignKeys.forEach(key => {
+      if (key.dropColumn(column.name) && !key.columns.length) {
+        this.dropForeignKey(key);
+      }
+    });
+
+    if (utils.isDefined(this.primaryKey)) {
+      if (this.primaryKey.dropColumn(column.name) && !this.primaryKey.columns.length) {
+        delete this.primaryKey;
+      }
+    }
   }
 
   /**

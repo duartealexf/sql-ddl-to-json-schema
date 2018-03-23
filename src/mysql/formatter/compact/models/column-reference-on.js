@@ -46,6 +46,15 @@ class ColumnReferenceOn {
       action: this.action
     };
   }
+
+  /**
+   * Create a deep clone of this model.
+   *
+   * @returns {ColumnReferenceOn} Clone.
+   */
+  clone() {
+    return ColumnReferenceOn.fromObject(this);
+  }
 }
 
 module.exports = ColumnReferenceOn;

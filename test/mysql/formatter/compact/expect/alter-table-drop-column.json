@@ -3,20 +3,6 @@
     "name": "person",
     "columns": [
       {
-        "name": "id",
-        "type": {
-          "datatype": "int",
-          "width": 10
-        },
-        "options": {
-          "unsigned": true,
-          "zerofill": true,
-          "nullable": false,
-          "autoincrement": true,
-          "comment": "primary key test"
-        }
-      },
-      {
         "name": "name",
         "type": {
           "datatype": "text",
@@ -38,17 +24,6 @@
         "options": {
           "nullable": true,
           "default": "J"
-        }
-      },
-      {
-        "name": "ssn",
-        "type": {
-          "datatype": "int",
-          "width": 2
-        },
-        "options": {
-          "nullable": true,
-          "invisibleWithSystemVersioning": true
         }
       },
       {
@@ -94,14 +69,13 @@
         }
       },
       {
-        "name": "initials",
+        "name": "tob",
         "type": {
-          "datatype": "char",
-          "length": 3
+          "datatype": "time",
+          "fractional": 3
         },
         "options": {
-          "nullable": true,
-          "format": "fixed"
+          "nullable": true
         }
       },
       {
@@ -142,16 +116,6 @@
         "type": {
           "datatype": "blob",
           "length": 65535
-        },
-        "options": {
-          "nullable": true
-        }
-      },
-      {
-        "name": "motto",
-        "type": {
-          "datatype": "text",
-          "length": 50
         },
         "options": {
           "nullable": true
@@ -199,45 +163,6 @@
         }
       }
     ],
-    "primaryKey": {
-      "columns": [
-        {
-          "column": "id"
-        }
-      ]
-    },
-    "uniqueKeys": [
-      {
-        "columns": [
-          {
-            "column": "ssn"
-          }
-        ]
-      },
-      {
-        "columns": [
-          {
-            "column": "motto"
-          }
-        ],
-        "symbol": "u_motto",
-        "name": "unique_motto",
-        "indexType": "btree",
-        "options": {
-          "comment": "be original"
-        }
-      }
-    ],
-    "fulltextIndexes": [
-      {
-        "columns": [
-          {
-            "column": "initials"
-          }
-        ],
-        "name": "fi_initials"
-      }
-    ],
     "options": {
       "autoincrement": 2,
       "avgRowLength": 250,
@@ -256,16 +181,6 @@
   {
     "name": "pet",
     "columns": [
-      {
-        "name": "id",
-        "type": {
-          "datatype": "int",
-          "width": 8
-        },
-        "options": {
-          "nullable": true
-        }
-      },
       {
         "name": "species",
         "type": {
@@ -287,15 +202,6 @@
         }
       },
       {
-        "name": "height",
-        "type": {
-          "datatype": "decimal"
-        },
-        "options": {
-          "nullable": true
-        }
-      },
-      {
         "name": "weight",
         "type": {
           "datatype": "decimal",
@@ -311,16 +217,6 @@
         "type": {
           "datatype": "bit",
           "length": 2
-        },
-        "options": {
-          "nullable": true
-        }
-      },
-      {
-        "name": "birth",
-        "type": {
-          "datatype": "datetime",
-          "fractional": 0
         },
         "options": {
           "nullable": true
@@ -452,9 +348,6 @@
       {
         "columns": [
           {
-            "column": "height"
-          },
-          {
             "column": "weight",
             "length": 2,
             "sort": "asc"
@@ -465,19 +358,6 @@
         },
         "indexType": "btree",
         "name": "i_dimensions"
-      },
-      {
-        "columns": [
-          {
-            "column": "birth",
-            "length": 5,
-            "sort": "desc"
-          }
-        ],
-        "options": {
-          "indexType": "btree"
-        },
-        "name": "i_birth"
       }
     ],
     "options": {
@@ -503,40 +383,10 @@
     "name": "house",
     "columns": [
       {
-        "name": "id",
-        "type": {
-          "datatype": "int",
-          "width": 4
-        },
-        "options": {
-          "nullable": true
-        }
-      },
-      {
         "name": "pet_id",
         "type": {
           "datatype": "int",
           "width": 1
-        },
-        "options": {
-          "nullable": true
-        }
-      },
-      {
-        "name": "coordx",
-        "type": {
-          "datatype": "float",
-          "digits": 6,
-          "decimals": 2
-        },
-        "options": {
-          "nullable": true
-        }
-      },
-      {
-        "name": "coordy",
-        "type": {
-          "datatype": "double"
         },
         "options": {
           "nullable": true
@@ -634,15 +484,6 @@
         }
       },
       {
-        "name": "size",
-        "type": {
-          "datatype": "geometry"
-        },
-        "options": {
-          "nullable": true
-        }
-      },
-      {
         "name": "where",
         "type": {
           "datatype": "point"
@@ -679,54 +520,7 @@
         }
       }
     ],
-    "primaryKey": {
-      "columns": [
-        {
-          "column": "id",
-          "length": 8,
-          "sort": "asc"
-        }
-      ],
-      "options": {
-        "keyBlockSize": 1024,
-        "indexType": "hash",
-        "comment": "complex test",
-        "parser": "myParser"
-      },
-      "indexType": "hash",
-      "symbol": "pk_id"
-    },
     "foreignKeys": [
-      {
-        "columns": [
-          {
-            "column": "size"
-          }
-        ],
-        "reference": {
-          "table": "pet",
-          "match": "full",
-          "on": [
-            {
-              "trigger": "delete",
-              "action": "set null"
-            },
-            {
-              "trigger": "update",
-              "action": "set default"
-            }
-          ],
-          "columns": [
-            {
-              "column": "height"
-            },
-            {
-              "column": "weight",
-              "length": 2
-            }
-          ]
-        }
-      },
       {
         "columns": [
           {
@@ -745,22 +539,6 @@
         },
         "symbol": "fk_pet_id",
         "name": "fk_pet"
-      }
-    ],
-    "spatialIndexes": [
-      {
-        "columns": [
-          {
-            "column": "coordx"
-          },
-          {
-            "column": "coordy"
-          }
-        ],
-        "name": "coords",
-        "options": {
-          "comment": "hi neighbor"
-        }
       }
     ],
     "options": {

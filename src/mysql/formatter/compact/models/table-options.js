@@ -269,6 +269,26 @@ class TableOptions {
   }
 
   /**
+   * Create a deep clone of this model.
+   *
+   * @returns {TableOptions} Clone.
+   */
+  clone() {
+    const options = new TableOptions();
+
+    Object.getOwnPropertyNames(this)
+      .map(k => [k, this[k]])
+      .filter(([, v]) => utils.isDefined(v))
+      .forEach(([k, v]) => { options[k] = v; });
+
+    if (utils.isDefined(options.union)) {
+      options.union = options.union.slice();
+    }
+
+    return options;
+  }
+
+  /**
    * Merge this option instance with another one.
    * Common properties of this instance are overwritten.
    *

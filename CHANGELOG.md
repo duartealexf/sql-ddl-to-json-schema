@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="1.2.0"></a>
+# [1.2.0](https://github.com/duartealexf/sql-ddl-to-json-schema/compare/v1.1.0...v1.2.0) (2018-03-23)
+
+
+### Bug Fixes
+
+* Bug fix in Index.clone method. ([8a11ed6](https://github.com/duartealexf/sql-ddl-to-json-schema/commit/8a11ed6))
+
+
+### Features
+
+* Add clone method in models for CREATE TABLE LIKE, other improvements. ([c6408ea](https://github.com/duartealexf/sql-ddl-to-json-schema/commit/c6408ea)), closes [#8](https://github.com/duartealexf/sql-ddl-to-json-schema/issues/8) [#10](https://github.com/duartealexf/sql-ddl-to-json-schema/issues/10) [#11](https://github.com/duartealexf/sql-ddl-to-json-schema/issues/11)
+
+
+
 <a name="1.1.0"></a>
 # [1.1.0](https://github.com/duartealexf/sql-ddl-to-json-schema/compare/v1.0.2...v1.1.0) (2018-03-20)
 

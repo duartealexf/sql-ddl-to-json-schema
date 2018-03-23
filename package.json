@@ -1,6 +1,6 @@
 {
   "name": "sql-ddl-to-json-schema",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "A grammar and stream-friendly SQL parser.",
   "main": "index.js",
   "author": "Alexandre Duarte <duartealexf@gmail.com> (https://github.com/duartealexf)",
@@ -15,17 +15,14 @@
     "eslint": "node_modules/.bin/eslint",
     "ava": "node_modules/ava/cli.js",
     "nyc": "node_modules/nyc/bin/nyc.js",
-
     "coverage": "yarn run nyc ava test/**/*.spec.js",
     "test": "ava --color test/**/*.spec.js",
     "lint": "eslint src tasks test lib",
-
     "prebuild:mysql": "node tasks/mysql/assembly.js && node tasks/mysql/formatters.js",
     "build:mysql": "nearleyc lib/mysql/parser/grammar.ne > lib/mysql/parser/grammar.js",
     "build": "yarn run build:mysql",
     "test:watch": "yarn run nodemon-watch --exec 'yarn run test'",
     "build:watch": "yarn run nodemon-watch --exec 'yarn run build'",
-
     "prerelease": "yarn run lint && yarn run build",
     "release": "standard-version && git push --follow-tags && npm publish"
   },

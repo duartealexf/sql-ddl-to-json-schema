@@ -3,22 +3,6 @@
     "name": "person",
     "columns": [
       {
-        "name": "width",
-        "type": {
-          "datatype": "int",
-          "width": 1
-        },
-        "options": {
-          "unsigned": true,
-          "zerofill": true,
-          "charset": "latin1",
-          "collation": "latin_ci",
-          "nullable": true,
-          "default": 42,
-          "invisibleWithoutSystemVersioning": true
-        }
-      },
-      {
         "name": "id",
         "type": {
           "datatype": "int",
@@ -142,30 +126,6 @@
         }
       },
       {
-        "name": "is_alive",
-        "type": {
-          "datatype": "boolean"
-        },
-        "options": {
-          "nullable": false,
-          "format": "dynamic",
-          "comment": "staying alive",
-          "invisibleWithSystemVersioning": true
-        }
-      },
-      {
-        "name": "photo",
-        "type": {
-          "datatype": "blob",
-          "length": 255
-        },
-        "options": {
-          "nullable": true,
-          "invisible": true,
-          "storage": "memory"
-        }
-      },
-      {
         "name": "motto",
         "type": {
           "datatype": "text",
@@ -243,13 +203,6 @@
         "options": {
           "comment": "be original"
         }
-      },
-      {
-        "columns": [
-          {
-            "column": "width"
-          }
-        ]
       }
     ],
     "fulltextIndexes": [
@@ -345,16 +298,6 @@
         "type": {
           "datatype": "datetime",
           "fractional": 0
-        },
-        "options": {
-          "nullable": true
-        }
-      },
-      {
-        "name": "year",
-        "type": {
-          "datatype": "int",
-          "width": 1
         },
         "options": {
           "nullable": true

@@ -209,23 +209,6 @@
         }
       },
       {
-        "name": "test1",
-        "type": {
-          "datatype": "int",
-          "width": 1
-        },
-        "options": {
-          "unsigned": true,
-          "zerofill": true,
-          "charset": "latin1",
-          "collation": "latin_ci",
-          "nullable": true,
-          "default": 42,
-          "autoincrement": true,
-          "invisibleWithoutSystemVersioning": true
-        }
-      },
-      {
         "name": "test2",
         "type": {
           "datatype": "boolean"
@@ -276,13 +259,6 @@
         "options": {
           "comment": "be original"
         }
-      },
-      {
-        "columns": [
-          {
-            "column": "test1"
-          }
-        ]
       }
     ],
     "fulltextIndexes": [

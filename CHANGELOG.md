@@ -2,6 +2,28 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="2.0.0"></a>
+# [2.0.0](https://github.com/duartealexf/sql-ddl-to-json-schema/compare/v1.2.0...v2.0.0) (2018-03-31)
+
+
+### Bug Fixes
+
+* Add checks to not have two columns with autoincrement. ([ddcbb6c](https://github.com/duartealexf/sql-ddl-to-json-schema/commit/ddcbb6c))
+* Add foreign key check when dropping a column. ([ffa9936](https://github.com/duartealexf/sql-ddl-to-json-schema/commit/ffa9936)), closes [#12](https://github.com/duartealexf/sql-ddl-to-json-schema/issues/12)
+* Add foreign key check when dropping tables. ([ac5d2bc](https://github.com/duartealexf/sql-ddl-to-json-schema/commit/ac5d2bc))
+* Bugfix on RENAME TABLE rule compact formatter. ([b614b82](https://github.com/duartealexf/sql-ddl-to-json-schema/commit/b614b82))
+* Changed to ALTER TABLE ADD COLUMN having REFERENCES does not add FK. ([36a02d0](https://github.com/duartealexf/sql-ddl-to-json-schema/commit/36a02d0)), closes [#16](https://github.com/duartealexf/sql-ddl-to-json-schema/issues/16)
+* Fixed so it does not drop the last column of a table. ([828ce79](https://github.com/duartealexf/sql-ddl-to-json-schema/commit/828ce79))
+* Removed 'symbol' property from indexes and keys. ([c1b1f60](https://github.com/duartealexf/sql-ddl-to-json-schema/commit/c1b1f60)), closes [#14](https://github.com/duartealexf/sql-ddl-to-json-schema/issues/14) [#15](https://github.com/duartealexf/sql-ddl-to-json-schema/issues/15)
+
+
+### BREAKING CHANGES
+
+* Ambiguous and confusing 'symbol' property from indexes and keys was removed from
+compact JSON format. Through tests it is noticed that MySQL and MariaDB don't seem to use them.
+
+
+
 <a name="1.2.0"></a>
 # [1.2.0](https://github.com/duartealexf/sql-ddl-to-json-schema/compare/v1.1.0...v1.2.0) (2018-03-23)
 

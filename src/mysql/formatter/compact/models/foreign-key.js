@@ -171,6 +171,19 @@ class ForeignKey {
   getReferencedTable(tables) {
     return tables.find(t => t.name === this.reference.table) || null;
   }
+
+  /**
+   * Checks and returns whether this foreign key references given table and column.
+   *
+   * @param {Table} table Table to be checked whether there is reference to.
+   * @param {Column} column Column to be checked in given table.
+   * @returns {boolean} Whether reference exists.
+   */
+  referencesTableAndColumn(table, column) {
+    return this.reference.table ===  table.name && this.reference.columns.some(indexColumn =>
+      indexColumn.column === column.name
+    );
+  }
 }
 
 module.exports = ForeignKey;

@@ -431,7 +431,19 @@ class Table {
    * @returns {void}
    */
   dropColumn(column) {
-    // TODO: validate FK reference (https://github.com/duartealexf/sql-ddl-to-json-schema/issues/12)
+
+    /**
+     * Validate whether there is a reference to given column.
+     * https://github.com/duartealexf/sql-ddl-to-json-schema/issues/12
+     */
+
+    const hasReference = this.getTables().some(t =>
+      t.foreignKeys.some(k => k.referencesTableAndColumn(this, column))
+    );
+
+    if (hasReference) {
+      return;
+    }
 
     /**
      * Should not drop the last column of table.

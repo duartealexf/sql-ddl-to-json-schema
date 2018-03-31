@@ -3,6 +3,20 @@
     "name": "person",
     "columns": [
       {
+        "name": "id",
+        "type": {
+          "datatype": "int",
+          "width": 10
+        },
+        "options": {
+          "unsigned": true,
+          "zerofill": true,
+          "nullable": false,
+          "autoincrement": true,
+          "comment": "primary key test"
+        }
+      },
+      {
         "name": "name",
         "type": {
           "datatype": "text",
@@ -163,6 +177,13 @@
         }
       }
     ],
+    "primaryKey": {
+      "columns": [
+        {
+          "column": "id"
+        }
+      ]
+    },
     "options": {
       "autoincrement": 2,
       "avgRowLength": 250,
@@ -182,6 +203,16 @@
     "name": "pet",
     "columns": [
       {
+        "name": "id",
+        "type": {
+          "datatype": "int",
+          "width": 8
+        },
+        "options": {
+          "nullable": true
+        }
+      },
+      {
         "name": "species",
         "type": {
           "datatype": "varchar",
@@ -196,6 +227,15 @@
         "type": {
           "datatype": "int",
           "width": 3
+        },
+        "options": {
+          "nullable": true
+        }
+      },
+      {
+        "name": "height",
+        "type": {
+          "datatype": "decimal"
         },
         "options": {
           "nullable": true
@@ -347,6 +387,9 @@
     "indexes": [
       {
         "columns": [
+          {
+            "column": "height"
+          },
           {
             "column": "weight",
             "length": 2,

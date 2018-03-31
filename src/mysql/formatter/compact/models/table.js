@@ -308,7 +308,17 @@ class Table {
       return;
     }
 
-    // TODO: validate - there should not be two autoincrement columns (?)
+    /**
+     * Validate if there are any other autoincrement
+     * columns, as there should be only one.
+     */
+    if (
+      column.options
+      && column.options.autoincrement
+      && this.columns.some(c => c.options && c.options.autoincrement)
+    ) {
+      return;
+    }
 
     if (position === null) {
       this.columns.push(column);

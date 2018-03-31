@@ -15,7 +15,6 @@
           "collation": "latin_ci",
           "nullable": true,
           "default": 42,
-          "autoincrement": true,
           "invisibleWithoutSystemVersioning": true
         }
       },

@@ -1,5 +1,6 @@
 /* eslint no-unused-vars: 0 */
 const Table = require('../table');
+const Database = require('../database');
 
 /**
  * Formatter for P_RENAME_TABLE rule's parsed JSON.
@@ -12,9 +13,9 @@ class RenameTable {
   constructor() {
 
     /**
-     * @type {Table[]}
+     * @type {Database}
      */
-    this.tables = [];
+    this.database = undefined;
   }
 
   /**
@@ -24,7 +25,17 @@ class RenameTable {
    * @returns {Table} Table result.
    */
   getTable(name) {
-    return this.tables.find(t => t.name === name);
+    return this.database.getTable(name);
+  }
+
+  /**
+   * Setter for database.
+   *
+   * @param {Database} database Database instance.
+   * @returns {void}
+   */
+  setDatabase(database) {
+    this.database = database;
   }
 
   /**
@@ -39,6 +50,8 @@ class RenameTable {
     }
 
     const table = this.tables.find(t => t.name === json.def.table);
+
+    // TODO: rename foreign key references.
 
     if (!table) {
       // throw new Error(`Found "RENAME TABLE" statement for an unexisting table ${json.def.table}`);

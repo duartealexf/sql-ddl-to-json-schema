@@ -4,6 +4,7 @@ const UniqueKey = require('../unique-key');
 const FulltextIndex = require('../fulltext-index');
 const SpatialIndex = require('../spatial-index');
 const Index = require('../index');
+const Database = require('../database');
 
 /**
  * Formatter for P_CREATE_INDEX rule's parsed JSON.
@@ -11,14 +12,14 @@ const Index = require('../index');
 class CreateIndex {
 
   /**
-   * CreateIndex constructor.
+   * AlterTable constructor.
    */
   constructor() {
 
     /**
-     * @type {Table[]}
+     * @type {Database}
      */
-    this.tables = [];
+    this.database = undefined;
   }
 
   /**
@@ -28,7 +29,17 @@ class CreateIndex {
    * @returns {Table} Table result.
    */
   getTable(name) {
-    return this.tables.find(t => t.name === name);
+    return this.database.getTable(name);
+  }
+
+  /**
+   * Setter for database.
+   *
+   * @param {Database} database Database instance.
+   * @returns {void}
+   */
+  setDatabase(database) {
+    this.database = database;
   }
 
   /**

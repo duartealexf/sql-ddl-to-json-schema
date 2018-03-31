@@ -116,7 +116,7 @@ O_CREATE_TABLE_CREATE_DEFINITION -> (
       {% d => {
         return {
           primaryKey: {
-            symbol: d[0],
+            name: d[0],
             index: d[4],
             columns: [d[8]].concat(d[9] || []),
             options: d[12]
@@ -147,8 +147,7 @@ O_CREATE_TABLE_CREATE_DEFINITION -> (
       {% d => {
         return {
           uniqueKey: {
-            symbol: d[0],
-            name: d[3],
+            name: d[0],
             index: d[4],
             columns: [d[8]].concat(d[9] || []),
             options: d[12]
@@ -208,8 +207,7 @@ O_CREATE_TABLE_CREATE_DEFINITION -> (
       {% d => {
         return {
           foreignKey: {
-            symbol: d[0],
-            name: d[4],
+            name: d[0],
             columns: [d[8]].concat(d[9] || []),
             reference: d[13]
           }

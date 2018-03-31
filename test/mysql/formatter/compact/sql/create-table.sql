@@ -91,7 +91,7 @@
     city GEOMETRYCOLLECTION,
     CONSTRAINT pk_id PRIMARY KEY USING HASH (id(8) asc) KEY_BLOCK_SIZE 1024 USING HASH WITH PARSER myParser COMMENT 'complex test',
     SPATIAL INDEX coords (coordx, coordy) COMMENT 'hi neighbor',
-    CONSTRAINT fk_pet_id FOREIGN KEY fk_pet (pet_id) REFERENCES pet (id(10) asc)
+    CONSTRAINT fk_pet_id FOREIGN KEY (pet_id) REFERENCES pet (id(10) asc)
   )
   index directory '/var/index',
   ietf_quotes yes,

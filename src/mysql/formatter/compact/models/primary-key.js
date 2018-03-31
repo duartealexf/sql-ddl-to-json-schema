@@ -1,6 +1,8 @@
 /* eslint no-unused-vars: 0 */
 const IndexColumn = require('./index-column');
 const IndexOptions = require('./index-options');
+const Table = require('./table');
+const Column = require('./column');
 
 const utils = require('../../../../shared/utils');
 
@@ -25,7 +27,7 @@ class PrimaryKey {
 
   /**
    * Creates a primary key from an object containing needed properties.
-   * Properties are 'columns', 'symbol', 'index' and 'options'.
+   * Properties are 'columns', 'index' and 'options'.
    *
    * @param {any} json Object containing properties.
    * @returns {PrimaryKey} Resulting primary key.
@@ -34,7 +36,6 @@ class PrimaryKey {
     const primaryKey = new PrimaryKey();
     primaryKey.columns = json.columns.map(IndexColumn.fromDef);
 
-    if (json.symbol) { primaryKey.symbol    = json.symbol; }
     if (json.index)  { primaryKey.indexType = json.index.def.toLowerCase(); }
 
     if (json.options.length) {
@@ -48,11 +49,6 @@ class PrimaryKey {
    * PrimaryKey constructor.
    */
   constructor() {
-
-    /**
-     * @type {string}
-     */
-    this.symbol = undefined;
 
     /**
      * @type {string}
@@ -82,7 +78,6 @@ class PrimaryKey {
 
     if (utils.isDefined(this.options))   { json.options   = this.options.toJSON(); }
     if (utils.isDefined(this.indexType)) { json.indexType = this.indexType; }
-    if (utils.isDefined(this.symbol))    { json.symbol    = this.symbol; }
 
     return json;
   }
@@ -96,7 +91,6 @@ class PrimaryKey {
     const primaryKey = new PrimaryKey();
     primaryKey.columns = this.columns.map(c => c.clone());
 
-    if (utils.isDefined(this.symbol))     { primaryKey.symbol    = this.symbol; }
     if (utils.isDefined(this.indexType))  { primaryKey.indexType = this.indexType; }
 
     if (this.options) {
@@ -134,6 +128,31 @@ class PrimaryKey {
     end.shift();
     this.columns = this.columns.concat(end);
     return true;
+  }
+
+  /**
+   * Get the columns in given table which this
+   * primary key's index columns refer to.
+   *
+   * @param {Table} table Table in question.
+   * @returns {Column[]} Found columns.
+   */
+  getColumnsFromTable(table) {
+    return table.columns.filter(tableColumn =>
+      this.columns.some(indexColumn => indexColumn.column === tableColumn.name)
+    );
+  }
+
+  /**
+   * Whether the given table has all of this primary key's columns.
+   *
+   * @param {Table} table Table in question.
+   * @returns {boolean} Test result.
+   */
+  hasAllColumnsFromTable(table) {
+    return table.columns.filter(tableColumn =>
+      this.columns.some(indexColumn => indexColumn.column === tableColumn.name)
+    ).length === this.columns.length;
   }
 }
 

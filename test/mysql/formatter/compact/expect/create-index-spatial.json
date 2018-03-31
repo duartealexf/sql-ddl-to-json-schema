@@ -230,8 +230,7 @@
             "column": "motto"
           }
         ],
-        "symbol": "u_motto",
-        "name": "unique_motto",
+        "name": "u_motto",
         "indexType": "btree",
         "options": {
           "comment": "be original"
@@ -242,12 +241,12 @@
       {
         "columns": [
           {
-            "column": "text",
+            "column": "name",
             "length": 20,
             "sort": "asc"
           }
         ],
-        "name": "si_history",
+        "name": "si_name",
         "options": {
           "keyBlockSize": 4096,
           "indexType": "rtree",
@@ -723,8 +722,7 @@
         "comment": "complex test",
         "parser": "myParser"
       },
-      "indexType": "hash",
-      "symbol": "pk_id"
+      "indexType": "hash"
     },
     "foreignKeys": [
       {
@@ -773,8 +771,7 @@
             }
           ]
         },
-        "symbol": "fk_pet_id",
-        "name": "fk_pet"
+        "name": "fk_pet_id"
       }
     ],
     "spatialIndexes": [

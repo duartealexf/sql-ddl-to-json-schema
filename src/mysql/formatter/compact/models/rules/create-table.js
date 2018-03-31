@@ -1,5 +1,6 @@
 /* eslint no-unused-vars: 0 */
 const Table = require('../table');
+const Database = require('../database');
 
 /**
  * Formatter for P_CREATE_TABLE rule's parsed JSON.
@@ -12,9 +13,9 @@ class CreateTable {
   constructor() {
 
     /**
-     * @type {Table[]}
+     * @type {Database}
      */
-    this.tables = [];
+    this.database = undefined;
   }
 
   /**
@@ -31,19 +32,60 @@ class CreateTable {
     json = json.def;
 
     if (json.id === 'P_CREATE_TABLE_COMMON') {
-      const table = Table.fromCommonDef(json);
+      const table = Table.fromCommonDef(json, this.database);
 
       if (table) {
-        this.tables.push(table);
+        this.pushTable(table);
       }
     }
     else if (json.id === 'P_CREATE_TABLE_LIKE') {
-      const table = Table.fromAlikeDef(json, this.tables);
+      const table = Table.fromAlikeDef(json, this.getTables());
+
+      // TODO: check if CREATE TABLE LIKE adds indexes and keys.
 
       if (table) {
-        this.tables.push(table);
+        this.pushTable(table);
       }
     }
+  }
+
+  /**
+   * Get table with given name.
+   *
+   * @param {string} name Table name.
+   * @returns {Table} Table result.
+   */
+  getTable(name) {
+    return this.database.getTable(name);
+  }
+
+  /**
+   * Get tables from database.
+   *
+   * @returns {Table[]} Database tables.
+   */
+  getTables() {
+    return this.database.getTables();
+  }
+
+  /**
+   * Setter for database.
+   *
+   * @param {Database} database Database instance.
+   * @returns {void}
+   */
+  setDatabase(database) {
+    this.database = database;
+  }
+
+  /**
+   * Pushes a table to database.
+   *
+   * @param {Table} table Table to be added.
+   * @returns {void}
+   */
+  pushTable(table) {
+    this.database.pushTable(table);
   }
 }
 

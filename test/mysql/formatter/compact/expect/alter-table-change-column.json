@@ -221,7 +221,7 @@
     "primaryKey": {
       "columns": [
         {
-          "column": "is_alive"
+          "column": "id"
         }
       ]
     },
@@ -239,8 +239,7 @@
             "column": "motto"
           }
         ],
-        "symbol": "u_motto",
-        "name": "unique_motto",
+        "name": "u_motto",
         "indexType": "btree",
         "options": {
           "comment": "be original"
@@ -719,8 +718,7 @@
         "comment": "complex test",
         "parser": "myParser"
       },
-      "indexType": "hash",
-      "symbol": "pk_id"
+      "indexType": "hash"
     },
     "foreignKeys": [
       {
@@ -769,8 +767,7 @@
             }
           ]
         },
-        "symbol": "fk_pet_id",
-        "name": "fk_pet"
+        "name": "fk_pet_id"
       }
     ],
     "spatialIndexes": [

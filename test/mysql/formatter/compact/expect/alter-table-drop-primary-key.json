@@ -209,6 +209,13 @@
         }
       }
     ],
+    "primaryKey": {
+      "columns": [
+        {
+          "column": "id"
+        }
+      ]
+    },
     "uniqueKeys": [
       {
         "columns": [
@@ -223,8 +230,7 @@
             "column": "motto"
           }
         ],
-        "symbol": "u_motto",
-        "name": "unique_motto",
+        "name": "u_motto",
         "indexType": "btree",
         "options": {
           "comment": "be original"
@@ -682,23 +688,6 @@
         }
       }
     ],
-    "primaryKey": {
-      "columns": [
-        {
-          "column": "id",
-          "length": 8,
-          "sort": "asc"
-        }
-      ],
-      "options": {
-        "keyBlockSize": 1024,
-        "indexType": "hash",
-        "comment": "complex test",
-        "parser": "myParser"
-      },
-      "indexType": "hash",
-      "symbol": "pk_id"
-    },
     "foreignKeys": [
       {
         "columns": [
@@ -746,8 +735,7 @@
             }
           ]
         },
-        "symbol": "fk_pet_id",
-        "name": "fk_pet"
+        "name": "fk_pet_id"
       }
     ],
     "spatialIndexes": [

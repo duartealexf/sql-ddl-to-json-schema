@@ -1,6 +1,8 @@
 /* eslint no-unused-vars: 0 */
 const IndexColumn = require('./index-column');
 const ColumnReference = require('./column-reference');
+const Table = require('./table');
+const Column = require('./column');
 
 const utils = require('../../../../shared/utils');
 
@@ -25,7 +27,7 @@ class ForeignKey {
 
   /**
    * Creates a foreign key from an object containing needed properties.
-   * Properties are 'columns', 'reference', 'symbol', and 'name'.
+   * Properties are 'columns', 'reference', and 'name'.
    *
    * @param {any} json Object containing properties.
    * @returns {ForeignKey} Resulting foreign key.
@@ -35,7 +37,6 @@ class ForeignKey {
     foreignKey.columns = json.columns.map(IndexColumn.fromDef);
     foreignKey.reference = ColumnReference.fromDef(json.reference);
 
-    if (json.symbol) { foreignKey.symbol = json.symbol; }
     if (json.name)   { foreignKey.name   = json.name; }
 
     return foreignKey;
@@ -45,11 +46,6 @@ class ForeignKey {
    * ForeignKey constructor.
    */
   constructor() {
-
-    /**
-     * @type {string}
-     */
-    this.symbol = undefined;
 
     /**
      * @type {string}
@@ -78,7 +74,6 @@ class ForeignKey {
       reference: this.reference.toJSON()
     };
 
-    if (utils.isDefined(this.symbol)) { json.symbol = this.symbol; }
     if (utils.isDefined(this.name))   { json.name   = this.name; }
 
     return json;
@@ -95,7 +90,6 @@ class ForeignKey {
     key.columns = this.columns.map(c => c.clone());
     key.reference = this.reference.clone();
 
-    if (utils.isDefined(this.symbol)) { key.symbol     = this.symbol; }
     if (utils.isDefined(this.name))   { key.name       = this.name; }
 
     return key;
@@ -129,6 +123,53 @@ class ForeignKey {
     end.shift();
     this.columns = this.columns.concat(end);
     return true;
+  }
+
+  /**
+   * Get the columns in given table which this foreign key's index columns refer to.
+   *
+   * @param {Table} table Table in question.
+   * @returns {Column[]} Found columns.
+   */
+  getColumnsFromTable(table) {
+    return table.columns.filter(tableColumn =>
+      this.columns.some(indexColumn => indexColumn.column === tableColumn.name)
+    );
+  }
+
+  /**
+   * Whether the given table has all of this foreign key's owner table columns.
+   *
+   * @param {Table} table Table in question.
+   * @returns {boolean} Test result.
+   */
+  hasAllColumnsFromTable(table) {
+    return table.columns.filter(tableColumn =>
+      this.columns.some(indexColumn => indexColumn.column === tableColumn.name)
+    ).length === this.columns.length;
+  }
+
+  /**
+   * Whether the given table has all of this foreign key's referenced table columns.
+   *
+   * @param {Table} table Referenced table in question.
+   * @returns {boolean} Test result.
+   */
+  hasAllColumnsFromRefTable(table) {
+    return table.columns.filter(tableColumn =>
+      this.reference.columns.some(indexColumn => indexColumn.column === tableColumn.name)
+    ).length === this.reference.columns.length;
+  }
+
+  /**
+   * Get referenced table by this foreign key, from array
+   * of given tables. Returns null if no table was found.
+   *
+   * @param {Table[]} tables Table array to search.
+   * @returns {Table} Table found or null if no such table was found.
+   */
+  getReferencedTable(tables) {
+    return tables.find(t => t.name === this.reference.table) || null;
   }
 }
 

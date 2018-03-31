@@ -537,8 +537,7 @@
             }
           ]
         },
-        "symbol": "fk_pet_id",
-        "name": "fk_pet"
+        "name": "fk_pet_id"
       }
     ],
     "options": {

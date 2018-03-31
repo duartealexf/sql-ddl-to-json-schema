@@ -209,6 +209,13 @@
         }
       }
     ],
+    "primaryKey": {
+      "columns": [
+        {
+          "column": "id"
+        }
+      ]
+    },
     "uniqueKeys": [
       {
         "columns": [
@@ -642,23 +649,6 @@
         }
       }
     ],
-    "primaryKey": {
-      "columns": [
-        {
-          "column": "id",
-          "length": 8,
-          "sort": "asc"
-        }
-      ],
-      "options": {
-        "keyBlockSize": 1024,
-        "indexType": "hash",
-        "comment": "complex test",
-        "parser": "myParser"
-      },
-      "indexType": "hash",
-      "symbol": "pk_id"
-    },
     "foreignKeys": [
       {
         "columns": [
@@ -706,8 +696,7 @@
             }
           ]
         },
-        "symbol": "fk_pet_id",
-        "name": "fk_pet"
+        "name": "fk_pet_id"
       }
     ],
     "options": {

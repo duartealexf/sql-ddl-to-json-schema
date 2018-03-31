@@ -16,7 +16,7 @@
                   "id": "O_CREATE_TABLE_CREATE_DEFINITION",
                   "def": {
                     "primaryKey": {
-                      "symbol": "pk_id__o_id",
+                      "name": "pk_id__o_id",
                       "index": {
                         "id": "P_INDEX_TYPE",
                         "def": "btree"
@@ -81,7 +81,7 @@
                   "id": "O_CREATE_TABLE_CREATE_DEFINITION",
                   "def": {
                     "primaryKey": {
-                      "symbol": null,
+                      "name": null,
                       "index": null,
                       "columns": [
                         {
@@ -171,8 +171,7 @@
                   "id": "O_CREATE_TABLE_CREATE_DEFINITION",
                   "def": {
                     "uniqueKey": {
-                      "symbol": "uk_id__o_id",
-                      "name": "test_key",
+                      "name": "uk_id__o_id",
                       "index": {
                         "id": "P_INDEX_TYPE",
                         "def": "btree"
@@ -210,7 +209,7 @@
                   "id": "O_CREATE_TABLE_CREATE_DEFINITION",
                   "def": {
                     "uniqueKey": {
-                      "symbol": null,
+                      "name": null,
                       "name": null,
                       "index": null,
                       "columns": [
@@ -231,7 +230,7 @@
                   "id": "O_CREATE_TABLE_CREATE_DEFINITION",
                   "def": {
                     "uniqueKey": {
-                      "symbol": null,
+                      "name": null,
                       "name": null,
                       "index": null,
                       "columns": [
@@ -356,8 +355,7 @@
                   "id": "O_CREATE_TABLE_CREATE_DEFINITION",
                   "def": {
                     "foreignKey": {
-                      "symbol": "fk_id__o_id",
-                      "name": "test_key",
+                      "name": "fk_id__o_id",
                       "columns": [
                         {
                           "id": "P_INDEX_COLUMN",
@@ -401,7 +399,7 @@
                   "id": "O_CREATE_TABLE_CREATE_DEFINITION",
                   "def": {
                     "foreignKey": {
-                      "symbol": null,
+                      "name": null,
                       "name": null,
                       "columns": [
                         {

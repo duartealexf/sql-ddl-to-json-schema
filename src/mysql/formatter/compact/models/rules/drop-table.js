@@ -1,5 +1,6 @@
 /* eslint no-unused-vars: 0 */
 const Table = require('../table');
+const Database = require('../database');
 
 /**
  * Formatter for P_DROP_TABLE rule's parsed JSON.
@@ -12,9 +13,9 @@ class DropTable {
   constructor() {
 
     /**
-     * @type {Table[]}
+     * @type {Database}
      */
-    this.tables = [];
+    this.database = undefined;
   }
 
   /**
@@ -24,7 +25,17 @@ class DropTable {
    * @returns {Table} Table result.
    */
   getTable(name) {
-    return this.tables.find(t => t.name === name);
+    return this.database.getTable(name);
+  }
+
+  /**
+   * Setter for database.
+   *
+   * @param {Database} database Database instance.
+   * @returns {void}
+   */
+  setDatabase(database) {
+    this.database = database;
   }
 
   /**
@@ -41,14 +52,19 @@ class DropTable {
     json.def.forEach(table => {
       table = this.getTable(table);
 
+      // TODO: validate foreign keys
+
       if (!table) {
         // throw new Error(`Found "DROP TABLE" statement for an unexisting table ${table}`);
         return;
       }
 
-      const end = this.tables.splice(this.tables.indexOf(table));
+      let tables = this.database.getTables();
+
+      const end = tables.splice(tables.indexOf(table));
       end.shift();
-      this.tables = this.tables.concat(end);
+      tables = tables.concat(end);
+      this.database.setTables(tables);
     });
   }
 }

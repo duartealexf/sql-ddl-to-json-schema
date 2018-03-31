@@ -1,6 +1,8 @@
 /* eslint no-unused-vars: 0 */
 const IndexColumn = require('./index-column');
 const IndexOptions = require('./index-options');
+const Table = require('./table');
+const Column = require('./column');
 
 const utils = require('../../../../shared/utils');
 
@@ -29,7 +31,7 @@ class UniqueKey {
 
   /**
    * Creates an unique key from an object containing needed properties.
-   * Properties are 'columns', 'symbol', 'name', 'index', and 'options'.
+   * Properties are 'columns', 'name', 'index', and 'options'.
    *
    * @param {any} json Object containing properties.
    * @returns {UniqueKey} Resulting unique key.
@@ -38,7 +40,6 @@ class UniqueKey {
     const uniqueKey = new UniqueKey();
     uniqueKey.columns = json.columns.map(IndexColumn.fromDef);
 
-    if (json.symbol) { uniqueKey.symbol    = json.symbol; }
     if (json.name)   { uniqueKey.name      = json.name; }
     if (json.index)  { uniqueKey.indexType = json.index.def.toLowerCase(); }
 
@@ -53,11 +54,6 @@ class UniqueKey {
    * UniqueKey constructor.
    */
   constructor() {
-
-    /**
-     * @type {string}
-     */
-    this.symbol = undefined;
 
     /**
      * @type {string}
@@ -90,7 +86,6 @@ class UniqueKey {
 
     json.columns = this.columns.map(c => c.toJSON());
 
-    if (utils.isDefined(this.symbol))     { json.symbol     = this.symbol; }
     if (utils.isDefined(this.name))       { json.name       = this.name; }
     if (utils.isDefined(this.indexType))  { json.indexType  = this.indexType; }
     if (utils.isDefined(this.options))    { json.options    = this.options.toJSON(); }
@@ -108,7 +103,6 @@ class UniqueKey {
 
     key.columns = this.columns.map(c => c.clone());
 
-    if (utils.isDefined(this.symbol))     { key.symbol     = this.symbol; }
     if (utils.isDefined(this.name))       { key.name       = this.name; }
     if (utils.isDefined(this.indexType))  { key.indexType  = this.indexType; }
     if (utils.isDefined(this.options))    { key.options    = this.options.clone(); }
@@ -134,6 +128,31 @@ class UniqueKey {
     end.shift();
     this.columns = this.columns.concat(end);
     return true;
+  }
+
+  /**
+   * Get the columns in given table which this
+   * unique key's index columns refer to.
+   *
+   * @param {Table} table Table in question.
+   * @returns {Column[]} Found columns.
+   */
+  getColumnsFromTable(table) {
+    return table.columns.filter(tableColumn =>
+      this.columns.some(indexColumn => indexColumn.column === tableColumn.name)
+    );
+  }
+
+  /**
+   * Whether the given table has all of this unique key's columns.
+   *
+   * @param {Table} table Table in question.
+   * @returns {boolean} Test result.
+   */
+  hasAllColumnsFromTable(table) {
+    return table.columns.filter(tableColumn =>
+      this.columns.some(indexColumn => indexColumn.column === tableColumn.name)
+    ).length === this.columns.length;
   }
 }
 

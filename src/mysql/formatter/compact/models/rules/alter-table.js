@@ -10,6 +10,7 @@ const UniqueKey = require('../unique-key');
 const FulltextIndex = require('../fulltext-index');
 const SpatialIndex = require('../spatial-index');
 const Index = require('../index');
+const Database = require('../database');
 
 /**
  * Formatter for P_ALTER_TABLE rule's parsed JSON.
@@ -22,9 +23,9 @@ class AlterTable {
   constructor() {
 
     /**
-     * @type {Table[]}
+     * @type {Database}
      */
-    this.tables = [];
+    this.database = undefined;
   }
 
   /**
@@ -34,7 +35,17 @@ class AlterTable {
    * @returns {Table} Table result.
    */
   getTable(name) {
-    return this.tables.find(t => t.name === name);
+    return this.database.getTable(name);
+  }
+
+  /**
+   * Setter for database.
+   *
+   * @param {Database} database Database instance.
+   * @returns {void}
+   */
+  setDatabase(database) {
+    this.database = database;
   }
 
   /**
@@ -51,7 +62,8 @@ class AlterTable {
     const table = this.getTable(json.def.table);
 
     if (!table) {
-      throw new TypeError(`Found "ALTER TABLE" statement for an unexisting table ${json.def.table}`);
+      // throw new TypeError(`Found "ALTER TABLE" statement for an unexisting table ${json.def.table}`);
+      return;
     }
 
     /**
@@ -133,9 +145,8 @@ class AlterTable {
    * @returns {void}
    */
   addIndex(json, table) {
-    table.pushIndex(
-      Index.fromObject(json)
-    );
+    const index = Index.fromObject(json);
+    table.pushIndex(index);
   }
 
   /**
@@ -146,7 +157,8 @@ class AlterTable {
    * @returns {void}
    */
   addPrimaryKey(json, table) {
-    table.primaryKey = PrimaryKey.fromObject(json);
+    const key = PrimaryKey.fromObject(json);
+    table.setPrimaryKey(key);
   }
 
   /**
@@ -157,9 +169,8 @@ class AlterTable {
    * @returns {void}
    */
   addUniqueKey(json, table) {
-    table.pushUniqueKey(
-      UniqueKey.fromObject(json)
-    );
+    const key = UniqueKey.fromObject(json);
+    table.pushUniqueKey(key);
   }
 
   /**
@@ -170,9 +181,8 @@ class AlterTable {
    * @returns {void}
    */
   addFulltextIndex(json, table) {
-    table.pushFulltextIndex(
-      FulltextIndex.fromObject(json)
-    );
+    const index = FulltextIndex.fromObject(json);
+    table.pushFulltextIndex(index);
   }
 
   /**
@@ -183,9 +193,8 @@ class AlterTable {
    * @returns {void}
    */
   addSpatialIndex(json, table) {
-    table.pushFulltextIndex(
-      SpatialIndex.fromObject(json)
-    );
+    const index = SpatialIndex.fromObject(json);
+    table.pushFulltextIndex(index);
   }
 
   /**
@@ -196,9 +205,8 @@ class AlterTable {
    * @returns {void}
    */
   addForeignKey(json, table) {
-    table.pushForeignKey(
-      ForeignKey.fromObject(json)
-    );
+    const key = ForeignKey.fromObject(json);
+    table.pushForeignKey(key);
   }
 
   /**
@@ -330,7 +338,7 @@ class AlterTable {
    * @returns {void}
    */
   dropPrimaryKey(json, table) {
-    delete table.primaryKey;
+    table.dropPrimaryKey();
   }
 
   /**

@@ -1,6 +1,6 @@
 /* eslint no-unused-vars: 0 */
 const Table = require('./models/table');
-const Main = require('./models/main');
+const Database = require('./models/database');
 
 /**
  * Formatter for parsed JSON. Provides a compact JSON
@@ -23,9 +23,9 @@ class CompactFormatter {
       );
     }
 
-    const main = new Main();
-    main.parseDdsCollection(json.def);
-    return main.getTables().map(t => t.toJSON());
+    const database = new Database();
+    database.parseDdsCollection(json.def);
+    return database.getTables().map(t => t.toJSON());
   }
 }
 

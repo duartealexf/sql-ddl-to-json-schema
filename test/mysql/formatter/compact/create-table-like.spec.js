@@ -7,7 +7,8 @@ const expect = require('./expect/create-table-like.json');
 
 const sql = fs.readFileSync(path.join(__dirname, 'sql', 'create-table.sql')).toString();
 
-ava('Compact formatter: Should create 1 table like another one.', t => {
+// @ts-ignore
+ava('Compact formatter: Should create one table like another one.', t => {
   const parser = new Parser('mysql');
   parser.feed(sql);
 

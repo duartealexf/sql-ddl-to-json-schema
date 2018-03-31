@@ -15,7 +15,6 @@
                   "id": "O_ALTER_TABLE_SPEC",
                   "def": {
                     "action": "addUniqueKey",
-                    "symbol": null,
                     "name": null,
                     "index": null,
                     "columns": [

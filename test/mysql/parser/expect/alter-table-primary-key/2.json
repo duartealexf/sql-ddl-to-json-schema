@@ -15,7 +15,7 @@
                   "id": "O_ALTER_TABLE_SPEC",
                   "def": {
                     "action": "addPrimaryKey",
-                    "symbol": "pk_id",
+                    "name": "pk_id",
                     "index": null,
                     "columns": [
                       {

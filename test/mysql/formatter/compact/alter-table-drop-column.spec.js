@@ -7,6 +7,7 @@ const expect = require('./expect/alter-table-drop-column.json');
 
 const sql = fs.readFileSync(path.join(__dirname, 'sql', 'create-table.sql')).toString();
 
+// @ts-ignore
 ava('Compact formatter: Should alter table, dropping column.', t => {
   const parser = new Parser('mysql');
   parser.feed(sql);
@@ -29,6 +30,9 @@ ava('Compact formatter: Should alter table, dropping column.', t => {
     DROP COLUMN coordy,
     DROP COLUMN coordx;
   `);
+
+  // Shouldn't drop unexisting column.
+  parser.feed('ALTER TABLE person drop column xyzabc;');
 
   const json = parser.toCompactJson(parser.results);
   // fs.writeFileSync(path.join(__dirname, 'expect', 'alter-table-drop-column.json'), JSON.stringify(json, null, 2));

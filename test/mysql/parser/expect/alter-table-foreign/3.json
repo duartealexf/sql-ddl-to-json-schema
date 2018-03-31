@@ -15,8 +15,7 @@
                   "id": "O_ALTER_TABLE_SPEC",
                   "def": {
                     "action": "addForeignKey",
-                    "symbol": "xyz",
-                    "name": null,
+                    "name": "xyz",
                     "columns": [
                       {
                         "id": "P_INDEX_COLUMN",

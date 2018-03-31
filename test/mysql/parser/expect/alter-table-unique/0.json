@@ -15,8 +15,7 @@
                   "id": "O_ALTER_TABLE_SPEC",
                   "def": {
                     "action": "addUniqueKey",
-                    "symbol": "xyz",
-                    "name": "ik_id",
+                    "name": "xyz",
                     "index": {
                       "id": "P_INDEX_TYPE",
                       "def": "hash"

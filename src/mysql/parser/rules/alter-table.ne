@@ -118,7 +118,7 @@ O_ALTER_TABLE_SPEC -> (
       {% d => {
         return {
           action: 'addPrimaryKey',
-          symbol: d[2],
+          name: d[2],
           index: d[6],
           columns: [d[10]].concat(d[11] || []),
           options: d[14]
@@ -144,8 +144,7 @@ O_ALTER_TABLE_SPEC -> (
 
         return {
           action: 'addUniqueKey',
-            symbol: d[2],
-            name: d[5],
+            name: d[2],
             index: d[6],
             columns: [d[10]].concat(d[11] || []),
             options: d[14]
@@ -205,8 +204,7 @@ O_ALTER_TABLE_SPEC -> (
       {% d => {
         return {
           action: 'addForeignKey',
-          symbol: d[2],
-          name: d[6],
+          name: d[2],
           columns: [d[10]].concat(d[11] || []),
           reference: d[15]
         }

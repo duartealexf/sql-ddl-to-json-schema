@@ -15,7 +15,15 @@ ava('Compact formatter: Should alter table, adding unique key.', t => {
   parser.feed('ALTER TABLE pet ADD CONSTRAINT UNIQUE INDEX (history);');
   parser.feed('ALTER TABLE pet ADD UNIQUE KEY INDEX (shape);');
 
+  // Should not add key or index with same name.
+  parser.feed('ALTER TABLE pet ADD CONSTRAINT uq_birth UNIQUE KEY (birth);');
+
+  // Should not add key or index with for unknown table column.
+  parser.feed('ALTER TABLE pet ADD CONSTRAINT abcxyz UNIQUE KEY (abcxyz);');
+
   const json = parser.toCompactJson(parser.results);
+  // fs.writeFileSync(path.join(__dirname, 'expect', 'alter-table-add-unique-key.json'), JSON.stringify(json, null, 2));
   // for some reason t.deepEqual hangs process
   t.is(JSON.stringify(json), JSON.stringify(expect));
+  // t.pass();
 });

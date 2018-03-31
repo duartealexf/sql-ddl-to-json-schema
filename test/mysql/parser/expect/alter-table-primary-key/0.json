@@ -15,7 +15,7 @@
                   "id": "O_ALTER_TABLE_SPEC",
                   "def": {
                     "action": "addPrimaryKey",
-                    "symbol": "pk_id__o_id",
+                    "name": "pk_id__o_id",
                     "index": {
                       "id": "P_INDEX_TYPE",
                       "def": "btree"

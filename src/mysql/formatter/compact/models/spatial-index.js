@@ -1,6 +1,8 @@
 /* eslint no-unused-vars: 0 */
 const IndexColumn = require('./index-column');
 const IndexOptions = require('./index-options');
+const Table = require('./table');
+const Column = require('./column');
 
 const utils = require('../../../../shared/utils');
 
@@ -118,6 +120,31 @@ class SpatialIndex {
     end.shift();
     this.columns = this.columns.concat(end);
     return true;
+  }
+
+  /**
+   * Get the columns in given table which this
+   * spatial index's index columns refer to.
+   *
+   * @param {Table} table Table in question.
+   * @returns {Column[]} Found columns.
+   */
+  getColumnsFromTable(table) {
+    return table.columns.filter(tableColumn =>
+      this.columns.some(indexColumn => indexColumn.column === tableColumn.name)
+    );
+  }
+
+  /**
+   * Whether the given table has all of this spatial index's columns.
+   *
+   * @param {Table} table Table in question.
+   * @returns {boolean} Test result.
+   */
+  hasAllColumnsFromTable(table) {
+    return table.columns.filter(tableColumn =>
+      this.columns.some(indexColumn => indexColumn.column === tableColumn.name)
+    ).length === this.columns.length;
   }
 }
 

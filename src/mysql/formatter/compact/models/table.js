@@ -1,3 +1,4 @@
+/* eslint max-lines: 0 */
 const Column = require('./column');
 const FulltextIndex = require('./fulltext-index');
 const SpatialIndex = require('./spatial-index');
@@ -18,14 +19,16 @@ class Table {
    * Creates a table from a JSON def.
    *
    * @param {any} json JSON format parsed from SQL.
+   * @param {Database} database Database to assign table to.
    * @returns {Table} Created table.
    */
-  static fromCommonDef(json) {
+  static fromCommonDef(json, database) {
     if (json.id === 'P_CREATE_TABLE_COMMON') {
 
       json = json.def;
 
       const table = new Table();
+      table.database = database;
       table.name = json.table;
 
       if (json.tableOptions) {
@@ -124,6 +127,7 @@ class Table {
       }
 
       const table = alikeTable.clone();
+      table.name = json.table;
       return table;
     }
 
@@ -134,6 +138,11 @@ class Table {
    * Table constructor.
    */
   constructor() {
+
+    /**
+     * @type {Database}
+     */
+    this.database = undefined;
 
     /**
      * Table name.
@@ -219,6 +228,7 @@ class Table {
    */
   clone() {
     const table = new Table();
+    table.database = this.database;
     table.name = this.name;
     table.columns = this.columns.map(c => c.clone());
 
@@ -254,6 +264,36 @@ class Table {
   }
 
   /**
+   * Get table with given name.
+   *
+   * @param {string} name Table name.
+   * @returns {Table} Table result.
+   */
+  getTable(name) {
+    return this.database.getTable(name);
+  }
+
+  /**
+   * Get tables from database.
+   *
+   * @returns {Table[]} Database tables.
+   */
+  getTables() {
+    return this.database.getTables();
+  }
+
+
+  /**
+   * Setter for database.
+   *
+   * @param {Database} database Database instance.
+   * @returns {void}
+   */
+  setDatabase(database) {
+    this.database = database;
+  }
+
+  /**
    * Add a column to columns array, in a given position.
    *
    * @param {Column} column Column to be added.
@@ -261,6 +301,15 @@ class Table {
    * @returns {void}
    */
   addColumn(column, position = null) {
+    /**
+     * Should not add column with same name.
+     */
+    if (this.getColumn(column.name)) {
+      return;
+    }
+
+    // TODO: validate - there should not be two autoincrement columns (?)
+
     if (position === null) {
       this.columns.push(column);
     }
@@ -303,7 +352,7 @@ class Table {
     const uniqueKey = column.extractUniqueKey();
 
     if (primaryKey) {
-      this.primaryKey = primaryKey;
+      this.setPrimaryKey(primaryKey);
     }
 
     if (foreignKey) {
@@ -361,6 +410,17 @@ class Table {
    * @returns {void}
    */
   dropPrimaryKey() {
+
+    /**
+     * Should not drop primary key if pk column has autoincrement.
+     * https://github.com/duartealexf/sql-ddl-to-json-schema/issues/14
+     */
+    const tableColumns = this.primaryKey.getColumnsFromTable(this);
+
+    if (tableColumns.some(c => c.options && c.options.autoincrement)) {
+      return;
+    }
+
     delete this.primaryKey;
   }
 
@@ -506,11 +566,46 @@ class Table {
   /**
    * Get foreign key by name.
    *
-   * @param {string} symbol Foreign key name.
+   * @param {string} name Foreign key name.
    * @returns {ForeignKey} Foreign key found.
    */
-  getForeignKey(symbol) {
-    return this.foreignKeys.find(k => k.symbol === symbol);
+  getForeignKey(name) {
+    return this.foreignKeys.find(k => k.name === name);
+  }
+
+  /**
+   * Whether there is a foreign key with given name in table.
+   *
+   * @param {string} name Foreign key name.
+   * @returns {boolean} Whether key exists.
+   */
+  hasForeignKey(name) {
+    return this.foreignKeys.some(k => k.name === name);
+  }
+
+  /**
+   * Setter for table's primary key.
+   *
+   * @param {PrimaryKey} primaryKey Primary key.
+   * @returns {void}
+   */
+  setPrimaryKey(primaryKey) {
+
+    /**
+     * Should not add primary key over another one.
+     */
+    if (this.primaryKey) {
+      return;
+    }
+
+    /**
+     * Validate columns referenced by primary key.
+     */
+    if (!primaryKey.hasAllColumnsFromTable(this)) {
+      return;
+    }
+
+    this.primaryKey = primaryKey;
   }
 
   /**
@@ -520,6 +615,22 @@ class Table {
    * @returns {void}
    */
   pushFulltextIndex(fulltextIndex) {
+
+    /**
+     * Should not add index or key with same name.
+     * https://github.com/duartealexf/sql-ddl-to-json-schema/issues/15
+     */
+    if (fulltextIndex.name && this.getIndex(fulltextIndex.name)) {
+      return;
+    }
+
+    /**
+     * Validate columns referenced by fulltext index.
+     */
+    if (!fulltextIndex.hasAllColumnsFromTable(this)) {
+      return;
+    }
+
     this.fulltextIndexes.push(fulltextIndex);
   }
 
@@ -530,6 +641,22 @@ class Table {
    * @returns {void}
    */
   pushSpatialIndex(spatialIndex) {
+
+    /**
+     * Should not add index or key with same name.
+     * https://github.com/duartealexf/sql-ddl-to-json-schema/issues/15
+     */
+    if (spatialIndex.name && this.getIndex(spatialIndex.name)) {
+      return;
+    }
+
+    /**
+     * Validate columns referenced by spatial index.
+     */
+    if (!spatialIndex.hasAllColumnsFromTable(this)) {
+      return;
+    }
+
     this.spatialIndexes.push(spatialIndex);
   }
 
@@ -540,6 +667,22 @@ class Table {
    * @returns {void}
    */
   pushUniqueKey(uniqueKey) {
+
+    /**
+     * Should not add index or key with same name.
+     * https://github.com/duartealexf/sql-ddl-to-json-schema/issues/15
+     */
+    if (uniqueKey.name && this.getIndex(uniqueKey.name)) {
+      return;
+    }
+
+    /**
+     * Validate columns referenced by unique key.
+     */
+    if (!uniqueKey.hasAllColumnsFromTable(this)) {
+      return;
+    }
+
     this.uniqueKeys.push(uniqueKey);
   }
 
@@ -550,6 +693,31 @@ class Table {
    * @returns {void}
    */
   pushForeignKey(foreignKey) {
+
+    /**
+     * Should not add index or key with same name.
+     * https://github.com/duartealexf/sql-ddl-to-json-schema/issues/15
+     */
+    if (foreignKey.name && this.getIndex(foreignKey.name)) {
+      return;
+    }
+
+    /**
+     * Validate if referenced table exists.
+     */
+    const referencedTable = foreignKey.getReferencedTable(this.getTables());
+    if (!referencedTable) { return; }
+
+    /**
+     * Validate columns.
+     */
+    const hasAllColumnsFromThisTable = foreignKey.hasAllColumnsFromTable(this);
+    const hasAllColumnsFromReference = foreignKey.hasAllColumnsFromRefTable(referencedTable);
+
+    if (!hasAllColumnsFromThisTable || !hasAllColumnsFromReference) { return; }
+
+    // TODO: Validate circular reference?
+
     this.foreignKeys.push(foreignKey);
   }
 
@@ -560,6 +728,22 @@ class Table {
    * @returns {void}
    */
   pushIndex(index) {
+
+    /**
+     * Should not add index or key with same name.
+     * https://github.com/duartealexf/sql-ddl-to-json-schema/issues/15
+     */
+    if (index.name && this.getIndex(index.name)) {
+      return;
+    }
+
+    /**
+     * Validate columns referenced by index.
+     */
+    if (!index.hasAllColumnsFromTable(this)) {
+      return;
+    }
+
     this.indexes.push(index);
   }
 }

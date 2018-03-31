@@ -15,7 +15,7 @@
                   "id": "O_ALTER_TABLE_SPEC",
                   "def": {
                     "action": "addPrimaryKey",
-                    "symbol": null,
+                    "name": null,
                     "index": null,
                     "columns": [
                       {

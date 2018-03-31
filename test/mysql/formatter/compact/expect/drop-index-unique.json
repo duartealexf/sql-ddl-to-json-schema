@@ -223,19 +223,6 @@
             "column": "ssn"
           }
         ]
-      },
-      {
-        "columns": [
-          {
-            "column": "motto"
-          }
-        ],
-        "symbol": "u_motto",
-        "name": "unique_motto",
-        "indexType": "btree",
-        "options": {
-          "comment": "be original"
-        }
       }
     ],
     "fulltextIndexes": [
@@ -703,8 +690,7 @@
         "comment": "complex test",
         "parser": "myParser"
       },
-      "indexType": "hash",
-      "symbol": "pk_id"
+      "indexType": "hash"
     },
     "foreignKeys": [
       {
@@ -753,8 +739,7 @@
             }
           ]
         },
-        "symbol": "fk_pet_id",
-        "name": "fk_pet"
+        "name": "fk_pet_id"
       }
     ],
     "spatialIndexes": [

@@ -230,8 +230,7 @@
             "column": "motto"
           }
         ],
-        "symbol": "u_motto",
-        "name": "unique_motto",
+        "name": "u_motto",
         "indexType": "btree",
         "options": {
           "comment": "be original"
@@ -460,7 +459,7 @@
       {
         "columns": [
           {
-            "column": "species",
+            "column": "avatar",
             "length": 200,
             "sort": "asc"
           },
@@ -470,7 +469,7 @@
           }
         ],
         "reference": {
-          "table": "species",
+          "table": "person",
           "match": "full",
           "on": [
             {
@@ -484,7 +483,7 @@
           ],
           "columns": [
             {
-              "column": "id",
+              "column": "avatar",
               "length": 10,
               "sort": "asc"
             },
@@ -494,8 +493,7 @@
             }
           ]
         },
-        "symbol": "fk_species",
-        "name": "fk_species_id"
+        "name": "fk_face"
       },
       {
         "columns": [
@@ -511,19 +509,19 @@
             }
           ]
         },
-        "symbol": "fk_shape"
+        "name": "fk_shape"
       },
       {
         "columns": [
           {
-            "column": "height"
+            "column": "intelligent"
           }
         ],
         "reference": {
           "table": "house",
           "columns": [
             {
-              "column": "city"
+              "column": "neighbors"
             }
           ]
         }
@@ -774,8 +772,7 @@
         "comment": "complex test",
         "parser": "myParser"
       },
-      "indexType": "hash",
-      "symbol": "pk_id"
+      "indexType": "hash"
     },
     "foreignKeys": [
       {
@@ -824,8 +821,7 @@
             }
           ]
         },
-        "symbol": "fk_pet_id",
-        "name": "fk_pet"
+        "name": "fk_pet_id"
       }
     ],
     "spatialIndexes": [

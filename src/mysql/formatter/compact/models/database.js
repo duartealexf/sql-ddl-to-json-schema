@@ -10,9 +10,10 @@ const DropIndex     = require('./rules/drop-index');
 const utils = require('../../../../shared/utils');
 
 /**
- * Main rule formatter. Contains DDS array as its json.def.
+ * Database, which contains DDS array as its json.def.
+ * It is a formatter for MAIN parser rule.
  */
-class Main {
+class Database {
 
   /**
    * Main constructor.
@@ -32,10 +33,20 @@ class Main {
   /**
    * Get tables from parsed DDS array.
    *
-   * @returns {Table[]} Compact format.
+   * @returns {Table[]} Compact formatted tables.
    */
   getTables() {
     return this.tables;
+  }
+
+  /**
+   * Setter for tables.
+   *
+   * @param {Table[]} tables Updated tables.
+   * @returns {void}
+   */
+  setTables(tables) {
+    this.tables = tables;
   }
 
   /**
@@ -46,6 +57,24 @@ class Main {
    */
   getTable(name) {
     return this.tables.find(t => t.name === name);
+  }
+
+  /**
+   * Pushes a table to database.
+   *
+   * @param {Table} table Table to be added.
+   * @returns {void}
+   */
+  pushTable(table) {
+
+    /**
+     * Do not add table with same name.
+     */
+    if (this.tables.some(t => t.name === table.name)) {
+      return;
+    }
+
+    this.tables.push(table);
   }
 
   /**
@@ -61,50 +90,36 @@ class Main {
     this.ddsCollection.forEach(dds => {
 
       const json = dds.def;
+      let handler;
 
       if (json.id === 'P_CREATE_TABLE') {
-        const handler = new CreateTable();
-        handler.tables = this.tables;
-        handler.handleDef(json);
-        this.tables = handler.tables;
+        handler = new CreateTable();
       }
 
       else if (json.id === 'P_CREATE_INDEX') {
-        const handler = new CreateIndex();
-        handler.tables = this.tables;
-        handler.handleDef(json);
-        this.tables = handler.tables;
+        handler = new CreateIndex();
       }
 
       else if (json.id === 'P_ALTER_TABLE') {
-        const handler = new AlterTable();
-        handler.tables = this.tables;
-        handler.handleDef(json);
-        this.tables = handler.tables;
+        handler = new AlterTable();
       }
 
       else if (json.id === 'P_RENAME_TABLE') {
-        const handler = new RenameTable();
-        handler.tables = this.tables;
-        handler.handleDef(json);
-        this.tables = handler.tables;
+        handler = new RenameTable();
       }
 
       else if (json.id === 'P_DROP_TABLE') {
-        const handler = new DropTable();
-        handler.tables = this.tables;
-        handler.handleDef(json);
-        this.tables = handler.tables;
+        handler = new DropTable();
       }
 
       else if (json.id === 'P_DROP_INDEX') {
-        const handler = new DropIndex();
-        handler.tables = this.tables;
-        handler.handleDef(json);
-        this.tables = handler.tables;
+        handler = new DropIndex();
       }
+
+      handler.setDatabase(this);
+      handler.handleDef(json);
     });
   }
 }
 
-module.exports = Main;
+module.exports = Database;

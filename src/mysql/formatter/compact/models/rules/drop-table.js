@@ -52,14 +52,20 @@ class DropTable {
     json.def.forEach(table => {
       table = this.getTable(table);
 
-      // TODO: validate foreign keys
+      let tables = this.database.getTables();
+
+      const hasReference = tables.some(t =>
+        t.foreignKeys.some(k => k.referencesTable(table))
+      );
+
+      if (hasReference) {
+        return;
+      }
 
       if (!table) {
         // throw new Error(`Found "DROP TABLE" statement for an unexisting table ${table}`);
         return;
       }
-
-      let tables = this.database.getTables();
 
       const end = tables.splice(tables.indexOf(table));
       end.shift();

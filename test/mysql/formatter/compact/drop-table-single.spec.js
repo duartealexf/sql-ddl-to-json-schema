@@ -13,6 +13,9 @@ ava('Compact formatter: Should drop a table.', t => {
   parser.feed(sql);
   parser.feed('DROP TABLE house;');
 
+  // Shouldn't drop table being referenced by foreign keys.
+  parser.feed('DROP TABLE person;');
+
   const json = parser.toCompactJson(parser.results);
   // fs.writeFileSync(path.join(__dirname, 'expect', 'drop-table-single.json'), JSON.stringify(json, null, 2));
   // for some reason t.deepEqual hangs process

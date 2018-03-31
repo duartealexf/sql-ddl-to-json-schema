@@ -180,9 +180,19 @@ class ForeignKey {
    * @returns {boolean} Whether reference exists.
    */
   referencesTableAndColumn(table, column) {
-    return this.reference.table ===  table.name && this.reference.columns.some(indexColumn =>
+    return this.reference.table === table.name && this.reference.columns.some(indexColumn =>
       indexColumn.column === column.name
     );
+  }
+
+  /**
+   * Checks and returns whether this foreign key references given table.
+   *
+   * @param {Table} table Table to be checked whether there is reference to.
+   * @returns {boolean} Whether reference exists.
+   */
+  referencesTable(table) {
+    return this.reference.table === table.name;
   }
 }
 

@@ -29,6 +29,15 @@ class RenameTable {
   }
 
   /**
+   * Get tables from database.
+   *
+   * @returns {Table[]} Database tables.
+   */
+  getTables() {
+    return this.database.getTables();
+  }
+
+  /**
    * Setter for database.
    *
    * @param {Database} database Database instance.
@@ -49,7 +58,7 @@ class RenameTable {
       throw new TypeError(`Expected P_RENAME_TABLE rule to be handled but received ${json.id}`);
     }
 
-    const table = this.tables.find(t => t.name === json.def.table);
+    const table = this.getTables().find(t => t.name === json.def.table);
 
     // TODO: rename foreign key references.
 

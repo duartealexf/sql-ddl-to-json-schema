@@ -389,8 +389,14 @@ class Table {
       }
     }
 
-    this.dropColumn(column);
-    this.addColumn(column, position);
+    if (this.dropColumn(column)) {
+      this.addColumn(column, position);
+
+      // TODO: how to keep this operation atomic?
+      // If column cannot be readded, then this operation needs to revert.
+
+      // TODO: how to only rename a column and its references (foreign keys) ?
+    }
   }
 
   /**
@@ -438,7 +444,7 @@ class Table {
    * Drops a column from table.
    *
    * @param {Column} column Column to be dropped.
-   * @returns {void}
+   * @returns {boolean} Whether operation was successful.
    */
   dropColumn(column) {
 

@@ -744,8 +744,6 @@ class Table {
 
     if (!hasAllColumnsFromThisTable || !hasAllColumnsFromReference) { return; }
 
-    // TODO: Validate circular reference?
-
     this.foreignKeys.push(foreignKey);
   }
 

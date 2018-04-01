@@ -28,8 +28,6 @@ ava('Compact formatter: Should alter table, adding foreign keys.', t => {
   // Should not add key referencing unexiting table column.
   parser.feed('ALTER TABLE pet ADD CONSTRAINT fk_other3 FOREIGN KEY (species) REFERENCES person (abcxyz)');
 
-  // TODO: test circular reference
-
   const json = parser.toCompactJson(parser.results);
   // fs.writeFileSync(path.join(__dirname, 'expect', 'alter-table-add-foreign-key.json'), JSON.stringify(json, null, 2));
   // for some reason t.deepEqual hangs process

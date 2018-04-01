@@ -41,7 +41,11 @@ class CreateTable {
     else if (json.id === 'P_CREATE_TABLE_LIKE') {
       const table = Table.fromAlikeDef(json, this.getTables());
 
-      // TODO: check if CREATE TABLE LIKE adds indexes and keys.
+      /**
+       * Through tests it is noticed that foreign keys are
+       * not kept on duplicated table - duartealexf.
+       */
+      table.foreignKeys = [];
 
       if (table) {
         this.pushTable(table);

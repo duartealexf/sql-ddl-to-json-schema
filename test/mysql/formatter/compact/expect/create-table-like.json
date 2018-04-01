@@ -963,25 +963,6 @@
         }
       }
     ],
-    "foreignKeys": [
-      {
-        "columns": [
-          {
-            "column": "owner_id"
-          }
-        ],
-        "reference": {
-          "table": "person",
-          "columns": [
-            {
-              "column": "id",
-              "length": 10,
-              "sort": "asc"
-            }
-          ]
-        }
-      }
-    ],
     "indexes": [
       {
         "columns": [

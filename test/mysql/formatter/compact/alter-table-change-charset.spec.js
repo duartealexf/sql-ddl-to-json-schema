@@ -7,6 +7,7 @@ const expect = require('./expect/alter-table-change-charset.json');
 
 const sql = fs.readFileSync(path.join(__dirname, 'sql', 'create-table.sql')).toString();
 
+// @ts-ignore
 ava('Compact formatter: Should alter table, changing charset.', t => {
   const parser = new Parser('mysql');
   parser.feed(sql);

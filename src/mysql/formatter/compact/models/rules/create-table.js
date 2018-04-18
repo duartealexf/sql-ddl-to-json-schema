@@ -34,6 +34,9 @@ class CreateTable {
     if (json.id === 'P_CREATE_TABLE_COMMON') {
       const table = Table.fromCommonDef(json, this.database);
 
+      // TODO: check error from MySQL:
+      // there can be only one auto column and it must be defined as a key
+
       if (table) {
         this.pushTable(table);
       }

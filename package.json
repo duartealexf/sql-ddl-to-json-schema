@@ -1,7 +1,7 @@
 {
   "name": "sql-ddl-to-json-schema",
   "version": "2.0.0",
-  "description": "A grammar and stream-friendly SQL parser.",
+  "description": "Parse and convert SQL DDL statements to a JSON Schema.",
   "main": "index.js",
   "author": "Alexandre Duarte <duartealexf@gmail.com> (https://github.com/duartealexf)",
   "maintainers": [

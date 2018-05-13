@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="2.0.1"></a>
+## [2.0.1](https://github.com/duartealexf/sql-ddl-to-json-schema/compare/v2.0.0...v2.0.1) (2018-05-13)
+
+
+### Bug Fixes
+
+* Add rename of column references when renaming column. ([f9db921](https://github.com/duartealexf/sql-ddl-to-json-schema/commit/f9db921)), closes [#9](https://github.com/duartealexf/sql-ddl-to-json-schema/issues/9)
+* Skip copying of foreign keys in MySQL CREATE TABLE LIKE statement. ([1e0d2db](https://github.com/duartealexf/sql-ddl-to-json-schema/commit/1e0d2db))
+
+
+
 <a name="2.0.0"></a>
 # [2.0.0](https://github.com/duartealexf/sql-ddl-to-json-schema/compare/v1.2.0...v2.0.0) (2018-03-31)
 

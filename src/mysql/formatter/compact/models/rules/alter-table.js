@@ -1,5 +1,6 @@
 /* eslint no-unused-vars: 0 */
 const Table = require('../table');
+const Database = require('../database');
 const TableOptions = require('../table-options');
 const Column = require('../column');
 const Datatype = require('../datatype');
@@ -10,7 +11,6 @@ const UniqueKey = require('../unique-key');
 const FulltextIndex = require('../fulltext-index');
 const SpatialIndex = require('../spatial-index');
 const Index = require('../index');
-const Database = require('../database');
 
 /**
  * Formatter for P_ALTER_TABLE rule's parsed JSON.
@@ -62,12 +62,12 @@ class AlterTable {
     const table = this.getTable(json.def.table);
 
     if (!table) {
-      // throw new TypeError(`Found "ALTER TABLE" statement for an unexisting table ${json.def.table}`);
       return;
     }
 
     /**
-     * Runs methods in this class according to the 'action' property of the ALTER TABLE spec.
+     * Runs methods in this class according to the
+     * 'action' property of the ALTER TABLE spec.
      */
     json.def.specs.forEach(spec => {
       const changeSpec = spec.def.spec;
@@ -170,6 +170,9 @@ class AlterTable {
    */
   addUniqueKey(json, table) {
     const key = UniqueKey.fromObject(json);
+
+    // TODO: validate if is duplicate unique key.
+    
     table.pushUniqueKey(key);
   }
 
@@ -220,7 +223,6 @@ class AlterTable {
     const column = table.getColumn(json.column);
 
     if (!column) {
-      // throw new Error(`Found "ALTER TABLE [SET DEFAULT COLUMN VALUE]" statement for an unexisting table column ${json.column}`);
       return;
     }
 
@@ -238,7 +240,6 @@ class AlterTable {
     const column = table.getColumn(json.column);
 
     if (!column) {
-      // throw new Error(`Found "ALTER TABLE [DROP DEFAULT COLUMN VALUE]" statement for an unexisting table column ${json.column}`);
       return;
     }
 
@@ -256,37 +257,98 @@ class AlterTable {
     const column = table.getColumn(json.column);
 
     if (!column) {
-      // throw new Error(`Found "ALTER TABLE [CHANGE/MODIFY COLUMN]" statement for an unexisting table column ${json.column}`);
       return;
     }
 
-    if (json.newName) {
-      column.name = json.newName;
+    /** @type {{after: string}} */
+    let position;
+
+    if (json.position) {
+      if (json.position.after) {
+        if (!table.getColumn(json.position.after)) {
+          /**
+           * Referential 'after' column does not exist.
+           */
+          return;
+        }
+      }
+      position = json.position;
+    }
+    else {
+      position = table.getColumnPosition(column);
     }
 
-    column.type = Datatype.fromDef(json.datatype);
+    const type = Datatype.fromDef(json.datatype);
+    let options;
 
     /**
-     * Alter table change column should not bring old column options.
+     * Alter table change column should not bring old
+     * column options, so we completely overwrite it.
      * https://github.com/duartealexf/sql-ddl-to-json-schema/issues/10
      */
     if (json.columnDefinition) {
-      column.options = ColumnOptions.fromArray(json.columnDefinition);
+      options = ColumnOptions.fromArray(json.columnDefinition);
     }
 
     /**
-     * Alter table change column with reference does not add foreign key constraint.
+     * Alter table does not overwrite primary key.
+     * Statements like these in the DBMS are canceled.
+     */
+    if (options.primary && table.primaryKey) {
+      return;
+    }
+
+    /**
+     * Table should have only one column with autoincrement,
+     * except when column being modified is already autoincrement.
+     * Statements like these in the DBMS are canceled.
+     */
+    if (
+      options.autoincrement
+      && table.columns.some(c => {
+        return c !== column && c.options.autoincrement;
+      })
+    ) {
+      return;
+    }
+
+    /**
+     * If there is an unique option that would
+     * create duplicate unique key, remove it.
+     */
+    if (options.unique
+      && table.uniqueKeys.some(u => {
+        return u.columns.length === 1 && u.columns[0].column === column.name;
+      })) {
+      delete options.unique;
+    }
+
+    /**
+     * Alter table "change column" statement with
+     * reference does not add foreign key constraint.
      * https://github.com/duartealexf/sql-ddl-to-json-schema/issues/11
      */
-    if (column.options.reference) {
-      delete column.options.reference;
+    if (options.reference) {
+      delete options.reference;
     }
 
-    if (!json.position) {
-      json.position = table.getColumnPosition(column);
-    }
+    /**
+     * Finally change the column.
+     */
+    if (table.moveColumn(column, position)) {
 
-    table.moveColumn(column, json.position);
+      /**
+       * If there is a new column name in statement, that is different
+       * from current name, rename column and references to it.
+       */
+      if (json.newName && json.newName !== column.name) {
+        table.renameColumn(column, json.newName);
+      }
+
+      column.type = type;
+      column.options = options;
+      table.extractColumnKeys(column);
+    }
   }
 
   /**
@@ -300,7 +362,6 @@ class AlterTable {
     const column = table.getColumn(json.column);
 
     if (!column) {
-      // throw new Error(`Found "ALTER TABLE [DROP COLUMN]" statement referencing unexisting column ${json.column}`);
       return;
     }
 
@@ -323,7 +384,6 @@ class AlterTable {
     const index = table.getIndex(json.index);
 
     if (!index) {
-      // throw new Error(`Found "ALTER TABLE [DROP INDEX]" statement referencing unexisting index ${json.index}`);
       return;
     }
 
@@ -352,7 +412,6 @@ class AlterTable {
     const foreignKey = table.getForeignKey(json.key);
 
     if (!foreignKey) {
-      // throw new Error(`Found "ALTER TABLE [DROP FOREIGN KEY]" statement referencing unexisting key ${json.key}`);
       return;
     }
 
@@ -370,7 +429,6 @@ class AlterTable {
     const index = table.getIndex(json.index);
 
     if (!index) {
-      // throw new Error(`Found "ALTER TABLE [RENAME INDEX]" statement for an unexisting table index ${json.index}`);
       return;
     }
 

@@ -75,28 +75,6 @@ class Column {
      * @type {ColumnOptions}
      */
     this.options = undefined;
-
-    this.isPrimaryKeyExtracted = false;
-    this.isForeignKeyExtracted = false;
-    this.isUniqueKeyExtracted = false;
-
-    /**
-     * Primary key instance extracted from this column.
-     * @type {PrimaryKey}
-     */
-    this.extractedPrimaryKey = null;
-
-    /**
-     * Foreign key instance extracted from this column.
-     * @type {ForeignKey}
-     */
-    this.extractedForeignKey = null;
-
-    /**
-     * Unique key instance extracted from this column.
-     * @type {UniqueKey}
-     */
-    this.extractedUniqueKey = null;
   }
 
   /**
@@ -167,10 +145,6 @@ class Column {
    * @returns {PrimaryKey} Extracted PrimaryKey.
    */
   extractPrimaryKey() {
-    if (this.isPrimaryKeyExtracted) {
-      return this.extractedPrimaryKey;
-    }
-
     if (this.isPrimaryKey()) {
       delete this.options.primary;
 
@@ -180,11 +154,10 @@ class Column {
       const primaryKey = new PrimaryKey();
       primaryKey.pushColumn(indexColumn);
 
-      this.extractedPrimaryKey = primaryKey;
-      this.isPrimaryKeyExtracted = true;
+      return primaryKey;
     }
 
-    return this.extractedPrimaryKey;
+    return null;
   }
 
   /**
@@ -194,10 +167,6 @@ class Column {
    * @returns {ForeignKey} Extracted ForeignKey.
    */
   extractForeignKey() {
-    if (this.isForeignKeyExtracted) {
-      return this.extractedForeignKey;
-    }
-
     if (this.isForeignKey()) {
       const indexColumn = new IndexColumn();
       indexColumn.column = this.name;
@@ -207,11 +176,10 @@ class Column {
       foreignKey.reference = this.options.reference;
 
       delete this.options.reference;
-      this.extractedForeignKey = foreignKey;
-      this.isForeignKeyExtracted = true;
+      return foreignKey;
     }
 
-    return this.extractedForeignKey;
+    return null;
   }
 
   /**
@@ -221,10 +189,6 @@ class Column {
    * @returns {UniqueKey} Extracted UniqueKey.
    */
   extractUniqueKey() {
-    if (this.isUniqueKeyExtracted) {
-      return this.extractedUniqueKey;
-    }
-
     if (this.isUniqueKey()) {
       delete this.options.unique;
 
@@ -234,11 +198,10 @@ class Column {
       const uniqueKey = new UniqueKey();
       uniqueKey.columns.push(indexColumn);
 
-      this.extractedUniqueKey = uniqueKey;
-      this.isUniqueKeyExtracted = true;
+      return uniqueKey;
     }
 
-    return this.extractedUniqueKey;
+    return null;
   }
 }
 

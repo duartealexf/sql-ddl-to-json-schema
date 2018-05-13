@@ -194,6 +194,20 @@ class ForeignKey {
   referencesTable(table) {
     return this.reference.table === table.name;
   }
+
+  /**
+   * Rename index column name.
+   *
+   * @param {Column} column Column being renamed.
+   * @param {string} newName New column name.
+   * @returns {void}
+   */
+  renameColumn(column, newName) {
+    this.reference.columns.filter(c => c.column === column.name)
+      .forEach(c => {
+        c.column = newName;
+      });
+  }
 }
 
 module.exports = ForeignKey;

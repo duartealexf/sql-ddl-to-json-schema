@@ -3,7 +3,23 @@
     "name": "person",
     "columns": [
       {
-        "name": "id",
+        "name": "size",
+        "type": {
+          "datatype": "int",
+          "width": 1
+        },
+        "options": {
+          "unsigned": true,
+          "zerofill": true,
+          "charset": "latin1",
+          "collation": "latin_ci",
+          "nullable": true,
+          "default": 42,
+          "invisibleWithoutSystemVersioning": true
+        }
+      },
+      {
+        "name": "code",
         "type": {
           "datatype": "int",
           "width": 10
@@ -82,7 +98,7 @@
         }
       },
       {
-        "name": "initials",
+        "name": "letters",
         "type": {
           "datatype": "char",
           "length": 3
@@ -126,10 +142,34 @@
         }
       },
       {
-        "name": "motto",
+        "name": "is_alive",
+        "type": {
+          "datatype": "boolean"
+        },
+        "options": {
+          "nullable": false,
+          "format": "dynamic",
+          "comment": "staying alive",
+          "invisibleWithSystemVersioning": true
+        }
+      },
+      {
+        "name": "photo",
+        "type": {
+          "datatype": "blob",
+          "length": 255
+        },
+        "options": {
+          "nullable": true,
+          "invisible": true,
+          "storage": "memory"
+        }
+      },
+      {
+        "name": "phrase",
         "type": {
           "datatype": "text",
-          "length": 50
+          "length": 100
         },
         "options": {
           "nullable": true
@@ -180,7 +220,7 @@
     "primaryKey": {
       "columns": [
         {
-          "column": "id"
+          "column": "code"
         }
       ]
     },
@@ -195,7 +235,7 @@
       {
         "columns": [
           {
-            "column": "motto"
+            "column": "phrase"
           }
         ],
         "name": "u_motto",
@@ -203,13 +243,20 @@
         "options": {
           "comment": "be original"
         }
+      },
+      {
+        "columns": [
+          {
+            "column": "size"
+          }
+        ]
       }
     ],
     "fulltextIndexes": [
       {
         "columns": [
           {
-            "column": "initials"
+            "column": "letters"
           }
         ],
         "name": "fi_initials"
@@ -264,7 +311,7 @@
         }
       },
       {
-        "name": "height",
+        "name": "height_num",
         "type": {
           "datatype": "decimal"
         },
@@ -294,10 +341,20 @@
         }
       },
       {
-        "name": "birth",
+        "name": "birth_datetime",
         "type": {
           "datatype": "datetime",
           "fractional": 0
+        },
+        "options": {
+          "nullable": true
+        }
+      },
+      {
+        "name": "year",
+        "type": {
+          "datatype": "int",
+          "width": 1
         },
         "options": {
           "nullable": true
@@ -407,7 +464,7 @@
           "table": "person",
           "columns": [
             {
-              "column": "id",
+              "column": "code",
               "length": 10,
               "sort": "asc"
             }
@@ -419,7 +476,7 @@
       {
         "columns": [
           {
-            "column": "height"
+            "column": "height_num"
           },
           {
             "column": "weight",
@@ -436,7 +493,7 @@
       {
         "columns": [
           {
-            "column": "birth",
+            "column": "birth_datetime",
             "length": 5,
             "sort": "desc"
           }
@@ -490,7 +547,7 @@
         }
       },
       {
-        "name": "coordx",
+        "name": "x_axis",
         "type": {
           "datatype": "float",
           "digits": 6,
@@ -684,7 +741,7 @@
           ],
           "columns": [
             {
-              "column": "height"
+              "column": "height_num"
             },
             {
               "column": "weight",
@@ -716,7 +773,7 @@
       {
         "columns": [
           {
-            "column": "coordx"
+            "column": "x_axis"
           },
           {
             "column": "coordy"

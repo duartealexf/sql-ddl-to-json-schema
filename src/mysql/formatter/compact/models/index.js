@@ -154,6 +154,20 @@ class Index {
       this.columns.some(indexColumn => indexColumn.column === tableColumn.name)
     ).length === this.columns.length;
   }
+
+  /**
+   * Rename index column name.
+   *
+   * @param {Column} column Column being renamed.
+   * @param {string} newName New column name.
+   * @returns {void}
+   */
+  renameColumn(column, newName) {
+    this.columns.filter(c => c.column === column.name)
+      .forEach(c => {
+        c.column = newName;
+      });
+  }
 }
 
 module.exports = Index;

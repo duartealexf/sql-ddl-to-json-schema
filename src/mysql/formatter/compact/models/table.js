@@ -1,4 +1,5 @@
 /* eslint max-lines: 0 */
+// const Database = require('./database');
 const Column = require('./column');
 const FulltextIndex = require('./fulltext-index');
 const SpatialIndex = require('./spatial-index');
@@ -210,13 +211,13 @@ class Table {
       columns: this.columns.map(c => c.toJSON())
     };
 
-    if (utils.isDefined(this.primaryKey)) { json.primaryKey      = this.primaryKey.toJSON(); }
-    if (this.foreignKeys.length)          { json.foreignKeys     = this.foreignKeys.map(k => k.toJSON()); }
-    if (this.uniqueKeys.length)           { json.uniqueKeys      = this.uniqueKeys.map(k => k.toJSON()); }
-    if (this.indexes.length)              { json.indexes         = this.indexes.map(i => i.toJSON()); }
-    if (this.spatialIndexes.length)       { json.spatialIndexes  = this.spatialIndexes.map(i => i.toJSON()); }
-    if (this.fulltextIndexes.length)      { json.fulltextIndexes = this.fulltextIndexes.map(i => i.toJSON()); }
-    if (utils.isDefined(this.options))    { json.options         = this.options.toJSON(); }
+    if (utils.isDefined(this.primaryKey)) { json.primaryKey = this.primaryKey.toJSON(); }
+    if (this.foreignKeys.length) { json.foreignKeys = this.foreignKeys.map(k => k.toJSON()); }
+    if (this.uniqueKeys.length) { json.uniqueKeys = this.uniqueKeys.map(k => k.toJSON()); }
+    if (this.indexes.length) { json.indexes = this.indexes.map(i => i.toJSON()); }
+    if (this.spatialIndexes.length) { json.spatialIndexes = this.spatialIndexes.map(i => i.toJSON()); }
+    if (this.fulltextIndexes.length) { json.fulltextIndexes = this.fulltextIndexes.map(i => i.toJSON()); }
+    if (utils.isDefined(this.options)) { json.options = this.options.toJSON(); }
 
     return json;
   }
@@ -297,7 +298,7 @@ class Table {
    * Add a column to columns array, in a given position.
    *
    * @param {Column} column Column to be added.
-   * @param {any} position Position object.
+   * @param {{after: string}} position Position object.
    * @returns {void}
    */
   addColumn(column, position = null) {
@@ -340,17 +341,17 @@ class Table {
       this.columns = this.columns.concat(end);
     }
 
-    this.extractColumnFeatures(column);
+    this.extractColumnKeys(column);
   }
 
   /**
-   * Extract column features like PrimaryKey, ForeignKey,
+   * Extract column keys like PrimaryKey, ForeignKey,
    * UniqueKey and add them to this table instance.
    *
    * @param {Column} column Column to be extracted.
    * @returns {void}
    */
-  extractColumnFeatures(column) {
+  extractColumnKeys(column) {
 
     /** @type {PrimaryKey} */
     const primaryKey = column.extractPrimaryKey();
@@ -377,43 +378,107 @@ class Table {
   /**
    * Move a column to a given position.
    *
-   * @param {Column} column One of this table colu
-   * @param {*} position Position object.
-   * @returns {void}
+   * @param {Column} column One of this table columns.
+   * @param {{after: string}} position Position object.
+   * @returns {boolean} Whether operation was successful.
    */
   moveColumn(column, position) {
-    if (position && position.after) {
-      const refColumn = this.columns.find(c => c.name === position.after);
+
+    if (!this.columns.includes(column)) {
+      return false;
+    }
+
+    let refColumn;
+
+    /**
+     * First of all, validate if 'after' column, if any, exists.
+     */
+    if (position.after) {
+      refColumn = this.getColumn(position.after);
       if (!refColumn) {
-        return;
+        return false;
       }
     }
 
-    if (this.dropColumn(column)) {
-      this.addColumn(column, position);
+    let pos = this.columns.indexOf(column);
+    let end = this.columns.splice(pos);
+    end.shift();
+    this.columns = this.columns.concat(end);
 
-      // TODO: how to keep this operation atomic?
-      // If column cannot be readded, then this operation needs to revert.
-
-      // TODO: how to only rename a column and its references (foreign keys) ?
+    if (position.after === null) {
+      this.columns.unshift(column);
     }
+    else {
+      pos = this.columns.indexOf(refColumn);
+      end = this.columns.splice(pos + 1);
+      this.columns.push(column);
+      this.columns = this.columns.concat(end);
+    }
+
+    return true;
+  }
+
+  /**
+   * Rename column and references to it.
+   *
+   * @param {Column} column Column being renamed.
+   * @param {string} newName New name of column.
+   * @returns {boolean} Whether operation was successful.
+   */
+  renameColumn(column, newName) {
+
+    if (!this.columns.includes(column)) {
+      return false;
+    }
+
+    /**
+     * Rename references to column.
+     * TODO: create typings definitions.
+     */
+    this.database.tables.forEach(t => {
+      t.foreignKeys.filter(k => k.referencesTable(this))
+        .forEach(k => k.renameColumn(column, newName));
+    });
+
+    this.fulltextIndexes.forEach(i => i.renameColumn(column, newName));
+    this.spatialIndexes.forEach(i => i.renameColumn(column, newName));
+    this.indexes.forEach(i => i.renameColumn(column, newName));
+
+    this.uniqueKeys.forEach(k => k.renameColumn(column, newName));
+
+    if (this.primaryKey) {
+      this.primaryKey.renameColumn(column, newName);
+    }
+
+    column.name = newName;
+
+    return;
   }
 
   /**
    * Get column position object.
    *
    * @param {Column} column Column.
-   * @returns {any} Column position object.
+   * @returns {{after: string}} Column position object.
    */
   getColumnPosition(column) {
     const index = this.columns.indexOf(column);
 
+    /**
+     * First column.
+     */
     if (index === 0) {
       return { after: null };
     }
+    /**
+     * Last column.
+     */
     else if (index + 1 === this.columns.length) {
       return null;
     }
+    /**
+     * Somewhere in the middle.
+     */
     else {
       const refColumn = this.columns[index - 1];
       return { after: refColumn.name };

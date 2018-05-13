@@ -296,6 +296,21 @@ class Table {
   }
 
   /**
+   * Rename table.
+   *
+   * @param {string} newName New table name.
+   * @returns {void}
+   */
+  renameTo(newName) {
+    this.database.tables.forEach(t => {
+      t.foreignKeys.filter(k => k.referencesTable(this))
+        .forEach(k => k.updateReferencedTableName(newName));
+    });
+
+    this.name = newName;
+  }
+
+  /**
    * Add a column to columns array, in a given position.
    *
    * @param {Column} column Column to be added.

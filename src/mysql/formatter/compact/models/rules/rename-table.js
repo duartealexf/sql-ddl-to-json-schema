@@ -60,14 +60,11 @@ class RenameTable {
 
     const table = this.getTables().find(t => t.name === json.def.table);
 
-    // TODO: rename foreign key references.
-
     if (!table) {
-      // throw new Error(`Found "RENAME TABLE" statement for an unexisting table ${json.def.table}`);
       return;
     }
 
-    table.name = json.def.newName;
+    table.renameTo(json.def.newName);
   }
 }
 

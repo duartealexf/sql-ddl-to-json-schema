@@ -446,7 +446,7 @@
           }
         ],
         "reference": {
-          "table": "person",
+          "table": "people",
           "columns": [
             {
               "column": "id",

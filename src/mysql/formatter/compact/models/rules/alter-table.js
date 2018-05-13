@@ -170,9 +170,6 @@ class AlterTable {
    */
   addUniqueKey(json, table) {
     const key = UniqueKey.fromObject(json);
-
-    // TODO: validate if is duplicate unique key.
-
     table.pushUniqueKey(key);
   }
 
@@ -443,7 +440,7 @@ class AlterTable {
    * @returns {void}
    */
   rename(json, table) {
-    table.name = json.newName;
+    table.renameTo(json.newName);
   }
 
 }

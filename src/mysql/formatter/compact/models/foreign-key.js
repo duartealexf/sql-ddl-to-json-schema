@@ -208,6 +208,16 @@ class ForeignKey {
         c.column = newName;
       });
   }
+
+  /**
+   * Update referenced table name.
+   *
+   * @param {string} newName New table name.
+   * @returns {void}
+   */
+  updateReferencedTableName(newName) {
+    this.reference.table = newName;
+  }
 }
 
 module.exports = ForeignKey;

@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="2.0.4"></a>
+## [2.0.4](https://github.com/duartealexf/sql-ddl-to-json-schema/compare/v2.0.3...v2.0.4) (2018-05-13)
+
+
+### Bug Fixes
+
+* Update dependencies for Node v10. ([#17](https://github.com/duartealexf/sql-ddl-to-json-schema/issues/17)) ([898917b](https://github.com/duartealexf/sql-ddl-to-json-schema/commit/898917b))
+
+
+
 <a name="2.0.3"></a>
 ## [2.0.3](https://github.com/duartealexf/sql-ddl-to-json-schema/compare/v2.0.2...v2.0.3) (2018-05-13)
 

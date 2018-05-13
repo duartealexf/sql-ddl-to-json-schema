@@ -45,6 +45,7 @@ class Table {
          */
         if (utils.isDefined(O_CREATE_TABLE_CREATE_DEFINITION.def.column)) {
           const column = Column.fromDef(O_CREATE_TABLE_CREATE_DEFINITION);
+
           table.addColumn(column);
         }
 
@@ -321,6 +322,21 @@ class Table {
       return;
     }
 
+    /**
+     * Do not allow adding column with primary
+     * key if table already has primary key.
+     */
+    if (this.primaryKey && column.options.primary) {
+      return;
+    }
+
+    /**
+     * There can be only one auto column and it must be defined as a key.
+     */
+    if (column.options && column.options.autoincrement && !utils.isDefined(column.options.primary)) {
+      return;
+    }
+
     if (position === null) {
       this.columns.push(column);
     }
@@ -331,7 +347,6 @@ class Table {
       const refColumn = this.columns.find(c => c.name === position.after);
 
       if (!refColumn) {
-        // throw new Error(`Trying to add a column ${column.name} to table ${this.name} after unexisting column ${position.after}`);
         return;
       }
 

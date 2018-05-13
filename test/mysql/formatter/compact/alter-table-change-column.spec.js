@@ -25,7 +25,7 @@ ava('Compact formatter: Should alter table, changing column.', t => {
 
   // Should ignore duplicate unique option.
   parser.feed('ALTER TABLE person CHANGE COLUMN motto my_text TEXT(50) UNIQUE;');
-  
+
   // Should rename primary and foreign key column reference.
   parser.feed('ALTER TABLE person CHANGE COLUMN id code INT(10) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT COMMENT "primary key test";');
 

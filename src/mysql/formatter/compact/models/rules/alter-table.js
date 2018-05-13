@@ -172,7 +172,7 @@ class AlterTable {
     const key = UniqueKey.fromObject(json);
 
     // TODO: validate if is duplicate unique key.
-    
+
     table.pushUniqueKey(key);
   }
 

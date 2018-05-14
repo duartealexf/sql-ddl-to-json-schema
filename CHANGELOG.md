@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="2.0.5"></a>
+## [2.0.5](https://github.com/duartealexf/sql-ddl-to-json-schema/compare/v2.0.4...v2.0.5) (2018-05-14)
+
+
+### Bug Fixes
+
+* Add check to not add auto increment without being a primary key. ([fed92cd](https://github.com/duartealexf/sql-ddl-to-json-schema/commit/fed92cd))
+* Add rename of fk references on table rename. ([060a0e1](https://github.com/duartealexf/sql-ddl-to-json-schema/commit/060a0e1))
+
+
+
 <a name="2.0.4"></a>
 ## [2.0.4](https://github.com/duartealexf/sql-ddl-to-json-schema/compare/v2.0.3...v2.0.4) (2018-05-13)
 

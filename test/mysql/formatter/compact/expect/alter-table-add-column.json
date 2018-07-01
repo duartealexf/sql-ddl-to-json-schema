@@ -70,7 +70,9 @@
       {
         "name": "height",
         "type": {
-          "datatype": "decimal"
+          "datatype": "decimal",
+          "digits": 10,
+          "decimals": 0
         },
         "options": {
           "nullable": true
@@ -345,7 +347,9 @@
       {
         "name": "height",
         "type": {
-          "datatype": "decimal"
+          "datatype": "decimal",
+          "digits": 10,
+          "decimals": 0
         },
         "options": {
           "nullable": true

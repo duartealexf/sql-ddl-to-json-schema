@@ -86,6 +86,9 @@ O_FIXED_POINT_DATATYPE ->
   if (d[1]) {
     obj.def.digits = d[1].digits
     obj.def.decimals = d[1].decimals
+  } else {
+    obj.def.digits = 10
+    obj.def.decimals = 0
   }
 
   return obj

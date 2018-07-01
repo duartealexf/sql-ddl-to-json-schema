@@ -313,6 +313,64 @@
                             "def": {
                               "datatype": "DECIMAL",
                               "digits": 5,
+                              "decimals": 2
+                            }
+                          }
+                        },
+                        "columnDefinition": [
+                          {
+                            "id": "O_COLUMN_DEFINITION",
+                            "def": {
+                              "format": "DYNAMIC"
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  }
+                },
+                {
+                  "id": "O_CREATE_TABLE_CREATE_DEFINITION",
+                  "def": {
+                    "column": {
+                      "name": "salary",
+                      "def": {
+                        "datatype": {
+                          "id": "O_DATATYPE",
+                          "def": {
+                            "id": "O_FIXED_POINT_DATATYPE",
+                            "def": {
+                              "datatype": "DECIMAL",
+                              "digits": 5,
+                              "decimals": 0
+                            }
+                          }
+                        },
+                        "columnDefinition": [
+                          {
+                            "id": "O_COLUMN_DEFINITION",
+                            "def": {
+                              "format": "DYNAMIC"
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  }
+                },
+                {
+                  "id": "O_CREATE_TABLE_CREATE_DEFINITION",
+                  "def": {
+                    "column": {
+                      "name": "salary",
+                      "def": {
+                        "datatype": {
+                          "id": "O_DATATYPE",
+                          "def": {
+                            "id": "O_FIXED_POINT_DATATYPE",
+                            "def": {
+                              "datatype": "DECIMAL",
+                              "digits": 10,
                               "decimals": 0
                             }
                           }

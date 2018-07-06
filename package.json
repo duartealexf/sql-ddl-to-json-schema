@@ -28,8 +28,9 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/duartealexf/sql-ddl-to-json-schema.git"
+    "url": "https://github.com/duartealexf/sql-ddl-to-json-schema"
   },
+  "homepage": "https://github.com/duartealexf/sql-ddl-to-json-schema",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/duartealexf/sql-ddl-to-json-schema/issues"

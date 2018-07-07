@@ -17,6 +17,7 @@ CREATE TABLE users (
 ALTER TABLE users ADD UNIQUE KEY unq_nick (nickname);
 `);
 
-const tables = parser.results;
-const jsonSchemas = parser.toJsonSchemaArray();
+const result = parser.toCompactJson();
+// const result = parser.toJsonSchemaArray();
+console.log(JSON.stringify(result[0], null, 2));
 // parser.toJSONSchemaFiles(__dirname + '/example');

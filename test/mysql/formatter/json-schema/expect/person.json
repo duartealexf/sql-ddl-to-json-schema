@@ -1,0 +1,157 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "$comment": "JSON Schema for person table",
+  "$id": "person",
+  "title": "person",
+  "description": "test table",
+  "type": "object",
+  "required": [
+    "id",
+    "name"
+  ],
+  "definitions": {
+    "id": {
+      "$comment": "primary key",
+      "type": "integer",
+      "description": "primary key test",
+      "minimum": 1,
+      "maximum": 1.2089258196146292e+24
+    },
+    "name": {
+      "type": "string",
+      "maxLength": 65535,
+      "default": "Jane \"Doe\" O`neil"
+    },
+    "nickname": {
+      "type": "string",
+      "maxLength": 20,
+      "default": "J"
+    },
+    "ssn": {
+      "type": "integer",
+      "maximum": 32767,
+      "minimum": -32768
+    },
+    "height": {
+      "type": "number",
+      "minimum": -9999999999,
+      "maximum": 9999999999
+    },
+    "weight": {
+      "type": "number",
+      "minimum": -999,
+      "maximum": 999
+    },
+    "status": {
+      "type": "string"
+    },
+    "dob": {
+      "type": "string",
+      "format": "date"
+    },
+    "tob": {
+      "type": "string",
+      "format": "time"
+    },
+    "initials": {
+      "type": "string",
+      "maxLength": 3
+    },
+    "prefix": {
+      "type": "string",
+      "maxLength": 3
+    },
+    "suffix": {
+      "type": "string",
+      "maxLength": 1
+    },
+    "sequence": {
+      "type": "string",
+      "maxLength": 20
+    },
+    "avatar": {
+      "type": "string",
+      "maxLength": 65535
+    },
+    "motto": {
+      "type": "string",
+      "maxLength": 50
+    },
+    "history": {
+      "type": "string",
+      "maxLength": 255
+    },
+    "gender": {
+      "type": "string",
+      "enum": [
+        "M",
+        "F"
+      ]
+    },
+    "shape": {
+      "type": "string"
+    },
+    "pattern": {
+      "type": "string"
+    }
+  },
+  "properties": {
+    "id": {
+      "$ref": "#/definitions/id"
+    },
+    "name": {
+      "$ref": "#/definitions/name"
+    },
+    "nickname": {
+      "$ref": "#/definitions/nickname"
+    },
+    "ssn": {
+      "$ref": "#/definitions/ssn"
+    },
+    "height": {
+      "$ref": "#/definitions/height"
+    },
+    "weight": {
+      "$ref": "#/definitions/weight"
+    },
+    "status": {
+      "$ref": "#/definitions/status"
+    },
+    "dob": {
+      "$ref": "#/definitions/dob"
+    },
+    "tob": {
+      "$ref": "#/definitions/tob"
+    },
+    "initials": {
+      "$ref": "#/definitions/initials"
+    },
+    "prefix": {
+      "$ref": "#/definitions/prefix"
+    },
+    "suffix": {
+      "$ref": "#/definitions/suffix"
+    },
+    "sequence": {
+      "$ref": "#/definitions/sequence"
+    },
+    "avatar": {
+      "$ref": "#/definitions/avatar"
+    },
+    "motto": {
+      "$ref": "#/definitions/motto"
+    },
+    "history": {
+      "$ref": "#/definitions/history"
+    },
+    "gender": {
+      "$ref": "#/definitions/gender"
+    },
+    "shape": {
+      "$ref": "#/definitions/shape"
+    },
+    "pattern": {
+      "$ref": "#/definitions/pattern"
+    }
+  }
+}

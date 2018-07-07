@@ -35,12 +35,11 @@ class Datatype {
     if (type === 'int')                { return 'integer'; }
 
     /**
-     * Filters: decimal, numeric, float, double, timestamp
+     * Filters: decimal, numeric, float, double
      */
     if (type === 'decimal')            { return 'number'; }
     if (type === 'float')              { return 'number'; }
     if (type === 'double')             { return 'number'; }
-    if (type === 'timestamp')          { return 'number'; }
 
     /**
      * Filters: bool, boolean

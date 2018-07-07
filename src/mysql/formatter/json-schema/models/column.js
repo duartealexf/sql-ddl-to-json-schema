@@ -105,9 +105,12 @@ class Column {
 
     Object.getOwnPropertyNames(type)
       .map(k => [k, type[k]])
+      .filter(([, v]) => {
+        return utils.isNumber(v) ? isFinite(v) : true;
+      })
       .forEach(([k, v]) => { json[k] = v; });
 
-    if (utils.isDefined(this.default)) {
+    if (utils.isDefined(this.default) && this.default !== 'CURRENT_TIMESTAMP') {
       json.default = this.default;
     }
 

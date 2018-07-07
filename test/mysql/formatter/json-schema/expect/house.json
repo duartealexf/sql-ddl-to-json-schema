@@ -37,7 +37,7 @@
       "type": "boolean"
     },
     "updated_at": {
-      "type": "number"
+      "type": "string"
     },
     "year": {
       "type": "string",

@@ -16,7 +16,7 @@ ava('Compact formatter: Should drop a spatial index.', t => {
   // Shouldn't drop unknown index.
   parser.feed('DROP INDEX fi_xyzabc ON person;');
 
-  const json = parser.toCompactJson(parser.results);
+  const json = parser.toCompactJson();
   // fs.writeFileSync(path.join(__dirname, 'expect', 'drop-index-spatial.json'), JSON.stringify(json, null, 2));
   // for some reason t.deepEqual hangs process
   t.is(JSON.stringify(json), JSON.stringify(expect));

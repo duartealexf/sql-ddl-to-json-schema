@@ -20,7 +20,7 @@ ava('Compact formatter: Should alter table, adding columns in different position
   // Shouldn't add a column with autoincrement if there is another one with autoincrement in table.
   parser.feed('ALTER TABLE person ADD COLUMN id2 int(8) AUTO_INCREMENT;');
 
-  const json = parser.toCompactJson(parser.results);
+  const json = parser.toCompactJson();
   // fs.writeFileSync(path.join(__dirname, 'expect', 'alter-table-add-column.json'), JSON.stringify(json, null, 2));
   // for some reason t.deepEqual hangs process
   t.is(JSON.stringify(json), JSON.stringify(expect));

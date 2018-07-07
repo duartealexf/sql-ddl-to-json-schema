@@ -728,6 +728,15 @@ class Table {
       return;
     }
 
+    /**
+     * Make necessary changes in columns.
+     */
+    primaryKey.columns
+      .forEach(indexCol => {
+        const column = this.columns.find(c => c.name === indexCol.column);
+        column.options.nullable = false;
+      });
+
     this.primaryKey = primaryKey;
   }
 

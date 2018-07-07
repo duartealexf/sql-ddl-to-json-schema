@@ -13,7 +13,7 @@ ava('Compact formatter: Should drop two tables.', t => {
   parser.feed(sql);
   parser.feed('DROP TABLE house, pet;');
 
-  const json = parser.toCompactJson(parser.results);
+  const json = parser.toCompactJson();
   // fs.writeFileSync(path.join(__dirname, 'expect', 'drop-table-multi.json'), JSON.stringify(json, null, 2));
   // for some reason t.deepEqual hangs process
   t.is(JSON.stringify(json), JSON.stringify(expect));

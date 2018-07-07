@@ -24,7 +24,7 @@ ava('Compact formatter: Should alter table, adding fulltext index.', t => {
   // Should not add key or index of unexisting table column.
   parser.feed('ALTER TABLE house ADD FULLTEXT INDEX fi_history (xyzabc);');
 
-  const json = parser.toCompactJson(parser.results);
+  const json = parser.toCompactJson();
   // fs.writeFileSync(path.join(__dirname, 'expect', 'alter-table-add-fulltext-index.json'), JSON.stringify(json, null, 2));
   // for some reason t.deepEqual hangs process
   t.is(JSON.stringify(json), JSON.stringify(expect));

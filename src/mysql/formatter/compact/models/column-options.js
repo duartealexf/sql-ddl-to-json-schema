@@ -43,6 +43,21 @@ class ColumnOptions {
       columnOptions.nullable = true;
     }
 
+    /**
+     * If column has zerofill property, it is unsigned.
+     * @see https://mariadb.com/kb/en/library/int/
+     */
+    if (columnOptions.zerofill) {
+      columnOptions.unsigned = true;
+    }
+
+    /**
+     * If column is primary key, then it is not nullable.
+     */
+    if (columnOptions.primary) {
+      columnOptions.nullable = false;
+    }
+
     return columnOptions;
   }
 

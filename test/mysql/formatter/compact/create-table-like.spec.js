@@ -14,7 +14,7 @@ ava('Compact formatter: Should create one table like another one.', t => {
 
   parser.feed('CREATE TABLE dog LIKE pet;');
 
-  const json = parser.toCompactJson(parser.results);
+  const json = parser.toCompactJson();
   // fs.writeFileSync(path.join(__dirname, 'expect', 'create-table-like.json'), JSON.stringify(json, null, 2));
   // for some reason t.deepEqual hangs process
   t.is(JSON.stringify(json), JSON.stringify(expect));

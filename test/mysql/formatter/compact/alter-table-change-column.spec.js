@@ -64,7 +64,7 @@ ava('Compact formatter: Should alter table, changing column.', t => {
   // Shouldn't change column adding a second autoincrement.
   parser.feed('ALTER TABLE person CHANGE COLUMN size size INT(8) AUTO_INCREMENT;');
 
-  const json = parser.toCompactJson(parser.results);
+  const json = parser.toCompactJson();
   // fs.writeFileSync(path.join(__dirname, 'expect', 'alter-table-change-column.json'), JSON.stringify(json, null, 2));
   // for some reason t.deepEqual hangs process
   t.is(JSON.stringify(json), JSON.stringify(expect));

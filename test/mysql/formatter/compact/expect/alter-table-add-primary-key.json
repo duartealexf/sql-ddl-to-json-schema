@@ -274,7 +274,7 @@
           "width": 8
         },
         "options": {
-          "nullable": true
+          "nullable": false
         }
       },
       {
@@ -284,7 +284,7 @@
           "length": 200
         },
         "options": {
-          "nullable": true
+          "nullable": false
         }
       },
       {

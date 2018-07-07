@@ -1,16 +1,16 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema",
-  "$comment": "JSON Schema for person table",
-  "$id": "person",
-  "title": "person",
-  "description": "test table",
+  "$comment": "JSON Schema for house table",
+  "$id": "house",
+  "title": "house",
   "type": "object",
   "required": [
   ],
   "definitions": {
     "id": {
+      "$comment": "primary key",
       "type": "integer",
-      "minimum": -2147483648,
+      "minimum": 1,
       "maximum": 2147483647
     },
     "pet_id": {
@@ -45,13 +45,15 @@
     },
     "sequence": {
       "type": "string",
-      "maxLength": 1
+      "maxLength": 1,
+      "default": "b'00101'"
     },
     "photo": {
       "type": "string"
     },
     "history": {
-      "type": "string"
+      "type": "string",
+      "maxLength": 4294967295
     },
     "gender": {
       "type": "string",

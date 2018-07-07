@@ -141,13 +141,13 @@ class Datatype {
      * Set minimum and maximum for int.
      */
     if (this.datatype === 'int') {
-      const width = Math.pow(2, 8 * json.width);
+      const width = Math.pow(2, 8 * this.width);
       if (this.isUnsigned) {
         json.minimum = 0;
         json.maximum = width;
       } else {
         json.minimum = 0 - (width / 2);
-        json.maximum = -1 + json.minimum;
+        json.maximum = 0 - json.minimum - 1;
       }
 
     /**
@@ -161,7 +161,7 @@ class Datatype {
         json.minimum = 0;
       } else {
         json.minimum = 0 - (Number(
-          '9'.repeat(json.digits - json.decimals) + '9'.repeat(json.decimals)
+          '9'.repeat(this.digits - this.decimals) + '.' + '9'.repeat(this.decimals)
         ));
       }
       json.maximum = 0 - json.minimum;
@@ -188,7 +188,7 @@ class Datatype {
      * Validate according to number of digits.
      */
     } else if (this.datatype === 'year') {
-      json.pattern = `\\d{1,${this.digits}`;
+      json.pattern = `\\d{1,${this.digits}}`;
 
     /**
      * Set maxLength to length of the text.

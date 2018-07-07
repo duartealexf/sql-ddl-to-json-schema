@@ -12,8 +12,8 @@
   "definitions": {
     "id": {
       "$comment": "primary key",
-      "type": "integer",
       "description": "primary key test",
+      "type": "integer",
       "minimum": 1,
       "maximum": 1.2089258196146292e+24
     },
@@ -29,8 +29,8 @@
     },
     "ssn": {
       "type": "integer",
-      "maximum": 32767,
-      "minimum": -32768
+      "minimum": -32768,
+      "maximum": 32767
     },
     "height": {
       "type": "number",
@@ -70,8 +70,7 @@
       "maxLength": 20
     },
     "avatar": {
-      "type": "string",
-      "maxLength": 65535
+      "type": "string"
     },
     "motto": {
       "type": "string",

@@ -25,8 +25,8 @@ ava('JSON Schema formatter: should format array elements correctly.', t => {
   // fs.writeFileSync(path.join(__dirname, 'expect', 'house.json'), JSON.stringify(house, null, 2));
   // for some reason t.deepEqual hangs process
   t.is(JSON.stringify(personSchema), JSON.stringify(personTable));
-  // t.is(JSON.stringify(petSchema), JSON.stringify(petTable));
-  // t.is(JSON.stringify(houseSchema), JSON.stringify(houseTable));
+  t.is(JSON.stringify(petSchema), JSON.stringify(petTable));
+  t.is(JSON.stringify(houseSchema), JSON.stringify(houseTable));
   // t.pass();
 });
 

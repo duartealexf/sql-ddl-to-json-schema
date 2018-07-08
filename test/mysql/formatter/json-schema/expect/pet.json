@@ -1,0 +1,130 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "$comment": "JSON Schema for pet table",
+  "$id": "pet",
+  "title": "pet",
+  "type": "object",
+  "required": [
+  ],
+  "definitions": {
+    "id": {
+      "type": "integer",
+      "minimum": -9223372036854775808,
+      "maximum": 9223372036854775807
+    },
+    "species": {
+      "type": "string",
+      "maxLength": 200
+    },
+    "owner_id": {
+      "type": "integer",
+      "minimum": -8388608,
+      "maximum": 8388607
+    },
+    "height": {
+      "type": "number",
+      "minimum": -9999999999,
+      "maximum": 9999999999
+    },
+    "weight": {
+      "type": "number",
+      "minimum": -99.99,
+      "maximum": 99.99
+    },
+    "status": {
+      "type": "string"
+    },
+    "birth": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "year": {
+      "type": "string",
+      "pattern": "\\d{1,2}"
+    },
+    "initial": {
+      "type": "string",
+      "maxLength": 1
+    },
+    "avatar": {
+      "type": "string"
+    },
+    "photo": {
+      "type": "string"
+    },
+    "history": {
+      "type": "string",
+      "maxLength": 16777215
+    },
+    "gender": {
+      "type": "string",
+      "pattern": "^(M|F)(,(M|F))*$"
+    },
+    "intelligent": {
+      "type": "string",
+      "pattern": "^(N)(,(N))*$"
+    },
+    "shape": {
+      "type": "string"
+    },
+    "pattern": {
+      "type": "string"
+    },
+    "object": {
+      "type": "string"
+    }
+  },
+  "properties": {
+    "id": {
+      "$ref": "#/definitions/id"
+    },
+    "species": {
+      "$ref": "#/definitions/species"
+    },
+    "owner_id": {
+      "$ref": "#/definitions/owner_id"
+    },
+    "height": {
+      "$ref": "#/definitions/height"
+    },
+    "weight": {
+      "$ref": "#/definitions/weight"
+    },
+    "status": {
+      "$ref": "#/definitions/status"
+    },
+    "birth": {
+      "$ref": "#/definitions/birth"
+    },
+    "year": {
+      "$ref": "#/definitions/year"
+    },
+    "initial": {
+      "$ref": "#/definitions/initial"
+    },
+    "avatar": {
+      "$ref": "#/definitions/avatar"
+    },
+    "photo": {
+      "$ref": "#/definitions/photo"
+    },
+    "history": {
+      "$ref": "#/definitions/history"
+    },
+    "gender": {
+      "$ref": "#/definitions/gender"
+    },
+    "intelligent": {
+      "$ref": "#/definitions/intelligent"
+    },
+    "shape": {
+      "$ref": "#/definitions/shape"
+    },
+    "pattern": {
+      "$ref": "#/definitions/pattern"
+    },
+    "object": {
+      "$ref": "#/definitions/object"
+    }
+  }
+}

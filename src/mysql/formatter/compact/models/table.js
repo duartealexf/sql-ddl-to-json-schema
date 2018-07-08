@@ -345,13 +345,6 @@ class Table {
       return;
     }
 
-    /**
-     * There can be only one auto column and it must be defined as a key.
-     */
-    if (column.options && column.options.autoincrement && !utils.isDefined(column.options.primary)) {
-      return;
-    }
-
     if (position === null) {
       this.columns.push(column);
     }
@@ -727,6 +720,15 @@ class Table {
     if (!primaryKey.hasAllColumnsFromTable(this)) {
       return;
     }
+
+    /**
+     * Make necessary changes in columns.
+     */
+    primaryKey.columns
+      .forEach(indexCol => {
+        const column = this.columns.find(c => c.name === indexCol.column);
+        column.options.nullable = false;
+      });
 
     this.primaryKey = primaryKey;
   }

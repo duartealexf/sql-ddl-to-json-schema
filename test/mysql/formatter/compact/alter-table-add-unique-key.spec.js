@@ -22,7 +22,7 @@ ava('Compact formatter: Should alter table, adding unique key.', t => {
   // Should not add key or index with for unknown table column.
   parser.feed('ALTER TABLE pet ADD CONSTRAINT abcxyz UNIQUE KEY (abcxyz);');
 
-  const json = parser.toCompactJson(parser.results);
+  const json = parser.toCompactJson();
   // fs.writeFileSync(path.join(__dirname, 'expect', 'alter-table-add-unique-key.json'), JSON.stringify(json, null, 2));
   // for some reason t.deepEqual hangs process
   t.is(JSON.stringify(json), JSON.stringify(expect));

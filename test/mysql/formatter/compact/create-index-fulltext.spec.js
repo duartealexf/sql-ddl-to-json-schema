@@ -25,7 +25,7 @@ ava('Compact formatter: Should create fulltext index.', t => {
   // Shouldn't create fulltext index for unknown column.
   parser.feed('CREATE FULLTEXT INDEX f_abcxyz on person (abcxyz);');
 
-  const json = parser.toCompactJson(parser.results);
+  const json = parser.toCompactJson();
   // fs.writeFileSync(path.join(__dirname, 'expect', 'create-index-fulltext.json'), JSON.stringify(json, null, 2));
   // for some reason t.deepEqual hangs process
   t.is(JSON.stringify(json), JSON.stringify(expect));

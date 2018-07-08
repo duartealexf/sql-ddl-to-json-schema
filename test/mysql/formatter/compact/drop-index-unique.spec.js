@@ -13,7 +13,7 @@ ava('Compact formatter: Should drop a unique index.', t => {
   parser.feed(sql);
   parser.feed('DROP INDEX u_motto ON person ALGORITHM default LOCK none;');
 
-  const json = parser.toCompactJson(parser.results);
+  const json = parser.toCompactJson();
   // fs.writeFileSync(path.join(__dirname, 'expect', 'drop-index-unique.json'), JSON.stringify(json, null, 2));
   // for some reason t.deepEqual hangs process
   t.is(JSON.stringify(json), JSON.stringify(expect));

@@ -1,0 +1,136 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "$comment": "JSON Schema for house table",
+  "$id": "house",
+  "title": "house",
+  "type": "object",
+  "required": [
+  ],
+  "definitions": {
+    "id": {
+      "$comment": "primary key",
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 2147483647
+    },
+    "pet_id": {
+      "type": "integer",
+      "minimum": -128,
+      "maximum": 127
+    },
+    "coordx": {
+      "type": "number",
+      "minimum": -9999.99,
+      "maximum": 9999.99
+    },
+    "coordy": {
+      "type": "number"
+    },
+    "letter": {
+      "type": "string",
+      "maxLength": 1
+    },
+    "is_built": {
+      "type": "boolean"
+    },
+    "is_apartment": {
+      "type": "boolean"
+    },
+    "updated_at": {
+      "type": "string"
+    },
+    "year": {
+      "type": "string",
+      "pattern": "\\d{1,4}"
+    },
+    "sequence": {
+      "type": "string",
+      "maxLength": 1,
+      "default": "b'00101'"
+    },
+    "photo": {
+      "type": "string"
+    },
+    "history": {
+      "type": "string",
+      "maxLength": 4294967295
+    },
+    "gender": {
+      "type": "string",
+      "enum": [
+        "X"
+      ]
+    },
+    "size": {
+      "type": "string"
+    },
+    "where": {
+      "type": "string"
+    },
+    "street": {
+      "type": "string"
+    },
+    "neighbors": {
+      "type": "string"
+    },
+    "city": {
+      "type": "string"
+    }
+  },
+  "properties": {
+    "id": {
+      "$ref": "#/definitions/id"
+    },
+    "pet_id": {
+      "$ref": "#/definitions/pet_id"
+    },
+    "coordx": {
+      "$ref": "#/definitions/coordx"
+    },
+    "coordy": {
+      "$ref": "#/definitions/coordy"
+    },
+    "letter": {
+      "$ref": "#/definitions/letter"
+    },
+    "is_built": {
+      "$ref": "#/definitions/is_built"
+    },
+    "is_apartment": {
+      "$ref": "#/definitions/is_apartment"
+    },
+    "updated_at": {
+      "$ref": "#/definitions/updated_at"
+    },
+    "year": {
+      "$ref": "#/definitions/year"
+    },
+    "sequence": {
+      "$ref": "#/definitions/sequence"
+    },
+    "photo": {
+      "$ref": "#/definitions/photo"
+    },
+    "history": {
+      "$ref": "#/definitions/history"
+    },
+    "gender": {
+      "$ref": "#/definitions/gender"
+    },
+    "size": {
+      "$ref": "#/definitions/size"
+    },
+    "where": {
+      "$ref": "#/definitions/where"
+    },
+    "street": {
+      "$ref": "#/definitions/street"
+    },
+    "neighbors": {
+      "$ref": "#/definitions/neighbors"
+    },
+    "city": {
+      "$ref": "#/definitions/city"
+    }
+  }
+}

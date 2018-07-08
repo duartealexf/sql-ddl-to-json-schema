@@ -20,7 +20,7 @@ ava('Compact formatter: Should alter table, adding primary key.', t => {
   // Should not add primary key for unknown table column.
   parser.feed('ALTER TABLE house ADD PRIMARY KEY (xyzabc);');
 
-  const json = parser.toCompactJson(parser.results);
+  const json = parser.toCompactJson();
   // fs.writeFileSync(path.join(__dirname, 'expect', 'alter-table-add-primary-key.json'), JSON.stringify(json, null, 2));
   // for some reason t.deepEqual hangs process
   t.is(JSON.stringify(json), JSON.stringify(expect));

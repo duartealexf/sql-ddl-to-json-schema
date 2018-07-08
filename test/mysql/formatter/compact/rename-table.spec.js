@@ -13,7 +13,7 @@ ava('Compact formatter: Should rename table.', t => {
   parser.feed(sql);
   parser.feed('ALTER TABLE person RENAME TO people;');
 
-  const json = parser.toCompactJson(parser.results);
+  const json = parser.toCompactJson();
   // fs.writeFileSync(path.join(__dirname, 'expect', 'rename-table.json'), JSON.stringify(json, null, 2));
   // for some reason t.deepEqual hangs process
   t.is(JSON.stringify(json), JSON.stringify(expect));

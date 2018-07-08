@@ -24,7 +24,7 @@ ava('Compact formatter: Should alter table, adding index.', t => {
   // Should not add key or index for unexisting table column.
   parser.feed('ALTER TABLE house ADD INDEX idx_built (abcxyz);');
 
-  const json = parser.toCompactJson(parser.results);
+  const json = parser.toCompactJson();
   // fs.writeFileSync(path.join(__dirname, 'expect', 'alter-table-add-index.json'), JSON.stringify(json, null, 2));
   // for some reason t.deepEqual hangs process
   t.is(JSON.stringify(json), JSON.stringify(expect));

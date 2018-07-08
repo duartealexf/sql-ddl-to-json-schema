@@ -464,6 +464,17 @@
         "options": {
           "nullable": true
         }
+      },
+      {
+        "name": "xyzabc",
+        "type": {
+          "datatype": "int",
+          "width": 11
+        },
+        "options": {
+          "nullable": true,
+          "autoincrement": true
+        }
       }
     ],
     "foreignKeys": [

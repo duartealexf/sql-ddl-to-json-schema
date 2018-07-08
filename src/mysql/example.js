@@ -1,6 +1,6 @@
 const Parser = require('../../lib');
 // const fs = require('fs');
-// const path = require('path');
+const { join } = require('path');
 
 const parser = new Parser('mysql');
 
@@ -17,7 +17,16 @@ CREATE TABLE users (
 ALTER TABLE users ADD UNIQUE KEY unq_nick (nickname);
 `);
 
-// const value = parser.results;
-// console.log(JSON.stringify(value, null, 2));
-const json = parser.toCompactJson();
-console.log(JSON.stringify(json, null, 2));
+let result;
+result = parser.results;
+result = parser.toCompactJson(result);
+result = parser.toJsonSchemaArray(result);
+result = parser.toJsonSchemaFiles(join(__dirname, 'example'), {
+  extension: '.schema.json',
+  indent: 2
+}, result)
+  .then(files => {
+    console.log(JSON.stringify(files, null, 2));
+  });
+// console.log(JSON.stringify(result[0], null, 2));
+

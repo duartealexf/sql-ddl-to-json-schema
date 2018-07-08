@@ -120,10 +120,20 @@ class Utils {
    * Test whether given value is string.
    *
    * @param {any} value Value to be tested.
-   * @returns {boolean} Whether it is an string.
+   * @returns {boolean} Whether it is a string.
    */
   static isString(value) {
     return typeof value === 'string';
+  }
+
+  /**
+   * Test whether given value is number.
+   *
+   * @param {any} value Value to be tested.
+   * @returns {boolean} Whether it is a number.
+   */
+  static isNumber(value) {
+    return typeof value === 'number';
   }
 
   /**

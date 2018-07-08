@@ -1,5 +1,3 @@
-const utils = require('../../../../shared/utils');
-
 /**
  * Data type.
  */

@@ -188,7 +188,7 @@ ALTER TABLE users ADD UNIQUE KEY unq_nick (nickname);
 `;
 
 /**
- * Output each table to a JSON Schema document in a given directory...
+ * Output each table to a JSON Schema file in a given directory...
  */
 parser.feed(sql)
   .toJsonSchemaFiles(__dirname)
@@ -239,18 +239,22 @@ const jsonSchemaDocuments = parser.toJsonSchemaArray(compactJsonTablesArray);
 /*
  * And spread the JSON Schema documents to files, which returns a promise...
  */
-const jsonFilesOutput = parser.toJsonSchemaFiles(__dirname, {}, jsonSchemaDocuments)
+const options = {
+  indent: 2,
+  extension: '.json'
+};
+const jsonFilesOutput = parser.toJsonSchemaFiles(__dirname, options, jsonSchemaDocuments)
   .then((outputFilePaths) => {
     // ...
   });
 
 ```
 
-## What is it, what is it not
+## What it is, what it is not
 
-It is a SQL DDL parser for Javascript, based on [nearley](https://nearley.js.org). It will parse DDL statements only, no DML.
+**It is** a SQL DDL parser for Javascript, based on [nearley](https://nearley.js.org). It will parse DDL statements only, converting it to JSON. No DML is supported.
 
-It is **not** a SQL DBMS, nor a SQL Server, nor SQL client.
+**It is not** a SQL DBMS, nor a SQL Server, nor SQL client.
 
 ## About
 

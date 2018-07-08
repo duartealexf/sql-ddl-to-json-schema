@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="2.1.0"></a>
+# [2.1.0](https://github.com/duartealexf/sql-ddl-to-json-schema/compare/v2.0.6...v2.1.0) (2018-07-08)
+
+
+### Bug Fixes
+
+* Fix behavior when sending null arguments to parser. ([46f6e46](https://github.com/duartealexf/sql-ddl-to-json-schema/commit/46f6e46))
+
+
+### Features
+
+* Add validation to JSON Schema $id attribute when outputing to files. ([32dd787](https://github.com/duartealexf/sql-ddl-to-json-schema/commit/32dd787))
+* JSON Schema output ([7655c2b](https://github.com/duartealexf/sql-ddl-to-json-schema/commit/7655c2b))
+
+
+
 <a name="2.0.6"></a>
 ## [2.0.6](https://github.com/duartealexf/sql-ddl-to-json-schema/compare/v2.0.5...v2.0.6) (2018-07-01)
 

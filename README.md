@@ -191,20 +191,23 @@ ALTER TABLE users ADD UNIQUE KEY unq_nick (nickname);
  * Output each table to a JSON Schema document in a given directory...
  */
 parser.feed(sql)
-  .to-JsonSchemaFiles(__dirname)
-tputFilePaths => {
+  .toJsonSchemaFiles(__dirname)
+  .then((outputFilePaths) => {
+    // ...
   });
 
 /**
  * Or get the JSON Schema if you need to modify it...
  */
-const -jsonSchemaDocuments = parser.feed(sql)
-chemaArray();
+const jsonSchemaDocuments = parser.feed(sql)
+  .toJsonSchemaArray();
 
+/*
  * Or to explore the compact JSON format...
  */
 const compactJsonTablesArray = parser.feed(sql)
   .toCompactJson(parsedJsonFormat);
+
 ```
 
 ### More options
@@ -231,12 +234,14 @@ const compactJsonTablesArray = parser.toCompactJson(parsedJsonFormat);
 /**
  * And pass it to format to an array of JSON Schema items. One for each table...
  */
-const -jsonSchemaDocuments = parser.to-JsonSchemaArray);
-*
+const jsonSchemaDocuments = parser.toJsonSchemaArray(compactJsonTablesArray);
+
+/*
  * And spread the JSON Schema documents to files, which returns a promise...
  */
-const jsonFilesOutput = parser.to-JsonSchemaFiles(__dirname, {}, -jsonSchemaDocuments)
-utputFilePaths => {
+const jsonFilesOutput = parser.toJsonSchemaFiles(__dirname, {}, jsonSchemaDocuments)
+  .then((outputFilePaths) => {
+    // ...
   });
 
 ```

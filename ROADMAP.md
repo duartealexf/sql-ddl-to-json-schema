@@ -33,7 +33,7 @@ SQL Parser:
 Postparser, JSON formatter:
 
 - [x] Compact JSON format
-- [ ] JSON Schema format
+- [x] JSON Schema format
 
 More complex features are not priority, as they require parsing SELECT statements or expressions* ...
 
@@ -51,6 +51,7 @@ More complex features are not priority, as they require parsing SELECT statement
 \*\* https://mariadb.com/kb/en/library/constraint/
 
 ### PostgreSQL
+
 TODO
 
 ### MSSQL

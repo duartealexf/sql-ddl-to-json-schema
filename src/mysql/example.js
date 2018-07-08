@@ -27,6 +27,9 @@ result = parser.toJsonSchemaFiles(join(__dirname, 'example'), {
 }, result)
   .then(files => {
     console.log(JSON.stringify(files, null, 2));
+  })
+  .catch(reason => {
+    console.log(reason);
   });
 // console.log(JSON.stringify(result[0], null, 2));
 

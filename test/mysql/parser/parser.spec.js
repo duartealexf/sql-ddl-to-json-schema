@@ -151,10 +151,11 @@ ava('Should parser properties work', t => {
 });
 
 ava('Should parser error line count work', t => {
-  const parser = new Parser();
+  let parser = new Parser();
 
   parser.feed(
-    `CREATE TABLE A (
+    `CREATE
+    TABLE A (
     A bool,
     B bool
     )
@@ -169,23 +170,38 @@ ava('Should parser error line count work', t => {
     parser.results;
     t.fail();
   } catch (e) {
-    t.is((e.message.match(/\d+/) || [])[0], '8');
+    t.is((e.message.match(/\d+/) || [])[0], '9');
   }
 
   parser.feed(
-    `CREATE TABLE A (A bool);
-    `);
-
-  parser.feed(
     `
-    CREATE TEST;
-    `);
+    CREATE
+    TEST;
+
+    CREATE TABLE A (
+    A bool,
+    B bool
+    )
+    ;
+  `);
 
   try {
     parser.results;
     t.fail();
   } catch (e) {
     t.is((e.message.match(/\d+/) || [])[0], '3');
+  }
+
+  parser.feed(`CREATE TABLE A (A bool);\n\r\r\n`);
+  parser.feed(`CREATE
+  TEST;`);
+
+  try {
+    parser.results;
+    t.fail();
+  } catch (e) {
+    // should be actually '5', but nearley or lexer gives wrong number as it does not count \r.
+    t.is((e.message.match(/\d+/) || [])[0], '4');
   }
 });
 

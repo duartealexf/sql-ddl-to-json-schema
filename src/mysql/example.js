@@ -21,13 +21,6 @@ result = parser.results;
 // result = parser.toJsonSchemaArray(result);
 // console.log(JSON.stringify(result, null, 2));
 
-parser.feed(
-  `CREATE TABLE B (A bool);
-
-CREATE TEST;
-
-`);
-
 result = parser.results;
 // result = parser.toCompactJson(result);
 // result = parser.toJsonSchemaArray(result);

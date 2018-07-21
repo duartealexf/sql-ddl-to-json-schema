@@ -90,6 +90,14 @@ class Database {
 
     this.ddsCollection.forEach(dds => {
 
+      /**
+       * Statements such as SET are supported by parser
+       * but are ignored, returning null DDS.
+       */
+      if (!dds) {
+        return;
+      }
+
       const json = dds.def;
       let handler;
 

@@ -160,6 +160,11 @@ class ForeignKey {
       .filter(i => !utils.isDefined(i.length))
       .forEach(indexColumn => {
         const column = table.columns.find(c => c.name === indexColumn.column);
+
+        if (!column) {
+          return;
+        }
+
         indexColumn.length = column.type.getMaxIndexableSize();
       });
   }

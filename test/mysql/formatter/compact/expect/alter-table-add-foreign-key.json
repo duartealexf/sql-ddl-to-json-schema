@@ -218,6 +218,24 @@
         }
       ]
     },
+    "foreignKeys": [
+      {
+        "columns": [
+          {
+            "column": "person",
+            "sort": "desc"
+          }
+        ],
+        "reference": {
+          "table": "pet",
+          "columns": [
+            {
+              "column": "species"
+            }
+          ]
+        }
+      }
+    ],
     "uniqueKeys": [
       {
         "columns": [

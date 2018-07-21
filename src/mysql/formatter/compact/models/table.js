@@ -837,17 +837,27 @@ class Table {
 
     /**
      * Validate if referenced table exists.
+     *
+     * UPDATE:
+     * Since DDLs can run with FOREIGN_KEY_CHECKS disabled, this has been disabled.
+     * @see https://github.com/duartealexf/sql-ddl-to-json-schema/issues/27
+     * - duartealexf
      */
-    const referencedTable = foreignKey.getReferencedTable(this.getTables());
-    if (!referencedTable) { return; }
+    // const referencedTable = foreignKey.getReferencedTable(this.getTables());
+    // if (!referencedTable) { return; }
 
     /**
      * Validate columns.
+     *
+     * UPDATE:
+     * Since DDLs can run with FOREIGN_KEY_CHECKS disabled, this has been disabled.
+     * @see https://github.com/duartealexf/sql-ddl-to-json-schema/issues/27
+     * - duartealexf
      */
-    const hasAllColumnsFromThisTable = foreignKey.hasAllColumnsFromTable(this);
-    const hasAllColumnsFromReference = foreignKey.hasAllColumnsFromRefTable(referencedTable);
+    // const hasAllColumnsFromThisTable = foreignKey.hasAllColumnsFromTable(this);
+    // const hasAllColumnsFromReference = foreignKey.hasAllColumnsFromRefTable(referencedTable);
 
-    if (!hasAllColumnsFromThisTable || !hasAllColumnsFromReference) { return; }
+    // if (!hasAllColumnsFromThisTable || !hasAllColumnsFromReference) { return; }
 
     /**
      * If index column length is not set, set it to full column size.

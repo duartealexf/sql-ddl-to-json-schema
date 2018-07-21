@@ -1,34 +1,25 @@
 const Parser = require('../../lib');
 // const fs = require('fs');
 const { join } = require('path');
+const { readFileSync } = require('fs');
 
 const parser = new Parser('mysql');
 
-const sql = `
-CREATE TABLE users (
-  id INT(11) NOT NULL AUTO_INCREMENT,
-  nickname VARCHAR(255) NOT NULL,
-  deleted_at TIMESTAMP NULL,
-  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
-  updated_at TIMESTAMP,
-  PRIMARY KEY (id)
-) ENGINE MyISAM COMMENT 'All system users';
-
-ALTER TABLE users ADD UNIQUE KEY unq_nick (nickname);
-`;
+const sql = readFileSync(join(__dirname, 'example', 'example.sql')).toString();
 
 parser.feed(sql);
 
-parser.feed(sql)
-  .toJsonSchemaFiles(join(__dirname, 'example'))
-  .then(outputFilePaths => {
-    console.log(JSON.stringify(outputFilePaths, null, 2));
-  });
+// parser.feed(sql)
+//   .toJsonSchemaFiles(join(__dirname, 'example'))
+//   .then(outputFilePaths => {
+//     console.log(JSON.stringify(outputFilePaths, null, 2));
+//   });
 
-// let result;
-// result = parser.results;
-// result = parser.toCompactJson(result);
-// result = parser.toJsonSchemaArray(result);
+let result;
+result = parser.results;
+result = parser.toCompactJson(result);
+result = parser.toJsonSchemaArray(result);
+console.log(JSON.stringify(result, null, 2));
 // result = parser.toJsonSchemaFiles(join(__dirname, 'example'), {
 //   extension: '.schema.json',
 //   indent: 2

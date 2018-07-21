@@ -1,44 +1,152 @@
 const ava = require('ava');
 
 const Parser = require('../../../lib');
-const expect0 = require('./expect/parser/0.json');
-const runner = require('../runner');
 
-runner.run({
-  'Should test quoting.': {
-    queries: [
-      `
-      create table \`\`\`te\`\`st\` (
-        test BOOL DEFAULT "",
-        test BOOL DEFAULT "a test",
-        test BOOL DEFAULT "a "" test",
-        test BOOL DEFAULT "a \\" test",
-        test BOOL DEFAULT '',
-        test BOOL DEFAULT 'a test',
-        test BOOL DEFAULT 'a '' test',
-        test BOOL DEFAULT 'a \\' test'
-      );
-      `,
-    ],
-    expect: expect0
-  }
-});
-
-ava('Should break down statements in parser', t => {
+ava('Should parser properties work', t => {
   const parser = new Parser();
 
-  parser.feed(`testing 'an' escape\\'d 'str\\'in"g;' end; now this `); //
-  parser.feed(`is a \`"continue;'d\` end;
-this\\`);
-  parser.feed(`'s escape is broken between "consume'd `); //
-  parser.feed(`\`strings\`" end;twice here end;`); //
+  /**
+   * Test single char
+   */
+  parser.feed(`a`);
+  t.false(parser.escaped);
+  t.is(parser.quoted, '');
 
-  t.deepEqual(parser.statements, [
-    `testing 'an' escape\\'d 'str\\'in"g;' end;`,
-    ` now this is a \`"continue;'d\` end;`,
-    `\nthis\\'s escape is broken between "consume'd \`strings\`" end;`,
-    `twice here end;`
-  ]);
+  /**
+   * Test start escaping
+   */
+  parser.feed(`\\`);
+  t.true(parser.escaped);
+  t.is(parser.quoted, '');
+
+  /**
+   * Test finish escaping
+   */
+  parser.feed(`\\`);
+  t.false(parser.escaped);
+  t.is(parser.quoted, '');
+
+  parser.feed(`\\`);
+  t.true(parser.escaped);
+  t.is(parser.quoted, '');
+
+  parser.feed(`n`);
+  t.false(parser.escaped);
+  t.is(parser.quoted, '');
+
+  /**
+   * Test double quotes without escape.
+   */
+  parser.feed(`"`);
+  t.false(parser.escaped);
+  t.is(parser.quoted, '"');
+
+  parser.feed(`"`);
+  t.false(parser.escaped);
+  t.is(parser.quoted, '');
+
+
+  parser.feed(`"a`);
+  t.false(parser.escaped);
+  t.is(parser.quoted, '"');
+
+  parser.feed(`a"`);
+  t.false(parser.escaped);
+  t.is(parser.quoted, '');
+
+  /**
+   * Test single quotes without escape.
+   */
+  parser.feed(`'`);
+  t.false(parser.escaped);
+  t.is(parser.quoted, "'");
+
+  parser.feed(`'`);
+  t.false(parser.escaped);
+  t.is(parser.quoted, '');
+
+
+  parser.feed(`'a`);
+  t.false(parser.escaped);
+  t.is(parser.quoted, "'");
+
+  parser.feed(`a'`);
+  t.false(parser.escaped);
+  t.is(parser.quoted, '');
+
+  /**
+   * Test backticks without escape.
+   */
+  parser.feed('`');
+  t.false(parser.escaped);
+  t.is(parser.quoted, '`');
+
+  parser.feed('`');
+  t.false(parser.escaped);
+  t.is(parser.quoted, '');
+
+
+  parser.feed('`a');
+  t.false(parser.escaped);
+  t.is(parser.quoted, '`');
+
+  parser.feed('a`');
+  t.false(parser.escaped);
+  t.is(parser.quoted, '');
+
+  /**
+   * Test quoting with escape.
+   */
+  parser.feed('`\\`');
+  t.false(parser.escaped);
+  t.is(parser.quoted, '`');
+
+  parser.feed('\\\\`');
+  t.false(parser.escaped);
+  t.is(parser.quoted, '');
+
+  parser.feed('"\\');
+  t.true(parser.escaped);
+  t.is(parser.quoted, '"');
+
+  parser.feed('"a`');
+  t.false(parser.escaped);
+  t.is(parser.quoted, '"');
+
+  parser.feed("'\\'");
+  t.false(parser.escaped);
+  t.is(parser.quoted, '"');
+
+  parser.feed('"');
+  t.false(parser.escaped);
+  t.is(parser.quoted, '');
+
+  /**
+   * Test semicolon with escape.
+   */
+  parser.feed('\\;');
+  t.false(parser.escaped);
+  t.is(parser.quoted, '');
+  t.is(parser.statements.length, 1);
+
+  /**
+   * Test semicolon without escape.
+   */
+  parser.feed('a;');
+  t.false(parser.escaped);
+  t.is(parser.quoted, '');
+  t.is(parser.statements.length, 2);
+
+  /**
+   * Test semicolon with quotes.
+   */
+  parser.feed('a";');
+  t.is(parser.quoted, '"');
+  t.is(parser.statements.length, 2);
+
+  parser.feed('a";');
+  t.is(parser.quoted, '');
+  t.is(parser.statements.length, 3);
 
 });
 

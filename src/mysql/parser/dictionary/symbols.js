@@ -9,7 +9,10 @@
  */
 
 module.exports = {
-  WS                : { match: /[\s]/, lineBreaks: true },
+  /**
+   * Whitespaces, also expect SQL comments
+   */
+  WS                : { match: /(?:\s+|#.*|-- +.*|\/\*(?:[\s\S])*?\*\/)+/, lineBreaks: true },
   S_EQUAL           : '=',
   S_LPARENS         : '(',
   S_RPARENS         : ')',

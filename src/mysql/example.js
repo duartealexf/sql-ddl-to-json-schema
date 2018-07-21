@@ -17,9 +17,22 @@ parser.feed(sql);
 
 let result;
 result = parser.results;
-result = parser.toCompactJson(result);
-result = parser.toJsonSchemaArray(result);
-console.log(JSON.stringify(result, null, 2));
+// result = parser.toCompactJson(result);
+// result = parser.toJsonSchemaArray(result);
+// console.log(JSON.stringify(result, null, 2));
+
+parser.feed(
+  `CREATE TABLE B (A bool);
+
+CREATE TEST;
+
+`);
+
+result = parser.results;
+// result = parser.toCompactJson(result);
+// result = parser.toJsonSchemaArray(result);
+// console.log(JSON.stringify(result, null, 2));
+
 // result = parser.toJsonSchemaFiles(join(__dirname, 'example'), {
 //   extension: '.schema.json',
 //   indent: 2

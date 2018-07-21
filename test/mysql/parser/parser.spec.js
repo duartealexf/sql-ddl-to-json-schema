@@ -150,3 +150,42 @@ ava('Should parser properties work', t => {
 
 });
 
+ava('Should parser error line count work', t => {
+  const parser = new Parser();
+
+  parser.feed(
+    `CREATE TABLE A (
+    A bool,
+    B bool
+    )
+    ;
+
+  CREATE
+  TEST;
+
+  `);
+
+  try {
+    parser.results;
+    t.fail();
+  } catch (e) {
+    t.is((e.message.match(/\d+/) || [])[0], '8');
+  }
+
+  parser.feed(
+    `CREATE TABLE A (A bool);
+    `);
+
+  parser.feed(
+    `
+    CREATE TEST;
+    `);
+
+  try {
+    parser.results;
+    t.fail();
+  } catch (e) {
+    t.is((e.message.match(/\d+/) || [])[0], '3');
+  }
+});
+

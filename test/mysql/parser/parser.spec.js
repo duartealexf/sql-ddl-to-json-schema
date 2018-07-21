@@ -151,7 +151,7 @@ ava('Should parser properties work', t => {
 });
 
 ava('Should parser error line count work', t => {
-  let parser = new Parser();
+  const parser = new Parser();
 
   parser.feed(
     `CREATE

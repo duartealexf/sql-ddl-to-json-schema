@@ -510,7 +510,7 @@
           "width": 4
         },
         "options": {
-          "nullable": true
+          "nullable": false
         }
       },
       {

@@ -52,12 +52,12 @@ P_CREATE_INDEX ->
 
 P_INDEX_COLUMN -> S_IDENTIFIER
   (
-    _ %S_LPARENS _ %S_NUMBER _ %S_RPARENS
+    ( _ %S_LPARENS _ %S_NUMBER _ %S_RPARENS {% d => d[3] %} ):?
     ( _ %K_ASC {% d => d[1] %} | _ %K_DESC {% d => d[1] %} ):?
       {% d => {
         return {
-          length: d[3].value,
-          sort: d[6] ? d[6].value : null
+          length: d[0] ? d[0].value : null,
+          sort: d[1] ? d[1].value : null
         }
       }%}
   ):?

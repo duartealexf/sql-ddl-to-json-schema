@@ -65,34 +65,108 @@ class Datatype {
     this.datatype = undefined;
 
     /**
+     * Width for integer datatypes.
      * @type {number}
      */
     this.width = undefined;
 
     /**
+     * Digits for numeric non-integer and year datatypes.
      * @type {number}
      */
     this.digits = undefined;
 
     /**
+     * Decimals for numeric non-integer datatypes.
      * @type {number}
      */
     this.decimals = undefined;
 
     /**
+     * Length of bit, blob, binary and string datatypes.
      * @type {number}
      */
     this.length = undefined;
 
     /**
+     * Number of fractionals for datetime datatypes.
      * @type {number}
      */
     this.fractional = undefined;
 
     /**
+     * Values for enum and set datatypes.
      * @type {string[]}
      */
     this.values = undefined;
+  }
+
+  /**
+   * Get length that is indexable by this datatype.
+   * @returns {number} Indexable length.
+   */
+  getMaxIndexableSize() {
+    /**
+     * Non-indexable datatypes.
+     */
+    if (
+      [
+        'int',
+        'decimal',
+        'float',
+        'double',
+        'bit',
+        'boolean',
+        'date',
+        'time',
+        'datetime',
+        'timestamp',
+        'year',
+        'json',
+      ].includes(this.datatype)
+    ) {
+      return null;
+    }
+
+    /**
+     * Indexable, but dynamic length, user-defined only.
+     */
+    if (
+      [
+        'geometry',
+        'point',
+        'linestring',
+        'polygon',
+        'multipoint',
+        'multilinestring',
+        'multipolygon',
+        'geometrycollection',
+      ].includes(this.datatype)
+    ) {
+      return null;
+    }
+
+    /**
+     * Indexable datatypes.
+     */
+    if (
+      [
+        'blob',
+        'text',
+        'char',
+        'binary',
+        'varchar',
+        'varbinary',
+      ].includes(this.datatype)
+    ) {
+      return this.length;
+    }
+
+    /**
+     * Fallback, unknown or non-mapped datatype
+     * (actually shouldn't fall here).
+     */
+    return null;
   }
 
   /**

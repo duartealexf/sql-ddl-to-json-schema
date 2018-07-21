@@ -229,7 +229,8 @@
       {
         "columns": [
           {
-            "column": "motto"
+            "column": "motto",
+            "length": 50
           }
         ],
         "name": "u_motto",
@@ -542,7 +543,7 @@
           "width": 4
         },
         "options": {
-          "nullable": true
+          "nullable": false
         }
       },
       {

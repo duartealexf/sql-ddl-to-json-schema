@@ -40,7 +40,7 @@ class Index {
     const index = new Index();
     index.columns = json.columns.map(IndexColumn.fromDef);
 
-    if (json.name)  { index.name      = json.name; }
+    if (json.name) { index.name = json.name; }
     if (json.index) { index.indexType = json.index.def.toLowerCase(); }
 
     if (json.options.length) {
@@ -86,9 +86,9 @@ class Index {
       columns: this.columns.map(c => c.toJSON())
     };
 
-    if (utils.isDefined(this.options))   { json.options   = this.options.toJSON(); }
+    if (utils.isDefined(this.options)) { json.options = this.options.toJSON(); }
     if (utils.isDefined(this.indexType)) { json.indexType = this.indexType; }
-    if (utils.isDefined(this.name))      { json.name      = this.name; }
+    if (utils.isDefined(this.name)) { json.name = this.name; }
 
     return json;
   }
@@ -103,9 +103,9 @@ class Index {
 
     index.columns = this.columns.map(c => c.clone());
 
-    if (utils.isDefined(this.options))   { index.options = this.options.clone(); }
+    if (utils.isDefined(this.options)) { index.options = this.options.clone(); }
     if (utils.isDefined(this.indexType)) { index.indexType = this.indexType; }
-    if (utils.isDefined(this.name))      { index.name    = this.name; }
+    if (utils.isDefined(this.name)) { index.name = this.name; }
 
     return index;
   }
@@ -153,6 +153,21 @@ class Index {
     return table.columns.filter(tableColumn =>
       this.columns.some(indexColumn => indexColumn.column === tableColumn.name)
     ).length === this.columns.length;
+  }
+
+  /**
+   * Set size of this index to the size of index's column in given
+   * table, if the size of this index is not already set.
+   * @param {Table} table Table to search size for.
+   * @returns {void}
+   */
+  setIndexSizeFromTable(table) {
+    this.columns
+      .filter(i => !utils.isDefined(i.length))
+      .forEach(indexColumn => {
+        const column = table.columns.find(c => c.name === indexColumn.column);
+        indexColumn.length = column.type.getMaxIndexableSize();
+      });
   }
 
   /**

@@ -156,6 +156,21 @@ class UniqueKey {
   }
 
   /**
+   * Set size of this index to the size of index's column in given
+   * table, if the size of this index is not already set.
+   * @param {Table} table Table to search size for.
+   * @returns {void}
+   */
+  setIndexSizeFromTable(table) {
+    this.columns
+      .filter(i => !utils.isDefined(i.length))
+      .forEach(indexColumn => {
+        const column = table.columns.find(c => c.name === indexColumn.column);
+        indexColumn.length = column.type.getMaxIndexableSize();
+      });
+  }
+
+  /**
    * Rename index column name.
    *
    * @param {Column} column Column being renamed.

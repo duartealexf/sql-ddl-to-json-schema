@@ -19,7 +19,7 @@
     gender ENUM('M', 'F'),
     shape MULTIPOINT,
     pattern MULTILINESTRING,
-    CONSTRAINT u_motto UNIQUE INDEX unique_motto USING Btree (motto) COMMENT 'be original',
+    CONSTRAINT unique_motto UNIQUE INDEX u_motto USING Btree (motto) COMMENT 'be original',
     FULLTEXT INDEX fi_initials (initials)
   )
   auto_increment 2,

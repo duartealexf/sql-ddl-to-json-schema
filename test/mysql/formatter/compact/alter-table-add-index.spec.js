@@ -12,7 +12,8 @@ ava('Compact formatter: Should alter table, adding index.', t => {
   const parser = new Parser('mysql');
   parser.feed(sql);
 
-  parser.feed('ALTER TABLE house ADD INDEX idx_built (is_built (1) asc, is_apartment (2)) KEY_BLOCK_SIZE = 16 USING BTREE WITH PARSER myParser COMMENT "formatter test";');
+  parser.feed('ALTER TABLE house ADD INDEX idx_built (is_built asc, is_apartment (2)) KEY_BLOCK_SIZE = 16 USING BTREE WITH PARSER myParser COMMENT "formatter test";');
+  parser.feed('ALTER TABLE house ADD INDEX idx_letter (letter asc);');
   parser.feed('ALTER TABLE house ADD KEY (where);');
 
   // Should not add key or index with same name.

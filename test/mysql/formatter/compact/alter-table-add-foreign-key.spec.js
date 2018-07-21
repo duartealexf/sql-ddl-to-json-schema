@@ -15,6 +15,7 @@ ava('Compact formatter: Should alter table, adding foreign keys.', t => {
   parser.feed('ALTER TABLE pet ADD CONSTRAINT fk_face FOREIGN KEY fk_face_looks (avatar (200) asc, history (100)) REFERENCES person (avatar (10) asc, history (100)) MATCH FULL ON DELETE SET NULL ON UPDATE CASCADE;');
   parser.feed('ALTER TABLE pet ADD CONSTRAINT fk_shape FOREIGN KEY (shape) REFERENCES house (size);');
   parser.feed('ALTER TABLE pet ADD FOREIGN KEY (intelligent) REFERENCES house (neighbors);');
+  parser.feed('ALTER TABLE person ADD FOREIGN KEY (person desc) REFERENCES pet (species);');
 
   // Should not add key or index with same name.
   parser.feed('ALTER TABLE pet ADD CONSTRAINT fk_face FOREIGN KEY (face) REFERENCES person (id)');

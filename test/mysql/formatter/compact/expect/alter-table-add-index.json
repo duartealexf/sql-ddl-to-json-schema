@@ -229,7 +229,8 @@
       {
         "columns": [
           {
-            "column": "motto"
+            "column": "motto",
+            "length": 50
           }
         ],
         "name": "u_motto",
@@ -522,7 +523,7 @@
           "width": 4
         },
         "options": {
-          "nullable": true
+          "nullable": false
         }
       },
       {
@@ -763,7 +764,6 @@
         "columns": [
           {
             "column": "is_built",
-            "length": 1,
             "sort": "asc"
           },
           {
@@ -778,6 +778,16 @@
           "parser": "myParser"
         },
         "name": "idx_built"
+      },
+      {
+        "columns": [
+          {
+            "column": "letter",
+            "length": 1,
+            "sort": "asc"
+          }
+        ],
+        "name": "idx_letter"
       },
       {
         "columns": [

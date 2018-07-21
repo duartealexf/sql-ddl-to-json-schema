@@ -5,6 +5,7 @@
   "title": "house",
   "type": "object",
   "required": [
+    "id"
   ],
   "definitions": {
     "id": {

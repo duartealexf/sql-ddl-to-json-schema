@@ -117,14 +117,14 @@ runner.run({
         index ik_id using hash (id(2)) comment 'test',
         index ik_id (id),
         key kk_id (id),
-        constraint uk_id__o_id unique key test_key using btree (id(2), o_id(3)asc) comment 'test',
+        constraint test_key unique key uk_id__o_id using btree (id desc, o_id(3)asc) comment 'test',
         unique index (id),
         unique (id),
-        fulltext index pk_id__o_id (id(2), o_id(3)asc) comment 'test' key_block_size 1024,
+        fulltext index pk_id__o_id (id(2), o_id asc) comment 'test' key_block_size 1024,
         fulltext key (id) key_block_size 1024,
         spatial (id),
         fulltext (id),
-        constraint fk_id__o_id foreign key test_key (id(2), o_id(3)asc) references other (id),
+        constraint fk_id__o_id foreign key test_key (id (2), o_id(3)asc) references other (id),
         foreign key (o_id) references other (id)
       );
       `

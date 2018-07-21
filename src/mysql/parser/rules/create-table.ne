@@ -109,7 +109,8 @@ O_CREATE_TABLE_CREATE_DEFINITION -> (
           }
         }
       }%}
-  | ( %K_CONSTRAINT ( __ S_IDENTIFIER {% d => d[1] %} ):? __ {% d => d[1] %} ):? %K_PRIMARY __ %K_KEY
+  | ( %K_CONSTRAINT ( __ S_IDENTIFIER {% d => d[1] %} ):? __ {% d => d[1] %} ):?
+    %K_PRIMARY __ %K_KEY
     ( __ P_INDEX_TYPE {% d => d[1] %} ):?
     _ %S_LPARENS _ P_INDEX_COLUMN ( _ %S_COMMA _ P_INDEX_COLUMN {% d => d[3] %} ):* _ %S_RPARENS
     ( _ O_INDEX_OPTION {% d => d[1] %} ):*
@@ -138,23 +139,34 @@ O_CREATE_TABLE_CREATE_DEFINITION -> (
           }
         }
       }%}
-  | ( %K_CONSTRAINT ( __ S_IDENTIFIER {% d => d[1] %} ):? __ {% d => d[1] %} ):? %K_UNIQUE
+  | ( %K_CONSTRAINT ( __ S_IDENTIFIER {% d => d[1] %} ):? __ {% d => d[1] %} ):?
+    %K_UNIQUE
     ( __ %K_INDEX | __ %K_KEY ):?
     ( __ S_IDENTIFIER {% d => d[1] %} ):?
     ( __ P_INDEX_TYPE {% d => d[1] %} ):?
     _ %S_LPARENS _ P_INDEX_COLUMN ( _ %S_COMMA _ P_INDEX_COLUMN {% d => d[3] %} ):* _ %S_RPARENS
     ( _ O_INDEX_OPTION {% d => d[1] %} ):*
       {% d => {
+
+        /**
+         * Sometimes it parses the key name as 'INDEX' OR 'KEY', so we need this workaround below:
+         */
+
+        if (d[3] && ['index', 'key'].includes(d[3].toLowerCase())) {
+          d[3] = null;
+        }
+
         return {
           uniqueKey: {
-            name: d[0],
+            name: d[3],
             index: d[4],
             columns: [d[8]].concat(d[9] || []),
             options: d[12]
           }
         }
       }%}
-  | %K_FULLTEXT ( __ %K_INDEX | __ %K_KEY ):?
+  | %K_FULLTEXT
+    ( __ %K_INDEX | __ %K_KEY ):?
     ( __ S_IDENTIFIER {% d => d[1] %} ):?
     _ %S_LPARENS _ P_INDEX_COLUMN ( _ %S_COMMA _ P_INDEX_COLUMN {% d => d[3] %} ):* _ %S_RPARENS
     ( _ O_INDEX_OPTION {% d => d[1] %} ):*

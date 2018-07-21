@@ -89,7 +89,7 @@ class Table {
          * If table create definition is about adding a primary key.
          */
         else if (utils.isDefined(O_CREATE_TABLE_CREATE_DEFINITION.def.primaryKey)) {
-          table.primaryKey = PrimaryKey.fromDef(O_CREATE_TABLE_CREATE_DEFINITION);
+          table.setPrimaryKey(PrimaryKey.fromDef(O_CREATE_TABLE_CREATE_DEFINITION));
         }
 
         /**
@@ -808,6 +808,14 @@ class Table {
       return;
     }
 
+    /**
+     * If index column length is not set, set it to full column size.
+     *
+     * "If no length is specified, the whole column will be indexed."
+     * https://mariadb.com/kb/en/library/create-table/#index-types
+     */
+    uniqueKey.setIndexSizeFromTable(this);
+
     this.uniqueKeys.push(uniqueKey);
   }
 
@@ -841,6 +849,14 @@ class Table {
 
     if (!hasAllColumnsFromThisTable || !hasAllColumnsFromReference) { return; }
 
+    /**
+     * If index column length is not set, set it to full column size.
+     *
+     * "If no length is specified, the whole column will be indexed."
+     * https://mariadb.com/kb/en/library/create-table/#index-types
+     */
+    foreignKey.setIndexSizeFromTable(this);
+
     this.foreignKeys.push(foreignKey);
   }
 
@@ -866,6 +882,15 @@ class Table {
     if (!index.hasAllColumnsFromTable(this)) {
       return;
     }
+
+    /**
+     * If index column length is not set, set it to full column size.
+     *
+     * "If no length is specified, the whole column will be indexed."
+     * https://mariadb.com/kb/en/library/create-table/#index-types
+     */
+    index.setIndexSizeFromTable(this);
+
 
     this.indexes.push(index);
   }

@@ -17,11 +17,11 @@ parser.feed(sql);
 
 let result;
 result = parser.results;
-// result = parser.toCompactJson(result);
+result = parser.toCompactJson(result);
 // result = parser.toJsonSchemaArray(result);
-// console.log(JSON.stringify(result, null, 2));
+console.log(JSON.stringify(result, null, 2));
 
-result = parser.results;
+// result = parser.results;
 // result = parser.toCompactJson(result);
 // result = parser.toJsonSchemaArray(result);
 // console.log(JSON.stringify(result, null, 2));

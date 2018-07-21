@@ -70,4 +70,9 @@ module.exports = {
       .replace(/``/g, "`")
   },
   S_IDENTIFIER_UNQUOTED   : { match: /[0-9a-zA-Z$_]+/ },
+
+  /**
+   * Fallback wildcard match.
+   */
+  S_UNKNOWN : { match: /.+/ },
 };

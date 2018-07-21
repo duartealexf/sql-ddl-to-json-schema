@@ -90,6 +90,7 @@ O_ENGINE ->
 
 O_DEFAULT_VALUE ->
     O_QUOTED_STRING       {% d => d[0] %}
+  | %K_NULL               {% d => d[0].value %}
   | %S_NUMBER             {% d => d[0].value %}
   | %S_BIT_FORMAT         {% d => d[0].value %}
   | %K_CURRENT_TIMESTAMP  {% d => d[0].value %}

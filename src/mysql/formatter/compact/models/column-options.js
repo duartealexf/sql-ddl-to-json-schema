@@ -171,6 +171,13 @@ class ColumnOptions {
     if (utils.isDefined(this.comment))       { json.comment       = this.comment; }
     if (utils.isDefined(this.reference))     { json.reference     = this.reference.toJSON(); }
 
+    /**
+     * Change "null" string to null default column value.
+     */
+    if (utils.isString(json.default) && json.default.toLowerCase() === 'null') {
+      json.default = null;
+    }
+
     if (utils.isDefined(this.invisibleWithSystemVersioning)) {
       json.invisibleWithSystemVersioning = this.invisibleWithSystemVersioning;
     }

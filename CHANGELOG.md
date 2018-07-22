@@ -2,6 +2,28 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="2.2.0"></a>
+# [2.2.0](https://github.com/duartealexf/sql-ddl-to-json-schema/compare/v2.1.0...v2.2.0) (2018-07-22)
+
+
+### Bug Fixes
+
+* Add missing CHARSET alias. ([367a14f](https://github.com/duartealexf/sql-ddl-to-json-schema/commit/367a14f)), closes [#28](https://github.com/duartealexf/sql-ddl-to-json-schema/issues/28) [#29](https://github.com/duartealexf/sql-ddl-to-json-schema/issues/29)
+* Add NULL option as default column value. ([22d65a9](https://github.com/duartealexf/sql-ddl-to-json-schema/commit/22d65a9)), closes [#26](https://github.com/duartealexf/sql-ddl-to-json-schema/issues/26)
+* Disabled foreign key checks. ([78cddaf](https://github.com/duartealexf/sql-ddl-to-json-schema/commit/78cddaf)), closes [#27](https://github.com/duartealexf/sql-ddl-to-json-schema/issues/27)
+* Fix behavior of preparsing with escaping chars. ([eb9aad8](https://github.com/duartealexf/sql-ddl-to-json-schema/commit/eb9aad8)), closes [#21](https://github.com/duartealexf/sql-ddl-to-json-schema/issues/21)
+* Fix line count of parsing errors. ([#30](https://github.com/duartealexf/sql-ddl-to-json-schema/issues/30)) ([039ca75](https://github.com/duartealexf/sql-ddl-to-json-schema/commit/039ca75)), closes [#20](https://github.com/duartealexf/sql-ddl-to-json-schema/issues/20)
+* Set INDEX_COLUMN length as optional, as per MariaDB and MySQL docs. ([a94fe33](https://github.com/duartealexf/sql-ddl-to-json-schema/commit/a94fe33)), closes [#24](https://github.com/duartealexf/sql-ddl-to-json-schema/issues/24)
+
+
+### Features
+
+* Add support for basic function statements as default column values. ([218fd6c](https://github.com/duartealexf/sql-ddl-to-json-schema/commit/218fd6c)), closes [#25](https://github.com/duartealexf/sql-ddl-to-json-schema/issues/25)
+* Add support for SET statements. ([bdfc327](https://github.com/duartealexf/sql-ddl-to-json-schema/commit/bdfc327)), closes [#23](https://github.com/duartealexf/sql-ddl-to-json-schema/issues/23)
+* Add support for SQL comments. ([#33](https://github.com/duartealexf/sql-ddl-to-json-schema/issues/33)) ([dfffb37](https://github.com/duartealexf/sql-ddl-to-json-schema/commit/dfffb37)), closes [#22](https://github.com/duartealexf/sql-ddl-to-json-schema/issues/22)
+
+
+
 <a name="2.1.0"></a>
 # [2.1.0](https://github.com/duartealexf/sql-ddl-to-json-schema/compare/v2.0.6...v2.1.0) (2018-07-08)
 

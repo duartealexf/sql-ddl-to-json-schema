@@ -14,7 +14,7 @@
           "charset": "latin1",
           "collation": "latin_ci",
           "nullable": true,
-          "default": 42,
+          "default": null,
           "invisibleWithoutSystemVersioning": true
         }
       },
@@ -362,7 +362,8 @@
           "width": 1
         },
         "options": {
-          "nullable": true
+          "nullable": true,
+          "default": "NOW()"
         }
       },
       {

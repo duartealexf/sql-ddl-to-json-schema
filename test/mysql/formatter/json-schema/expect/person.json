@@ -35,7 +35,8 @@
     "height": {
       "type": "number",
       "minimum": -9999999999,
-      "maximum": 9999999999
+      "maximum": 9999999999,
+      "default": null
     },
     "weight": {
       "type": "number",
@@ -47,7 +48,8 @@
     },
     "dob": {
       "type": "string",
-      "format": "date"
+      "format": "date",
+      "default": "NOW()"
     },
     "tob": {
       "type": "string",

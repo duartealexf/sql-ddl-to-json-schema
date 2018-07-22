@@ -26,7 +26,7 @@ class Column {
         column.datatype.isUnsigned = options.unsigned;
       }
 
-      if (utils.isString(options.default) && options.default.length) {
+      if (options.default === null || utils.isString(options.default) && options.default.length) {
         column.default = options.default;
       }
 
@@ -110,7 +110,7 @@ class Column {
       })
       .forEach(([k, v]) => { json[k] = v; });
 
-    if (utils.isDefined(this.default) && this.default !== 'CURRENT_TIMESTAMP') {
+    if (typeof this.default !== 'undefined') {
       json.default = this.default;
     }
 

@@ -89,11 +89,12 @@ O_ENGINE ->
 # Valid ways to set a default value for a column.
 
 O_DEFAULT_VALUE ->
-    O_QUOTED_STRING       {% d => d[0] %}
-  | %K_NULL               {% d => d[0].value %}
-  | %S_NUMBER             {% d => d[0].value %}
+    %S_NUMBER             {% d => d[0].value %}
   | %S_BIT_FORMAT         {% d => d[0].value %}
-  | %K_CURRENT_TIMESTAMP  {% d => d[0].value %}
+  | %S_HEXA_FORMAT        {% d => d[0].value %}
+  | S_IDENTIFIER ( %S_LPARENS _ %S_RPARENS {% () => "()" %} ):?
+                          {% d => d[0] + (d[1] || '') %}
+  | O_QUOTED_STRING       {% id %}
 
 # =============================================================
 # String with any of single or double quote.

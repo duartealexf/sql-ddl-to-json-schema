@@ -16,9 +16,9 @@ ava('Compact formatter: Should alter table, changing column.', t => {
    * Positive assertions.
    */
 
-  parser.feed('ALTER TABLE person CHANGE COLUMN weight size TINYINT UNSIGNED ZEROFILL CHARACTER SET latin1 COLLATE latin_ci NULL DEFAULT 42 UNIQUE INVISIBLE WITHOUT SYSTEM VERSIONING FIRST;');
+  parser.feed('ALTER TABLE person CHANGE COLUMN weight size TINYINT UNSIGNED ZEROFILL CHARACTER SET latin1 COLLATE latin_ci NULL DEFAULT NULL UNIQUE INVISIBLE WITHOUT SYSTEM VERSIONING FIRST;');
   parser.feed('ALTER TABLE person CHANGE COLUMN status is_alive BOOLEAN NOT NULL COMMENT "staying alive" INVISIBLE WITH SYSTEM VERSIONING COLUMN_FORMAT DYNAMIC AFTER sequence;');
-  parser.feed('ALTER TABLE pet MODIFY COLUMN year TINYINT;');
+  parser.feed('ALTER TABLE pet MODIFY COLUMN year TINYINT DEFAULT NOW();');
 
   // Should ignore foreign key reference.
   parser.feed('ALTER TABLE person CHANGE COLUMN avatar photo TINYBLOB INVISIBLE STORAGE MEMORY REFERENCES dog (avatar);');

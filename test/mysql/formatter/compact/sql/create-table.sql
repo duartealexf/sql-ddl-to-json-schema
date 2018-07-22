@@ -24,6 +24,7 @@
   )
   auto_increment 2,
   avg_row_length 250,
+  default charset latin1,
   default character set utf8,
   default collate utf8_general_ci,
   checksum = 1,

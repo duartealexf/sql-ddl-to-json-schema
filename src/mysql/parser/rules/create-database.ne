@@ -24,10 +24,10 @@ P_CREATE_DB ->
 # Create database spec
 
 O_CREATE_DB_SPEC -> (
-    ( %K_DEFAULT __ ):? %K_CHARACTER __ %K_SET ( __ | _ %S_EQUAL _ ) O_CHARSET
+    ( %K_DEFAULT __ ):? ( %K_CHARACTER __ %K_SET | %K_CHARSET ) ( __ | _ %S_EQUAL _ ) O_CHARSET
       {% d => {
         return {
-          charset: d[5]
+          charset: d[3]
         }
       }%}
   | ( %K_DEFAULT __ ):? %K_COLLATE ( __ | _ %S_EQUAL _ ) O_COLLATION

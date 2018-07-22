@@ -245,6 +245,7 @@
           "length": 255
         },
         "options": {
+          "charset": "utf8",
           "nullable": true,
           "invisible": true,
           "storage": "memory"

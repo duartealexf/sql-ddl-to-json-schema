@@ -253,7 +253,7 @@
     "options": {
       "autoincrement": 2,
       "avgRowLength": 256,
-      "charset": "latin1",
+      "charset": "utf8",
       "checksum": 1,
       "collation": "latin1_ci",
       "comment": "alter table test",

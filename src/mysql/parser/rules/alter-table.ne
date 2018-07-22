@@ -270,13 +270,13 @@ O_ALTER_TABLE_SPEC -> (
         }
       }%}
 
-  | %K_CONVERT __ %K_TO __ %K_CHARACTER __ %K_SET __ O_CHARSET
+  | %K_CONVERT __ %K_TO __ ( %K_CHARACTER __ %K_SET | %K_CHARSET ) __ O_CHARSET
     ( __ %K_COLLATE __ O_COLLATION {% d => d[3] %} ):?
       {% d => {
         return {
           action: 'convertToCharacterSet',
-          charset: d[8],
-          collate: d[9]
+          charset: d[6],
+          collate: d[7]
         }
       }%}
 

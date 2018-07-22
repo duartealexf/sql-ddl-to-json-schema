@@ -32,6 +32,8 @@ runner.run({
   'Should create test database with charset utf8': {
     queries: [
       'CREATE DATABASE test DEFAULT CHARACTER SET utf8;',
+      'CREATE DATABASE test DEFAULT CHARSET utf8;',
+      'CREATE DATABASE test CHARSET utf8;',
       'CREATE DATABASE test CHARACTER SET utf8;',
       'CREATE DATABASE test CHARACTER SET = "utf8";',
       'CREATE DATABASE test CHARACTER SET =`utf8`;',

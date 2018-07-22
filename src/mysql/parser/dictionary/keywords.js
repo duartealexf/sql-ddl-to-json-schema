@@ -113,6 +113,7 @@ const keywords = utils.stringArrayToMapping(
     'COMMENT',
     'COLLATE',
     'REPLACE',
+    'CHARSET',
     'CASCADE',
     'BOOLEAN',
     'NUMERIC',

@@ -241,6 +241,7 @@ O_CREATE_TABLE_CREATE_DEFINITION -> (
 O_COLUMN_DEFINITION -> (
     %K_UNSIGNED                           {% d => { return { unsigned: true }} %}
   | %K_ZEROFILL                           {% d => { return { zerofill: true }} %}
+  | %K_CHARSET __ O_CHARSET               {% d => { return { charset: d[2] }} %}
   | %K_CHARACTER __ %K_SET __ O_CHARSET   {% d => { return { charset: d[4] }} %}
   | %K_COLLATE __ O_COLLATION             {% d => { return { collation: d[2] }} %}
   | %K_NOT __ %K_NULL                     {% d => { return { nullable: false }} %}
@@ -335,9 +336,9 @@ O_CREATE_TABLE_OPTION -> (
       {% d => {
         return { avgRowLength: d[2].value }
       }%}
-  | ( %K_DEFAULT __ ):? %K_CHARACTER __ %K_SET ( __ | _ %S_EQUAL _ ) O_CHARSET
+  | ( %K_DEFAULT __ ):? ( %K_CHARACTER __ %K_SET | %K_CHARSET ) ( __ | _ %S_EQUAL _ ) O_CHARSET
       {% d => {
-        return { charset: d[5] }
+        return { charset: d[3] }
       }%}
   | %K_CHECKSUM ( __ | _ %S_EQUAL _ ) %S_NUMBER
       {% d => {

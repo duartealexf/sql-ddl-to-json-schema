@@ -16,6 +16,7 @@ ava('Compact formatter: Should alter table options.', t => {
     AUTO_INCREMENT 2
     AVG_ROW_LENGTH 256
     DEFAULT CHARACTER SET latin1,
+    DEFAULT CHARSET utf8,
     COLLATE latin1_ci,
     COMMENT "alter table test",
     COMPRESSION "ZLIB",

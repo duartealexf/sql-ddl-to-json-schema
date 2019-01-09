@@ -37,6 +37,7 @@ runner.run({
         initials CHARACTER(5),
         created_at DATETIME(3),
         updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+        deleted_at TIMESTAMP(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6),
         avatar TINYBLOB,
         image BLOB(1024),
         model JSON,

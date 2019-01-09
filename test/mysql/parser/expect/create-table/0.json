@@ -843,6 +843,40 @@
                   "id": "O_CREATE_TABLE_CREATE_DEFINITION",
                   "def": {
                     "column": {
+                      "name": "deleted_at",
+                      "def": {
+                        "datatype": {
+                          "id": "O_DATATYPE",
+                          "def": {
+                            "id": "O_DATETIME_DATATYPE",
+                            "def": {
+                              "datatype": "TIMESTAMP",
+                              "fractional": 6
+                            }
+                          }
+                        },
+                        "columnDefinition": [
+                          {
+                            "id": "O_COLUMN_DEFINITION",
+                            "def": {
+                              "nullable": false
+                            }
+                          },
+                          {
+                            "id": "O_COLUMN_DEFINITION",
+                            "def": {
+                              "default": "CURRENT_TIMESTAMP(6)"
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  }
+                },
+                {
+                  "id": "O_CREATE_TABLE_CREATE_DEFINITION",
+                  "def": {
+                    "column": {
                       "name": "avatar",
                       "def": {
                         "datatype": {

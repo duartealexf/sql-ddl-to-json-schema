@@ -5,9 +5,10 @@ node_js:
   - "8"
   - "9"
   - "10"
+  - "11"
 script:
   - export NODE_VERSION=$(node --version)
   - nvm install stable
-  - yarn run build
+  - npm run build
   - nvm use $NODE_VERSION
-  - yarn run test
+  - npm run test

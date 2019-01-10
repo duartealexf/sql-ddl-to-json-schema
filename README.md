@@ -167,7 +167,10 @@ And an array of tables in a compact JSON format:
 
 ## Usage
 
-```yarn add sql-ddl-to-json-schema```
+```
+yarn add sql-ddl-to-json-schema
+npm i sql-ddl-to-json-schema
+```
 
 ```js
 
@@ -268,15 +271,14 @@ This project is a grammar and stream-friendly SQL parser based on [nearley](http
 
 You are welcome to contribute!
 
-Preferably use `yarn` instead of `npm`, as all scripts in `package.json` are run through yarn.
+Preferably use `npm`, as all scripts in `package.json` are run through npm.
 
 - Clone this repo
-- Install nodemon: `yarn global add nodemon`
-- Install dependencies: `yarn`
+- Install dependencies: `npm i`
 
 ### Commiting
 
-To commit, use commitizen: `git cz` (you will need to have installed commitizen: `yarn global add commitizen`).
+To commit, use commitizen: `git cz` (you will need to have installed commitizen: `npm i -g commitizen`).
 
 ### Understanding the internals
 
@@ -327,11 +329,11 @@ S_ -> Symbol (not a keyword, but chars and other matches by RegExp's)
 
 Valid to all SQL dialects:
 
-- Assemble `grammar.ne` and compile to `grammar.js`: `yarn run build`
-- Same as above, but watch for changes: `yarn run build:watch`
-- Run tests: `yarn run test`
-- Test and watch for changes: `yarn run test:watch`
-- Test against nearley tester: `yarn run nearley-test lib/mysql/parser/grammar.js --input 'CREATE TABLE test (test CHAR(1));'`
+- Assemble `grammar.ne` and compile to `grammar.js`: `npm run build`
+- Same as above, but watch for changes: `npm run build:watch`
+- Run tests: `npm run test`
+- Test and watch for changes: `npm run test:watch`
+- Test against nearley tester: `npm run nearley-test lib/mysql/parser/grammar.js --input 'CREATE TABLE test (test CHAR(1));'`
 
 ### Debugging
 

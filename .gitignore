@@ -27,6 +27,5 @@ update-notifier-nodemon.json
 /lib/pgsql
 /lib/mssql
 /lib/oracle
-yarn-error.log
 coverage.*
 .nyc_output

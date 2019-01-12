@@ -1,7 +1,7 @@
 const Parser = require('../../lib');
 // const fs = require('fs');
 const { join } = require('path');
-const { readFileSync } = require('fs');
+const { readFileSync, writeFileSync } = require('fs');
 
 const parser = new Parser('mysql');
 
@@ -17,9 +17,10 @@ parser.feed(sql);
 
 let result;
 result = parser.results;
-result = parser.toCompactJson(result);
+// result = parser.toCompactJson(result);
 // result = parser.toJsonSchemaArray(result);
-console.log(JSON.stringify(result, null, 2));
+const filepath = join(__dirname, '../../', 'test/mysql/parser/expect/create-table/0.json');
+writeFileSync(filepath, JSON.stringify(result, null, 2));
 
 // result = parser.results;
 // result = parser.toCompactJson(result);

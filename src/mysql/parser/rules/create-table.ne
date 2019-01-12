@@ -293,7 +293,7 @@ P_COLUMN_REFERENCE ->
   )
   (
     %K_MATCH __ ( %K_FULL {% id %} | %K_PARTIAL {% id %} | %K_SIMPLE {% id %} ) _
-      {% d => d[3].value %}
+      {% d => d[2].value %}
   ):?
 
   (

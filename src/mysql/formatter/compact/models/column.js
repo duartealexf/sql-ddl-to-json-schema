@@ -148,7 +148,7 @@ class Column {
    * @returns {boolean} Test result.
    */
   isForeignKey() {
-    return this.options ? utils.isDefined(this.options.reference) : false;
+    return !!this.reference;
   }
 
   /**
@@ -186,9 +186,9 @@ class Column {
 
       const foreignKey = new ForeignKey();
       foreignKey.pushColumn(indexColumn);
-      foreignKey.reference = this.options.reference;
+      foreignKey.reference = this.reference;
 
-      delete this.options.reference;
+      delete this.reference;
       return foreignKey;
     }
 

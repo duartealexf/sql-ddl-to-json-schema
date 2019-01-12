@@ -7,7 +7,7 @@ module.exports = {
   run: (parseHandler, tests) => {
     Object.getOwnPropertyNames(tests).forEach(description => {
       const test = tests[description];
-      const expect = readFileSync(test.expect);
+      const expect = readFileSync(test.expect).toString();
 
       test.queries.forEach(query => {
         ava(description, t => {
@@ -17,7 +17,7 @@ module.exports = {
             writeFileSync(test.expect, JSON.stringify(value, null, 2));
             t.pass();
           } else {
-            t.is(JSON.stringify(value/*, null, 2*/), JSON.stringify(expect/*, null, 2*/));
+            t.is(JSON.stringify(value, null, 2), expect);
           }
         });
       });

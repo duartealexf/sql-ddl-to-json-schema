@@ -94,10 +94,12 @@ O_CREATE_TABLE_CREATE_DEFINITION -> (
     S_IDENTIFIER _ (
       O_DATATYPE
       ( __ O_COLUMN_DEFINITION {% d => d[1] %} ):*
+      ( __ P_COLUMN_REFERENCE {% d => d[1] %} ):?
         {% d => {
           return {
             datatype: d[0],
-            columnDefinition: d[1] || []
+            columnDefinition: d[1] || [],
+            ...d[2] ? { reference: d[2] } : {}
           }
         }%}
     )
@@ -266,7 +268,12 @@ O_COLUMN_DEFINITION -> (
       | %K_MEMORY {% id %}
       | %K_DEFAULT {% id %}
     )                                     {% d => { return { storage: d[2].value }} %}
-  | P_COLUMN_REFERENCE                    {% d => { return { reference: d[0] }} %}
+  | %K_ON __ %K_UPDATE __ %K_CURRENT_TIMESTAMP
+      (
+        _ %S_LPARENS _ %S_NUMBER:? _ %S_RPARENS
+        {% d => '(' + (d[3] ? d[3].value : '') + ')' %}
+      ):?
+                                          {% d => { return { onUpdate: d[4].value + (d[5] || '') }} %}
 )
   {% d => {
     return {
@@ -281,24 +288,24 @@ O_COLUMN_DEFINITION -> (
 P_COLUMN_REFERENCE ->
   %K_REFERENCES __ S_IDENTIFIER
   (
-    _ %S_LPARENS _ P_INDEX_COLUMN ( _ %S_COMMA _ P_INDEX_COLUMN {% d => d[3] %} ):* _ %S_RPARENS
+    _ %S_LPARENS _ P_INDEX_COLUMN ( _ %S_COMMA _ P_INDEX_COLUMN {% d => d[3] %} ):* _ %S_RPARENS _
       {% d => [d[3]].concat(d[4] || []) %}
   )
   (
-    _ %K_MATCH __ ( %K_FULL {% id %} | %K_PARTIAL {% id %} | %K_SIMPLE {% id %} )
+    %K_MATCH __ ( %K_FULL {% id %} | %K_PARTIAL {% id %} | %K_SIMPLE {% id %} ) _
       {% d => d[3].value %}
   ):?
 
   (
-    _ %K_ON __ ( %K_DELETE {% id %} | %K_UPDATE {% id %} ) __
+    %K_ON __ ( %K_DELETE {% id %} | %K_UPDATE {% id %} ) __
     (
         %K_RESTRICT           {% d => d[0].value %}
       | %K_CASCADE            {% d => d[0].value %}
       | %K_SET __ %K_NULL     {% d => d[0].value + ' ' + d[2].value %}
       | %K_NO __ %K_ACTION    {% d => d[0].value + ' ' + d[2].value %}
       | %K_SET __ %K_DEFAULT  {% d => d[0].value + ' ' + d[2].value %}
-    )
-      {% d => { return { trigger: d[3].value, action: d[5] }} %}
+    ) _
+      {% d => { return { trigger: d[2].value, action: d[4] }} %}
   ):*
     {% d => {
       return {

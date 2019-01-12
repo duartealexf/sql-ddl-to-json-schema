@@ -1,6 +1,7 @@
 /* eslint no-unused-vars: 0 */
 const Datatype = require('./datatype');
 const ColumnOptions = require('./column-options');
+const ColumnReference = require('./column-reference');
 const PrimaryKey = require('./primary-key');
 const ForeignKey = require('./foreign-key');
 const UniqueKey = require('./unique-key');
@@ -29,13 +30,14 @@ class Column {
     return Column.fromObject({
       name: json.name,
       datatype: json.def.datatype,
+      reference: json.def.reference,
       columnDefinition: json.def.columnDefinition
     });
   }
 
   /**
    * Creates a column from an object containing needed properties.
-   * Properties are 'name', 'datatype', and 'columnDefinition'.
+   * Properties are 'name', 'datatype', 'reference', and 'columnDefinition'.
    *
    * @param {any} json Object containing properties.
    * @returns {Column} Resulting column.
@@ -45,6 +47,10 @@ class Column {
 
     column.name = json.name;
     column.type = Datatype.fromDef(json.datatype);
+
+    if (json.reference) {
+      column.reference = ColumnReference.fromDef(json.reference);
+    }
 
     if (json.columnDefinition) {
       column.options = ColumnOptions.fromArray(json.columnDefinition);
@@ -71,6 +77,12 @@ class Column {
     this.type = undefined;
 
     /**
+     * Column foreign key references
+     * @type {ColumnReference}
+     */
+    this.reference = undefined;
+
+    /**
      * Column options.
      * @type {ColumnOptions}
      */
@@ -89,6 +101,7 @@ class Column {
     };
 
     if (utils.isDefined(this.options)) { json.options = this.options.toJSON(); }
+    if (utils.isDefined(this.reference)) { json.reference = this.reference.toJSON(); }
 
     return json;
   }

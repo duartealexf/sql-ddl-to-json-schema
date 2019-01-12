@@ -1,7 +1,10 @@
-const runner = require('../runner');
+const { join } = require('path');
 
-runner.run({
-  'Should drop test database': {
+const runner = require('../runner');
+const parseHandler = require('../parse-handler');
+
+runner.run(parseHandler.getParsedFormat, {
+  'Parser: Should drop test database': {
     queries: [
       'DROP DATABASE test;',
       'drop database test;',
@@ -11,17 +14,6 @@ runner.run({
         test
       ;`,
     ],
-    expect: {
-      id: "MAIN",
-      def: [
-        {
-          id: "P_DDS",
-          def: {
-            id: "P_DROP_DB",
-            def: "test"
-          }
-        }
-      ]
-    }
+    expect: join(__dirname, 'expect', 'drop-database', '0.json')
   }
 });

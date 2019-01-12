@@ -50,6 +50,7 @@ P_ALTER_TABLE_SPECS -> (
 O_ALTER_TABLE_SPEC -> (
     %K_ADD ( __ %K_COLUMN ):? __ S_IDENTIFIER __ O_DATATYPE
     ( __ O_COLUMN_DEFINITION {% d => d[1] %} ):*
+    ( __ P_COLUMN_REFERENCE {% d => d[1] %} ):?
     (
         __ %K_FIRST {% d => { return { after: null }} %}
       | __ %K_AFTER __ S_IDENTIFIER {% d => { return { after: d[3] }} %}
@@ -60,21 +61,27 @@ O_ALTER_TABLE_SPEC -> (
           name: d[3],
           datatype: d[5],
           columnDefinition: d[6] || [],
-          position: d[7]
+          position: d[8],
+          ...d[7] ? { reference: d[7] } : {}
         }
       }%}
 
   | %K_ADD ( __ %K_COLUMN ):?
     _ %S_LPARENS _
     (
-      S_IDENTIFIER __ O_DATATYPE ( __ O_COLUMN_DEFINITION {% d => d[1] %} ):*
+      S_IDENTIFIER __ O_DATATYPE
+      ( __ O_COLUMN_DEFINITION {% d => d[1] %} ):*
+      ( __ P_COLUMN_REFERENCE {% d => d[1] %} ):?
       (
-        _ %S_COMMA _ S_IDENTIFIER __ O_DATATYPE ( __ O_COLUMN_DEFINITION {% d => d[1] %} ):*
+        _ %S_COMMA _ S_IDENTIFIER __ O_DATATYPE
+        ( __ O_COLUMN_DEFINITION {% d => d[1] %} ):*
+        ( __ P_COLUMN_REFERENCE {% d => d[1] %} ):?
           {% d => {
             return {
               name: d[3],
               datatype: d[5],
-              columnDefinition: d[6] || []
+              columnDefinition: d[6] || [],
+              ...d[7] ? { reference: d[7] } : {}
             }
           }%}
       ):*
@@ -83,7 +90,8 @@ O_ALTER_TABLE_SPEC -> (
             {
               name: d[0],
               datatype: d[2],
-              columnDefinition: d[3] || []
+              columnDefinition: d[3] || [],
+              reference: d[4]
             }
           ].concat(d[4])
         }%}
@@ -238,6 +246,7 @@ O_ALTER_TABLE_SPEC -> (
 
   | %K_CHANGE __ ( %K_COLUMN __ ):? S_IDENTIFIER __ S_IDENTIFIER __ O_DATATYPE
     ( __ O_COLUMN_DEFINITION {% d => d[1] %} ):*
+    ( __ P_COLUMN_REFERENCE {% d => d[1] %} ):?
     (
         __ %K_FIRST {% d => { return { after: null }} %}
       | __ %K_AFTER __ S_IDENTIFIER {% d => { return { after: d[3] }} %}
@@ -249,12 +258,14 @@ O_ALTER_TABLE_SPEC -> (
           newName: d[5],
           datatype: d[7],
           columnDefinition: d[8],
-          position: d[9]
+          position: d[10],
+          ...d[9] ? { reference: d[9] } : {}
         }
       }%}
 
   | %K_MODIFY __ ( %K_COLUMN __ ):? S_IDENTIFIER __ O_DATATYPE
     ( __ O_COLUMN_DEFINITION {% d => d[1] %} ):*
+    ( __ P_COLUMN_REFERENCE {% d => d[1] %} ):?
     (
         __ %K_FIRST {% d => { return { after: null }} %}
       | __ %K_AFTER __ S_IDENTIFIER {% d => { return { after: d[3] }} %}
@@ -266,7 +277,8 @@ O_ALTER_TABLE_SPEC -> (
           newName: null,
           datatype: d[5],
           columnDefinition: d[6],
-          position: d[7]
+          position: d[8],
+          ...d[7] ? { reference: d[7] } : {}
         }
       }%}
 

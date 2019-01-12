@@ -1,25 +1,30 @@
-const ava = require('ava');
-const fs = require('fs');
-const path = require('path');
+const { join } = require('path');
 
-const Parser = require('../../../../lib');
-const expect = require('./expect/alter-table-drop-primary-key.json');
+const runner = require('../../runner');
+const createTable = require('./sql/create-table');
+const parseHandler = require('../../parse-handler');
 
-const sql = fs.readFileSync(path.join(__dirname, 'sql', 'create-table.sql')).toString();
+const expect = join(__dirname, 'expect', 'alter-table-drop-primary-key.json');
 
-// @ts-ignore
-ava('Compact formatter: Should alter table, dropping primary key.', t => {
-  const parser = new Parser('mysql');
-  parser.feed(sql);
+const sql = [
+  createTable,
+  'ALTER TABLE house DROP PRIMARY KEY;',
+];
 
-  parser.feed('ALTER TABLE house DROP PRIMARY KEY;');
+runner.run(parseHandler.getCompactFormat, {
+  'Compact formatter: Should alter table, dropping primary key.': {
+    queries: [
+      sql.join('')
+    ],
+    expect,
+  },
 
-  // Shouldn't drop primary key containing an autoincrement column.
-  parser.feed('ALTER TABLE person DROP PRIMARY KEY;');
-
-  const json = parser.toCompactJson();
-  // fs.writeFileSync(path.join(__dirname, 'expect', 'alter-table-drop-primary-key.json'), JSON.stringify(json, null, 2));
-  // for some reason t.deepEqual hangs process
-  t.is(JSON.stringify(json), JSON.stringify(expect));
-  // t.pass();
+  'Compact formatter: Should not drop primary key containing an autoincrement column.': {
+    queries: [
+      sql.concat([
+        'ALTER TABLE person DROP PRIMARY KEY;'
+      ]).join('')
+    ],
+    expect,
+  },
 });

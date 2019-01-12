@@ -1,0 +1,15 @@
+{
+  "id": "MAIN",
+  "def": [
+    {
+      "id": "P_DDS",
+      "def": {
+        "id": "P_CREATE_DB",
+        "def": {
+          "database": "test",
+          "meta": []
+        }
+      }
+    }
+  ]
+}

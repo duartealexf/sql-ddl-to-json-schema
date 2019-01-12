@@ -1,7 +1,10 @@
-const runner = require('../runner');
+const { join } = require('path');
 
-runner.run({
-  'Should create test database': {
+const runner = require('../runner');
+const parseHandler = require('../parse-handler');
+
+runner.run(parseHandler.getParsedFormat, {
+  'Parser: Should create test database': {
     queries: [
       'CREATE DATABASE test;',
       'CREATE OR replace DATABASE test;',
@@ -12,24 +15,10 @@ runner.run({
         test
       ;`,
     ],
-    expect: {
-      id: 'MAIN',
-      def: [
-        {
-          id: 'P_DDS',
-          def: {
-            id: 'P_CREATE_DB',
-            def: {
-              database: 'test',
-              meta: []
-            }
-          }
-        }
-      ]
-    }
+    expect: join(__dirname, 'expect', 'create-database', '0.json')
   },
 
-  'Should create test database with charset utf8': {
+  'Parser: Should create test database with charset utf8': {
     queries: [
       'CREATE DATABASE test DEFAULT CHARACTER SET utf8;',
       'CREATE DATABASE test DEFAULT CHARSET utf8;',
@@ -39,166 +28,37 @@ runner.run({
       'CREATE DATABASE test CHARACTER SET =`utf8`;',
       "CREATE DATABASE test CHARACTER SET= 'utf8';",
     ],
-    expect: {
-      id: 'MAIN',
-      def: [
-        {
-          id: 'P_DDS',
-          def: {
-            id: 'P_CREATE_DB',
-            def: {
-              database: 'test',
-              meta: [
-                {
-                  id: 'O_CREATE_DB_SPEC',
-                  def: {
-                    charset: 'utf8'
-                  }
-                }
-              ]
-            }
-          }
-        }
-      ]
-    }
+    expect: join(__dirname, 'expect', 'create-database', '1.json')
   },
 
-  'Should create test database with collation utf8_general_ci': {
+  'Parser: Should create test database with collation utf8_general_ci': {
     queries: [
       'CREATE DATABASE test COLLATE utf8_general_ci;',
       'CREATE DATABASE test DEFAULT COLLATE = `utf8_general_ci`;',
       'CREATE DATABASE test DEFAULT COLLATE ="utf8_general_ci";',
       "CREATE DATABASE test DEFAULT COLLATE= 'utf8_general_ci';",
     ],
-    expect: {
-      id: 'MAIN',
-      def: [
-        {
-          id: 'P_DDS',
-          def: {
-            id: 'P_CREATE_DB',
-            def: {
-              database: 'test',
-              meta: [
-                {
-                  id: 'O_CREATE_DB_SPEC',
-                  def: {
-                    collation: 'utf8_general_ci'
-                  }
-                }
-              ]
-            }
-          }
-        }
-      ]
-    }
+    expect: join(__dirname, 'expect', 'create-database', '2.json')
   },
 
-  'Should create test database with charset utf8 and collation utf8_general_ci': {
+  'Parser: Should create test database with charset utf8 and collation utf8_general_ci': {
     queries: [
       'CREATE DATABASE test CHARACTER SET utf8 COLLATE utf8_general_ci;',
     ],
-    expect: {
-      id: 'MAIN',
-      def: [
-        {
-          id: 'P_DDS',
-          def: {
-            id: 'P_CREATE_DB',
-            def: {
-              database: 'test',
-              meta: [
-                {
-                  id: 'O_CREATE_DB_SPEC',
-                  def: {
-                    charset: 'utf8',
-                  }
-                },
-                {
-                  id: 'O_CREATE_DB_SPEC',
-                  def: {
-                    collation: 'utf8_general_ci'
-                  }
-                }
-              ]
-            }
-          }
-        }
-      ]
-    }
+    expect: join(__dirname, 'expect', 'create-database', '3.json')
   },
 
-  'Should create test database with collation utf8_general_ci and charset utf8': {
+  'Parser: Should create test database with collation utf8_general_ci and charset utf8': {
     queries: [
       'CREATE DATABASE test COLLATE utf8_general_ci CHARACTER SET utf8;',
     ],
-    expect: {
-      id: 'MAIN',
-      def: [
-        {
-          id: 'P_DDS',
-          def: {
-            id: 'P_CREATE_DB',
-            def: {
-              database: 'test',
-              meta: [
-                {
-                  id: 'O_CREATE_DB_SPEC',
-                  def: {
-                    collation: 'utf8_general_ci'
-                  }
-                },
-                {
-                  id: 'O_CREATE_DB_SPEC',
-                  def: {
-                    charset: 'utf8',
-                  }
-                }
-              ]
-            }
-          }
-        }
-      ]
-    }
+    expect: join(__dirname, 'expect', 'create-database', '4.json')
   },
 
-  'Should create test database even when having two collate options.': {
+  'Parser: Should create test database even when having two collate options.': {
     queries: [
       'CREATE DATABASE test COLLATE utf8_cirylic_ci CHARACTER SET utf8 COLLATE utf8_general_ci;',
     ],
-    expect: {
-      id: 'MAIN',
-      def: [
-        {
-          id: 'P_DDS',
-          def: {
-            id: 'P_CREATE_DB',
-            def: {
-              database: 'test',
-              meta: [
-                {
-                  id: 'O_CREATE_DB_SPEC',
-                  def: {
-                    collation: 'utf8_cirylic_ci'
-                  }
-                },
-                {
-                  id: 'O_CREATE_DB_SPEC',
-                  def: {
-                    charset: 'utf8',
-                  }
-                },
-                {
-                  id: 'O_CREATE_DB_SPEC',
-                  def: {
-                    collation: 'utf8_general_ci'
-                  }
-                }
-              ]
-            }
-          }
-        }
-      ]
-    }
+    expect: join(__dirname, 'expect', 'create-database', '5.json')
   }
 });

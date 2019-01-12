@@ -1,33 +1,29 @@
-const ava = require('ava');
-const fs = require('fs');
-const path = require('path');
+const { join } = require('path');
 
-const Parser = require('../../../../lib');
-const expect = require('./expect/create-index-fulltext.json');
+const runner = require('../../runner');
+const createTable = require('./sql/create-table');
+const parseHandler = require('../../parse-handler');
 
-const sql = fs.readFileSync(path.join(__dirname, 'sql', 'create-table.sql')).toString();
+const expect = join(__dirname, 'expect', 'create-index-fulltext.json');
 
-// @ts-ignore
-ava('Compact formatter: Should create fulltext index.', t => {
-  const parser = new Parser('mysql');
-  parser.feed(sql);
-  parser.feed(`
-    CREATE FULLTEXT INDEX fi_name
-    using rtree
-    on person (name(20) asc)
-    key_block_size 4096
-    using rtree
-    with parser initialsParser
-    algorithm default
-    lock none;
-  `);
+const sql = [
+  createTable,
+];
 
-  // Shouldn't create fulltext index for unknown column.
-  parser.feed('CREATE FULLTEXT INDEX f_abcxyz on person (abcxyz);');
+runner.run(parseHandler.getCompactFormat, {
+  'Compact formatter: Should create fulltext index.': {
+    queries: [
+      sql.join('')
+    ],
+    expect,
+  },
 
-  const json = parser.toCompactJson();
-  // fs.writeFileSync(path.join(__dirname, 'expect', 'create-index-fulltext.json'), JSON.stringify(json, null, 2));
-  // for some reason t.deepEqual hangs process
-  t.is(JSON.stringify(json), JSON.stringify(expect));
-  // t.pass();
+  'Compact formatter: Should not create fulltext index for unknown column.': {
+    queries: [
+      sql.concat([
+        'CREATE FULLTEXT INDEX f_abcxyz on person (abcxyz);'
+      ]).join('')
+    ],
+    expect,
+  },
 });

@@ -1,62 +1,21 @@
-const runner = require('../runner');
+const { join } = require('path');
 
-runner.run({
+const runner = require('../runner');
+const parseHandler = require('../parse-handler');
+
+runner.run(parseHandler.getParsedFormat, {
   'Should rename one table.': {
     queries: [
       'RENAME TABLE people TO persons;',
       'rename table people to persons;'
     ],
-    expect: {
-      id: "MAIN",
-      def: [
-        {
-          id: "P_DDS",
-          def: {
-            id: "P_RENAME_TABLE",
-            def: [
-              {
-                table: "people",
-                newName: "persons"
-              }
-            ]
-          }
-        }
-      ]
-    }
+    expect: join(__dirname, 'expect', 'rename-table', '0.json')
   },
 
   'Should rename several tables.': {
     queries: [
       'rename table people to persons, homes to houses,cats to pets ,test to tests;',
     ],
-    expect: {
-      id: "MAIN",
-      def: [
-        {
-          id: "P_DDS",
-          def: {
-            id: "P_RENAME_TABLE",
-            def: [
-              {
-                table: "people",
-                newName: "persons"
-              },
-              {
-                table: "homes",
-                newName: "houses"
-              },
-              {
-                table: "cats",
-                newName: "pets"
-              },
-              {
-                table: "test",
-                newName: "tests"
-              }
-            ]
-          }
-        }
-      ]
-    }
+    expect: join(__dirname, 'expect', 'rename-table', '1.json')
   }
 });

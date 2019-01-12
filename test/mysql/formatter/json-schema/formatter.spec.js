@@ -4,7 +4,7 @@ const runner = require('../../runner');
 const createTable = require('./sql/create-table');
 const parseHandler = require('../../parse-handler');
 
-const expect = join(__dirname, 'expect', 'person.json');
+const expect = join(__dirname, 'expect', 'json-schema.json');
 
 const sql = [
   createTable,

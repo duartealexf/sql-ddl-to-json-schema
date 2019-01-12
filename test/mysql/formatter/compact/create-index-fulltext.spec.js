@@ -8,6 +8,16 @@ const expect = join(__dirname, 'expect', 'create-index-fulltext.json');
 
 const sql = [
   createTable,
+  `
+    CREATE FULLTEXT INDEX fi_name
+    using rtree
+    on person (name(20) asc)
+    key_block_size 4096
+    using rtree
+    with parser initialsParser
+    algorithm default
+    lock none;
+  `
 ];
 
 runner.run(parseHandler.getCompactFormat, {

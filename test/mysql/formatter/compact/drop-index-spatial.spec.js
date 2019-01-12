@@ -8,12 +8,13 @@ const expect = join(__dirname, 'expect', 'drop-index-spatial.json');
 
 const sql = [
   createTable,
+  'DROP INDEX coords ON house ALGORITHM default LOCK none;',
 ];
 
 runner.run(parseHandler.getCompactFormat, {
   'Compact formatter: Should drop a spatial index.': {
     queries: [
-      sql.join('DROP INDEX coords ON house ALGORITHM default LOCK none;')
+      sql.join('')
     ],
     expect,
   },

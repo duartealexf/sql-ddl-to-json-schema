@@ -595,6 +595,28 @@
         }
       },
       {
+        "name": "trashed_at",
+        "type": {
+          "datatype": "timestamp",
+          "fractional": 6
+        },
+        "options": {
+          "nullable": true,
+          "default": "CURRENT_TIMESTAMP(6)"
+        }
+      },
+      {
+        "name": "visited_at",
+        "type": {
+          "datatype": "timestamp",
+          "fractional": 0
+        },
+        "options": {
+          "nullable": true,
+          "default": "CURRENT_TIMESTAMP()"
+        }
+      },
+      {
         "name": "year",
         "type": {
           "datatype": "year",

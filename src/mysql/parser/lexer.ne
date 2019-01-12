@@ -92,7 +92,7 @@ O_DEFAULT_VALUE ->
     %S_NUMBER             {% d => d[0].value %}
   | %S_BIT_FORMAT         {% d => d[0].value %}
   | %S_HEXA_FORMAT        {% d => d[0].value %}
-  | %K_CURRENT_TIMESTAMP
+  | S_IDENTIFIER
     ( %S_LPARENS _ %S_NUMBER:? _ %S_RPARENS
       {% d =>
         '(' + (d[2] ? d[2].value : '') + ')'

@@ -93,7 +93,7 @@ O_ALTER_TABLE_SPEC -> (
               columnDefinition: d[3] || [],
               reference: d[4]
             }
-          ].concat(d[4])
+          ].concat(d[5])
         }%}
     )
     _ %S_RPARENS

@@ -361,9 +361,9 @@ To debug tests you may want to change the args as you go.
     {
       "type": "node",
       "request": "launch",
-      "name": "Debug Tests",
+      "name": "Debug Opened Test File",
       "args": [
-        "test/mysql/parser/parser.spec.js"
+        "${file}"
       ],
       "program": "${workspaceFolder}/node_modules/ava/profile.js"
     },

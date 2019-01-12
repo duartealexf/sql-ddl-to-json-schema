@@ -27,7 +27,8 @@
                             }
                           }
                         },
-                        "columnDefinition": []
+                        "columnDefinition": [],
+                        "reference": null
                       }
                     ]
                   }

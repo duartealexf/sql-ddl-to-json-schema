@@ -455,6 +455,7 @@
                                 }
                               }
                             ],
+                            "match": "FULL",
                             "on": []
                           }
                         }
@@ -493,6 +494,7 @@
                                 }
                               }
                             ],
+                            "match": "SIMPLE",
                             "on": [
                               {
                                 "trigger": "DELETE",
@@ -907,7 +909,7 @@
                           {
                             "id": "O_COLUMN_DEFINITION",
                             "def": {
-                              "nullable": false
+                              "default": "CURRENT_TIMESTAMP(6)"
                             }
                           },
                           {
@@ -917,67 +919,6 @@
                             }
                           }
                         ]
-                      }
-                    }
-                  }
-                },
-                {
-                  "id": "O_CREATE_TABLE_CREATE_DEFINITION",
-                  "def": {
-                    "column": {
-                      "name": "invented_at",
-                      "def": {
-                        "datatype": {
-                          "id": "O_DATATYPE",
-                          "def": {
-                            "id": "O_DATETIME_DATATYPE",
-                            "def": {
-                              "datatype": "TIMESTAMP",
-                              "fractional": 6
-                            }
-                          }
-                        },
-                        "columnDefinition": [
-                          {
-                            "id": "O_COLUMN_DEFINITION",
-                            "def": {
-                              "nullable": false
-                            }
-                          },
-                          {
-                            "id": "O_COLUMN_DEFINITION",
-                            "def": {
-                              "onUpdate": "CURRENT_TIMESTAMP(6)"
-                            }
-                          }
-                        ],
-                        "reference": {
-                          "id": "P_COLUMN_REFERENCE",
-                          "def": {
-                            "table": "other",
-                            "columns": [
-                              {
-                                "id": "P_INDEX_COLUMN",
-                                "def": {
-                                  "column": "timestamp",
-                                  "length": null,
-                                  "sort": null
-                                }
-                              }
-                            ],
-                            "match": null,
-                            "on": [
-                              {
-                                "trigger": "UPDATE",
-                                "action": "NO ACTION"
-                              },
-                              {
-                                "trigger": "DELETE",
-                                "action": "SET NULL"
-                              }
-                            ]
-                          }
-                        }
                       }
                     }
                   }

@@ -11,7 +11,7 @@
             {
               "id": "O_CREATE_DB_SPEC",
               "def": {
-                "charset": "utf8",
+                "charset": "utf8"
               }
             },
             {

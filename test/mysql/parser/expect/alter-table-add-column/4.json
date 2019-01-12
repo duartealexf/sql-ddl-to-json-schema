@@ -41,7 +41,8 @@
                               "nullable": false
                             }
                           }
-                        ]
+                        ],
+                        "reference": null
                       },
                       {
                         "name": "sid",

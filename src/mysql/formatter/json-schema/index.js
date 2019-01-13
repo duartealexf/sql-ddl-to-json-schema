@@ -1,4 +1,5 @@
 /* eslint no-unused-vars: 0 */
+const { JSONSchemaFormatOptions } = require('../../../shared/options');
 const Table = require('./models/table');
 const Database = require('./models/database');
 
@@ -13,12 +14,13 @@ class JsonSchemaFormatter {
    * JSON Schema array
    *
    * @param {any[]} json Compact JSON format (array of tables).
+   * @param {JSONSchemaFormatOptions} options Options available to format as JSON Schema.
    * @returns {any[]} JSON Schema array.
    */
-  static format(json) {
+  static format(json, options = new JSONSchemaFormatOptions()) {
     const database = new Database();
     database.parseCompactJson(json);
-    return database.getTables().map(t => t.toJSON());
+    return database.getTables().map(t => t.toJSON(options));
   }
 }
 

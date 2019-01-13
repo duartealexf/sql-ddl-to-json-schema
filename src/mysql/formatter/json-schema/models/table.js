@@ -1,5 +1,6 @@
 const Column = require('./column');
 
+const { JSONSchemaFormatOptions } = require('../../../../shared/options');
 const utils = require('../../../../shared/utils');
 
 /**
@@ -68,10 +69,10 @@ class Table {
 
   /**
    * JSON casting of this object calls this method.
-   *
+   * @param {JSONSchemaFormatOptions} options Options available to format as JSON Schema.
    * @returns {any} JSON Schema document.
    */
-  toJSON() {
+  toJSON(options = new JSONSchemaFormatOptions()) {
     const json = {
       $schema: 'http://json-schema.org/draft-07/schema',
       $comment: `JSON Schema for ${this.name} table`,
@@ -107,6 +108,15 @@ class Table {
         json.required.push(name);
       }
     });
+
+    /**
+     * Option to not use $ref, and have properties flattened out to 'properties' node.
+     * https://github.com/duartealexf/sql-ddl-to-json-schema/issues/36
+     */
+    if (options.useRef === false) {
+      json.properties = json.definitions;
+      delete json.definitions;
+    }
 
     return json;
   }

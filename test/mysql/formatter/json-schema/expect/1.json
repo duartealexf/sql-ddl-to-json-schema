@@ -1,0 +1,258 @@
+[
+  {
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "$comment": "JSON Schema for person table",
+    "$id": "person",
+    "title": "person",
+    "description": "test table",
+    "type": "object",
+    "required": [
+      "id",
+      "name"
+    ],
+    "properties": {
+      "id": {
+        "$comment": "primary key",
+        "description": "primary key test",
+        "type": "integer",
+        "minimum": 1,
+        "maximum": 1.2089258196146292e+24
+      },
+      "name": {
+        "type": "string",
+        "maxLength": 65535,
+        "default": "Jane \"Doe\" O`neil"
+      },
+      "nickname": {
+        "type": "string",
+        "maxLength": 20,
+        "default": "J"
+      },
+      "ssn": {
+        "type": "integer",
+        "minimum": -32768,
+        "maximum": 32767
+      },
+      "height": {
+        "type": "number",
+        "minimum": -9999999999,
+        "maximum": 9999999999,
+        "default": null
+      },
+      "weight": {
+        "type": "number",
+        "minimum": -999,
+        "maximum": 999
+      },
+      "status": {
+        "type": "string"
+      },
+      "dob": {
+        "type": "string",
+        "format": "date",
+        "default": "NOW()"
+      },
+      "tob": {
+        "type": "string",
+        "format": "time"
+      },
+      "initials": {
+        "type": "string",
+        "maxLength": 3
+      },
+      "prefix": {
+        "type": "string",
+        "maxLength": 3
+      },
+      "suffix": {
+        "type": "string",
+        "maxLength": 1
+      },
+      "sequence": {
+        "type": "string",
+        "maxLength": 20
+      },
+      "avatar": {
+        "type": "string"
+      },
+      "motto": {
+        "type": "string",
+        "maxLength": 50
+      },
+      "history": {
+        "type": "string",
+        "maxLength": 255
+      },
+      "gender": {
+        "type": "string",
+        "enum": [
+          "M",
+          "F"
+        ]
+      },
+      "shape": {
+        "type": "string"
+      },
+      "pattern": {
+        "type": "string"
+      }
+    }
+  },
+  {
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "$comment": "JSON Schema for pet table",
+    "$id": "pet",
+    "title": "pet",
+    "type": "object",
+    "required": [],
+    "properties": {
+      "id": {
+        "type": "integer",
+        "minimum": -9223372036854776000,
+        "maximum": 9223372036854776000
+      },
+      "species": {
+        "type": "string",
+        "maxLength": 200
+      },
+      "owner_id": {
+        "type": "integer",
+        "minimum": -8388608,
+        "maximum": 8388607
+      },
+      "height": {
+        "type": "number",
+        "minimum": -9999999999,
+        "maximum": 9999999999
+      },
+      "weight": {
+        "type": "number",
+        "minimum": -99.99,
+        "maximum": 99.99
+      },
+      "status": {
+        "type": "string"
+      },
+      "birth": {
+        "type": "string",
+        "format": "date-time"
+      },
+      "year": {
+        "type": "string",
+        "pattern": "\\d{1,2}"
+      },
+      "initial": {
+        "type": "string",
+        "maxLength": 1
+      },
+      "avatar": {
+        "type": "string"
+      },
+      "photo": {
+        "type": "string"
+      },
+      "history": {
+        "type": "string",
+        "maxLength": 16777215
+      },
+      "gender": {
+        "type": "string",
+        "pattern": "^(M|F)(,(M|F))*$"
+      },
+      "intelligent": {
+        "type": "string",
+        "pattern": "^(N)(,(N))*$"
+      },
+      "shape": {
+        "type": "string"
+      },
+      "pattern": {
+        "type": "string"
+      },
+      "object": {
+        "type": "string"
+      }
+    }
+  },
+  {
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "$comment": "JSON Schema for house table",
+    "$id": "house",
+    "title": "house",
+    "type": "object",
+    "required": [
+      "id"
+    ],
+    "properties": {
+      "id": {
+        "$comment": "primary key",
+        "type": "integer",
+        "minimum": 1,
+        "maximum": 2147483647
+      },
+      "pet_id": {
+        "type": "integer",
+        "minimum": -128,
+        "maximum": 127
+      },
+      "coordx": {
+        "type": "number",
+        "minimum": -9999.99,
+        "maximum": 9999.99
+      },
+      "coordy": {
+        "type": "number"
+      },
+      "letter": {
+        "type": "string",
+        "maxLength": 1
+      },
+      "is_built": {
+        "type": "boolean"
+      },
+      "is_apartment": {
+        "type": "boolean"
+      },
+      "updated_at": {
+        "type": "string"
+      },
+      "year": {
+        "type": "string",
+        "pattern": "\\d{1,4}"
+      },
+      "sequence": {
+        "type": "string",
+        "maxLength": 1,
+        "default": "b'00101'"
+      },
+      "photo": {
+        "type": "string"
+      },
+      "history": {
+        "type": "string",
+        "maxLength": 4294967295
+      },
+      "gender": {
+        "type": "string",
+        "enum": [
+          "X"
+        ]
+      },
+      "size": {
+        "type": "string"
+      },
+      "where": {
+        "type": "string"
+      },
+      "street": {
+        "type": "string"
+      },
+      "neighbors": {
+        "type": "string"
+      },
+      "city": {
+        "type": "string"
+      }
+    }
+  }
+]

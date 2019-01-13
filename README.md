@@ -7,6 +7,30 @@
 
 Transforms SQL DDL statements into JSON format (JSON Schema and a compact format).
 
+- [SQL DDL to JSON Schema converter](#sql-ddl-to-json-schema-converter)
+  - [Overview](#overview)
+  - [Installation](#installation)
+  - [Usage](#usage)
+    - [Shorthand](#shorthand)
+    - [Step by step](#step-by-step)
+  - [Options for JSON Schema output](#options-for-json-schema-output)
+    - [`useRef`](#useref)
+    - [`indent`](#indent)
+    - [`extension`](#extension)
+  - [What it is, what it is not](#what-it-is-what-it-is-not)
+  - [About](#about)
+  - [Contributing](#contributing)
+    - [Commiting](#commiting)
+    - [Understanding the internals](#understanding-the-internals)
+    - [Scripts at hand](#scripts-at-hand)
+    - [Debugging](#debugging)
+      - [Visual Studio Code](#visual-studio-code)
+  - [Links](#links)
+
+## Overview
+
+Taking the following SQL:
+
 ```sql
 CREATE TABLE users (
   id INT(11) NOT NULL AUTO_INCREMENT,
@@ -20,7 +44,7 @@ CREATE TABLE users (
 ALTER TABLE users ADD UNIQUE KEY unq_nick (nickname);
 ```
 
-Delivers an array of JSON Schema documents (one for each parsed table):
+It parses and delivers an **array of JSON Schema documents** (one for each parsed table):
 
 ```json
 [
@@ -165,12 +189,16 @@ And an array of tables in a compact JSON format:
 
 *Currently only DDL statements of mySQL and MariaDB dialects are supported.* - [Check out the roadmap](https://github.com/duartealexf/sql-ddl-to-json-schema/blob/master/ROADMAP.md)
 
-## Usage
+## Installation
 
 ```
 yarn add sql-ddl-to-json-schema
 npm i sql-ddl-to-json-schema
 ```
+
+## Usage
+
+### Shorthand
 
 ```js
 
@@ -190,68 +218,91 @@ CREATE TABLE users (
 ALTER TABLE users ADD UNIQUE KEY unq_nick (nickname);
 `;
 
-/**
+/*
+ * Read on for available options.
+ */
+const options = {};
+
+/*
  * Output each table to a JSON Schema file in a given directory...
  */
 parser.feed(sql)
-  .toJsonSchemaFiles(__dirname)
+  .toJsonSchemaFiles(__dirname, options)
   .then((outputFilePaths) => {
     // ...
   });
 
-/**
+/*
  * Or get the JSON Schema if you need to modify it...
  */
 const jsonSchemaDocuments = parser.feed(sql)
-  .toJsonSchemaArray();
+  .toJsonSchemaArray(options);
 
 /*
- * Or to explore the compact JSON format...
+ * Or explore the compact JSON format...
  */
 const compactJsonTablesArray = parser.feed(sql)
   .toCompactJson(parsedJsonFormat);
-
 ```
 
-### More options
-
-You can grab the JSON that is parsed on every call to the parser, by feeding the parser only once. For example:
+### Step by step
 
 ```js
+/*
+ * Read on for available options.
+ */
+const options = {};
 
-/**
+/*
  * Feed the parser with the SQL DDL statements...
  */
 parser.feed(sql);
 
-/**
+/*
  * You can get the parsed results in JSON format...
  */
 const parsedJsonFormat = parser.results;
 
-/**
+/*
  * And pass it to be formatted in a compact JSON format...
  */
 const compactJsonTablesArray = parser.toCompactJson(parsedJsonFormat);
 
-/**
- * And pass it to format to an array of JSON Schema items. One for each table...
+/*
+ * Then pass it to format to an array of JSON Schema items. One for each table...
  */
-const jsonSchemaDocuments = parser.toJsonSchemaArray(compactJsonTablesArray);
+const jsonSchemaDocuments = parser.toJsonSchemaArray(options, compactJsonTablesArray);
 
 /*
- * And spread the JSON Schema documents to files, which returns a promise...
+ * Finally spread the JSON Schema documents to files, which returns a promise...
  */
-const options = {
-  indent: 2,
-  extension: '.json'
-};
 const jsonFilesOutput = parser.toJsonSchemaFiles(__dirname, options, jsonSchemaDocuments)
   .then((outputFilePaths) => {
     // ...
   });
-
 ```
+
+## Options for JSON Schema output
+
+There are a few options when it comes to formatting the JSON Schema output:
+
+### `useRef`
+
+Whether to add all properties to 'definitions' and in 'properties' only use $ref.
+
+Default value: `true`.
+
+### `indent`
+
+Indent size of output files.
+
+Default value: `2`.
+
+### `extension`
+
+Extension of output files.
+
+Default value: `'.json'`.
 
 ## What it is, what it is not
 
@@ -323,7 +374,7 @@ S_ -> Symbol (not a keyword, but chars and other matches by RegExp's)
 
 1. The `dictionary/keywords.js` file contains keywords, but they are prepended with K_ when used in .ne files. Take a look to make sure you understand how it is exported.
 
-1. The compiled `grammar.ne` file comprises an assembly (concatenation) of `lexer.ne` and files in `rules` folder. So don't worry about importing .ne files in other .ne files. This prevents circular dependency and grammar rules in `lexer.ne` are scoped to all files (thus not having to repeat them in every file).
+2. The compiled `grammar.ne` file comprises an assembly (concatenation) of `lexer.ne` and files in `rules` folder. So don't worry about importing .ne files in other .ne files. This prevents circular dependency and grammar rules in `lexer.ne` are scoped to all files (thus not having to repeat them in every file).
 
 ### Scripts at hand
 

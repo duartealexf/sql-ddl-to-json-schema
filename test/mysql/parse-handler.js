@@ -1,3 +1,4 @@
+const { JSONSchemaFormatOptions } = require('../../lib/shared/options');
 const Parser = require('../../lib');
 
 module.exports = {
@@ -35,11 +36,12 @@ module.exports = {
    * to be compared to expected value.
    *
    * @param {string} query Query to be parsed.
+   * @param {JSONSchemaFormatOptions} options Options to be passed to formatter.
    * @returns {any[]} JSON Schema format.
    */
-  getJSONSchemaFormat: query => {
+  getJSONSchemaFormat: (query, options = new JSONSchemaFormatOptions()) => {
     const parser = new Parser('mysql');
     parser.feed(query);
-    return parser.toJsonSchemaArray();
+    return parser.toJsonSchemaArray(options);
   }
 };

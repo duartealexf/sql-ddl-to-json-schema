@@ -187,7 +187,7 @@ And an array of tables in a compact JSON format:
 ]
 ```
 
-*Currently only DDL statements of mySQL and MariaDB dialects are supported.* - [Check out the roadmap](https://github.com/duartealexf/sql-ddl-to-json-schema/blob/master/ROADMAP.md)
+*Currently only DDL statements of MySQL and MariaDB dialects are supported.* - [Check out the roadmap](https://github.com/duartealexf/sql-ddl-to-json-schema/blob/master/ROADMAP.md)
 
 ## Installation
 
@@ -288,7 +288,7 @@ There are a few options when it comes to formatting the JSON Schema output:
 
 ### `useRef`
 
-Whether to add all properties to 'definitions' and in 'properties' only use $ref.
+Whether to add all properties to `definitions` and in `properties` only use $ref.
 
 Default value: `true`.
 
@@ -397,7 +397,6 @@ Taking the example file as an example, you may debug with the following configur
 #### Visual Studio Code
 
 Place the launch config below.
-To debug tests you may want to change the args as you go.
 
 ```json
 

@@ -96,11 +96,16 @@ O_CREATE_TABLE_CREATE_DEFINITION -> (
       ( __ O_COLUMN_DEFINITION {% d => d[1] %} ):*
       ( __ P_COLUMN_REFERENCE {% d => d[1] %} ):?
         {% d => {
-          return {
+          const obj = {
             datatype: d[0],
             columnDefinition: d[1] || [],
-            ...d[2] ? { reference: d[2] } : {}
+          };
+
+          if (d[2]) {
+            obj.reference = d[2];
           }
+
+          return obj;
         }%}
     )
       {% d => {

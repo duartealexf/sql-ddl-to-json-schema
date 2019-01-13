@@ -56,14 +56,19 @@ O_ALTER_TABLE_SPEC -> (
       | __ %K_AFTER __ S_IDENTIFIER {% d => { return { after: d[3] }} %}
     ):?
       {% d => {
-        return {
+        const obj = {
           action: 'addColumn',
           name: d[3],
           datatype: d[5],
           columnDefinition: d[6] || [],
           position: d[8],
-          ...d[7] ? { reference: d[7] } : {}
+        };
+
+        if (d[7]) {
+          obj.reference = d[7];
         }
+
+        return obj;
       }%}
 
   | %K_ADD ( __ %K_COLUMN ):?
@@ -77,23 +82,31 @@ O_ALTER_TABLE_SPEC -> (
         ( __ O_COLUMN_DEFINITION {% d => d[1] %} ):*
         ( __ P_COLUMN_REFERENCE {% d => d[1] %} ):?
           {% d => {
-            return {
+            const obj = {
               name: d[3],
               datatype: d[5],
               columnDefinition: d[6] || [],
-              ...d[7] ? { reference: d[7] } : {}
+            };
+
+            if (d[7]) {
+              obj.reference = d[7];
             }
+
+            return obj;
           }%}
       ):*
         {% d => {
-          return [
-            {
-              name: d[0],
-              datatype: d[2],
-              columnDefinition: d[3] || [],
-              ...d[4] ? { reference: d[4] } : {}
-            }
-          ].concat(d[5] || [])
+          const obj = {
+            name: d[0],
+            datatype: d[2],
+            columnDefinition: d[3] || [],
+          };
+
+          if (d[4]) {
+            obj.reference = d[4];
+          }
+
+          return [obj].concat(d[5] || [])
         }%}
     )
     _ %S_RPARENS
@@ -252,15 +265,20 @@ O_ALTER_TABLE_SPEC -> (
       | __ %K_AFTER __ S_IDENTIFIER {% d => { return { after: d[3] }} %}
     ):?
       {% d => {
-        return {
+        const obj = {
           action: 'changeColumn',
           column: d[3],
           newName: d[5],
           datatype: d[7],
           columnDefinition: d[8],
           position: d[10],
-          ...d[9] ? { reference: d[9] } : {}
         }
+
+        if (d[9]) {
+          obj.reference = d[9];
+        }
+
+        return obj;
       }%}
 
   | %K_MODIFY __ ( %K_COLUMN __ ):? S_IDENTIFIER __ O_DATATYPE
@@ -271,15 +289,20 @@ O_ALTER_TABLE_SPEC -> (
       | __ %K_AFTER __ S_IDENTIFIER {% d => { return { after: d[3] }} %}
     ):?
       {% d => {
-        return {
+        const obj = {
           action: 'changeColumn',
           column: d[3],
           newName: null,
           datatype: d[5],
           columnDefinition: d[6],
           position: d[8],
-          ...d[7] ? { reference: d[7] } : {}
+        };
+
+        if (d[7]) {
+          obj.reference = d[7];
         }
+
+        return obj;
       }%}
 
   | %K_CONVERT __ %K_TO __ ( %K_CHARACTER __ %K_SET | %K_CHARSET ) __ O_CHARSET

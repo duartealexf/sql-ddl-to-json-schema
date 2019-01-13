@@ -2,6 +2,30 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="3.0.0"></a>
+# [3.0.0](https://github.com/duartealexf/sql-ddl-to-json-schema/compare/v2.2.0...v3.0.0) (2019-01-13)
+
+
+### Bug Fixes
+
+* timestamp initialization with triggers ([32bbf7a](https://github.com/duartealexf/sql-ddl-to-json-schema/commit/32bbf7a))
+
+
+### Features
+
+* Add option to not use $ref in JSON Schema output. ([713f1a1](https://github.com/duartealexf/sql-ddl-to-json-schema/commit/713f1a1)), closes [#36](https://github.com/duartealexf/sql-ddl-to-json-schema/issues/36)
+* allow O_DEFAULT_VALUE with initialization ([5f37b57](https://github.com/duartealexf/sql-ddl-to-json-schema/commit/5f37b57))
+
+
+### BREAKING CHANGES
+
+* The `toJsonSchemaArray` method used to have only one argument: the tables array in
+compact JSON format. Now this array is the second argument to be passed to this method. The first
+argument refers to JSON Schema output options. Refer to the README for the list of options.
+* It is a breaking change only for those who used the parsed format directly. It will not affect the compact JSON format nor the JSON Schema format. More details: foreign key reference had to be moved out of the O_COLUMN_DEFINITION rule, moving it out of column options. This had to be done because of grammar ambiguity when parsing "ON DELETE" or "ON UPDATE" clauses, as it conflicted with the foreign key triggers. It is still compliant with MySQL and MariaDB syntaxes.
+
+
+
 <a name="2.2.0"></a>
 # [2.2.0](https://github.com/duartealexf/sql-ddl-to-json-schema/compare/v2.1.0...v2.2.0) (2018-07-22)
 

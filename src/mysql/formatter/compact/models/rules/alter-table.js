@@ -107,8 +107,8 @@ class AlterTable {
      * Adding columns with REFERENCES should not create FK constraint.
      * https://github.com/duartealexf/sql-ddl-to-json-schema/issues/16
      */
-    if (column.options.reference) {
-      delete column.options.reference;
+    if (column.reference) {
+      delete column.reference;
     }
 
     table.addColumn(column, json.position);
@@ -129,8 +129,8 @@ class AlterTable {
        * Adding columns with REFERENCES should not create FK constraint.
        * https://github.com/duartealexf/sql-ddl-to-json-schema/issues/16
        */
-      if (column.options.reference) {
-        delete column.options.reference;
+      if (column.reference) {
+        delete column.reference;
       }
 
       table.addColumn(column);
@@ -318,15 +318,6 @@ class AlterTable {
         return u.columns.length === 1 && u.columns[0].column === column.name;
       })) {
       delete options.unique;
-    }
-
-    /**
-     * Alter table "change column" statement with
-     * reference does not add foreign key constraint.
-     * https://github.com/duartealexf/sql-ddl-to-json-schema/issues/11
-     */
-    if (options.reference) {
-      delete options.reference;
     }
 
     /**

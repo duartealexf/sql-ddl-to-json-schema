@@ -1,12 +1,10 @@
-const expect0 = require('./expect/create-table/0.json');
-const expect1 = require('./expect/create-table/1.json');
-const expect2 = require('./expect/create-table/2.json');
-const expect3 = require('./expect/create-table/3.json');
-const expect4 = require('./expect/create-table/4.json');
-const runner = require('../runner');
+const { join } = require('path');
 
-runner.run({
-  'Should create test table with all types and options of columns.': {
+const runner = require('../runner');
+const parseHandler = require('../parse-handler');
+
+runner.run(parseHandler.getParsedFormat, {
+  'Parser: Should create test table with all types and options of columns.': {
     queries: [
       `
       CREATE TABLE person (
@@ -38,16 +36,18 @@ runner.run({
         created_at DATETIME(3),
         updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
         deleted_at TIMESTAMP(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6),
+        viewed_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP(),
+        trashed_at TIMESTAMP(6) DEFAULT CURRENT_TIMESTAMP(6) ON UPDATE CURRENT_TIMESTAMP(6),
         avatar TINYBLOB,
         image BLOB(1024),
         model JSON,
         homes GEOMETRYCOLLECTION
       );`
     ],
-    expect: expect0
+    expect: join(__dirname, 'expect', 'create-table', '0.json')
   },
 
-  'Should create table like another one.': {
+  'Parser: Should create table like another one.': {
     queries: [
       'create or replace temporary table if not exists person like people;',
       'create or replace temporary table person like people;',
@@ -57,10 +57,10 @@ runner.run({
       'create table `person` ( like people) ;',
       'create table person (like `people` );',
     ],
-    expect: expect1
+    expect: join(__dirname, 'expect', 'create-table', '1.json')
   },
 
-  'Should create table with all table options.': {
+  'Parser: Should create table with all table options.': {
     queries: [
       `CREATE TABLE person(
         initial CHAR(1)
@@ -106,10 +106,10 @@ runner.run({
       WITH SYSTEM VERSIONING
       ;`
     ],
-    expect: expect2
+    expect: join(__dirname, 'expect', 'create-table', '2.json')
   },
 
-  'Should create table with all key options.': {
+  'Parser: Should create table with all key options.': {
     queries: [
       `
       CREATE TABLE person (
@@ -130,15 +130,15 @@ runner.run({
       );
       `
     ],
-    expect: expect3
+    expect: join(__dirname, 'expect', 'create-table', '3.json')
   },
 
-  'Should create or replace simple table.': {
+  'Parser: Should create or replace simple table.': {
     queries: [
       `create or replace table test (test bool);`,
       `create or replace temporary table test (test bool);`,
       `create or replace temporary table if not exists test (test bool);`
     ],
-    expect: expect4
+    expect: join(__dirname, 'expect', 'create-table', '4.json')
   }
 });

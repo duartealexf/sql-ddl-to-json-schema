@@ -32,10 +32,6 @@ class ColumnOptions {
       if (columnOptions[prop]) { columnOptions[prop] = columnOptions[prop].toLowerCase(); }
     });
 
-    if (columnOptions.reference) {
-      columnOptions.reference = ColumnReference.fromDef(columnOptions.reference);
-    }
-
     /**
      * If column is not 'NOT NULL', consider it 'NULL DEFAULT NULL'.
      */
@@ -142,9 +138,14 @@ class ColumnOptions {
     this.storage = undefined;
 
     /**
-     * @type {ColumnReference}
+     * @type {string}
      */
-    this.reference = undefined;
+    this.trigger = undefined;
+
+    /**
+     * @type {string}
+     */
+    this.action = undefined;
   }
 
   /**
@@ -169,7 +170,8 @@ class ColumnOptions {
     if (utils.isDefined(this.format))        { json.format        = this.format; }
     if (utils.isDefined(this.storage))       { json.storage       = this.storage; }
     if (utils.isDefined(this.comment))       { json.comment       = this.comment; }
-    if (utils.isDefined(this.reference))     { json.reference     = this.reference.toJSON(); }
+    if (utils.isDefined(this.trigger))       { json.trigger       = this.trigger; }
+    if (utils.isDefined(this.action))        { json.action        = this.action; }
 
     /**
      * Change "null" string to null default column value.

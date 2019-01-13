@@ -80,6 +80,8 @@
     is_built BOOL,
     is_apartment BOOLEAN,
     updated_at TIMESTAMP,
+    trashed_at TIMESTAMP(6) DEFAULT CURRENT_TIMESTAMP(6) ON UPDATE CURRENT_TIMESTAMP(6),
+    visited_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP(),
     year YEAR,
     sequence BINARY DEFAULT b'00101',
     photo LONGBLOB,

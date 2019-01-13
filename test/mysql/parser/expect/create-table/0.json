@@ -432,39 +432,33 @@
                             }
                           }
                         },
-                        "columnDefinition": [
-                          {
-                            "id": "O_COLUMN_DEFINITION",
-                            "def": {
-                              "reference": {
-                                "id": "P_COLUMN_REFERENCE",
+                        "columnDefinition": [],
+                        "reference": {
+                          "id": "P_COLUMN_REFERENCE",
+                          "def": {
+                            "table": "cities",
+                            "columns": [
+                              {
+                                "id": "P_INDEX_COLUMN",
                                 "def": {
-                                  "table": "cities",
-                                  "columns": [
-                                    {
-                                      "id": "P_INDEX_COLUMN",
-                                      "def": {
-                                        "column": "id",
-                                        "length": 20,
-                                        "sort": "ASC"
-                                      }
-                                    },
-                                    {
-                                      "id": "P_INDEX_COLUMN",
-                                      "def": {
-                                        "column": "local_id",
-                                        "length": null,
-                                        "sort": null
-                                      }
-                                    }
-                                  ],
-                                  "match": "FULL",
-                                  "on": []
+                                  "column": "id",
+                                  "length": 20,
+                                  "sort": "ASC"
+                                }
+                              },
+                              {
+                                "id": "P_INDEX_COLUMN",
+                                "def": {
+                                  "column": "local_id",
+                                  "length": null,
+                                  "sort": null
                                 }
                               }
-                            }
+                            ],
+                            "match": "FULL",
+                            "on": []
                           }
-                        ]
+                        }
                       }
                     }
                   }
@@ -485,36 +479,30 @@
                             }
                           }
                         },
-                        "columnDefinition": [
-                          {
-                            "id": "O_COLUMN_DEFINITION",
-                            "def": {
-                              "reference": {
-                                "id": "P_COLUMN_REFERENCE",
+                        "columnDefinition": [],
+                        "reference": {
+                          "id": "P_COLUMN_REFERENCE",
+                          "def": {
+                            "table": "families",
+                            "columns": [
+                              {
+                                "id": "P_INDEX_COLUMN",
                                 "def": {
-                                  "table": "families",
-                                  "columns": [
-                                    {
-                                      "id": "P_INDEX_COLUMN",
-                                      "def": {
-                                        "column": "id",
-                                        "length": null,
-                                        "sort": null
-                                      }
-                                    }
-                                  ],
-                                  "match": "SIMPLE",
-                                  "on": [
-                                    {
-                                      "trigger": "DELETE",
-                                      "action": "SET NULL"
-                                    }
-                                  ]
+                                  "column": "id",
+                                  "length": null,
+                                  "sort": null
                                 }
                               }
-                            }
+                            ],
+                            "match": "SIMPLE",
+                            "on": [
+                              {
+                                "trigger": "DELETE",
+                                "action": "SET NULL"
+                              }
+                            ]
                           }
-                        ]
+                        }
                       }
                     }
                   }
@@ -535,36 +523,30 @@
                             }
                           }
                         },
-                        "columnDefinition": [
-                          {
-                            "id": "O_COLUMN_DEFINITION",
-                            "def": {
-                              "reference": {
-                                "id": "P_COLUMN_REFERENCE",
+                        "columnDefinition": [],
+                        "reference": {
+                          "id": "P_COLUMN_REFERENCE",
+                          "def": {
+                            "table": "dogs",
+                            "columns": [
+                              {
+                                "id": "P_INDEX_COLUMN",
                                 "def": {
-                                  "table": "dogs",
-                                  "columns": [
-                                    {
-                                      "id": "P_INDEX_COLUMN",
-                                      "def": {
-                                        "column": "id",
-                                        "length": null,
-                                        "sort": null
-                                      }
-                                    }
-                                  ],
-                                  "match": null,
-                                  "on": [
-                                    {
-                                      "trigger": "UPDATE",
-                                      "action": "NO ACTION"
-                                    }
-                                  ]
+                                  "column": "id",
+                                  "length": null,
+                                  "sort": null
                                 }
                               }
-                            }
+                            ],
+                            "match": null,
+                            "on": [
+                              {
+                                "trigger": "UPDATE",
+                                "action": "NO ACTION"
+                              }
+                            ]
                           }
-                        ]
+                        }
                       }
                     }
                   }
@@ -866,6 +848,74 @@
                             "id": "O_COLUMN_DEFINITION",
                             "def": {
                               "default": "CURRENT_TIMESTAMP(6)"
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  }
+                },
+                {
+                  "id": "O_CREATE_TABLE_CREATE_DEFINITION",
+                  "def": {
+                    "column": {
+                      "name": "viewed_at",
+                      "def": {
+                        "datatype": {
+                          "id": "O_DATATYPE",
+                          "def": {
+                            "id": "O_DATETIME_DATATYPE",
+                            "def": {
+                              "datatype": "TIMESTAMP",
+                              "fractional": 0
+                            }
+                          }
+                        },
+                        "columnDefinition": [
+                          {
+                            "id": "O_COLUMN_DEFINITION",
+                            "def": {
+                              "nullable": false
+                            }
+                          },
+                          {
+                            "id": "O_COLUMN_DEFINITION",
+                            "def": {
+                              "default": "CURRENT_TIMESTAMP()"
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  }
+                },
+                {
+                  "id": "O_CREATE_TABLE_CREATE_DEFINITION",
+                  "def": {
+                    "column": {
+                      "name": "trashed_at",
+                      "def": {
+                        "datatype": {
+                          "id": "O_DATATYPE",
+                          "def": {
+                            "id": "O_DATETIME_DATATYPE",
+                            "def": {
+                              "datatype": "TIMESTAMP",
+                              "fractional": 6
+                            }
+                          }
+                        },
+                        "columnDefinition": [
+                          {
+                            "id": "O_COLUMN_DEFINITION",
+                            "def": {
+                              "default": "CURRENT_TIMESTAMP(6)"
+                            }
+                          },
+                          {
+                            "id": "O_COLUMN_DEFINITION",
+                            "def": {
+                              "onUpdate": "CURRENT_TIMESTAMP(6)"
                             }
                           }
                         ]

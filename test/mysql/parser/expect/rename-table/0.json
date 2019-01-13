@@ -1,0 +1,17 @@
+{
+  "id": "MAIN",
+  "def": [
+    {
+      "id": "P_DDS",
+      "def": {
+        "id": "P_RENAME_TABLE",
+        "def": [
+          {
+            "table": "people",
+            "newName": "persons"
+          }
+        ]
+      }
+    }
+  ]
+}

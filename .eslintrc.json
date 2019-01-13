@@ -78,7 +78,7 @@
     "no-labels": "error",
     "prefer-rest-params": "error",
     "no-nested-ternary": "error",
-    "no-process-env": "warn",
+    "no-process-env": "off",
     "no-proto": "error",
     "no-return-assign": [
       "error",

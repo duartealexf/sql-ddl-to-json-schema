@@ -1,72 +1,139 @@
-const ava = require('ava');
-const fs = require('fs');
-const path = require('path');
+const { join } = require('path');
 
-const Parser = require('../../../../lib');
-const expect = require('./expect/alter-table-change-column.json');
+const runner = require('../../runner');
+const createTable = require('./sql/create-table');
+const parseHandler = require('../../parse-handler');
 
-const sql = fs.readFileSync(path.join(__dirname, 'sql', 'create-table.sql')).toString();
+const sql = [
+  createTable,
+];
 
-// @ts-ignore
-ava('Compact formatter: Should alter table, changing column.', t => {
-  const parser = new Parser('mysql');
-  parser.feed(sql);
+runner.run(parseHandler.getCompactFormat, {
+  'Compact formatter: Compact formatter: Should alter table, changing columns.': {
+    queries: [
+      sql.concat([
+        'ALTER TABLE person CHANGE COLUMN weight size TINYINT UNSIGNED ZEROFILL CHARACTER SET latin1 COLLATE latin_ci NULL DEFAULT NULL UNIQUE INVISIBLE WITHOUT SYSTEM VERSIONING FIRST;',
+        'ALTER TABLE person CHANGE COLUMN status is_alive BOOLEAN NOT NULL COMMENT "staying alive" INVISIBLE WITH SYSTEM VERSIONING COLUMN_FORMAT DYNAMIC AFTER sequence;',
+        'ALTER TABLE pet MODIFY COLUMN year TINYINT DEFAULT NOW();',
+      ]).join('')
+    ],
+    expect: join(__dirname, 'expect', 'alter-table-change-column', '0.json'),
+  },
 
-  /**
-   * Positive assertions.
-   */
+  'Compact formatter: Alter table change column should ignore foreign key reference.': {
+    queries: [
+      sql.concat([
+        'ALTER TABLE person CHANGE COLUMN avatar photo TINYBLOB INVISIBLE STORAGE MEMORY REFERENCES dog (avatar);',
+      ]).join('')
+    ],
+    expect: join(__dirname, 'expect', 'alter-table-change-column', '1.json'),
+  },
 
-  parser.feed('ALTER TABLE person CHANGE COLUMN weight size TINYINT UNSIGNED ZEROFILL CHARACTER SET latin1 COLLATE latin_ci NULL DEFAULT NULL UNIQUE INVISIBLE WITHOUT SYSTEM VERSIONING FIRST;');
-  parser.feed('ALTER TABLE person CHANGE COLUMN status is_alive BOOLEAN NOT NULL COMMENT "staying alive" INVISIBLE WITH SYSTEM VERSIONING COLUMN_FORMAT DYNAMIC AFTER sequence;');
-  parser.feed('ALTER TABLE pet MODIFY COLUMN year TINYINT DEFAULT NOW();');
+  'Compact formatter: Alter table change column should ignore duplicate unique option.': {
+    queries: [
+      sql.concat([
+        'ALTER TABLE person CHANGE COLUMN motto my_text TEXT(50) UNIQUE;'
+      ]).join('')
+    ],
+    expect: join(__dirname, 'expect', 'alter-table-change-column', '2.json'),
+  },
 
-  // Should ignore foreign key reference.
-  parser.feed('ALTER TABLE person CHANGE COLUMN avatar photo TINYBLOB INVISIBLE STORAGE MEMORY REFERENCES dog (avatar);');
+  'Compact formatter: Alter table change column should rename primary and foreign key column reference.': {
+    queries: [
+      sql.concat([
+        'ALTER TABLE person CHANGE COLUMN id code INT(10) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT COMMENT "primary key test";'
+      ]).join('')
+    ],
+    expect: join(__dirname, 'expect', 'alter-table-change-column', '3.json')
+  },
 
-  // Should ignore duplicate unique option.
-  parser.feed('ALTER TABLE person CHANGE COLUMN motto my_text TEXT(50) UNIQUE;');
+  'Compact formatter: Alter table change column should rename fulltext index column reference.': {
+    queries: [
+      sql.concat([
+        'ALTER TABLE person CHANGE COLUMN initials letters CHAR(3) COLUMN_FORMAT FIXED;'
+      ]).join('')
+    ],
+    expect: join(__dirname, 'expect', 'alter-table-change-column', '4.json'),
+  },
 
-  // Should rename primary and foreign key column reference.
-  parser.feed('ALTER TABLE person CHANGE COLUMN id code INT(10) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT COMMENT "primary key test";');
+  'Compact formatter: Alter table change column should rename unique key column reference.': {
+    queries: [
+      sql.concat([
+        'ALTER TABLE person CHANGE COLUMN motto phrase TEXT(100);'
+      ]).join('')
+    ],
+    expect: join(__dirname, 'expect', 'alter-table-change-column', '5.json'),
+  },
 
-  // Should rename fulltext index column reference.
-  parser.feed('ALTER TABLE person CHANGE COLUMN initials letters CHAR(3) COLUMN_FORMAT FIXED;');
+  'Compact formatter: Alter table change column should rename foreign key column reference.': {
+    queries: [
+      sql.concat([
+        'ALTER TABLE pet CHANGE COLUMN height height_num DECIMAL;'
+      ]).join('')
+    ],
+    expect: join(__dirname, 'expect', 'alter-table-change-column', '6.json'),
+  },
 
-  // Should rename unique key column reference.
-  parser.feed('ALTER TABLE person CHANGE COLUMN my_text phrase TEXT(100);');
+  'Compact formatter: Alter table change column should rename index column reference.': {
+    queries: [
+      sql.concat([
+        'ALTER TABLE pet CHANGE COLUMN birth birth_datetime DATETIME;'
+      ]).join('')
+    ],
+    expect: join(__dirname, 'expect', 'alter-table-change-column', '7.json'),
+  },
 
-  // Should rename foreign key column reference.
-  parser.feed('ALTER TABLE pet CHANGE COLUMN height height_num DECIMAL;');
+  'Compact formatter: Alter table change column should rename spatial index column reference.': {
+    queries: [
+      sql.concat([
+        'ALTER TABLE house CHANGE COLUMN coordx x_axis FLOAT(6,2);'
+      ]).join('')
+    ],
+    expect: join(__dirname, 'expect', 'alter-table-change-column', '8.json'),
+  },
 
-  // Should rename index column reference.
-  parser.feed('ALTER TABLE pet CHANGE COLUMN birth birth_datetime DATETIME;');
+  'Compact formatter: Alter table change column should not change a column to autoincrement if there is another one with autoincrement in table.': {
+    queries: [
+      sql.concat([
+        'ALTER TABLE person CHANGE COLUMN ssn int(10) AUTO_INCREMENT;'
+      ]).join('')
+    ],
+    expect: join(__dirname, 'expect', 'alter-table-change-column', '9.json'),
+  },
 
-  // Should rename spatial index column reference.
-  parser.feed('ALTER TABLE house CHANGE COLUMN coordx x_axis FLOAT(6,2);');
+  'Compact formatter: Alter table change column should not change a column, moving it after unexisting column.': {
+    queries: [
+      sql.concat([
+        'ALTER TABLE pet CHANGE COLUMN year year TINYINT after xyz;'
+      ]).join('')
+    ],
+    expect: join(__dirname, 'expect', 'alter-table-change-column', '10.json'),
+  },
 
+  'Compact formatter: Alter table change column should not change a column if it tries to add a second primary key.': {
+    queries: [
+      sql.concat([
+        'ALTER TABLE person CHANGE COLUMN size size INT(8) primary key;'
+      ]).join('')
+    ],
+    expect: join(__dirname, 'expect', 'alter-table-change-column', '11.json'),
+  },
 
-  /**
-   * Negative assertions.
-   */
+  'Compact formatter: Alter table change column should not change unexisting column.': {
+    queries: [
+      sql.concat([
+        'ALTER TABLE person CHANGE COLUMN xyz abc INT(8) NOT NULL;'
+      ]).join('')
+    ],
+    expect: join(__dirname, 'expect', 'alter-table-change-column', '12.json'),
+  },
 
-  // Shouldn't change a column to autoincrement if there is another one with autoincrement in table.
-  parser.feed('ALTER TABLE person CHANGE COLUMN ssn int(10) AUTO_INCREMENT;');
-
-  // Shouldn't change a column, moving it after unexisting column.
-  parser.feed('ALTER TABLE pet CHANGE COLUMN year year TINYINT after xyz;');
-
-  // Shouldn't change a column if it tries to add a second primary key.
-  parser.feed('ALTER TABLE person CHANGE COLUMN size size INT(8) primary key;');
-
-  // Shouldn't change unexisting column.
-  parser.feed('ALTER TABLE person CHANGE COLUMN xyz abc INT(8) NOT NULL;');
-
-  // Shouldn't change column adding a second autoincrement.
-  parser.feed('ALTER TABLE person CHANGE COLUMN size size INT(8) AUTO_INCREMENT;');
-
-  const json = parser.toCompactJson();
-  // fs.writeFileSync(path.join(__dirname, 'expect', 'alter-table-change-column.json'), JSON.stringify(json, null, 2));
-  // for some reason t.deepEqual hangs process
-  t.is(JSON.stringify(json), JSON.stringify(expect));
-  // t.pass();
+  'Compact formatter: Alter table change column should not change column adding a second autoincrement.': {
+    queries: [
+      sql.concat([
+        'ALTER TABLE person CHANGE COLUMN size size INT(8) AUTO_INCREMENT;'
+      ]).join('')
+    ],
+    expect: join(__dirname, 'expect', 'alter-table-change-column', '13.json'),
+  },
 });

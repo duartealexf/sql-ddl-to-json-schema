@@ -211,7 +211,7 @@
         }
       },
       {
-        "name": "test2",
+        "name": "test1",
         "type": {
           "datatype": "boolean"
         },
@@ -223,7 +223,7 @@
         }
       },
       {
-        "name": "test3",
+        "name": "test2",
         "type": {
           "datatype": "blob",
           "length": 255
@@ -627,6 +627,28 @@
         },
         "options": {
           "nullable": true
+        }
+      },
+      {
+        "name": "trashed_at",
+        "type": {
+          "datatype": "timestamp",
+          "fractional": 6
+        },
+        "options": {
+          "nullable": true,
+          "default": "CURRENT_TIMESTAMP(6)"
+        }
+      },
+      {
+        "name": "visited_at",
+        "type": {
+          "datatype": "timestamp",
+          "fractional": 0
+        },
+        "options": {
+          "nullable": true,
+          "default": "CURRENT_TIMESTAMP()"
         }
       },
       {

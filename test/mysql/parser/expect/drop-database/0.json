@@ -1,0 +1,12 @@
+{
+  "id": "MAIN",
+  "def": [
+    {
+      "id": "P_DDS",
+      "def": {
+        "id": "P_DROP_DB",
+        "def": "test"
+      }
+    }
+  ]
+}

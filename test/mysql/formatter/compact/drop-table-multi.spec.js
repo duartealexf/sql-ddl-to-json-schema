@@ -1,21 +1,21 @@
-const ava = require('ava');
-const fs = require('fs');
-const path = require('path');
+const { join } = require('path');
 
-const Parser = require('../../../../lib');
-const expect = require('./expect/drop-table-multi.json');
+const runner = require('../../runner');
+const createTable = require('./sql/create-table');
+const parseHandler = require('../../parse-handler');
 
-const sql = fs.readFileSync(path.join(__dirname, 'sql', 'create-table.sql')).toString();
+const expect = join(__dirname, 'expect', 'drop-table-multi.json');
 
-// @ts-ignore
-ava('Compact formatter: Should drop two tables.', t => {
-  const parser = new Parser('mysql');
-  parser.feed(sql);
-  parser.feed('DROP TABLE house, pet;');
+const sql = [
+  createTable,
+  'DROP TABLE house, pet;',
+];
 
-  const json = parser.toCompactJson();
-  // fs.writeFileSync(path.join(__dirname, 'expect', 'drop-table-multi.json'), JSON.stringify(json, null, 2));
-  // for some reason t.deepEqual hangs process
-  t.is(JSON.stringify(json), JSON.stringify(expect));
-  // t.pass();
+runner.run(parseHandler.getCompactFormat, {
+  'Compact formatter: Should drop two tables.': {
+    queries: [
+      sql.join('')
+    ],
+    expect,
+  },
 });

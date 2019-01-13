@@ -1,43 +1,41 @@
-const expect0 = require('./expect/alter-table-primary-key/0.json');
-const expect1 = require('./expect/alter-table-primary-key/1.json');
-const expect2 = require('./expect/alter-table-primary-key/2.json');
-const expect3 = require('./expect/alter-table-primary-key/3.json');
-const expect4 = require('./expect/alter-table-primary-key/4.json');
-const runner = require('../runner');
+const { join } = require('path');
 
-runner.run({
-  'Should alter table adding primary key with index options, two columns and options.': {
+const runner = require('../runner');
+const parseHandler = require('../parse-handler');
+
+runner.run(parseHandler.getParsedFormat, {
+  'Parser: Should alter table adding primary key with index options, two columns and options.': {
     queries: [
       `ALTER TABLE people add constraint pk_id__o_id primary key using btree ( id ( 2 ), o_id ( 3 ) asc ) key_block_size 1024 comment 'test';`
     ],
-    expect: expect0,
+    expect: join(__dirname, 'expect', 'alter-table-primary-key', '0.json')
   },
 
-  'Should alter table adding primary key with two columns and option.': {
+  'Parser: Should alter table adding primary key with two columns and option.': {
     queries: [
       `ALTER TABLE people add constraint pk_id__o_id primary key(id(2),o_id(3)asc)key_block_size 1024;`
     ],
-    expect: expect1,
+    expect: join(__dirname, 'expect', 'alter-table-primary-key', '1.json')
   },
 
-  'Should alter table adding primary key with one column.': {
+  'Parser: Should alter table adding primary key with one column.': {
     queries: [
       `ALTER TABLE people add constraint pk_id primary key ( id ) ;`
     ],
-    expect: expect2,
+    expect: join(__dirname, 'expect', 'alter-table-primary-key', '2.json')
   },
 
-  'Should alter table adding unnamed primary key.': {
+  'Parser: Should alter table adding unnamed primary key.': {
     queries: [
       `ALTER TABLE people add primary key(id);`
     ],
-    expect: expect3,
+    expect: join(__dirname, 'expect', 'alter-table-primary-key', '3.json')
   },
 
-  'Should alter table dropping primary key.': {
+  'Parser: Should alter table dropping primary key.': {
     queries: [
       `ALTER TABLE people drop primary key;`
     ],
-    expect: expect4,
+    expect: join(__dirname, 'expect', 'alter-table-primary-key', '4.json')
   }
 });

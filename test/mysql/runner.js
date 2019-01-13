@@ -1,21 +1,24 @@
 const ava = require('ava');
-const Parser = require('../../lib');
+const { readFileSync, writeFileSync } = require('fs');
+
+const updateFilesOnly = process.env.DRY_UPDATE === '1';
 
 module.exports = {
-  run: tests => {
+  run: (parseHandler, tests) => {
     Object.getOwnPropertyNames(tests).forEach(description => {
       const test = tests[description];
+      const expect = readFileSync(test.expect).toString();
 
       test.queries.forEach(query => {
+        ava(description, t => {
+          const value = parseHandler(query);
 
-        const testname = `Parser: ${description} \n ${query}`;
-
-        const parser = new Parser('mysql');
-        parser.feed(query);
-
-        ava(testname, t => {
-          const value = parser.results;
-          t.deepEqual(value, test.expect);
+          if (updateFilesOnly) {
+            writeFileSync(test.expect, JSON.stringify(value, null, 2));
+            t.pass();
+          } else {
+            t.is(JSON.stringify(value, null, 2), expect);
+          }
         });
       });
     });

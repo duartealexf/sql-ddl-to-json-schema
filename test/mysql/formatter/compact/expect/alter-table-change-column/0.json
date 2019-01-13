@@ -19,7 +19,7 @@
         }
       },
       {
-        "name": "code",
+        "name": "id",
         "type": {
           "datatype": "int",
           "width": 10
@@ -100,7 +100,7 @@
         }
       },
       {
-        "name": "letters",
+        "name": "initials",
         "type": {
           "datatype": "char",
           "length": 3
@@ -156,22 +156,20 @@
         }
       },
       {
-        "name": "photo",
+        "name": "avatar",
         "type": {
           "datatype": "blob",
-          "length": 255
+          "length": 65535
         },
         "options": {
-          "nullable": true,
-          "invisible": true,
-          "storage": "memory"
+          "nullable": true
         }
       },
       {
-        "name": "phrase",
+        "name": "motto",
         "type": {
           "datatype": "text",
-          "length": 100
+          "length": 50
         },
         "options": {
           "nullable": true
@@ -222,7 +220,7 @@
     "primaryKey": {
       "columns": [
         {
-          "column": "code"
+          "column": "id"
         }
       ]
     },
@@ -237,7 +235,7 @@
       {
         "columns": [
           {
-            "column": "phrase",
+            "column": "motto",
             "length": 50
           }
         ],
@@ -259,7 +257,7 @@
       {
         "columns": [
           {
-            "column": "letters"
+            "column": "initials"
           }
         ],
         "name": "fi_initials"
@@ -314,7 +312,7 @@
         }
       },
       {
-        "name": "height_num",
+        "name": "height",
         "type": {
           "datatype": "decimal",
           "digits": 10,
@@ -346,7 +344,7 @@
         }
       },
       {
-        "name": "birth_datetime",
+        "name": "birth",
         "type": {
           "datatype": "datetime",
           "fractional": 0
@@ -470,7 +468,7 @@
           "table": "person",
           "columns": [
             {
-              "column": "code",
+              "column": "id",
               "length": 10,
               "sort": "asc"
             }
@@ -482,7 +480,7 @@
       {
         "columns": [
           {
-            "column": "height_num"
+            "column": "height"
           },
           {
             "column": "weight",
@@ -499,7 +497,7 @@
       {
         "columns": [
           {
-            "column": "birth_datetime",
+            "column": "birth",
             "length": 5,
             "sort": "desc"
           }
@@ -553,7 +551,7 @@
         }
       },
       {
-        "name": "x_axis",
+        "name": "coordx",
         "type": {
           "datatype": "float",
           "digits": 6,
@@ -608,6 +606,28 @@
         },
         "options": {
           "nullable": true
+        }
+      },
+      {
+        "name": "trashed_at",
+        "type": {
+          "datatype": "timestamp",
+          "fractional": 6
+        },
+        "options": {
+          "nullable": true,
+          "default": "CURRENT_TIMESTAMP(6)"
+        }
+      },
+      {
+        "name": "visited_at",
+        "type": {
+          "datatype": "timestamp",
+          "fractional": 0
+        },
+        "options": {
+          "nullable": true,
+          "default": "CURRENT_TIMESTAMP()"
         }
       },
       {
@@ -747,7 +767,7 @@
           ],
           "columns": [
             {
-              "column": "height_num"
+              "column": "height"
             },
             {
               "column": "weight",
@@ -779,7 +799,7 @@
       {
         "columns": [
           {
-            "column": "x_axis"
+            "column": "coordx"
           },
           {
             "column": "coordy"

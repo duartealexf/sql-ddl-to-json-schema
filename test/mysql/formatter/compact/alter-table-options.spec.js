@@ -1,17 +1,14 @@
-const ava = require('ava');
-const fs = require('fs');
-const path = require('path');
+const { join } = require('path');
 
-const Parser = require('../../../../lib');
-const expect = require('./expect/alter-table-options.json');
+const runner = require('../../runner');
+const createTable = require('./sql/create-table');
+const parseHandler = require('../../parse-handler');
 
-const sql = fs.readFileSync(path.join(__dirname, 'sql', 'create-table.sql')).toString();
+const expect = join(__dirname, 'expect', 'alter-table-options.json');
 
-// @ts-ignore
-ava('Compact formatter: Should alter table options.', t => {
-  const parser = new Parser('mysql');
-  parser.feed(sql);
-  parser.feed(`
+const sql = [
+  createTable,
+  `
     ALTER TABLE person
     AUTO_INCREMENT 2
     AVG_ROW_LENGTH 256
@@ -45,13 +42,14 @@ ava('Compact formatter: Should alter table options.', t => {
     WITH SYSTEM VERSIONING,
     TABLESPACE asd STORAGE MEMORY
     UNION (table1, table2);
-  `);
+  `
+];
 
-  const results = parser.results;
-
-  const json = parser.toCompactJson(results);
-  // fs.writeFileSync(path.join(__dirname, 'expect', 'alter-table-options.json'), JSON.stringify(json, null, 2));
-  // for some reason t.deepEqual hangs process
-  t.is(JSON.stringify(json), JSON.stringify(expect));
-  // t.pass();
+runner.run(parseHandler.getCompactFormat, {
+  'Compact formatter: Should alter table options.': {
+    queries: [
+      sql.join('')
+    ],
+    expect,
+  },
 });

@@ -1,32 +1,49 @@
-const ava = require('ava');
-const fs = require('fs');
-const path = require('path');
+const { join } = require('path');
 
-const Parser = require('../../../../lib');
-const expect = require('./expect/alter-table-add-columns.json');
+const runner = require('../../runner');
+const createTable = require('./sql/create-table');
+const parseHandler = require('../../parse-handler');
 
-const sql = fs.readFileSync(path.join(__dirname, 'sql', 'create-table.sql')).toString();
+const sql = [
+  createTable,
+  `ALTER TABLE person ADD COLUMN (
+    test1 BOOLEAN NOT NULL COMMENT "staying alive" INVISIBLE WITH SYSTEM VERSIONING COLUMN_FORMAT DYNAMIC,
+    test2 TINYBLOB INVISIBLE STORAGE MEMORY REFERENCES dog (avatar)
+  );`
+];
 
-// @ts-ignore
-ava('Compact formatter: Should alter table, adding columns.', t => {
-  const parser = new Parser('mysql');
-  parser.feed(sql);
+runner.run(parseHandler.getCompactFormat, {
+  'Compact formatter: Should alter table, adding columns.': {
+    queries: [
+      sql.join('')
+    ],
+    expect: join(__dirname, 'expect', 'alter-table-add-columns', '0.json'),
+  },
 
-  parser.feed(`
-  ALTER TABLE person ADD COLUMN (
-    test1 TINYINT UNSIGNED ZEROFILL CHARACTER SET latin1 COLLATE latin_ci NULL DEFAULT 42 AUTO_INCREMENT UNIQUE INVISIBLE WITHOUT SYSTEM VERSIONING,
-    test2 BOOLEAN NOT NULL COMMENT "staying alive" INVISIBLE WITH SYSTEM VERSIONING COLUMN_FORMAT DYNAMIC,
-    test3 TINYBLOB INVISIBLE STORAGE MEMORY REFERENCES dog (avatar),
-    test3 JSON COMMENT "duplicate, should not be added"
-  );
-  `);
+  'Compact formatter: Alter table add columns should not add autoincrement with a table already having autoincrement.': {
+    queries: [
+      sql.concat([
+        'ALTER TABLE person ADD COLUMN test3 TINYINT UNSIGNED ZEROFILL CHARACTER SET latin1 COLLATE latin_ci NULL DEFAULT 42 AUTO_INCREMENT UNIQUE INVISIBLE WITHOUT SYSTEM VERSIONING;',
+      ]).join('')
+    ],
+    expect: join(__dirname, 'expect', 'alter-table-add-columns', '1.json'),
+  },
 
-  // Shouldn't add autoincrement without being a primary key.
-  parser.feed('ALTER TABLE pet ADD COLUMN xyzabc INT(11) AUTO_INCREMENT;');
+  'Compact formatter: Alter table add columns should not add column with duplicate name.': {
+    queries: [
+      sql.concat([
+        'ALTER TABLE person ADD COLUMN test2 JSON COMMENT "you shall not pass";',
+      ]).join('')
+    ],
+    expect: join(__dirname, 'expect', 'alter-table-add-columns', '2.json'),
+  },
 
-  const json = parser.toCompactJson();
-  // fs.writeFileSync(path.join(__dirname, 'expect', 'alter-table-add-columns.json'), JSON.stringify(json, null, 2));
-  // for some reason t.deepEqual hangs process
-  t.is(JSON.stringify(json), JSON.stringify(expect));
-  // t.pass();
+  'Compact formatter: Alter table add columns should not add autoincrement without it being a primary key.': {
+    queries: [
+      sql.concat([
+        'ALTER TABLE pet ADD COLUMN xyzabc INT(11) AUTO_INCREMENT;',
+      ]).join('')
+    ],
+    expect: join(__dirname, 'expect', 'alter-table-add-columns', '3.json'),
+  },
 });

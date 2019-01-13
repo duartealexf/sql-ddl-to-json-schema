@@ -335,6 +335,10 @@ Valid to all SQL dialects:
 - Test and watch for changes: `npm run test:watch`
 - Test against nearley tester: `npm run nearley-test lib/mysql/parser/grammar.js --input 'CREATE TABLE test (test CHAR(1));'`
 
+The tests call SQL statements on the parser and test the JSON result (whatever the format) against a JSON file in a folder called `expect`, for that test case. The command below updates all `expect` files to whatever is being parsed in the test cases. This is useful when there is a change in the parser that affects many files and changes JSON result in them. Run the script to update the expected parse result in the file:
+
+`npm run test:update`
+
 ### Debugging
 
 Taking the example file as an example, you may debug with the following configurations, for each IDE:
@@ -372,6 +376,18 @@ To debug tests you may want to change the args as you go.
       "request": "launch",
       "name": "Debug Example",
       "program": "${workspaceFolder}/src/mysql/example.js"
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Debug Update Expectation Of Opened Test File",
+      "env": {
+        "DRY_UPDATE": "1"
+      },
+      "args": [
+        "${file}"
+      ],
+      "program": "${workspaceFolder}/node_modules/ava/profile.js"
     }
   ]
 }

@@ -9,7 +9,7 @@ const expect = join(__dirname, 'expect', 'alter-table-rename-table.json');
 const sql = [
   createTable,
   'ALTER TABLE person RENAME TO people;',
-'ALTER TABLE pet RENAME AS dog;',
+  'ALTER TABLE pet RENAME AS dog;',
 ];
 
 runner.run(parseHandler.getCompactFormat, {

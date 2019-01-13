@@ -1,7 +1,7 @@
 const Parser = require('../../lib');
 // const fs = require('fs');
 const { join } = require('path');
-const { readFileSync, writeFileSync } = require('fs');
+const { readFileSync } = require('fs');
 
 const parser = new Parser('mysql');
 

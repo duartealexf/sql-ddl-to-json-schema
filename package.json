@@ -47,7 +47,7 @@
     "cz-conventional-changelog": "^2.1.0",
     "eslint": "^4.7.0",
     "fs-extra": "^5.0.0",
-    "nodemon": "^1.14.11",
+    "nodemon": "^1.18.9",
     "nyc": "^11.6.0",
     "standard-version": "^4.3.0",
     "winston": "^3.0.0-rc0"

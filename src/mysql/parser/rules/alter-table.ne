@@ -91,9 +91,9 @@ O_ALTER_TABLE_SPEC -> (
               name: d[0],
               datatype: d[2],
               columnDefinition: d[3] || [],
-              reference: d[4]
+              ...d[4] ? { reference: d[4] } : {}
             }
-          ].concat(d[5])
+          ].concat(d[5] || [])
         }%}
     )
     _ %S_RPARENS

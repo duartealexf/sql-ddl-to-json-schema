@@ -43,7 +43,7 @@
   },
   "devDependencies": {
     "ava": "^0.22.0",
-    "commitizen": "^2.9.6",
+    "commitizen": "^3.0.5",
     "cz-conventional-changelog": "^2.1.0",
     "eslint": "^4.7.0",
     "fs-extra": "^5.0.0",

@@ -1,12 +1,12 @@
 /* eslint no-unused-vars: 0 */
-const Table         = require('./table');
-const Column        = require('./column');
-const CreateTable   = require('./rules/create-table');
-const CreateIndex   = require('./rules/create-index');
-const AlterTable    = require('./rules/alter-table');
-const RenameTable   = require('./rules/rename-table');
-const DropTable     = require('./rules/drop-table');
-const DropIndex     = require('./rules/drop-index');
+const Table = require('./table');
+const Column = require('./column');
+const CreateTable = require('./rules/create-table');
+const CreateIndex = require('./rules/create-index');
+const AlterTable = require('./rules/alter-table');
+const RenameTable = require('./rules/rename-table');
+const DropTable = require('./rules/drop-table');
+const DropIndex = require('./rules/drop-index');
 
 const utils = require('../../../../shared/utils');
 
@@ -123,6 +123,15 @@ class Database {
 
       else if (json.id === 'P_DROP_INDEX') {
         handler = new DropIndex();
+      }
+
+      /**
+       * There may be other handlers, which will not have
+       * any effect over tables, and should be ignored.
+       * https://github.com/duartealexf/sql-ddl-to-json-schema/issues/41
+       */
+      if (!handler) {
+        return;
       }
 
       handler.setDatabase(this);

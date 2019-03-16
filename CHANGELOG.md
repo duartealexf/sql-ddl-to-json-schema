@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="3.0.1"></a>
+## [3.0.1](https://github.com/duartealexf/sql-ddl-to-json-schema/compare/v3.0.0...v3.0.1) (2019-03-16)
+
+
+### Bug Fixes
+
+* Ignore formatting queries that do not affect tables. ([3f88701](https://github.com/duartealexf/sql-ddl-to-json-schema/commit/3f88701)), closes [#41](https://github.com/duartealexf/sql-ddl-to-json-schema/issues/41)
+
+
+
 <a name="3.0.0"></a>
 # [3.0.0](https://github.com/duartealexf/sql-ddl-to-json-schema/compare/v2.2.0...v3.0.0) (2019-01-13)
 

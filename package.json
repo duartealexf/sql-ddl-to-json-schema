@@ -2,6 +2,19 @@
   "name": "sql-ddl-to-json-schema",
   "version": "3.0.0",
   "description": "Parse and convert SQL DDL statements to a JSON Schema.",
+  "keywords": [
+    "parse",
+    "parser",
+    "sql",
+    "ddl",
+    "format",
+    "formatter",
+    "json",
+    "schema",
+    "jsonschema",
+    "convert",
+    "converter"
+  ],
   "main": "index.js",
   "author": "Alexandre Duarte <duartealexf@gmail.com> (https://github.com/duartealexf)",
   "maintainers": [

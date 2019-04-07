@@ -14,17 +14,17 @@ parser.feed(sql);
 //     console.log(JSON.stringify(outputFilePaths, null, 2));
 //   });
 
-let result;
-result = parser.results;
-result = parser.toCompactJson(result);
-result = parser.toJsonSchemaArray({}, result);
+// let result;
+// result = parser.results;
+// result = parser.toCompactJson(result);
+// result = parser.toJsonSchemaArray({}, result);
 // const filepath = join(__dirname, '../../', 'test/mysql/parser/expect/create-table/0.json');
 // writeFileSync(filepath, JSON.stringify(result, null, 2));
 
 // result = parser.results;
 // result = parser.toCompactJson(result);
 // result = parser.toJsonSchemaArray({}, result);
-console.log(JSON.stringify(result, null, 2));
+// console.log(JSON.stringify(result, null, 2));
 
 // result = parser.toJsonSchemaFiles(join(__dirname, 'example'), {
 //   extension: '.schema.json',

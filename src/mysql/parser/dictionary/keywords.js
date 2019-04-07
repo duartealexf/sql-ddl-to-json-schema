@@ -209,6 +209,7 @@ const keywords = utils.stringArrayToMapping(
     'NOT',
     'FOR',
     'ASC',
+    'USE',
     'AS',
     'NO',
     'BY',

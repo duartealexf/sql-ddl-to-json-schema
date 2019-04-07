@@ -396,53 +396,7 @@ Taking the example file as an example, you may debug with the following configur
 
 #### Visual Studio Code
 
-Place the launch config below.
-
-```json
-
-{
-  "version": "0.2.0",
-  "configurations": [
-    {
-      "type": "node",
-      "request": "launch",
-      "name": "Debug Compilation",
-      "args": [
-        "lib/mysql/parser/grammar.ne"
-      ],
-      "program": "${workspaceFolder}/node_modules/nearley/bin/nearleyc.js"
-    },
-    {
-      "type": "node",
-      "request": "launch",
-      "name": "Debug Opened Test File",
-      "args": [
-        "${file}"
-      ],
-      "program": "${workspaceFolder}/node_modules/ava/profile.js"
-    },
-    {
-      "type": "node",
-      "request": "launch",
-      "name": "Debug Example",
-      "program": "${workspaceFolder}/src/mysql/example.js"
-    },
-    {
-      "type": "node",
-      "request": "launch",
-      "name": "Debug Update Expectation Of Opened Test File",
-      "env": {
-        "DRY_UPDATE": "1"
-      },
-      "args": [
-        "${file}"
-      ],
-      "program": "${workspaceFolder}/node_modules/ava/profile.js"
-    }
-  ]
-}
-
-```
+Launch config is versioned in this repository.
 
 ## Links
 

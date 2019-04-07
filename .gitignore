@@ -14,7 +14,7 @@ Thumbs.db
 *.sublime-workspace
 *.sublime-projectcompletions
 *.komodoproject
-.vscode
+.vscode/chrome
 
 # -------------------------
 # Blacklisted

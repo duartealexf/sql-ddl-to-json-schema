@@ -9,8 +9,8 @@ module.exports = {
       const test = tests[description];
       const expect = readFileSync(test.expect).toString();
 
-      test.queries.forEach(query => {
-        ava(description, t => {
+      test.queries.forEach((query, i) => {
+        ava(`${description} (${i + 1})`, t => {
           const value = parseHandler(query);
 
           if (updateFilesOnly) {

@@ -9,7 +9,7 @@ const sql = [
 ];
 
 runner.run(query => parseHandler.getJSONSchemaFormat(query, { useRef: true }), {
-  'JSON Schema formatter: should format tables correctly.': {
+  'JSON Schema formatter: should format tables correctly, with ref.': {
     queries: [
       sql.join('')
     ],
@@ -18,7 +18,7 @@ runner.run(query => parseHandler.getJSONSchemaFormat(query, { useRef: true }), {
 });
 
 runner.run(query => parseHandler.getJSONSchemaFormat(query, { useRef: false }), {
-  'JSON Schema formatter: should format tables correctly.': {
+  'JSON Schema formatter: should format tables correctly, without ref.': {
     queries: [
       sql.join('')
     ],

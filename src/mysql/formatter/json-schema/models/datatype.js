@@ -154,14 +154,15 @@ class Datatype {
      * of double datatype depend on hardware so they are not added here.
      */
     } else if (this.datatype === 'decimal' || this.datatype === 'float') {
+      const maxumum = (Number(
+        '9'.repeat(this.digits - this.decimals) + '.' + '9'.repeat(this.decimals)
+      ));
       if (this.isUnsigned) {
         json.minimum = 0;
       } else {
-        json.minimum = 0 - (Number(
-          '9'.repeat(this.digits - this.decimals) + '.' + '9'.repeat(this.decimals)
-        ));
+        json.minimum = 0 - maxumum;
       }
-      json.maximum = 0 - json.minimum;
+      json.maximum = maxumum;
 
     /**
      * Use JSON Schema date format.

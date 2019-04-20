@@ -22,7 +22,9 @@ CREATE TABLE person (
   shape MULTIPOINT,
   pattern MULTILINESTRING,
   CONSTRAINT unique_motto UNIQUE INDEX u_motto USING Btree (motto) COMMENT 'be original',
-  FULLTEXT INDEX fi_initials (initials)
+  FULLTEXT INDEX fi_initials (initials),
+  float_unsigned_property FLOAT (6,2) UNSIGNED COMMENT 'float unsigned property',
+  float_property FLOAT (6,2) COMMENT 'float property'
 )
 auto_increment 2,
 avg_row_length 250,

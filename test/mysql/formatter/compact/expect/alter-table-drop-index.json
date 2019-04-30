@@ -562,7 +562,7 @@
         },
         "options": {
           "nullable": true,
-          "default": "CURRENT_TIMESTAMP(6)"
+          "default_exp": "CURRENT_TIMESTAMP(6) ON UPDATE CURRENT_TIMESTAMP(6)"
         }
       },
       {
@@ -573,7 +573,7 @@
         },
         "options": {
           "nullable": true,
-          "default": "CURRENT_TIMESTAMP()"
+          "default_exp": "CURRENT_TIMESTAMP()"
         }
       },
       {

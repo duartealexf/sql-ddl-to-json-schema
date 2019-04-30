@@ -240,7 +240,7 @@ O_ALTER_TABLE_SPEC -> (
         }
       }%}
 
-  | %K_ALTER __ ( %K_COLUMN __ ):? S_IDENTIFIER __ %K_SET __ %K_DEFAULT __ O_DEFAULT_VALUE
+  | %K_ALTER __ ( %K_COLUMN __ ):? S_IDENTIFIER __ %K_SET __ %K_DEFAULT __ ( O_DEFAULT_VALUE {% d => d[0] %} | O_DEFAULT_EXP_VALUE {% d => d[0] %})
       {% d => {
         return {
           action: 'setDefaultColumnValue',

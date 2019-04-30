@@ -50,7 +50,7 @@
       "dob": {
         "type": "string",
         "format": "date",
-        "default": "NOW()"
+        "x-default-exp": "NOW()"
       },
       "tob": {
         "type": "string",

@@ -93,14 +93,16 @@ O_DEFAULT_VALUE ->
     %S_NUMBER             {% d => d[0].value %}
   | %S_BIT_FORMAT         {% d => d[0].value %}
   | %S_HEXA_FORMAT        {% d => d[0].value %}
-  | S_IDENTIFIER
+  | O_QUOTED_STRING       {% id %}
+
+O_DEFAULT_EXP_VALUE ->
+  S_IDENTIFIER
     ( %S_LPARENS _ %S_NUMBER:? _ %S_RPARENS
       {% d =>
         '(' + (d[2] ? d[2].value : '') + ')'
       %}
     ):?
                           {% d => d[0] + (d[1] || '') %}
-  | O_QUOTED_STRING       {% id %}
 
 # =============================================================
 # String with any of single or double quote.

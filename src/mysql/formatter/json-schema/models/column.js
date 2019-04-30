@@ -30,10 +30,13 @@ class Column {
         column.default = options.default;
       }
 
+      if (options.default_exp) {
+        column.default_exp = options.default_exp;
+      }
+
       if (utils.isString(options.comment) && options.comment.length) {
         column.comment = options.comment;
       }
-
       column.isNullable = options.nullable;
     }
 
@@ -80,6 +83,12 @@ class Column {
      * @type {boolean|string|number}
      */
     this.default = undefined;
+
+    /**
+     * Column default_exp value.
+     * @type {string}
+     */
+    this.default_exp = undefined;
   }
 
   /**
@@ -113,7 +122,9 @@ class Column {
     if (typeof this.default !== 'undefined') {
       json.default = this.default;
     }
-
+    if (typeof this.default_exp !== 'undefined') {
+      json['x-default-exp'] = this.default_exp;
+    }
     return json;
   }
 }

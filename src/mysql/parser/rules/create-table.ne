@@ -245,6 +245,26 @@ O_CREATE_TABLE_CREATE_DEFINITION -> (
 #
 # In docs these are the 'column_definition'.
 
+# 定义特殊的mysql命令
+K_MYSQL_KEYWORDS ->
+  O_QUOTED_STRING {% d => d[0] %}
+  | %K_CURRENT_TIMESTAMP {% d => d[0] %}
+  | %K_CURRENT_DATE {% d => d[0] %}
+  | %K_CURRENT_TIME {% d => d[0] %}
+  | %K_CURRENT_USER {% d => d[0] %}
+  | %K_LOCALTIMESTAMP {% d => d[0] %}
+  | %K_UNIX_TIMESTAMP {% d => d[0] %}
+  | %K_UTC_TIMESTAMP {% d => d[0] %}
+  | %K_CURRENT_TIME {% d => d[0] %}
+  | %K_SYSTEM_TIME {% d => d[0] %}
+  | %K_LOCALTIME {% d => d[0] %}
+  | %K_TIMESTAMP {% d => d[0] %}
+  | %K_UTC_TIME {% d => d[0] %}
+  | %K_DATETIME {% d => d[0] %}
+  | %K_CURTIME {% d => d[0] %}
+  | %K_TIME {% d => d[0] %}
+
+
 O_COLUMN_DEFINITION -> (
     %K_UNSIGNED                           {% d => { return { unsigned: true }} %}
   | %K_ZEROFILL                           {% d => { return { zerofill: true }} %}
@@ -254,6 +274,7 @@ O_COLUMN_DEFINITION -> (
   | %K_NOT __ %K_NULL                     {% d => { return { nullable: false }} %}
   | %K_NULL                               {% d => { return { nullable: true }} %}
   | %K_DEFAULT __ O_DEFAULT_VALUE         {% d => { return { default: d[2] }} %}
+  | %K_DEFAULT __ O_DEFAULT_EXP_VALUE     {% d => { return { default_exp: d[2] }} %}
   | %K_AUTO_INCREMENT                     {% d => { return { autoincrement: true }} %}
   | %K_UNIQUE ( __ %K_KEY ):?             {% d => { return { unique: true }} %}
   | ( %K_PRIMARY __ ):? %K_KEY            {% d => { return { primary: true }} %}
@@ -273,12 +294,13 @@ O_COLUMN_DEFINITION -> (
       | %K_MEMORY {% id %}
       | %K_DEFAULT {% id %}
     )                                     {% d => { return { storage: d[2].value }} %}
-  | %K_ON __ %K_UPDATE __ %K_CURRENT_TIMESTAMP
+  | %K_ON __ %K_UPDATE __ K_MYSQL_KEYWORDS
       (
         _ %S_LPARENS _ %S_NUMBER:? _ %S_RPARENS
         {% d => '(' + (d[3] ? d[3].value : '') + ')' %}
       ):?
                                           {% d => { return { onUpdate: d[4].value + (d[5] || '') }} %}
+  # | %K_ON __ %K_DELETE __ O_QUOTED_STRING   {% d => { return { onDelete: d[4] }} %}
 )
   {% d => {
     return {

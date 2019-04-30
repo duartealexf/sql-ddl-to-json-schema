@@ -146,6 +146,16 @@ class ColumnOptions {
      * @type {string}
      */
     this.action = undefined;
+
+    /**
+     * @type {string}
+     */
+    this.onUpdate = undefined;
+
+    /**
+     * @type {string}
+     */
+    this.default_exp = undefined;
   }
 
   /**
@@ -156,28 +166,36 @@ class ColumnOptions {
   toJSON() {
     const json = {};
 
-    if (utils.isDefined(this.unsigned))      { json.unsigned      = this.unsigned; }
-    if (utils.isDefined(this.zerofill))      { json.zerofill      = this.zerofill; }
-    if (utils.isDefined(this.charset))       { json.charset       = this.charset; }
-    if (utils.isDefined(this.collation))     { json.collation     = this.collation; }
-    if (utils.isDefined(this.nullable))      { json.nullable      = this.nullable; }
-    if (utils.isDefined(this.nullable))      { json.nullable      = this.nullable; }
-    if (utils.isDefined(this.default))       { json.default       = this.default; }
+    if (utils.isDefined(this.unsigned)) { json.unsigned = this.unsigned; }
+    if (utils.isDefined(this.zerofill)) { json.zerofill = this.zerofill; }
+    if (utils.isDefined(this.charset)) { json.charset = this.charset; }
+    if (utils.isDefined(this.collation)) { json.collation = this.collation; }
+    if (utils.isDefined(this.nullable)) { json.nullable = this.nullable; }
+    if (utils.isDefined(this.nullable)) { json.nullable = this.nullable; }
+    if (utils.isDefined(this.default)) { json.default = this.default; }
     if (utils.isDefined(this.autoincrement)) { json.autoincrement = this.autoincrement; }
-    if (utils.isDefined(this.unique))        { json.unique        = this.unique; }
-    if (utils.isDefined(this.primary))       { json.primary       = this.primary; }
-    if (utils.isDefined(this.invisible))     { json.invisible     = this.invisible; }
-    if (utils.isDefined(this.format))        { json.format        = this.format; }
-    if (utils.isDefined(this.storage))       { json.storage       = this.storage; }
-    if (utils.isDefined(this.comment))       { json.comment       = this.comment; }
-    if (utils.isDefined(this.trigger))       { json.trigger       = this.trigger; }
-    if (utils.isDefined(this.action))        { json.action        = this.action; }
+    if (utils.isDefined(this.unique)) { json.unique = this.unique; }
+    if (utils.isDefined(this.primary)) { json.primary = this.primary; }
+    if (utils.isDefined(this.invisible)) { json.invisible = this.invisible; }
+    if (utils.isDefined(this.format)) { json.format = this.format; }
+    if (utils.isDefined(this.storage)) { json.storage = this.storage; }
+    if (utils.isDefined(this.comment)) { json.comment = this.comment; }
+    if (utils.isDefined(this.trigger)) { json.trigger = this.trigger; }
+    if (utils.isDefined(this.action)) { json.action = this.action; }
+    if (utils.isDefined(this.default_exp)) { json.default_exp = this.default_exp; }
 
     /**
      * Change "null" string to null default column value.
      */
     if (utils.isString(json.default) && json.default.toLowerCase() === 'null') {
       json.default = null;
+    }
+    if (utils.isString(this.onUpdate)) {
+      json.default_exp = `${json.default_exp ? json.default_exp : ""} ON UPDATE ${this.onUpdate}`;
+    }
+    if (utils.isDefined(this.default_exp) && ['true', 'false', 'null'].indexOf(this.default_exp.toLowerCase()) > -1) {
+      this.default = json.default = JSON.parse(this.default_exp.toLowerCase());
+      delete json.default_exp;
     }
 
     if (utils.isDefined(this.invisibleWithSystemVersioning)) {

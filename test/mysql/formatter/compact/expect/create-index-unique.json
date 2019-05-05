@@ -621,7 +621,8 @@
         },
         "options": {
           "nullable": true,
-          "default": "CURRENT_TIMESTAMP(6)"
+          "default": "CURRENT_TIMESTAMP(6)",
+          "onUpdate": "CURRENT_TIMESTAMP(6)"
         }
       },
       {

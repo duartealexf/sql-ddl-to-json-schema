@@ -140,12 +140,7 @@ class ColumnOptions {
     /**
      * @type {string}
      */
-    this.trigger = undefined;
-
-    /**
-     * @type {string}
-     */
-    this.action = undefined;
+    this.onUpdate = undefined;
   }
 
   /**
@@ -170,8 +165,7 @@ class ColumnOptions {
     if (utils.isDefined(this.format))        { json.format        = this.format; }
     if (utils.isDefined(this.storage))       { json.storage       = this.storage; }
     if (utils.isDefined(this.comment))       { json.comment       = this.comment; }
-    if (utils.isDefined(this.trigger))       { json.trigger       = this.trigger; }
-    if (utils.isDefined(this.action))        { json.action        = this.action; }
+    if (utils.isDefined(this.onUpdate))      { json.onUpdate      = this.onUpdate; }
 
     /**
      * Change "null" string to null default column value.

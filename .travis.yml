@@ -6,6 +6,7 @@ node_js:
   - "9"
   - "10"
   - "11"
+  - "12"
 script:
   - export NODE_VERSION=$(node --version)
   - nvm install stable

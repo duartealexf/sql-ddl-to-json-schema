@@ -40,6 +40,8 @@ CREATE TABLE pet (
   id BIGINT,
   species VARCHAR(200),
   owner_id MEDIUMINT REFERENCES person (id(10) asc),
+  height_unsigned DECIMAL UNSIGNED,
+  weight_unsigned DECIMAL(4,2) UNSIGNED,
   height DECIMAL,
   weight DECIMAL(4,2),
   status BIT(2),

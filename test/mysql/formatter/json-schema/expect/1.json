@@ -35,14 +35,14 @@
       },
       "height": {
         "type": "number",
-        "minimum": -9999999999,
         "maximum": 9999999999,
+        "minimum": -9999999999,
         "default": null
       },
       "weight": {
         "type": "number",
-        "minimum": -999,
-        "maximum": 999
+        "maximum": 999,
+        "minimum": -999
       },
       "status": {
         "type": "string"
@@ -120,15 +120,25 @@
         "minimum": -8388608,
         "maximum": 8388607
       },
+      "height_unsigned": {
+        "type": "number",
+        "maximum": 9999999999,
+        "minimum": 0
+      },
+      "weight_unsigned": {
+        "type": "number",
+        "maximum": 99.99,
+        "minimum": 0
+      },
       "height": {
         "type": "number",
-        "minimum": -9999999999,
-        "maximum": 9999999999
+        "maximum": 9999999999,
+        "minimum": -9999999999
       },
       "weight": {
         "type": "number",
-        "minimum": -99.99,
-        "maximum": 99.99
+        "maximum": 99.99,
+        "minimum": -99.99
       },
       "status": {
         "type": "string"
@@ -197,8 +207,8 @@
       },
       "coordx": {
         "type": "number",
-        "minimum": -9999.99,
-        "maximum": 9999.99
+        "maximum": 9999.99,
+        "minimum": -9999.99
       },
       "coordy": {
         "type": "number"

@@ -29,3 +29,4 @@ update-notifier-nodemon.json
 /lib/oracle
 coverage.*
 .nyc_output
+.history

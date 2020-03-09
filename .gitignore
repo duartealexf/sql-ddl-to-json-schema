@@ -30,3 +30,5 @@ update-notifier-nodemon.json
 coverage.*
 .nyc_output
 .history
+
+/types

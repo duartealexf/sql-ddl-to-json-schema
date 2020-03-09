@@ -1,0 +1,24 @@
+{
+  "compilerOptions": {
+    "target": "es6",
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "sourceMap": true,
+    "outDir": "lib",
+    "declarationDir": "types",
+    "lib": ["es5", "es6"],
+    "declaration": true,
+    "strict": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "baseUrl": "./src",
+    "paths": {
+      "@typings/*": ["typings/*"],
+      "@shared/*": ["shared/*"],
+      "@mysql/*": ["mysql/*"]
+    }
+  },
+  "include": ["src", "test/example"]
+}

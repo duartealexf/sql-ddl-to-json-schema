@@ -7,7 +7,7 @@ module.exports = {
    * delivers the results from the parser,
    * to be compared to expected value.
    *
-   * @param {string} query Query to be parsed.
+   * @param query Query to be parsed.
    * @returns {any} Parsed result.
    */
   getParsedFormat: query => {
@@ -21,7 +21,7 @@ module.exports = {
    * delivers the results from the parser in compact format,
    * to be compared to expected value.
    *
-   * @param {string} query Query to be parsed.
+   * @param query Query to be parsed.
    * @returns {any} Compact format.
    */
   getCompactFormat: query => {
@@ -35,7 +35,7 @@ module.exports = {
    * delivers the results from the parser in JSON Schema format,
    * to be compared to expected value.
    *
-   * @param {string} query Query to be parsed.
+   * @param query Query to be parsed.
    * @param {JSONSchemaFormatOptions} options Options to be passed to formatter.
    * @returns {any[]} JSON Schema format.
    */

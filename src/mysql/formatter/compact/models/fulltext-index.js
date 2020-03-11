@@ -1,7 +1,7 @@
 /* eslint no-unused-vars: 0 */
 const IndexColumn = require('./index-column');
 const IndexOptions = require('./index-options');
-const Table = require('./table');
+// const Table = require('./table');
 const Column = require('./column');
 
 const utils = require('../../../../shared/utils');

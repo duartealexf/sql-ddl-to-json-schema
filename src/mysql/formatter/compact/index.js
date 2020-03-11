@@ -1,5 +1,5 @@
 /* eslint no-unused-vars: 0 */
-const Table = require('./models/table');
+// const Table = require('./models/table');
 const Database = require('./models/database');
 
 /**

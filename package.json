@@ -1,6 +1,6 @@
 {
   "name": "sql-ddl-to-json-schema",
-  "version": "3.1.2",
+  "version": "3.1.3",
   "description": "Parse and convert SQL DDL statements to a JSON Schema.",
   "keywords": [
     "parse",
@@ -31,7 +31,7 @@
     "nodemon-watch": "nodemon -w lib -w src -w test -e ne,js --ignore lib",
     "coverage": "npm run nyc ava test/**/*.spec.js",
     "test": "ava --color test/**/*.spec.js",
-    "lint": "eslint src tasks test lib",
+    "lint": "eslint src tasks test",
     "prebuild:mysql": "node tasks/mysql/assembly.js && node tasks/mysql/formatters.js",
     "build:mysql": "nearleyc lib/mysql/parser/grammar.ne > lib/mysql/parser/grammar.js",
     "build": "npm run build:mysql",

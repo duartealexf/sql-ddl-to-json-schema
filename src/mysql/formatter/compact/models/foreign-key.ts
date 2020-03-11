@@ -1,28 +1,35 @@
-/* eslint no-unused-vars: 0 */
-const IndexColumn = require('./index-column');
-const ColumnReference = require('./column-reference');
-const Table = require('./table');
-const Column = require('./column');
+import { IndexColumn } from './index-column';
+import { ColumnReference } from './column-reference';
+import { Table } from './table';
+import { Column } from './column';
 
-const utils = require('@shared/utils');
+import { isDefined } from '@shared/utils';
+import { O_CREATE_TABLE_CREATE_DEFINITION, O_CREATE_TABLE_CREATE_DEFINITION_FOREIGN_KEY } from '@mysql/compiled/typings';
+import { ForeignKeyInterface, ClonableInterface, SerializableInterface, IndexColumnInterface, ColumnReferenceInterface } from './typings';
 
 /**
  * Foreign key of a table.
  */
-class ForeignKey {
+export class ForeignKey implements ForeignKeyInterface, ClonableInterface, SerializableInterface {
+  name?: string;
+  columns: IndexColumn[] = [];
+  reference!: ColumnReference;
 
   /**
    * Creates a foreign key from a JSON def.
    *
    * @param json JSON format parsed from SQL.
-   * @returns {ForeignKey} Created foreign key.
    */
-  static fromDef(json) {
-    if (json.id === 'O_CREATE_TABLE_CREATE_DEFINITION') {
-      return ForeignKey.fromObject(json.def.foreignKey);
+  static fromDef(json: O_CREATE_TABLE_CREATE_DEFINITION): ForeignKey {
+    if (json.id !== 'O_CREATE_TABLE_CREATE_DEFINITION') {
+      throw new TypeError(`Unknown json id to build foreign key from: ${json.id}`);
     }
 
-    throw new TypeError(`Unknown json id to build foreign key from: ${json.id}`);
+    if (!isDefined(json.def.foreignKey)) {
+      throw new TypeError(`Statement ${json.id} has undefined foreignKey. Cannot format foreignKey.`);
+    }
+
+    return ForeignKey.fromObject(json.def.foreignKey);
   }
 
   /**
@@ -32,65 +39,41 @@ class ForeignKey {
    * @param json Object containing properties.
    * @returns {ForeignKey} Resulting foreign key.
    */
-  static fromObject(json) {
+  static fromObject(json: O_CREATE_TABLE_CREATE_DEFINITION_FOREIGN_KEY): ForeignKey {
     const foreignKey = new ForeignKey();
+
     foreignKey.columns = json.columns.map(IndexColumn.fromDef);
     foreignKey.reference = ColumnReference.fromDef(json.reference);
 
-    if (json.name)   { foreignKey.name   = json.name; }
+    if (json.name) { foreignKey.name = json.name; }
 
     return foreignKey;
   }
 
   /**
-   * ForeignKey constructor.
-   */
-  constructor() {
-
-    /**
-     * @type {string}
-     */
-    this.name = undefined;
-
-    /**
-     * @type {IndexColumn[]}
-     */
-    this.columns = [];
-
-    /**
-     * @type {ColumnReference}
-     */
-    this.reference = undefined;
-  }
-
-  /**
    * JSON casting of this object calls this method.
-   *
-   * @returns {any} JSON format.
    */
-  toJSON() {
-    const json = {
+  toJSON(): ForeignKeyInterface {
+    const json: ForeignKeyInterface = {
       columns: this.columns.map(c => c.toJSON()),
       reference: this.reference.toJSON()
     };
 
-    if (utils.isDefined(this.name))   { json.name   = this.name; }
+    if (isDefined(this.name)) { json.name = this.name; }
 
     return json;
   }
 
   /**
    * Create a deep clone of this model.
-   *
-   * @returns {ForeignKey} Clone.
    */
-  clone() {
+  clone(): ForeignKey {
     const key = new ForeignKey();
 
     key.columns = this.columns.map(c => c.clone());
     key.reference = this.reference.clone();
 
-    if (utils.isDefined(this.name))   { key.name       = this.name; }
+    if (isDefined(this.name)) { key.name = this.name; }
 
     return key;
   }
@@ -98,26 +81,26 @@ class ForeignKey {
   /**
    * Push an index column to columns array.
    *
-   * @param {IndexColumn} indexColumn Index column to be pushed.
-   * @returns {void}
+   * @param indexColumn Index column to be pushed.
    */
-  pushColumn(indexColumn) {
+  pushColumn(indexColumn: IndexColumn) {
     this.columns.push(indexColumn);
   }
 
   /**
-   * Drops a column from index.
+   * Drops an index column, returning a boolean to whether column was removed.
    *
    * @param name Column name to be dropped.
-   * @returns {boolean} Whether column was removed.
    */
-  dropColumn(name) {
-    let pos;
+  dropColumn(name: string): boolean {
+    let pos = -1;
+
     const found = this.columns.some((c, i) => {
       pos = i;
       return c.column === name;
     });
-    if (!found) { return false; }
+
+    if (!found || pos < 0) { return false; }
 
     const end = this.columns.splice(pos);
     end.shift();
@@ -129,22 +112,18 @@ class ForeignKey {
    * Get the columns in given table which this foreign key's index columns refer to.
    *
    * @param table Table in question.
-   * @returns {Column[]} Found columns.
    */
-  getColumnsFromTable(table) {
-    return table.columns.filter(tableColumn =>
+  getColumnsFromTable(table: Table): Column[] {
+    return table.columns.filter((tableColumn: Column) =>
       this.columns.some(indexColumn => indexColumn.column === tableColumn.name)
     );
   }
 
   /**
-   * Whether the given table has all of this foreign key's owner table columns.
-   *
-   * @param table Table in question.
-   * @returns {boolean} Test result.
+   * Get whether the given table has all of this foreign key's owner table columns.
    */
-  hasAllColumnsFromTable(table) {
-    return table.columns.filter(tableColumn =>
+  hasAllColumnsFromTable(table: Table): boolean {
+    return table.columns.filter((tableColumn: Column) =>
       this.columns.some(indexColumn => indexColumn.column === tableColumn.name)
     ).length === this.columns.length;
   }
@@ -152,14 +131,12 @@ class ForeignKey {
   /**
    * Set size of this index to the size of index's column in given
    * table, if the size of this index is not already set.
-   * @param table Table to search size for.
-   * @returns {void}
    */
-  setIndexSizeFromTable(table) {
+  setIndexSizeFromTable(table: Table) {
     this.columns
-      .filter(i => !utils.isDefined(i.length))
+      .filter(i => !isDefined(i.length))
       .forEach(indexColumn => {
-        const column = table.columns.find(c => c.name === indexColumn.column);
+        const column = table.columns.find((c: Column) => c.name === indexColumn.column);
 
         if (!column) {
           return;
@@ -170,13 +147,10 @@ class ForeignKey {
   }
 
   /**
-   * Whether the given table has all of this foreign key's referenced table columns.
-   *
-   * @param table Referenced table in question.
-   * @returns {boolean} Test result.
+   * Get whether the given table has all of this foreign key's referenced table columns.
    */
-  hasAllColumnsFromRefTable(table) {
-    return table.columns.filter(tableColumn =>
+  hasAllColumnsFromRefTable(table: Table): boolean {
+    return table.columns.filter((tableColumn: Column) =>
       this.reference.columns.some(indexColumn => indexColumn.column === tableColumn.name)
     ).length === this.reference.columns.length;
   }
@@ -185,10 +159,9 @@ class ForeignKey {
    * Get referenced table by this foreign key, from array
    * of given tables. Returns null if no table was found.
    *
-   * @param {Table[]} tables Table array to search.
-   * @returns {Table} Table found or null if no such table was found.
+   * @param tables Table array to search.
    */
-  getReferencedTable(tables) {
+  getReferencedTable(tables: Table[]): Table {
     return tables.find(t => t.name === this.reference.table) || null;
   }
 
@@ -196,10 +169,10 @@ class ForeignKey {
    * Checks and returns whether this foreign key references given table and column.
    *
    * @param table Table to be checked whether there is reference to.
-   * @param {Column} column Column to be checked in given table.
+   * @param column Column to be checked in given table.
    * @returns {boolean} Whether reference exists.
    */
-  referencesTableAndColumn(table, column) {
+  referencesTableAndColumn(table: Table, column: Column): boolean {
     return this.reference.table === table.name && this.reference.columns.some(indexColumn =>
       indexColumn.column === column.name
     );
@@ -209,20 +182,18 @@ class ForeignKey {
    * Checks and returns whether this foreign key references given table.
    *
    * @param table Table to be checked whether there is reference to.
-   * @returns {boolean} Whether reference exists.
    */
-  referencesTable(table) {
+  referencesTable(table: Table): boolean {
     return this.reference.table === table.name;
   }
 
   /**
    * Rename index column name.
    *
-   * @param {Column} column Column being renamed.
+   * @param column Column being renamed.
    * @param newName New column name.
-   * @returns {void}
    */
-  renameColumn(column, newName) {
+  renameColumn(column: Column, newName: string) {
     this.reference.columns.filter(c => c.column === column.name)
       .forEach(c => {
         c.column = newName;
@@ -233,11 +204,8 @@ class ForeignKey {
    * Update referenced table name.
    *
    * @param newName New table name.
-   * @returns {void}
    */
-  updateReferencedTableName(newName) {
+  updateReferencedTableName(newName: string) {
     this.reference.table = newName;
   }
 }
-
-module.exports = ForeignKey;

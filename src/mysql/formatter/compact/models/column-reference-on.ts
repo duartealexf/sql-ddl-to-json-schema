@@ -4,7 +4,7 @@ import { ColumnReferenceOnInterface, SerializableInterface, ClonableInterface } 
 /**
  * Column reference's 'on' triggers of column actions.
  */
-export class ColumnReferenceOn implements ColumnReferenceOnInterface {
+export class ColumnReferenceOn implements ColumnReferenceOnInterface, ClonableInterface, SerializableInterface {
   trigger!: string;
   action!: string;
 

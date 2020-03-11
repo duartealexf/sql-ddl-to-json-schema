@@ -1,11 +1,11 @@
 import { isDefined } from '@shared/utils';
-import { DatatypeInterface } from './typings';
+import { DatatypeInterface, ClonableInterface, SerializableInterface } from './typings';
 import { O_DATATYPE } from '@mysql/compiled/typings';
 
 /**
  * Data type.
  */
-class Datatype implements DatatypeInterface {
+class Datatype implements DatatypeInterface, ClonableInterface, SerializableInterface {
   datatype!: string;
   width?: number;
   digits?: number;
@@ -135,7 +135,6 @@ class Datatype implements DatatypeInterface {
    */
   toJSON(): DatatypeInterface {
     const json: DatatypeInterface = {
-
       datatype: this.datatype
     };
 
@@ -155,14 +154,12 @@ class Datatype implements DatatypeInterface {
   clone(): Datatype {
     const datatype = new Datatype();
 
-    Object.getOwnPropertyNames(this)
-      .map(k => [k, this[k]])
-      .filter(([, v]) => isDefined(v))
-      .forEach(([k, v]) => { datatype[k] = v; });
-
-    if (datatype.values) {
-      datatype.values = datatype.values.slice();
-    }
+    if (isDefined(this.width)) { datatype.width = this.width; }
+    if (isDefined(this.digits)) { datatype.digits = this.digits; }
+    if (isDefined(this.decimals)) { datatype.decimals = this.decimals; }
+    if (isDefined(this.length)) { datatype.length = this.length; }
+    if (isDefined(this.fractional)) { datatype.fractional = this.fractional; }
+    if (isDefined(this.values)) { datatype.values = this.values.slice(); }
 
     return datatype;
   }

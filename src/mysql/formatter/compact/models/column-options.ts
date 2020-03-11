@@ -9,7 +9,7 @@ import {
 /**
  * Options of a table column.
  */
-export class ColumnOptions implements ColumnOptionsInterface {
+export class ColumnOptions implements ColumnOptionsInterface, ClonableInterface, SerializableInterface {
   unsigned?: boolean;
   zerofill?: boolean;
   charset?: string;

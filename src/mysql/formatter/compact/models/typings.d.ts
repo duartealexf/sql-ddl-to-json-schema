@@ -78,9 +78,9 @@ export interface TableOptionsInterface {
 }
 
 export interface FulltextIndexInterface {
-  name: string;
+  name?: string;
   columns: IndexColumnInterface[];
-  options: IndexOptionsInterface;
+  options?: IndexOptionsInterface;
 }
 
 export interface SpatialIndexInterface {
@@ -90,7 +90,7 @@ export interface SpatialIndexInterface {
 }
 
 export interface ForeignKeyInterface {
-  name: string;
+  name?: string;
   columns: IndexColumnInterface[];
   reference: ColumnReferenceInterface;
 }
@@ -116,7 +116,7 @@ export interface PrimaryKeyInterface {
   options?: IndexOptionsInterface;
 }
 
-export interface DatatypeInterface extends ClonableInterface, SerializableInterface {
+export interface DatatypeInterface {
   datatype: string;
   /**
    * Width for integer datatypes.
@@ -144,14 +144,14 @@ export interface DatatypeInterface extends ClonableInterface, SerializableInterf
   values?: string[];
 }
 
-export interface ColumnReferenceInterface extends ClonableInterface, SerializableInterface {
+export interface ColumnReferenceInterface {
   table: string;
   columns?: IndexColumnInterface[];
   match?: string;
   on?: ColumnReferenceOnInterface[];
 }
 
-export interface ColumnOptionsInterface extends ClonableInterface, SerializableInterface {
+export interface ColumnOptionsInterface {
   unsigned?: boolean;
   zerofill?: boolean;
   charset?: string;
@@ -176,7 +176,7 @@ export interface IndexColumnInterface {
   sort: string;
 }
 
-export interface ColumnReferenceOnInterface extends ClonableInterface, SerializableInterface {
+export interface ColumnReferenceOnInterface {
   trigger: string;
   action: string;
 }
@@ -189,7 +189,6 @@ export interface IndexOptionsInterface {
   algorithm: string;
   lock: string;
 }
-
 
 
 

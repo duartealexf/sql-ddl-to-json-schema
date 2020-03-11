@@ -8,11 +8,11 @@ import { P_COLUMN_REFERENCE } from '@mysql/compiled/typings';
 /**
  * Column reference to another column in foreign keys.
  */
-export class ColumnReference implements ColumnReferenceInterface {
+export class ColumnReference implements ColumnReferenceInterface, ClonableInterface, SerializableInterface {
   table!: string;
-  columns?: IndexColumnInterface[];
-  match?: string; 6
-  on?: ColumnReferenceOnInterface[];
+  columns: IndexColumn[] = [];
+  match?: string;
+  on: ColumnReferenceOn[] = [];
 
   /**
    * Creates a column reference from a JSON def.

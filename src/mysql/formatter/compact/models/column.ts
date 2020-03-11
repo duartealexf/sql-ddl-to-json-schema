@@ -15,9 +15,9 @@ import { O_CREATE_TABLE_CREATE_DEFINITION, O_CREATE_TABLE_CREATE_DEFINITION_COLU
  */
 export class Column implements ColumnInterface, ClonableInterface, SerializableInterface {
   name!: string;
-  type!: DatatypeInterface;
-  reference?: ColumnReferenceInterface;
-  options?: ColumnOptionsInterface;
+  type!: Datatype;
+  reference?: ColumnReference;
+  options?: ColumnOptions;
 
   /**
    * Creates a column from a JSON def.

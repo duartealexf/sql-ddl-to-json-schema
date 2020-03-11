@@ -1,3 +1,7 @@
+export interface STATEMENT {
+  id: string
+}
+
 export interface P_DDS {
   id: 'P_DDS';
   def:
@@ -35,7 +39,7 @@ export interface P_CREATE_INDEX {
     index?: P_INDEX_TYPE,
     table: string,
     columns: P_INDEX_COLUMN[],
-    options: O_INDEX_OPTION
+    options: O_INDEX_OPTION[]
   }
 }
 

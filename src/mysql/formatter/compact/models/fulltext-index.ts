@@ -1,32 +1,35 @@
-/* eslint no-unused-vars: 0 */
-const IndexColumn = require('./index-column');
-const IndexOptions = require('./index-options');
-const Table = require('./table');
-const Column = require('./column');
+import { IndexColumn } from './index-column';
+import { IndexOptions } from './index-options';
+import { Table } from './table';
+import { Column } from './column';
 
-const utils = require('@shared/utils');
+import { isDefined } from '@shared/utils';
+import { FulltextIndexInterface, ClonableInterface, SerializableInterface } from './typings';
+import { O_CREATE_TABLE_CREATE_DEFINITION, P_CREATE_INDEX, STATEMENT, O_CREATE_TABLE_CREATE_DEFINITION_FULLTEXT_INDEX } from '@mysql/compiled/typings';
 
 /**
  * Fulltext index of a table.
  */
-class FulltextIndex {
+export class FulltextIndex implements FulltextIndexInterface, ClonableInterface, SerializableInterface{
+  name?: string;
+  columns:IndexColumn[] = [];
+  options:IndexOptions = [];
 
   /**
    * Creates a fulltext index from a JSON def.
    *
    * @param json JSON format parsed from SQL.
-   * @returns {FulltextIndex} Created fulltext index.
    */
-  static fromDef(json) {
+  static fromDef(json: O_CREATE_TABLE_CREATE_DEFINITION | P_CREATE_INDEX): FulltextIndex {
     if (json.id === 'O_CREATE_TABLE_CREATE_DEFINITION') {
-      return FulltextIndex.fromObject(json.def.fulltextIndex);
+      return FulltextIndex.fromObject(json.def.fulltextIndex as O_CREATE_TABLE_CREATE_DEFINITION_FULLTEXT_INDEX);
     }
 
     if (json.id === 'P_CREATE_INDEX') {
       return FulltextIndex.fromObject(json.def);
     }
 
-    throw new TypeError(`Unknown json id to build fulltext index from: ${json.id}`);
+    throw new TypeError(`Unknown json id to build fulltext index from: ${(json as STATEMENT).id}`);
   }
 
   /**
@@ -36,7 +39,7 @@ class FulltextIndex {
    * @param json Object containing properties.
    * @returns {FulltextIndex} Resulting fulltext index.
    */
-  static fromObject(json) {
+  static fromObject(json: O_CREATE_TABLE_CREATE_DEFINITION_FULLTEXT_INDEX | P_CREATE_INDEX["def"]): FulltextIndex {
     const fulltextIndex = new FulltextIndex();
     fulltextIndex.columns = json.columns.map(IndexColumn.fromDef);
 
@@ -50,38 +53,15 @@ class FulltextIndex {
   }
 
   /**
-   * FulltextIndex constructor.
-   */
-  constructor() {
-
-    /**
-     * @type {string}
-     */
-    this.name = undefined;
-
-    /**
-     * @type {IndexColumn[]}
-     */
-    this.columns = [];
-
-    /**
-     * @type {IndexOptions}
-     */
-    this.options = undefined;
-  }
-
-  /**
    * JSON casting of this object calls this method.
-   *
-   * @returns {any} JSON format.
    */
-  toJSON() {
-    const json = {
+  toJSON(): FulltextIndexInterface {
+    const json: FulltextIndexInterface = {
       columns: this.columns.map(c => c.toJSON())
     };
 
-    if (utils.isDefined(this.name))    { json.name    = this.name; }
-    if (utils.isDefined(this.options)) { json.options = this.options.toJSON(); }
+    if (isDefined(this.name)) { json.name = this.name; }
+    if (isDefined(this.options)) { json.options = this.options.toJSON(); }
 
     return json;
   }
@@ -91,34 +71,36 @@ class FulltextIndex {
    *
    * @returns {FulltextIndex} Clone.
    */
-  clone() {
+  clone(): FulltextIndex {
     const index = new FulltextIndex();
 
     index.columns = this.columns.map(c => c.clone());
 
-    if (utils.isDefined(this.name))    { index.name    = this.name; }
-    if (utils.isDefined(this.options)) { index.options = this.options.toJSON(); }
+    if (isDefined(this.name)) { index.name = this.name; }
+    if (isDefined(this.options)) { index.options = this.options.toJSON(); }
 
     return index;
   }
 
   /**
-   * Drops a column from index.
+   * Drops a column from index, returning whether column was removed.
    *
    * @param name Column name to be dropped.
-   * @returns {boolean} Whether column was removed.
    */
-  dropColumn(name) {
-    let pos;
+  dropColumn(name: string): boolean {
+    let pos = -1;
+
     const found = this.columns.some((c, i) => {
       pos = i;
       return c.column === name;
     });
-    if (!found) { return false; }
+
+    if (!found || pos < 0) { return false; }
 
     const end = this.columns.splice(pos);
     end.shift();
     this.columns = this.columns.concat(end);
+
     return true;
   }
 
@@ -127,22 +109,20 @@ class FulltextIndex {
    * fulltext index's index columns refer to.
    *
    * @param table Table in question.
-   * @returns {Column[]} Found columns.
    */
-  getColumnsFromTable(table) {
-    return table.columns.filter(tableColumn =>
+  getColumnsFromTable(table: Table): Column[] {
+    return table.columns.filter((tableColumn: Column) =>
       this.columns.some(indexColumn => indexColumn.column === tableColumn.name)
     );
   }
 
   /**
-   * Whether the given table has all of this fultext index's columns.
+   * Get whether the given table has all of this fultext index's columns.
    *
    * @param table Table in question.
-   * @returns {boolean} Test result.
    */
-  hasAllColumnsFromTable(table) {
-    return table.columns.filter(tableColumn =>
+  hasAllColumnsFromTable(table: Table): boolean {
+    return table.columns.filter((tableColumn: Column) =>
       this.columns.some(indexColumn => indexColumn.column === tableColumn.name)
     ).length === this.columns.length;
   }
@@ -150,16 +130,13 @@ class FulltextIndex {
   /**
    * Rename index column name.
    *
-   * @param {Column} column Column being renamed.
+   * @param column Column being renamed.
    * @param newName New column name.
-   * @returns {void}
    */
-  renameColumn(column, newName) {
+  renameColumn(column: Column, newName: string) {
     this.columns.filter(c => c.column === column.name)
       .forEach(c => {
         c.column = newName;
       });
   }
 }
-
-module.exports = FulltextIndex;

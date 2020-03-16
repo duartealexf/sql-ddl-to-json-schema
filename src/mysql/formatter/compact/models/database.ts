@@ -5,21 +5,23 @@ import { RenameTable } from './rules/rename-table';
 import { DropTable } from './rules/drop-table';
 import { DropIndex } from './rules/drop-index';
 
-import { DatabaseInterface, TableInterface } from './typings';
+import { Table } from './table';
+
+import { DatabaseInterface } from './typings';
 import { P_DDS } from '@mysql/compiled/typings';
 
 /**
  * Database, which contains DDS array as its json.def.
  * It is a formatter for MAIN parser rule.
  */
-class Database implements DatabaseInterface {
+export class Database implements DatabaseInterface {
   ddsCollection: P_DDS[] = [];
-  tables: TableInterface[] = [];
+  tables: Table[] = [];
 
   /**
    * Get tables from parsed DDS array.
    */
-  getTables(): TableInterface[] {
+  getTables(): Table[] {
     return this.tables;
   }
 
@@ -28,7 +30,7 @@ class Database implements DatabaseInterface {
    *
    * @param tables Updated tables.
    */
-  setTables(tables: TableInterface[]) {
+  setTables(tables: Table[]) {
     this.tables = tables;
   }
 
@@ -37,7 +39,7 @@ class Database implements DatabaseInterface {
    *
    * @param name Table name.
    */
-  getTable(name: string): TableInterface | undefined {
+  getTable(name: string): Table | undefined {
     return this.tables.find(t => t.name === name);
   }
 
@@ -46,7 +48,7 @@ class Database implements DatabaseInterface {
    *
    * @param table Table to be added.
    */
-  pushTable(table: TableInterface) {
+  pushTable(table: Table) {
     /**
      * Do not add table with same name.
      */
@@ -116,5 +118,3 @@ class Database implements DatabaseInterface {
     });
   }
 }
-
-module.exports = Database;

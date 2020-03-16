@@ -5,7 +5,7 @@ import { O_DATATYPE } from '@mysql/compiled/typings';
 /**
  * Data type.
  */
-class Datatype implements DatatypeInterface, ClonableInterface, SerializableInterface {
+export class Datatype implements DatatypeInterface, ClonableInterface, SerializableInterface {
   datatype!: string;
   width?: number;
   digits?: number;
@@ -164,5 +164,3 @@ class Datatype implements DatatypeInterface, ClonableInterface, SerializableInte
     return datatype;
   }
 }
-
-module.exports = Datatype;

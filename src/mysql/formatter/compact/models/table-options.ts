@@ -1,17 +1,50 @@
-const utils = require('@shared/utils');
+import { isString, isDefined } from '@shared/utils';
+import { TableOptionsInterface, ClonableInterface, SerializableInterface } from './typings';
+import { P_CREATE_TABLE_OPTIONS, O_CREATE_TABLE_OPTION } from '@mysql/compiled/typings';
 
 /**
  * Class to represent table options as parsed from SQL.
  */
-class TableOptions {
+export class TableOptions
+  implements TableOptionsInterface, ClonableInterface, SerializableInterface {
+  autoincrement?: number;
+  avgRowLength?: number;
+  charset?: string;
+  checksum?: number;
+  collation?: string;
+  comment?: string;
+  compression?: string;
+  connection?: string;
+  dataDirectory?: string;
+  indexDirectory?: string;
+  delayKeyWrite?: number;
+  encryption?: string;
+  encryptionKeyId?: number;
+  ietfQuotes?: string;
+  engine?: string;
+  insertMethod?: string;
+  keyBlockSize?: number;
+  maxRows?: number;
+  minRows?: number;
+  packKeys?: string | number;
+  pageChecksum?: number;
+  password?: string;
+  rowFormat?: string;
+  statsAutoRecalc?: string | number;
+  statsPersistent?: string | number;
+  statsSamplePages?: string | number;
+  transactional?: number;
+  withSystemVersioning?: boolean;
+  tablespaceName?: string;
+  tablespaceStorage?: string;
+  union?: string[];
 
   /**
    * Creates table options from a JSON def.
    *
    * @param json JSON format parsed from SQL.
-   * @returns {TableOptions} Created table options.
    */
-  static fromDef(json) {
+  static fromDef(json: P_CREATE_TABLE_OPTIONS): TableOptions {
     if (json.id === 'P_CREATE_TABLE_OPTIONS') {
       return TableOptions.fromArray(json.def);
     }
@@ -23,41 +56,115 @@ class TableOptions {
    * Creates table options instance from an array of options.
    *
    * @param options JSON format parsed from SQL.
-   * @returns {TableOptions} Created table options.
    */
-  static fromArray(options) {
+  static fromArray(options: O_CREATE_TABLE_OPTION[]): TableOptions {
     const tableOptions = new TableOptions();
 
-    options.forEach(option => {
-      Object.getOwnPropertyNames(option.def)
-        .map(k => [k, option.def[k]])
-        .forEach(([k, v]) => { tableOptions[k] = v; });
-    });
-
-    [
-      'charset',
-      'collation',
-      'compression',
-      'encryption',
-      'ietfQuotes',
-      'insertMethod',
-      'rowFormat',
-      'tablespaceStorage',
-    ]
-      .forEach(prop => {
-        if (tableOptions[prop]) {
-          tableOptions[prop] = tableOptions[prop].toLowerCase();
+    options.forEach((option) => {
+      if (isDefined(option.def.autoincrement)) {
+        tableOptions.autoincrement = option.def.autoincrement;
+      }
+      if (isDefined(option.def.avgRowLength)) {
+        tableOptions.avgRowLength = option.def.avgRowLength;
+      }
+      if (isDefined(option.def.charset)) {
+        tableOptions.charset = option.def.charset.toLowerCase();
+      }
+      if (isDefined(option.def.checksum)) {
+        tableOptions.checksum = option.def.checksum;
+      }
+      if (isDefined(option.def.collation)) {
+        tableOptions.collation = option.def.collation.toLowerCase();
+      }
+      if (isDefined(option.def.comment)) {
+        tableOptions.comment = option.def.comment;
+      }
+      if (isDefined(option.def.compression)) {
+        tableOptions.compression = option.def.compression.toLowerCase();
+      }
+      if (isDefined(option.def.connection)) {
+        tableOptions.connection = option.def.connection;
+      }
+      if (isDefined(option.def.dataDirectory)) {
+        tableOptions.dataDirectory = option.def.dataDirectory;
+      }
+      if (isDefined(option.def.indexDirectory)) {
+        tableOptions.indexDirectory = option.def.indexDirectory;
+      }
+      if (isDefined(option.def.delayKeyWrite)) {
+        tableOptions.delayKeyWrite = option.def.delayKeyWrite;
+      }
+      if (isDefined(option.def.encryption)) {
+        tableOptions.encryption = option.def.encryption.toLowerCase();
+      }
+      if (isDefined(option.def.encryptionKeyId)) {
+        tableOptions.encryptionKeyId = option.def.encryptionKeyId;
+      }
+      if (isDefined(option.def.ietfQuotes)) {
+        tableOptions.ietfQuotes = option.def.ietfQuotes.toLowerCase();
+      }
+      if (isDefined(option.def.engine)) {
+        tableOptions.engine = option.def.engine;
+      }
+      if (isDefined(option.def.insertMethod)) {
+        tableOptions.insertMethod = option.def.insertMethod.toLowerCase();
+      }
+      if (isDefined(option.def.keyBlockSize)) {
+        tableOptions.keyBlockSize = option.def.keyBlockSize;
+      }
+      if (isDefined(option.def.maxRows)) {
+        tableOptions.maxRows = option.def.maxRows;
+      }
+      if (isDefined(option.def.minRows)) {
+        tableOptions.minRows = option.def.minRows;
+      }
+      if (isDefined(option.def.packKeys)) {
+        if (isString(option.def.packKeys)) {
+          tableOptions.packKeys = option.def.packKeys.toLowerCase();
+        } else {
+          tableOptions.packKeys = option.def.packKeys;
         }
-      });
-
-    [
-      'packKeys',
-      'statsAutoRecalc',
-      'statsPersistent',
-      'statsSamplePages',
-    ].forEach(prop => {
-      if (tableOptions[prop] && utils.isString(tableOptions[prop])) {
-        tableOptions[prop] = tableOptions[prop].toLowerCase();
+      }
+      if (isDefined(option.def.pageChecksum)) {
+        tableOptions.pageChecksum = option.def.pageChecksum;
+      }
+      if (isDefined(option.def.password)) {
+        tableOptions.password = option.def.password;
+      }
+      if (isDefined(option.def.rowFormat)) {
+        tableOptions.rowFormat = option.def.rowFormat.toLowerCase();
+      }
+      if (isDefined(option.def.statsAutoRecalc)) {
+        if (isString(option.def.statsAutoRecalc)) {
+          tableOptions.statsAutoRecalc = option.def.statsAutoRecalc.toLowerCase();
+        } else {
+          tableOptions.statsAutoRecalc = option.def.statsAutoRecalc;
+        }
+      }
+      if (isDefined(option.def.statsPersistent)) {
+        if (isString(option.def.statsPersistent)) {
+          tableOptions.statsPersistent = option.def.statsPersistent.toLowerCase();
+        } else {
+          tableOptions.statsPersistent = option.def.statsPersistent;
+        }
+      }
+      if (isDefined(option.def.statsSamplePages)) {
+        tableOptions.statsSamplePages = option.def.statsSamplePages.toLowerCase();
+      }
+      if (isDefined(option.def.transactional)) {
+        tableOptions.transactional = option.def.transactional;
+      }
+      if (isDefined(option.def.withSystemVersioning)) {
+        tableOptions.withSystemVersioning = option.def.withSystemVersioning;
+      }
+      if (isDefined(option.def.tablespaceName)) {
+        tableOptions.tablespaceName = option.def.tablespaceName;
+      }
+      if (isDefined(option.def.tablespaceStorage)) {
+        tableOptions.tablespaceStorage = option.def.tablespaceStorage.toLowerCase();
+      }
+      if (isDefined(option.def.union)) {
+        tableOptions.union = option.def.union;
       }
     });
 
@@ -65,224 +172,207 @@ class TableOptions {
   }
 
   /**
-   * TableOptions constructor.
-   */
-  constructor() {
-
-    /**
-     * @type {number}
-     */
-    this.autoincrement = undefined;
-
-    /**
-     * @type {number}
-     */
-    this.avgRowLength = undefined;
-
-    /**
-     * @type {string}
-     */
-    this.charset = undefined;
-
-    /**
-     * @type {number}
-     */
-    this.checksum = undefined;
-
-    /**
-     * @type {string}
-     */
-    this.collation = undefined;
-
-    /**
-     * @type {string}
-     */
-    this.comment = undefined;
-
-    /**
-     * @type {string}
-     */
-    this.compression = undefined;
-
-    /**
-     * @type {string}
-     */
-    this.connection = undefined;
-
-    /**
-     * @type {string}
-     */
-    this.dataDirectory = undefined;
-
-    /**
-     * @type {string}
-     */
-    this.indexDirectory = undefined;
-
-    /**
-     * @type {number}
-     */
-    this.delayKeyWrite = undefined;
-
-    /**
-     * @type {string}
-     */
-    this.encryption = undefined;
-
-    /**
-     * @type {number}
-     */
-    this.encryptionKeyId = undefined;
-
-    /**
-     * @type {string}
-     */
-    this.ietfQuotes = undefined;
-
-    /**
-     * @type {string}
-     */
-    this.engine = undefined;
-
-    /**
-     * @type {string}
-     */
-    this.insertMethod = undefined;
-
-    /**
-     * @type {number}
-     */
-    this.keyBlockSize = undefined;
-
-    /**
-     * @type {number}
-     */
-    this.maxRows = undefined;
-
-    /**
-     * @type {number}
-     */
-    this.minRows = undefined;
-
-    /**
-     * @type {number|string}
-     */
-    this.packKeys = undefined;
-
-    /**
-     * @type {number}
-     */
-    this.pageChecksum = undefined;
-
-    /**
-     * @type {string}
-     */
-    this.password = undefined;
-
-    /**
-     * @type {string}
-     */
-    this.rowFormat = undefined;
-
-    /**
-     * @type {number|string}
-     */
-    this.statsAutoRecalc = undefined;
-
-    /**
-     * @type {number|string}
-     */
-    this.statsPersistent = undefined;
-
-    /**
-     * @type {number|string}
-     */
-    this.statsSamplePages = undefined;
-
-    /**
-     * @type {number}
-     */
-    this.transactional = undefined;
-
-    /**
-     * @type {boolean}
-     */
-    this.withSystemVersioning = undefined;
-
-    /**
-     * @type {string}
-     */
-    this.tablespaceName = undefined;
-
-    /**
-     * @type {string}
-     */
-    this.tablespaceStorage = undefined;
-
-    /**
-     * @type {string[]}
-     */
-    this.union = undefined;
-  }
-
-  /**
    * JSON casting of this object calls this method.
    *
-   * @returns {any} JSON format.
    */
-  toJSON() {
-    const json = {};
+  toJSON(): TableOptionsInterface {
+    const json: TableOptionsInterface = {};
 
-    if (utils.isDefined(this.autoincrement))        { json.autoincrement        = this.autoincrement; }
-    if (utils.isDefined(this.avgRowLength))         { json.avgRowLength         = this.avgRowLength; }
-    if (utils.isDefined(this.charset))              { json.charset              = this.charset; }
-    if (utils.isDefined(this.checksum))             { json.checksum             = this.checksum; }
-    if (utils.isDefined(this.collation))            { json.collation            = this.collation; }
-    if (utils.isDefined(this.comment))              { json.comment              = this.comment; }
-    if (utils.isDefined(this.compression))          { json.compression          = this.compression; }
-    if (utils.isDefined(this.connection))           { json.connection           = this.connection; }
-    if (utils.isDefined(this.dataDirectory))        { json.dataDirectory        = this.dataDirectory; }
-    if (utils.isDefined(this.indexDirectory))       { json.indexDirectory       = this.indexDirectory; }
-    if (utils.isDefined(this.delayKeyWrite))        { json.delayKeyWrite        = this.delayKeyWrite; }
-    if (utils.isDefined(this.encryption))           { json.encryption           = this.encryption; }
-    if (utils.isDefined(this.encryptionKeyId))      { json.encryptionKeyId      = this.encryptionKeyId; }
-    if (utils.isDefined(this.ietfQuotes))           { json.ietfQuotes           = this.ietfQuotes; }
-    if (utils.isDefined(this.engine))               { json.engine               = this.engine; }
-    if (utils.isDefined(this.insertMethod))         { json.insertMethod         = this.insertMethod; }
-    if (utils.isDefined(this.keyBlockSize))         { json.keyBlockSize         = this.keyBlockSize; }
-    if (utils.isDefined(this.maxRows))              { json.maxRows              = this.maxRows; }
-    if (utils.isDefined(this.minRows))              { json.minRows              = this.minRows; }
-    if (utils.isDefined(this.packKeys))             { json.packKeys             = this.packKeys; }
-    if (utils.isDefined(this.pageChecksum))         { json.pageChecksum         = this.pageChecksum; }
-    if (utils.isDefined(this.password))             { json.password             = this.password; }
-    if (utils.isDefined(this.rowFormat))            { json.rowFormat            = this.rowFormat; }
-    if (utils.isDefined(this.statsAutoRecalc))      { json.statsAutoRecalc      = this.statsAutoRecalc; }
-    if (utils.isDefined(this.statsPersistent))      { json.statsPersistent      = this.statsPersistent; }
-    if (utils.isDefined(this.statsSamplePages))     { json.statsSamplePages     = this.statsSamplePages; }
-    if (utils.isDefined(this.transactional))        { json.transactional        = this.transactional; }
-    if (utils.isDefined(this.withSystemVersioning)) { json.withSystemVersioning = this.withSystemVersioning; }
-    if (utils.isDefined(this.tablespaceName))       { json.tablespaceName       = this.tablespaceName; }
-    if (utils.isDefined(this.tablespaceStorage))    { json.tablespaceStorage    = this.tablespaceStorage; }
-    if (utils.isDefined(this.union))                { json.union                = this.union; }
+    if (isDefined(this.autoincrement)) {
+      json.autoincrement = this.autoincrement;
+    }
+    if (isDefined(this.avgRowLength)) {
+      json.avgRowLength = this.avgRowLength;
+    }
+    if (isDefined(this.charset)) {
+      json.charset = this.charset;
+    }
+    if (isDefined(this.checksum)) {
+      json.checksum = this.checksum;
+    }
+    if (isDefined(this.collation)) {
+      json.collation = this.collation;
+    }
+    if (isDefined(this.comment)) {
+      json.comment = this.comment;
+    }
+    if (isDefined(this.compression)) {
+      json.compression = this.compression;
+    }
+    if (isDefined(this.connection)) {
+      json.connection = this.connection;
+    }
+    if (isDefined(this.dataDirectory)) {
+      json.dataDirectory = this.dataDirectory;
+    }
+    if (isDefined(this.indexDirectory)) {
+      json.indexDirectory = this.indexDirectory;
+    }
+    if (isDefined(this.delayKeyWrite)) {
+      json.delayKeyWrite = this.delayKeyWrite;
+    }
+    if (isDefined(this.encryption)) {
+      json.encryption = this.encryption;
+    }
+    if (isDefined(this.encryptionKeyId)) {
+      json.encryptionKeyId = this.encryptionKeyId;
+    }
+    if (isDefined(this.ietfQuotes)) {
+      json.ietfQuotes = this.ietfQuotes;
+    }
+    if (isDefined(this.engine)) {
+      json.engine = this.engine;
+    }
+    if (isDefined(this.insertMethod)) {
+      json.insertMethod = this.insertMethod;
+    }
+    if (isDefined(this.keyBlockSize)) {
+      json.keyBlockSize = this.keyBlockSize;
+    }
+    if (isDefined(this.maxRows)) {
+      json.maxRows = this.maxRows;
+    }
+    if (isDefined(this.minRows)) {
+      json.minRows = this.minRows;
+    }
+    if (isDefined(this.packKeys)) {
+      json.packKeys = this.packKeys;
+    }
+    if (isDefined(this.pageChecksum)) {
+      json.pageChecksum = this.pageChecksum;
+    }
+    if (isDefined(this.password)) {
+      json.password = this.password;
+    }
+    if (isDefined(this.rowFormat)) {
+      json.rowFormat = this.rowFormat;
+    }
+    if (isDefined(this.statsAutoRecalc)) {
+      json.statsAutoRecalc = this.statsAutoRecalc;
+    }
+    if (isDefined(this.statsPersistent)) {
+      json.statsPersistent = this.statsPersistent;
+    }
+    if (isDefined(this.statsSamplePages)) {
+      json.statsSamplePages = this.statsSamplePages;
+    }
+    if (isDefined(this.transactional)) {
+      json.transactional = this.transactional;
+    }
+    if (isDefined(this.withSystemVersioning)) {
+      json.withSystemVersioning = this.withSystemVersioning;
+    }
+    if (isDefined(this.tablespaceName)) {
+      json.tablespaceName = this.tablespaceName;
+    }
+    if (isDefined(this.tablespaceStorage)) {
+      json.tablespaceStorage = this.tablespaceStorage;
+    }
+    if (isDefined(this.union)) {
+      json.union = this.union;
+    }
 
     return json;
   }
 
   /**
    * Create a deep clone of this model.
-   *
-   * @returns {TableOptions} Clone.
    */
-  clone() {
+  clone(): TableOptions {
     const options = new TableOptions();
 
-    Object.getOwnPropertyNames(this)
-      .map(k => [k, this[k]])
-      .filter(([, v]) => utils.isDefined(v))
-      .forEach(([k, v]) => { options[k] = v; });
-
-    if (utils.isDefined(options.union)) {
-      options.union = options.union.slice();
+    if (isDefined(this.autoincrement)) {
+      options.autoincrement = this.autoincrement;
+    }
+    if (isDefined(this.avgRowLength)) {
+      options.avgRowLength = this.avgRowLength;
+    }
+    if (isDefined(this.charset)) {
+      options.charset = this.charset;
+    }
+    if (isDefined(this.checksum)) {
+      options.checksum = this.checksum;
+    }
+    if (isDefined(this.collation)) {
+      options.collation = this.collation;
+    }
+    if (isDefined(this.comment)) {
+      options.comment = this.comment;
+    }
+    if (isDefined(this.compression)) {
+      options.compression = this.compression;
+    }
+    if (isDefined(this.connection)) {
+      options.connection = this.connection;
+    }
+    if (isDefined(this.dataDirectory)) {
+      options.dataDirectory = this.dataDirectory;
+    }
+    if (isDefined(this.indexDirectory)) {
+      options.indexDirectory = this.indexDirectory;
+    }
+    if (isDefined(this.delayKeyWrite)) {
+      options.delayKeyWrite = this.delayKeyWrite;
+    }
+    if (isDefined(this.encryption)) {
+      options.encryption = this.encryption;
+    }
+    if (isDefined(this.encryptionKeyId)) {
+      options.encryptionKeyId = this.encryptionKeyId;
+    }
+    if (isDefined(this.ietfQuotes)) {
+      options.ietfQuotes = this.ietfQuotes;
+    }
+    if (isDefined(this.engine)) {
+      options.engine = this.engine;
+    }
+    if (isDefined(this.insertMethod)) {
+      options.insertMethod = this.insertMethod;
+    }
+    if (isDefined(this.keyBlockSize)) {
+      options.keyBlockSize = this.keyBlockSize;
+    }
+    if (isDefined(this.maxRows)) {
+      options.maxRows = this.maxRows;
+    }
+    if (isDefined(this.minRows)) {
+      options.minRows = this.minRows;
+    }
+    if (isDefined(this.packKeys)) {
+      options.packKeys = this.packKeys;
+    }
+    if (isDefined(this.pageChecksum)) {
+      options.pageChecksum = this.pageChecksum;
+    }
+    if (isDefined(this.password)) {
+      options.password = this.password;
+    }
+    if (isDefined(this.rowFormat)) {
+      options.rowFormat = this.rowFormat;
+    }
+    if (isDefined(this.statsAutoRecalc)) {
+      options.statsAutoRecalc = this.statsAutoRecalc;
+    }
+    if (isDefined(this.statsPersistent)) {
+      options.statsPersistent = this.statsPersistent;
+    }
+    if (isDefined(this.statsSamplePages)) {
+      options.statsSamplePages = this.statsSamplePages;
+    }
+    if (isDefined(this.transactional)) {
+      options.transactional = this.transactional;
+    }
+    if (isDefined(this.withSystemVersioning)) {
+      options.withSystemVersioning = this.withSystemVersioning;
+    }
+    if (isDefined(this.tablespaceName)) {
+      options.tablespaceName = this.tablespaceName;
+    }
+    if (isDefined(this.tablespaceStorage)) {
+      options.tablespaceStorage = this.tablespaceStorage;
+    }
+    if (isDefined(this.union)) {
+      options.union = this.union.slice();
     }
 
     return options;
@@ -291,17 +381,100 @@ class TableOptions {
   /**
    * Merge this option instance with another one.
    * Common properties of this instance are overwritten.
-   *
-   * @param {TableOptions} options JSON format parsed from SQL.
-   * @returns {void}
    */
-  mergeWith(options) {
-    const target = this;
-    Object.getOwnPropertyNames(options)
-      .map(k => [k, options[k]])
-      .filter(([, v]) => utils.isDefined(v))
-      .forEach(([k, v]) => { target[k] = v; });
+  mergeWith(options: TableOptions) {
+    if (isDefined(options.autoincrement)) {
+      this.autoincrement = options.autoincrement;
+    }
+    if (isDefined(options.avgRowLength)) {
+      this.avgRowLength = options.avgRowLength;
+    }
+    if (isDefined(options.charset)) {
+      this.charset = options.charset;
+    }
+    if (isDefined(options.checksum)) {
+      this.checksum = options.checksum;
+    }
+    if (isDefined(options.collation)) {
+      this.collation = options.collation;
+    }
+    if (isDefined(options.comment)) {
+      this.comment = options.comment;
+    }
+    if (isDefined(options.compression)) {
+      this.compression = options.compression;
+    }
+    if (isDefined(options.connection)) {
+      this.connection = options.connection;
+    }
+    if (isDefined(options.dataDirectory)) {
+      this.dataDirectory = options.dataDirectory;
+    }
+    if (isDefined(options.indexDirectory)) {
+      this.indexDirectory = options.indexDirectory;
+    }
+    if (isDefined(options.delayKeyWrite)) {
+      this.delayKeyWrite = options.delayKeyWrite;
+    }
+    if (isDefined(options.encryption)) {
+      this.encryption = options.encryption;
+    }
+    if (isDefined(options.encryptionKeyId)) {
+      this.encryptionKeyId = options.encryptionKeyId;
+    }
+    if (isDefined(options.ietfQuotes)) {
+      this.ietfQuotes = options.ietfQuotes;
+    }
+    if (isDefined(options.engine)) {
+      this.engine = options.engine;
+    }
+    if (isDefined(options.insertMethod)) {
+      this.insertMethod = options.insertMethod;
+    }
+    if (isDefined(options.keyBlockSize)) {
+      this.keyBlockSize = options.keyBlockSize;
+    }
+    if (isDefined(options.maxRows)) {
+      this.maxRows = options.maxRows;
+    }
+    if (isDefined(options.minRows)) {
+      this.minRows = options.minRows;
+    }
+    if (isDefined(options.packKeys)) {
+      this.packKeys = options.packKeys;
+    }
+    if (isDefined(options.pageChecksum)) {
+      this.pageChecksum = options.pageChecksum;
+    }
+    if (isDefined(options.password)) {
+      this.password = options.password;
+    }
+    if (isDefined(options.rowFormat)) {
+      this.rowFormat = options.rowFormat;
+    }
+    if (isDefined(options.statsAutoRecalc)) {
+      this.statsAutoRecalc = options.statsAutoRecalc;
+    }
+    if (isDefined(options.statsPersistent)) {
+      this.statsPersistent = options.statsPersistent;
+    }
+    if (isDefined(options.statsSamplePages)) {
+      this.statsSamplePages = options.statsSamplePages;
+    }
+    if (isDefined(options.transactional)) {
+      this.transactional = options.transactional;
+    }
+    if (isDefined(options.withSystemVersioning)) {
+      this.withSystemVersioning = options.withSystemVersioning;
+    }
+    if (isDefined(options.tablespaceName)) {
+      this.tablespaceName = options.tablespaceName;
+    }
+    if (isDefined(options.tablespaceStorage)) {
+      this.tablespaceStorage = options.tablespaceStorage;
+    }
+    if (isDefined(options.union)) {
+      this.union = options.union.slice();
+    }
   }
 }
-
-module.exports = TableOptions;

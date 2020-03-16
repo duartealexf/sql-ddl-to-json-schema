@@ -17,23 +17,19 @@ export interface SerializableInterface {
 export interface DatabaseInterface {
   ddsCollection: P_DDS[];
   tables: TableInterface[];
-  getTables(): TableInterface[];
-  setTables(tables: TableInterface[]): void;
-  getTable(name: string): TableInterface | undefined;
-  pushTable(table: TableInterface): void;
 }
 
 export interface TableInterface {
-  database: DatabaseInterface;
+  database?: DatabaseInterface;
   name: string;
-  columns: ColumnInterface[];
-  options: TableOptionsInterface;
-  fulltextIndexes: FulltextIndexInterface[];
-  spatialIndexes: SpatialIndexInterface[];
-  foreignKeys: ForeignKeyInterface[];
-  uniqueKeys: UniqueKeyInterface[];
-  indexes: IndexInterface[];
-  primaryKey: PrimaryKeyInterface;
+  columns?: ColumnInterface[];
+  options?: TableOptionsInterface;
+  fulltextIndexes?: FulltextIndexInterface[];
+  spatialIndexes?: SpatialIndexInterface[];
+  foreignKeys?: ForeignKeyInterface[];
+  uniqueKeys?: UniqueKeyInterface[];
+  indexes?: IndexInterface[];
+  primaryKey?: PrimaryKeyInterface;
 }
 
 export interface ColumnInterface {
@@ -44,37 +40,37 @@ export interface ColumnInterface {
 }
 
 export interface TableOptionsInterface {
-  autoincrement: number;
-  avgRowLength: number;
-  charset: string;
-  checksum: number;
-  collation: string;
-  comment: string;
-  compression: string;
-  connection: string;
-  dataDirectory: string;
-  indexDirectory: string;
-  delayKeyWrite: number;
-  encryption: string;
-  encryptionKeyId: number;
-  ietfQuotes: string;
-  engine: string;
-  insertMethod: string;
-  keyBlockSize: number;
-  maxRows: number;
-  minRows: number;
-  packKeys: number | string;
-  pageChecksum: number;
-  password: string;
-  rowFormat: string;
-  statsAutoRecalc: number | string;
-  statsPersistent: number | string;
-  statsSamplePages: number | string;
-  transactional: number;
-  withSystemVersioning: boolean;
-  tablespaceName: string;
-  tablespaceStorage: string;
-  union: string[];
+  autoincrement?: number;
+  avgRowLength?: number;
+  charset?: string;
+  checksum?: number;
+  collation?: string;
+  comment?: string;
+  compression?: string;
+  connection?: string;
+  dataDirectory?: string;
+  indexDirectory?: string;
+  delayKeyWrite?: number;
+  encryption?: string;
+  encryptionKeyId?: number;
+  ietfQuotes?: string;
+  engine?: string;
+  insertMethod?: string;
+  keyBlockSize?: number;
+  maxRows?: number;
+  minRows?: number;
+  packKeys?: number | string;
+  pageChecksum?: number;
+  password?: string;
+  rowFormat?: string;
+  statsAutoRecalc?: number | string;
+  statsPersistent?: number | string;
+  statsSamplePages?: number | string;
+  transactional?: number;
+  withSystemVersioning?: boolean;
+  tablespaceName?: string;
+  tablespaceStorage?: string;
+  union?: string[];
 }
 
 export interface FulltextIndexInterface {
@@ -84,9 +80,9 @@ export interface FulltextIndexInterface {
 }
 
 export interface SpatialIndexInterface {
-  name: string;
+  name?: string;
   columns: IndexColumnInterface[];
-  options: IndexOptionsInterface;
+  options?: IndexOptionsInterface;
 }
 
 export interface ForeignKeyInterface {
@@ -96,17 +92,17 @@ export interface ForeignKeyInterface {
 }
 
 export interface UniqueKeyInterface {
-  name: string;
-  indexType: string;
+  name?: string;
+  indexType?: string;
   columns: IndexColumnInterface[];
-  options: IndexOptionsInterface;
+  options?: IndexOptionsInterface;
 }
 
 export interface IndexInterface {
-  name: string;
-  indexType: string;
+  name?: string;
+  indexType?: string;
   columns: IndexColumnInterface[];
-  options: IndexOptionsInterface;
+  options?: IndexOptionsInterface;
 }
 
 export interface PrimaryKeyInterface {
@@ -171,9 +167,9 @@ export interface ColumnOptionsInterface {
 }
 
 export interface IndexColumnInterface {
-  column: string;
-  length: number;
-  sort: string;
+  column?: string;
+  length?: number;
+  sort?: string;
 }
 
 export interface ColumnReferenceOnInterface {
@@ -182,12 +178,12 @@ export interface ColumnReferenceOnInterface {
 }
 
 export interface IndexOptionsInterface {
-  keyBlockSize: number;
-  indexType: string;
-  parser: string;
-  comment: string;
-  algorithm: string;
-  lock: string;
+  keyBlockSize?: number;
+  indexType?: string;
+  parser?: string;
+  comment?: string;
+  algorithm?: string;
+  lock?: string;
 }
 
 

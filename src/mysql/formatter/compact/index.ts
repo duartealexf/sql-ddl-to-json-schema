@@ -1,29 +1,28 @@
-import Database from './models/database';
+import { Database } from './models/database';
+import { P_MAIN } from '@mysql/compiled/typings';
 
 /**
  * Formatter for parsed JSON. Provides a compact JSON
  * format with array of tables parsed from SQL.
  */
 class CompactFormatter {
-
   /**
    * Formats given JSON parsed from SQL to a compact
    * format containing array of tables.
    *
    * @param json Parsed JSON format.
-   * @returns {any[]} Compact format.
    */
-  static format(json) {
-
+  static format(json: P_MAIN): any[] {
     if (json.id !== 'MAIN') {
-      throw new TypeError('Invalid JSON format provided for CompactFormatter. ' +
-        'Please provide JSON from root element, containing { id: MAIN }.'
+      throw new TypeError(
+        'Invalid JSON format provided for CompactFormatter. ' +
+          'Please provide JSON from root element, containing { id: MAIN }.',
       );
     }
 
     const database = new Database();
     database.parseDdsCollection(json.def);
-    return database.getTables().map(t => t.toJSON());
+    return database.getTables().map((t) => t.toJSON());
   }
 }
 

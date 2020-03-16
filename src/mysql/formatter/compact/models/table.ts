@@ -1,5 +1,4 @@
-import { TableInterface } from "../typings";
-
+import { Database } from './database';
 import { Column } from './column';
 import { FulltextIndex } from './fulltext-index';
 import { SpatialIndex } from './spatial-index';
@@ -9,24 +8,33 @@ import { UniqueKey } from './unique-key';
 import { Index } from './index';
 import { TableOptions } from './table-options';
 
-import { isDefined } from '@shared/utils';
-import { DatabaseInterface, ColumnInterface, TableOptionsInterface, FulltextIndexInterface, SpatialIndexInterface, ForeignKeyInterface, UniqueKeyInterface, IndexInterface, PrimaryKeyInterface } from "./typings";
-import { O_CREATE_TABLE_CREATE_DEFINITION, P_CREATE_TABLE_COMMON, P_CREATE_TABLE_LIKE } from "@mysql/compiled/typings";
+import { isDefined, isArray } from '@shared/utils';
+import { TableInterface } from './typings';
+
+import {
+  P_CREATE_TABLE_COMMON,
+  P_CREATE_TABLE_LIKE,
+  O_ALTER_TABLE_SPEC_ADD_COLUMN,
+} from '@mysql/compiled/typings';
+
+type Position = O_ALTER_TABLE_SPEC_ADD_COLUMN['position'];
+type IndexPropertyKey = 'uniqueKeys' | 'indexes' | 'fulltextIndexes' | 'spatialIndexes';
+type IndexPropertyValue = UniqueKey[] | Index[] | FulltextIndex[] | SpatialIndex[];
 
 /**
  * Class to represent a table as parsed from SQL.
  */
-class Table implements TableInterface {
-  database!: DatabaseInterface;
+export class Table implements TableInterface {
+  database!: Database;
   name!: string;
-  columns?: ColumnInterface[];
-  options?: TableOptionsInterface;
-  fulltextIndexes?: FulltextIndexInterface[];
-  spatialIndexes?: SpatialIndexInterface[];
-  foreignKeys?: ForeignKeyInterface[];
-  uniqueKeys?: UniqueKeyInterface[];
-  indexes?: IndexInterface[];
-  primaryKey?: PrimaryKeyInterface;
+  columns?: Column[];
+  options?: TableOptions;
+  fulltextIndexes?: FulltextIndex[];
+  spatialIndexes?: SpatialIndex[];
+  foreignKeys?: ForeignKey[];
+  uniqueKeys?: UniqueKey[];
+  indexes?: Index[];
+  primaryKey?: PrimaryKey;
 
   /**
    * Creates a table from a JSON def.
@@ -34,7 +42,7 @@ class Table implements TableInterface {
    * @param json JSON format parsed from SQL.
    * @param database Database to assign table to.
    */
-  static fromCommonDef(json: P_CREATE_TABLE_COMMON, database: DatabaseInterface): Table {
+  static fromCommonDef(json: P_CREATE_TABLE_COMMON, database: Database): Table {
     if (json.id !== 'P_CREATE_TABLE_COMMON') {
       throw new TypeError(`Unknown json id to build table from: ${json.id}`);
     }
@@ -50,66 +58,43 @@ class Table implements TableInterface {
 
     const createDefinitions = def.columnsDef.def;
 
-    createDefinitions.forEach((createDefinition: O_CREATE_TABLE_CREATE_DEFINITION) => {
-
+    createDefinitions.forEach((createDefinition) => {
       /**
        * If table create definition is about adding a column.
        */
       if (isDefined(createDefinition.def.column)) {
         const column = Column.fromDef(createDefinition);
         table.addColumn(column);
-      }
-
-      /**
-       * If table create definition is about adding a fulltext index.
-       */
-      else if (isDefined(createDefinition.def.fulltextIndex)) {
-        table.pushFulltextIndex(
-          FulltextIndex.fromDef(createDefinition)
-        );
-      }
-
-      /**
-       * If table create definition is about adding a spatial index.
-       */
-      else if (isDefined(createDefinition.def.spatialIndex)) {
-        table.pushSpatialIndex(
-          SpatialIndex.fromDef(createDefinition)
-        );
-      }
-
-      /**
-       * If table create definition is about adding a foreign key.
-       */
-      else if (isDefined(createDefinition.def.foreignKey)) {
-        table.pushForeignKey(
-          ForeignKey.fromDef(createDefinition)
-        );
-      }
-
-      /**
-       * If table create definition is about adding an unique key.
-       */
-      else if (isDefined(createDefinition.def.uniqueKey)) {
-        table.pushUniqueKey(
-          UniqueKey.fromDef(createDefinition)
-        );
-      }
-
-      /**
-       * If table create definition is about adding a primary key.
-       */
-      else if (isDefined(createDefinition.def.primaryKey)) {
+      } else if (isDefined(createDefinition.def.fulltextIndex)) {
+        /**
+         * If table create definition is about adding a fulltext index.
+         */
+        table.pushFulltextIndex(FulltextIndex.fromDef(createDefinition));
+      } else if (isDefined(createDefinition.def.spatialIndex)) {
+        /**
+         * If table create definition is about adding a spatial index.
+         */
+        table.pushSpatialIndex(SpatialIndex.fromDef(createDefinition));
+      } else if (isDefined(createDefinition.def.foreignKey)) {
+        /**
+         * If table create definition is about adding a foreign key.
+         */
+        table.pushForeignKey(ForeignKey.fromDef(createDefinition));
+      } else if (isDefined(createDefinition.def.uniqueKey)) {
+        /**
+         * If table create definition is about adding an unique key.
+         */
+        table.pushUniqueKey(UniqueKey.fromDef(createDefinition));
+      } else if (isDefined(createDefinition.def.primaryKey)) {
+        /**
+         * If table create definition is about adding a primary key.
+         */
         table.setPrimaryKey(PrimaryKey.fromDef(createDefinition));
-      }
-
-      /**
-       * If table create definition is about adding an index.
-       */
-      else if (isDefined(createDefinition.def.index)) {
-        table.pushIndex(
-          Index.fromDef(createDefinition)
-        );
+      } else if (isDefined(createDefinition.def.index)) {
+        /**
+         * If table create definition is about adding an index.
+         */
+        table.pushIndex(Index.fromDef(createDefinition));
       }
     });
 
@@ -133,7 +118,7 @@ class Table implements TableInterface {
       tables = [];
     }
 
-    const alikeTable = tables.find(t => t.name === def.like);
+    const alikeTable = tables.find((t) => t.name === def.like);
 
     if (!alikeTable) {
       // throw new Error(`Trying to "CREATE TABLE LIKE" unexisting table ${def.like}.`);
@@ -147,36 +132,47 @@ class Table implements TableInterface {
 
   /**
    * JSON casting of this object calls this method.
-   *
-   * @returns {any} JSON format.
    */
-  toJSON() {
-    const json = {
+  toJSON(): TableInterface {
+    const json: TableInterface = {
       name: this.name,
-      columns: this.columns.map(c => c.toJSON())
+      columns: (this.columns || []).map((c) => c.toJSON()),
     };
 
-    if (isDefined(this.primaryKey)) { json.primaryKey = this.primaryKey.toJSON(); }
-    if (this.foreignKeys.length) { json.foreignKeys = this.foreignKeys.map(k => k.toJSON()); }
-    if (this.uniqueKeys.length) { json.uniqueKeys = this.uniqueKeys.map(k => k.toJSON()); }
-    if (this.indexes.length) { json.indexes = this.indexes.map(i => i.toJSON()); }
-    if (this.spatialIndexes.length) { json.spatialIndexes = this.spatialIndexes.map(i => i.toJSON()); }
-    if (this.fulltextIndexes.length) { json.fulltextIndexes = this.fulltextIndexes.map(i => i.toJSON()); }
-    if (isDefined(this.options)) { json.options = this.options.toJSON(); }
+    if (isDefined(this.primaryKey)) {
+      json.primaryKey = this.primaryKey.toJSON();
+    }
+    if (isDefined(this.foreignKeys) && this.foreignKeys.length) {
+      json.foreignKeys = this.foreignKeys.map((k) => k.toJSON());
+    }
+    if (isDefined(this.uniqueKeys) && this.uniqueKeys.length) {
+      json.uniqueKeys = this.uniqueKeys.map((k) => k.toJSON());
+    }
+    if (isDefined(this.indexes) && this.indexes.length) {
+      json.indexes = this.indexes.map((i) => i.toJSON());
+    }
+    if (isDefined(this.spatialIndexes) && this.spatialIndexes.length) {
+      json.spatialIndexes = this.spatialIndexes.map((i) => i.toJSON());
+    }
+    if (isDefined(this.fulltextIndexes) && this.fulltextIndexes.length) {
+      json.fulltextIndexes = this.fulltextIndexes.map((i) => i.toJSON());
+    }
+    if (isDefined(this.options)) {
+      json.options = this.options.toJSON();
+    }
 
     return json;
   }
 
   /**
    * Create a deep clone of this model.
-   *
-   * @returns {Table} Clone.
    */
-  clone() {
+  clone(): Table {
     const table = new Table();
+
     table.database = this.database;
     table.name = this.name;
-    table.columns = this.columns.map(c => c.clone());
+    table.columns = (this.columns || []).map((c) => c.clone());
 
     if (isDefined(this.options)) {
       table.options = this.options.clone();
@@ -186,24 +182,24 @@ class Table implements TableInterface {
       table.primaryKey = this.primaryKey.clone();
     }
 
-    if (this.uniqueKeys.length) {
-      table.uniqueKeys = this.uniqueKeys.map(key => key.clone());
+    if (isDefined(this.uniqueKeys) && this.uniqueKeys.length) {
+      table.uniqueKeys = this.uniqueKeys.map((key) => key.clone());
     }
 
-    if (this.foreignKeys.length) {
-      table.foreignKeys = this.foreignKeys.map(key => key.clone());
+    if (isDefined(this.foreignKeys) && this.foreignKeys.length) {
+      table.foreignKeys = this.foreignKeys.map((key) => key.clone());
     }
 
-    if (this.fulltextIndexes.length) {
-      table.fulltextIndexes = this.fulltextIndexes.map(index => index.clone());
+    if (isDefined(this.fulltextIndexes) && this.fulltextIndexes.length) {
+      table.fulltextIndexes = this.fulltextIndexes.map((index) => index.clone());
     }
 
-    if (this.spatialIndexes.length) {
-      table.spatialIndexes = this.spatialIndexes.map(index => index.clone());
+    if (isDefined(this.spatialIndexes) && this.spatialIndexes.length) {
+      table.spatialIndexes = this.spatialIndexes.map((index) => index.clone());
     }
 
-    if (this.indexes.length) {
-      table.indexes = this.indexes.map(index => index.clone());
+    if (isDefined(this.indexes) && this.indexes.length) {
+      table.indexes = this.indexes.map((index) => index.clone());
     }
 
     return table;
@@ -213,29 +209,24 @@ class Table implements TableInterface {
    * Get table with given name.
    *
    * @param name Table name.
-   * @returns {Table} Table result.
    */
-  getTable(name) {
+  getTable(name: string): Table | undefined {
     return this.database.getTable(name);
   }
 
   /**
    * Get tables from database.
-   *
-   * @returns {Table[]} Database tables.
    */
   getTables() {
     return this.database.getTables();
   }
 
-
   /**
    * Setter for database.
    *
    * @param database Database instance.
-   * @returns {void}
    */
-  setDatabase(database) {
+  setDatabase(database: Database) {
     this.database = database;
   }
 
@@ -243,12 +234,12 @@ class Table implements TableInterface {
    * Rename table.
    *
    * @param newName New table name.
-   * @returns {void}
    */
-  renameTo(newName) {
-    this.database.tables.forEach(t => {
-      t.foreignKeys.filter(k => k.referencesTable(this))
-        .forEach(k => k.updateReferencedTableName(newName));
+  renameTo(newName: string) {
+    this.database.tables.forEach((t) => {
+      (t.foreignKeys || [])
+        .filter((k) => k.referencesTable(this))
+        .forEach((k) => k.updateReferencedTableName(newName));
     });
 
     this.name = newName;
@@ -257,11 +248,10 @@ class Table implements TableInterface {
   /**
    * Add a column to columns array, in a given position.
    *
-   * @param {Column} column Column to be added.
-   * @param {{after: string}} position Position object.
-   * @returns {void}
+   * @param column Column to be added.
+   * @param position Position object.
    */
-  addColumn(column, position = null) {
+  addColumn(column: Column, position?: Position) {
     /**
      * Should not add column with same name.
      */
@@ -274,9 +264,9 @@ class Table implements TableInterface {
      * columns, as there should be only one.
      */
     if (
-      column.options
-      && column.options.autoincrement
-      && this.columns.some(c => c.options && c.options.autoincrement)
+      column.options &&
+      column.options.autoincrement &&
+      (this.columns || []).some((c) => c.options && c.options.autoincrement)
     ) {
       return;
     }
@@ -285,18 +275,20 @@ class Table implements TableInterface {
      * Do not allow adding column with primary
      * key if table already has primary key.
      */
-    if (this.primaryKey && column.options.primary) {
+    if (this.primaryKey && column.options && column.options.primary) {
       return;
     }
 
-    if (position === null) {
+    if (!isArray(this.columns)) {
+      this.columns = [];
+    }
+
+    if (!isDefined(position)) {
       this.columns.push(column);
-    }
-    else if (position.after === null) {
+    } else if (!position.after) {
       this.columns.unshift(column);
-    }
-    else {
-      const refColumn = this.columns.find(c => c.name === position.after);
+    } else {
+      const refColumn = this.columns.find((c) => c.name === position.after);
 
       if (!refColumn) {
         return;
@@ -315,17 +307,11 @@ class Table implements TableInterface {
    * Extract column keys like PrimaryKey, ForeignKey,
    * UniqueKey and add them to this table instance.
    *
-   * @param {Column} column Column to be extracted.
-   * @returns {void}
+   * @param column Column to be extracted.
    */
-  extractColumnKeys(column) {
-    /** @type {PrimaryKey} */
+  extractColumnKeys(column: Column) {
     const primaryKey = column.extractPrimaryKey();
-
-    /** @type {ForeignKey} */
     const foreignKey = column.extractForeignKey();
-
-    /** @type {UniqueKey} */
     const uniqueKey = column.extractUniqueKey();
 
     if (primaryKey) {
@@ -342,19 +328,21 @@ class Table implements TableInterface {
   }
 
   /**
-   * Move a column to a given position.
+   * Move a column to a given position. Returns whether operation was successful.
    *
-   * @param {Column} column One of this table columns.
-   * @param {{after: string}} position Position object.
-   * @returns {boolean} Whether operation was successful.
+   * @param column One of this table columns.
+   * @param position Position object.
    */
-  moveColumn(column, position) {
+  moveColumn(column: Column, position: Position): boolean {
+    if (!isDefined(this.columns) || !isDefined(position)) {
+      return false;
+    }
 
     if (!this.columns.includes(column)) {
       return false;
     }
 
-    let refColumn;
+    let refColumn: Column | undefined;
 
     /**
      * First of all, validate if 'after' column, if any, exists.
@@ -373,8 +361,11 @@ class Table implements TableInterface {
 
     if (position.after === null) {
       this.columns.unshift(column);
-    }
-    else {
+    } else {
+      if (!refColumn) {
+        return false;
+      }
+
       pos = this.columns.indexOf(refColumn);
       end = this.columns.splice(pos + 1);
       this.columns.push(column);
@@ -385,32 +376,30 @@ class Table implements TableInterface {
   }
 
   /**
-   * Rename column and references to it.
+   * Rename column and references to it. Returns whether operation was successful.
    *
-   * @param {Column} column Column being renamed.
+   * @param column Column being renamed.
    * @param newName New name of column.
-   * @returns {boolean} Whether operation was successful.
    */
-  renameColumn(column, newName) {
-
-    if (!this.columns.includes(column)) {
+  renameColumn(column: Column, newName: string) {
+    if (!(this.columns || []).includes(column)) {
       return false;
     }
 
     /**
      * Rename references to column.
-     * TODO: create typings definitions.
      */
-    this.database.tables.forEach(t => {
-      t.foreignKeys.filter(k => k.referencesTable(this))
-        .forEach(k => k.renameColumn(column, newName));
+    this.getTables().forEach((table) => {
+      (table.foreignKeys || [])
+        .filter((k) => k.referencesTable(this))
+        .forEach((k) => k.renameColumn(column, newName));
     });
 
-    this.fulltextIndexes.forEach(i => i.renameColumn(column, newName));
-    this.spatialIndexes.forEach(i => i.renameColumn(column, newName));
-    this.indexes.forEach(i => i.renameColumn(column, newName));
+    (this.fulltextIndexes || []).forEach((i) => i.renameColumn(column, newName));
+    (this.spatialIndexes || []).forEach((i) => i.renameColumn(column, newName));
+    (this.indexes || []).forEach((i) => i.renameColumn(column, newName));
 
-    this.uniqueKeys.forEach(k => k.renameColumn(column, newName));
+    (this.uniqueKeys || []).forEach((k) => k.renameColumn(column, newName));
 
     if (this.primaryKey) {
       this.primaryKey.renameColumn(column, newName);
@@ -424,47 +413,45 @@ class Table implements TableInterface {
   /**
    * Get column position object.
    *
-   * @param {Column} column Column.
-   * @returns {{after: string}} Column position object.
+   * @param column Column.
    */
-  getColumnPosition(column) {
-    const index = this.columns.indexOf(column);
+  getColumnPosition(column: Column): Position {
+    const index = (this.columns || []).indexOf(column);
 
     /**
      * First column.
      */
     if (index === 0) {
-      return { after: null };
-    }
-    /**
-     * Last column.
-     */
-    else if (index + 1 === this.columns.length) {
-      return null;
-    }
-    /**
-     * Somewhere in the middle.
-     */
-    else {
-      const refColumn = this.columns[index - 1];
+      return { after: undefined };
+    } else if (index + 1 === (this.columns || []).length) {
+      /**
+       * Last column.
+       */
+      return;
+    } else {
+      /**
+       * Somewhere in the middle.
+       */
+      const refColumn = (this.columns || [])[index - 1];
       return { after: refColumn.name };
     }
   }
 
   /**
    * Drops table's primary key.
-   *
-   * @returns {void}
    */
   dropPrimaryKey() {
+    if (!this.primaryKey) {
+      return;
+    }
+
+    const tableColumns = this.primaryKey.getColumnsFromTable(this);
 
     /**
      * Should not drop primary key if pk column has autoincrement.
      * https://github.com/duartealexf/sql-ddl-to-json-schema/issues/14
      */
-    const tableColumns = this.primaryKey.getColumnsFromTable(this);
-
-    if (tableColumns.some(c => c.options && c.options.autoincrement)) {
+    if (tableColumns.some((c) => c.options && c.options.autoincrement)) {
       return;
     }
 
@@ -474,21 +461,23 @@ class Table implements TableInterface {
   /**
    * Drops a column from table.
    *
-   * @param {Column} column Column to be dropped.
-   * @returns {boolean} Whether operation was successful.
+   * @param column Column to be dropped.
    */
-  dropColumn(column) {
-
+  dropColumn(column: Column) {
     /**
      * Validate whether there is a reference to given column.
      * https://github.com/duartealexf/sql-ddl-to-json-schema/issues/12
      */
 
-    const hasReference = this.getTables().some(t =>
-      t.foreignKeys.some(k => k.referencesTableAndColumn(this, column))
+    const hasReference = this.getTables().some((t) =>
+      (t.foreignKeys || []).some((k) => k.referencesTableAndColumn(this, column)),
     );
 
     if (hasReference) {
+      return;
+    }
+
+    if (!isDefined(this.columns)) {
       return;
     }
 
@@ -512,31 +501,31 @@ class Table implements TableInterface {
      * https://github.com/duartealexf/sql-ddl-to-json-schema/issues/8
      */
 
-    this.fulltextIndexes.forEach(index => {
+    (this.fulltextIndexes || []).forEach((index) => {
       if (index.dropColumn(column.name) && !index.columns.length) {
         this.dropIndex(index);
       }
     });
 
-    this.spatialIndexes.forEach(index => {
+    (this.spatialIndexes || []).forEach((index) => {
       if (index.dropColumn(column.name) && !index.columns.length) {
         this.dropIndex(index);
       }
     });
 
-    this.indexes.forEach(index => {
+    (this.indexes || []).forEach((index) => {
       if (index.dropColumn(column.name) && !index.columns.length) {
         this.dropIndex(index);
       }
     });
 
-    this.uniqueKeys.forEach(key => {
+    (this.uniqueKeys || []).forEach((key) => {
       if (key.dropColumn(column.name) && !key.columns.length) {
         this.dropIndex(key);
       }
     });
 
-    this.foreignKeys.forEach(key => {
+    (this.foreignKeys || []).forEach((key) => {
       if (key.dropColumn(column.name) && !key.columns.length) {
         this.dropForeignKey(key);
       }
@@ -552,24 +541,37 @@ class Table implements TableInterface {
   /**
    * Drops an index from table.
    *
-   * @param {UniqueKey|Index|FulltextIndex|SpatialIndex} index Index to be dropped.
-   * @returns {void}
+   * @param index Index to be dropped.
    */
-  dropIndex(index) {
+  dropIndex(index: UniqueKey | Index | FulltextIndex | SpatialIndex) {
+    if (!isDefined(index.name)) {
+      return;
+    }
+
     const type = this.getIndexType(index.name);
-    const pos = this[type].indexOf(index);
-    const end = this[type].splice(pos);
+
+    if (!isDefined(type) || !isDefined(this[type])) {
+      return;
+    }
+
+    const indexes: IndexPropertyValue = this[type] as IndexPropertyValue;
+
+    const pos = indexes.indexOf(index as any);
+    const end = indexes.splice(pos);
     end.shift();
-    this[type] = this[type].concat(end);
+    (this[type] as IndexPropertyValue) = indexes.concat(end as any);
   }
 
   /**
    * Drops a foreign key from table.
    *
-   * @param {ForeignKey} foreignKey Foreign key to be dropped.
-   * @returns {void}
+   * @param foreignKey Foreign key to be dropped.
    */
-  dropForeignKey(foreignKey) {
+  dropForeignKey(foreignKey: ForeignKey) {
+    if (!isDefined(this.foreignKeys)) {
+      return;
+    }
+
     const pos = this.foreignKeys.indexOf(foreignKey);
     const end = this.foreignKeys.splice(pos);
     end.shift();
@@ -580,9 +582,8 @@ class Table implements TableInterface {
    * Get index by name.
    *
    * @param name Index name.
-   * @returns {UniqueKey|Index|FulltextIndex|SpatialIndex} Found index.
    */
-  getIndex(name) {
+  getIndex(name: string) {
     const type = this.getIndexType(name);
 
     if (!type) {
@@ -590,23 +591,24 @@ class Table implements TableInterface {
       return;
     }
 
-    return this[type].find(i => i.name === name);
+    const indexes: IndexPropertyValue = this[type] as IndexPropertyValue;
+
+    if (!isArray(indexes)) {
+      return;
+    }
+
+    return (indexes as any[]).find((index: any) => index.name === name);
   }
 
   /**
    * Get which index array is storing a given index.
    *
    * @param name Index name.
-   * @returns {string} Index type.
    */
-  getIndexType(name) {
-    const type = [
-      'uniqueKeys',
-      'indexes',
-      'fulltextIndexes',
-      'spatialIndexes'
-    ].find(array => {
-      return this[array].some(i => i.name === name);
+  getIndexType(name: string) {
+    const props: IndexPropertyKey[] = ['uniqueKeys', 'indexes', 'fulltextIndexes', 'spatialIndexes'];
+    const type = props.find((prop) => {
+      return (this[prop] || []).some((i: UniqueKey | Index | FulltextIndex | SpatialIndex) => i.name === name);
     });
 
     return type;
@@ -616,40 +618,35 @@ class Table implements TableInterface {
    * Get column by name.
    *
    * @param name Column name.
-   * @returns {Column} Column found.
    */
-  getColumn(name) {
-    return this.columns.find(c => c.name === name);
+  getColumn(name: string): Column | undefined {
+    return (this.columns || []).find((c) => c.name === name);
   }
 
   /**
    * Get foreign key by name.
    *
    * @param name Foreign key name.
-   * @returns {ForeignKey} Foreign key found.
    */
-  getForeignKey(name) {
-    return this.foreignKeys.find(k => k.name === name);
+  getForeignKey(name: string): ForeignKey | undefined {
+    return (this.foreignKeys || []).find((k) => k.name === name);
   }
 
   /**
    * Whether there is a foreign key with given name in table.
    *
    * @param name Foreign key name.
-   * @returns {boolean} Whether key exists.
    */
-  hasForeignKey(name) {
-    return this.foreignKeys.some(k => k.name === name);
+  hasForeignKey(name: string): boolean {
+    return (this.foreignKeys || []).some((k) => k.name === name);
   }
 
   /**
    * Setter for table's primary key.
    *
-   * @param {PrimaryKey} primaryKey Primary key.
-   * @returns {void}
+   * @param primaryKey Primary key.
    */
-  setPrimaryKey(primaryKey) {
-
+  setPrimaryKey(primaryKey: PrimaryKey) {
     /**
      * Should not add primary key over another one.
      */
@@ -667,11 +664,19 @@ class Table implements TableInterface {
     /**
      * Make necessary changes in columns.
      */
-    primaryKey.columns
-      .forEach(indexCol => {
-        const column = this.columns.find(c => c.name === indexCol.column);
-        column.options.nullable = false;
-      });
+    primaryKey.columns.forEach((indexCol) => {
+      if (!indexCol.column) {
+        return;
+      }
+
+      const column = this.getColumn(indexCol.column);
+
+      if (!column || !column.options) {
+        return;
+      }
+
+      column.options.nullable = false;
+    });
 
     this.primaryKey = primaryKey;
   }
@@ -679,11 +684,9 @@ class Table implements TableInterface {
   /**
    * Push a fulltext index to fulltextIndexes array.
    *
-   * @param {FulltextIndex} fulltextIndex Index to be pushed.
-   * @returns {void}
+   * @param fulltextIndex Index to be pushed.
    */
-  pushFulltextIndex(fulltextIndex) {
-
+  pushFulltextIndex(fulltextIndex: FulltextIndex) {
     /**
      * Should not add index or key with same name.
      * https://github.com/duartealexf/sql-ddl-to-json-schema/issues/15
@@ -699,17 +702,19 @@ class Table implements TableInterface {
       return;
     }
 
+    if (!isDefined(this.fulltextIndexes)) {
+      this.fulltextIndexes = [];
+    }
+
     this.fulltextIndexes.push(fulltextIndex);
   }
 
   /**
    * Push a spatial index to spatialIndexes array.
    *
-   * @param {SpatialIndex} spatialIndex Index to be pushed.
-   * @returns {void}
+   * @param spatialIndex Index to be pushed.
    */
-  pushSpatialIndex(spatialIndex) {
-
+  pushSpatialIndex(spatialIndex: SpatialIndex) {
     /**
      * Should not add index or key with same name.
      * https://github.com/duartealexf/sql-ddl-to-json-schema/issues/15
@@ -725,17 +730,19 @@ class Table implements TableInterface {
       return;
     }
 
+    if (!isDefined(this.spatialIndexes)) {
+      this.spatialIndexes = [];
+    }
+
     this.spatialIndexes.push(spatialIndex);
   }
 
   /**
    * Push an unique key to uniqueKeys array.
    *
-   * @param {UniqueKey} uniqueKey UniqueKey to be pushed.
-   * @returns {void}
+   * @param uniqueKey UniqueKey to be pushed.
    */
-  pushUniqueKey(uniqueKey) {
-
+  pushUniqueKey(uniqueKey: UniqueKey) {
     /**
      * Should not add index or key with same name.
      * https://github.com/duartealexf/sql-ddl-to-json-schema/issues/15
@@ -759,17 +766,19 @@ class Table implements TableInterface {
      */
     uniqueKey.setIndexSizeFromTable(this);
 
+    if (!isDefined(this.uniqueKeys)) {
+      this.uniqueKeys = [];
+    }
+
     this.uniqueKeys.push(uniqueKey);
   }
 
   /**
    * Push a foreign key to foreignKeys array.
    *
-   * @param {ForeignKey} foreignKey ForeignKey to be pushed.
-   * @returns {void}
+   * @param foreignKey ForeignKey to be pushed.
    */
-  pushForeignKey(foreignKey) {
-
+  pushForeignKey(foreignKey: ForeignKey) {
     /**
      * Should not add index or key with same name.
      * https://github.com/duartealexf/sql-ddl-to-json-schema/issues/15
@@ -810,17 +819,19 @@ class Table implements TableInterface {
      */
     foreignKey.setIndexSizeFromTable(this);
 
+    if (!isDefined(this.foreignKeys)) {
+      this.foreignKeys = [];
+    }
+
     this.foreignKeys.push(foreignKey);
   }
 
   /**
    * Push an index to indexes array.
    *
-   * @param {Index} index Index to be pushed.
-   * @returns {void}
+   * @param index Index to be pushed.
    */
-  pushIndex(index) {
-
+  pushIndex(index: Index) {
     /**
      * Should not add index or key with same name.
      * https://github.com/duartealexf/sql-ddl-to-json-schema/issues/15
@@ -844,9 +855,10 @@ class Table implements TableInterface {
      */
     index.setIndexSizeFromTable(this);
 
+    if (!isDefined(this.indexes)) {
+      this.indexes = [];
+    }
 
     this.indexes.push(index);
   }
 }
-
-module.exports = Table;

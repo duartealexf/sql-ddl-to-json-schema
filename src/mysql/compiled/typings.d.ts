@@ -2,6 +2,11 @@ export interface STATEMENT {
   id: string
 }
 
+export interface P_MAIN {
+  id: 'MAIN',
+  def: P_DDS[]
+}
+
 export interface P_DDS {
   id: 'P_DDS';
   def:

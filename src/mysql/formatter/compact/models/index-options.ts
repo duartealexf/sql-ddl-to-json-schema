@@ -1,101 +1,97 @@
-const utils = require('@shared/utils');
+import { isDefined } from '@shared/utils';
+import { IndexOptionsInterface, ClonableInterface, SerializableInterface } from './typings';
+import { O_INDEX_OPTION } from '@mysql/compiled/typings';
 
 /**
  * Table index options.
  */
-class IndexOptions {
+export class IndexOptions
+  implements IndexOptionsInterface, ClonableInterface, SerializableInterface {
+  keyBlockSize?: number;
+  indexType?: string;
+  parser?: string;
+  comment?: string;
+  algorithm?: string;
+  lock?: string;
 
   /**
    * Creates index options instance from an array of options.
    *
    * @param options JSON format parsed from SQL.
-   * @returns {IndexOptions} Created index options.
    */
-  static fromArray(options) {
+  static fromArray(options: O_INDEX_OPTION[]): IndexOptions {
     const indexOptions = new IndexOptions();
 
-    options.forEach(option => {
-      Object.getOwnPropertyNames(option.def)
-        .map(k => [k, option.def[k]])
-        .forEach(([k, v]) => { indexOptions[k] = v; });
+    options.forEach((option) => {
+      if (isDefined(option.def.comment)) {
+        indexOptions.comment = option.def.comment.toLowerCase();
+      }
+      if (isDefined(option.def.indexType)) {
+        indexOptions.indexType = option.def.indexType.def.toLowerCase();
+      }
+      if (isDefined(option.def.keyBlockSize)) {
+        indexOptions.keyBlockSize = option.def.keyBlockSize;
+      }
+      if (isDefined(option.def.parser)) {
+        indexOptions.parser = option.def.parser.toLowerCase();
+      }
     });
-
-    if (indexOptions.indexType) {
-      indexOptions.indexType = indexOptions.indexType.def.toLowerCase();
-    }
-
-    if (indexOptions.algorithm) { indexOptions.algorithm = indexOptions.algorithm.toLowerCase(); }
-    if (indexOptions.lock)      { indexOptions.lock      = indexOptions.lock.toLowerCase(); }
 
     return indexOptions;
   }
 
   /**
-   * IndexOptions constructor.
-   */
-  constructor() {
-
-    /**
-     * @type {number}
-     */
-    this.keyBlockSize = undefined;
-
-    /**
-     * @type {string}
-     */
-    this.indexType = undefined;
-
-    /**
-     * @type {string}
-     */
-    this.parser = undefined;
-
-    /**
-     * @type {string}
-     */
-    this.comment = undefined;
-
-    /**
-     * @type {string}
-     */
-    this.algorithm = undefined;
-
-    /**
-     * @type {string}
-     */
-    this.lock = undefined;
-  }
-
-  /**
    * JSON casting of this object calls this method.
-   *
-   * @returns {any} JSON format.
    */
-  toJSON() {
-    const json = {};
+  toJSON(): IndexOptionsInterface {
+    const json: IndexOptionsInterface = {};
 
-    if (utils.isDefined(this.keyBlockSize)) { json.keyBlockSize = this.keyBlockSize; }
-    if (utils.isDefined(this.indexType))    { json.indexType    = this.indexType; }
-    if (utils.isDefined(this.algorithm))    { json.algorithm    = this.algorithm; }
-    if (utils.isDefined(this.comment))      { json.comment      = this.comment; }
-    if (utils.isDefined(this.parser))       { json.parser       = this.parser; }
-    if (utils.isDefined(this.lock))         { json.lock         = this.lock; }
+    if (isDefined(this.keyBlockSize)) {
+      json.keyBlockSize = this.keyBlockSize;
+    }
+    if (isDefined(this.indexType)) {
+      json.indexType = this.indexType;
+    }
+    if (isDefined(this.algorithm)) {
+      json.algorithm = this.algorithm;
+    }
+    if (isDefined(this.comment)) {
+      json.comment = this.comment;
+    }
+    if (isDefined(this.parser)) {
+      json.parser = this.parser;
+    }
+    if (isDefined(this.lock)) {
+      json.lock = this.lock;
+    }
 
     return json;
   }
 
   /**
    * Create a deep clone of this model.
-   *
-   * @returns {IndexOptions} Clone.
    */
-  clone() {
+  clone(): IndexOptions {
     const options = new IndexOptions();
 
-    Object.getOwnPropertyNames(this)
-      .map(k => [k, this[k]])
-      .filter(([, v]) => utils.isDefined(v))
-      .forEach(([k, v]) => { options[k] = v; });
+    if (isDefined(this.keyBlockSize)) {
+      options.keyBlockSize = this.keyBlockSize;
+    }
+    if (isDefined(this.indexType)) {
+      options.indexType = this.indexType;
+    }
+    if (isDefined(this.algorithm)) {
+      options.algorithm = this.algorithm;
+    }
+    if (isDefined(this.comment)) {
+      options.comment = this.comment;
+    }
+    if (isDefined(this.parser)) {
+      options.parser = this.parser;
+    }
+    if (isDefined(this.lock)) {
+      options.lock = this.lock;
+    }
 
     return options;
   }

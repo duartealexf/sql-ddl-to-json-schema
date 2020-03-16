@@ -173,5 +173,3 @@ export class Column implements ColumnInterface, ClonableInterface, SerializableI
     return null;
   }
 }
-
-module.exports = Column;

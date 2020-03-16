@@ -1,22 +1,31 @@
-import { O_ALTER_TABLE_SPEC_ADD_PRIMARY_KEY, O_CREATE_TABLE_CREATE_DEFINITION, O_CREATE_TABLE_CREATE_DEFINITION_PRIMARY_KEY } from "@mysql/compiled/typings";
-import { PrimaryKeyInterface, IndexColumnInterface, IndexOptionsInterface } from "./typings";
+import {
+  O_ALTER_TABLE_SPEC_ADD_PRIMARY_KEY,
+  O_CREATE_TABLE_CREATE_DEFINITION,
+  O_CREATE_TABLE_CREATE_DEFINITION_PRIMARY_KEY,
+} from '@mysql/compiled/typings';
+import {
+  PrimaryKeyInterface,
+  IndexColumnInterface,
+  IndexOptionsInterface,
+  ClonableInterface,
+  SerializableInterface,
+} from './typings';
 
-/* eslint no-unused-vars: 0 */
-const IndexColumn = require('./index-column');
-const IndexOptions = require('./index-options');
-const Table = require('./table');
-const Column = require('./column');
+import { IndexColumn } from './index-column';
+import { IndexOptions } from './index-options';
+import { Table } from './table';
+import { Column } from './column';
 
-const utils = require('@shared/utils');
+import { isDefined } from '@shared/utils';
 
 /**
  * Primary key of a table.
  */
-class PrimaryKey implements PrimaryKeyInterface {
+export class PrimaryKey implements PrimaryKeyInterface, ClonableInterface, SerializableInterface {
   name?: string;
   indexType?: string;
-  columns!: IndexColumnInterface[];
-  options?: IndexOptionsInterface;
+  columns!: IndexColumn[];
+  options?: IndexOptions;
 
   /**
    * Creates a primary key from a JSON def.
@@ -25,7 +34,7 @@ class PrimaryKey implements PrimaryKeyInterface {
    */
   static fromDef(json: O_CREATE_TABLE_CREATE_DEFINITION): PrimaryKey {
     if (json.id === 'O_CREATE_TABLE_CREATE_DEFINITION') {
-      return PrimaryKey.fromObject(json.def.primaryKey);
+      return PrimaryKey.fromObject(json.def.primaryKey as O_ALTER_TABLE_SPEC_ADD_PRIMARY_KEY);
     }
 
     throw new TypeError(`Unknown json id to build primary key from: ${json.id}`);
@@ -37,13 +46,19 @@ class PrimaryKey implements PrimaryKeyInterface {
    * @param json Object containing properties.
    * @returns {PrimaryKey} Resulting primary key.
    */
-  static fromObject(json: O_ALTER_TABLE_SPEC_ADD_PRIMARY_KEY | O_CREATE_TABLE_CREATE_DEFINITION_PRIMARY_KEY): PrimaryKey {
+  static fromObject(
+    json: O_ALTER_TABLE_SPEC_ADD_PRIMARY_KEY | O_CREATE_TABLE_CREATE_DEFINITION_PRIMARY_KEY,
+  ): PrimaryKey {
     const primaryKey = new PrimaryKey();
     primaryKey.columns = json.columns.map(IndexColumn.fromDef);
 
-    if (json.name) { primaryKey.name = json.name; }
+    if (json.name) {
+      primaryKey.name = json.name;
+    }
 
-    if (json.index) { primaryKey.indexType = json.index.def.toLowerCase(); }
+    if (json.index) {
+      primaryKey.indexType = json.index.def.toLowerCase();
+    }
 
     if (json.options && json.options.length) {
       primaryKey.options = IndexOptions.fromArray(json.options);
@@ -54,31 +69,35 @@ class PrimaryKey implements PrimaryKeyInterface {
 
   /**
    * JSON casting of this object calls this method.
-   *
-   * @returns {any} JSON format.
    */
-  toJSON(): any {
-    const json = {
-      columns: this.columns.map(c => c.toJSON())
+  toJSON(): PrimaryKeyInterface {
+    const json: PrimaryKeyInterface = {
+      columns: this.columns.map((c) => c.toJSON()),
     };
 
-    if (utils.isDefined(this.name)) { json.name = this.name; }
-    if (utils.isDefined(this.options)) { json.options = this.options.toJSON(); }
-    if (utils.isDefined(this.indexType)) { json.indexType = this.indexType; }
+    if (isDefined(this.name)) {
+      json.name = this.name;
+    }
+    if (isDefined(this.options)) {
+      json.options = this.options.toJSON();
+    }
+    if (isDefined(this.indexType)) {
+      json.indexType = this.indexType;
+    }
 
     return json;
   }
 
   /**
    * Create a deep clone of this model.
-   *
-   * @returns {PrimaryKey} Clone.
    */
   clone(): PrimaryKey {
     const primaryKey = new PrimaryKey();
-    primaryKey.columns = this.columns.map(c => c.clone());
+    primaryKey.columns = this.columns.map((c) => c.clone());
 
-    if (utils.isDefined(this.indexType)) { primaryKey.indexType = this.indexType; }
+    if (isDefined(this.indexType)) {
+      primaryKey.indexType = this.indexType;
+    }
 
     if (this.options) {
       primaryKey.options = this.options.clone();
@@ -91,29 +110,32 @@ class PrimaryKey implements PrimaryKeyInterface {
    * Pushes an index column to this primary key.
    *
    * @param {IndexColumn} indexColumn Index column to be pushed.
-   * @returns {void}
    */
-  pushColumn(indexColumn: IndexColumn): void {
+  pushColumn(indexColumn: IndexColumn) {
     this.columns.push(indexColumn);
   }
 
   /**
-   * Drops a column from key.
+   * Drops a column from key. Returns whether column was removed.
    *
    * @param name Column name to be dropped.
-   * @returns {boolean} Whether column was removed.
    */
-  dropColumn(name): boolean {
-    let pos;
+  dropColumn(name: string): boolean {
+    let pos = -1;
+
     const found = this.columns.some((c, i) => {
       pos = i;
       return c.column === name;
     });
-    if (!found) { return false; }
+
+    if (!found || pos < 0) {
+      return false;
+    }
 
     const end = this.columns.splice(pos);
     end.shift();
     this.columns = this.columns.concat(end);
+
     return true;
   }
 
@@ -122,11 +144,10 @@ class PrimaryKey implements PrimaryKeyInterface {
    * primary key's index columns refer to.
    *
    * @param table Table in question.
-   * @returns {Column[]} Found columns.
    */
-  getColumnsFromTable(table): Column[] {
-    return table.columns.filter(tableColumn =>
-      this.columns.some(indexColumn => indexColumn.column === tableColumn.name)
+  getColumnsFromTable(table: Table): Column[] {
+    return (table.columns || []).filter((tableColumn) =>
+      this.columns.some((indexColumn) => indexColumn.column === tableColumn.name),
     );
   }
 
@@ -134,27 +155,26 @@ class PrimaryKey implements PrimaryKeyInterface {
    * Whether the given table has all of this primary key's columns.
    *
    * @param table Table in question.
-   * @returns {boolean} Test result.
    */
-  hasAllColumnsFromTable(table): boolean {
-    return table.columns.filter(tableColumn =>
-      this.columns.some(indexColumn => indexColumn.column === tableColumn.name)
-    ).length === this.columns.length;
+  hasAllColumnsFromTable(table: Table): boolean {
+    return (
+      (table.columns || []).filter((tableColumn) =>
+        this.columns.some((indexColumn) => indexColumn.column === tableColumn.name),
+      ).length === this.columns.length
+    );
   }
 
   /**
    * Rename index column name.
    *
-   * @param {Column} column Column being renamed.
+   * @param column Column being renamed.
    * @param newName New column name.
-   * @returns {void}
    */
-  renameColumn(column: Column, newName): void {
-    this.columns.filter(c => c.column === column.name)
-      .forEach(c => {
+  renameColumn(column: Column, newName: string) {
+    this.columns
+      .filter((c) => c.column === column.name)
+      .forEach((c) => {
         c.column = newName;
       });
   }
 }
-
-module.exports = PrimaryKey;

@@ -57,7 +57,6 @@ export function mergeLatestToObject(collection: any[]): AnyMap {
  * the properties containing null values.
  *
  * @param obj Object to be filtered.
- * @returns Filtered object.
  */
 export function filterNullValues(obj: AnyMap): AnyMap {
   Object.getOwnPropertyNames(obj).forEach(name => {
@@ -112,7 +111,6 @@ export function isArray(value: any): value is any[] {
  * Test whether given value is string.
  *
  * @param value Value to be tested.
- * @returns {boolean} Whether it is a string.
  */
 export function isString(value: any): value is string {
   return typeof value === 'string';
@@ -122,17 +120,24 @@ export function isString(value: any): value is string {
  * Test whether given value is number.
  *
  * @param value Value to be tested.
- * @returns {boolean} Whether it is a number.
  */
 export function isNumber(value: any): value is number {
   return typeof value === 'number';
 }
 
 /**
+ * Test whether given value is function.
+ *
+ * @param value Value to be tested.
+ */
+export function isFunction(value: any): value is Function {
+  return typeof value === 'function';
+}
+
+/**
  * Test whether given value is object.
  *
  * @param value Value to be tested.
- * @returns {boolean} Whether it is an object.
  */
 export function isObject(value: any): value is AnyMap {
   return value !== null && typeof value === 'object';
@@ -142,7 +147,6 @@ export function isObject(value: any): value is AnyMap {
  * Test whether given value is defined and not null.
  *
  * @param value Value to be tested.
- * @returns {boolean} Whether it is defined.
  */
 export function isDefined<T>(value: T): value is NonNullable<T> {
   return typeof value !== 'undefined' && !(value === null);

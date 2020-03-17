@@ -1,5 +1,6 @@
 import { Database } from './models/database';
 import { P_MAIN } from '@mysql/compiled/typings';
+import { TableInterface } from './models/typings';
 
 /**
  * Formatter for parsed JSON. Provides a compact JSON
@@ -12,7 +13,7 @@ class CompactFormatter {
    *
    * @param json Parsed JSON format.
    */
-  static format(json: P_MAIN): any[] {
+  static format(json: P_MAIN): TableInterface[] {
     if (json.id !== 'MAIN') {
       throw new TypeError(
         'Invalid JSON format provided for CompactFormatter. ' +

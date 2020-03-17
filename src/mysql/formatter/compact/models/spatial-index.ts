@@ -1,10 +1,3 @@
-import { IndexColumn } from './index-column';
-import { IndexOptions } from './index-options';
-import { Table } from './table';
-import { Column } from './column';
-
-import { isDefined } from '@shared/utils';
-import { SpatialIndexInterface, ClonableInterface, SerializableInterface } from './typings';
 import {
   O_CREATE_TABLE_CREATE_DEFINITION,
   P_CREATE_INDEX,
@@ -12,15 +5,26 @@ import {
   O_CREATE_TABLE_CREATE_DEFINITION_SPATIAL_INDEX,
   O_ALTER_TABLE_SPEC_ADD_SPATIAL_INDEX,
 } from '@mysql/compiled/typings';
+import { isDefined } from '@shared/utils';
+
+import { IndexColumn } from './index-column';
+import { IndexOptions } from './index-options';
+import {
+  SpatialIndexInterface,
+  SpatialIndexModelInterface,
+  IndexColumnModelInterface,
+  IndexOptionsModelInterface,
+  TableModelInterface,
+  ColumnModelInterface,
+} from './typings';
 
 /**
  * Spatial index of a table.
  */
-export class SpatialIndex
-  implements SpatialIndexInterface, ClonableInterface, SerializableInterface {
+export class SpatialIndex implements SpatialIndexModelInterface {
   name?: string;
-  columns: IndexColumn[] = [];
-  options?: IndexOptions;
+  columns: IndexColumnModelInterface[] = [];
+  options?: IndexOptionsModelInterface;
   /**
    * Creates a spatial index from a JSON def.
    *
@@ -47,7 +51,10 @@ export class SpatialIndex
    * @returns {SpatialIndex} Resulting spatial index.
    */
   static fromObject(
-    json: O_CREATE_TABLE_CREATE_DEFINITION_SPATIAL_INDEX | P_CREATE_INDEX['def'] | O_ALTER_TABLE_SPEC_ADD_SPATIAL_INDEX,
+    json:
+      | O_CREATE_TABLE_CREATE_DEFINITION_SPATIAL_INDEX
+      | P_CREATE_INDEX['def']
+      | O_ALTER_TABLE_SPEC_ADD_SPATIAL_INDEX,
   ): SpatialIndex {
     const spatialIndex = new SpatialIndex();
     spatialIndex.columns = json.columns.map(IndexColumn.fromDef);
@@ -94,7 +101,7 @@ export class SpatialIndex
       index.name = this.name;
     }
     if (isDefined(this.options)) {
-      index.options = this.options.toJSON();
+      index.options = this.options.clone();
     }
 
     return index;
@@ -130,7 +137,7 @@ export class SpatialIndex
    *
    * @param table Table in question.
    */
-  getColumnsFromTable(table: Table): Column[] {
+  getColumnsFromTable(table: TableModelInterface): ColumnModelInterface[] {
     return (table.columns || []).filter((tableColumn) =>
       this.columns.some((indexColumn) => indexColumn.column === tableColumn.name),
     );
@@ -141,7 +148,7 @@ export class SpatialIndex
    *
    * @param table Table in question.
    */
-  hasAllColumnsFromTable(table: Table): boolean {
+  hasAllColumnsFromTable(table: TableModelInterface): boolean {
     return (
       (table.columns || []).filter((tableColumn) =>
         this.columns.some((indexColumn) => indexColumn.column === tableColumn.name),
@@ -155,7 +162,7 @@ export class SpatialIndex
    * @param column Column being renamed.
    * @param newName New column name.
    */
-  renameColumn(column: Column, newName: string) {
+  renameColumn(column: ColumnModelInterface, newName: string): void {
     this.columns
       .filter((c) => c.column === column.name)
       .forEach((c) => {

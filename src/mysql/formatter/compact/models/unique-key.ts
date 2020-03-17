@@ -1,7 +1,3 @@
-import { IndexColumn } from './index-column';
-import { IndexOptions } from './index-options';
-
-import { isDefined } from '@shared/utils';
 import {
   O_CREATE_TABLE_CREATE_DEFINITION,
   P_CREATE_INDEX,
@@ -9,17 +5,27 @@ import {
   STATEMENT,
   O_ALTER_TABLE_SPEC_ADD_UNIQUE_KEY,
 } from '@mysql/compiled/typings';
-import { UniqueKeyInterface, ClonableInterface, SerializableInterface } from './typings';
-import { Table } from './table';
+import { isDefined } from '@shared/utils';
+
+import { IndexOptions } from './index-options';
+import { IndexColumn } from './index-column';
+import {
+  UniqueKeyInterface,
+  UniqueKeyModelInterface,
+  IndexColumnModelInterface,
+  IndexOptionsModelInterface,
+  TableModelInterface,
+  ColumnModelInterface,
+} from './typings';
 
 /**
  * Unique key of a table.
  */
-export class UniqueKey implements UniqueKeyInterface, ClonableInterface, SerializableInterface {
+export class UniqueKey implements UniqueKeyModelInterface {
   name?: string;
   indexType?: string;
-  columns: IndexColumn[] = [];
-  options?: IndexOptions;
+  columns: IndexColumnModelInterface[] = [];
+  options?: IndexOptionsModelInterface;
 
   /**
    * Creates a unique key from a JSON def.
@@ -48,7 +54,10 @@ export class UniqueKey implements UniqueKeyInterface, ClonableInterface, Seriali
    * @returns {UniqueKey} Resulting unique key.
    */
   static fromObject(
-    json: P_CREATE_INDEX['def'] | O_CREATE_TABLE_CREATE_DEFINITION_UNIQUE_KEY | O_ALTER_TABLE_SPEC_ADD_UNIQUE_KEY,
+    json:
+      | P_CREATE_INDEX['def']
+      | O_CREATE_TABLE_CREATE_DEFINITION_UNIQUE_KEY
+      | O_ALTER_TABLE_SPEC_ADD_UNIQUE_KEY,
   ): UniqueKey {
     const uniqueKey = new UniqueKey();
 
@@ -114,9 +123,8 @@ export class UniqueKey implements UniqueKeyInterface, ClonableInterface, Seriali
    * Drops a column from key. Returns whether column was removed.
    *
    * @param name Column name to be dropped.
-   * @returns {boolean}
    */
-  dropColumn(name: string) {
+  dropColumn(name: string): boolean {
     let pos = -1;
 
     const found = this.columns.some((c, i) => {
@@ -141,8 +149,8 @@ export class UniqueKey implements UniqueKeyInterface, ClonableInterface, Seriali
    *
    * @param table Table in question.
    */
-  getColumnsFromTable(table: Table): Column[] {
-    return table.columns.filter((tableColumn) =>
+  getColumnsFromTable(table: TableModelInterface): ColumnModelInterface[] {
+    return (table.columns || []).filter((tableColumn) =>
       this.columns.some((indexColumn) => indexColumn.column === tableColumn.name),
     );
   }
@@ -152,9 +160,9 @@ export class UniqueKey implements UniqueKeyInterface, ClonableInterface, Seriali
    *
    * @param table Table in question.
    */
-  hasAllColumnsFromTable(table): boolean {
+  hasAllColumnsFromTable(table: TableModelInterface): boolean {
     return (
-      table.columns.filter((tableColumn) =>
+      (table.columns || []).filter((tableColumn) =>
         this.columns.some((indexColumn) => indexColumn.column === tableColumn.name),
       ).length === this.columns.length
     );
@@ -166,11 +174,11 @@ export class UniqueKey implements UniqueKeyInterface, ClonableInterface, Seriali
    *
    * @param table Table to search size for.
    */
-  setIndexSizeFromTable(table: Table) {
+  setIndexSizeFromTable(table: TableModelInterface): void {
     this.columns
       .filter((i) => !isDefined(i.length))
       .forEach((indexColumn) => {
-        const column = table.columns.find((c) => c.name === indexColumn.column);
+        const column = (table.columns || []).find((c) => c.name === indexColumn.column);
 
         if (!column) {
           return;
@@ -186,7 +194,7 @@ export class UniqueKey implements UniqueKeyInterface, ClonableInterface, Seriali
    * @param column Column being renamed.
    * @param newName New column name.
    */
-  renameColumn(column: Column, newName: string) {
+  renameColumn(column: ColumnModelInterface, newName: string): void {
     this.columns
       .filter((c) => c.column === column.name)
       .forEach((c) => {

@@ -1,11 +1,15 @@
-import { isDefined } from '@shared/utils';
-import { DatatypeInterface, ClonableInterface, SerializableInterface } from './typings';
 import { O_DATATYPE } from '@mysql/compiled/typings';
+import { isDefined } from '@shared/utils';
+
+import {
+  DatatypeInterface,
+  DatatypeModelInterface,
+} from './typings';
 
 /**
  * Data type.
  */
-export class Datatype implements DatatypeInterface, ClonableInterface, SerializableInterface {
+export class Datatype implements DatatypeModelInterface {
   datatype!: string;
   width?: number;
   digits?: number;
@@ -26,10 +30,9 @@ export class Datatype implements DatatypeInterface, ClonableInterface, Serializa
 
     const datatype = new Datatype();
 
-    Object.getOwnPropertyNames(json.def.def)
-      .forEach(k => {
-        Object.assign(datatype, json.def.def); // TODO: check, this should still work.
-      });
+    Object.getOwnPropertyNames(json.def.def).forEach((k) => {
+      Object.assign(datatype, json.def.def); // TODO: check, this should still work.
+    });
 
     datatype.datatype = Datatype.filterDatatype(datatype.datatype);
 
@@ -43,22 +46,54 @@ export class Datatype implements DatatypeInterface, ClonableInterface, Serializa
    */
   static filterDatatype(term: string): string {
     term = term.toLowerCase();
-    if (term === 'integer') { return 'int'; }
-    if (term === 'tinyint') { return 'int'; }
-    if (term === 'smallint') { return 'int'; }
-    if (term === 'mediumint') { return 'int'; }
-    if (term === 'bigint') { return 'int'; }
-    if (term === 'numeric') { return 'decimal'; }
-    if (term === 'bool') { return 'boolean'; }
-    if (term === 'tinyblob') { return 'blob'; }
-    if (term === 'mediumblob') { return 'blob'; }
-    if (term === 'longblob') { return 'blob'; }
-    if (term === 'tinytext') { return 'text'; }
-    if (term === 'mediumtext') { return 'text'; }
-    if (term === 'longtext') { return 'text'; }
-    if (term === 'national char') { return 'char'; }
-    if (term === 'character') { return 'char'; }
-    if (term === 'nchar') { return 'char'; }
+    if (term === 'integer') {
+      return 'int';
+    }
+    if (term === 'tinyint') {
+      return 'int';
+    }
+    if (term === 'smallint') {
+      return 'int';
+    }
+    if (term === 'mediumint') {
+      return 'int';
+    }
+    if (term === 'bigint') {
+      return 'int';
+    }
+    if (term === 'numeric') {
+      return 'decimal';
+    }
+    if (term === 'bool') {
+      return 'boolean';
+    }
+    if (term === 'tinyblob') {
+      return 'blob';
+    }
+    if (term === 'mediumblob') {
+      return 'blob';
+    }
+    if (term === 'longblob') {
+      return 'blob';
+    }
+    if (term === 'tinytext') {
+      return 'text';
+    }
+    if (term === 'mediumtext') {
+      return 'text';
+    }
+    if (term === 'longtext') {
+      return 'text';
+    }
+    if (term === 'national char') {
+      return 'char';
+    }
+    if (term === 'character') {
+      return 'char';
+    }
+    if (term === 'nchar') {
+      return 'char';
+    }
     return term;
   }
 
@@ -66,7 +101,7 @@ export class Datatype implements DatatypeInterface, ClonableInterface, Serializa
    * Get length that is indexable by this datatype.
    * @returns Indexable length.
    */
-  getMaxIndexableSize(): number | null {
+  getMaxIndexableSize(): number | undefined {
     /**
      * Non-indexable datatypes.
      */
@@ -86,7 +121,7 @@ export class Datatype implements DatatypeInterface, ClonableInterface, Serializa
         'json',
       ].includes(this.datatype)
     ) {
-      return null;
+      return;
     }
 
     /**
@@ -104,22 +139,13 @@ export class Datatype implements DatatypeInterface, ClonableInterface, Serializa
         'geometrycollection',
       ].includes(this.datatype)
     ) {
-      return null;
+      return;
     }
 
     /**
      * Indexable datatypes.
      */
-    if (
-      [
-        'blob',
-        'text',
-        'char',
-        'binary',
-        'varchar',
-        'varbinary',
-      ].includes(this.datatype)
-    ) {
+    if (['blob', 'text', 'char', 'binary', 'varchar', 'varbinary'].includes(this.datatype)) {
       return this.length as number;
     }
 
@@ -127,7 +153,7 @@ export class Datatype implements DatatypeInterface, ClonableInterface, Serializa
      * Fallback, unknown or non-mapped datatype
      * (actually shouldn't fall here).
      */
-    return null;
+    return;
   }
 
   /**
@@ -135,15 +161,27 @@ export class Datatype implements DatatypeInterface, ClonableInterface, Serializa
    */
   toJSON(): DatatypeInterface {
     const json: DatatypeInterface = {
-      datatype: this.datatype
+      datatype: this.datatype,
     };
 
-    if (isDefined(this.width)) { json.width = this.width; }
-    if (isDefined(this.digits)) { json.digits = this.digits; }
-    if (isDefined(this.decimals)) { json.decimals = this.decimals; }
-    if (isDefined(this.length)) { json.length = this.length; }
-    if (isDefined(this.fractional)) { json.fractional = this.fractional; }
-    if (isDefined(this.values)) { json.values = this.values; }
+    if (isDefined(this.width)) {
+      json.width = this.width;
+    }
+    if (isDefined(this.digits)) {
+      json.digits = this.digits;
+    }
+    if (isDefined(this.decimals)) {
+      json.decimals = this.decimals;
+    }
+    if (isDefined(this.length)) {
+      json.length = this.length;
+    }
+    if (isDefined(this.fractional)) {
+      json.fractional = this.fractional;
+    }
+    if (isDefined(this.values)) {
+      json.values = this.values;
+    }
 
     return json;
   }
@@ -154,12 +192,24 @@ export class Datatype implements DatatypeInterface, ClonableInterface, Serializa
   clone(): Datatype {
     const datatype = new Datatype();
 
-    if (isDefined(this.width)) { datatype.width = this.width; }
-    if (isDefined(this.digits)) { datatype.digits = this.digits; }
-    if (isDefined(this.decimals)) { datatype.decimals = this.decimals; }
-    if (isDefined(this.length)) { datatype.length = this.length; }
-    if (isDefined(this.fractional)) { datatype.fractional = this.fractional; }
-    if (isDefined(this.values)) { datatype.values = this.values.slice(); }
+    if (isDefined(this.width)) {
+      datatype.width = this.width;
+    }
+    if (isDefined(this.digits)) {
+      datatype.digits = this.digits;
+    }
+    if (isDefined(this.decimals)) {
+      datatype.decimals = this.decimals;
+    }
+    if (isDefined(this.length)) {
+      datatype.length = this.length;
+    }
+    if (isDefined(this.fractional)) {
+      datatype.fractional = this.fractional;
+    }
+    if (isDefined(this.values)) {
+      datatype.values = this.values.slice();
+    }
 
     return datatype;
   }

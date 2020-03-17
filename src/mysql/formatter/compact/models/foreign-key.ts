@@ -1,19 +1,27 @@
-import { IndexColumn } from './index-column';
-import { ColumnReference } from './column-reference';
-import { Table } from './table';
-import { Column } from './column';
-
+import {
+  O_CREATE_TABLE_CREATE_DEFINITION,
+  O_CREATE_TABLE_CREATE_DEFINITION_FOREIGN_KEY,
+} from '@mysql/compiled/typings';
 import { isDefined } from '@shared/utils';
-import { O_CREATE_TABLE_CREATE_DEFINITION, O_CREATE_TABLE_CREATE_DEFINITION_FOREIGN_KEY } from '@mysql/compiled/typings';
-import { ForeignKeyInterface, ClonableInterface, SerializableInterface, IndexColumnInterface, ColumnReferenceInterface } from './typings';
+
+import { ColumnReference } from './column-reference';
+import { IndexColumn } from './index-column';
+import {
+  ForeignKeyInterface,
+  ForeignKeyModelInterface,
+  IndexColumnModelInterface,
+  ColumnReferenceModelInterface,
+  ColumnModelInterface,
+  TableModelInterface,
+} from './typings';
 
 /**
  * Foreign key of a table.
  */
-export class ForeignKey implements ForeignKeyInterface, ClonableInterface, SerializableInterface {
+export class ForeignKey implements ForeignKeyModelInterface {
   name?: string;
-  columns: IndexColumn[] = [];
-  reference!: ColumnReference;
+  columns: IndexColumnModelInterface[] = [];
+  reference!: ColumnReferenceModelInterface;
 
   /**
    * Creates a foreign key from a JSON def.
@@ -26,7 +34,9 @@ export class ForeignKey implements ForeignKeyInterface, ClonableInterface, Seria
     }
 
     if (!isDefined(json.def.foreignKey)) {
-      throw new TypeError(`Statement ${json.id} has undefined foreignKey. Cannot format foreignKey.`);
+      throw new TypeError(
+        `Statement ${json.id} has undefined foreignKey. Cannot format foreignKey.`,
+      );
     }
 
     return ForeignKey.fromObject(json.def.foreignKey);
@@ -45,7 +55,9 @@ export class ForeignKey implements ForeignKeyInterface, ClonableInterface, Seria
     foreignKey.columns = json.columns.map(IndexColumn.fromDef);
     foreignKey.reference = ColumnReference.fromDef(json.reference);
 
-    if (json.name) { foreignKey.name = json.name; }
+    if (json.name) {
+      foreignKey.name = json.name;
+    }
 
     return foreignKey;
   }
@@ -55,11 +67,13 @@ export class ForeignKey implements ForeignKeyInterface, ClonableInterface, Seria
    */
   toJSON(): ForeignKeyInterface {
     const json: ForeignKeyInterface = {
-      columns: this.columns.map(c => c.toJSON()),
-      reference: this.reference.toJSON()
+      columns: this.columns.map((c) => c.toJSON()),
+      reference: this.reference.toJSON(),
     };
 
-    if (isDefined(this.name)) { json.name = this.name; }
+    if (isDefined(this.name)) {
+      json.name = this.name;
+    }
 
     return json;
   }
@@ -70,10 +84,12 @@ export class ForeignKey implements ForeignKeyInterface, ClonableInterface, Seria
   clone(): ForeignKey {
     const key = new ForeignKey();
 
-    key.columns = this.columns.map(c => c.clone());
+    key.columns = this.columns.map((c) => c.clone());
     key.reference = this.reference.clone();
 
-    if (isDefined(this.name)) { key.name = this.name; }
+    if (isDefined(this.name)) {
+      key.name = this.name;
+    }
 
     return key;
   }
@@ -83,7 +99,7 @@ export class ForeignKey implements ForeignKeyInterface, ClonableInterface, Seria
    *
    * @param indexColumn Index column to be pushed.
    */
-  pushColumn(indexColumn: IndexColumn) {
+  pushColumn(indexColumn: IndexColumnModelInterface) {
     this.columns.push(indexColumn);
   }
 
@@ -100,7 +116,9 @@ export class ForeignKey implements ForeignKeyInterface, ClonableInterface, Seria
       return c.column === name;
     });
 
-    if (!found || pos < 0) { return false; }
+    if (!found || pos < 0) {
+      return false;
+    }
 
     const end = this.columns.splice(pos);
     end.shift();
@@ -113,30 +131,32 @@ export class ForeignKey implements ForeignKeyInterface, ClonableInterface, Seria
    *
    * @param table Table in question.
    */
-  getColumnsFromTable(table: Table): Column[] {
-    return table.columns.filter((tableColumn: Column) =>
-      this.columns.some(indexColumn => indexColumn.column === tableColumn.name)
+  getColumnsFromTable(table: TableModelInterface): ColumnModelInterface[] {
+    return (table.columns || []).filter((tableColumn) =>
+      this.columns.some((indexColumn) => indexColumn.column === tableColumn.name),
     );
   }
 
   /**
    * Get whether the given table has all of this foreign key's owner table columns.
    */
-  hasAllColumnsFromTable(table: Table): boolean {
-    return table.columns.filter((tableColumn: Column) =>
-      this.columns.some(indexColumn => indexColumn.column === tableColumn.name)
-    ).length === this.columns.length;
+  hasAllColumnsFromTable(table: TableModelInterface): boolean {
+    return (
+      (table.columns || []).filter((tableColumn) =>
+        this.columns.some((indexColumn) => indexColumn.column === tableColumn.name),
+      ).length === this.columns.length
+    );
   }
 
   /**
    * Set size of this index to the size of index's column in given
    * table, if the size of this index is not already set.
    */
-  setIndexSizeFromTable(table: Table) {
+  setIndexSizeFromTable(table: TableModelInterface) {
     this.columns
-      .filter(i => !isDefined(i.length))
-      .forEach(indexColumn => {
-        const column = table.columns.find((c: Column) => c.name === indexColumn.column);
+      .filter((i) => !isDefined(i.length))
+      .forEach((indexColumn) => {
+        const column = (table.columns || []).find((c) => c.name === indexColumn.column);
 
         if (!column) {
           return;
@@ -149,10 +169,12 @@ export class ForeignKey implements ForeignKeyInterface, ClonableInterface, Seria
   /**
    * Get whether the given table has all of this foreign key's referenced table columns.
    */
-  hasAllColumnsFromRefTable(table: Table): boolean {
-    return table.columns.filter((tableColumn: Column) =>
-      this.reference.columns.some(indexColumn => indexColumn.column === tableColumn.name)
-    ).length === this.reference.columns.length;
+  hasAllColumnsFromRefTable(table: TableModelInterface): boolean {
+    return (
+      (table.columns || []).filter((tableColumn) =>
+        this.reference.columns?.some((indexColumn) => indexColumn.column === tableColumn.name),
+      ).length === this.reference.columns?.length
+    );
   }
 
   /**
@@ -161,8 +183,8 @@ export class ForeignKey implements ForeignKeyInterface, ClonableInterface, Seria
    *
    * @param tables Table array to search.
    */
-  getReferencedTable(tables: Table[]): Table {
-    return tables.find(t => t.name === this.reference.table) || null;
+  getReferencedTable(tables: TableModelInterface[]): TableModelInterface | undefined {
+    return tables.find((t) => t.name === this.reference.table) || undefined;
   }
 
   /**
@@ -172,9 +194,10 @@ export class ForeignKey implements ForeignKeyInterface, ClonableInterface, Seria
    * @param column Column to be checked in given table.
    * @returns {boolean} Whether reference exists.
    */
-  referencesTableAndColumn(table: Table, column: Column): boolean {
-    return this.reference.table === table.name && this.reference.columns.some(indexColumn =>
-      indexColumn.column === column.name
+  referencesTableAndColumn(table: TableModelInterface, column: ColumnModelInterface): boolean {
+    return (
+      this.reference.table === table.name &&
+      (this.reference.columns || []).some((indexColumn) => indexColumn.column === column.name)
     );
   }
 
@@ -183,7 +206,7 @@ export class ForeignKey implements ForeignKeyInterface, ClonableInterface, Seria
    *
    * @param table Table to be checked whether there is reference to.
    */
-  referencesTable(table: Table): boolean {
+  referencesTable(table: TableModelInterface): boolean {
     return this.reference.table === table.name;
   }
 
@@ -193,9 +216,10 @@ export class ForeignKey implements ForeignKeyInterface, ClonableInterface, Seria
    * @param column Column being renamed.
    * @param newName New column name.
    */
-  renameColumn(column: Column, newName: string) {
-    this.reference.columns.filter(c => c.column === column.name)
-      .forEach(c => {
+  renameColumn(column: ColumnModelInterface, newName: string) {
+    this.reference.columns
+      ?.filter((c) => c.column === column.name)
+      .forEach((c) => {
         c.column = newName;
       });
   }

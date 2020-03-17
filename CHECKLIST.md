@@ -12,4 +12,6 @@ Refactor to typescript checklist:
 - [ ] Remove any jsdocs containing `Properties are`
 - [ ] Change signed `- duartealexf` to `~ duartealexf`.
 - [ ] Change all `|| []).` to `?.`.
-- [ ] 
+- [ ] Remove all `@returns`.
+- [ ] Remove all `module.exports`.
+- [ ] Try to remove all `any`.

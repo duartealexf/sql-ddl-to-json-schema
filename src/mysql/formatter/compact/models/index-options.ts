@@ -1,12 +1,15 @@
-import { isDefined } from '@shared/utils';
-import { IndexOptionsInterface, ClonableInterface, SerializableInterface } from './typings';
 import { O_INDEX_OPTION } from '@mysql/compiled/typings';
+import { isDefined } from '@shared/utils';
+
+import {
+  IndexOptionsInterface,
+  IndexOptionsModelInterface,
+} from './typings';
 
 /**
  * Table index options.
  */
-export class IndexOptions
-  implements IndexOptionsInterface, ClonableInterface, SerializableInterface {
+export class IndexOptions implements IndexOptionsModelInterface {
   keyBlockSize?: number;
   indexType?: string;
   parser?: string;

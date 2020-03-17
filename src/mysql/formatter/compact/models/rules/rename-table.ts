@@ -1,71 +1,56 @@
-/* eslint no-unused-vars: 0 */
-const Table = require('../table');
-const Database = require('../database');
+import { P_RENAME_TABLE } from '@mysql/compiled/typings';
+
+import { DatabaseModelInterface, TableModelInterface, RuleHandler } from '../typings';
 
 /**
  * Formatter for P_RENAME_TABLE rule's parsed JSON.
  */
-class RenameTable {
-
-  /**
-   * RenameTable constructor.
-   */
-  constructor() {
-
-    /**
-     * @type {Database}
-     */
-    this.database = undefined;
-  }
+export class RenameTable implements RuleHandler {
+  database!: DatabaseModelInterface;
 
   /**
    * Get table with given name.
    *
    * @param name Table name.
-   * @returns {Table} Table result.
    */
-  getTable(name) {
+  getTable(name: string): TableModelInterface | undefined {
     return this.database.getTable(name);
-  }
-
-  /**
-   * Get tables from database.
-   *
-   * @returns {Table[]} Database tables.
-   */
-  getTables() {
-    return this.database.getTables();
   }
 
   /**
    * Setter for database.
    *
    * @param database Database instance.
-   * @returns {void}
    */
-  setDatabase(database) {
+  setDatabase(database: DatabaseModelInterface) {
     this.database = database;
+  }
+
+  /**
+   * Get tables from database.
+   */
+  getTables(): ModelInterface[] {
+    return this.database.getTables();
   }
 
   /**
    * Renames one of the tables.
    *
    * @param json JSON format parsed from SQL.
-   * @returns {void}
    */
-  handleDef(json) {
+  handleDef(json: P_RENAME_TABLE) {
     if (json.id !== 'P_RENAME_TABLE') {
       throw new TypeError(`Expected P_RENAME_TABLE rule to be handled but received ${json.id}`);
     }
 
-    const table = this.getTables().find(t => t.name === json.def.table);
+    json.def.forEach((def) => {
+      const table = this.getTables().find((t) => t.name === def.table);
 
-    if (!table) {
-      return;
-    }
+      if (!table) {
+        return;
+      }
 
-    table.renameTo(json.def.newName);
+      table.renameTo(def.newName);
+    });
   }
 }
-
-module.exports = RenameTable;

@@ -1,11 +1,15 @@
-import { isDefined } from '@shared/utils';
-import { IndexColumnInterface, ClonableInterface, SerializableInterface } from './typings';
 import { P_INDEX_COLUMN } from '@mysql/compiled/typings';
+import { isDefined } from '@shared/utils';
+
+import {
+  IndexColumnInterface,
+  IndexColumnModelInterface,
+} from './typings';
 
 /**
  * Index specification of a column.
  */
-export class IndexColumn implements IndexColumnInterface, ClonableInterface, SerializableInterface {
+export class IndexColumn implements IndexColumnModelInterface {
   column?: string;
   length?: number;
   sort?: string;

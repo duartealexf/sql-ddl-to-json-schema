@@ -1,30 +1,19 @@
-/* eslint no-unused-vars: 0 */
-const Table = require('../table');
-const Database = require('../database');
+import { P_DROP_TABLE } from '@mysql/compiled/typings';
+
+import { DatabaseModelInterface, TableModelInterface, RuleHandler } from '../typings';
 
 /**
  * Formatter for P_DROP_TABLE rule's parsed JSON.
  */
-class DropTable {
-
-  /**
-   * DropTable constructor.
-   */
-  constructor() {
-
-    /**
-     * @type {Database}
-     */
-    this.database = undefined;
-  }
+export class DropTable implements RuleHandler {
+  database!: DatabaseModelInterface;
 
   /**
    * Get table with given name.
    *
    * @param name Table name.
-   * @returns {Table} Table result.
    */
-  getTable(name) {
+  getTable(name: string): TableModelInterface | undefined {
     return this.database.getTable(name);
   }
 
@@ -32,9 +21,8 @@ class DropTable {
    * Setter for database.
    *
    * @param database Database instance.
-   * @returns {void}
    */
-  setDatabase(database) {
+  setDatabase(database: DatabaseModelInterface) {
     this.database = database;
   }
 
@@ -42,21 +30,22 @@ class DropTable {
    * Drops one of the tables.
    *
    * @param json JSON format parsed from SQL.
-   * @returns {void}
    */
-  handleDef(json) {
+  handleDef(json: P_DROP_TABLE) {
     if (json.id !== 'P_DROP_TABLE') {
       throw new TypeError(`Expected P_DROP_TABLE rule to be handled but received ${json.id}`);
     }
 
-    json.def.forEach(table => {
-      table = this.getTable(table);
+    json.def.forEach((tableName) => {
+      const table = this.getTable(tableName);
+
+      if (!table) {
+        return;
+      }
 
       let tables = this.database.getTables();
 
-      const hasReference = tables.some(t =>
-        t.foreignKeys.some(k => k.referencesTable(table))
-      );
+      const hasReference = tables.some((t) => t.foreignKeys?.some((k) => k.referencesTable(table)));
 
       if (hasReference) {
         return;
@@ -74,5 +63,3 @@ class DropTable {
     });
   }
 }
-
-module.exports = DropTable;

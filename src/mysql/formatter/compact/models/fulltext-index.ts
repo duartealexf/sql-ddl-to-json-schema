@@ -1,10 +1,4 @@
-import { IndexColumn } from './index-column';
-import { IndexOptions } from './index-options';
-import { Table } from './table';
-import { Column } from './column';
-
 import { isDefined } from '@shared/utils';
-import { FulltextIndexInterface, ClonableInterface, SerializableInterface } from './typings';
 import {
   O_CREATE_TABLE_CREATE_DEFINITION,
   P_CREATE_INDEX,
@@ -13,14 +7,24 @@ import {
   O_ALTER_TABLE_SPEC_ADD_FULLTEXT_INDEX,
 } from '@mysql/compiled/typings';
 
+import { IndexColumn } from './index-column';
+import { IndexOptions } from './index-options';
+import {
+  FulltextIndexInterface,
+  FulltextIndexModelInterface,
+  IndexColumnModelInterface,
+  IndexOptionsModelInterface,
+  ColumnModelInterface,
+  TableModelInterface,
+} from './typings';
+
 /**
  * Fulltext index of a table.
  */
-export class FulltextIndex
-  implements FulltextIndexInterface, ClonableInterface, SerializableInterface {
+export class FulltextIndex implements FulltextIndexModelInterface {
   name?: string;
-  columns: IndexColumn[] = [];
-  options?: IndexOptions;
+  columns: IndexColumnModelInterface[] = [];
+  options?: IndexOptionsModelInterface;
 
   /**
    * Creates a fulltext index from a JSON def.
@@ -48,7 +52,10 @@ export class FulltextIndex
    * @returns {FulltextIndex} Resulting fulltext index.
    */
   static fromObject(
-    json: O_CREATE_TABLE_CREATE_DEFINITION_FULLTEXT_INDEX | P_CREATE_INDEX['def'] | O_ALTER_TABLE_SPEC_ADD_FULLTEXT_INDEX,
+    json:
+      | O_CREATE_TABLE_CREATE_DEFINITION_FULLTEXT_INDEX
+      | P_CREATE_INDEX['def']
+      | O_ALTER_TABLE_SPEC_ADD_FULLTEXT_INDEX,
   ): FulltextIndex {
     const fulltextIndex = new FulltextIndex();
     fulltextIndex.columns = json.columns.map(IndexColumn.fromDef);
@@ -96,7 +103,7 @@ export class FulltextIndex
       index.name = this.name;
     }
     if (isDefined(this.options)) {
-      index.options = this.options.toJSON();
+      index.options = this.options.clone();
     }
 
     return index;
@@ -132,8 +139,8 @@ export class FulltextIndex
    *
    * @param table Table in question.
    */
-  getColumnsFromTable(table: Table): Column[] {
-    return (table.columns || []).filter((tableColumn: Column) =>
+  getColumnsFromTable(table: TableModelInterface): ColumnModelInterface[] {
+    return (table.columns || []).filter((tableColumn) =>
       this.columns.some((indexColumn) => indexColumn.column === tableColumn.name),
     );
   }
@@ -143,9 +150,9 @@ export class FulltextIndex
    *
    * @param table Table in question.
    */
-  hasAllColumnsFromTable(table: Table): boolean {
+  hasAllColumnsFromTable(table: TableModelInterface): boolean {
     return (
-      (table.columns || []).filter((tableColumn: Column) =>
+      (table.columns || []).filter((tableColumn) =>
         this.columns.some((indexColumn) => indexColumn.column === tableColumn.name),
       ).length === this.columns.length
     );
@@ -157,7 +164,7 @@ export class FulltextIndex
    * @param column Column being renamed.
    * @param newName New column name.
    */
-  renameColumn(column: Column, newName: string) {
+  renameColumn(column: ColumnModelInterface, newName: string): void {
     this.columns
       .filter((c) => c.column === column.name)
       .forEach((c) => {

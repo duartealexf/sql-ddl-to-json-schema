@@ -1,10 +1,11 @@
-import { P_COLUMN_REFERENCE_ON } from "@mysql/compiled/typings";
-import { ColumnReferenceOnInterface, SerializableInterface, ClonableInterface } from "./typings";
+import { P_COLUMN_REFERENCE_ON } from '@mysql/compiled/typings';
+
+import { ColumnReferenceOnModelInterface } from './typings';
 
 /**
  * Column reference's 'on' triggers of column actions.
  */
-export class ColumnReferenceOn implements ColumnReferenceOnInterface, ClonableInterface, SerializableInterface {
+export class ColumnReferenceOn implements ColumnReferenceOnModelInterface {
   trigger!: string;
   action!: string;
 
@@ -29,7 +30,7 @@ export class ColumnReferenceOn implements ColumnReferenceOnInterface, ClonableIn
   toJSON() {
     return {
       trigger: this.trigger,
-      action: this.action
+      action: this.action,
     };
   }
 

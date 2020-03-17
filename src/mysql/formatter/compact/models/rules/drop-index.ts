@@ -1,30 +1,19 @@
-/* eslint no-unused-vars: 0 */
-const Table = require('../table');
-const Database = require('../database');
+import { P_DROP_INDEX } from '@mysql/compiled/typings';
+
+import { DatabaseModelInterface, TableModelInterface, RuleHandler } from '../typings';
 
 /**
  * Formatter for P_DROP_INDEX rule's parsed JSON.
  */
-class DropIndex {
-
-  /**
-   * DropIndex constructor.
-   */
-  constructor() {
-
-    /**
-     * @type {Database}
-     */
-    this.database = undefined;
-  }
+export class DropIndex implements RuleHandler {
+  database!: DatabaseModelInterface;
 
   /**
    * Get table with given name.
    *
    * @param name Table name.
-   * @returns {Table} Table result.
    */
-  getTable(name) {
+  getTable(name: string): TableModelInterface | undefined {
     return this.database.getTable(name);
   }
 
@@ -32,9 +21,8 @@ class DropIndex {
    * Setter for database.
    *
    * @param database Database instance.
-   * @returns {void}
    */
-  setDatabase(database) {
+  setDatabase(database: DatabaseModelInterface) {
     this.database = database;
   }
 
@@ -44,7 +32,7 @@ class DropIndex {
    * @param json JSON format parsed from SQL.
    * @returns {void}
    */
-  handleDef(json) {
+  handleDef(json: P_DROP_INDEX) {
     if (json.id !== 'P_DROP_INDEX') {
       throw new TypeError(`Expected P_DROP_INDEX rule to be handled but received ${json.id}`);
     }
@@ -66,5 +54,3 @@ class DropIndex {
     table.dropIndex(index);
   }
 }
-
-module.exports = DropIndex;

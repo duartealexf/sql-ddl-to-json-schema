@@ -1,12 +1,15 @@
-import { isString, isDefined } from '@shared/utils';
-import { TableOptionsInterface, ClonableInterface, SerializableInterface } from './typings';
 import { P_CREATE_TABLE_OPTIONS, O_CREATE_TABLE_OPTION } from '@mysql/compiled/typings';
+import { isString, isDefined } from '@shared/utils';
+
+import {
+  TableOptionsInterface,
+  TableOptionsModelInterface,
+} from './typings';
 
 /**
  * Class to represent table options as parsed from SQL.
  */
-export class TableOptions
-  implements TableOptionsInterface, ClonableInterface, SerializableInterface {
+export class TableOptions implements TableOptionsModelInterface {
   autoincrement?: number;
   avgRowLength?: number;
   charset?: string;
@@ -382,7 +385,7 @@ export class TableOptions
    * Merge this option instance with another one.
    * Common properties of this instance are overwritten.
    */
-  mergeWith(options: TableOptions) {
+  mergeWith(options: TableOptionsInterface) {
     if (isDefined(options.autoincrement)) {
       this.autoincrement = options.autoincrement;
     }

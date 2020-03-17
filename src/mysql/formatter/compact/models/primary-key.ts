@@ -3,29 +3,27 @@ import {
   O_CREATE_TABLE_CREATE_DEFINITION,
   O_CREATE_TABLE_CREATE_DEFINITION_PRIMARY_KEY,
 } from '@mysql/compiled/typings';
-import {
-  PrimaryKeyInterface,
-  IndexColumnInterface,
-  IndexOptionsInterface,
-  ClonableInterface,
-  SerializableInterface,
-} from './typings';
+import { isDefined } from '@shared/utils';
 
 import { IndexColumn } from './index-column';
 import { IndexOptions } from './index-options';
-import { Table } from './table';
-import { Column } from './column';
-
-import { isDefined } from '@shared/utils';
+import {
+  PrimaryKeyInterface,
+  PrimaryKeyModelInterface,
+  IndexColumnModelInterface,
+  IndexOptionsModelInterface,
+  TableModelInterface,
+  ColumnModelInterface,
+} from './typings';
 
 /**
  * Primary key of a table.
  */
-export class PrimaryKey implements PrimaryKeyInterface, ClonableInterface, SerializableInterface {
+export class PrimaryKey implements PrimaryKeyModelInterface {
   name?: string;
   indexType?: string;
-  columns!: IndexColumn[];
-  options?: IndexOptions;
+  columns!: IndexColumnModelInterface[];
+  options?: IndexOptionsModelInterface;
 
   /**
    * Creates a primary key from a JSON def.
@@ -111,7 +109,7 @@ export class PrimaryKey implements PrimaryKeyInterface, ClonableInterface, Seria
    *
    * @param {IndexColumn} indexColumn Index column to be pushed.
    */
-  pushColumn(indexColumn: IndexColumn) {
+  pushColumn(indexColumn: IndexColumnModelInterface): void {
     this.columns.push(indexColumn);
   }
 
@@ -145,7 +143,7 @@ export class PrimaryKey implements PrimaryKeyInterface, ClonableInterface, Seria
    *
    * @param table Table in question.
    */
-  getColumnsFromTable(table: Table): Column[] {
+  getColumnsFromTable(table: TableModelInterface): ColumnModelInterface[] {
     return (table.columns || []).filter((tableColumn) =>
       this.columns.some((indexColumn) => indexColumn.column === tableColumn.name),
     );
@@ -156,7 +154,7 @@ export class PrimaryKey implements PrimaryKeyInterface, ClonableInterface, Seria
    *
    * @param table Table in question.
    */
-  hasAllColumnsFromTable(table: Table): boolean {
+  hasAllColumnsFromTable(table: TableModelInterface): boolean {
     return (
       (table.columns || []).filter((tableColumn) =>
         this.columns.some((indexColumn) => indexColumn.column === tableColumn.name),
@@ -170,7 +168,7 @@ export class PrimaryKey implements PrimaryKeyInterface, ClonableInterface, Seria
    * @param column Column being renamed.
    * @param newName New column name.
    */
-  renameColumn(column: Column, newName: string) {
+  renameColumn(column: ColumnModelInterface, newName: string): void {
     this.columns
       .filter((c) => c.column === column.name)
       .forEach((c) => {

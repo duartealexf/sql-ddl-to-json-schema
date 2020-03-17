@@ -1,10 +1,3 @@
-import { IndexColumn } from './index-column';
-import { IndexOptions } from './index-options';
-import { Table } from './table';
-import { Column } from './column';
-
-import { isDefined } from '@shared/utils';
-import { IndexInterface, ClonableInterface, SerializableInterface } from './typings';
 import {
   O_CREATE_TABLE_CREATE_DEFINITION,
   P_CREATE_INDEX,
@@ -12,15 +5,27 @@ import {
   O_CREATE_TABLE_CREATE_DEFINITION_INDEX,
   O_ALTER_TABLE_SPEC_ADD_INDEX,
 } from '@mysql/compiled/typings';
+import { isDefined } from '@shared/utils';
+
+import { IndexColumn } from './index-column';
+import { IndexOptions } from './index-options';
+import {
+  IndexInterface,
+  IndexModelInterface,
+  IndexColumnModelInterface,
+  IndexOptionsModelInterface,
+  TableModelInterface,
+  ColumnModelInterface,
+} from './typings';
 
 /**
  * Table index.
  */
-export class Index implements IndexInterface, ClonableInterface, SerializableInterface {
+export class Index implements IndexModelInterface {
   name?: string;
   indexType?: string;
-  columns: IndexColumn[] = [];
-  options?: IndexOptions;
+  columns: IndexColumnModelInterface[] = [];
+  options?: IndexOptionsModelInterface;
 
   /**
    * Creates an index from a JSON def.
@@ -44,7 +49,12 @@ export class Index implements IndexInterface, ClonableInterface, SerializableInt
    *
    * @param json Object containing properties.
    */
-  static fromObject(json: O_CREATE_TABLE_CREATE_DEFINITION_INDEX | P_CREATE_INDEX['def'] | O_ALTER_TABLE_SPEC_ADD_INDEX): Index {
+  static fromObject(
+    json:
+      | O_CREATE_TABLE_CREATE_DEFINITION_INDEX
+      | P_CREATE_INDEX['def']
+      | O_ALTER_TABLE_SPEC_ADD_INDEX,
+  ): Index {
     const index = new Index();
     index.columns = json.columns.map(IndexColumn.fromDef);
 
@@ -109,7 +119,7 @@ export class Index implements IndexInterface, ClonableInterface, SerializableInt
    *
    * @param name Column name to be dropped.
    */
-  dropColumn(name: string) {
+  dropColumn(name: string): boolean {
     let pos = -1;
 
     const found = this.columns.some((c, i) => {
@@ -134,7 +144,7 @@ export class Index implements IndexInterface, ClonableInterface, SerializableInt
    *
    * @param table Table in question.
    */
-  getColumnsFromTable(table: Table): Column[] {
+  getColumnsFromTable(table: TableModelInterface): ColumnModelInterface[] {
     return (table.columns || []).filter((tableColumn) =>
       this.columns.some((indexColumn) => indexColumn.column === tableColumn.name),
     );
@@ -145,7 +155,7 @@ export class Index implements IndexInterface, ClonableInterface, SerializableInt
    *
    * @param table Table in question.
    */
-  hasAllColumnsFromTable(table: Table): boolean {
+  hasAllColumnsFromTable(table: TableModelInterface): boolean {
     return (
       (table.columns || []).filter((tableColumn) =>
         this.columns.some((indexColumn) => indexColumn.column === tableColumn.name),
@@ -158,7 +168,7 @@ export class Index implements IndexInterface, ClonableInterface, SerializableInt
    * table, if the size of this index is not already set.
    * @param table Table to search size for.
    */
-  setIndexSizeFromTable(table: Table) {
+  setIndexSizeFromTable(table: TableModelInterface): void {
     this.columns
       .filter((i) => !isDefined(i.length))
       .forEach((indexColumn) => {
@@ -178,7 +188,7 @@ export class Index implements IndexInterface, ClonableInterface, SerializableInt
    * @param column Column being renamed.
    * @param newName New column name.
    */
-  renameColumn(column: Column, newName: string) {
+  renameColumn(column: ColumnModelInterface, newName: string): void {
     this.columns
       .filter((c) => c.column === column.name)
       .forEach((c) => {

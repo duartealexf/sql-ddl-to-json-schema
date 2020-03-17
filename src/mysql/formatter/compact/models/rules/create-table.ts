@@ -1,30 +1,72 @@
+import { P_CREATE_TABLE } from '@mysql/compiled/typings';
+
+import { Table } from '../table';
+import { DatabaseModelInterface, TableModelInterface, RuleHandler } from '../typings';
+
 /**
  * Formatter for P_CREATE_TABLE rule's parsed JSON.
  */
-class CreateTable {
-  database: Database;
+export class CreateTable implements RuleHandler {
+  database!: DatabaseModelInterface;
+
+  /**
+   * Get table with given name.
+   *
+   * @param name Table name.
+   */
+  getTable(name: string): TableModelInterface | undefined {
+    return this.database.getTable(name);
+  }
+
+  /**
+   * Get tables from database.
+   */
+  getTables(): TableModelInterface[] {
+    return this.database.getTables();
+  }
+
+  /**
+   * Setter for database.
+   *
+   * @param database Database instance.
+   */
+  setDatabase(database: DatabaseModelInterface) {
+    this.database = database;
+  }
+
+  /**
+   * Pushes a table to database.
+   *
+   * @param table Table to be added.
+   */
+  pushTable(table: TableModelInterface) {
+    this.database.pushTable(table);
+  }
 
   /**
    * Creates a table and add it to the array.
    *
    * @param json JSON format parsed from SQL.
    */
-  handleDef(json: any): void {
+  handleDef(json: P_CREATE_TABLE): void {
     if (json.id !== 'P_CREATE_TABLE') {
       throw new TypeError(`Expected P_CREATE_TABLE rule to be handled but received ${json.id}`);
     }
 
-    json = json.def;
+    const def = json.def;
 
-    if (json.id === 'P_CREATE_TABLE_COMMON') {
-      const table = Table.fromCommonDef(json, this.database);
+    if (def.id === 'P_CREATE_TABLE_COMMON') {
+      const table = Table.fromCommonDef(def, this.database);
 
       if (table) {
         this.pushTable(table);
       }
-    }
-    else if (json.id === 'P_CREATE_TABLE_LIKE') {
-      const table = Table.fromAlikeDef(json, this.getTables());
+    } else if (def.id === 'P_CREATE_TABLE_LIKE') {
+      const table = Table.fromAlikeDef(def, this.getTables());
+
+      if (!table) {
+        return;
+      }
 
       /**
        * Through tests it is noticed that foreign keys are
@@ -37,40 +79,4 @@ class CreateTable {
       }
     }
   }
-
-  /**
-   * Get table with given name.
-   *
-   * @param name Table name.
-   */
-  getTable(name: any): Table {
-    return this.database.getTable(name);
-  }
-
-  /**
-   * Get tables from database.
-   */
-  getTables(): Table[] {
-    return this.database.getTables();
-  }
-
-  /**
-   * Setter for database.
-   *
-   * @param database Database instance.
-   */
-  setDatabase(database: Database) {
-    this.database = database;
-  }
-
-  /**
-   * Pushes a table to database.
-   *
-   * @param table Table to be added.
-   */
-  pushTable(table: Table) {
-    this.database.pushTable(table);
-  }
 }
-
-module.exports = CreateTable;

@@ -1,34 +1,23 @@
-/* eslint no-unused-vars: 0 */
-const Table = require('../table');
-const UniqueKey = require('../unique-key');
-const FulltextIndex = require('../fulltext-index');
-const SpatialIndex = require('../spatial-index');
-const Index = require('../index');
-const Database = require('../database');
+import { P_CREATE_INDEX } from '@mysql/compiled/typings';
+
+import { UniqueKey } from '../unique-key';
+import { FulltextIndex } from '../fulltext-index';
+import { SpatialIndex } from '../spatial-index';
+import { Index } from '../index';
+import { TableModelInterface, DatabaseModelInterface, RuleHandler } from '../typings';
 
 /**
  * Formatter for P_CREATE_INDEX rule's parsed JSON.
  */
-class CreateIndex {
-
-  /**
-   * AlterTable constructor.
-   */
-  constructor() {
-
-    /**
-     * @type {Database}
-     */
-    this.database = undefined;
-  }
+export class CreateIndex implements RuleHandler {
+  database!: DatabaseModelInterface;
 
   /**
    * Get table with given name.
    *
    * @param name Table name.
-   * @returns {Table} Table result.
    */
-  getTable(name) {
+  getTable(name: string): TableModelInterface | undefined {
     return this.database.getTable(name);
   }
 
@@ -36,9 +25,8 @@ class CreateIndex {
    * Setter for database.
    *
    * @param database Database instance.
-   * @returns {void}
    */
-  setDatabase(database) {
+  setDatabase(database: DatabaseModelInterface) {
     this.database = database;
   }
 
@@ -46,9 +34,8 @@ class CreateIndex {
    * Creates an index and adds it to one of the tables.
    *
    * @param json JSON format parsed from SQL.
-   * @returns {void}
    */
-  handleDef(json) {
+  handleDef(json: P_CREATE_INDEX) {
     if (json.id !== 'P_CREATE_INDEX') {
       throw new TypeError(`Expected P_CREATE_INDEX rule to be handled but received ${json.id}`);
     }
@@ -63,26 +50,13 @@ class CreateIndex {
     const type = json.def.type.toLowerCase();
 
     if (type.includes('unique')) {
-      table.pushUniqueKey(
-        UniqueKey.fromDef(json)
-      );
-    }
-    else if (type.includes('fulltext')) {
-      table.pushFulltextIndex(
-        FulltextIndex.fromDef(json)
-      );
-    }
-    else if (type.includes('spatial')) {
-      table.pushSpatialIndex(
-        SpatialIndex.fromDef(json)
-      );
-    }
-    else {
-      table.pushIndex(
-        Index.fromDef(json)
-      );
+      table.pushUniqueKey(UniqueKey.fromDef(json));
+    } else if (type.includes('fulltext')) {
+      table.pushFulltextIndex(FulltextIndex.fromDef(json));
+    } else if (type.includes('spatial')) {
+      table.pushSpatialIndex(SpatialIndex.fromDef(json));
+    } else {
+      table.pushIndex(Index.fromDef(json));
     }
   }
 }
-
-module.exports = CreateIndex;

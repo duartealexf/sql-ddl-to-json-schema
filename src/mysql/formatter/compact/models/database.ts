@@ -1,27 +1,25 @@
+import { P_DDS } from '@mysql/compiled/typings';
+
 import { CreateTable } from './rules/create-table';
 import { CreateIndex } from './rules/create-index';
 import { AlterTable } from './rules/alter-table';
 import { RenameTable } from './rules/rename-table';
 import { DropTable } from './rules/drop-table';
 import { DropIndex } from './rules/drop-index';
-
-import { Table } from './table';
-
-import { DatabaseInterface } from './typings';
-import { P_DDS } from '@mysql/compiled/typings';
+import { DatabaseModelInterface, TableModelInterface, RuleHandler } from './typings';
 
 /**
  * Database, which contains DDS array as its json.def.
  * It is a formatter for MAIN parser rule.
  */
-export class Database implements DatabaseInterface {
+export class Database implements DatabaseModelInterface {
   ddsCollection: P_DDS[] = [];
-  tables: Table[] = [];
+  tables: TableModelInterface[] = [];
 
   /**
    * Get tables from parsed DDS array.
    */
-  getTables(): Table[] {
+  getTables(): TableModelInterface[] {
     return this.tables;
   }
 
@@ -30,7 +28,7 @@ export class Database implements DatabaseInterface {
    *
    * @param tables Updated tables.
    */
-  setTables(tables: Table[]) {
+  setTables(tables: TableModelInterface[]) {
     this.tables = tables;
   }
 
@@ -39,8 +37,8 @@ export class Database implements DatabaseInterface {
    *
    * @param name Table name.
    */
-  getTable(name: string): Table | undefined {
-    return this.tables.find(t => t.name === name);
+  getTable(name: string): TableModelInterface | undefined {
+    return this.tables.find((t) => t.name === name);
   }
 
   /**
@@ -48,11 +46,11 @@ export class Database implements DatabaseInterface {
    *
    * @param table Table to be added.
    */
-  pushTable(table: Table) {
+  pushTable(table: TableModelInterface) {
     /**
      * Do not add table with same name.
      */
-    if (this.tables.some(t => t.name === table.name)) {
+    if (this.tables.some((t) => t.name === table.name)) {
       return;
     }
 
@@ -68,7 +66,7 @@ export class Database implements DatabaseInterface {
   parseDdsCollection(ddsCollection: P_DDS[]) {
     this.ddsCollection = ddsCollection;
 
-    this.ddsCollection.forEach(dds => {
+    this.ddsCollection.forEach((dds) => {
       /**
        * Statements such as SET are supported by parser
        * but are ignored, returning null DDS.
@@ -78,31 +76,7 @@ export class Database implements DatabaseInterface {
       }
 
       const json = dds.def;
-      let handler;
-
-      if (json.id === 'P_CREATE_TABLE') {
-        handler = new CreateTable();
-      }
-
-      else if (json.id === 'P_CREATE_INDEX') {
-        handler = new CreateIndex();
-      }
-
-      else if (json.id === 'P_ALTER_TABLE') {
-        handler = new AlterTable();
-      }
-
-      else if (json.id === 'P_RENAME_TABLE') {
-        handler = new RenameTable();
-      }
-
-      else if (json.id === 'P_DROP_TABLE') {
-        handler = new DropTable();
-      }
-
-      else if (json.id === 'P_DROP_INDEX') {
-        handler = new DropIndex();
-      }
+      const handler = this.getHandler(json.id);
 
       /**
        * There may be other handlers, which will not have
@@ -116,5 +90,28 @@ export class Database implements DatabaseInterface {
       handler.setDatabase(this);
       handler.handleDef(json);
     });
+  }
+
+  /**
+   * Get statement handler from json id.
+   *
+   * @param id
+   */
+  getHandler(id: string): RuleHandler | undefined {
+    if (id === 'P_CREATE_TABLE') {
+      return new CreateTable();
+    } else if (id === 'P_CREATE_INDEX') {
+      return new CreateIndex();
+    } else if (id === 'P_ALTER_TABLE') {
+      return new AlterTable();
+    } else if (id === 'P_RENAME_TABLE') {
+      return new RenameTable();
+    } else if (id === 'P_DROP_TABLE') {
+      return new DropTable();
+    } else if (id === 'P_DROP_INDEX') {
+      return new DropIndex();
+    }
+
+    return;
   }
 }

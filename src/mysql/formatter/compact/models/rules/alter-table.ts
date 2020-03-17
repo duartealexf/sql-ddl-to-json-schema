@@ -1,15 +1,3 @@
-import { Database } from '../database';
-import { TableOptions } from '../table-options';
-import { Column } from '../column';
-import { Datatype } from '../datatype';
-import { ColumnOptions } from '../column-options';
-import { PrimaryKey } from '../primary-key';
-import { ForeignKey } from '../foreign-key';
-import { UniqueKey } from '../unique-key';
-import { FulltextIndex } from '../fulltext-index';
-import { SpatialIndex } from '../spatial-index';
-import { Index } from '../index';
-import { Table } from '../table';
 import { isFunction, isDefined } from '@shared/utils';
 import {
   O_ALTER_TABLE_SPEC_ADD_COLUMN,
@@ -29,20 +17,32 @@ import {
   O_ALTER_TABLE_SPEC_DROP_FOREIGN_KEY,
   O_ALTER_TABLE_SPEC_RENAME_INDEX,
   O_ALTER_TABLE_SPEC_RENAME,
+  P_ALTER_TABLE,
 } from '@mysql/compiled/typings';
+
+import { TableOptions } from '../table-options';
+import { Column } from '../column';
+import { Index } from '../index';
+import { PrimaryKey } from '../primary-key';
+import { UniqueKey } from '../unique-key';
+import { FulltextIndex } from '../fulltext-index';
+import { SpatialIndex } from '../spatial-index';
+import { ForeignKey } from '../foreign-key';
+import { ColumnOptions } from '../column-options';
+import { TableModelInterface, DatabaseModelInterface, RuleHandler } from '../typings';
 
 /**
  * Formatter for P_ALTER_TABLE rule's parsed JSON.
  */
-export class AlterTable {
-  database!: Database;
+export class AlterTable implements RuleHandler {
+  database!: DatabaseModelInterface;
 
   /**
    * Get table with given name.
    *
    * @param name Table name.
    */
-  getTable(name: string): Table | undefined {
+  getTable(name: string): TableModelInterface | undefined {
     return this.database.getTable(name);
   }
 
@@ -51,7 +51,7 @@ export class AlterTable {
    *
    * @param database Database instance.
    */
-  setDatabase(database: Database) {
+  setDatabase(database: DatabaseModelInterface) {
     this.database = database;
   }
 
@@ -60,7 +60,7 @@ export class AlterTable {
    *
    * @param json JSON format parsed from SQL.
    */
-  handleDef(json: { id: string; def: { table: any; specs: any[] } }) {
+  handleDef(json: P_ALTER_TABLE) {
     if (json.id !== 'P_ALTER_TABLE') {
       throw new TypeError(`Expected P_ALTER_TABLE rule to be handled but received ${json.id}`);
     }
@@ -75,7 +75,7 @@ export class AlterTable {
      * Runs methods in this class according to the
      * 'action' property of the ALTER TABLE spec.
      */
-    json.def.specs.forEach((spec: { def: { spec: any; tableOptions: any } }) => {
+    json.def.specs.forEach((spec) => {
       const changeSpec = spec.def.spec;
       const tableOptions = spec.def.tableOptions;
       if (changeSpec) {
@@ -103,7 +103,7 @@ export class AlterTable {
    * @param json O_ALTER_TABLE_SPEC def object in JSON.
    * @param table Table to be altered.
    */
-  addColumn(json: O_ALTER_TABLE_SPEC_ADD_COLUMN, table: Table) {
+  addColumn(json: O_ALTER_TABLE_SPEC_ADD_COLUMN, table: TableModelInterface) {
     const column = Column.fromObject(json);
 
     /**
@@ -123,7 +123,7 @@ export class AlterTable {
    * @param json O_ALTER_TABLE_SPEC def object in JSON.
    * @param table Table to be altered.
    */
-  addColumns(json: O_ALTER_TABLE_SPEC_ADD_COLUMNS, table: Table) {
+  addColumns(json: O_ALTER_TABLE_SPEC_ADD_COLUMNS, table: TableModelInterface) {
     json.columns.forEach((c) => {
       const column = Column.fromObject(c);
 
@@ -145,7 +145,7 @@ export class AlterTable {
    * @param json O_ALTER_TABLE_SPEC def object in JSON.
    * @param table Table to be altered.
    */
-  addIndex(json: O_ALTER_TABLE_SPEC_ADD_INDEX, table: Table) {
+  addIndex(json: O_ALTER_TABLE_SPEC_ADD_INDEX, table: TableModelInterface) {
     const index = Index.fromObject(json);
     table.pushIndex(index);
   }
@@ -156,7 +156,7 @@ export class AlterTable {
    * @param json O_ALTER_TABLE_SPEC def object in JSON.
    * @param table Table to be altered.
    */
-  addPrimaryKey(json: O_ALTER_TABLE_SPEC_ADD_PRIMARY_KEY, table: Table) {
+  addPrimaryKey(json: O_ALTER_TABLE_SPEC_ADD_PRIMARY_KEY, table: TableModelInterface) {
     const key = PrimaryKey.fromObject(json);
     table.setPrimaryKey(key);
   }
@@ -167,7 +167,7 @@ export class AlterTable {
    * @param json O_ALTER_TABLE_SPEC def object in JSON.
    * @param table Table to be altered.
    */
-  addUniqueKey(json: O_ALTER_TABLE_SPEC_ADD_UNIQUE_KEY, table: Table) {
+  addUniqueKey(json: O_ALTER_TABLE_SPEC_ADD_UNIQUE_KEY, table: TableModelInterface) {
     const key = UniqueKey.fromObject(json);
     table.pushUniqueKey(key);
   }
@@ -178,7 +178,7 @@ export class AlterTable {
    * @param json O_ALTER_TABLE_SPEC def object in JSON.
    * @param table Table to be altered.
    */
-  addFulltextIndex(json: O_ALTER_TABLE_SPEC_ADD_FULLTEXT_INDEX, table: Table) {
+  addFulltextIndex(json: O_ALTER_TABLE_SPEC_ADD_FULLTEXT_INDEX, table: TableModelInterface) {
     const index = FulltextIndex.fromObject(json);
     table.pushFulltextIndex(index);
   }
@@ -189,7 +189,7 @@ export class AlterTable {
    * @param json O_ALTER_TABLE_SPEC def object in JSON.
    * @param table Table to be altered.
    */
-  addSpatialIndex(json: O_ALTER_TABLE_SPEC_ADD_SPATIAL_INDEX, table: Table) {
+  addSpatialIndex(json: O_ALTER_TABLE_SPEC_ADD_SPATIAL_INDEX, table: TableModelInterface) {
     const index = SpatialIndex.fromObject(json);
     table.pushFulltextIndex(index);
   }
@@ -200,7 +200,7 @@ export class AlterTable {
    * @param json O_ALTER_TABLE_SPEC def object in JSON.
    * @param table Table to be altered.
    */
-  addForeignKey(json: O_ALTER_TABLE_SPEC_ADD_FOREIGN_KEY, table: Table) {
+  addForeignKey(json: O_ALTER_TABLE_SPEC_ADD_FOREIGN_KEY, table: TableModelInterface) {
     const key = ForeignKey.fromObject(json);
     table.pushForeignKey(key);
   }
@@ -211,7 +211,10 @@ export class AlterTable {
    * @param json O_ALTER_TABLE_SPEC def object in JSON.
    * @param table Table to be altered.
    */
-  setDefaultColumnValue(json: O_ALTER_TABLE_SPEC_SET_DEFAULT_COLUMN_VALUE, table: Table) {
+  setDefaultColumnValue(
+    json: O_ALTER_TABLE_SPEC_SET_DEFAULT_COLUMN_VALUE,
+    table: TableModelInterface,
+  ) {
     const column = table.getColumn(json.column);
 
     if (!isDefined(column) || !isDefined(column.options)) {
@@ -227,7 +230,10 @@ export class AlterTable {
    * @param json O_ALTER_TABLE_SPEC def object in JSON.
    * @param table Table to be altered.
    */
-  dropDefaultColumnValue(json: O_ALTER_TABLE_SPEC_DROP_DEFAULT_COLUMN_VALUE, table: Table) {
+  dropDefaultColumnValue(
+    json: O_ALTER_TABLE_SPEC_DROP_DEFAULT_COLUMN_VALUE,
+    table: TableModelInterface,
+  ) {
     const column = table.getColumn(json.column);
 
     if (!isDefined(column) || !isDefined(column.options)) {
@@ -243,7 +249,7 @@ export class AlterTable {
    * @param json O_ALTER_TABLE_SPEC def object in JSON.
    * @param table Table to be altered.
    */
-  changeColumn(json: O_ALTER_TABLE_SPEC_CHANGE_COLUMN, table: Table) {
+  changeColumn(json: O_ALTER_TABLE_SPEC_CHANGE_COLUMN, table: TableModelInterface) {
     const column = table.getColumn(json.column);
 
     if (!column) {
@@ -341,7 +347,7 @@ export class AlterTable {
    * @param json O_ALTER_TABLE_SPEC def object in JSON.
    * @param table Table to be altered.
    */
-  dropColumn(json: O_ALTER_TABLE_SPEC_DROP_COLUMN, table: Table) {
+  dropColumn(json: O_ALTER_TABLE_SPEC_DROP_COLUMN, table: TableModelInterface) {
     const column = table.getColumn(json.column);
 
     if (!column) {
@@ -357,7 +363,7 @@ export class AlterTable {
    * @param json O_ALTER_TABLE_SPEC def object in JSON.
    * @param table Table to be altered.
    */
-  dropIndex(json: O_ALTER_TABLE_SPEC_DROP_INDEX, table: Table) {
+  dropIndex(json: O_ALTER_TABLE_SPEC_DROP_INDEX, table: TableModelInterface) {
     if (json.index.toLowerCase() === 'primary') {
       this.dropPrimaryKey(json, table);
       return;
@@ -380,7 +386,7 @@ export class AlterTable {
    */
   dropPrimaryKey(
     json: O_ALTER_TABLE_SPEC_DROP_PRIMARY_KEY | O_ALTER_TABLE_SPEC_DROP_INDEX,
-    table: Table,
+    table: TableModelInterface,
   ) {
     table.dropPrimaryKey();
   }
@@ -391,7 +397,7 @@ export class AlterTable {
    * @param json O_ALTER_TABLE_SPEC def object in JSON.
    * @param table Table to be altered.
    */
-  dropForeignKey(json: O_ALTER_TABLE_SPEC_DROP_FOREIGN_KEY, table: Table) {
+  dropForeignKey(json: O_ALTER_TABLE_SPEC_DROP_FOREIGN_KEY, table: TableModelInterface) {
     const foreignKey = table.getForeignKey(json.key);
 
     if (!foreignKey) {
@@ -407,7 +413,7 @@ export class AlterTable {
    * @param json O_ALTER_TABLE_SPEC def object in JSON.
    * @param table Table to be altered.
    */
-  renameIndex(json: O_ALTER_TABLE_SPEC_RENAME_INDEX, table: Table) {
+  renameIndex(json: O_ALTER_TABLE_SPEC_RENAME_INDEX, table: TableModelInterface) {
     const index = table.getIndex(json.index);
 
     if (!index) {
@@ -423,7 +429,7 @@ export class AlterTable {
    * @param json O_ALTER_TABLE_SPEC def object in JSON.
    * @param table Table to be altered.
    */
-  rename(json: O_ALTER_TABLE_SPEC_RENAME, table: Table) {
+  rename(json: O_ALTER_TABLE_SPEC_RENAME, table: TableModelInterface) {
     table.renameTo(json.newName);
   }
 }

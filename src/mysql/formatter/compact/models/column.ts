@@ -1,23 +1,35 @@
-import { Datatype } from './datatype';
-import { ColumnOptions } from './column-options';
+import {
+  O_CREATE_TABLE_CREATE_DEFINITION,
+  O_CREATE_TABLE_CREATE_DEFINITION_COLUMN,
+  O_ALTER_TABLE_SPEC_ADD_COLUMNS_COLUMN,
+} from '@mysql/compiled/typings';
+import { isDefined } from '@shared/utils';
+
 import { ColumnReference } from './column-reference';
+import { ColumnOptions } from './column-options';
+import { IndexColumn } from './index-column';
 import { PrimaryKey } from './primary-key';
 import { ForeignKey } from './foreign-key';
 import { UniqueKey } from './unique-key';
-import { IndexColumn } from './index-column';
-
-import { isDefined } from '@shared/utils';
-import { ColumnInterface, ClonableInterface, SerializableInterface, DatatypeInterface, ColumnReferenceInterface, ColumnOptionsInterface } from './typings';
-import { O_CREATE_TABLE_CREATE_DEFINITION, O_CREATE_TABLE_CREATE_DEFINITION_COLUMN, O_ALTER_TABLE_SPEC_ADD_COLUMNS_COLUMN } from '@mysql/compiled/typings';
+import {
+  PrimaryKeyModelInterface,
+  ForeignKeyModelInterface,
+  UniqueKeyModelInterface,
+  ColumnModelInterface,
+  DatatypeModelInterface,
+  ColumnReferenceModelInterface,
+  ColumnOptionsModelInterface,
+  ColumnInterface,
+} from './typings';
 
 /**
  * Table column.
  */
-export class Column implements ColumnInterface, ClonableInterface, SerializableInterface {
+export class Column implements ColumnModelInterface {
   name!: string;
-  type!: Datatype;
-  reference?: ColumnReference;
-  options?: ColumnOptions;
+  type!: DatatypeModelInterface;
+  reference?: ColumnReferenceModelInterface;
+  options?: ColumnOptionsModelInterface;
 
   /**
    * Creates a column from a JSON def.
@@ -35,7 +47,7 @@ export class Column implements ColumnInterface, ClonableInterface, SerializableI
       name: column.name,
       datatype: column.def.datatype,
       reference: column.def.reference,
-      columnDefinition: column.def.columnDefinition
+      columnDefinition: column.def.columnDefinition,
     });
   }
 
@@ -67,11 +79,15 @@ export class Column implements ColumnInterface, ClonableInterface, SerializableI
   toJSON(): ColumnInterface {
     const json: ColumnInterface = {
       name: this.name,
-      type: this.type.toJSON()
+      type: this.type.toJSON(),
     };
 
-    if (isDefined(this.options)) { json.options = this.options.toJSON(); }
-    if (isDefined(this.reference)) { json.reference = this.reference.toJSON(); }
+    if (isDefined(this.options)) {
+      json.options = this.options.toJSON();
+    }
+    if (isDefined(this.reference)) {
+      json.reference = this.reference.toJSON();
+    }
 
     return json;
   }
@@ -117,9 +133,9 @@ export class Column implements ColumnInterface, ClonableInterface, SerializableI
    * Extracts instance of PrimaryKey if this column is primary key.
    * Removes 'primary' property from options.
    */
-  extractPrimaryKey(): PrimaryKey | null {
+  extractPrimaryKey(): PrimaryKeyModelInterface | undefined {
     if (this.isPrimaryKey()) {
-      delete (this.options as ColumnOptionsInterface).primary;
+      delete (this.options as ColumnOptionsModelInterface).primary;
 
       const indexColumn = new IndexColumn();
       indexColumn.column = this.name;
@@ -130,36 +146,37 @@ export class Column implements ColumnInterface, ClonableInterface, SerializableI
       return primaryKey;
     }
 
-    return null;
+    return;
   }
 
   /**
    * Extracts instance of ForeignKey if this column references other table.
    * Removes 'reference' property from options.
    */
-  extractForeignKey(): ForeignKey | null {
+  extractForeignKey(): ForeignKeyModelInterface | undefined {
     if (this.isForeignKey()) {
       const indexColumn = new IndexColumn();
       indexColumn.column = this.name;
 
       const foreignKey = new ForeignKey();
       foreignKey.pushColumn(indexColumn);
-      foreignKey.reference = this.reference;
+
+      foreignKey.reference = this.reference as ColumnReferenceModelInterface;
 
       delete this.reference;
       return foreignKey;
     }
 
-    return null;
+    return;
   }
 
   /**
    * Extracts instance of UniqueKey if this column is unique key.
    * Removes 'unique' property from options.
    */
-  extractUniqueKey(): UniqueKey {
+  extractUniqueKey(): UniqueKeyModelInterface | undefined {
     if (this.isUniqueKey()) {
-      delete (this.options as ColumnOptionsInterface).unique;
+      delete (this.options as ColumnOptionsModelInterface).unique;
 
       const indexColumn = new IndexColumn();
       indexColumn.column = this.name;
@@ -170,6 +187,6 @@ export class Column implements ColumnInterface, ClonableInterface, SerializableI
       return uniqueKey;
     }
 
-    return null;
+    return;
   }
 }

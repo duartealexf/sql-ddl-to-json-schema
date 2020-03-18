@@ -1,47 +1,34 @@
-/* eslint no-unused-vars: 0 */
-const Table = require('./table');
+import { TableInterface } from '@mysql/formatter/compact/models/typings';
 
-const utils = require('@shared/utils');
+import { Table } from './table';
 
 /**
  * Database, which contains array of tables in compact format.
  */
-class Database {
+export class Database {
+  /**
+   * Tables array in compact JSON format.
+   */
+  compactJsonTables: TableInterface[] = [];
 
   /**
-   * Database constructor.
+   * Table models after parsed.
    */
-  constructor() {
-
-    /**
-     * Tables array in compact JSON format.
-     * @type {any[]}
-     */
-    this.compactJsonTables = [];
-
-    /**
-     * Table models array after parsed.
-     * @type {Table[]}
-     */
-    this.tables = [];
-  }
+  tables: Table[] = [];
 
   /**
    * Getter for tables.
-   *
-   * @returns {Table[]} Table models.
    */
-  getTables() {
+  getTables(): Table[] {
     return this.tables;
   }
 
   /**
    * Setter for tables.
    *
-   * @param {Table[]} tables Table models.
-   * @returns {void}
+   * @param tables Table models.
    */
-  setTables(tables) {
+  setTables(tables: Table[]) {
     this.tables = tables;
   }
 
@@ -49,24 +36,21 @@ class Database {
    * Get table with given name.
    *
    * @param name Table name.
-   * @returns {Table} Table result.
    */
-  getTable(name) {
-    return this.tables.find(t => t.name === name);
+  getTable(name: string): Table | undefined {
+    return this.tables.find((t) => t.name === name);
   }
 
   /**
    * Pushes a table to database.
    *
    * @param table Table to be added.
-   * @returns {void}
    */
-  pushTable(table) {
-
+  pushTable(table: Table) {
     /**
      * Do not add table with same name.
      */
-    if (this.tables.some(t => t.name === table.name)) {
+    if (this.tables.some((t) => t.name === table.name)) {
       return;
     }
 
@@ -77,14 +61,8 @@ class Database {
    * Build JSON Schema from compact JSON format.
    *
    * @param tables Tables array in compact JSON format.
-   * @returns {void}
    */
-  parseCompactJson(tables) {
-    this.setTables(tables.map(table => {
-      const instance = Table.fromCompactJson(table);
-      return instance;
-    }));
+  parseCompactJson(tables: TableInterface[]) {
+    this.setTables(tables.map((table) => Table.fromCompactJson(table)));
   }
 }
-
-module.exports = Database;

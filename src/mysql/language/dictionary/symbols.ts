@@ -8,26 +8,26 @@
  * https://mariadb.com/kb/en/library/operators/
  */
 
-module.exports = {
+export default {
   /**
    * Whitespaces, also expect SQL comments
    */
-  WS                : { match: /(?:\s+|#.*|-- +.*|\/\*(?:[\s\S])*?\*\/)+/, lineBreaks: true },
-  S_EQUAL           : '=',
-  S_LPARENS         : '(',
-  S_RPARENS         : ')',
-  S_COMMA           : ',',
-  S_SEMICOLON       : ';',
+  WS: { match: /(?:\s+|#.*|-- +.*|\/\*(?:[\s\S])*?\*\/)+/, lineBreaks: true },
+  S_EQUAL: '=',
+  S_LPARENS: '(',
+  S_RPARENS: ')',
+  S_COMMA: ',',
+  S_SEMICOLON: ';',
 
   /**
    * Used to represent a bit datatype.
    */
-  S_BIT_FORMAT      : { match: /b'[01]+'|0b[01]+/ },
+  S_BIT_FORMAT: { match: /b'[01]+'|0b[01]+/ },
 
   /**
    * Used to represent a bit datatype.
    */
-  S_HEXA_FORMAT     : { match: /[Xx]'[0-9a-fA-F]+'|0x[0-9a-fA-F]+/ },
+  S_HEXA_FORMAT: { match: /[Xx]'[0-9a-fA-F]+'|0x[0-9a-fA-F]+/ },
 
   /**
    * These RegExps support all types of quote escaping in MariaDB.
@@ -38,23 +38,25 @@ module.exports = {
    * I "match", "", "an \"escaped quote\"", also a "double double "" quote".
    *   ^^^^^^^  ^^  ^^^^^^^^^^^^^^^^^^^^^^         ^^^^^^^^^^^^^^^^^^^^^^^^
    */
-  S_DQUOTE_STRING   : {
+  S_DQUOTE_STRING: {
     match: /""|"(?:(?:"")|[^"\\]|\\.)*"/,
-    value: v => v
-      .substr(1, v.length - 2)
-      .replace(/\\"/g, '"')
-      .replace(/""/g, '"')
+    value: (v: string) =>
+      v
+        .substr(1, v.length - 2)
+        .replace(/\\"/g, '"')
+        .replace(/""/g, '"'),
   },
 
-  S_SQUOTE_STRING   : {
+  S_SQUOTE_STRING: {
     match: /''|'(?:(?:'')|[^'\\]|\\.)*'/,
-    value: v => v
-      .substr(1, v.length - 2)
-      .replace(/\\'/g, "'")
-      .replace(/''/g, "'")
+    value: (v: string) =>
+      v
+        .substr(1, v.length - 2)
+        .replace(/\\'/g, "'")
+        .replace(/''/g, "'"),
   },
 
-  S_NUMBER          : { match: /[+-]?(?:\d+(?:\.\d+)?(?:[Ee][+-]?\d+)?)/, value: Number },
+  S_NUMBER: { match: /[+-]?(?:\d+(?:\.\d+)?(?:[Ee][+-]?\d+)?)/, value: Number },
 
   /**
    * See S_IDENTIFIER in lexer.ne file.
@@ -63,16 +65,14 @@ module.exports = {
    * supported, they are interpreted as non-escaped backticks. Escaping
    * backticks is done through using double backticks. - duartealexf
    */
-  S_IDENTIFIER_QUOTED     : {
+  S_IDENTIFIER_QUOTED: {
     match: /`(?:(?:``)|[^`\\])*`/,
-    value: v => v
-      .substr(1, v.length - 2)
-      .replace(/``/g, "`")
+    value: (v: string) => v.substr(1, v.length - 2).replace(/``/g, '`'),
   },
-  S_IDENTIFIER_UNQUOTED   : { match: /[0-9a-zA-Z$_]+/ },
+  S_IDENTIFIER_UNQUOTED: { match: /[0-9a-zA-Z$_]+/ },
 
   /**
    * Fallback wildcard match.
    */
-  S_UNKNOWN : { match: /.+/ },
+  S_UNKNOWN: { match: /.+/ },
 };

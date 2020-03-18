@@ -58,6 +58,7 @@
   },
   "devDependencies": {
     "@types/fs-extra": "^8.1.0",
+    "@types/json-schema": "^7.0.4",
     "@types/nearley": "^2.11.1",
     "@types/node": "^13.9.0",
     "@typescript-eslint/eslint-plugin": "^2.2.0",

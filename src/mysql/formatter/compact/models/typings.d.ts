@@ -306,7 +306,7 @@ export interface ForeignKeyModelInterface
   getReferencedTable(tables: TableModelInterface[]): TableModelInterface | undefined;
   referencesTableAndColumn(table: TableModelInterface, column: ColumnModelInterface): boolean;
   referencesTable(table: TableModelInterface): boolean;
-  renameColumn(column: Column, newName: string): void;
+  renameColumn(column: ColumnModelInterface, newName: string): void;
   updateReferencedTableName(newName: string): void;
 }
 

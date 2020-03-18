@@ -1,16 +1,15 @@
 import { ColumnInterface as CompactFormatColumnInterface } from '@mysql/formatter/compact/models/typings';
+import { isString, isDefined, isNumber } from '@shared/utils';
 
 import { Datatype } from './datatype';
-
-import { isString, isDefined, isNumber } from '@shared/utils';
-import { ColumnInterface } from './typings';
+import { JSONSchema7 } from 'json-schema';
 
 /**
  * Table column.
  */
-export class Column implements ColumnInterface {
-  name?: string;
-  datatype?: Datatype;
+export class Column {
+  name!: string;
+  datatype!: Datatype;
   isNullable?: boolean;
   isPrimaryKey?: boolean;
   comment?: string;
@@ -51,8 +50,8 @@ export class Column implements ColumnInterface {
   /**
    * JSON casting of this object calls this method.
    */
-  toJSON(): ColumnInterface {
-    const json: ColumnInterface = {};
+  toJSON(): JSONSchema7 {
+    const json: JSONSchema7 = {};
     const type = this.datatype.toJSON();
 
     /**
@@ -68,12 +67,13 @@ export class Column implements ColumnInterface {
     }
 
     Object.getOwnPropertyNames(type)
-      .map((k) => [k, type[k]])
-      .filter(([, v]) => {
-        return isNumber(v) ? isFinite(v) : true;
-      })
-      .forEach(([k, v]) => {
-        json[k] = v;
+      .forEach((key: string) => {
+        const value = type[key as keyof JSONSchema7];
+        const number = isNumber(value);
+
+        if (number && isFinite(value as any) || !number) {
+          Object.defineProperty(json, key, { value });
+        }
       });
 
     if (typeof this.default !== 'undefined') {

@@ -30,6 +30,7 @@ import { SpatialIndex } from '../spatial-index';
 import { ForeignKey } from '../foreign-key';
 import { ColumnOptions } from '../column-options';
 import { TableModelInterface, DatabaseModelInterface, RuleHandler } from '../typings';
+import { Datatype } from '../datatype';
 
 /**
  * Formatter for P_ALTER_TABLE rule's parsed JSON.

@@ -21,6 +21,7 @@ import {
   ColumnOptionsModelInterface,
   ColumnInterface,
 } from './typings';
+import { Datatype } from './datatype';
 
 /**
  * Table column.

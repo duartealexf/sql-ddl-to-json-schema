@@ -58,7 +58,7 @@ export class ColumnOptions implements ColumnOptionsModelInterface {
     /**
      * If column is not 'NOT NULL', consider it 'NULL DEFAULT NULL'.
      */
-    if (!utils.isDefined(columnOptions.nullable)) {
+    if (!isDefined(columnOptions.nullable)) {
       columnOptions.nullable = true;
     }
 
@@ -86,49 +86,49 @@ export class ColumnOptions implements ColumnOptionsModelInterface {
   toJSON(): ColumnOptionsInterface {
     const json: ColumnOptionsInterface = {};
 
-    if (utils.isDefined(this.unsigned)) {
+    if (isDefined(this.unsigned)) {
       json.unsigned = this.unsigned;
     }
-    if (utils.isDefined(this.zerofill)) {
+    if (isDefined(this.zerofill)) {
       json.zerofill = this.zerofill;
     }
-    if (utils.isDefined(this.charset)) {
+    if (isDefined(this.charset)) {
       json.charset = this.charset;
     }
-    if (utils.isDefined(this.collation)) {
+    if (isDefined(this.collation)) {
       json.collation = this.collation;
     }
-    if (utils.isDefined(this.nullable)) {
+    if (isDefined(this.nullable)) {
       json.nullable = this.nullable;
     }
-    if (utils.isDefined(this.nullable)) {
+    if (isDefined(this.nullable)) {
       json.nullable = this.nullable;
     }
-    if (utils.isDefined(this.default)) {
+    if (isDefined(this.default)) {
       json.default = this.default;
     }
-    if (utils.isDefined(this.autoincrement)) {
+    if (isDefined(this.autoincrement)) {
       json.autoincrement = this.autoincrement;
     }
-    if (utils.isDefined(this.unique)) {
+    if (isDefined(this.unique)) {
       json.unique = this.unique;
     }
-    if (utils.isDefined(this.primary)) {
+    if (isDefined(this.primary)) {
       json.primary = this.primary;
     }
-    if (utils.isDefined(this.invisible)) {
+    if (isDefined(this.invisible)) {
       json.invisible = this.invisible;
     }
-    if (utils.isDefined(this.format)) {
+    if (isDefined(this.format)) {
       json.format = this.format;
     }
-    if (utils.isDefined(this.storage)) {
+    if (isDefined(this.storage)) {
       json.storage = this.storage;
     }
-    if (utils.isDefined(this.comment)) {
+    if (isDefined(this.comment)) {
       json.comment = this.comment;
     }
-    if (utils.isDefined(this.onUpdate)) {
+    if (isDefined(this.onUpdate)) {
       json.onUpdate = this.onUpdate;
     }
 

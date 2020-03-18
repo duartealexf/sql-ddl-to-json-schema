@@ -42,7 +42,7 @@ const lexerFile = join(langFolder, 'lexer.ne');
 /**
  * Output.
  */
-const compiledFolder = join(srcFolder, 'compiled');
+const compiledFolder = langFolder;
 const compiledNearleyGrammar = join(compiledFolder, 'grammar.ne');
 
 if (!existsSync(compiledFolder)) {

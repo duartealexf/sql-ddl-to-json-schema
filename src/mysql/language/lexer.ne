@@ -13,11 +13,9 @@
 # Lexer and rules loader
 
 @{%
-const moo = require('moo');
-
-const utils = require('../../shared/utils');
-const keywords = require('./dictionary/keywords');
-const symbols = require('./dictionary/symbols');
+import moo from 'moo';
+import keywords from './dictionary/keywords';
+import symbols from './dictionary/symbols';
 
 const rules = Object.assign({}, keywords, symbols);
 

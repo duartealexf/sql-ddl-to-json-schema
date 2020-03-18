@@ -35,7 +35,7 @@
     "test": "ava --color test/**/*.spec.js",
     "lint": "eslint src",
     "prebuild:mysql": "ts-node tasks/mysql/assembly.ts",
-    "build:mysql": "nearleyc src/mysql/compiled/grammar.ne -o src/mysql/compiled/grammar.ts",
+    "build:mysql": "nearleyc src/mysql/language/grammar.ne -o src/mysql/language/grammar.ts",
     "build": "npm run build:mysql && tsc",
     "test:watch": "npm run nodemon-watch -- --exec 'npm run test'",
     "test:update": "DRY_UPDATE=1 npm run test",
@@ -59,6 +59,7 @@
   "devDependencies": {
     "@types/fs-extra": "^8.1.0",
     "@types/json-schema": "^7.0.4",
+    "@types/moo": "^0.5.2",
     "@types/nearley": "^2.11.1",
     "@types/node": "^13.9.0",
     "@typescript-eslint/eslint-plugin": "^2.2.0",

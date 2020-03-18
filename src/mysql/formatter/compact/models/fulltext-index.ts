@@ -1,16 +1,16 @@
 import { isDefined } from '@shared/utils';
+import { FulltextIndexInterface } from '@typings/compact';
 import {
   O_CREATE_TABLE_CREATE_DEFINITION,
   P_CREATE_INDEX,
   STATEMENT,
   O_CREATE_TABLE_CREATE_DEFINITION_FULLTEXT_INDEX,
   O_ALTER_TABLE_SPEC_ADD_FULLTEXT_INDEX,
-} from '@mysql/compiled/typings';
+} from '@typings/parsed';
 
 import { IndexColumn } from './index-column';
 import { IndexOptions } from './index-options';
 import {
-  FulltextIndexInterface,
   FulltextIndexModelInterface,
   IndexColumnModelInterface,
   IndexOptionsModelInterface,

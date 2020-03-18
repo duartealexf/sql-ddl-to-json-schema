@@ -2,7 +2,8 @@ import {
   O_CREATE_TABLE_CREATE_DEFINITION,
   O_CREATE_TABLE_CREATE_DEFINITION_COLUMN,
   O_ALTER_TABLE_SPEC_ADD_COLUMNS_COLUMN,
-} from '@mysql/compiled/typings';
+} from '@typings/parsed';
+import { ColumnInterface } from '@typings/compact';
 import { isDefined } from '@shared/utils';
 
 import { ColumnReference } from './column-reference';
@@ -19,7 +20,6 @@ import {
   DatatypeModelInterface,
   ColumnReferenceModelInterface,
   ColumnOptionsModelInterface,
-  ColumnInterface,
 } from './typings';
 import { Datatype } from './datatype';
 

@@ -4,13 +4,13 @@ import {
   O_CREATE_TABLE_CREATE_DEFINITION_UNIQUE_KEY,
   STATEMENT,
   O_ALTER_TABLE_SPEC_ADD_UNIQUE_KEY,
-} from '@mysql/compiled/typings';
+} from '@typings/parsed';
 import { isDefined } from '@shared/utils';
+import { UniqueKeyInterface } from '@typings/compact';
 
 import { IndexOptions } from './index-options';
 import { IndexColumn } from './index-column';
 import {
-  UniqueKeyInterface,
   UniqueKeyModelInterface,
   IndexColumnModelInterface,
   IndexOptionsModelInterface,

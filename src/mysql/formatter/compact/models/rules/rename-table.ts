@@ -1,4 +1,4 @@
-import { P_RENAME_TABLE } from '@mysql/compiled/typings';
+import { P_RENAME_TABLE } from '@typings/parsed';
 
 import { DatabaseModelInterface, TableModelInterface, RuleHandler } from '../typings';
 
@@ -29,7 +29,7 @@ export class RenameTable implements RuleHandler {
   /**
    * Get tables from database.
    */
-  getTables(): ModelInterface[] {
+  getTables(): TableModelInterface[] {
     return this.database.getTables();
   }
 

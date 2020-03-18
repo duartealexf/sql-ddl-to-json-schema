@@ -1,4 +1,4 @@
-import { TableInterface } from '@mysql/formatter/compact/models/typings';
+import { TableInterface } from '@typings/compact';
 
 import { Table } from './table';
 

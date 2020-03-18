@@ -1,19 +1,46 @@
 import { Parser as NearleyParser, Grammar as NearleyGrammar } from 'nearley';
 
-import MySQLGrammarRules from '@mysql/compiled';
-import MySQLCompactFormatter from '@mysql/formatter/compact';
-import MySQLJSONSchemaFormatter from './mysql/formatter/json-schema';
-
-import { JSONSchemaFormatOptions, JSONSchemaFileOptions } from './shared/options';
-import utils from './shared/utils';
+import { Grammar as MySQLGrammarRules } from '@mysql/compiled';
+import { CompactFormatter as MySQLCompactFormatter } from '@mysql/formatter/compact';
+import { JSONSchemaFormatter as MySQLJSONSchemaFormatter } from './mysql/formatter/json-schema';
 
 import fs from 'fs';
 import { join } from 'path';
+import { isString } from '@shared/utils';
+import { CompactJSONFormat } from '@typings/compact';
+import { JSONSchema7 } from 'json-schema';
+import { JSONSchemaFormatOptions, JSONSchemaFileOptions } from '@typings/json-schema';
+import { P_MAIN, P_DDS } from '@typings/parsed';
 
 /**
  * Main Parser class, wraps nearley parser main methods.
  */
 export class Parser {
+  private compiledGrammar!: NearleyGrammar;
+  private parser!: NearleyParser;
+
+  private jsonSchemaFormatter!: MySQLJSONSchemaFormatter;
+  private compactFormatter!: MySQLCompactFormatter;
+
+  /**
+   * Parsed statements.
+   */
+  private statements: string[] = [];
+
+  /**
+   * Remains of string feed, after last parsed statement.
+   */
+  private remains = '';
+
+  /**
+   * Whether preparser is currently escaped.
+   */
+  private escaped = false;
+
+  /**
+   * Current quote char of preparser.
+   */
+  private quoted = '';
 
   /**
    * Parser constructor.
@@ -21,49 +48,30 @@ export class Parser {
    *
    * @param dialect SQL dialect ('mysql' or 'mariadb' currently supported).
    */
-  constructor(dialect = 'mysql') {
+  constructor(dialect: 'mysql' | 'mariadb' = 'mysql') {
     if (!dialect || dialect === 'mysql' || dialect === 'mariadb') {
       this.compiledGrammar = NearleyGrammar.fromCompiled(MySQLGrammarRules);
-      this.compactFormatter = MySQLCompactFormatter;
-      this.jsonSchemaFormatter = MySQLJSONSchemaFormatter;
-    }
-    else {
-      throw new TypeError(`Unsupported SQL dialect given to parser: '${dialect}. ` +
-        `Please provide 'mysql', 'mariadb' or none to use default.`);
+      this.compactFormatter = new MySQLCompactFormatter();
+      this.jsonSchemaFormatter = new MySQLJSONSchemaFormatter();
+    } else {
+      throw new TypeError(
+        `Unsupported SQL dialect given to parser: '${dialect}. ` +
+          `Please provide 'mysql', 'mariadb' or none to use default.`,
+      );
     }
 
     this.resetParser();
-
-    /**
-     * Parsed statements.
-     * @type {string[]}
-     */
-    this.statements = [];
-
-    /**
-     * Remains of string feed, after last parsed statement.
-     */
-    this.remains = '';
-
-    /**
-     * Whether preparser is currently escaped.
-     */
-    this.escaped = false;
-
-    /**
-     * Current quote char of preparser.
-     */
-    this.quoted = '';
   }
 
   /**
    * Feed chunk of string into parser.
    *
    * @param chunk Chunk of string to be parsed.
-   * @returns {Parser} Parser class.
    */
-  feed(chunk) {
-    let i, char, parsed = '';
+  feed(chunk: string): Parser {
+    let i,
+      char,
+      parsed = '';
     let lastStatementIndex = 0;
 
     for (i = 0; i < chunk.length; i++) {
@@ -99,20 +107,17 @@ export class Parser {
 
   /**
    * Recreates NearleyParser using grammar given in constructor.
-   *
-   * @returns {void}
    */
   resetParser() {
-    this.parser = new NearleyParser.Parser(this.compiledGrammar);
+    this.parser = new NearleyParser(this.compiledGrammar);
   }
 
   /**
    * Checks whether character is a quotation character.
    *
    * @param char Character to be evaluated.
-   * @returns {boolean} Whether char is quotation char.
    */
-  isQuoteChar(char) {
+  private isQuoteChar(char: string): boolean {
     return char === '"' || char === "'" || char === '`';
   }
 
@@ -120,18 +125,15 @@ export class Parser {
    * Tidy parser results.
    *
    * @param results Parser results.
-   * @returns {any} Tidy results.
    */
-  tidy(results) {
+  private tidy(results: P_DDS[]): P_DDS {
     return results[0];
   }
 
   /**
    * Parser results getter. Will run nearley parser on string fed to this parser.
-   *
-   * @returns {any} Parsed results.
    */
-  get results() {
+  get results(): P_MAIN {
     let lineCount = 1;
     let statement = this.statements.shift();
     const results = [];
@@ -157,8 +159,8 @@ export class Parser {
       /**
        * Apply line count correction.
        */
-      if (e.message && utils.isString(e.message)) {
-        const matches = e.message.match(/^invalid syntax at line (\d+)/);
+      if (e.message && isString(e.message)) {
+        const matches = e.message.match(/^at line (\d+)/);
         if (matches && Array.isArray(matches) && matches.length > 1) {
           const errorLine = Number(matches[1]);
           const newCount = lineCount + errorLine - 1;
@@ -186,8 +188,8 @@ export class Parser {
     this.quoted = '';
 
     return {
-      id: "MAIN",
-      def: results
+      id: 'MAIN',
+      def: results,
     };
   }
 
@@ -198,7 +200,7 @@ export class Parser {
    * @param json Parsed JSON format (optional).
    * @returns {any[]} Array of tables in compact JSON format.
    */
-  toCompactJson(json = null) {
+  toCompactJson(json?: P_MAIN): CompactJSONFormat[] {
     if (!json) {
       json = this.results;
     }
@@ -211,11 +213,15 @@ export class Parser {
    * where each item is the JSON Schema of a table. If no
    * tables are given, will use currently parsed SQL.
    *
-   * @param {JSONSchemaFormatOptions} options Options available to format as JSON Schema (optional).
+   * @param options Options available to format as JSON Schema (optional).
    * @param tables Array of tables in compact JSON format (optional).
-   * @returns {any[]} JSON Schema documents array.
    */
-  toJsonSchemaArray(options = new JSONSchemaFormatOptions(), tables = null) {
+  toJsonSchemaArray(
+    options: JSONSchemaFormatOptions = {
+      useRef: true,
+    },
+    tables?: CompactJSONFormat[],
+  ): JSONSchema7[] {
     if (!tables) {
       tables = this.toCompactJson();
     }
@@ -226,13 +232,21 @@ export class Parser {
   /**
    * Output JSON Schema files (one for each table) in given output directory for the
    * parsed SQL. If no JSON Schemas array is given, will use currently parsed SQL.
+   * Only available in NodeJS environments.
    *
    * @param outputDir Output directory.
-   * @param {JSONSchemaFileOptions} options Options object for JSON Schema output to files (optional).
+   * @param options Options object for JSON Schema output to files (optional).
    * @param jsonSchemas JSON Schema documents array (optional).
-   * @returns {Promise<string[]>} Resolved promise with output file paths.
    */
-  toJsonSchemaFiles(outputDir, options = new JSONSchemaFileOptions(), jsonSchemas = null) {
+  async toJsonSchemaFiles(
+    outputDir: string,
+    options: JSONSchemaFileOptions = {
+      useRef: true,
+      extension: '.json',
+      indent: 2,
+    },
+    jsonSchemas?: JSONSchema7[],
+  ): Promise<string[]> {
     if (!outputDir) {
       throw new Error('Please provide output directory for JSON Schema files');
     }
@@ -243,24 +257,33 @@ export class Parser {
       });
     }
 
-    return Promise.all(
-      jsonSchemas.map(schema => {
-        return new Promise(resolve => {
-          if (!schema.$id) {
-            throw new Error('No root $id found in schema. It should contain the table name. ' +
-              'If you have modified the JSON Schema, please keep the $id, as it will be the file name.');
-          }
-          const filename = schema.$id;
-          const filepath = join(outputDir, filename + options.extension);
+    const filepaths = await Promise.all<string>(
+      jsonSchemas.map(async (schema) => {
+        if (!schema.$id) {
+          throw new Error(
+            'No root $id found in schema. It should contain the table name. ' +
+              'If you have modified the JSON Schema, please keep the $id, as it will be the file name.',
+          );
+        }
 
-          fs.writeFile(filepath, JSON.stringify(schema, null, options.indent), err => {
+        const filename = schema.$id;
+        const filepath = join(outputDir, filename + options.extension);
+
+        const path = await new Promise<string>((resolve) => {
+          fs.writeFile(filepath, JSON.stringify(schema, null, options.indent), (err) => {
             if (err) {
-              throw new Error(`Error when trying to write to file ${filepath}: ${JSON.stringify(err, null, 2)}`);
+              throw new Error(
+                `Error when trying to write to file ${filepath}: ${JSON.stringify(err, null, 2)}`,
+              );
             }
             resolve(filepath);
           });
         });
-      })
+
+        return path;
+      }),
     );
+
+    return filepaths;
   }
 }

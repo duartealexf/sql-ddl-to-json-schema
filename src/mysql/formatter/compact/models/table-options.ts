@@ -1,8 +1,8 @@
-import { P_CREATE_TABLE_OPTIONS, O_CREATE_TABLE_OPTION } from '@mysql/compiled/typings';
+import { P_CREATE_TABLE_OPTIONS, O_CREATE_TABLE_OPTION } from '@typings/parsed';
+import { TableOptionsInterface } from '@typings/compact';
 import { isString, isDefined } from '@shared/utils';
 
 import {
-  TableOptionsInterface,
   TableOptionsModelInterface,
 } from './typings';
 

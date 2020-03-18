@@ -1,4 +1,4 @@
-import { P_DROP_TABLE } from '@mysql/compiled/typings';
+import { P_DROP_TABLE } from '@typings/parsed';
 
 import { DatabaseModelInterface, TableModelInterface, RuleHandler } from '../typings';
 

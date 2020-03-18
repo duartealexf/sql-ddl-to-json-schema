@@ -18,7 +18,7 @@ import {
   O_ALTER_TABLE_SPEC_RENAME_INDEX,
   O_ALTER_TABLE_SPEC_RENAME,
   P_ALTER_TABLE,
-} from '@mysql/compiled/typings';
+} from '@typings/parsed';
 
 import { TableOptions } from '../table-options';
 import { Column } from '../column';

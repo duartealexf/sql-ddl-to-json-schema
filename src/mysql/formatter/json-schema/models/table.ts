@@ -1,7 +1,8 @@
 import { JSONSchema7 as OriginalJSONSchema7 } from 'json-schema';
 
-import { TableInterface } from '@mysql/formatter/compact/models/typings';
-import { JSONSchemaFormatOptions, Tuple } from '@shared/typings';
+import { JSONSchemaFormatOptions } from '@typings/json-schema';
+import { TableInterface } from '@typings/compact';
+import { Tuple } from '@typings/utils';
 import { isDefined } from '@shared/utils';
 
 import { Column } from './column';

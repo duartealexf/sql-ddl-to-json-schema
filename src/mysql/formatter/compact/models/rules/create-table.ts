@@ -1,4 +1,4 @@
-import { P_CREATE_TABLE } from '@mysql/compiled/typings';
+import { P_CREATE_TABLE } from '@typings/parsed';
 
 import { Table } from '../table';
 import { DatabaseModelInterface, TableModelInterface, RuleHandler } from '../typings';

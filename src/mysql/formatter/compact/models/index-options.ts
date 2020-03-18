@@ -1,8 +1,8 @@
-import { O_INDEX_OPTION } from '@mysql/compiled/typings';
+import { IndexOptionsInterface } from '@typings/compact';
+import { O_INDEX_OPTION } from '@typings/parsed';
 import { isDefined } from '@shared/utils';
 
 import {
-  IndexOptionsInterface,
   IndexOptionsModelInterface,
 } from './typings';
 

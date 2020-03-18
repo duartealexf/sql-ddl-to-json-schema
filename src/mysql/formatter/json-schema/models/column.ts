@@ -1,4 +1,4 @@
-import { ColumnInterface as CompactFormatColumnInterface } from '@mysql/formatter/compact/models/typings';
+import { ColumnInterface as CompactFormatColumnInterface } from '@typings/compact';
 import { isString, isDefined, isNumber } from '@shared/utils';
 
 import { Datatype } from './datatype';

@@ -4,13 +4,13 @@ import {
   STATEMENT,
   O_CREATE_TABLE_CREATE_DEFINITION_INDEX,
   O_ALTER_TABLE_SPEC_ADD_INDEX,
-} from '@mysql/compiled/typings';
+} from '@typings/parsed';
+import { IndexInterface } from '@typings/compact';
 import { isDefined } from '@shared/utils';
 
 import { IndexColumn } from './index-column';
 import { IndexOptions } from './index-options';
 import {
-  IndexInterface,
   IndexModelInterface,
   IndexColumnModelInterface,
   IndexOptionsModelInterface,

@@ -1,11 +1,11 @@
-import { P_COLUMN_REFERENCE } from '@mysql/compiled/typings';
+import { P_COLUMN_REFERENCE } from '@typings/parsed';
+import { ColumnReferenceInterface } from '@typings/compact';
 import { isDefined } from '@shared/utils';
 
 import { ColumnReferenceOn } from './column-reference-on';
 import { IndexColumn } from './index-column';
 import {
   ColumnReferenceModelInterface,
-  ColumnReferenceInterface,
   IndexColumnModelInterface,
   ColumnReferenceOnModelInterface,
 } from './typings';

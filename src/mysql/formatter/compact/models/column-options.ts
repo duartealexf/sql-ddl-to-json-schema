@@ -1,10 +1,8 @@
-import { O_COLUMN_DEFINITION } from '@mysql/compiled/typings';
+import { O_COLUMN_DEFINITION } from '@typings/parsed';
+import { ColumnOptionsInterface } from '@typings/compact';
 import { isString, isDefined } from '@shared/utils';
 
-import {
-  ColumnOptionsInterface,
-  ColumnOptionsModelInterface,
-} from './typings';
+import { ColumnOptionsModelInterface } from './typings';
 
 /**
  * Options of a table column.

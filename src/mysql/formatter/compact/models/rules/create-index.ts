@@ -1,4 +1,4 @@
-import { P_CREATE_INDEX } from '@mysql/compiled/typings';
+import { P_CREATE_INDEX } from '@typings/parsed';
 
 import { UniqueKey } from '../unique-key';
 import { FulltextIndex } from '../fulltext-index';

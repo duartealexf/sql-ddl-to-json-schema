@@ -1,4 +1,4 @@
-import { DatatypeInterface } from '@mysql/formatter/compact/models/typings';
+import { DatatypeInterface } from '@typings/compact';
 import { isDefined } from '@shared/utils';
 
 import { JSONSchema7TypeName, JSONSchema7 } from 'json-schema';

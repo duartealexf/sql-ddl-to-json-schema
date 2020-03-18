@@ -4,13 +4,13 @@ import {
   STATEMENT,
   O_CREATE_TABLE_CREATE_DEFINITION_SPATIAL_INDEX,
   O_ALTER_TABLE_SPEC_ADD_SPATIAL_INDEX,
-} from '@mysql/compiled/typings';
+} from '@typings/parsed';
 import { isDefined } from '@shared/utils';
+import { SpatialIndexInterface } from '@typings/compact';
 
 import { IndexColumn } from './index-column';
 import { IndexOptions } from './index-options';
 import {
-  SpatialIndexInterface,
   SpatialIndexModelInterface,
   IndexColumnModelInterface,
   IndexOptionsModelInterface,

@@ -1,4 +1,4 @@
-import { TransformerFunction, TMap, AnyMap } from "@shared/typings";
+import { TransformerFunction, TMap, AnyMap } from '@typings/utils';
 
 /**
  * Transform an array of strings into an object, optionally
@@ -12,10 +12,13 @@ import { TransformerFunction, TMap, AnyMap } from "@shared/typings";
  * @param transformKey Function that transforms the object key.
  * @param transformValue Function that transforms the object value.
  */
-export function stringArrayToMapping<T>(array: string[] = [], transformKey: TransformerFunction<string>, transformValue: TransformerFunction<T>): TMap<T> {
-
-  transformKey = transformKey || (k => k);
-  transformValue = transformValue || (v => v);
+export function stringArrayToMapping<T>(
+  array: string[] = [],
+  transformKey: TransformerFunction<string>,
+  transformValue: TransformerFunction<T>,
+): TMap<T> {
+  transformKey = transformKey || ((k) => k);
+  transformValue = transformValue || ((v) => v);
 
   return array.reduce((obj, elem) => {
     obj[transformKey(elem)] = transformValue(elem);
@@ -34,7 +37,7 @@ export function stringArrayToMapping<T>(array: string[] = [], transformKey: Tran
 export function trimString(string: string, additional: string = '', chars: string = `\\s\\0\\x0B`) {
   return string.replace(
     new RegExp(`^[${additional + chars}]*|[${additional + chars}]*$`, 'gim'),
-    ''
+    '',
   );
 }
 
@@ -59,7 +62,7 @@ export function mergeLatestToObject(collection: any[]): AnyMap {
  * @param obj Object to be filtered.
  */
 export function filterNullValues(obj: AnyMap): AnyMap {
-  Object.getOwnPropertyNames(obj).forEach(name => {
+  Object.getOwnPropertyNames(obj).forEach((name) => {
     if (obj[name] === null) {
       delete obj[name];
     }
@@ -82,7 +85,6 @@ export function mergeDeep(target: AnyMap, ...sources: AnyMap[]): AnyMap {
 
   if (isObject(target) && isObject(source)) {
     for (const key in source) {
-
       if (isObject(source[key])) {
         if (!target[key]) {
           Object.assign(target, { [key]: {} });

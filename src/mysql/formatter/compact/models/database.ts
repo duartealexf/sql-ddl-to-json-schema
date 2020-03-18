@@ -1,4 +1,4 @@
-import { P_DDS } from '@mysql/compiled/typings';
+import { P_DDS } from '@typings/parsed';
 
 import { CreateTable } from './rules/create-table';
 import { CreateIndex } from './rules/create-index';

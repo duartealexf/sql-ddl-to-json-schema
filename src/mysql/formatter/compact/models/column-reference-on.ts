@@ -1,4 +1,4 @@
-import { P_COLUMN_REFERENCE_ON } from '@mysql/compiled/typings';
+import { P_COLUMN_REFERENCE_ON } from '@typings/parsed';
 
 import { ColumnReferenceOnModelInterface } from './typings';
 

@@ -1,10 +1,8 @@
-import { O_DATATYPE } from '@mysql/compiled/typings';
+import { O_DATATYPE } from '@typings/parsed';
 import { isDefined } from '@shared/utils';
+import { DatatypeInterface } from '@typings/compact';
 
-import {
-  DatatypeInterface,
-  DatatypeModelInterface,
-} from './typings';
+import { DatatypeModelInterface } from './typings';
 
 /**
  * Data type.

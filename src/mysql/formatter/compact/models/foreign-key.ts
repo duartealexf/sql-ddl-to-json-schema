@@ -1,13 +1,13 @@
 import {
   O_CREATE_TABLE_CREATE_DEFINITION,
   O_CREATE_TABLE_CREATE_DEFINITION_FOREIGN_KEY,
-} from '@mysql/compiled/typings';
+} from '@typings/parsed';
 import { isDefined } from '@shared/utils';
+import { ForeignKeyInterface } from '@typings/compact';
 
 import { ColumnReference } from './column-reference';
 import { IndexColumn } from './index-column';
 import {
-  ForeignKeyInterface,
   ForeignKeyModelInterface,
   IndexColumnModelInterface,
   ColumnReferenceModelInterface,

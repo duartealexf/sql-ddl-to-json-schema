@@ -1,8 +1,8 @@
-import { P_INDEX_COLUMN } from '@mysql/compiled/typings';
+import { P_INDEX_COLUMN } from '@typings/parsed';
+import { IndexColumnInterface } from '@typings/compact';
 import { isDefined } from '@shared/utils';
 
 import {
-  IndexColumnInterface,
   IndexColumnModelInterface,
 } from './typings';
 

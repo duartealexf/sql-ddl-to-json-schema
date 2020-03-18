@@ -1,5 +1,6 @@
-import { P_CREATE_TABLE_COMMON, P_CREATE_TABLE_LIKE, O_POSITION } from '@mysql/compiled/typings';
+import { P_CREATE_TABLE_COMMON, P_CREATE_TABLE_LIKE, O_POSITION } from '@typings/parsed';
 import { isDefined, isArray } from '@shared/utils';
+import { TableInterface } from '@typings/compact';
 
 import { TableOptions } from './table-options';
 import { Column } from './column';
@@ -10,7 +11,6 @@ import { UniqueKey } from './unique-key';
 import { PrimaryKey } from './primary-key';
 import { Index } from '.';
 import {
-  TableInterface,
   TableModelInterface,
   DatabaseModelInterface,
   ColumnModelInterface,

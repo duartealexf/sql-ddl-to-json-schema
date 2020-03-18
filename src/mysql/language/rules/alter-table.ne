@@ -56,7 +56,7 @@ O_ALTER_TABLE_SPEC -> (
       | __ %K_AFTER __ S_IDENTIFIER {% d => { return { after: d[3] }} %}
     ):?
       {% d => {
-        const obj = {
+        const obj: any = {
           action: 'addColumn',
           name: d[3],
           datatype: d[5],
@@ -82,7 +82,7 @@ O_ALTER_TABLE_SPEC -> (
         ( __ O_COLUMN_DEFINITION {% d => d[1] %} ):*
         ( __ P_COLUMN_REFERENCE {% d => d[1] %} ):?
           {% d => {
-            const obj = {
+            const obj: any = {
               name: d[3],
               datatype: d[5],
               columnDefinition: d[6] || [],
@@ -96,7 +96,7 @@ O_ALTER_TABLE_SPEC -> (
           }%}
       ):*
         {% d => {
-          const obj = {
+          const obj: any = {
             name: d[0],
             datatype: d[2],
             columnDefinition: d[3] || [],
@@ -265,7 +265,7 @@ O_ALTER_TABLE_SPEC -> (
       | __ %K_AFTER __ S_IDENTIFIER {% d => { return { after: d[3] }} %}
     ):?
       {% d => {
-        const obj = {
+        const obj: any = {
           action: 'changeColumn',
           column: d[3],
           newName: d[5],
@@ -289,7 +289,7 @@ O_ALTER_TABLE_SPEC -> (
       | __ %K_AFTER __ S_IDENTIFIER {% d => { return { after: d[3] }} %}
     ):?
       {% d => {
-        const obj = {
+        const obj: any = {
           action: 'changeColumn',
           column: d[3],
           newName: null,

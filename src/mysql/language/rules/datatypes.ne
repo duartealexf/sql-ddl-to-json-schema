@@ -76,7 +76,7 @@ O_FIXED_POINT_DATATYPE ->
         }%}
   ):?
 {% d => {
-  const obj = {
+  const obj: any = {
     id: 'O_FIXED_POINT_DATATYPE',
     def: {
       datatype: d[0].value
@@ -111,7 +111,7 @@ O_FLOATING_POINT_DATATYPE ->
       }%}
   ):?
 {% d => {
-  const obj = {
+  const obj: any = {
     id: 'O_FLOATING_POINT_DATATYPE',
     def: {
       datatype: d[0].value

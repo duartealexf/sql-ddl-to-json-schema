@@ -86,7 +86,7 @@
       "path": "./node_modules/cz-conventional-changelog"
     }
   },
-  "types": "./types",
+  "types": "./typings",
   "engines": {
     "node": ">=6.0.0 <=13"
   }

@@ -96,7 +96,7 @@ O_CREATE_TABLE_CREATE_DEFINITION -> (
       ( __ O_COLUMN_DEFINITION {% d => d[1] %} ):*
       ( __ P_COLUMN_REFERENCE {% d => d[1] %} ):?
         {% d => {
-          const obj = {
+          const obj: any = {
             datatype: d[0],
             columnDefinition: d[1] || [],
           };
@@ -455,7 +455,7 @@ O_CREATE_TABLE_OPTION -> (
       {% d => d[3].value %}
     ):?
       {% d => {
-        const obj = { tablespaceName: d[2] };
+        const obj: any = { tablespaceName: d[2] };
 
         if (d[3]) {
           obj.tablespaceStorage = d[3];

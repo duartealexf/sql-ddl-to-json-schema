@@ -1,10 +1,7 @@
 import { JSONSchema7 as OriginalJSONSchema7 } from 'json-schema';
 
-import { JSONSchemaFormatOptions } from '@typings/json-schema';
-import { TableInterface } from '@typings/compact';
-import { Tuple } from '@typings/utils';
-import { isDefined } from '@shared/utils';
-
+import { TableInterface, Tuple, JSONSchemaFormatOptions } from '../../../../typings';
+import { isDefined } from '../../../../shared/utils';
 import { Column } from './column';
 
 type JSONSchema7 = OriginalJSONSchema7 & {
@@ -32,6 +29,7 @@ export class Table {
    * Table comment.
    */
   comment?: string;
+
   /**
    * Create Table instance from compact JSON format.
    *

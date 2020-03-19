@@ -1,3 +1,6 @@
+import { P_MAIN } from './parsed';
+
+export type CompactFormatter = (json: P_MAIN) => TableInterface[];
 
 export type CompactJSONFormat = TableInterface;
 

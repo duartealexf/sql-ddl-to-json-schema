@@ -1,4 +1,4 @@
-import { TableInterface } from '@typings/compact';
+import { TableInterface } from '../../../../typings';
 
 import { Table } from './table';
 
@@ -28,7 +28,7 @@ export class Database {
    *
    * @param tables Table models.
    */
-  setTables(tables: Table[]) {
+  setTables(tables: Table[]): void {
     this.tables = tables;
   }
 
@@ -46,7 +46,7 @@ export class Database {
    *
    * @param table Table to be added.
    */
-  pushTable(table: Table) {
+  pushTable(table: Table): void {
     /**
      * Do not add table with same name.
      */
@@ -62,7 +62,7 @@ export class Database {
    *
    * @param tables Tables array in compact JSON format.
    */
-  parseCompactJson(tables: TableInterface[]) {
+  parseCompactJson(tables: TableInterface[]): void {
     this.setTables(tables.map((table) => Table.fromCompactJson(table)));
   }
 }

@@ -4,9 +4,9 @@ import {
   STATEMENT,
   O_CREATE_TABLE_CREATE_DEFINITION_SPATIAL_INDEX,
   O_ALTER_TABLE_SPEC_ADD_SPATIAL_INDEX,
-} from '@typings/parsed';
-import { isDefined } from '@shared/utils';
-import { SpatialIndexInterface } from '@typings/compact';
+  SpatialIndexInterface,
+} from '../../../../typings';
+import { isDefined } from '../../../../shared/utils';
 
 import { IndexColumn } from './index-column';
 import { IndexOptions } from './index-options';
@@ -23,8 +23,11 @@ import {
  */
 export class SpatialIndex implements SpatialIndexModelInterface {
   name?: string;
+
   columns: IndexColumnModelInterface[] = [];
+
   options?: IndexOptionsModelInterface;
+
   /**
    * Creates a spatial index from a JSON def.
    *

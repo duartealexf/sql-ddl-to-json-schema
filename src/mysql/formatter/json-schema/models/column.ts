@@ -1,18 +1,23 @@
-import { ColumnInterface as CompactFormatColumnInterface } from '@typings/compact';
-import { isString, isDefined, isNumber } from '@shared/utils';
+import { JSONSchema7 } from 'json-schema';
+import { ColumnInterface as CompactFormatColumnInterface } from '../../../../typings';
+import { isString, isDefined, isNumber } from '../../../../shared/utils';
 
 import { Datatype } from './datatype';
-import { JSONSchema7 } from 'json-schema';
 
 /**
  * Table column.
  */
 export class Column {
   name!: string;
+
   datatype!: Datatype;
+
   isNullable?: boolean;
+
   isPrimaryKey?: boolean;
+
   comment?: string;
+
   default?: boolean | string | number | null;
 
   /**
@@ -71,7 +76,7 @@ export class Column {
         const value = type[key as keyof JSONSchema7];
         const number = isNumber(value);
 
-        if (number && isFinite(value as any) || !number) {
+        if ((number && Number.isFinite(value as never)) || !number) {
           Object.defineProperty(json, key, { value });
         }
       });

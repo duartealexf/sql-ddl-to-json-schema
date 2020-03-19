@@ -1,3 +1,12 @@
+import { JSONSchema7 } from 'json-schema';
+
+import { TableInterface } from './compact';
+
+export type JSONSchemaFormatter = (
+  json: TableInterface[],
+  options: JSONSchemaFormatOptions,
+) => JSONSchema7[];
+
 /**
  * Options available to format as JSON Schema.
  */

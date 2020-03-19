@@ -2,10 +2,9 @@ import {
   O_CREATE_TABLE_CREATE_DEFINITION,
   O_CREATE_TABLE_CREATE_DEFINITION_COLUMN,
   O_ALTER_TABLE_SPEC_ADD_COLUMNS_COLUMN,
-} from '@typings/parsed';
-import { ColumnInterface } from '@typings/compact';
-import { isDefined } from '@shared/utils';
-
+  ColumnInterface,
+} from '../../../../typings';
+import { isDefined } from '../../../../shared/utils';
 import { ColumnReference } from './column-reference';
 import { ColumnOptions } from './column-options';
 import { IndexColumn } from './index-column';
@@ -28,8 +27,11 @@ import { Datatype } from './datatype';
  */
 export class Column implements ColumnModelInterface {
   name!: string;
+
   type!: DatatypeModelInterface;
+
   reference?: ColumnReferenceModelInterface;
+
   options?: ColumnOptionsModelInterface;
 
   /**
@@ -134,60 +136,59 @@ export class Column implements ColumnModelInterface {
    * Extracts instance of PrimaryKey if this column is primary key.
    * Removes 'primary' property from options.
    */
-  extractPrimaryKey(): PrimaryKeyModelInterface | undefined {
-    if (this.isPrimaryKey()) {
-      delete (this.options as ColumnOptionsModelInterface).primary;
-
-      const indexColumn = new IndexColumn();
-      indexColumn.column = this.name;
-
-      const primaryKey = new PrimaryKey();
-      primaryKey.pushColumn(indexColumn);
-
-      return primaryKey;
+  extractPrimaryKey(): PrimaryKeyModelInterface | null {
+    if (!this.isPrimaryKey()) {
+      return null;
     }
 
-    return;
+    delete (this.options as ColumnOptionsModelInterface).primary;
+
+    const indexColumn = new IndexColumn();
+    indexColumn.column = this.name;
+
+    const primaryKey = new PrimaryKey();
+    primaryKey.pushColumn(indexColumn);
+
+    return primaryKey;
   }
 
   /**
    * Extracts instance of ForeignKey if this column references other table.
    * Removes 'reference' property from options.
    */
-  extractForeignKey(): ForeignKeyModelInterface | undefined {
-    if (this.isForeignKey()) {
-      const indexColumn = new IndexColumn();
-      indexColumn.column = this.name;
-
-      const foreignKey = new ForeignKey();
-      foreignKey.pushColumn(indexColumn);
-
-      foreignKey.reference = this.reference as ColumnReferenceModelInterface;
-
-      delete this.reference;
-      return foreignKey;
+  extractForeignKey(): ForeignKeyModelInterface | null {
+    if (!this.isForeignKey()) {
+      return null;
     }
 
-    return;
+    const indexColumn = new IndexColumn();
+    indexColumn.column = this.name;
+
+    const foreignKey = new ForeignKey();
+    foreignKey.pushColumn(indexColumn);
+
+    foreignKey.reference = this.reference as ColumnReferenceModelInterface;
+
+    delete this.reference;
+    return foreignKey;
   }
 
   /**
    * Extracts instance of UniqueKey if this column is unique key.
    * Removes 'unique' property from options.
    */
-  extractUniqueKey(): UniqueKeyModelInterface | undefined {
-    if (this.isUniqueKey()) {
-      delete (this.options as ColumnOptionsModelInterface).unique;
-
-      const indexColumn = new IndexColumn();
-      indexColumn.column = this.name;
-
-      const uniqueKey = new UniqueKey();
-      uniqueKey.columns.push(indexColumn);
-
-      return uniqueKey;
+  extractUniqueKey(): UniqueKeyModelInterface | null {
+    if (!this.isUniqueKey()) {
+      return null;
     }
+    delete (this.options as ColumnOptionsModelInterface).unique;
 
-    return;
+    const indexColumn = new IndexColumn();
+    indexColumn.column = this.name;
+
+    const uniqueKey = new UniqueKey();
+    uniqueKey.columns.push(indexColumn);
+
+    return uniqueKey;
   }
 }

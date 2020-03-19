@@ -13,12 +13,7 @@
     "allowSyntheticDefaultImports": true,
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
-    "baseUrl": "./src",
-    "paths": {
-      "@typings/*": ["typings/*"],
-      "@shared/*": ["shared/*"],
-      "@mysql/*": ["mysql/*"]
-    }
+    "baseUrl": "./src"
   },
   "include": ["src"]
 }

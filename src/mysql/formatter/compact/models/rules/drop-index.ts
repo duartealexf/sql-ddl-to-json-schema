@@ -1,4 +1,4 @@
-import { P_DROP_INDEX } from '@typings/parsed';
+import { P_DROP_INDEX } from '../../../../../typings';
 
 import { DatabaseModelInterface, TableModelInterface, RuleHandler } from '../typings';
 
@@ -13,7 +13,7 @@ export class DropIndex implements RuleHandler {
    *
    * @param name Table name.
    */
-  getTable(name: string): TableModelInterface | undefined {
+  getTable(name: string): TableModelInterface | null {
     return this.database.getTable(name);
   }
 
@@ -22,7 +22,7 @@ export class DropIndex implements RuleHandler {
    *
    * @param database Database instance.
    */
-  setDatabase(database: DatabaseModelInterface) {
+  setDatabase(database: DatabaseModelInterface): void {
     this.database = database;
   }
 
@@ -32,7 +32,7 @@ export class DropIndex implements RuleHandler {
    * @param json JSON format parsed from SQL.
    * @returns {void}
    */
-  handleDef(json: P_DROP_INDEX) {
+  handleDef(json: P_DROP_INDEX): void {
     if (json.id !== 'P_DROP_INDEX') {
       throw new TypeError(`Expected P_DROP_INDEX rule to be handled but received ${json.id}`);
     }
@@ -47,7 +47,8 @@ export class DropIndex implements RuleHandler {
     const index = table.getIndex(json.def.index);
 
     if (!index) {
-      // throw new Error(`Found "DROP INDEX" statement for an unexisting index ${json.def.index} in table ${json.def.table}`);
+      // throw new Error(`Found "DROP INDEX" statement for an
+      // unexisting index ${json.def.index} in table ${json.def.table}`);
       return;
     }
 

@@ -1,6 +1,5 @@
-import { P_INDEX_COLUMN } from '@typings/parsed';
-import { IndexColumnInterface } from '@typings/compact';
-import { isDefined } from '@shared/utils';
+import { P_INDEX_COLUMN, IndexColumnInterface } from '../../../../typings';
+import { isDefined } from '../../../../shared/utils';
 
 import {
   IndexColumnModelInterface,
@@ -11,7 +10,9 @@ import {
  */
 export class IndexColumn implements IndexColumnModelInterface {
   column?: string;
+
   length?: number;
+
   sort?: string;
 
   /**
@@ -32,7 +33,7 @@ export class IndexColumn implements IndexColumnModelInterface {
    *
    * @param json Object containing properties.
    */
-  static fromObject(json: P_INDEX_COLUMN['def']) {
+  static fromObject(json: P_INDEX_COLUMN['def']): IndexColumn {
     const indexColumn = new IndexColumn();
 
     indexColumn.column = json.column;

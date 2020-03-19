@@ -4,9 +4,9 @@ import {
   STATEMENT,
   O_CREATE_TABLE_CREATE_DEFINITION_INDEX,
   O_ALTER_TABLE_SPEC_ADD_INDEX,
-} from '@typings/parsed';
-import { IndexInterface } from '@typings/compact';
-import { isDefined } from '@shared/utils';
+  IndexInterface,
+} from '../../../../typings';
+import { isDefined } from '../../../../shared/utils';
 
 import { IndexColumn } from './index-column';
 import { IndexOptions } from './index-options';
@@ -23,8 +23,11 @@ import {
  */
 export class Index implements IndexModelInterface {
   name?: string;
+
   indexType?: string;
+
   columns: IndexColumnModelInterface[] = [];
+
   options?: IndexOptionsModelInterface;
 
   /**
@@ -178,7 +181,11 @@ export class Index implements IndexModelInterface {
           return;
         }
 
-        indexColumn.length = column.type.getMaxIndexableSize();
+        const indexableSize = column.type.getMaxIndexableSize();
+
+        if (indexableSize > 0) {
+          indexColumn.length = indexableSize;
+        }
       });
   }
 

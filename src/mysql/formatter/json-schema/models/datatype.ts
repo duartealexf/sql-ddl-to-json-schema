@@ -1,7 +1,8 @@
-import { DatatypeInterface } from '@typings/compact';
-import { isDefined } from '@shared/utils';
-
 import { JSONSchema7TypeName, JSONSchema7 } from 'json-schema';
+
+import { DatatypeInterface } from '../../../../typings';
+import { isDefined } from '../../../../shared/utils';
+
 
 /**
  * Data type.
@@ -148,7 +149,7 @@ export class Datatype {
       /**
        * Set minimum and maximum for int.
        */
-      const width = Math.pow(2, 8 * (this.width as number));
+      const width = 2 ** (8 * (this.width as number));
 
       if (this.isUnsigned) {
         json.minimum = 0;
@@ -165,9 +166,9 @@ export class Datatype {
        * of double datatype depend on hardware so they are not added here.
        */
       json.maximum = Number(
-        '9'.repeat((this.digits as number) - (this.decimals as number)) +
-          '.' +
-          '9'.repeat(this.decimals as number),
+        `${'9'.repeat((this.digits as number) - (this.decimals as number))
+        }.${
+          '9'.repeat(this.decimals as number)}`,
       );
 
       if (this.isUnsigned) {

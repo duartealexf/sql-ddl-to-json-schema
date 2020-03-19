@@ -1,5 +1,4 @@
-import { P_DDS } from '@typings/parsed';
-
+import { P_DDS } from '../../../../typings';
 import { CreateTable } from './rules/create-table';
 import { CreateIndex } from './rules/create-index';
 import { AlterTable } from './rules/alter-table';
@@ -14,6 +13,7 @@ import { DatabaseModelInterface, TableModelInterface, RuleHandler } from './typi
  */
 export class Database implements DatabaseModelInterface {
   ddsCollection: P_DDS[] = [];
+
   tables: TableModelInterface[] = [];
 
   /**
@@ -28,7 +28,7 @@ export class Database implements DatabaseModelInterface {
    *
    * @param tables Updated tables.
    */
-  setTables(tables: TableModelInterface[]) {
+  setTables(tables: TableModelInterface[]): void {
     this.tables = tables;
   }
 
@@ -37,8 +37,8 @@ export class Database implements DatabaseModelInterface {
    *
    * @param name Table name.
    */
-  getTable(name: string): TableModelInterface | undefined {
-    return this.tables.find((t) => t.name === name);
+  getTable(name: string): TableModelInterface | null {
+    return this.tables.find((t) => t.name === name) ?? null;
   }
 
   /**
@@ -46,7 +46,7 @@ export class Database implements DatabaseModelInterface {
    *
    * @param table Table to be added.
    */
-  pushTable(table: TableModelInterface) {
+  pushTable(table: TableModelInterface): void {
     /**
      * Do not add table with same name.
      */
@@ -63,7 +63,7 @@ export class Database implements DatabaseModelInterface {
    *
    * @param ddsCollection DDS statements array.
    */
-  parseDdsCollection(ddsCollection: P_DDS[]) {
+  parseDdsCollection(ddsCollection: P_DDS[]): void {
     this.ddsCollection = ddsCollection;
 
     this.ddsCollection.forEach((dds) => {
@@ -76,7 +76,7 @@ export class Database implements DatabaseModelInterface {
       }
 
       const json = dds.def;
-      const handler = this.getHandler(json.id);
+      const handler = Database.getHandler(json.id);
 
       /**
        * There may be other handlers, which will not have
@@ -97,21 +97,21 @@ export class Database implements DatabaseModelInterface {
    *
    * @param id
    */
-  getHandler(id: string): RuleHandler | undefined {
+  private static getHandler(id: string): RuleHandler | null {
     if (id === 'P_CREATE_TABLE') {
       return new CreateTable();
-    } else if (id === 'P_CREATE_INDEX') {
+    } if (id === 'P_CREATE_INDEX') {
       return new CreateIndex();
-    } else if (id === 'P_ALTER_TABLE') {
+    } if (id === 'P_ALTER_TABLE') {
       return new AlterTable();
-    } else if (id === 'P_RENAME_TABLE') {
+    } if (id === 'P_RENAME_TABLE') {
       return new RenameTable();
-    } else if (id === 'P_DROP_TABLE') {
+    } if (id === 'P_DROP_TABLE') {
       return new DropTable();
-    } else if (id === 'P_DROP_INDEX') {
+    } if (id === 'P_DROP_INDEX') {
       return new DropIndex();
     }
 
-    return;
+    return null;
   }
 }

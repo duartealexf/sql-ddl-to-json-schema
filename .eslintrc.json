@@ -22,19 +22,20 @@
     }
   },
   "rules": {
-    "rules": {
-      "import/prefer-default-export": 0,
-      "prefer-destructuring": 0,
-      "implicit-arrow-linebreak": 0,
-      "function-paren-newline": 0,
-      "operator-linebreak": 0,
-      "object-curly-newline": 0,
-      "no-async-promise-executor": 0,
-      "no-underscore-dangle": 0,
-      "@typescript-eslint/explicit-function-return-type": ["error", { "allowExpressions": true }],
-      "@typescript-eslint/no-explicit-any": ["error", { "ignoreRestArgs": false }],
-      "@typescript-eslint/semi": ["error"],
-      "@typescript-eslint/camelcase": 0
-    }
+    "import/extensions": 0,
+    "import/prefer-default-export": 0,
+    "prefer-destructuring": 0,
+    "implicit-arrow-linebreak": 0,
+    "function-paren-newline": 0,
+    "operator-linebreak": 0,
+    "object-curly-newline": 0,
+    "no-async-promise-executor": 0,
+    "no-underscore-dangle": 0,
+    "@typescript-eslint/explicit-function-return-type": ["error", { "allowExpressions": true }],
+    "@typescript-eslint/no-explicit-any": ["error", { "ignoreRestArgs": false }],
+    "@typescript-eslint/semi": ["error"],
+    "@typescript-eslint/camelcase": 0,
+    "@typescript-eslint/ban-ts-ignore": 0,
+    "no-param-reassign": 0
   }
 }

@@ -1,5 +1,7 @@
-import { P_DDS, O_POSITION, STATEMENT } from '@typings/parsed';
 import {
+  P_DDS,
+  O_POSITION,
+  STATEMENT,
   TableInterface,
   ColumnInterface,
   TableOptionsInterface,
@@ -15,12 +17,13 @@ import {
   IndexColumnInterface,
   ColumnReferenceOnInterface,
   IndexOptionsInterface,
-} from '@typings/compact';
+} from '../../../../typings';
 
 export interface ClonableInterface {
   /**
    * Create a clone of this model.
    */
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   clone(): any;
 }
 
@@ -28,8 +31,17 @@ export interface SerializableInterface {
   /**
    * JSON casting of this object calls this method.
    */
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   toJSON(): any;
 }
+
+export type IndexPropertyKey = 'uniqueKeys' | 'indexes' | 'fulltextIndexes' | 'spatialIndexes';
+export type IndexPropertyValue = Array<
+  | UniqueKeyModelInterface
+  | IndexModelInterface
+  | FulltextIndexModelInterface
+  | SpatialIndexModelInterface
+>;
 
 export interface DatabaseInterface {
   ddsCollection: P_DDS[];
@@ -39,7 +51,7 @@ export interface DatabaseModelInterface extends DatabaseInterface {
   tables: TableModelInterface[];
   getTables(): TableModelInterface[];
   setTables(tables: TableModelInterface[]): void;
-  getTable(name: string): TableModelInterface | undefined;
+  getTable(name: string): TableModelInterface | null;
   pushTable(table: TableModelInterface): void;
 }
 
@@ -57,7 +69,7 @@ export interface TableModelInterface
   uniqueKeys?: UniqueKeyModelInterface[];
   indexes?: IndexModelInterface[];
   primaryKey?: PrimaryKeyModelInterface;
-  getTable(name: string): TableModelInterface | undefined;
+  getTable(name: string): TableModelInterface | null;
   getTables(): TableModelInterface[];
   setDatabase(database: DatabaseModelInterface): void;
   renameTo(newName: string): void;
@@ -65,7 +77,7 @@ export interface TableModelInterface
   extractColumnKeys(column: ColumnModelInterface): void;
   moveColumn(column: ColumnModelInterface, position: O_POSITION): boolean;
   renameColumn(column: ColumnModelInterface, newName: string): boolean;
-  getColumnPosition(column: ColumnModelInterface): O_POSITION;
+  getColumnPosition(column: ColumnModelInterface): O_POSITION | null;
   dropPrimaryKey(): void;
   dropColumn(column: ColumnModelInterface): void;
   dropIndex(
@@ -83,8 +95,8 @@ export interface TableModelInterface
     | IndexModelInterface
     | FulltextIndexModelInterface
     | SpatialIndexModelInterface
-    | undefined;
-  getIndexType(name: string): string | undefined;
+    | null;
+  getIndexType(name: string): IndexPropertyKey | null;
   getColumn(name: string): ColumnModelInterface | undefined;
   getForeignKey(name: string): ForeignKeyModelInterface | undefined;
   hasForeignKey(name: string): boolean;
@@ -106,9 +118,9 @@ export interface ColumnModelInterface
   isPrimaryKey(): boolean;
   isUniqueKey(): boolean;
   isForeignKey(): boolean;
-  extractPrimaryKey(): PrimaryKeyModelInterface | undefined;
-  extractForeignKey(): ForeignKeyModelInterface | undefined;
-  extractUniqueKey(): UniqueKeyModelInterface | undefined;
+  extractPrimaryKey(): PrimaryKeyModelInterface | null;
+  extractForeignKey(): ForeignKeyModelInterface | null;
+  extractUniqueKey(): UniqueKeyModelInterface | null;
 }
 
 export interface TableOptionsModelInterface
@@ -204,7 +216,7 @@ export interface DatatypeModelInterface
   extends DatatypeInterface,
     ClonableInterface,
     SerializableInterface {
-  getMaxIndexableSize(): number | undefined;
+  getMaxIndexableSize(): number;
 }
 
 export interface ColumnReferenceModelInterface
@@ -237,7 +249,7 @@ export interface IndexOptionsModelInterface
 
 export interface RuleHandler {
   database: DatabaseModelInterface;
-  getTable(name: string): TableModelInterface | undefined;
+  getTable(name: string): TableModelInterface | null;
   setDatabase(database: DatabaseModelInterface): void;
   handleDef(json: STATEMENT): void;
 }

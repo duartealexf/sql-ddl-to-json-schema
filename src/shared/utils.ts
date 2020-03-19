@@ -1,4 +1,5 @@
-import { TransformerFunction, TMap, AnyMap } from '@typings/utils';
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { TransformerFunction, TMap, AnyMap, Tuple } from '../typings/utils';
 
 /**
  * Transform an array of strings into an object, optionally
@@ -17,8 +18,8 @@ export function stringArrayToMapping<T>(
   transformKey: TransformerFunction<string>,
   transformValue: TransformerFunction<T>,
 ): TMap<T> {
-  transformKey = transformKey || ((k) => k);
-  transformValue = transformValue || ((v) => v);
+  transformKey = transformKey || ((k: string) => k);
+  transformValue = transformValue || ((v: string) => v);
 
   return array.reduce((obj, elem) => {
     obj[transformKey(elem)] = transformValue(elem);
@@ -34,25 +35,11 @@ export function stringArrayToMapping<T>(
  * @param additional Additional character list to trim.
  * @param chars Defult character list to trim.
  */
-export function trimString(string: string, additional: string = '', chars: string = `\\s\\0\\x0B`) {
+export function trimString(string: string, additional = '', chars = '\\s\\0\\x0B'): string {
   return string.replace(
     new RegExp(`^[${additional + chars}]*|[${additional + chars}]*$`, 'gim'),
     '',
   );
-}
-
-/**
- * Iterate collection (array of objects), deeply merging
- * into another object, containing latest properties.
- *
- * @param collection Collection to iterate.
- */
-export function mergeLatestToObject(collection: any[]): AnyMap {
-  const result = collection.reduce((obj, item) => {
-    return mergeDeep(obj, item);
-  }, {});
-
-  return result;
 }
 
 /**
@@ -68,36 +55,6 @@ export function filterNullValues(obj: AnyMap): AnyMap {
     }
   });
   return obj;
-}
-
-/**
- * Object deep merge.
- *
- * @param target  Destination object.
- * @param sources Origin objects.
- */
-export function mergeDeep(target: AnyMap, ...sources: AnyMap[]): AnyMap {
-  if (!sources.length) {
-    return target;
-  }
-
-  const source = sources.shift();
-
-  if (isObject(target) && isObject(source)) {
-    for (const key in source) {
-      if (isObject(source[key])) {
-        if (!target[key]) {
-          Object.assign(target, { [key]: {} });
-        }
-
-        mergeDeep(target[key], source[key]);
-      } else {
-        Object.assign(target, { [key]: source[key] });
-      }
-    }
-  }
-
-  return mergeDeep(target, ...sources);
 }
 
 /**
@@ -152,4 +109,34 @@ export function isObject(value: any): value is AnyMap {
  */
 export function isDefined<T>(value: T): value is NonNullable<T> {
   return typeof value !== 'undefined' && !(value === null);
+}
+
+/**
+ * Object deep merge.
+ *
+ * @param target  Destination object.
+ * @param sources Origin objects.
+ */
+export function mergeDeep(target: AnyMap, ...sources: AnyMap[]): AnyMap {
+  if (!sources.length) {
+    return target;
+  }
+
+  const source = sources.shift();
+
+  if (isObject(target) && isObject(source)) {
+    Object.values(source).forEach(([key, value]: Tuple<typeof source>): void => {
+      if (isObject(value)) {
+        if (!target[key]) {
+          Object.assign(target, { [key]: {} });
+        }
+
+        mergeDeep(target[key], value);
+      } else {
+        Object.assign(target, { [key]: value });
+      }
+    });
+  }
+
+  return mergeDeep(target, ...sources);
 }

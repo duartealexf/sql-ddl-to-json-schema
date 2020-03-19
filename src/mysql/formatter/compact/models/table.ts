@@ -1,6 +1,10 @@
-import { P_CREATE_TABLE_COMMON, P_CREATE_TABLE_LIKE, O_POSITION } from '@typings/parsed';
-import { isDefined, isArray } from '@shared/utils';
-import { TableInterface } from '@typings/compact';
+import { isDefined, isArray } from '../../../../shared/utils';
+import {
+  TableInterface,
+  P_CREATE_TABLE_COMMON,
+  P_CREATE_TABLE_LIKE,
+  O_POSITION,
+} from '../../../../typings';
 
 import { TableOptions } from './table-options';
 import { Column } from './column';
@@ -21,28 +25,32 @@ import {
   UniqueKeyModelInterface,
   IndexModelInterface,
   PrimaryKeyModelInterface,
+  IndexPropertyValue,
+  IndexPropertyKey,
 } from './typings';
-
-type IndexPropertyKey = 'uniqueKeys' | 'indexes' | 'fulltextIndexes' | 'spatialIndexes';
-type IndexPropertyValue =
-  | UniqueKeyModelInterface[]
-  | IndexModelInterface[]
-  | FulltextIndexModelInterface[]
-  | SpatialIndexModelInterface[];
 
 /**
  * Class to represent a table as parsed from SQL.
  */
 export class Table implements TableModelInterface {
   database!: DatabaseModelInterface;
+
   name!: string;
+
   columns?: ColumnModelInterface[];
+
   options?: TableOptionsModelInterface;
+
   fulltextIndexes?: FulltextIndexModelInterface[];
+
   spatialIndexes?: SpatialIndexModelInterface[];
+
   foreignKeys?: ForeignKeyModelInterface[];
+
   uniqueKeys?: UniqueKeyModelInterface[];
+
   indexes?: IndexModelInterface[];
+
   primaryKey?: PrimaryKeyModelInterface;
 
   /**
@@ -116,7 +124,7 @@ export class Table implements TableModelInterface {
    * @param json JSON format parsed from SQL.
    * @param tables Already existing tables.
    */
-  static fromAlikeDef(json: P_CREATE_TABLE_LIKE, tables: TableModelInterface[] = []): Table | undefined {
+  static fromAlikeDef(json: P_CREATE_TABLE_LIKE, tables: TableModelInterface[] = []): Table | null {
     if (json.id !== 'P_CREATE_TABLE_LIKE') {
       throw new TypeError(`Unknown json id to build table from: ${json.id}`);
     }
@@ -127,7 +135,7 @@ export class Table implements TableModelInterface {
 
     if (!alikeTable) {
       // throw new Error(`Trying to "CREATE TABLE LIKE" unexisting table ${def.like}.`);
-      return;
+      return null;
     }
 
     const table = alikeTable.clone();
@@ -215,7 +223,7 @@ export class Table implements TableModelInterface {
    *
    * @param name Table name.
    */
-  getTable(name: string): TableModelInterface | undefined {
+  getTable(name: string): TableModelInterface | null {
     return this.database.getTable(name);
   }
 
@@ -231,7 +239,7 @@ export class Table implements TableModelInterface {
    *
    * @param database Database instance.
    */
-  setDatabase(database: DatabaseModelInterface) {
+  setDatabase(database: DatabaseModelInterface): void {
     this.database = database;
   }
 
@@ -240,10 +248,10 @@ export class Table implements TableModelInterface {
    *
    * @param newName New table name.
    */
-  renameTo(newName: string) {
+  renameTo(newName: string): void {
     this.database.tables.forEach((t) => {
       (t.foreignKeys || [])
-        .filter((k) => k.referencesTable(this))
+        .filter((k) => k.referencesTable(this as TableModelInterface))
         .forEach((k) => k.updateReferencedTableName(newName));
     });
 
@@ -256,7 +264,7 @@ export class Table implements TableModelInterface {
    * @param column Column to be added.
    * @param position Position object.
    */
-  addColumn(column: ColumnModelInterface, position?: O_POSITION) {
+  addColumn(column: ColumnModelInterface, position?: O_POSITION): void {
     /**
      * Should not add column with same name.
      */
@@ -314,7 +322,7 @@ export class Table implements TableModelInterface {
    *
    * @param column Column to be extracted.
    */
-  extractColumnKeys(column: ColumnModelInterface) {
+  extractColumnKeys(column: ColumnModelInterface): void {
     const primaryKey = column.extractPrimaryKey();
     const foreignKey = column.extractForeignKey();
     const uniqueKey = column.extractUniqueKey();
@@ -396,7 +404,7 @@ export class Table implements TableModelInterface {
      */
     this.getTables().forEach((table) => {
       (table.foreignKeys || [])
-        .filter((k) => k.referencesTable(this))
+        .filter((k) => k.referencesTable(this as TableModelInterface))
         .forEach((k) => k.renameColumn(column, newName));
     });
 
@@ -419,7 +427,7 @@ export class Table implements TableModelInterface {
    *
    * @param column Column.
    */
-  getColumnPosition(column: ColumnModelInterface): O_POSITION {
+  getColumnPosition(column: ColumnModelInterface): O_POSITION | null {
     const index = (this.columns || []).indexOf(column);
 
     /**
@@ -427,11 +435,11 @@ export class Table implements TableModelInterface {
      */
     if (index === 0) {
       return { after: undefined };
-    } else if (index + 1 === (this.columns || []).length) {
+    }
+    if (index + 1 === (this.columns || []).length) {
       /**
        * Last column.
        */
-      return;
     } else {
       /**
        * Somewhere in the middle.
@@ -439,17 +447,19 @@ export class Table implements TableModelInterface {
       const refColumn = (this.columns || [])[index - 1];
       return { after: refColumn.name };
     }
+
+    return null;
   }
 
   /**
    * Drops table's primary key.
    */
-  dropPrimaryKey() {
+  dropPrimaryKey(): void {
     if (!this.primaryKey) {
       return;
     }
 
-    const tableColumns = this.primaryKey.getColumnsFromTable(this);
+    const tableColumns = this.primaryKey.getColumnsFromTable(this as TableModelInterface);
 
     /**
      * Should not drop primary key if pk column has autoincrement.
@@ -467,14 +477,16 @@ export class Table implements TableModelInterface {
    *
    * @param column Column to be dropped.
    */
-  dropColumn(column: ColumnModelInterface) {
+  dropColumn(column: ColumnModelInterface): void {
     /**
      * Validate whether there is a reference to given column.
      * https://github.com/duartealexf/sql-ddl-to-json-schema/issues/12
      */
 
     const hasReference = this.getTables().some((t) =>
-      (t.foreignKeys || []).some((k) => k.referencesTableAndColumn(this, column)),
+      (t.foreignKeys || []).some((k) =>
+        k.referencesTableAndColumn(this as TableModelInterface, column),
+      ),
     );
 
     if (hasReference) {
@@ -553,7 +565,7 @@ export class Table implements TableModelInterface {
       | IndexModelInterface
       | FulltextIndexModelInterface
       | SpatialIndexModelInterface,
-  ) {
+  ): void {
     if (!isDefined(index.name)) {
       return;
     }
@@ -566,10 +578,10 @@ export class Table implements TableModelInterface {
 
     const indexes: IndexPropertyValue = this[type] as IndexPropertyValue;
 
-    const pos = indexes.indexOf(index as any);
+    const pos = indexes.indexOf(index);
     const end = indexes.splice(pos);
     end.shift();
-    (this[type] as IndexPropertyValue) = indexes.concat(end as any);
+    (this[type] as IndexPropertyValue) = indexes.concat(end);
   }
 
   /**
@@ -577,7 +589,7 @@ export class Table implements TableModelInterface {
    *
    * @param foreignKey Foreign key to be dropped.
    */
-  dropForeignKey(foreignKey: ForeignKeyModelInterface) {
+  dropForeignKey(foreignKey: ForeignKeyModelInterface): void {
     if (!isDefined(this.foreignKeys)) {
       return;
     }
@@ -600,21 +612,23 @@ export class Table implements TableModelInterface {
     | IndexModelInterface
     | FulltextIndexModelInterface
     | SpatialIndexModelInterface
-    | undefined {
+    | null {
     const type = this.getIndexType(name);
 
     if (!type) {
       // throw new Error(`Trying to reference an unexsisting index ${name} on table ${this.name}`);
-      return;
+      return null;
     }
 
     const indexes: IndexPropertyValue = this[type] as IndexPropertyValue;
 
     if (!isArray(indexes)) {
-      return;
+      return null;
     }
 
-    return (indexes as any[]).find((index: any) => index.name === name);
+    const result = indexes.find((index) => index.name === name);
+
+    return result ?? null;
   }
 
   /**
@@ -622,15 +636,15 @@ export class Table implements TableModelInterface {
    *
    * @param name Index name.
    */
-  getIndexType(name: string) {
+  getIndexType(name: string): IndexPropertyKey | null {
     const props: IndexPropertyKey[] = [
       'uniqueKeys',
       'indexes',
       'fulltextIndexes',
       'spatialIndexes',
     ];
-    const type = props.find((prop) => {
-      return (this[prop] || []).some(
+    const type = props.find((prop) =>
+      (this[prop] || []).some(
         (
           i:
             | UniqueKeyModelInterface
@@ -638,10 +652,10 @@ export class Table implements TableModelInterface {
             | FulltextIndexModelInterface
             | SpatialIndexModelInterface,
         ) => i.name === name,
-      );
-    });
+      ),
+    );
 
-    return type;
+    return type ?? null;
   }
 
   /**
@@ -676,7 +690,7 @@ export class Table implements TableModelInterface {
    *
    * @param primaryKey Primary key.
    */
-  setPrimaryKey(primaryKey: PrimaryKeyModelInterface) {
+  setPrimaryKey(primaryKey: PrimaryKeyModelInterface): void {
     /**
      * Should not add primary key over another one.
      */
@@ -716,7 +730,7 @@ export class Table implements TableModelInterface {
    *
    * @param fulltextIndex Index to be pushed.
    */
-  pushFulltextIndex(fulltextIndex: FulltextIndexModelInterface) {
+  pushFulltextIndex(fulltextIndex: FulltextIndexModelInterface): void {
     /**
      * Should not add index or key with same name.
      * https://github.com/duartealexf/sql-ddl-to-json-schema/issues/15
@@ -744,7 +758,7 @@ export class Table implements TableModelInterface {
    *
    * @param spatialIndex Index to be pushed.
    */
-  pushSpatialIndex(spatialIndex: SpatialIndexModelInterface) {
+  pushSpatialIndex(spatialIndex: SpatialIndexModelInterface): void {
     /**
      * Should not add index or key with same name.
      * https://github.com/duartealexf/sql-ddl-to-json-schema/issues/15
@@ -772,7 +786,7 @@ export class Table implements TableModelInterface {
    *
    * @param uniqueKey UniqueKey to be pushed.
    */
-  pushUniqueKey(uniqueKey: UniqueKeyModelInterface) {
+  pushUniqueKey(uniqueKey: UniqueKeyModelInterface): void {
     /**
      * Should not add index or key with same name.
      * https://github.com/duartealexf/sql-ddl-to-json-schema/issues/15
@@ -808,7 +822,7 @@ export class Table implements TableModelInterface {
    *
    * @param foreignKey ForeignKey to be pushed.
    */
-  pushForeignKey(foreignKey: ForeignKeyModelInterface) {
+  pushForeignKey(foreignKey: ForeignKeyModelInterface): void {
     /**
      * Should not add index or key with same name.
      * https://github.com/duartealexf/sql-ddl-to-json-schema/issues/15
@@ -861,7 +875,7 @@ export class Table implements TableModelInterface {
    *
    * @param index Index to be pushed.
    */
-  pushIndex(index: IndexModelInterface) {
+  pushIndex(index: IndexModelInterface): void {
     /**
      * Should not add index or key with same name.
      * https://github.com/duartealexf/sql-ddl-to-json-schema/issues/15

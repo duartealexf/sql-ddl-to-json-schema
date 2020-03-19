@@ -1,4 +1,4 @@
-import { P_CREATE_INDEX } from '@typings/parsed';
+import { P_CREATE_INDEX } from '../../../../../typings';
 
 import { UniqueKey } from '../unique-key';
 import { FulltextIndex } from '../fulltext-index';
@@ -17,7 +17,7 @@ export class CreateIndex implements RuleHandler {
    *
    * @param name Table name.
    */
-  getTable(name: string): TableModelInterface | undefined {
+  getTable(name: string): TableModelInterface | null {
     return this.database.getTable(name);
   }
 
@@ -26,7 +26,7 @@ export class CreateIndex implements RuleHandler {
    *
    * @param database Database instance.
    */
-  setDatabase(database: DatabaseModelInterface) {
+  setDatabase(database: DatabaseModelInterface): void {
     this.database = database;
   }
 
@@ -35,7 +35,7 @@ export class CreateIndex implements RuleHandler {
    *
    * @param json JSON format parsed from SQL.
    */
-  handleDef(json: P_CREATE_INDEX) {
+  handleDef(json: P_CREATE_INDEX): void {
     if (json.id !== 'P_CREATE_INDEX') {
       throw new TypeError(`Expected P_CREATE_INDEX rule to be handled but received ${json.id}`);
     }

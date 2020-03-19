@@ -1,4 +1,4 @@
-import { P_DROP_TABLE } from '@typings/parsed';
+import { P_DROP_TABLE } from '../../../../../typings';
 
 import { DatabaseModelInterface, TableModelInterface, RuleHandler } from '../typings';
 
@@ -13,7 +13,7 @@ export class DropTable implements RuleHandler {
    *
    * @param name Table name.
    */
-  getTable(name: string): TableModelInterface | undefined {
+  getTable(name: string): TableModelInterface | null {
     return this.database.getTable(name);
   }
 
@@ -22,7 +22,7 @@ export class DropTable implements RuleHandler {
    *
    * @param database Database instance.
    */
-  setDatabase(database: DatabaseModelInterface) {
+  setDatabase(database: DatabaseModelInterface): void {
     this.database = database;
   }
 
@@ -31,7 +31,7 @@ export class DropTable implements RuleHandler {
    *
    * @param json JSON format parsed from SQL.
    */
-  handleDef(json: P_DROP_TABLE) {
+  handleDef(json: P_DROP_TABLE): void {
     if (json.id !== 'P_DROP_TABLE') {
       throw new TypeError(`Expected P_DROP_TABLE rule to be handled but received ${json.id}`);
     }

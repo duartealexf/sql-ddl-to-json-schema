@@ -1,7 +1,5 @@
-import { O_COLUMN_DEFINITION } from '@typings/parsed';
-import { ColumnOptionsInterface } from '@typings/compact';
-import { isString, isDefined } from '@shared/utils';
-
+import { O_COLUMN_DEFINITION, ColumnOptionsInterface } from '../../../../typings';
+import { isString, isDefined } from '../../../../shared/utils';
 import { ColumnOptionsModelInterface } from './typings';
 
 /**
@@ -9,20 +7,35 @@ import { ColumnOptionsModelInterface } from './typings';
  */
 export class ColumnOptions implements ColumnOptionsModelInterface {
   unsigned?: boolean;
+
   zerofill?: boolean;
+
   charset?: string;
+
   collation?: string;
+
   nullable?: boolean;
+
   default?: string | number | boolean;
+
   autoincrement?: boolean;
+
   unique?: boolean;
+
   primary?: boolean;
+
   comment?: string;
+
   invisibleWithSystemVersioning?: boolean;
+
   invisibleWithoutSystemVersioning?: boolean;
+
   invisible?: boolean;
+
   format?: string;
+
   storage?: string;
+
   onUpdate?: string;
 
   /**
@@ -154,7 +167,7 @@ export class ColumnOptions implements ColumnOptionsModelInterface {
    *
    * @param options JSON format parsed from SQL.
    */
-  mergeWith(options: ColumnOptions) {
+  mergeWith(options: ColumnOptions): void {
     Object.getOwnPropertyNames(options).forEach((k) => {
       const value = options[k as keyof ColumnOptionsInterface];
       if (isDefined(value)) {

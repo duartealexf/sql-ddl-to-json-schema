@@ -1,7 +1,5 @@
-import { O_DATATYPE } from '@typings/parsed';
-import { isDefined } from '@shared/utils';
-import { DatatypeInterface } from '@typings/compact';
-
+import { O_DATATYPE, DatatypeInterface } from '../../../../typings';
+import { isDefined } from '../../../../shared/utils';
 import { DatatypeModelInterface } from './typings';
 
 /**
@@ -9,11 +7,17 @@ import { DatatypeModelInterface } from './typings';
  */
 export class Datatype implements DatatypeModelInterface {
   datatype!: string;
+
   width?: number;
+
   digits?: number;
+
   decimals?: number;
+
   length?: number;
+
   fractional?: number;
+
   values?: string[];
 
   /**
@@ -43,63 +47,63 @@ export class Datatype implements DatatypeModelInterface {
    * @param term Datatype term parsed JSON format.
    */
   static filterDatatype(term: string): string {
-    term = term.toLowerCase();
-    if (term === 'integer') {
+    const lowerTerm = term.toLowerCase();
+
+    if (lowerTerm === 'integer') {
       return 'int';
     }
-    if (term === 'tinyint') {
+    if (lowerTerm === 'tinyint') {
       return 'int';
     }
-    if (term === 'smallint') {
+    if (lowerTerm === 'smallint') {
       return 'int';
     }
-    if (term === 'mediumint') {
+    if (lowerTerm === 'mediumint') {
       return 'int';
     }
-    if (term === 'bigint') {
+    if (lowerTerm === 'bigint') {
       return 'int';
     }
-    if (term === 'numeric') {
+    if (lowerTerm === 'numeric') {
       return 'decimal';
     }
-    if (term === 'bool') {
+    if (lowerTerm === 'bool') {
       return 'boolean';
     }
-    if (term === 'tinyblob') {
+    if (lowerTerm === 'tinyblob') {
       return 'blob';
     }
-    if (term === 'mediumblob') {
+    if (lowerTerm === 'mediumblob') {
       return 'blob';
     }
-    if (term === 'longblob') {
+    if (lowerTerm === 'longblob') {
       return 'blob';
     }
-    if (term === 'tinytext') {
+    if (lowerTerm === 'tinytext') {
       return 'text';
     }
-    if (term === 'mediumtext') {
+    if (lowerTerm === 'mediumtext') {
       return 'text';
     }
-    if (term === 'longtext') {
+    if (lowerTerm === 'longtext') {
       return 'text';
     }
-    if (term === 'national char') {
+    if (lowerTerm === 'national char') {
       return 'char';
     }
-    if (term === 'character') {
+    if (lowerTerm === 'character') {
       return 'char';
     }
-    if (term === 'nchar') {
+    if (lowerTerm === 'nchar') {
       return 'char';
     }
-    return term;
+    return lowerTerm;
   }
 
   /**
    * Get length that is indexable by this datatype.
-   * @returns Indexable length.
    */
-  getMaxIndexableSize(): number | undefined {
+  getMaxIndexableSize(): number {
     /**
      * Non-indexable datatypes.
      */
@@ -119,7 +123,7 @@ export class Datatype implements DatatypeModelInterface {
         'json',
       ].includes(this.datatype)
     ) {
-      return;
+      return 0;
     }
 
     /**
@@ -137,7 +141,7 @@ export class Datatype implements DatatypeModelInterface {
         'geometrycollection',
       ].includes(this.datatype)
     ) {
-      return;
+      return 0;
     }
 
     /**
@@ -147,12 +151,9 @@ export class Datatype implements DatatypeModelInterface {
       return this.length as number;
     }
 
-    /**
-     * Fallback, unknown or non-mapped datatype
-     * (actually shouldn't fall here).
-     */
-    return;
+    return 0;
   }
+
 
   /**
    * JSON casting of this object calls this method.

@@ -1,6 +1,5 @@
-import { IndexOptionsInterface } from '@typings/compact';
-import { O_INDEX_OPTION } from '@typings/parsed';
-import { isDefined } from '@shared/utils';
+import { O_INDEX_OPTION, IndexOptionsInterface } from '../../../../typings';
+import { isDefined } from '../../../../shared/utils';
 
 import {
   IndexOptionsModelInterface,
@@ -11,10 +10,15 @@ import {
  */
 export class IndexOptions implements IndexOptionsModelInterface {
   keyBlockSize?: number;
+
   indexType?: string;
+
   parser?: string;
+
   comment?: string;
+
   algorithm?: string;
+
   lock?: string;
 
   /**

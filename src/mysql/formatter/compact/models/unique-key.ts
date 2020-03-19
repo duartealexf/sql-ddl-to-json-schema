@@ -4,9 +4,9 @@ import {
   O_CREATE_TABLE_CREATE_DEFINITION_UNIQUE_KEY,
   STATEMENT,
   O_ALTER_TABLE_SPEC_ADD_UNIQUE_KEY,
-} from '@typings/parsed';
-import { isDefined } from '@shared/utils';
-import { UniqueKeyInterface } from '@typings/compact';
+  UniqueKeyInterface,
+} from '../../../../typings';
+import { isDefined } from '../../../../shared/utils';
 
 import { IndexOptions } from './index-options';
 import { IndexColumn } from './index-column';
@@ -23,8 +23,11 @@ import {
  */
 export class UniqueKey implements UniqueKeyModelInterface {
   name?: string;
+
   indexType?: string;
+
   columns: IndexColumnModelInterface[] = [];
+
   options?: IndexOptionsModelInterface;
 
   /**
@@ -184,7 +187,11 @@ export class UniqueKey implements UniqueKeyModelInterface {
           return;
         }
 
-        indexColumn.length = column.type.getMaxIndexableSize();
+        const indexableSize = column.type.getMaxIndexableSize();
+
+        if (indexableSize > 0) {
+          indexColumn.length = indexableSize;
+        }
       });
   }
 

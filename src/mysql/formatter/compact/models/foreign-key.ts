@@ -1,9 +1,9 @@
 import {
   O_CREATE_TABLE_CREATE_DEFINITION,
   O_CREATE_TABLE_CREATE_DEFINITION_FOREIGN_KEY,
-} from '@typings/parsed';
-import { isDefined } from '@shared/utils';
-import { ForeignKeyInterface } from '@typings/compact';
+  ForeignKeyInterface,
+} from '../../../../typings';
+import { isDefined } from '../../../../shared/utils';
 
 import { ColumnReference } from './column-reference';
 import { IndexColumn } from './index-column';
@@ -20,7 +20,9 @@ import {
  */
 export class ForeignKey implements ForeignKeyModelInterface {
   name?: string;
+
   columns: IndexColumnModelInterface[] = [];
+
   reference!: ColumnReferenceModelInterface;
 
   /**
@@ -99,7 +101,7 @@ export class ForeignKey implements ForeignKeyModelInterface {
    *
    * @param indexColumn Index column to be pushed.
    */
-  pushColumn(indexColumn: IndexColumnModelInterface) {
+  pushColumn(indexColumn: IndexColumnModelInterface): void {
     this.columns.push(indexColumn);
   }
 
@@ -152,7 +154,7 @@ export class ForeignKey implements ForeignKeyModelInterface {
    * Set size of this index to the size of index's column in given
    * table, if the size of this index is not already set.
    */
-  setIndexSizeFromTable(table: TableModelInterface) {
+  setIndexSizeFromTable(table: TableModelInterface): void {
     this.columns
       .filter((i) => !isDefined(i.length))
       .forEach((indexColumn) => {
@@ -162,7 +164,11 @@ export class ForeignKey implements ForeignKeyModelInterface {
           return;
         }
 
-        indexColumn.length = column.type.getMaxIndexableSize();
+        const indexableSize = column.type.getMaxIndexableSize();
+
+        if (indexableSize > 0) {
+          indexColumn.length = indexableSize;
+        }
       });
   }
 
@@ -216,8 +222,8 @@ export class ForeignKey implements ForeignKeyModelInterface {
    * @param column Column being renamed.
    * @param newName New column name.
    */
-  renameColumn(column: ColumnModelInterface, newName: string) {
-    this.reference.columns
+  renameColumn(column: ColumnModelInterface, newName: string): void {
+    return this.reference.columns
       ?.filter((c) => c.column === column.name)
       .forEach((c) => {
         c.column = newName;
@@ -229,7 +235,7 @@ export class ForeignKey implements ForeignKeyModelInterface {
    *
    * @param newName New table name.
    */
-  updateReferencedTableName(newName: string) {
+  updateReferencedTableName(newName: string): void {
     this.reference.table = newName;
   }
 }

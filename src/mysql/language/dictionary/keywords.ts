@@ -1,4 +1,4 @@
-import { stringArrayToMapping } from "../../../shared/utils";
+import { stringArrayToMapping } from '../../../shared/utils';
 
 /** =============================================================
  * List of keywords.
@@ -227,13 +227,13 @@ const keywords = stringArrayToMapping<RegExp>(
    * Make case insensitive regexp from a keyword.
    * Example: WORD -> /[Ww][Oo][Rr][Dd]/
    */
-  (str: string) => new RegExp('\\b' +
+  (str: string) => new RegExp(`\\b${
     str.split('')
-      .reduce((str: string, char: string) => {
-        str += `[${char.toUpperCase()}${char.toLowerCase()}]`;
-        return str;
+      .reduce((acc: string, char: string) => {
+        acc += `[${char.toUpperCase()}${char.toLowerCase()}]`;
+        return acc;
       }, '')
-  + '\\b')
+  }\\b`),
 );
 
 export default keywords;

@@ -1,5 +1,27 @@
+/* eslint-disable @typescript-eslint/class-name-casing */
+
+export type P_ALTER_TABLE_ACTION =
+  | 'addColumn'
+  | 'addColumns'
+  | 'addIndex'
+  | 'addPrimaryKey'
+  | 'addUniqueKey'
+  | 'addFulltextIndex'
+  | 'addSpatialIndex'
+  | 'addForeignKey'
+  | 'setDefaultColumnValue'
+  | 'dropDefaultColumnValue'
+  | 'changeColumn'
+  | 'dropColumn'
+  | 'dropIndex'
+  | 'dropPrimaryKey'
+  | 'dropForeignKey'
+  | 'renameIndex'
+  | 'rename';
+
 export interface STATEMENT {
   id: string;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   def: any;
 }
 
@@ -217,11 +239,9 @@ export interface O_ALTER_TABLE_SPEC {
     | O_ALTER_TABLE_SPEC_ADD_PERIOD_FOR_SYSTEM_TIME;
 }
 
-export type O_POSITION =
-  | {
-      after?: string;
-    }
-  | undefined;
+export type O_POSITION = {
+  after?: string;
+};
 
 export interface O_ALTER_TABLE_SPEC_ADD_COLUMN {
   action: 'addColumn';

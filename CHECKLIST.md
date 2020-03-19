@@ -1,4 +1,4 @@
-Refactor to typescript checklist:
+# Refactor to typescript checklist
 
 - [x] Change all file names.
 - [ ] Change build system.
@@ -18,3 +18,4 @@ Refactor to typescript checklist:
 - [ ] Run `npm audit fix`.
 - [ ] See if `x[key] = value` can be changed to `Object.defineProperty(x, key, {value})` everywhere.
 - [ ] See if `Object.getOwnPropertyNames` can be changed to `Object.values` with Tuple type everywhere.
+- [ ] Change all `| undefined` to `| null`.

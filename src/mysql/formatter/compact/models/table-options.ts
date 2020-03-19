@@ -1,6 +1,5 @@
-import { P_CREATE_TABLE_OPTIONS, O_CREATE_TABLE_OPTION } from '@typings/parsed';
-import { TableOptionsInterface } from '@typings/compact';
-import { isString, isDefined } from '@shared/utils';
+import { TableOptionsInterface, P_CREATE_TABLE_OPTIONS, O_CREATE_TABLE_OPTION } from '../../../../typings';
+import { isString, isDefined } from '../../../../shared/utils';
 
 import {
   TableOptionsModelInterface,
@@ -11,35 +10,65 @@ import {
  */
 export class TableOptions implements TableOptionsModelInterface {
   autoincrement?: number;
+
   avgRowLength?: number;
+
   charset?: string;
+
   checksum?: number;
+
   collation?: string;
+
   comment?: string;
+
   compression?: string;
+
   connection?: string;
+
   dataDirectory?: string;
+
   indexDirectory?: string;
+
   delayKeyWrite?: number;
+
   encryption?: string;
+
   encryptionKeyId?: number;
+
   ietfQuotes?: string;
+
   engine?: string;
+
   insertMethod?: string;
+
   keyBlockSize?: number;
+
   maxRows?: number;
+
   minRows?: number;
+
   packKeys?: string | number;
+
   pageChecksum?: number;
+
   password?: string;
+
   rowFormat?: string;
+
   statsAutoRecalc?: string | number;
+
   statsPersistent?: string | number;
+
   statsSamplePages?: string | number;
+
   transactional?: number;
+
   withSystemVersioning?: boolean;
+
   tablespaceName?: string;
+
   tablespaceStorage?: string;
+
   union?: string[];
 
   /**
@@ -385,7 +414,7 @@ export class TableOptions implements TableOptionsModelInterface {
    * Merge this option instance with another one.
    * Common properties of this instance are overwritten.
    */
-  mergeWith(options: TableOptionsInterface) {
+  mergeWith(options: TableOptionsInterface): void {
     if (isDefined(options.autoincrement)) {
       this.autoincrement = options.autoincrement;
     }

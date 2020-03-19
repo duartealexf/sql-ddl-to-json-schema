@@ -1,4 +1,4 @@
-import { P_COLUMN_REFERENCE_ON } from '@typings/parsed';
+import { P_COLUMN_REFERENCE_ON, ColumnReferenceOnInterface } from '../../../../typings';
 
 import { ColumnReferenceOnModelInterface } from './typings';
 
@@ -7,6 +7,7 @@ import { ColumnReferenceOnModelInterface } from './typings';
  */
 export class ColumnReferenceOn implements ColumnReferenceOnModelInterface {
   trigger!: string;
+
   action!: string;
 
   /**
@@ -27,7 +28,7 @@ export class ColumnReferenceOn implements ColumnReferenceOnModelInterface {
   /**
    * JSON casting of this object calls this method.
    */
-  toJSON() {
+  toJSON(): ColumnReferenceOnInterface {
     return {
       trigger: this.trigger,
       action: this.action,
@@ -37,7 +38,7 @@ export class ColumnReferenceOn implements ColumnReferenceOnModelInterface {
   /**
    * Create a deep clone of this model.
    */
-  clone() {
+  clone(): ColumnReferenceOn {
     return ColumnReferenceOn.fromObject(this);
   }
 }

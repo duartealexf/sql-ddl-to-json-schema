@@ -2,9 +2,9 @@ import {
   O_ALTER_TABLE_SPEC_ADD_PRIMARY_KEY,
   O_CREATE_TABLE_CREATE_DEFINITION,
   O_CREATE_TABLE_CREATE_DEFINITION_PRIMARY_KEY,
-} from '@typings/parsed';
-import { PrimaryKeyInterface } from '@typings/compact';
-import { isDefined } from '@shared/utils';
+  PrimaryKeyInterface,
+} from '../../../../typings';
+import { isDefined } from '../../../../shared/utils';
 
 import { IndexColumn } from './index-column';
 import { IndexOptions } from './index-options';
@@ -21,8 +21,11 @@ import {
  */
 export class PrimaryKey implements PrimaryKeyModelInterface {
   name?: string;
+
   indexType?: string;
+
   columns!: IndexColumnModelInterface[];
+
   options?: IndexOptionsModelInterface;
 
   /**

@@ -54,13 +54,13 @@
   },
   "dependencies": {
     "moo": "^0.5.1",
-    "nearley": "^2.19.0"
-  },
-  "devDependencies": {
+    "nearley": "^2.19.0",
     "@types/fs-extra": "^8.1.0",
     "@types/json-schema": "^7.0.4",
     "@types/moo": "^0.5.2",
-    "@types/nearley": "^2.11.1",
+    "@types/nearley": "^2.11.1"
+  },
+  "devDependencies": {
     "@types/node": "^13.9.0",
     "@typescript-eslint/eslint-plugin": "^2.2.0",
     "@typescript-eslint/parser": "^2.2.0",

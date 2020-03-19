@@ -1,26 +1,28 @@
 import { Parser as NearleyParser, Grammar as NearleyGrammar } from 'nearley';
-
-import { Grammar as MySQLGrammarRules } from '@mysql/compiled';
-import { CompactFormatter as MySQLCompactFormatter } from '@mysql/formatter/compact';
-import { JSONSchemaFormatter as MySQLJSONSchemaFormatter } from './mysql/formatter/json-schema';
-
 import fs from 'fs';
 import { join } from 'path';
-import { isString } from '@shared/utils';
-import { CompactJSONFormat } from '@typings/compact';
 import { JSONSchema7 } from 'json-schema';
-import { JSONSchemaFormatOptions, JSONSchemaFileOptions } from '@typings/json-schema';
-import { P_MAIN, P_DDS } from '@typings/parsed';
+
+import { isString } from './shared/utils';
+import { Grammar as MySQLGrammarRules } from './mysql/language';
+import { format as MySQLCompactFormatter } from './mysql/formatter/compact';
+import { format as MySQLJSONSchemaFormatter } from './mysql/formatter/json-schema';
+
+import { CompactJSONFormat, CompactFormatter } from './typings/compact';
+import { JSONSchemaFormatOptions, JSONSchemaFileOptions, JSONSchemaFormatter } from './typings/json-schema';
+import { P_MAIN, P_DDS } from './typings/parsed';
 
 /**
  * Main Parser class, wraps nearley parser main methods.
  */
 export class Parser {
   private compiledGrammar!: NearleyGrammar;
+
   private parser!: NearleyParser;
 
-  private jsonSchemaFormatter!: MySQLJSONSchemaFormatter;
-  private compactFormatter!: MySQLCompactFormatter;
+  private jsonSchemaFormatter!: JSONSchemaFormatter;
+
+  private compactFormatter!: CompactFormatter;
 
   /**
    * Parsed statements.
@@ -51,12 +53,12 @@ export class Parser {
   constructor(dialect: 'mysql' | 'mariadb' = 'mysql') {
     if (!dialect || dialect === 'mysql' || dialect === 'mariadb') {
       this.compiledGrammar = NearleyGrammar.fromCompiled(MySQLGrammarRules);
-      this.compactFormatter = new MySQLCompactFormatter();
-      this.jsonSchemaFormatter = new MySQLJSONSchemaFormatter();
+      this.compactFormatter = MySQLCompactFormatter;
+      this.jsonSchemaFormatter = MySQLJSONSchemaFormatter;
     } else {
       throw new TypeError(
         `Unsupported SQL dialect given to parser: '${dialect}. ` +
-          `Please provide 'mysql', 'mariadb' or none to use default.`,
+          "Please provide 'mysql', 'mariadb' or none to use default.",
       );
     }
 
@@ -69,19 +71,19 @@ export class Parser {
    * @param chunk Chunk of string to be parsed.
    */
   feed(chunk: string): Parser {
-    let i,
-      char,
-      parsed = '';
+    let i;
+    let char;
+    let parsed = '';
     let lastStatementIndex = 0;
 
-    for (i = 0; i < chunk.length; i++) {
+    for (i = 0; i < chunk.length; i += 1) {
       char = chunk[i];
       parsed += char;
 
       if (char === '\\') {
         this.escaped = !this.escaped;
       } else {
-        if (!this.escaped && this.isQuoteChar(char)) {
+        if (!this.escaped && Parser.isQuoteChar(char)) {
           if (this.quoted) {
             if (this.quoted === char) {
               this.quoted = '';
@@ -108,7 +110,7 @@ export class Parser {
   /**
    * Recreates NearleyParser using grammar given in constructor.
    */
-  resetParser() {
+  resetParser(): void {
     this.parser = new NearleyParser(this.compiledGrammar);
   }
 
@@ -117,7 +119,7 @@ export class Parser {
    *
    * @param char Character to be evaluated.
    */
-  private isQuoteChar(char: string): boolean {
+  private static isQuoteChar(char: string): boolean {
     return char === '"' || char === "'" || char === '`';
   }
 
@@ -126,7 +128,7 @@ export class Parser {
    *
    * @param results Parser results.
    */
-  private tidy(results: P_DDS[]): P_DDS {
+  private static tidy(results: P_DDS[]): P_DDS {
     return results[0];
   }
 
@@ -150,7 +152,7 @@ export class Parser {
       while (statement) {
         this.parser.feed(statement);
         lineCount += (statement.match(/\r\n|\r|\n/g) || []).length;
-        results.push(this.tidy(this.parser.results));
+        results.push(Parser.tidy(this.parser.results));
         statement = this.statements.shift();
 
         this.resetParser();
@@ -201,11 +203,7 @@ export class Parser {
    * @returns {any[]} Array of tables in compact JSON format.
    */
   toCompactJson(json?: P_MAIN): CompactJSONFormat[] {
-    if (!json) {
-      json = this.results;
-    }
-
-    return this.compactFormatter.format(json);
+    return this.compactFormatter(json ?? this.results);
   }
 
   /**
@@ -222,11 +220,7 @@ export class Parser {
     },
     tables?: CompactJSONFormat[],
   ): JSONSchema7[] {
-    if (!tables) {
-      tables = this.toCompactJson();
-    }
-
-    return this.jsonSchemaFormatter.format(tables, options);
+    return this.jsonSchemaFormatter(tables ?? this.toCompactJson(), options);
   }
 
   /**
@@ -251,14 +245,12 @@ export class Parser {
       throw new Error('Please provide output directory for JSON Schema files');
     }
 
-    if (!jsonSchemas) {
-      jsonSchemas = this.toJsonSchemaArray({
-        useRef: options.useRef,
-      });
-    }
+    const schemas = jsonSchemas ?? this.toJsonSchemaArray({
+      useRef: options.useRef,
+    });
 
     const filepaths = await Promise.all<string>(
-      jsonSchemas.map(async (schema) => {
+      schemas.map(async (schema) => {
         if (!schema.$id) {
           throw new Error(
             'No root $id found in schema. It should contain the table name. ' +

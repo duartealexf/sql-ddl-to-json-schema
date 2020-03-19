@@ -1,12 +1,12 @@
-import { isDefined } from '@shared/utils';
-import { FulltextIndexInterface } from '@typings/compact';
+import { isDefined } from '../../../../shared/utils';
 import {
   O_CREATE_TABLE_CREATE_DEFINITION,
   P_CREATE_INDEX,
   STATEMENT,
   O_CREATE_TABLE_CREATE_DEFINITION_FULLTEXT_INDEX,
   O_ALTER_TABLE_SPEC_ADD_FULLTEXT_INDEX,
-} from '@typings/parsed';
+  FulltextIndexInterface,
+} from '../../../../typings';
 
 import { IndexColumn } from './index-column';
 import { IndexOptions } from './index-options';
@@ -23,7 +23,9 @@ import {
  */
 export class FulltextIndex implements FulltextIndexModelInterface {
   name?: string;
+
   columns: IndexColumnModelInterface[] = [];
+
   options?: IndexOptionsModelInterface;
 
   /**

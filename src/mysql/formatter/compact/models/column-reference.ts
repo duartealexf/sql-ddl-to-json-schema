@@ -1,7 +1,5 @@
-import { P_COLUMN_REFERENCE } from '@typings/parsed';
-import { ColumnReferenceInterface } from '@typings/compact';
-import { isDefined } from '@shared/utils';
-
+import { P_COLUMN_REFERENCE, ColumnReferenceInterface } from '../../../../typings';
+import { isDefined } from '../../../../shared/utils';
 import { ColumnReferenceOn } from './column-reference-on';
 import { IndexColumn } from './index-column';
 import {
@@ -15,8 +13,11 @@ import {
  */
 export class ColumnReference implements ColumnReferenceModelInterface {
   table!: string;
+
   match?: string;
+
   columns: IndexColumnModelInterface[] = [];
+
   on: ColumnReferenceOnModelInterface[] = [];
 
   /**
@@ -24,7 +25,7 @@ export class ColumnReference implements ColumnReferenceModelInterface {
    *
    * @param json JSON format parsed from SQL.
    */
-  static fromDef(json: P_COLUMN_REFERENCE) {
+  static fromDef(json: P_COLUMN_REFERENCE): ColumnReference {
     if (json.id === 'P_COLUMN_REFERENCE') {
       const def = json.def;
       const columnReference = new ColumnReference();

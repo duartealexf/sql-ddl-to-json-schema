@@ -1,4 +1,4 @@
-import { P_CREATE_TABLE } from '@typings/parsed';
+import { P_CREATE_TABLE } from '../../../../../typings';
 
 import { Table } from '../table';
 import { DatabaseModelInterface, TableModelInterface, RuleHandler } from '../typings';
@@ -14,7 +14,7 @@ export class CreateTable implements RuleHandler {
    *
    * @param name Table name.
    */
-  getTable(name: string): TableModelInterface | undefined {
+  getTable(name: string): TableModelInterface | null {
     return this.database.getTable(name);
   }
 
@@ -30,7 +30,7 @@ export class CreateTable implements RuleHandler {
    *
    * @param database Database instance.
    */
-  setDatabase(database: DatabaseModelInterface) {
+  setDatabase(database: DatabaseModelInterface): void {
     this.database = database;
   }
 
@@ -39,7 +39,7 @@ export class CreateTable implements RuleHandler {
    *
    * @param table Table to be added.
    */
-  pushTable(table: TableModelInterface) {
+  pushTable(table: TableModelInterface): void {
     this.database.pushTable(table);
   }
 

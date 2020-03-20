@@ -35,7 +35,6 @@
     "@typescript-eslint/no-explicit-any": ["error", { "ignoreRestArgs": false }],
     "@typescript-eslint/semi": ["error"],
     "@typescript-eslint/camelcase": 0,
-    "@typescript-eslint/ban-ts-ignore": 0,
     "no-param-reassign": 0
   }
 }

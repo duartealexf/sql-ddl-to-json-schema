@@ -1,3 +1,2 @@
-import { Parser } from './parser';
-
-export default Parser;
+export { Parser } from './parser';
+export * from './typings';

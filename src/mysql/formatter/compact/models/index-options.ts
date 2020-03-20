@@ -40,7 +40,7 @@ export class IndexOptions implements IndexOptionsModelInterface {
         indexOptions.keyBlockSize = option.def.keyBlockSize;
       }
       if (isDefined(option.def.parser)) {
-        indexOptions.parser = option.def.parser.toLowerCase();
+        indexOptions.parser = option.def.parser;
       }
     });
 

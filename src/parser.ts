@@ -6,9 +6,14 @@ import { Grammar as MySQLGrammarRules } from './mysql/language';
 import { format as MySQLCompactFormatter } from './mysql/formatter/compact';
 import { format as MySQLJSONSchemaFormatter } from './mysql/formatter/json-schema';
 
-import { CompactJSONFormat, CompactFormatter } from './typings/compact';
-import { JSONSchemaFormatOptions, JSONSchemaFileOptions, JSONSchemaFormatter } from './typings/json-schema';
-import { P_MAIN, P_DDS } from './typings/parsed';
+import {
+  JSONSchemaFormatOptions,
+  JSONSchemaFormatter,
+  CompactJSONFormat,
+  CompactFormatter,
+  P_MAIN,
+  P_DDS,
+} from './typings';
 
 /**
  * Main Parser class, wraps nearley parser main methods.

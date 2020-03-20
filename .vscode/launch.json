@@ -16,27 +16,20 @@
       "request": "launch",
       "name": "Debug Opened Test File",
       "env": {
-        "DEBUG": "*",
-        "TS_NODE_PROJECT": "${workspaceRoot}/test/tsconfig.json"
+        "DEBUG": "*"
       },
-      "runtimeArgs": ["-r", "ts-node/register"],
-      "program": "${workspaceRoot}/node_modules/ava/profile.js",
       "args": ["${file}"],
-      "internalConsoleOptions": "openOnSessionStart"
+      "program": "${workspaceFolder}/node_modules/ava/profile.js"
     },
     {
       "type": "node",
       "request": "launch",
       "name": "Debug Update Expectation Of Opened Test File",
       "env": {
-        "DEBUG": "*",
-        "DRY_UPDATE": "1",
-        "TS_NODE_PROJECT": "${workspaceRoot}/test/tsconfig.json"
+        "DRY_UPDATE": "1"
       },
-      "runtimeArgs": ["-r", "ts-node/register"],
-      "program": "${workspaceRoot}/node_modules/ava/profile.js",
       "args": ["${file}"],
-      "internalConsoleOptions": "openOnSessionStart"
+      "program": "${workspaceFolder}/node_modules/ava/profile.js"
     }
   ]
 }

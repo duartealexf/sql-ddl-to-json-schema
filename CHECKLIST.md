@@ -1,6 +1,7 @@
 # Refactor to typescript checklist
 
 - [x] Change all file names.
+- [ ] Add lazy import and import fs and path for parser.
 - [ ] Change build system.
 - [ ] Change module types.
 - [ ] Standardize the way the JSON.id is checked.

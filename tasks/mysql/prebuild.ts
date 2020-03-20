@@ -1,3 +1,6 @@
+/* eslint-disable no-loop-func */
+/* eslint-disable no-await-in-loop */
+/* eslint-disable import/no-extraneous-dependencies */
 /**
  * This script gets contents of lexer.ne, and .ne files in parser / rules,
  * folder concatenating them all to lib/mysql/grammar.ne, so it can be
@@ -34,7 +37,6 @@ const projectRoot = join(__dirname, '..', '..');
 /**
  * Input.
  */
-const srcFolder = join(projectRoot, 'src', 'mysql');
 const langFolder = join(projectRoot, 'src', 'mysql', 'language');
 const rulesFolder = join(langFolder, 'rules');
 const lexerFile = join(langFolder, 'lexer.ne');
@@ -117,15 +119,14 @@ const main = async (): Promise<void> => {
    */
   logger.info('Appending keywords as identifier rule...');
 
-  const ruleString =
-    ' ' +
-    Object.keys(keywords).reduceRight((concat, key) => {
-      concat += ` | %${key} {% d => d[0].value %}`;
-      return concat;
-    }, '') +
-    '\n\n';
+  const ruleString = ` ${Object.keys(keywords).reduceRight((concat, key) => {
+    concat += ` | %${key} {% d => d[0].value %}`;
+    return concat;
+  }, '')}\n\n`;
 
-  lastError = await new Promise((resolve) => appendFile(compiledNearleyGrammar, ruleString, resolve));
+  lastError = await new Promise((resolve) =>
+    appendFile(compiledNearleyGrammar, ruleString, resolve),
+  );
 
   if (lastError) {
     logger.error(`Error appending identifier rule to file: ${lastError}`);
@@ -135,7 +136,7 @@ const main = async (): Promise<void> => {
   /**
    * Append rules files to grammar file.
    */
-  for (let i = 0; i < files.length; i++) {
+  for (let i = 0; i < files.length; i += 1) {
     const file = files[i];
 
     const filename = file.split(delimiter).pop();
@@ -157,9 +158,11 @@ const main = async (): Promise<void> => {
       process.exit(1);
     }
 
-    logger.info(`Writing contents to grammar...`);
+    logger.info('Writing contents to grammar...');
 
-    lastError = await new Promise((resolve) => appendFile(compiledNearleyGrammar, contents, resolve));
+    lastError = await new Promise((resolve) =>
+      appendFile(compiledNearleyGrammar, contents, resolve),
+    );
 
     if (lastError) {
       logger.error(`Error appeding rules of file (${file}) to grammar: ${lastError}`);

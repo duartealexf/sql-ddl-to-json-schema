@@ -15,7 +15,7 @@
     "convert",
     "converter"
   ],
-  "main": "index.js",
+  "main": "lib/index.js",
   "author": "Alexandre Duarte <duartealexf@gmail.com> (https://github.com/duartealexf)",
   "maintainers": [
     "Alexandre Duarte <duartealexf@gmail.com> (https://github.com/duartealexf)"
@@ -28,12 +28,13 @@
     "eslint": "eslint",
     "nearley-test": "node_modules/nearley/bin/nearley-test.js",
     "nearleyc": "node_modules/nearley/bin/nearleyc.js",
-    "ava": "node_modules/ava/cli.js",
-    "nyc": "node_modules/nyc/bin/nyc.js",
+    "ava": "ts-node -P test/tsconfig.json node_modules/ava/cli.js",
+    "nyc": "ts-node -P test/tsconfig.json node_modules/nyc/bin/nyc.js",
     "nodemon-watch": "nodemon -w src -w test -e ne,ts",
-    "coverage": "npm run nyc ava test/**/*.spec.js",
-    "test": "ava --color test/**/*.spec.js",
-    "lint": "eslint src/**/*.ts",
+    "coverage": "npm run nyc ava test/**/*.spec.ts",
+    "test": "ava --color test/**/*.spec.ts",
+    "pretest": "ln -hfs ../ node_modules/sql-ddl-to-json-schema",
+    "lint": "eslint src/**/*.ts tasks/**/*.ts test/**/*.ts",
     "prebuild:mysql": "ts-node tasks/mysql/prebuild.ts",
     "postbuild:mysql": "ts-node tasks/mysql/postbuild.ts",
     "build:mysql": "nearleyc src/mysql/language/grammar.ne -o src/mysql/language/grammar.ts",
@@ -63,6 +64,7 @@
   "devDependencies": {
     "@types/fs-extra": "^8.1.0",
     "@types/node": "^13.9.2",
+    "@types/winston": "^2.4.4",
     "@typescript-eslint/eslint-plugin": "^2.24.0",
     "@typescript-eslint/parser": "^2.24.0",
     "ava": "^1.4.1",
@@ -83,12 +85,20 @@
     "typescript": "^3.8.3",
     "winston": "^3.2.1"
   },
+  "types": "./typings",
   "config": {
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog"
     }
   },
-  "types": "./typings",
+  "ava": {
+    "extensions": [
+      "ts"
+    ],
+    "require": [
+      "ts-node/register"
+    ]
+  },
   "engines": {
     "node": ">=6.0.0 <=13"
   }

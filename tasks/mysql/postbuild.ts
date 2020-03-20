@@ -1,3 +1,4 @@
+/* eslint-disable import/no-extraneous-dependencies */
 /**
  * This script applies a hotfix that prevents tsc build errors on compiled grammar files.
  */
@@ -33,11 +34,11 @@ const main = async (): Promise<void> => {
 
   let lastError = null;
 
-  const buffer = await new Promise<Buffer>(resolve => {
-    readFile(grammarFile, (error, buffer) => {
+  const buffer = await new Promise<Buffer>((resolve) => {
+    readFile(grammarFile, (error, data) => {
       lastError = error;
-      resolve(buffer);
-    })
+      resolve(data);
+    });
   });
 
   if (lastError) {
@@ -45,13 +46,15 @@ const main = async (): Promise<void> => {
     process.exit(1);
   }
 
-  const hotfix = buffer.toString().replace('interface NearleyToken', 'interface NearleyToken extends moo.Token');
+  const hotfix = buffer
+    .toString()
+    .replace('interface NearleyToken', 'interface NearleyToken extends moo.Token');
 
-  await new Promise<void>(resolve => {
+  await new Promise<void>((resolve) => {
     writeFile(grammarFile, hotfix, (error) => {
       lastError = error;
       resolve();
-    })
+    });
   });
 
   if (lastError) {

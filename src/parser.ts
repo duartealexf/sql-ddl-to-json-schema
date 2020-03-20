@@ -1,6 +1,4 @@
 import { Parser as NearleyParser, Grammar as NearleyGrammar } from 'nearley';
-import fs from 'fs';
-import { join } from 'path';
 import { JSONSchema7 } from 'json-schema';
 
 import { isString } from './shared/utils';
@@ -221,61 +219,5 @@ export class Parser {
     tables?: CompactJSONFormat[],
   ): JSONSchema7[] {
     return this.jsonSchemaFormatter(tables ?? this.toCompactJson(), options);
-  }
-
-  /**
-   * Output JSON Schema files (one for each table) in given output directory for the
-   * parsed SQL. If no JSON Schemas array is given, will use currently parsed SQL.
-   * Only available in NodeJS environments.
-   *
-   * @param outputDir Output directory.
-   * @param options Options object for JSON Schema output to files (optional).
-   * @param jsonSchemas JSON Schema documents array (optional).
-   */
-  async toJsonSchemaFiles(
-    outputDir: string,
-    options: JSONSchemaFileOptions = {
-      useRef: true,
-      extension: '.json',
-      indent: 2,
-    },
-    jsonSchemas?: JSONSchema7[],
-  ): Promise<string[]> {
-    if (!outputDir) {
-      throw new Error('Please provide output directory for JSON Schema files');
-    }
-
-    const schemas = jsonSchemas ?? this.toJsonSchemaArray({
-      useRef: options.useRef,
-    });
-
-    const filepaths = await Promise.all<string>(
-      schemas.map(async (schema) => {
-        if (!schema.$id) {
-          throw new Error(
-            'No root $id found in schema. It should contain the table name. ' +
-              'If you have modified the JSON Schema, please keep the $id, as it will be the file name.',
-          );
-        }
-
-        const filename = schema.$id;
-        const filepath = join(outputDir, filename + options.extension);
-
-        const path = await new Promise<string>((resolve) => {
-          fs.writeFile(filepath, JSON.stringify(schema, null, options.indent), (err) => {
-            if (err) {
-              throw new Error(
-                `Error when trying to write to file ${filepath}: ${JSON.stringify(err, null, 2)}`,
-              );
-            }
-            resolve(filepath);
-          });
-        });
-
-        return path;
-      }),
-    );
-
-    return filepaths;
   }
 }

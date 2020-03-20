@@ -89,5 +89,3 @@ export class ColumnReference implements ColumnReferenceModelInterface {
     return reference;
   }
 }
-
-module.exports = ColumnReference;

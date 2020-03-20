@@ -103,5 +103,3 @@ export class IndexOptions implements IndexOptionsModelInterface {
     return options;
   }
 }
-
-module.exports = IndexOptions;

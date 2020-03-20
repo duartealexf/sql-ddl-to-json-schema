@@ -22,11 +22,7 @@ Thumbs.db
 /node_modules
 npm-debug.log
 update-notifier-nodemon.json
-/lib/shared
-/lib/mysql
-/lib/pgsql
-/lib/mssql
-/lib/oracle
+/lib
 coverage.*
 .nyc_output
 .history

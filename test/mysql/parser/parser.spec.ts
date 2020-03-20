@@ -2,7 +2,7 @@
 /* eslint-disable no-unused-expressions */
 import ava from 'ava';
 
-import Parser from 'sql-ddl-to-json-schema';
+import Parser from '../../../src';
 
 ava('Should parser properties work', (t) => {
   const parser = new Parser();

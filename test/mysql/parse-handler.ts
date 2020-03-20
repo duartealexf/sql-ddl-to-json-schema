@@ -1,6 +1,6 @@
-// eslint-disable-next-line import/no-unresolved
-import Parser from 'sql-ddl-to-json-schema';
 import { JSONSchema7 } from 'json-schema';
+
+import Parser from '../../src';
 import { P_MAIN, TableInterface } from '../../typings/typings';
 import { ParseHandler } from './typings';
 

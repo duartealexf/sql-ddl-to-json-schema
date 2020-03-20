@@ -48,7 +48,7 @@ export class Table {
       /**
        * Set property in column(s) that is/are primary key(s).
        */
-      json.primaryKey.columns
+      (json.primaryKey.columns ?? [])
         .map((c) => c.column)
         .map((name) => table.columns.find((c) => c.name === name))
         .filter(isDefined)

@@ -548,7 +548,7 @@ export class Table implements TableModelInterface {
     });
 
     if (isDefined(this.primaryKey)) {
-      if (this.primaryKey.dropColumn(column.name) && !this.primaryKey.columns.length) {
+      if (this.primaryKey.dropColumn(column.name) && !this.primaryKey.columns?.length) {
         delete this.primaryKey;
       }
     }
@@ -708,7 +708,7 @@ export class Table implements TableModelInterface {
     /**
      * Make necessary changes in columns.
      */
-    primaryKey.columns.forEach((indexCol) => {
+    (primaryKey.columns ?? []).forEach((indexCol) => {
       if (!indexCol.column) {
         return;
       }

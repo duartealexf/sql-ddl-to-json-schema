@@ -92,7 +92,7 @@ export interface IndexInterface {
 export interface PrimaryKeyInterface {
   name?: string; // TODO: primary key name did not exist before. check this when testing.
   indexType?: string;
-  columns: IndexColumnInterface[];
+  columns?: IndexColumnInterface[];
   options?: IndexOptionsInterface;
 }
 

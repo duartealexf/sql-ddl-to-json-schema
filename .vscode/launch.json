@@ -8,9 +8,7 @@
       "type": "node",
       "request": "launch",
       "name": "Debug Compilation",
-      "args": [
-        "lib/mysql/parser/grammar.ne"
-      ],
+      "args": ["lib/mysql/parser/grammar.ne"],
       "program": "${workspaceFolder}/node_modules/nearley/bin/nearleyc.js"
     },
     {
@@ -18,30 +16,27 @@
       "request": "launch",
       "name": "Debug Opened Test File",
       "env": {
-        "DEBUG": "*"
+        "DEBUG": "*",
+        "TS_NODE_PROJECT": "${workspaceRoot}/test/tsconfig.json"
       },
-      "args": [
-        "${file}"
-      ],
-      "program": "${workspaceFolder}/node_modules/ava/profile.js"
-    },
-    {
-      "type": "node",
-      "request": "launch",
-      "name": "Debug Example",
-      "program": "${workspaceFolder}/src/mysql/example.js"
+      "runtimeArgs": ["-r", "ts-node/register"],
+      "program": "${workspaceRoot}/node_modules/ava/profile.js",
+      "args": ["${file}"],
+      "internalConsoleOptions": "openOnSessionStart"
     },
     {
       "type": "node",
       "request": "launch",
       "name": "Debug Update Expectation Of Opened Test File",
       "env": {
-        "DRY_UPDATE": "1"
+        "DEBUG": "*",
+        "DRY_UPDATE": "1",
+        "TS_NODE_PROJECT": "${workspaceRoot}/test/tsconfig.json"
       },
-      "args": [
-        "${file}"
-      ],
-      "program": "${workspaceFolder}/node_modules/ava/profile.js"
+      "runtimeArgs": ["-r", "ts-node/register"],
+      "program": "${workspaceRoot}/node_modules/ava/profile.js",
+      "args": ["${file}"],
+      "internalConsoleOptions": "openOnSessionStart"
     }
   ]
 }

@@ -24,7 +24,7 @@ export class PrimaryKey implements PrimaryKeyModelInterface {
 
   indexType?: string;
 
-  columns!: IndexColumnModelInterface[];
+  columns?: IndexColumnModelInterface[];
 
   options?: IndexOptionsModelInterface;
 
@@ -73,7 +73,7 @@ export class PrimaryKey implements PrimaryKeyModelInterface {
    */
   toJSON(): PrimaryKeyInterface {
     const json: PrimaryKeyInterface = {
-      columns: this.columns.map((c) => c.toJSON()),
+      columns: (this.columns ?? []).map((c) => c.toJSON()),
     };
 
     if (isDefined(this.name)) {
@@ -94,7 +94,7 @@ export class PrimaryKey implements PrimaryKeyModelInterface {
    */
   clone(): PrimaryKey {
     const primaryKey = new PrimaryKey();
-    primaryKey.columns = this.columns.map((c) => c.clone());
+    primaryKey.columns = (this.columns ?? []).map((c) => c.clone());
 
     if (isDefined(this.indexType)) {
       primaryKey.indexType = this.indexType;
@@ -113,6 +113,10 @@ export class PrimaryKey implements PrimaryKeyModelInterface {
    * @param {IndexColumn} indexColumn Index column to be pushed.
    */
   pushColumn(indexColumn: IndexColumnModelInterface): void {
+    if (!this.columns) {
+      this.columns = [];
+    }
+
     this.columns.push(indexColumn);
   }
 
@@ -122,6 +126,10 @@ export class PrimaryKey implements PrimaryKeyModelInterface {
    * @param name Column name to be dropped.
    */
   dropColumn(name: string): boolean {
+    if (!this.columns) {
+      return false;
+    }
+
     let pos = -1;
 
     const found = this.columns.some((c, i) => {
@@ -147,8 +155,8 @@ export class PrimaryKey implements PrimaryKeyModelInterface {
    * @param table Table in question.
    */
   getColumnsFromTable(table: TableModelInterface): ColumnModelInterface[] {
-    return (table.columns || []).filter((tableColumn) =>
-      this.columns.some((indexColumn) => indexColumn.column === tableColumn.name),
+    return (table.columns ?? []).filter((tableColumn) =>
+      (this.columns ?? []).some((indexColumn) => indexColumn.column === tableColumn.name),
     );
   }
 
@@ -159,9 +167,9 @@ export class PrimaryKey implements PrimaryKeyModelInterface {
    */
   hasAllColumnsFromTable(table: TableModelInterface): boolean {
     return (
-      (table.columns || []).filter((tableColumn) =>
-        this.columns.some((indexColumn) => indexColumn.column === tableColumn.name),
-      ).length === this.columns.length
+      (table.columns ?? []).filter((tableColumn) =>
+        (this.columns ?? []).some((indexColumn) => indexColumn.column === tableColumn.name),
+      ).length === (this.columns ?? []).length
     );
   }
 
@@ -172,8 +180,7 @@ export class PrimaryKey implements PrimaryKeyModelInterface {
    * @param newName New column name.
    */
   renameColumn(column: ColumnModelInterface, newName: string): void {
-    this.columns
-      .filter((c) => c.column === column.name)
+    return this.columns?.filter((c) => c.column === column.name)
       .forEach((c) => {
         c.column = newName;
       });

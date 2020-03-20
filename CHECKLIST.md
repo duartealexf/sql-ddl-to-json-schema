@@ -12,7 +12,7 @@
 - [ ] Check todo's.
 - [ ] Remove any jsdocs containing `Properties are`
 - [ ] Change signed `- duartealexf` to `~ duartealexf`.
-- [ ] Change all `|| []).` to `?.`.
+- [ ] Change all `|| []).` to `?.` or `?? [])`.
 - [ ] Remove all `@returns`.
 - [ ] Remove all `module.exports`.
 - [ ] Try to remove all `any`.
@@ -20,3 +20,4 @@
 - [ ] See if `x[key] = value` can be changed to `Object.defineProperty(x, key, {value})` everywhere.
 - [ ] See if `Object.getOwnPropertyNames` can be changed to `Object.values` with Tuple type everywhere.
 - [ ] Change all `| undefined` to `| null`.
+- [ ] Update README.

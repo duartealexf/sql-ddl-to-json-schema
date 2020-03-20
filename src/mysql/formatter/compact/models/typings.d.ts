@@ -203,7 +203,7 @@ export interface PrimaryKeyModelInterface
   extends PrimaryKeyInterface,
     ClonableInterface,
     SerializableInterface {
-  columns: IndexColumnModelInterface[];
+  columns?: IndexColumnModelInterface[];
   options?: IndexOptionsModelInterface;
   pushColumn(indexColumn: IndexColumnModelInterface): void;
   dropColumn(name: string): boolean;

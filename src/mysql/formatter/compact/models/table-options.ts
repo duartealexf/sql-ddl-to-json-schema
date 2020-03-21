@@ -181,7 +181,11 @@ export class TableOptions implements TableOptionsModelInterface {
         }
       }
       if (isDefined(option.def.statsSamplePages)) {
-        tableOptions.statsSamplePages = option.def.statsSamplePages.toLowerCase();
+        if (isString(option.def.statsSamplePages)) {
+          tableOptions.statsSamplePages = option.def.statsSamplePages.toLowerCase();
+        } else {
+          tableOptions.statsSamplePages = option.def.statsSamplePages;
+        }
       }
       if (isDefined(option.def.transactional)) {
         tableOptions.transactional = option.def.transactional;

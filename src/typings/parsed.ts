@@ -443,7 +443,7 @@ export interface O_CREATE_TABLE_OPTION {
     rowFormat?: string;
     statsAutoRecalc?: number | string;
     statsPersistent?: number | string;
-    statsSamplePages?: string;
+    statsSamplePages?: number | string;
     transactional?: number;
     withSystemVersioning?: boolean;
     tablespaceName?: string;

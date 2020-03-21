@@ -391,7 +391,7 @@ export class AlterTable implements RuleHandler {
    */
   private static dropIndex(json: O_ALTER_TABLE_SPEC_DROP_INDEX, table: TableModelInterface): void {
     if (json.index.toLowerCase() === 'primary') {
-      this.dropPrimaryKey(json, table);
+      AlterTable.dropPrimaryKey(json, table);
       return;
     }
 

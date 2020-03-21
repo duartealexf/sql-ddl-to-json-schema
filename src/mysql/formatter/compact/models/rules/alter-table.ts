@@ -308,6 +308,9 @@ export class AlterTable implements RuleHandler {
       options = ColumnOptions.fromArray(json.columnDefinition);
     }
 
+    /**
+     * Stop if anything went wrong parsing new column options.
+     */
     if (!isDefined(options)) {
       return;
     }

@@ -372,9 +372,7 @@ export class Table implements TableModelInterface {
     end.shift();
     this.columns = this.columns.concat(end);
 
-    if (position.after === null) {
-      this.columns.unshift(column);
-    } else {
+    if (position.after) {
       if (!refColumn) {
         return false;
       }
@@ -383,6 +381,8 @@ export class Table implements TableModelInterface {
       end = this.columns.splice(pos + 1);
       this.columns.push(column);
       this.columns = this.columns.concat(end);
+    } else {
+      this.columns.unshift(column);
     }
 
     return true;

@@ -240,7 +240,7 @@ export interface O_ALTER_TABLE_SPEC {
 }
 
 export type O_POSITION = {
-  after?: string;
+  after?: string | null;
 };
 
 export interface O_ALTER_TABLE_SPEC_ADD_COLUMN {

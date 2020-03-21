@@ -517,35 +517,45 @@ export class Table implements TableModelInterface {
      * https://github.com/duartealexf/sql-ddl-to-json-schema/issues/8
      */
 
-    (this.fulltextIndexes || []).forEach((index) => {
-      if (index.dropColumn(column.name) && !index.columns.length) {
-        this.dropIndex(index);
-      }
-    });
+    if (isDefined(this.fulltextIndexes) && this.fulltextIndexes.length) {
+      this.fulltextIndexes.forEach((index) => {
+        if (index.dropColumn(column.name) && !index.columns.length) {
+          this.dropIndexByInstance(index);
+        }
+      });
+    }
 
-    (this.spatialIndexes || []).forEach((index) => {
-      if (index.dropColumn(column.name) && !index.columns.length) {
-        this.dropIndex(index);
-      }
-    });
+    if (isDefined(this.spatialIndexes) && this.spatialIndexes.length) {
+      this.spatialIndexes.forEach((index) => {
+        if (index.dropColumn(column.name) && !index.columns.length) {
+          this.dropIndexByInstance(index);
+        }
+      });
+    }
 
-    (this.indexes || []).forEach((index) => {
-      if (index.dropColumn(column.name) && !index.columns.length) {
-        this.dropIndex(index);
-      }
-    });
+    if (isDefined(this.indexes) && this.indexes.length) {
+      this.indexes.forEach((index) => {
+        if (index.dropColumn(column.name) && !index.columns.length) {
+          this.dropIndexByInstance(index);
+        }
+      });
+    }
 
-    (this.uniqueKeys || []).forEach((key) => {
-      if (key.dropColumn(column.name) && !key.columns.length) {
-        this.dropIndex(key);
-      }
-    });
+    if (isDefined(this.uniqueKeys) && this.uniqueKeys.length) {
+      this.uniqueKeys.forEach((key) => {
+        if (key.dropColumn(column.name) && !key.columns.length) {
+          this.dropIndexByInstance(key);
+        }
+      });
+    }
 
-    (this.foreignKeys || []).forEach((key) => {
-      if (key.dropColumn(column.name) && !key.columns.length) {
-        this.dropForeignKey(key);
-      }
-    });
+    if (isDefined(this.foreignKeys) && this.foreignKeys.length) {
+      this.foreignKeys.forEach((key) => {
+        if (key.dropColumn(column.name) && !key.columns.length) {
+          this.dropForeignKey(key);
+        }
+      });
+    }
 
     if (isDefined(this.primaryKey)) {
       if (this.primaryKey.dropColumn(column.name) && !this.primaryKey.columns?.length) {
@@ -559,18 +569,14 @@ export class Table implements TableModelInterface {
    *
    * @param index Index to be dropped.
    */
-  dropIndex(
+  dropIndexByInstance(
     index:
       | UniqueKeyModelInterface
       | IndexModelInterface
       | FulltextIndexModelInterface
       | SpatialIndexModelInterface,
   ): void {
-    if (!isDefined(index.name)) {
-      return;
-    }
-
-    const type = this.getIndexType(index.name);
+    const type = this.getIndexTypeByInstance(index);
 
     if (!isDefined(type) || !isDefined(this[type])) {
       return;
@@ -605,7 +611,7 @@ export class Table implements TableModelInterface {
    *
    * @param name Index name.
    */
-  getIndex(
+  getIndexByName(
     name: string,
   ):
     | UniqueKeyModelInterface
@@ -613,7 +619,7 @@ export class Table implements TableModelInterface {
     | FulltextIndexModelInterface
     | SpatialIndexModelInterface
     | null {
-    const type = this.getIndexType(name);
+    const type = this.getIndexTypeByName(name);
 
     if (!type) {
       // throw new Error(`Trying to reference an unexsisting index ${name} on table ${this.name}`);
@@ -634,9 +640,42 @@ export class Table implements TableModelInterface {
   /**
    * Get which index array is storing a given index.
    *
-   * @param name Index name.
+   * @param indez
    */
-  getIndexType(name: string): IndexPropertyKey | null {
+  getIndexTypeByInstance(
+    index:
+      | UniqueKeyModelInterface
+      | IndexModelInterface
+      | FulltextIndexModelInterface
+      | SpatialIndexModelInterface,
+  ): IndexPropertyKey | null {
+    const props: IndexPropertyKey[] = [
+      'uniqueKeys',
+      'indexes',
+      'fulltextIndexes',
+      'spatialIndexes',
+    ];
+    const type = props.find((prop) =>
+      (this[prop] || []).some(
+        (
+          i:
+            | UniqueKeyModelInterface
+            | IndexModelInterface
+            | FulltextIndexModelInterface
+            | SpatialIndexModelInterface,
+        ) => i === index,
+      ),
+    );
+
+    return type ?? null;
+  }
+
+  /**
+   * Get which index array is storing a given index.
+   *
+   * @param indez
+   */
+  getIndexTypeByName(name: string): IndexPropertyKey | null {
     const props: IndexPropertyKey[] = [
       'uniqueKeys',
       'indexes',
@@ -735,7 +774,7 @@ export class Table implements TableModelInterface {
      * Should not add index or key with same name.
      * https://github.com/duartealexf/sql-ddl-to-json-schema/issues/15
      */
-    if (fulltextIndex.name && this.getIndex(fulltextIndex.name)) {
+    if (fulltextIndex.name && this.getIndexByName(fulltextIndex.name)) {
       return;
     }
 
@@ -763,7 +802,7 @@ export class Table implements TableModelInterface {
      * Should not add index or key with same name.
      * https://github.com/duartealexf/sql-ddl-to-json-schema/issues/15
      */
-    if (spatialIndex.name && this.getIndex(spatialIndex.name)) {
+    if (spatialIndex.name && this.getIndexByName(spatialIndex.name)) {
       return;
     }
 
@@ -791,7 +830,7 @@ export class Table implements TableModelInterface {
      * Should not add index or key with same name.
      * https://github.com/duartealexf/sql-ddl-to-json-schema/issues/15
      */
-    if (uniqueKey.name && this.getIndex(uniqueKey.name)) {
+    if (uniqueKey.name && this.getIndexByName(uniqueKey.name)) {
       return;
     }
 
@@ -827,7 +866,7 @@ export class Table implements TableModelInterface {
      * Should not add index or key with same name.
      * https://github.com/duartealexf/sql-ddl-to-json-schema/issues/15
      */
-    if (foreignKey.name && this.getIndex(foreignKey.name)) {
+    if (foreignKey.name && this.getIndexByName(foreignKey.name)) {
       return;
     }
 
@@ -880,7 +919,7 @@ export class Table implements TableModelInterface {
      * Should not add index or key with same name.
      * https://github.com/duartealexf/sql-ddl-to-json-schema/issues/15
      */
-    if (index.name && this.getIndex(index.name)) {
+    if (index.name && this.getIndexByName(index.name)) {
       return;
     }
 

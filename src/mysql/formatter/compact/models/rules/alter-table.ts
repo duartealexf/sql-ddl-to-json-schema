@@ -398,13 +398,13 @@ export class AlterTable implements RuleHandler {
       return;
     }
 
-    const index = table.getIndex(json.index);
+    const index = table.getIndexByName(json.index);
 
     if (!index) {
       return;
     }
 
-    table.dropIndex(index);
+    table.dropIndexByInstance(index);
   }
 
   /**
@@ -449,7 +449,7 @@ export class AlterTable implements RuleHandler {
     json: O_ALTER_TABLE_SPEC_RENAME_INDEX,
     table: TableModelInterface,
   ): void {
-    const index = table.getIndex(json.index);
+    const index = table.getIndexByName(json.index);
 
     if (!index) {
       return;

@@ -44,7 +44,7 @@ export class DropIndex implements RuleHandler {
       return;
     }
 
-    const index = table.getIndex(json.def.index);
+    const index = table.getIndexByName(json.def.index);
 
     if (!index) {
       // throw new Error(`Found "DROP INDEX" statement for an
@@ -52,6 +52,6 @@ export class DropIndex implements RuleHandler {
       return;
     }
 
-    table.dropIndex(index);
+    table.dropIndexByInstance(index);
   }
 }

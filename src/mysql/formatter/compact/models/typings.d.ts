@@ -80,7 +80,7 @@ export interface TableModelInterface
   getColumnPosition(column: ColumnModelInterface): O_POSITION | null;
   dropPrimaryKey(): void;
   dropColumn(column: ColumnModelInterface): void;
-  dropIndex(
+  dropIndexByInstance(
     index:
       | UniqueKeyModelInterface
       | IndexModelInterface
@@ -88,7 +88,7 @@ export interface TableModelInterface
       | SpatialIndexModelInterface,
   ): void;
   dropForeignKey(foreignKey: ForeignKeyModelInterface): void;
-  getIndex(
+  getIndexByName(
     name: string,
   ):
     | UniqueKeyModelInterface
@@ -96,7 +96,13 @@ export interface TableModelInterface
     | FulltextIndexModelInterface
     | SpatialIndexModelInterface
     | null;
-  getIndexType(name: string): IndexPropertyKey | null;
+  getIndexTypeByInstance(
+    index:
+      | UniqueKeyModelInterface
+      | IndexModelInterface
+      | FulltextIndexModelInterface
+      | SpatialIndexModelInterface,
+  ): IndexPropertyKey | null;
   getColumn(name: string): ColumnModelInterface | undefined;
   getForeignKey(name: string): ForeignKeyModelInterface | undefined;
   hasForeignKey(name: string): boolean;

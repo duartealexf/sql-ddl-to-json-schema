@@ -191,6 +191,8 @@ export class Datatype implements DatatypeModelInterface {
   clone(): Datatype {
     const datatype = new Datatype();
 
+    datatype.datatype = this.datatype;
+
     if (isDefined(this.width)) {
       datatype.width = this.width;
     }

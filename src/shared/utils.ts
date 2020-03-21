@@ -125,7 +125,7 @@ export function mergeDeep(target: AnyMap, ...sources: AnyMap[]): AnyMap {
   const source = sources.shift();
 
   if (isObject(target) && isObject(source)) {
-    Object.values(source).forEach(([key, value]: Tuple<typeof source>): void => {
+    Object.entries(source).forEach(([key, value]: Tuple<typeof source>): void => {
       if (isObject(value)) {
         if (!target[key]) {
           Object.assign(target, { [key]: {} });

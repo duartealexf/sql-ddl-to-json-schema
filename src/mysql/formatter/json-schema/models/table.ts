@@ -1,6 +1,6 @@
 import { JSONSchema7 as OriginalJSONSchema7 } from 'json-schema';
 
-import { TableInterface, Tuple, JSONSchemaFormatOptions } from '../../../../typings';
+import { TableInterface, JSONSchemaFormatOptions } from '../../../../typings';
 import { isDefined } from '../../../../shared/utils';
 import { Column } from './column';
 
@@ -97,7 +97,7 @@ export class Table {
         $ref: `#/definitions/${name}`,
       };
 
-      Object.values(column).forEach(([key, value]: Tuple<OriginalJSONSchema7>) => {
+      Object.entries(column).forEach(([key, value]) => {
         Object.defineProperty(definitions, key, { value });
       });
 

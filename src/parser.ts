@@ -165,7 +165,7 @@ export class Parser {
        * Apply line count correction.
        */
       if (e.message && isString(e.message)) {
-        const matches = e.message.match(/^at line (\d+)/);
+        const matches = e.message.match(/at line (\d+)/);
         if (matches && Array.isArray(matches) && matches.length > 1) {
           const errorLine = Number(matches[1]);
           const newCount = lineCount + errorLine - 1;

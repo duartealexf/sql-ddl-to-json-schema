@@ -42,6 +42,12 @@ export class IndexOptions implements IndexOptionsModelInterface {
       if (isDefined(option.def.parser)) {
         indexOptions.parser = option.def.parser;
       }
+      if (isDefined(option.def.algorithm)) {
+        indexOptions.algorithm = option.def.algorithm;
+      }
+      if (isDefined(option.def.lock)) {
+        indexOptions.lock = option.def.lock;
+      }
     });
 
     return indexOptions;

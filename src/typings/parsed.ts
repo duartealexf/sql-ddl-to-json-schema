@@ -499,6 +499,8 @@ export interface O_INDEX_OPTION {
     indexType?: P_INDEX_TYPE;
     parser?: string;
     comment?: string;
+    algorithm?: string;
+    lock?: string;
   };
 }
 

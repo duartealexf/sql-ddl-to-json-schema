@@ -187,7 +187,7 @@ And an array of tables in a compact JSON format:
 
 ## Installation
 
-```
+```sh
 yarn add sql-ddl-to-json-schema
 npm i sql-ddl-to-json-schema
 ```
@@ -298,7 +298,9 @@ Preferably use `npm`, as all scripts in `package.json` are run through npm.
 
 ### Commiting
 
-To commit, use commitizen: `git cz` (you will need to have installed commitizen: `npm i -g commitizen`).
+Prefer using the latest version of NodeJS.
+
+To commit, use commitizen: `git cz` (you will need to have installed devDependencies: `npm i`).
 
 ### Understanding the internals
 

@@ -140,3 +140,23 @@ export function mergeDeep(target: AnyMap, ...sources: AnyMap[]): AnyMap {
 
   return mergeDeep(target, ...sources);
 }
+
+/**
+ * Set an enumarable, configurable and writable property of given target object.
+ *
+ * @param target Target object to have property set on.
+ * @param key Property key.
+ * @param value Property value.
+ */
+export function setProperty(target: any, key: string, value: any): void {
+  if (typeof value === 'function') {
+    return;
+  }
+
+  Object.defineProperty(target, key, {
+    value,
+    enumerable: true,
+    configurable: true,
+    writable: true,
+  });
+}

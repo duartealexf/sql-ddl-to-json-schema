@@ -202,7 +202,7 @@ export class Parser {
    * Formats given parsed JSON to a compact format.
    * If no JSON is given, will use currently parsed SQL.
    *
-   * @param json Parsed JSON format (optional).
+   * @param json Parsed JSON format.
    */
   toCompactJson(json?: P_MAIN): CompactJSONFormat[] {
     return this.compactFormatter(json ?? this.results);
@@ -213,15 +213,16 @@ export class Parser {
    * where each item is the JSON Schema of a table. If no
    * tables are given, will use currently parsed SQL.
    *
-   * @param tables Array of tables in compact JSON format (optional).
-   * @param options Options available to format as JSON Schema (optional).
+   * @param tables Array of tables in compact JSON format.
+   * @param options Options available to format as JSON Schema.
    */
   toJsonSchemaArray(
-    tables?: CompactJSONFormat[],
     options: JSONSchemaFormatOptions = {
       useRef: true,
     },
+    tables?: CompactJSONFormat[],
   ): JSONSchema7[] {
-    return this.jsonSchemaFormatter(tables ?? this.toCompactJson(), options);
+    const jsonSchema = this.jsonSchemaFormatter(tables ?? this.toCompactJson(), options);
+    return jsonSchema;
   }
 }

@@ -41,6 +41,6 @@ module.exports = {
   getJSONSchemaFormat: (query, options) => {
     const parser = new Parser('mysql');
     parser.feed(query);
-    return parser.toJsonSchemaArray(undefined, options);
+    return parser.toJsonSchemaArray(options);
   }
 };

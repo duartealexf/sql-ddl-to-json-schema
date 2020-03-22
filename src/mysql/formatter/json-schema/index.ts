@@ -15,5 +15,6 @@ export const format: JSONSchemaFormatter = (
 ): JSONSchema7[] => {
   const database = new Database();
   database.parseCompactJson(json);
-  return database.getTables().map((t) => t.toJSON(options));
+  const jsonSchema = database.getTables().map((t) => t.toJSON(options));
+  return jsonSchema;
 };

@@ -1,7 +1,7 @@
 import { JSONSchema7 as OriginalJSONSchema7 } from 'json-schema';
 
 import { TableInterface, JSONSchemaFormatOptions } from '../../../../typings';
-import { isDefined } from '../../../../shared/utils';
+import { isDefined, setProperty } from '../../../../shared/utils';
 import { Column } from './column';
 
 type JSONSchema7 = OriginalJSONSchema7 & {
@@ -78,6 +78,7 @@ export class Table {
       $comment: `JSON Schema for ${this.name} table`,
       $id: this.name,
       title: this.name,
+      description: '',
       type: 'object',
       required: [],
       definitions: {},
@@ -86,6 +87,8 @@ export class Table {
 
     if (isDefined(this.comment)) {
       json.description = this.comment;
+    } else {
+      delete json.description;
     }
 
     this.columns.forEach((c) => {
@@ -97,8 +100,8 @@ export class Table {
         $ref: `#/definitions/${name}`,
       };
 
-      Object.entries(column).forEach(([key, value]) => {
-        Object.defineProperty(definitions, key, { value });
+      Object.getOwnPropertyNames(column).forEach((key) => {
+        setProperty(definitions, key, column[key as keyof typeof column]);
       });
 
       json.definitions[name] = definitions;

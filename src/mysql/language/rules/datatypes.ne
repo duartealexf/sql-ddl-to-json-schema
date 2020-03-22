@@ -138,7 +138,7 @@ O_BIT_DATATYPE ->
         id: 'O_BIT_DATATYPE',
         def: {
           datatype: d[0].value,
-          length: d[1] || 1
+          length: d[1] ?? 1
         }
       }
     }%}
@@ -174,7 +174,7 @@ O_DATETIME_DATATYPE ->
         id: 'O_DATETIME_DATATYPE',
         def: {
           datatype: d[0].value,
-          fractional: d[1] || 0
+          fractional: d[1] ?? 0
         }
       }
     }%}
@@ -192,7 +192,7 @@ O_YEAR_DATATYPE ->
         id: 'O_YEAR_DATATYPE',
         def: {
           datatype: d[0].value,
-          digits: d[1] || 4
+          digits: d[1] ?? 4
         }
       }
     }%}
@@ -214,7 +214,7 @@ O_VARIABLE_STRING_DATATYPE -> (
       {% d => {
         return {
           datatype: d[0],
-          length: d[1] || 1
+          length: d[1] ?? 1
         }
       }%}
   | ( %K_VARCHAR {% id %} | %K_VARBINARY {% id %} )
@@ -244,7 +244,7 @@ O_FIXED_STRING_DATATYPE -> (
       {% d => {
         return {
           datatype: d[0].value,
-          length: d[1] || 65535
+          length: d[1] ?? 65535
         }
       }%}
   | %K_TINYBLOB     {% d => { return { datatype: d[0].value, length: 255 }} %}

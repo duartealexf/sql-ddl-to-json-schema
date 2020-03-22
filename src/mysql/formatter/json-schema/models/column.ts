@@ -1,6 +1,6 @@
 import { JSONSchema7 } from 'json-schema';
 import { ColumnInterface as CompactFormatColumnInterface } from '../../../../typings';
-import { isString, isDefined, isNumber } from '../../../../shared/utils';
+import { isString, isDefined, isNumber, setProperty } from '../../../../shared/utils';
 
 import { Datatype } from './datatype';
 
@@ -77,7 +77,7 @@ export class Column {
         const number = isNumber(value);
 
         if ((number && Number.isFinite(value as never)) || !number) {
-          Object.defineProperty(json, key, { value });
+          setProperty(json, key, value);
         }
       });
 

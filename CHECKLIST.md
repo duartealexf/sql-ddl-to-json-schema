@@ -11,11 +11,11 @@
 - [x] Remove any jsdocs containing `Properties are`
 - [x] Change signed `- duartealexf` to `~ duartealexf`.
 - [x] Change all `|| [])` to `?` or `?? [])`.
-- [ ] Remove all `@returns`.
-- [ ] Remove all `module.exports`.
-- [ ] Try to remove all `any`.
-- [ ] Run `npm audit fix`.
-- [ ] See if `x[key] = value` can be changed to `Object.defineProperty(x, key, {value})` everywhere.
-- [ ] See if `Object.getOwnPropertyNames` can be changed to `Object.values` with Tuple type everywhere.
+- [x] Remove all `@returns`.
+- [x] Remove all `module.exports`.
+- [x] Try to remove all `any`.
+- [x] See if `x[key] = value` can be changed to `Object.defineProperty(x, key, {value})` everywhere.
+- [x] See if `Object.getOwnPropertyNames` can be changed to `Object.values` with Tuple type everywhere.
 - [ ] Change all `| undefined` to `| null`.
+- [ ] Run `npm audit fix`.
 - [ ] Update README.

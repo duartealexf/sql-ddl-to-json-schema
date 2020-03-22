@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { TransformerFunction, TMap, AnyMap, Tuple } from '../typings/utils';
+import { TransformerFunction, TMap, AnyMap } from '../typings/utils';
 
 /**
  * Transform an array of strings into an object, optionally
@@ -18,8 +18,8 @@ export function stringArrayToMapping<T>(
   transformKey: TransformerFunction<string>,
   transformValue: TransformerFunction<T>,
 ): TMap<T> {
-  transformKey = transformKey || ((k: string) => k);
-  transformValue = transformValue || ((v: string) => v);
+  transformKey = transformKey ?? ((k: string) => k);
+  transformValue = transformValue ?? ((v: string) => v);
 
   return array.reduce((obj, elem) => {
     obj[transformKey(elem)] = transformValue(elem);
@@ -109,36 +109,6 @@ export function isObject(value: any): value is AnyMap {
  */
 export function isDefined<T>(value: T): value is NonNullable<T> {
   return typeof value !== 'undefined' && !(value === null);
-}
-
-/**
- * Object deep merge.
- *
- * @param target  Destination object.
- * @param sources Origin objects.
- */
-export function mergeDeep(target: AnyMap, ...sources: AnyMap[]): AnyMap {
-  if (!sources.length) {
-    return target;
-  }
-
-  const source = sources.shift();
-
-  if (isObject(target) && isObject(source)) {
-    Object.entries(source).forEach(([key, value]: Tuple<typeof source>): void => {
-      if (isObject(value)) {
-        if (!target[key]) {
-          Object.assign(target, { [key]: {} });
-        }
-
-        mergeDeep(target[key], value);
-      } else {
-        Object.assign(target, { [key]: value });
-      }
-    });
-  }
-
-  return mergeDeep(target, ...sources);
 }
 
 /**

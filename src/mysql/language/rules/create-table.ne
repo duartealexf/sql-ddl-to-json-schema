@@ -98,7 +98,7 @@ O_CREATE_TABLE_CREATE_DEFINITION -> (
         {% d => {
           const obj: any = {
             datatype: d[0],
-            columnDefinition: d[1] || [],
+            columnDefinition: d[1] ?? [],
           };
 
           if (d[2]) {
@@ -278,7 +278,7 @@ O_COLUMN_DEFINITION -> (
         _ %S_LPARENS _ %S_NUMBER:? _ %S_RPARENS
         {% d => '(' + (d[3] ? d[3].value : '') + ')' %}
       ):?
-                                          {% d => { return { onUpdate: d[4].value + (d[5] || '') }} %}
+                                          {% d => { return { onUpdate: d[4].value + (d[5] ?? '') }} %}
 )
   {% d => {
     return {
@@ -317,9 +317,9 @@ P_COLUMN_REFERENCE ->
         id: 'P_COLUMN_REFERENCE',
         def: {
           table: d[2],
-          columns: d[3] || [],
+          columns: d[3] ?? [],
           match: d[4],
-          on: d[5] || []
+          on: d[5] ?? []
         }
       }
     }%}

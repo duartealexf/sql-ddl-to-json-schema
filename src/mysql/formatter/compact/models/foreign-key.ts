@@ -188,7 +188,7 @@ export class ForeignKey implements ForeignKeyModelInterface {
    * @param tables Table array to search.
    */
   getReferencedTable(tables: TableModelInterface[]): TableModelInterface | undefined {
-    return tables.find((t) => t.name === this.reference.table) || undefined;
+    return tables.find((t) => t.name === this.reference.table) ?? undefined;
   }
 
   /**

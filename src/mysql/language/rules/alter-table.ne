@@ -60,7 +60,7 @@ O_ALTER_TABLE_SPEC -> (
           action: 'addColumn',
           name: d[3],
           datatype: d[5],
-          columnDefinition: d[6] || [],
+          columnDefinition: d[6] ?? [],
           position: d[8],
         };
 
@@ -85,7 +85,7 @@ O_ALTER_TABLE_SPEC -> (
             const obj: any = {
               name: d[3],
               datatype: d[5],
-              columnDefinition: d[6] || [],
+              columnDefinition: d[6] ?? [],
             };
 
             if (d[7]) {
@@ -99,7 +99,7 @@ O_ALTER_TABLE_SPEC -> (
           const obj: any = {
             name: d[0],
             datatype: d[2],
-            columnDefinition: d[3] || [],
+            columnDefinition: d[3] ?? [],
           };
 
           if (d[4]) {

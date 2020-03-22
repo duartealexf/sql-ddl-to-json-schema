@@ -7,25 +7,21 @@
 
 Transforms SQL DDL statements into JSON format (JSON Schema and a compact format).
 
-- [SQL DDL to JSON Schema converter](#sql-ddl-to-json-schema-converter)
-  - [Overview](#overview)
-  - [Installation](#installation)
-  - [Usage](#usage)
-    - [Shorthand](#shorthand)
-    - [Step by step](#step-by-step)
-  - [Options for JSON Schema output](#options-for-json-schema-output)
-    - [`useRef`](#useref)
-    - [`indent`](#indent)
-    - [`extension`](#extension)
-  - [What it is, what it is not](#what-it-is-what-it-is-not)
-  - [About](#about)
-  - [Contributing](#contributing)
-    - [Commiting](#commiting)
-    - [Understanding the internals](#understanding-the-internals)
-    - [Scripts at hand](#scripts-at-hand)
-    - [Debugging](#debugging)
-      - [Visual Studio Code](#visual-studio-code)
-  - [Links](#links)
+- [Overview](#overview)
+- [Installation](#installation)
+- [Usage](#usage)
+  - [Shorthand](#shorthand)
+  - [Step by step](#step-by-step)
+- [Options for JSON Schema output](#options-for-json-schema-output)
+  - [`useRef`](#useref)
+- [What it is, what it is not](#what-it-is-what-it-is-not)
+- [About](#about)
+- [Contributing](#contributing)
+  - [Commiting](#commiting)
+  - [Understanding the internals](#understanding-the-internals)
+  - [Scripts at hand](#scripts-at-hand)
+    - [Visual Studio Code](#visual-studio-code)
+- [Links](#links)
 
 ## Overview
 
@@ -200,9 +196,11 @@ npm i sql-ddl-to-json-schema
 
 ### Shorthand
 
-```js
+```ts
+const { Parser } = require('sql-ddl-to-json-schema');
+// or:
+import { Parser } from 'sql-ddl-to-json-schema'
 
-const Parser = require('sql-ddl-to-json-schema');
 const parser = new Parser('mysql');
 
 const sql = `
@@ -218,27 +216,18 @@ CREATE TABLE users (
 ALTER TABLE users ADD UNIQUE KEY unq_nick (nickname);
 `;
 
-/*
+/**
  * Read on for available options.
  */
 const options = {};
 
-/*
- * Output each table to a JSON Schema file in a given directory...
- */
-parser.feed(sql)
-  .toJsonSchemaFiles(__dirname, options)
-  .then((outputFilePaths) => {
-    // ...
-  });
-
-/*
- * Or get the JSON Schema if you need to modify it...
+/**
+ * Get the JSON Schema if you need to modify it...
  */
 const jsonSchemaDocuments = parser.feed(sql)
   .toJsonSchemaArray(options);
 
-/*
+/**
  * Or explore the compact JSON format...
  */
 const compactJsonTablesArray = parser.feed(sql)
@@ -247,39 +236,31 @@ const compactJsonTablesArray = parser.feed(sql)
 
 ### Step by step
 
-```js
-/*
+```ts
+/**
  * Read on for available options.
  */
-const options = {};
+const options = { useRef: true };
 
-/*
+/**
  * Feed the parser with the SQL DDL statements...
  */
 parser.feed(sql);
 
-/*
+/**
  * You can get the parsed results in JSON format...
  */
 const parsedJsonFormat = parser.results;
 
-/*
+/**
  * And pass it to be formatted in a compact JSON format...
  */
 const compactJsonTablesArray = parser.toCompactJson(parsedJsonFormat);
 
-/*
- * Then pass it to format to an array of JSON Schema items. One for each table...
+/**
+ * Finally pass it to format to an array of JSON Schema items. One for each table...
  */
 const jsonSchemaDocuments = parser.toJsonSchemaArray(options, compactJsonTablesArray);
-
-/*
- * Finally spread the JSON Schema documents to files, which returns a promise...
- */
-const jsonFilesOutput = parser.toJsonSchemaFiles(__dirname, options, jsonSchemaDocuments)
-  .then((outputFilePaths) => {
-    // ...
-  });
 ```
 
 ## Options for JSON Schema output
@@ -291,18 +272,6 @@ There are a few options when it comes to formatting the JSON Schema output:
 Whether to add all properties to `definitions` and in `properties` only use $ref.
 
 Default value: `true`.
-
-### `indent`
-
-Indent size of output files.
-
-Default value: `2`.
-
-### `extension`
-
-Extension of output files.
-
-Default value: `'.json'`.
 
 ## What it is, what it is not
 
@@ -336,27 +305,24 @@ To commit, use commitizen: `git cz` (you will need to have installed commitizen:
 Folder structure:
 
 ```md
-
-/
-|- index.js               Entrypoint file, imports from lib/index.js
-|- lib/                   Compiled (dist) library folder, product of this project.
+|- lib/                   Compiled library folder, product of this project.
 |
 |- src/
+|  |- typings/            Types used throughout project.
 |  |- shared/             Shared files used by dialects, parsers and formatters.
 |  |- mysql/
-|     |- example.js       Serves development purpose for testing isolated statements.
 |     |- formatter/       Formats the parsed JSON (output of parser) to other format.
-|        |- compact/      Formatter for a compact JSON format.
-|        |- json-schema/   Formatter for a JSON Schema format.
-|     |- parser/
-|        |- dictionary/   JS files with array of keywords used in lexer.ne.
+|        |- compact/      Formatter for compact JSON format.
+|        |- json-schema/  Formatter for JSON Schema format.
+|     |- language/
+|        |- dictionary/   TS files with array of keywords and symbols used in lexer.ne.
 |        |- rules/        Nearley files with grammar rules.
 |        |- lexer.ne      Entrypoint and first lines of the grammar.
 |
 |- tasks/
 |  |- mysql/
-|     |- assembly.js      Script that concatenates all .ne files to grammar.ne to lib folder.
-|     |- formatters.js    Script that sends a copy of formatters to lib folder.
+|     |- assembly.ts      Script that concatenates all .ne files to grammar.ne to lib folder.
+|     |- formatters.ts    Script that sends a copy of formatters to lib folder.
 |
 |- test/                  Tests.
 ```
@@ -372,31 +338,26 @@ S_ -> Symbol (not a keyword, but chars and other matches by RegExp's)
 
 ```
 
-1. The `dictionary/keywords.js` file contains keywords, but they are prepended with K_ when used in .ne files. Take a look to make sure you understand how it is exported.
+1. The `dictionary/keywords.ts` file contains keywords, but they are prepended with K_ when used in .ne files. Take a look to make sure you understand how it is exported.
 
-2. The compiled `grammar.ne` file comprises an assembly (concatenation) of `lexer.ne` and files in `rules` folder. So don't worry about importing .ne files in other .ne files. This prevents circular dependency and grammar rules in `lexer.ne` are scoped to all files (thus not having to repeat them in every file).
+2. The compiled `grammar.ne` file comprises an assembly (concatenation) of `lexer.ne` and files in `language` folder. So don't worry about importing .ne files in other .ne files. This prevents circular dependency and grammar rules in `lexer.ne` are scoped to all files (thus not having to repeat them in every file).
 
 ### Scripts at hand
 
 Valid to all SQL dialects:
 
-- Assemble `grammar.ne` and compile to `grammar.js`: `npm run build`
+- Assemble `grammar.ne` and compile to `grammar.ts`: `npm run build`
 - Same as above, but watch for changes: `npm run build:watch`
 - Run tests: `npm run test`
 - Test and watch for changes: `npm run test:watch`
-- Test against nearley tester: `npm run nearley-test lib/mysql/parser/grammar.js --input 'CREATE TABLE test (test CHAR(1));'`
 
 The tests call SQL statements on the parser and test the JSON result (whatever the format) against a JSON file in a folder called `expect`, for that test case. The command below updates all `expect` files to whatever is being parsed in the test cases. This is useful when there is a change in the parser that affects many files and changes JSON result in them. Run the script to update the expected parse result in the file:
 
 `npm run test:update`
 
-### Debugging
-
-Taking the example file as an example, you may debug with the following configurations, for each IDE:
-
 #### Visual Studio Code
 
-Launch config is versioned in this repository.
+Debug launch config is versioned in this repository.
 
 ## Links
 

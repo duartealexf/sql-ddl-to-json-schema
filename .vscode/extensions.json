@@ -1,0 +1,15 @@
+{
+  "recommendations": [
+    "editorconfig.editorconfig",
+    "dbaeumer.vscode-eslint",
+    "codezombiech.gitignore",
+    "yzhang.markdown-all-in-one",
+    "davidanson.vscode-markdownlint",
+    "karyfoundation.nearley",
+    "eg2.vscode-npm-script",
+    "christian-kohler.npm-intellisense",
+    "esbenp.prettier-vscode",
+    "chrmarti.regex",
+    "tyriar.sort-lines"
+  ]
+}

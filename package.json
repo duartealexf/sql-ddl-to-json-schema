@@ -28,7 +28,7 @@
     "eslint": "eslint",
     "tsc": "tsc --build tsconfig.json",
     "nearleyc": "node_modules/nearley/bin/nearleyc.js",
-    "pretest": "ln -hfs ../ node_modules/sql-ddl-to-json-schema",
+    "pretest": "ln -sfn ../ node_modules/sql-ddl-to-json-schema",
     "test": "npm run ava",
     "test:watch": "npm run nodemon -- -w lib -w test --exec 'npm run test'",
     "test:update": "DRY_UPDATE=1 npm run test",
@@ -37,7 +37,7 @@
     "build:mysql": "nearleyc src/mysql/language/grammar.ne -o src/mysql/language/grammar.ts",
     "build": "npm run build:mysql && tsc",
     "build:watch": "npm run nodemon -- -w src --exec 'npm run build'",
-    "lint": "eslint src/**/*.ts tasks/**/*.ts test/**/*.ts",
+    "lint": "eslint src/**/*.ts tasks/**/*.ts",
     "prerelease": "npm run lint && npm run build",
     "release": "standard-version && git push --follow-tags && npm publish"
   },

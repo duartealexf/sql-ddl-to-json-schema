@@ -4,23 +4,19 @@ All notable changes to this project will be documented in this file. See [standa
 
 ## [4.0.0](https://github.com/duartealexf/sql-ddl-to-json-schema/compare/v3.1.2...v4.0.0) (2020-03-22)
 
-
 ### ⚠ BREAKING CHANGES
 
-* Remove toJSONSchemaFiles method from parser, as it caused build issues in Angular.
-
-* refactor: Change export to non-default. Add exports of typings.
-* Parser is no longer the default export. Use named exports from now on.
-
-* fix: Change most null to undefined.
-* The parsed format now does not contain null values. Instead, the values are not
-mentioned at all in parsed JSON format.
-
-* docs: Update README and ROADMAP.
+* Removed `toJSONSchemaFiles` method from parser, as it caused build issues in Angular.
+* Changed export to named export (non-default). Now to import it, use braces, as in `import { Parser } from 'sql-ddl-to-json-schema'`.
+* The parsed format does not contain null values anymore. Instead, the values that used to be null are not mentioned at all in parsed JSON format.
 
 ### Bug Fixes
 
-* Fix Angular compatibility. ([29c640f](https://github.com/duartealexf/sql-ddl-to-json-schema/commit/29c640f1983e316bc14f5cedbe54bc063ef562c1))
+* Fix Angular compatibility. ([29c640f](https://github.com/duartealexf/sql-ddl-to-json-schema/commit/29c640f1983e316bc14f5cedbe54bc063ef562c1)), closes [#47]
+
+### Features
+
+* Add typing definitions.
 
 <a name="3.1.3"></a>
 ## [3.1.3](https://github.com/duartealexf/sql-ddl-to-json-schema/compare/v3.1.2...v3.1.3) (2020-03-11)

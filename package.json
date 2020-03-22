@@ -24,11 +24,12 @@
     "standard-version": "standard-version",
     "ts-node": "ts-node",
     "nodemon": "nodemon",
+    "ava": "ava",
     "eslint": "eslint",
     "tsc": "tsc --build tsconfig.json",
     "nearleyc": "node_modules/nearley/bin/nearleyc.js",
     "pretest": "ln -hfs ../ node_modules/sql-ddl-to-json-schema",
-    "test": "ava --color test/**/*.spec.js",
+    "test": "npm run ava",
     "test:watch": "npm run nodemon -- -w lib -w test --exec 'npm run test'",
     "test:update": "DRY_UPDATE=1 npm run test",
     "prebuild:mysql": "ts-node tasks/mysql/prebuild.ts",
@@ -62,7 +63,7 @@
     "@types/winston": "^2.4.4",
     "@typescript-eslint/eslint-plugin": "^2.24.0",
     "@typescript-eslint/parser": "^2.24.0",
-    "ava": "^3.5.0",
+    "ava": "^2",
     "commitizen": "^3.1.2",
     "cz-conventional-changelog": "^2.1.0",
     "eslint": "^6.3.0",
@@ -86,6 +87,11 @@
       "path": "./node_modules/cz-conventional-changelog"
     }
   },
+  "ava": {
+    "files": [
+      "test/**/*.spec.js"
+    ]
+  },
   "nodemonConfig": {
     "delay": "1000",
     "ignore": [
@@ -95,6 +101,6 @@
     "ext": "ne,ts"
   },
   "engines": {
-    "node": ">=7.0.0 <=13"
+    "node": ">=8.6.0 <=13"
   }
 }

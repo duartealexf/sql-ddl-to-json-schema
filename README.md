@@ -14,6 +14,7 @@ Transforms SQL DDL statements into JSON format (JSON Schema and a compact format
   - [Step by step](#step-by-step)
 - [Options for JSON Schema output](#options-for-json-schema-output)
   - [`useRef`](#useref)
+- [Version compatibility table](#version-compatibility-table)
 - [What it is, what it is not](#what-it-is-what-it-is-not)
 - [About](#about)
 - [Contributing](#contributing)
@@ -272,6 +273,13 @@ There are a few options when it comes to formatting the JSON Schema output:
 Whether to add all properties to `definitions` and in `properties` only use $ref.
 
 Default value: `true`.
+
+## Version compatibility table
+
+| This lib version range | NodeJS version range | Angular support | Other browser-based JS support |
+| ---------------------- | -------------------- | --------------- | ------------------------------ |
+| <= 3.x                 | >= 6.x               | No              | Yes                            |
+| >= 4                   | >= 8.6               | Yes             | Yes                            |
 
 ## What it is, what it is not
 

@@ -222,7 +222,6 @@ export class Parser {
     },
     tables?: CompactJSONFormat[],
   ): JSONSchema7[] {
-    const jsonSchema = this.jsonSchemaFormatter(tables ?? this.toCompactJson(), options);
-    return jsonSchema;
+    return this.jsonSchemaFormatter(tables ?? this.toCompactJson(), options);
   }
 }

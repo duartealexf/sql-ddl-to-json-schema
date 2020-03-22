@@ -45,7 +45,6 @@ export class PrimaryKey implements PrimaryKeyModelInterface {
    * Creates a primary key from an object containing needed properties.
    *
    * @param json Object containing properties.
-   * @returns {PrimaryKey} Resulting primary key.
    */
   static fromObject(
     json: O_ALTER_TABLE_SPEC_ADD_PRIMARY_KEY | O_CREATE_TABLE_CREATE_DEFINITION_PRIMARY_KEY,

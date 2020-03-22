@@ -1,5 +1,6 @@
 import { O_COLUMN_DEFINITION, ColumnOptionsInterface } from '../../../../typings';
 import { isString, isDefined, setProperty } from '../../../../shared/utils';
+
 import { ColumnOptionsModelInterface } from './typings';
 
 /**

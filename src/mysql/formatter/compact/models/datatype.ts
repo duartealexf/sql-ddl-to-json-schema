@@ -1,5 +1,6 @@
 import { O_DATATYPE, DatatypeInterface } from '../../../../typings';
 import { isDefined } from '../../../../shared/utils';
+
 import { DatatypeModelInterface } from './typings';
 
 /**

@@ -72,7 +72,7 @@ P_CREATE_TABLE_LIKE ->
 P_CREATE_TABLE_CREATE_DEFINITIONS ->
   %S_LPARENS _ (
     O_CREATE_TABLE_CREATE_DEFINITION ( _ %S_COMMA _ O_CREATE_TABLE_CREATE_DEFINITION {% d => d[3] %} ):*
-      {% d => [d[0]].concat(d[1] || []) %}
+      {% d => [d[0]].concat(d[1] ?? []) %}
   ) _ %S_RPARENS
     {% d => {
       return {
@@ -88,7 +88,7 @@ P_CREATE_TABLE_CREATE_DEFINITIONS ->
 #
 # A space between the identifier and column definition
 # is not required, as long as the identifier is
-# enclosed in backticks. - duartealexf
+# enclosed in backticks. ~ duartealexf
 
 O_CREATE_TABLE_CREATE_DEFINITION -> (
     S_IDENTIFIER _ (
@@ -126,7 +126,7 @@ O_CREATE_TABLE_CREATE_DEFINITION -> (
           primaryKey: {
             name: d[0],
             index: d[4],
-            columns: [d[8]].concat(d[9] || []),
+            columns: [d[8]].concat(d[9] ?? []),
             options: d[12]
           }
         }
@@ -141,7 +141,7 @@ O_CREATE_TABLE_CREATE_DEFINITION -> (
           index: {
             name: d[1],
             index: d[2],
-            columns: [d[6]].concat(d[7] || []),
+            columns: [d[6]].concat(d[7] ?? []),
             options: d[10]
           }
         }
@@ -167,7 +167,7 @@ O_CREATE_TABLE_CREATE_DEFINITION -> (
           uniqueKey: {
             name: d[3],
             index: d[4],
-            columns: [d[8]].concat(d[9] || []),
+            columns: [d[8]].concat(d[9] ?? []),
             options: d[12]
           }
         }
@@ -190,7 +190,7 @@ O_CREATE_TABLE_CREATE_DEFINITION -> (
         return {
           fulltextIndex: {
             name: d[2],
-            columns: [d[6]].concat(d[7] || []),
+            columns: [d[6]].concat(d[7] ?? []),
             options: d[10]
           }
         }
@@ -213,7 +213,7 @@ O_CREATE_TABLE_CREATE_DEFINITION -> (
         return {
           spatialIndex: {
             name: d[2],
-            columns: [d[6]].concat(d[7] || []),
+            columns: [d[6]].concat(d[7] ?? []),
             options: d[10]
           }
         }
@@ -227,7 +227,7 @@ O_CREATE_TABLE_CREATE_DEFINITION -> (
         return {
           foreignKey: {
             name: d[0],
-            columns: [d[8]].concat(d[9] || []),
+            columns: [d[8]].concat(d[9] ?? []),
             reference: d[13]
           }
         }
@@ -294,7 +294,7 @@ P_COLUMN_REFERENCE ->
   %K_REFERENCES __ S_IDENTIFIER
   (
     _ %S_LPARENS _ P_INDEX_COLUMN ( _ %S_COMMA _ P_INDEX_COLUMN {% d => d[3] %} ):* _ %S_RPARENS _
-      {% d => [d[3]].concat(d[4] || []) %}
+      {% d => [d[3]].concat(d[4] ?? []) %}
   )
   (
     %K_MATCH __ ( %K_FULL {% id %} | %K_PARTIAL {% id %} | %K_SIMPLE {% id %} ) _
@@ -332,7 +332,7 @@ P_CREATE_TABLE_OPTIONS ->
     {% d => {
       return {
         id: 'P_CREATE_TABLE_OPTIONS',
-        def: [d[0]].concat(d[1] || [])
+        def: [d[0]].concat(d[1] ?? [])
       }
     }%}
 
@@ -465,7 +465,7 @@ O_CREATE_TABLE_OPTION -> (
       }%}
   | %K_UNION ( __ | _ %S_EQUAL _ ) %S_LPARENS _ S_IDENTIFIER ( _ %S_COMMA _ S_IDENTIFIER {% d => d[3] %} ):* _ %S_RPARENS
       {% d => {
-        return { union: [d[4]].concat(d[5] || []) }
+        return { union: [d[4]].concat(d[5] ?? []) }
       }%}
 )
   {% d => {

@@ -3,15 +3,14 @@
 - [x] Change all file names.
 - [x] Change build system.
 - [x] Change module types.
-- [ ] Standardize the way the JSON.id is checked.
-- [ ] Ensure there are no circular imports.
-- [ ] Sort imports in all files.
-- [ ] Check there is no `: void`.
-- [ ] Ensure all functions containing `pos` variables are standardized.
-- [ ] Check todo's.
-- [ ] Remove any jsdocs containing `Properties are`
-- [ ] Change signed `- duartealexf` to `~ duartealexf`.
-- [ ] Change all `|| []).` to `?.` or `?? [])`.
+- [x] Standardize the way the JSON.id is checked.
+- [x] Ensure there are no circular imports.
+- [x] Sort imports in all files.
+- [x] Ensure all functions containing `pos` variables are standardized.
+- [x] Check todo's.
+- [x] Remove any jsdocs containing `Properties are`
+- [x] Change signed `- duartealexf` to `~ duartealexf`.
+- [x] Change all `|| [])` to `?` or `?? [])`.
 - [ ] Remove all `@returns`.
 - [ ] Remove all `module.exports`.
 - [ ] Try to remove all `any`.

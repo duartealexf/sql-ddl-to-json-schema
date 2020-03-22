@@ -5,6 +5,7 @@ import {
   ColumnInterface,
 } from '../../../../typings';
 import { isDefined } from '../../../../shared/utils';
+
 import { ColumnReference } from './column-reference';
 import { ColumnOptions } from './column-options';
 import { IndexColumn } from './index-column';

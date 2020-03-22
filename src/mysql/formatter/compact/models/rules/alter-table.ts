@@ -332,7 +332,7 @@ export class AlterTable implements RuleHandler {
      */
     if (
       options.autoincrement &&
-      (table.columns || []).some((c) => c !== column && c.options?.autoincrement)
+      (table.columns ?? []).some((c) => c !== column && c.options?.autoincrement)
     ) {
       return;
     }

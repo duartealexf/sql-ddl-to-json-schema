@@ -66,7 +66,7 @@ S_EOS -> _ %S_SEMICOLON
 # https://mariadb.com/kb/en/library/character-sets/
 #
 # I've tested different combinations of quotes and backticks to
-# specify CHARSET and COLLATE, and all of them worked. - duartealexf
+# specify CHARSET and COLLATE, and all of them worked. ~ duartealexf
 
 O_CHARSET ->
     O_QUOTED_STRING       {% d => d[0] %}
@@ -125,7 +125,7 @@ O_TABLE_OPTION_VALUE ->
 # or-rules are keywords, because in statements identifiers can be
 # the same as keywords, but if we want to match a S_IDENTIFIER in
 # a rule, and end up matching a keyword, we can use this as a
-# fallback to consider it as an identifier. - duartealexf
+# fallback to consider it as an identifier. ~ duartealexf
 
 S_IDENTIFIER ->
     %S_IDENTIFIER_QUOTED {% d => d[0].value %} | %S_IDENTIFIER_UNQUOTED {% d => d[0].value %}

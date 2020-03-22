@@ -1,4 +1,5 @@
 import { P_DDS } from '../../../../typings';
+
 import { CreateTable } from './rules/create-table';
 import { CreateIndex } from './rules/create-index';
 import { AlterTable } from './rules/alter-table';

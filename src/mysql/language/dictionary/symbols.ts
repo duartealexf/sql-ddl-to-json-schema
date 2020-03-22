@@ -63,7 +63,7 @@ export default {
    *
    * I've noticed through tests in the MariaDB CLI that escaped backticks are not
    * supported, they are interpreted as non-escaped backticks. Escaping
-   * backticks is done through using double backticks. - duartealexf
+   * backticks is done through using double backticks. ~ duartealexf
    */
   S_IDENTIFIER_QUOTED: {
     match: /`(?:(?:``)|[^`\\])*`/,

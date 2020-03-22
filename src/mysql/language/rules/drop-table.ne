@@ -11,6 +11,6 @@ P_DROP_TABLE -> %K_DROP __ ( %K_TEMPORARY __ ):? %K_TABLE
     {% d => {
       return {
         id: 'P_DROP_TABLE',
-        def: [d[6]].concat(d[7] || [])
+        def: [d[6]].concat(d[7] ?? [])
       }
     }%}

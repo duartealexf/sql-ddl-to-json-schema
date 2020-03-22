@@ -148,7 +148,7 @@ export class Index implements IndexModelInterface {
    * @param table Table in question.
    */
   getColumnsFromTable(table: TableModelInterface): ColumnModelInterface[] {
-    return (table.columns || []).filter((tableColumn) =>
+    return (table.columns ?? []).filter((tableColumn) =>
       this.columns.some((indexColumn) => indexColumn.column === tableColumn.name),
     );
   }
@@ -160,7 +160,7 @@ export class Index implements IndexModelInterface {
    */
   hasAllColumnsFromTable(table: TableModelInterface): boolean {
     return (
-      (table.columns || []).filter((tableColumn) =>
+      (table.columns ?? []).filter((tableColumn) =>
         this.columns.some((indexColumn) => indexColumn.column === tableColumn.name),
       ).length === this.columns.length
     );
@@ -175,7 +175,7 @@ export class Index implements IndexModelInterface {
     this.columns
       .filter((i) => !isDefined(i.length))
       .forEach((indexColumn) => {
-        const column = (table.columns || []).find((c) => c.name === indexColumn.column);
+        const column = (table.columns ?? []).find((c) => c.name === indexColumn.column);
 
         if (!column) {
           return;

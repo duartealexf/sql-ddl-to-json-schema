@@ -46,10 +46,8 @@ export class ForeignKey implements ForeignKeyModelInterface {
 
   /**
    * Creates a foreign key from an object containing needed properties.
-   * Properties are 'columns', 'reference', and 'name'.
    *
    * @param json Object containing properties.
-   * @returns {ForeignKey} Resulting foreign key.
    */
   static fromObject(json: O_CREATE_TABLE_CREATE_DEFINITION_FOREIGN_KEY): ForeignKey {
     const foreignKey = new ForeignKey();
@@ -134,7 +132,7 @@ export class ForeignKey implements ForeignKeyModelInterface {
    * @param table Table in question.
    */
   getColumnsFromTable(table: TableModelInterface): ColumnModelInterface[] {
-    return (table.columns || []).filter((tableColumn) =>
+    return (table.columns ?? []).filter((tableColumn) =>
       this.columns.some((indexColumn) => indexColumn.column === tableColumn.name),
     );
   }
@@ -144,7 +142,7 @@ export class ForeignKey implements ForeignKeyModelInterface {
    */
   hasAllColumnsFromTable(table: TableModelInterface): boolean {
     return (
-      (table.columns || []).filter((tableColumn) =>
+      (table.columns ?? []).filter((tableColumn) =>
         this.columns.some((indexColumn) => indexColumn.column === tableColumn.name),
       ).length === this.columns.length
     );
@@ -158,7 +156,7 @@ export class ForeignKey implements ForeignKeyModelInterface {
     this.columns
       .filter((i) => !isDefined(i.length))
       .forEach((indexColumn) => {
-        const column = (table.columns || []).find((c) => c.name === indexColumn.column);
+        const column = (table.columns ?? []).find((c) => c.name === indexColumn.column);
 
         if (!column) {
           return;
@@ -177,7 +175,7 @@ export class ForeignKey implements ForeignKeyModelInterface {
    */
   hasAllColumnsFromRefTable(table: TableModelInterface): boolean {
     return (
-      (table.columns || []).filter((tableColumn) =>
+      (table.columns ?? []).filter((tableColumn) =>
         this.reference.columns?.some((indexColumn) => indexColumn.column === tableColumn.name),
       ).length === this.reference.columns?.length
     );
@@ -198,12 +196,11 @@ export class ForeignKey implements ForeignKeyModelInterface {
    *
    * @param table Table to be checked whether there is reference to.
    * @param column Column to be checked in given table.
-   * @returns {boolean} Whether reference exists.
    */
   referencesTableAndColumn(table: TableModelInterface, column: ColumnModelInterface): boolean {
     return (
       this.reference.table === table.name &&
-      (this.reference.columns || []).some((indexColumn) => indexColumn.column === column.name)
+      (this.reference.columns ?? []).some((indexColumn) => indexColumn.column === column.name)
     );
   }
 

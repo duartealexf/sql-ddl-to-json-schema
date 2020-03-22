@@ -21,6 +21,6 @@ P_RENAME_TABLE -> %K_RENAME __ %K_TABLE
         def: [{
           table: d[4],
           newName: d[9]
-        }].concat(d[10] || [])
+        }].concat(d[10] ?? [])
       }
     }%}

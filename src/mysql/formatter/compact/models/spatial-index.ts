@@ -49,9 +49,6 @@ export class SpatialIndex implements SpatialIndexModelInterface {
 
   /**
    * Creates a spatial index from an object containing needed properties.
-   * Properties are 'columns', 'name', and 'options'.
-   *
-   * @returns {SpatialIndex} Resulting spatial index.
    */
   static fromObject(
     json:
@@ -141,7 +138,7 @@ export class SpatialIndex implements SpatialIndexModelInterface {
    * @param table Table in question.
    */
   getColumnsFromTable(table: TableModelInterface): ColumnModelInterface[] {
-    return (table.columns || []).filter((tableColumn) =>
+    return (table.columns ?? []).filter((tableColumn) =>
       this.columns.some((indexColumn) => indexColumn.column === tableColumn.name),
     );
   }
@@ -153,7 +150,7 @@ export class SpatialIndex implements SpatialIndexModelInterface {
    */
   hasAllColumnsFromTable(table: TableModelInterface): boolean {
     return (
-      (table.columns || []).filter((tableColumn) =>
+      (table.columns ?? []).filter((tableColumn) =>
         this.columns.some((indexColumn) => indexColumn.column === tableColumn.name),
       ).length === this.columns.length
     );

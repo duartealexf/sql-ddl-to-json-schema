@@ -67,7 +67,7 @@ export class CreateTable implements RuleHandler {
 
         /**
          * Through tests it is noticed that foreign keys are
-         * not kept on duplicated table - duartealexf.
+         * not kept on duplicated table ~ duartealexf.
          */
         table.foreignKeys = [];
 

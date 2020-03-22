@@ -19,7 +19,7 @@ P_CREATE_INDEX ->
   __ %K_ON __ S_IDENTIFIER
   (
     _ %S_LPARENS _ P_INDEX_COLUMN ( _ %S_COMMA _ P_INDEX_COLUMN {% d => d[3] %} ):* _ %S_RPARENS
-      {% d => [d[3]].concat(d[4] || []) %}
+      {% d => [d[3]].concat(d[4] ?? []) %}
   ):?
   ( _ %K_WAIT __ %S_NUMBER | _ %K_NOWAIT ):?
   ( _ O_INDEX_OPTION {% d => d[1] %} ):*
@@ -40,7 +40,7 @@ P_CREATE_INDEX ->
           index: d[9],
           table: d[13],
           columns: d[14],
-          options: (d[16] || []).concat(d[17] || [])
+          options: (d[16] ?? []).concat(d[17] ?? [])
         }
       }
     }%}

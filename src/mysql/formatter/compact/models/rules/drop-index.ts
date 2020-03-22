@@ -30,7 +30,6 @@ export class DropIndex implements RuleHandler {
    * Drops one of the indexes in a table.
    *
    * @param json JSON format parsed from SQL.
-   * @returns {void}
    */
   handleDef(json: P_DROP_INDEX): void {
     if (json.id === 'P_DROP_INDEX') {

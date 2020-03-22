@@ -149,7 +149,7 @@ export class Table implements TableModelInterface {
   toJSON(): TableInterface {
     const json: TableInterface = {
       name: this.name,
-      columns: (this.columns || []).map((c) => c.toJSON()),
+      columns: (this.columns ?? []).map((c) => c.toJSON()),
     };
 
     if (isDefined(this.primaryKey)) {
@@ -185,7 +185,7 @@ export class Table implements TableModelInterface {
 
     table.database = this.database;
     table.name = this.name;
-    table.columns = (this.columns || []).map((c) => c.clone());
+    table.columns = (this.columns ?? []).map((c) => c.clone());
 
     if (isDefined(this.options)) {
       table.options = this.options.clone();
@@ -250,7 +250,7 @@ export class Table implements TableModelInterface {
    */
   renameTo(newName: string): void {
     this.database.tables.forEach((t) => {
-      (t.foreignKeys || [])
+      (t.foreignKeys ?? [])
         .filter((k) => k.referencesTable(this as TableModelInterface))
         .forEach((k) => k.updateReferencedTableName(newName));
     });
@@ -279,7 +279,7 @@ export class Table implements TableModelInterface {
     if (
       column.options &&
       column.options.autoincrement &&
-      (this.columns || []).some((c) => c.options && c.options.autoincrement)
+      (this.columns ?? []).some((c) => c.options && c.options.autoincrement)
     ) {
       return;
     }
@@ -395,7 +395,7 @@ export class Table implements TableModelInterface {
    * @param newName New name of column.
    */
   renameColumn(column: ColumnModelInterface, newName: string): boolean {
-    if (!(this.columns || []).includes(column)) {
+    if (!(this.columns ?? []).includes(column)) {
       return false;
     }
 
@@ -403,15 +403,15 @@ export class Table implements TableModelInterface {
      * Rename references to column.
      */
     this.getTables().forEach((table) => {
-      (table.foreignKeys || [])
+      (table.foreignKeys ?? [])
         .filter((k) => k.referencesTable(this as TableModelInterface))
         .forEach((k) => k.renameColumn(column, newName));
     });
 
-    (this.fulltextIndexes || []).forEach((i) => i.renameColumn(column, newName));
-    (this.spatialIndexes || []).forEach((i) => i.renameColumn(column, newName));
-    (this.indexes || []).forEach((i) => i.renameColumn(column, newName));
-    (this.uniqueKeys || []).forEach((k) => k.renameColumn(column, newName));
+    (this.fulltextIndexes ?? []).forEach((i) => i.renameColumn(column, newName));
+    (this.spatialIndexes ?? []).forEach((i) => i.renameColumn(column, newName));
+    (this.indexes ?? []).forEach((i) => i.renameColumn(column, newName));
+    (this.uniqueKeys ?? []).forEach((k) => k.renameColumn(column, newName));
 
     if (this.primaryKey) {
       this.primaryKey.renameColumn(column, newName);
@@ -428,7 +428,7 @@ export class Table implements TableModelInterface {
    * @param column Column.
    */
   getColumnPosition(column: ColumnModelInterface): O_POSITION | null {
-    const index = (this.columns || []).indexOf(column);
+    const index = (this.columns ?? []).indexOf(column);
 
     /**
      * First column.
@@ -436,7 +436,7 @@ export class Table implements TableModelInterface {
     if (index === 0) {
       return { after: undefined };
     }
-    if (index + 1 === (this.columns || []).length) {
+    if (index + 1 === (this.columns ?? []).length) {
       /**
        * Last column.
        */
@@ -444,7 +444,7 @@ export class Table implements TableModelInterface {
       /**
        * Somewhere in the middle.
        */
-      const refColumn = (this.columns || [])[index - 1];
+      const refColumn = (this.columns ?? [])[index - 1];
       return { after: refColumn.name };
     }
 
@@ -484,7 +484,7 @@ export class Table implements TableModelInterface {
      */
 
     const hasReference = this.getTables().some((t) =>
-      (t.foreignKeys || []).some((k) =>
+      (t.foreignKeys ?? []).some((k) =>
         k.referencesTableAndColumn(this as TableModelInterface, column),
       ),
     );
@@ -656,7 +656,7 @@ export class Table implements TableModelInterface {
       'spatialIndexes',
     ];
     const type = props.find((prop) =>
-      (this[prop] || []).some(
+      (this[prop] ?? []).some(
         (
           i:
             | UniqueKeyModelInterface
@@ -683,7 +683,7 @@ export class Table implements TableModelInterface {
       'spatialIndexes',
     ];
     const type = props.find((prop) =>
-      (this[prop] || []).some(
+      (this[prop] ?? []).some(
         (
           i:
             | UniqueKeyModelInterface
@@ -703,7 +703,7 @@ export class Table implements TableModelInterface {
    * @param name Column name.
    */
   getColumn(name: string): ColumnModelInterface | undefined {
-    return (this.columns || []).find((c) => c.name === name);
+    return (this.columns ?? []).find((c) => c.name === name);
   }
 
   /**
@@ -712,7 +712,7 @@ export class Table implements TableModelInterface {
    * @param name Foreign key name.
    */
   getForeignKey(name: string): ForeignKeyModelInterface | undefined {
-    return (this.foreignKeys || []).find((k) => k.name === name);
+    return (this.foreignKeys ?? []).find((k) => k.name === name);
   }
 
   /**
@@ -721,7 +721,7 @@ export class Table implements TableModelInterface {
    * @param name Foreign key name.
    */
   hasForeignKey(name: string): boolean {
-    return (this.foreignKeys || []).some((k) => k.name === name);
+    return (this.foreignKeys ?? []).some((k) => k.name === name);
   }
 
   /**
@@ -876,7 +876,7 @@ export class Table implements TableModelInterface {
      * UPDATE:
      * Since DDLs can run with FOREIGN_KEY_CHECKS disabled, this has been disabled.
      * @see https://github.com/duartealexf/sql-ddl-to-json-schema/issues/27
-     * - duartealexf
+     * ~ duartealexf
      */
     // const referencedTable = foreignKey.getReferencedTable(this.getTables());
     // if (!referencedTable) { return; }
@@ -887,7 +887,7 @@ export class Table implements TableModelInterface {
      * UPDATE:
      * Since DDLs can run with FOREIGN_KEY_CHECKS disabled, this has been disabled.
      * @see https://github.com/duartealexf/sql-ddl-to-json-schema/issues/27
-     * - duartealexf
+     * ~ duartealexf
      */
     // const hasAllColumnsFromThisTable = foreignKey.hasAllColumnsFromTable(this);
     // const hasAllColumnsFromReference = foreignKey.hasAllColumnsFromRefTable(referencedTable);

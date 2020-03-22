@@ -106,7 +106,7 @@ O_ALTER_TABLE_SPEC -> (
             obj.reference = d[4];
           }
 
-          return [obj].concat(d[5] || [])
+          return [obj].concat(d[5] ?? [])
         }%}
     )
     _ %S_RPARENS
@@ -127,7 +127,7 @@ O_ALTER_TABLE_SPEC -> (
           action: 'addIndex',
           name: d[3],
           index: d[4],
-          columns: [d[8]].concat(d[9] || []),
+          columns: [d[8]].concat(d[9] ?? []),
           options: d[12]
         }
       }%}
@@ -141,7 +141,7 @@ O_ALTER_TABLE_SPEC -> (
           action: 'addPrimaryKey',
           name: d[2],
           index: d[6],
-          columns: [d[10]].concat(d[11] || []),
+          columns: [d[10]].concat(d[11] ?? []),
           options: d[14]
         }
       }%}
@@ -167,7 +167,7 @@ O_ALTER_TABLE_SPEC -> (
           action: 'addUniqueKey',
             name: d[2],
             index: d[6],
-            columns: [d[10]].concat(d[11] || []),
+            columns: [d[10]].concat(d[11] ?? []),
             options: d[14]
         }
       }%}
@@ -190,7 +190,7 @@ O_ALTER_TABLE_SPEC -> (
         return {
           action: 'addFulltextIndex',
           name: d[4],
-          columns: [d[8]].concat(d[9] || []),
+          columns: [d[8]].concat(d[9] ?? []),
           options: d[12]
         }
       }%}
@@ -213,7 +213,7 @@ O_ALTER_TABLE_SPEC -> (
         return {
           action: 'addSpatialIndex',
           name: d[4],
-          columns: [d[8]].concat(d[9] || []),
+          columns: [d[8]].concat(d[9] ?? []),
           options: d[12]
         }
       }%}
@@ -226,7 +226,7 @@ O_ALTER_TABLE_SPEC -> (
         return {
           action: 'addForeignKey',
           name: d[2],
-          columns: [d[10]].concat(d[11] || []),
+          columns: [d[10]].concat(d[11] ?? []),
           reference: d[15]
         }
       }%}
@@ -394,7 +394,7 @@ O_ALTER_TABLE_SPEC -> (
       {% d => {
         return {
           action: 'orderBy',
-          columns: [d[4]].concat(d[5] || [])
+          columns: [d[4]].concat(d[5] ?? [])
         }
       }%}
 

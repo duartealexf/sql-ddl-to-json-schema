@@ -1,5 +1,6 @@
 import { P_COLUMN_REFERENCE, ColumnReferenceInterface } from '../../../../typings';
 import { isDefined } from '../../../../shared/utils';
+
 import { ColumnReferenceOn } from './column-reference-on';
 import { IndexColumn } from './index-column';
 import {

@@ -51,7 +51,6 @@ export class FulltextIndex implements FulltextIndexModelInterface {
    * Creates a fulltext index from an object containing needed properties.
    *
    * @param json Object containing properties.
-   * @returns {FulltextIndex} Resulting fulltext index.
    */
   static fromObject(
     json:
@@ -93,8 +92,6 @@ export class FulltextIndex implements FulltextIndexModelInterface {
 
   /**
    * Create a deep clone of this model.
-   *
-   * @returns {FulltextIndex} Clone.
    */
   clone(): FulltextIndex {
     const index = new FulltextIndex();
@@ -142,7 +139,7 @@ export class FulltextIndex implements FulltextIndexModelInterface {
    * @param table Table in question.
    */
   getColumnsFromTable(table: TableModelInterface): ColumnModelInterface[] {
-    return (table.columns || []).filter((tableColumn) =>
+    return (table.columns ?? []).filter((tableColumn) =>
       this.columns.some((indexColumn) => indexColumn.column === tableColumn.name),
     );
   }
@@ -154,7 +151,7 @@ export class FulltextIndex implements FulltextIndexModelInterface {
    */
   hasAllColumnsFromTable(table: TableModelInterface): boolean {
     return (
-      (table.columns || []).filter((tableColumn) =>
+      (table.columns ?? []).filter((tableColumn) =>
         this.columns.some((indexColumn) => indexColumn.column === tableColumn.name),
       ).length === this.columns.length
     );

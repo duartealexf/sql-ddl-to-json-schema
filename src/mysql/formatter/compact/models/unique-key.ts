@@ -51,10 +51,8 @@ export class UniqueKey implements UniqueKeyModelInterface {
 
   /**
    * Creates an unique key from an object containing needed properties.
-   * Properties are 'columns', 'name', 'index', and 'options'.
    *
    * @param json Object containing properties.
-   * @returns {UniqueKey} Resulting unique key.
    */
   static fromObject(
     json:
@@ -153,7 +151,7 @@ export class UniqueKey implements UniqueKeyModelInterface {
    * @param table Table in question.
    */
   getColumnsFromTable(table: TableModelInterface): ColumnModelInterface[] {
-    return (table.columns || []).filter((tableColumn) =>
+    return (table.columns ?? []).filter((tableColumn) =>
       this.columns.some((indexColumn) => indexColumn.column === tableColumn.name),
     );
   }
@@ -165,7 +163,7 @@ export class UniqueKey implements UniqueKeyModelInterface {
    */
   hasAllColumnsFromTable(table: TableModelInterface): boolean {
     return (
-      (table.columns || []).filter((tableColumn) =>
+      (table.columns ?? []).filter((tableColumn) =>
         this.columns.some((indexColumn) => indexColumn.column === tableColumn.name),
       ).length === this.columns.length
     );
@@ -181,7 +179,7 @@ export class UniqueKey implements UniqueKeyModelInterface {
     this.columns
       .filter((i) => !isDefined(i.length))
       .forEach((indexColumn) => {
-        const column = (table.columns || []).find((c) => c.name === indexColumn.column);
+        const column = (table.columns ?? []).find((c) => c.name === indexColumn.column);
 
         if (!column) {
           return;

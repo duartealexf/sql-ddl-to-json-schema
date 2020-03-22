@@ -154,7 +154,7 @@ export class Parser {
     try {
       while (statement) {
         this.parser.feed(statement);
-        lineCount += (statement.match(/\r\n|\r|\n/g) || []).length;
+        lineCount += (statement.match(/\r\n|\r|\n/g) ?? []).length;
         results.push(Parser.tidy(this.parser.results));
         statement = this.statements.shift();
 

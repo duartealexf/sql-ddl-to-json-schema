@@ -16,7 +16,7 @@
 - [x] Try to remove all `any`.
 - [x] See if `x[key] = value` can be changed to `Object.defineProperty(x, key, {value})` everywhere.
 - [x] See if `Object.getOwnPropertyNames` can be changed to `Object.values` with Tuple type everywhere.
-- [ ] Change all `| undefined` to `| null`.
-- [ ] Make sure all `after: null`.
-- [ ] Run `npm audit fix`.
+- [x] Change all `| undefined` to `| null`.
+- [x] Make sure all `after: null`.
+- [x] Run `npm audit fix`.
 - [ ] Update README.

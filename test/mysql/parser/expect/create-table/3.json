@@ -26,8 +26,7 @@
                           "id": "P_INDEX_COLUMN",
                           "def": {
                             "column": "id",
-                            "length": 2,
-                            "sort": null
+                            "length": 2
                           }
                         },
                         {
@@ -87,9 +86,7 @@
                         {
                           "id": "P_INDEX_COLUMN",
                           "def": {
-                            "column": "id",
-                            "length": null,
-                            "sort": null
+                            "column": "id"
                           }
                         }
                       ],
@@ -111,8 +108,7 @@
                           "id": "P_INDEX_COLUMN",
                           "def": {
                             "column": "id",
-                            "length": 2,
-                            "sort": null
+                            "length": 2
                           }
                         }
                       ],
@@ -137,9 +133,7 @@
                         {
                           "id": "P_INDEX_COLUMN",
                           "def": {
-                            "column": "id",
-                            "length": null,
-                            "sort": null
+                            "column": "id"
                           }
                         }
                       ],
@@ -157,9 +151,7 @@
                         {
                           "id": "P_INDEX_COLUMN",
                           "def": {
-                            "column": "id",
-                            "length": null,
-                            "sort": null
+                            "column": "id"
                           }
                         }
                       ],
@@ -181,7 +173,6 @@
                           "id": "P_INDEX_COLUMN",
                           "def": {
                             "column": "id",
-                            "length": null,
                             "sort": "desc"
                           }
                         },
@@ -209,15 +200,11 @@
                   "id": "O_CREATE_TABLE_CREATE_DEFINITION",
                   "def": {
                     "uniqueKey": {
-                      "name": null,
-                      "index": null,
                       "columns": [
                         {
                           "id": "P_INDEX_COLUMN",
                           "def": {
-                            "column": "id",
-                            "length": null,
-                            "sort": null
+                            "column": "id"
                           }
                         }
                       ],
@@ -230,14 +217,11 @@
                   "def": {
                     "uniqueKey": {
                       "name": null,
-                      "index": null,
                       "columns": [
                         {
                           "id": "P_INDEX_COLUMN",
                           "def": {
-                            "column": "id",
-                            "length": null,
-                            "sort": null
+                            "column": "id"
                           }
                         }
                       ],
@@ -255,15 +239,13 @@
                           "id": "P_INDEX_COLUMN",
                           "def": {
                             "column": "id",
-                            "length": 2,
-                            "sort": null
+                            "length": 2
                           }
                         },
                         {
                           "id": "P_INDEX_COLUMN",
                           "def": {
                             "column": "o_id",
-                            "length": null,
                             "sort": "asc"
                           }
                         }
@@ -294,9 +276,7 @@
                         {
                           "id": "P_INDEX_COLUMN",
                           "def": {
-                            "column": "id",
-                            "length": null,
-                            "sort": null
+                            "column": "id"
                           }
                         }
                       ],
@@ -320,9 +300,7 @@
                         {
                           "id": "P_INDEX_COLUMN",
                           "def": {
-                            "column": "id",
-                            "length": null,
-                            "sort": null
+                            "column": "id"
                           }
                         }
                       ],
@@ -339,9 +317,7 @@
                         {
                           "id": "P_INDEX_COLUMN",
                           "def": {
-                            "column": "id",
-                            "length": null,
-                            "sort": null
+                            "column": "id"
                           }
                         }
                       ],
@@ -359,8 +335,7 @@
                           "id": "P_INDEX_COLUMN",
                           "def": {
                             "column": "id",
-                            "length": 2,
-                            "sort": null
+                            "length": 2
                           }
                         },
                         {
@@ -380,9 +355,7 @@
                             {
                               "id": "P_INDEX_COLUMN",
                               "def": {
-                                "column": "id",
-                                "length": null,
-                                "sort": null
+                                "column": "id"
                               }
                             }
                           ],
@@ -402,9 +375,7 @@
                         {
                           "id": "P_INDEX_COLUMN",
                           "def": {
-                            "column": "o_id",
-                            "length": null,
-                            "sort": null
+                            "column": "o_id"
                           }
                         }
                       ],
@@ -416,9 +387,7 @@
                             {
                               "id": "P_INDEX_COLUMN",
                               "def": {
-                                "column": "id",
-                                "length": null,
-                                "sort": null
+                                "column": "id"
                               }
                             }
                           ],

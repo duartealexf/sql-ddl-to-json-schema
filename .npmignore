@@ -1,11 +1,6 @@
 *
-!/lib/**
-!/lib/shared
-!/lib/mysql
-!/lib/pgsql
-!/lib/mssql
-!/lib/oracle
-!/index.js
+!/lib
+!/typings
 !/LICENSE
 !/README.md
 !/CHANGELOG.md

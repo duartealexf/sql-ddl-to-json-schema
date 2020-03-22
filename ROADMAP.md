@@ -46,18 +46,18 @@ More complex features are not priority, as they require parsing SELECT statement
 - `CHECK CONSTRAINTS`**
 - Expressions as column default values (MariaDB only)
 
-\* https://dev.mysql.com/doc/refman/5.7/en/expressions.html
+\* <https://dev.mysql.com/doc/refman/5.7/en/expressions.html>
 
-\*\* https://mariadb.com/kb/en/library/constraint/
+\*\* <https://mariadb.com/kb/en/library/constraint/>
 
 ### PostgreSQL
 
-TODO
+TBD - you are welcome to contribute!
 
 ### MSSQL
 
-TODO
+TBD - you are welcome to contribute!
 
 ### Oracle
 
-TODO
+TBD - you are welcome to contribute!

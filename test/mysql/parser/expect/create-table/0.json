@@ -449,9 +449,7 @@
                               {
                                 "id": "P_INDEX_COLUMN",
                                 "def": {
-                                  "column": "local_id",
-                                  "length": null,
-                                  "sort": null
+                                  "column": "local_id"
                                 }
                               }
                             ],
@@ -488,9 +486,7 @@
                               {
                                 "id": "P_INDEX_COLUMN",
                                 "def": {
-                                  "column": "id",
-                                  "length": null,
-                                  "sort": null
+                                  "column": "id"
                                 }
                               }
                             ],
@@ -532,9 +528,7 @@
                               {
                                 "id": "P_INDEX_COLUMN",
                                 "def": {
-                                  "column": "id",
-                                  "length": null,
-                                  "sort": null
+                                  "column": "id"
                                 }
                               }
                             ],

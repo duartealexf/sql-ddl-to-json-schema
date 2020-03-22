@@ -1,2 +1,6 @@
-node_modules
-grammar.js
+/node_modules
+/typings
+/lib
+/test
+
+grammar.ts

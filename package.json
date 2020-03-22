@@ -15,29 +15,29 @@
     "convert",
     "converter"
   ],
-  "main": "index.js",
+  "main": "lib/index.js",
   "author": "Alexandre Duarte <duartealexf@gmail.com> (https://github.com/duartealexf)",
   "maintainers": [
     "Alexandre Duarte <duartealexf@gmail.com> (https://github.com/duartealexf)"
   ],
   "scripts": {
     "standard-version": "standard-version",
+    "ts-node": "ts-node",
     "nodemon": "nodemon",
+    "ava": "ava",
     "eslint": "eslint",
-    "nearley-test": "node_modules/nearley/bin/nearley-test.js",
+    "tsc": "tsc --build tsconfig.json",
     "nearleyc": "node_modules/nearley/bin/nearleyc.js",
-    "ava": "node_modules/ava/cli.js",
-    "nyc": "node_modules/nyc/bin/nyc.js",
-    "nodemon-watch": "nodemon -w lib -w src -w test -e ne,js --ignore lib",
-    "coverage": "npm run nyc ava test/**/*.spec.js",
-    "test": "ava --color test/**/*.spec.js",
-    "lint": "eslint src tasks test",
-    "prebuild:mysql": "node tasks/mysql/assembly.js && node tasks/mysql/formatters.js",
-    "build:mysql": "nearleyc lib/mysql/parser/grammar.ne > lib/mysql/parser/grammar.js",
-    "build": "npm run build:mysql",
-    "test:watch": "npm run nodemon-watch -- --exec 'npm run test'",
+    "pretest": "ln -sfn ../ node_modules/sql-ddl-to-json-schema",
+    "test": "npm run ava",
+    "test:watch": "npm run nodemon -- -w lib -w test --exec 'npm run test'",
     "test:update": "DRY_UPDATE=1 npm run test",
-    "build:watch": "npm run nodemon-watch -- --exec 'npm run build'",
+    "prebuild:mysql": "npm run ts-node -- tasks/mysql/prebuild.ts",
+    "postbuild:mysql": "npm run ts-node -- tasks/mysql/postbuild.ts",
+    "build:mysql": "nearleyc src/mysql/language/grammar.ne -o src/mysql/language/grammar.ts",
+    "build": "npm run build:mysql && tsc",
+    "build:watch": "npm run nodemon -- -w src --exec 'npm run build'",
+    "lint": "eslint src/**/*.ts tasks/**/*.ts",
     "prerelease": "npm run lint && npm run build",
     "release": "standard-version && git push --follow-tags && npm publish"
   },
@@ -51,30 +51,56 @@
     "url": "https://github.com/duartealexf/sql-ddl-to-json-schema/issues"
   },
   "dependencies": {
-    "moo": "^0.4.3",
-    "nearley": "^2.13.0"
+    "@types/moo": "^0.5.2",
+    "@types/nearley": "^2.11.1",
+    "json-schema": "^0.2.5",
+    "moo": "^0.5.1",
+    "nearley": "^2.19.0"
   },
   "devDependencies": {
-    "ava": "^1.4.1",
-    "commitizen": "^3.0.7",
+    "@types/fs-extra": "^8.1.0",
+    "@types/node": "^13.9.2",
+    "@types/winston": "^2.4.4",
+    "@typescript-eslint/eslint-plugin": "^2.24.0",
+    "@typescript-eslint/parser": "^2.24.0",
+    "ava": "^2",
+    "commitizen": "^3.1.2",
     "cz-conventional-changelog": "^2.1.0",
-    "eslint": "^4.7.0",
+    "eslint": "^6.3.0",
+    "eslint-config-airbnb-base": "^14.1.0",
+    "eslint-config-prettier": "^6.3.0",
+    "eslint-import-resolver-typescript": "^1.1.1",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-prettier": "^3.1.0",
     "fs-extra": "^5.0.0",
-    "nodemon": "^1.18.9",
-    "nyc": "^13.3.0",
-    "standard-version": "^4.3.0",
-    "winston": "^3.0.0-rc0"
+    "nodemon": "^2.0.2",
+    "nyc": "^15.0.0",
+    "prettier": "^1.18.2",
+    "standard-version": "^7.1.0",
+    "ts-node": "^8.7.0",
+    "typescript": "^3.8.3",
+    "winston": "^3.2.1"
   },
+  "types": "./typings",
   "config": {
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog"
     }
   },
-  "directories": {
-    "lib": "./lib",
-    "test": "./test"
+  "ava": {
+    "files": [
+      "test/**/*.spec.js"
+    ]
+  },
+  "nodemonConfig": {
+    "delay": "1000",
+    "ignore": [
+      "grammar.ts",
+      "grammar.ne"
+    ],
+    "ext": "ne,ts"
   },
   "engines": {
-    "node": ">=7.0.0 <=12"
+    "node": ">=8.6.0 <=13"
   }
 }

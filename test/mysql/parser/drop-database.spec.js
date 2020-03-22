@@ -14,6 +14,6 @@ runner.run(parseHandler.getParsedFormat, {
         test
       ;`,
     ],
-    expect: join(__dirname, 'expect', 'drop-database', '0.json')
-  }
+    expect: join(__dirname, 'expect', 'drop-database', '0.json'),
+  },
 });

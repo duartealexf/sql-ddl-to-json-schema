@@ -20,9 +20,7 @@
                       {
                         "id": "P_INDEX_COLUMN",
                         "def": {
-                          "column": "o_id",
-                          "length": null,
-                          "sort": null
+                          "column": "o_id"
                         }
                       }
                     ],
@@ -34,9 +32,7 @@
                           {
                             "id": "P_INDEX_COLUMN",
                             "def": {
-                              "column": "id",
-                              "length": null,
-                              "sort": null
+                              "column": "id"
                             }
                           }
                         ],

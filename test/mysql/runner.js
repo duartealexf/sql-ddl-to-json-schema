@@ -5,12 +5,12 @@ const updateFilesOnly = process.env.DRY_UPDATE === '1';
 
 module.exports = {
   run: (parseHandler, tests) => {
-    Object.getOwnPropertyNames(tests).forEach(description => {
+    Object.getOwnPropertyNames(tests).forEach((description) => {
       const test = tests[description];
       const expect = readFileSync(test.expect).toString();
 
       test.queries.forEach((query, i) => {
-        ava(`${description} (${i + 1})`, t => {
+        ava(`${description} (${i + 1})`, (t) => {
           const value = parseHandler(query);
 
           if (updateFilesOnly) {
@@ -22,6 +22,5 @@ module.exports = {
         });
       });
     });
-  }
+  },
 };
-

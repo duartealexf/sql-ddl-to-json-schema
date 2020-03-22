@@ -42,9 +42,9 @@ runner.run(parseHandler.getParsedFormat, {
         image BLOB(1024),
         model JSON,
         homes GEOMETRYCOLLECTION
-      );`
+      );`,
     ],
-    expect: join(__dirname, 'expect', 'create-table', '0.json')
+    expect: join(__dirname, 'expect', 'create-table', '0.json'),
   },
 
   'Parser: Should create table like another one.': {
@@ -57,7 +57,7 @@ runner.run(parseHandler.getParsedFormat, {
       'create table `person` ( like people) ;',
       'create table person (like `people` );',
     ],
-    expect: join(__dirname, 'expect', 'create-table', '1.json')
+    expect: join(__dirname, 'expect', 'create-table', '1.json'),
   },
 
   'Parser: Should create table with all table options.': {
@@ -104,9 +104,9 @@ runner.run(parseHandler.getParsedFormat, {
       UNION (address),
       UNION (address, phone),
       WITH SYSTEM VERSIONING
-      ;`
+      ;`,
     ],
-    expect: join(__dirname, 'expect', 'create-table', '2.json')
+    expect: join(__dirname, 'expect', 'create-table', '2.json'),
   },
 
   'Parser: Should create table with all key options.': {
@@ -128,17 +128,17 @@ runner.run(parseHandler.getParsedFormat, {
         constraint fk_id__o_id foreign key test_key (id (2), o_id(3)asc) references other (id),
         foreign key (o_id) references other (id)
       );
-      `
+      `,
     ],
-    expect: join(__dirname, 'expect', 'create-table', '3.json')
+    expect: join(__dirname, 'expect', 'create-table', '3.json'),
   },
 
   'Parser: Should create or replace simple table.': {
     queries: [
       `create or replace table test (test bool);`,
       `create or replace temporary table test (test bool);`,
-      `create or replace temporary table if not exists test (test bool);`
+      `create or replace temporary table if not exists test (test bool);`,
     ],
-    expect: join(__dirname, 'expect', 'create-table', '4.json')
-  }
+    expect: join(__dirname, 'expect', 'create-table', '4.json'),
+  },
 });

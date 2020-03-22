@@ -31,17 +31,17 @@ export class ForeignKey implements ForeignKeyModelInterface {
    * @param json JSON format parsed from SQL.
    */
   static fromDef(json: O_CREATE_TABLE_CREATE_DEFINITION): ForeignKey {
-    if (json.id !== 'O_CREATE_TABLE_CREATE_DEFINITION') {
-      throw new TypeError(`Unknown json id to build foreign key from: ${json.id}`);
-    }
+    if (json.id === 'O_CREATE_TABLE_CREATE_DEFINITION') {
+      if (isDefined(json.def.foreignKey)) {
+        return ForeignKey.fromObject(json.def.foreignKey);
+      }
 
-    if (!isDefined(json.def.foreignKey)) {
       throw new TypeError(
         `Statement ${json.id} has undefined foreignKey. Cannot format foreignKey.`,
       );
     }
 
-    return ForeignKey.fromObject(json.def.foreignKey);
+    throw new TypeError(`Unknown json id to build foreign key from: ${json.id}`);
   }
 
   /**

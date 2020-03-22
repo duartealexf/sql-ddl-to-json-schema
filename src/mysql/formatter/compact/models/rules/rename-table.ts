@@ -39,18 +39,20 @@ export class RenameTable implements RuleHandler {
    * @param json JSON format parsed from SQL.
    */
   handleDef(json: P_RENAME_TABLE): void {
-    if (json.id !== 'P_RENAME_TABLE') {
-      throw new TypeError(`Expected P_RENAME_TABLE rule to be handled but received ${json.id}`);
+    if (json.id === 'P_RENAME_TABLE') {
+      json.def.forEach((def) => {
+        const table = this.getTables().find((t) => t.name === def.table);
+
+        if (!table) {
+          return;
+        }
+
+        table.renameTo(def.newName);
+      });
+
+      return;
     }
 
-    json.def.forEach((def) => {
-      const table = this.getTables().find((t) => t.name === def.table);
-
-      if (!table) {
-        return;
-      }
-
-      table.renameTo(def.newName);
-    });
+    throw new TypeError(`Expected P_RENAME_TABLE rule to be handled but received ${json.id}`);
   }
 }

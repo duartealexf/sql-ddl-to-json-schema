@@ -40,18 +40,18 @@ export class Column implements ColumnModelInterface {
    * @param json JSON format parsed from SQL.
    */
   static fromDef(json: O_CREATE_TABLE_CREATE_DEFINITION): Column {
-    if (json.id !== 'O_CREATE_TABLE_CREATE_DEFINITION') {
-      throw new TypeError(`Unknown json id to build column from: ${json.id}`);
+    if (json.id === 'O_CREATE_TABLE_CREATE_DEFINITION') {
+      const column = json.def.column as O_CREATE_TABLE_CREATE_DEFINITION_COLUMN;
+
+      return Column.fromObject({
+        name: column.name,
+        datatype: column.def.datatype,
+        reference: column.def.reference,
+        columnDefinition: column.def.columnDefinition,
+      });
     }
 
-    const column = json.def.column as O_CREATE_TABLE_CREATE_DEFINITION_COLUMN;
-
-    return Column.fromObject({
-      name: column.name,
-      datatype: column.def.datatype,
-      reference: column.def.reference,
-      columnDefinition: column.def.columnDefinition,
-    });
+    throw new TypeError(`Unknown json id to build column from: ${json.id}`);
   }
 
   /**

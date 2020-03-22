@@ -64,40 +64,42 @@ export class AlterTable implements RuleHandler {
    * @param json JSON format parsed from SQL.
    */
   handleDef(json: P_ALTER_TABLE): void {
-    if (json.id !== 'P_ALTER_TABLE') {
-      throw new TypeError(`Expected P_ALTER_TABLE rule to be handled but received ${json.id}`);
-    }
+    if (json.id === 'P_ALTER_TABLE') {
+      const table = this.getTable(json.def.table);
 
-    const table = this.getTable(json.def.table);
+      if (!table) {
+        return;
+      }
 
-    if (!table) {
+      /**
+       * Runs methods in this class according to the
+       * 'action' property of the ALTER TABLE spec.
+       */
+      json.def.specs.forEach((spec) => {
+        const changeSpec = spec.def.spec;
+        const tableOptions = spec.def.tableOptions;
+        if (changeSpec) {
+          const def = changeSpec.def;
+          const action = def.action;
+
+          const fn = AlterTable[action as P_ALTER_TABLE_ACTION];
+
+          if (isFunction(fn)) {
+            fn(def as never, table);
+          }
+        } else if (tableOptions) {
+          if (!table.options) {
+            table.options = new TableOptions();
+          }
+
+          table.options.mergeWith(TableOptions.fromDef(tableOptions));
+        }
+      });
+
       return;
     }
 
-    /**
-     * Runs methods in this class according to the
-     * 'action' property of the ALTER TABLE spec.
-     */
-    json.def.specs.forEach((spec) => {
-      const changeSpec = spec.def.spec;
-      const tableOptions = spec.def.tableOptions;
-      if (changeSpec) {
-        const def = changeSpec.def;
-        const action = def.action;
-
-        const fn = AlterTable[action as P_ALTER_TABLE_ACTION];
-
-        if (isFunction(fn)) {
-          fn(def as never, table);
-        }
-      } else if (tableOptions) {
-        if (!table.options) {
-          table.options = new TableOptions();
-        }
-
-        table.options.mergeWith(TableOptions.fromDef(tableOptions));
-      }
-    });
+    throw new TypeError(`Expected P_ALTER_TABLE rule to be handled but received ${json.id}`);
   }
 
   /**

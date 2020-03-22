@@ -49,34 +49,36 @@ export class CreateTable implements RuleHandler {
    * @param json JSON format parsed from SQL.
    */
   handleDef(json: P_CREATE_TABLE): void {
-    if (json.id !== 'P_CREATE_TABLE') {
-      throw new TypeError(`Expected P_CREATE_TABLE rule to be handled but received ${json.id}`);
+    if (json.id === 'P_CREATE_TABLE') {
+      const def = json.def;
+
+      if (def.id === 'P_CREATE_TABLE_COMMON') {
+        const table = Table.fromCommonDef(def, this.database);
+
+        if (table) {
+          this.pushTable(table);
+        }
+      } else if (def.id === 'P_CREATE_TABLE_LIKE') {
+        const table = Table.fromAlikeDef(def, this.getTables());
+
+        if (!table) {
+          return;
+        }
+
+        /**
+         * Through tests it is noticed that foreign keys are
+         * not kept on duplicated table - duartealexf.
+         */
+        table.foreignKeys = [];
+
+        if (table) {
+          this.pushTable(table);
+        }
+      }
+
+      return;
     }
 
-    const def = json.def;
-
-    if (def.id === 'P_CREATE_TABLE_COMMON') {
-      const table = Table.fromCommonDef(def, this.database);
-
-      if (table) {
-        this.pushTable(table);
-      }
-    } else if (def.id === 'P_CREATE_TABLE_LIKE') {
-      const table = Table.fromAlikeDef(def, this.getTables());
-
-      if (!table) {
-        return;
-      }
-
-      /**
-       * Through tests it is noticed that foreign keys are
-       * not kept on duplicated table - duartealexf.
-       */
-      table.foreignKeys = [];
-
-      if (table) {
-        this.pushTable(table);
-      }
-    }
+    throw new TypeError(`Expected P_CREATE_TABLE rule to be handled but received ${json.id}`);
   }
 }

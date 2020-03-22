@@ -26,19 +26,17 @@ export class Datatype implements DatatypeModelInterface {
    * @param json JSON format parsed from SQL.
    */
   static fromDef(json: O_DATATYPE): Datatype {
-    if (json.id !== 'O_DATATYPE') {
-      throw new TypeError(`Unknown json id to build datatype from: ${json.id}`);
+    if (json.id === 'O_DATATYPE') {
+      const datatype = new Datatype();
+
+      Object.assign(datatype, json.def.def);
+
+      datatype.datatype = Datatype.filterDatatype(datatype.datatype);
+
+      return datatype;
     }
 
-    const datatype = new Datatype();
-
-    Object.getOwnPropertyNames(json.def.def).forEach((k) => {
-      Object.assign(datatype, json.def.def); // TODO: check, this should still work.
-    });
-
-    datatype.datatype = Datatype.filterDatatype(datatype.datatype);
-
-    return datatype;
+    throw new TypeError(`Unknown json id to build datatype from: ${json.id}`);
   }
 
   /**

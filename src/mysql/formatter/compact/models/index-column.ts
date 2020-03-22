@@ -21,11 +21,11 @@ export class IndexColumn implements IndexColumnModelInterface {
    * @param json JSON format parsed from SQL.
    */
   static fromDef(json: P_INDEX_COLUMN): IndexColumn {
-    if (json.id !== 'P_INDEX_COLUMN') {
-      throw new TypeError(`Unknown json id to build index column from: ${json.id}`);
+    if (json.id === 'P_INDEX_COLUMN') {
+      return IndexColumn.fromObject(json.def);
     }
 
-    return IndexColumn.fromObject(json.def);
+    throw new TypeError(`Unknown json id to build index column from: ${json.id}`);
   }
 
   /**

@@ -29,13 +29,13 @@
     "nearleyc": "node_modules/nearley/bin/nearleyc.js",
     "pretest": "ln -hfs ../ node_modules/sql-ddl-to-json-schema",
     "test": "ava --color test/**/*.spec.js",
-    "test:watch": "npm run nodemon -- --exec 'npm run test'",
+    "test:watch": "npm run nodemon -- -w lib -w test --exec 'npm run test'",
     "test:update": "DRY_UPDATE=1 npm run test",
     "prebuild:mysql": "ts-node tasks/mysql/prebuild.ts",
     "postbuild:mysql": "ts-node tasks/mysql/postbuild.ts",
     "build:mysql": "nearleyc src/mysql/language/grammar.ne -o src/mysql/language/grammar.ts",
     "build": "npm run build:mysql && tsc",
-    "build:watch": "npm run nodemon -- --exec 'npm run build'",
+    "build:watch": "npm run nodemon -- -w src --exec 'npm run build'",
     "lint": "eslint src/**/*.ts tasks/**/*.ts test/**/*.ts",
     "prerelease": "npm run lint && npm run build",
     "release": "standard-version && git push --follow-tags && npm publish"
@@ -88,10 +88,6 @@
   },
   "nodemonConfig": {
     "delay": "1000",
-    "watch": [
-      "src",
-      "test"
-    ],
     "ignore": [
       "grammar.ts",
       "grammar.ne"

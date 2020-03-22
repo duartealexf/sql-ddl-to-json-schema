@@ -33,25 +33,27 @@ export class DropIndex implements RuleHandler {
    * @returns {void}
    */
   handleDef(json: P_DROP_INDEX): void {
-    if (json.id !== 'P_DROP_INDEX') {
-      throw new TypeError(`Expected P_DROP_INDEX rule to be handled but received ${json.id}`);
-    }
+    if (json.id === 'P_DROP_INDEX') {
+      const table = this.getTable(json.def.table);
 
-    const table = this.getTable(json.def.table);
+      if (!table) {
+        // throw new Error(`Found "DROP INDEX" statement for an unexisting table ${json.def.table}`);
+        return;
+      }
 
-    if (!table) {
-      // throw new Error(`Found "DROP INDEX" statement for an unexisting table ${json.def.table}`);
+      const index = table.getIndexByName(json.def.index);
+
+      if (!index) {
+        // throw new Error(`Found "DROP INDEX" statement for an
+        // unexisting index ${json.def.index} in table ${json.def.table}`);
+        return;
+      }
+
+      table.dropIndexByInstance(index);
+
       return;
     }
 
-    const index = table.getIndexByName(json.def.index);
-
-    if (!index) {
-      // throw new Error(`Found "DROP INDEX" statement for an
-      // unexisting index ${json.def.index} in table ${json.def.table}`);
-      return;
-    }
-
-    table.dropIndexByInstance(index);
+    throw new TypeError(`Expected P_DROP_INDEX rule to be handled but received ${json.id}`);
   }
 }

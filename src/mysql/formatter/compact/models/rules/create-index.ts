@@ -36,27 +36,29 @@ export class CreateIndex implements RuleHandler {
    * @param json JSON format parsed from SQL.
    */
   handleDef(json: P_CREATE_INDEX): void {
-    if (json.id !== 'P_CREATE_INDEX') {
-      throw new TypeError(`Expected P_CREATE_INDEX rule to be handled but received ${json.id}`);
-    }
+    if (json.id === 'P_CREATE_INDEX') {
+      const table = this.getTable(json.def.table);
 
-    const table = this.getTable(json.def.table);
-
-    if (!table) {
+      if (!table) {
       // throw new Error(`Found "CREATE INDEX" statement to an unexisting table ${json.def.table}`);
+        return;
+      }
+
+      const type = json.def.type.toLowerCase();
+
+      if (type.includes('unique')) {
+        table.pushUniqueKey(UniqueKey.fromDef(json));
+      } else if (type.includes('fulltext')) {
+        table.pushFulltextIndex(FulltextIndex.fromDef(json));
+      } else if (type.includes('spatial')) {
+        table.pushSpatialIndex(SpatialIndex.fromDef(json));
+      } else {
+        table.pushIndex(Index.fromDef(json));
+      }
+
       return;
     }
 
-    const type = json.def.type.toLowerCase();
-
-    if (type.includes('unique')) {
-      table.pushUniqueKey(UniqueKey.fromDef(json));
-    } else if (type.includes('fulltext')) {
-      table.pushFulltextIndex(FulltextIndex.fromDef(json));
-    } else if (type.includes('spatial')) {
-      table.pushSpatialIndex(SpatialIndex.fromDef(json));
-    } else {
-      table.pushIndex(Index.fromDef(json));
-    }
+    throw new TypeError(`Expected P_CREATE_INDEX rule to be handled but received ${json.id}`);
   }
 }

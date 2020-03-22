@@ -60,62 +60,62 @@ export class Table implements TableModelInterface {
    * @param database Database to assign table to.
    */
   static fromCommonDef(json: P_CREATE_TABLE_COMMON, database: DatabaseModelInterface): Table {
-    if (json.id !== 'P_CREATE_TABLE_COMMON') {
-      throw new TypeError(`Unknown json id to build table from: ${json.id}`);
-    }
+    if (json.id === 'P_CREATE_TABLE_COMMON') {
+      const def = json.def;
+      const table = new Table();
+      table.database = database;
+      table.name = def.table;
 
-    const def = json.def;
-    const table = new Table();
-    table.database = database;
-    table.name = def.table;
-
-    if (def.tableOptions) {
-      table.options = TableOptions.fromDef(def.tableOptions);
-    }
-
-    const createDefinitions = def.columnsDef.def;
-
-    createDefinitions.forEach((createDefinition) => {
-      /**
-       * If table create definition is about adding a column.
-       */
-      if (isDefined(createDefinition.def.column)) {
-        const column = Column.fromDef(createDefinition);
-        table.addColumn(column);
-      } else if (isDefined(createDefinition.def.fulltextIndex)) {
-        /**
-         * If table create definition is about adding a fulltext index.
-         */
-        table.pushFulltextIndex(FulltextIndex.fromDef(createDefinition));
-      } else if (isDefined(createDefinition.def.spatialIndex)) {
-        /**
-         * If table create definition is about adding a spatial index.
-         */
-        table.pushSpatialIndex(SpatialIndex.fromDef(createDefinition));
-      } else if (isDefined(createDefinition.def.foreignKey)) {
-        /**
-         * If table create definition is about adding a foreign key.
-         */
-        table.pushForeignKey(ForeignKey.fromDef(createDefinition));
-      } else if (isDefined(createDefinition.def.uniqueKey)) {
-        /**
-         * If table create definition is about adding an unique key.
-         */
-        table.pushUniqueKey(UniqueKey.fromDef(createDefinition));
-      } else if (isDefined(createDefinition.def.primaryKey)) {
-        /**
-         * If table create definition is about adding a primary key.
-         */
-        table.setPrimaryKey(PrimaryKey.fromDef(createDefinition));
-      } else if (isDefined(createDefinition.def.index)) {
-        /**
-         * If table create definition is about adding an index.
-         */
-        table.pushIndex(Index.fromDef(createDefinition));
+      if (def.tableOptions) {
+        table.options = TableOptions.fromDef(def.tableOptions);
       }
-    });
 
-    return table;
+      const createDefinitions = def.columnsDef.def;
+
+      createDefinitions.forEach((createDefinition) => {
+        /**
+         * If table create definition is about adding a column.
+         */
+        if (isDefined(createDefinition.def.column)) {
+          const column = Column.fromDef(createDefinition);
+          table.addColumn(column);
+        } else if (isDefined(createDefinition.def.fulltextIndex)) {
+          /**
+           * If table create definition is about adding a fulltext index.
+           */
+          table.pushFulltextIndex(FulltextIndex.fromDef(createDefinition));
+        } else if (isDefined(createDefinition.def.spatialIndex)) {
+          /**
+           * If table create definition is about adding a spatial index.
+           */
+          table.pushSpatialIndex(SpatialIndex.fromDef(createDefinition));
+        } else if (isDefined(createDefinition.def.foreignKey)) {
+          /**
+           * If table create definition is about adding a foreign key.
+           */
+          table.pushForeignKey(ForeignKey.fromDef(createDefinition));
+        } else if (isDefined(createDefinition.def.uniqueKey)) {
+          /**
+           * If table create definition is about adding an unique key.
+           */
+          table.pushUniqueKey(UniqueKey.fromDef(createDefinition));
+        } else if (isDefined(createDefinition.def.primaryKey)) {
+          /**
+           * If table create definition is about adding a primary key.
+           */
+          table.setPrimaryKey(PrimaryKey.fromDef(createDefinition));
+        } else if (isDefined(createDefinition.def.index)) {
+          /**
+           * If table create definition is about adding an index.
+           */
+          table.pushIndex(Index.fromDef(createDefinition));
+        }
+      });
+
+      return table;
+    }
+
+    throw new TypeError(`Unknown json id to build table from: ${json.id}`);
   }
 
   /**
@@ -125,22 +125,22 @@ export class Table implements TableModelInterface {
    * @param tables Already existing tables.
    */
   static fromAlikeDef(json: P_CREATE_TABLE_LIKE, tables: TableModelInterface[] = []): Table | null {
-    if (json.id !== 'P_CREATE_TABLE_LIKE') {
-      throw new TypeError(`Unknown json id to build table from: ${json.id}`);
+    if (json.id === 'P_CREATE_TABLE_LIKE') {
+      const def = json.def;
+
+      const alikeTable = tables.find((t) => t.name === def.like);
+
+      if (!alikeTable) {
+        // throw new Error(`Trying to "CREATE TABLE LIKE" unexisting table ${def.like}.`);
+        return null;
+      }
+
+      const table = alikeTable.clone();
+      table.name = def.table;
+      return table;
     }
 
-    const def = json.def;
-
-    const alikeTable = tables.find((t) => t.name === def.like);
-
-    if (!alikeTable) {
-      // throw new Error(`Trying to "CREATE TABLE LIKE" unexisting table ${def.like}.`);
-      return null;
-    }
-
-    const table = alikeTable.clone();
-    table.name = def.table;
-    return table;
+    throw new TypeError(`Unknown json id to build table from: ${json.id}`);
   }
 
   /**

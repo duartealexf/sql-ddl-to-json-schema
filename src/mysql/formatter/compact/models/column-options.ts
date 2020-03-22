@@ -1,5 +1,5 @@
 import { O_COLUMN_DEFINITION, ColumnOptionsInterface } from '../../../../typings';
-import { isString, isDefined } from '../../../../shared/utils';
+import { isString, isDefined, setProperty } from '../../../../shared/utils';
 import { ColumnOptionsModelInterface } from './typings';
 
 /**
@@ -47,7 +47,7 @@ export class ColumnOptions implements ColumnOptionsModelInterface {
     const columnOptions = new ColumnOptions();
 
     json.forEach((columnDefinition) => {
-      Object.assign(columnOptions, columnDefinition.def); // TODO: check, this should not assign extra properties to this instance.
+      Object.assign(columnOptions, columnDefinition.def);
     });
 
     if (columnOptions.collation) {
@@ -171,7 +171,7 @@ export class ColumnOptions implements ColumnOptionsModelInterface {
     Object.getOwnPropertyNames(options).forEach((k) => {
       const value = options[k as keyof ColumnOptionsInterface];
       if (isDefined(value)) {
-        Object.defineProperty(this, k, { value }); // TODO: check, this is changed but should work the same way.
+        setProperty(this, k, value);
       }
     });
   }
@@ -185,7 +185,7 @@ export class ColumnOptions implements ColumnOptionsModelInterface {
     Object.getOwnPropertyNames(this).forEach((k) => {
       const value = this[k as keyof ColumnOptionsInterface];
       if (isDefined(value)) {
-        Object.defineProperty(options, k, { value }); // TODO: check, this is changed but should work the same way.
+        setProperty(options, k, value);
       }
     });
 

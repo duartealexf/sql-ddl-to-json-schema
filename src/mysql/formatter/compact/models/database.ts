@@ -38,8 +38,8 @@ export class Database implements DatabaseModelInterface {
    *
    * @param name Table name.
    */
-  getTable(name: string): TableModelInterface | null {
-    return this.tables.find((t) => t.name === name) ?? null;
+  getTable(name: string): TableModelInterface | undefined {
+    return this.tables.find((t) => t.name === name);
   }
 
   /**
@@ -98,7 +98,7 @@ export class Database implements DatabaseModelInterface {
    *
    * @param id
    */
-  private static getHandler(id: string): RuleHandler | null {
+  private static getHandler(id: string): RuleHandler | undefined {
     if (id === 'P_CREATE_TABLE') {
       return new CreateTable();
     } if (id === 'P_CREATE_INDEX') {
@@ -113,6 +113,6 @@ export class Database implements DatabaseModelInterface {
       return new DropIndex();
     }
 
-    return null;
+    return undefined;
   }
 }

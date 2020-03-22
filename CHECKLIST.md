@@ -17,5 +17,6 @@
 - [x] See if `x[key] = value` can be changed to `Object.defineProperty(x, key, {value})` everywhere.
 - [x] See if `Object.getOwnPropertyNames` can be changed to `Object.values` with Tuple type everywhere.
 - [ ] Change all `| undefined` to `| null`.
+- [ ] Make sure all `after: null`.
 - [ ] Run `npm audit fix`.
 - [ ] Update README.

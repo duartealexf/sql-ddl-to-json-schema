@@ -116,7 +116,7 @@ export interface P_RENAME_TABLE {
 
 export interface P_SET {
   id: 'P_SET';
-  def: null;
+  def: undefined;
 }
 
 export interface P_USE_DB {
@@ -240,7 +240,7 @@ export interface O_ALTER_TABLE_SPEC {
 }
 
 export type O_POSITION = {
-  after?: string | null;
+  after: string | null;
 };
 
 export interface O_ALTER_TABLE_SPEC_ADD_COLUMN {

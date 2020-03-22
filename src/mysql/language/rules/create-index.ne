@@ -56,8 +56,8 @@ P_INDEX_COLUMN -> S_IDENTIFIER
     ( _ %K_ASC {% d => d[1] %} | _ %K_DESC {% d => d[1] %} ):?
       {% d => {
         return {
-          length: d[0] ? d[0].value : null,
-          sort: d[1] ? d[1].value : null
+          length: d[0] ? d[0].value : undefined,
+          sort: d[1] ? d[1].value : undefined
         }
       }%}
   ):?
@@ -66,8 +66,8 @@ P_INDEX_COLUMN -> S_IDENTIFIER
         id: 'P_INDEX_COLUMN',
         def: {
           column: d[0],
-          length: d[1] && d[1].length ? d[1].length : null,
-          sort: d[1] && d[1].sort ? d[1].sort : null
+          length: d[1] && d[1].length ? d[1].length : undefined,
+          sort: d[1] && d[1].sort ? d[1].sort : undefined
         }
       }
     }%}

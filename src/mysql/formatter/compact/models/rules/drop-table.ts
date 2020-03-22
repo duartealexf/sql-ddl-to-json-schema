@@ -13,7 +13,7 @@ export class DropTable implements RuleHandler {
    *
    * @param name Table name.
    */
-  getTable(name: string): TableModelInterface | null {
+  getTable(name: string): TableModelInterface | undefined {
     return this.database.getTable(name);
   }
 

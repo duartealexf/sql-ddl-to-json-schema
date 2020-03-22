@@ -28,9 +28,7 @@
                       {
                         "id": "P_INDEX_COLUMN",
                         "def": {
-                          "column": "ay_id",
-                          "length": null,
-                          "sort": null
+                          "column": "ay_id"
                         }
                       }
                     ],
@@ -50,9 +48,7 @@
                           {
                             "id": "P_INDEX_COLUMN",
                             "def": {
-                              "column": "yid",
-                              "length": null,
-                              "sort": null
+                              "column": "yid"
                             }
                           }
                         ],

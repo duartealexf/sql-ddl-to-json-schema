@@ -137,9 +137,9 @@ export class Column implements ColumnModelInterface {
    * Extracts instance of PrimaryKey if this column is primary key.
    * Removes 'primary' property from options.
    */
-  extractPrimaryKey(): PrimaryKeyModelInterface | null {
+  extractPrimaryKey(): PrimaryKeyModelInterface | undefined {
     if (!this.isPrimaryKey()) {
-      return null;
+      return undefined;
     }
 
     delete (this.options as ColumnOptionsModelInterface).primary;
@@ -157,9 +157,9 @@ export class Column implements ColumnModelInterface {
    * Extracts instance of ForeignKey if this column references other table.
    * Removes 'reference' property from options.
    */
-  extractForeignKey(): ForeignKeyModelInterface | null {
+  extractForeignKey(): ForeignKeyModelInterface | undefined {
     if (!this.isForeignKey()) {
-      return null;
+      return undefined;
     }
 
     const indexColumn = new IndexColumn();
@@ -178,9 +178,9 @@ export class Column implements ColumnModelInterface {
    * Extracts instance of UniqueKey if this column is unique key.
    * Removes 'unique' property from options.
    */
-  extractUniqueKey(): UniqueKeyModelInterface | null {
+  extractUniqueKey(): UniqueKeyModelInterface | undefined {
     if (!this.isUniqueKey()) {
-      return null;
+      return undefined;
     }
     delete (this.options as ColumnOptionsModelInterface).unique;
 

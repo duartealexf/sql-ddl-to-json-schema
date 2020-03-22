@@ -124,7 +124,7 @@ export class Table implements TableModelInterface {
    * @param json JSON format parsed from SQL.
    * @param tables Already existing tables.
    */
-  static fromAlikeDef(json: P_CREATE_TABLE_LIKE, tables: TableModelInterface[] = []): Table | null {
+  static fromAlikeDef(json: P_CREATE_TABLE_LIKE, tables: TableModelInterface[] = []): Table | undefined {
     if (json.id === 'P_CREATE_TABLE_LIKE') {
       const def = json.def;
 
@@ -132,7 +132,7 @@ export class Table implements TableModelInterface {
 
       if (!alikeTable) {
         // throw new Error(`Trying to "CREATE TABLE LIKE" unexisting table ${def.like}.`);
-        return null;
+        return undefined;
       }
 
       const table = alikeTable.clone();
@@ -223,7 +223,7 @@ export class Table implements TableModelInterface {
    *
    * @param name Table name.
    */
-  getTable(name: string): TableModelInterface | null {
+  getTable(name: string): TableModelInterface | undefined {
     return this.database.getTable(name);
   }
 
@@ -427,14 +427,14 @@ export class Table implements TableModelInterface {
    *
    * @param column Column.
    */
-  getColumnPosition(column: ColumnModelInterface): O_POSITION | null {
+  getColumnPosition(column: ColumnModelInterface): O_POSITION | undefined {
     const index = (this.columns ?? []).indexOf(column);
 
     /**
      * First column.
      */
     if (index === 0) {
-      return { after: undefined };
+      return { after: null };
     }
     if (index + 1 === (this.columns ?? []).length) {
       /**
@@ -448,7 +448,7 @@ export class Table implements TableModelInterface {
       return { after: refColumn.name };
     }
 
-    return null;
+    return undefined;
   }
 
   /**
@@ -618,23 +618,23 @@ export class Table implements TableModelInterface {
     | IndexModelInterface
     | FulltextIndexModelInterface
     | SpatialIndexModelInterface
-    | null {
+    | undefined {
     const type = this.getIndexTypeByName(name);
 
     if (!type) {
       // throw new Error(`Trying to reference an unexsisting index ${name} on table ${this.name}`);
-      return null;
+      return undefined;
     }
 
     const indexes: IndexPropertyValue = this[type] as IndexPropertyValue;
 
     if (!isArray(indexes)) {
-      return null;
+      return undefined;
     }
 
     const result = indexes.find((index) => index.name === name);
 
-    return result ?? null;
+    return result ?? undefined;
   }
 
   /**
@@ -648,7 +648,7 @@ export class Table implements TableModelInterface {
       | IndexModelInterface
       | FulltextIndexModelInterface
       | SpatialIndexModelInterface,
-  ): IndexPropertyKey | null {
+  ): IndexPropertyKey | undefined {
     const props: IndexPropertyKey[] = [
       'uniqueKeys',
       'indexes',
@@ -667,7 +667,7 @@ export class Table implements TableModelInterface {
       ),
     );
 
-    return type ?? null;
+    return type;
   }
 
   /**
@@ -675,7 +675,7 @@ export class Table implements TableModelInterface {
    *
    * @param indez
    */
-  getIndexTypeByName(name: string): IndexPropertyKey | null {
+  getIndexTypeByName(name: string): IndexPropertyKey | undefined {
     const props: IndexPropertyKey[] = [
       'uniqueKeys',
       'indexes',
@@ -694,7 +694,7 @@ export class Table implements TableModelInterface {
       ),
     );
 
-    return type ?? null;
+    return type;
   }
 
   /**

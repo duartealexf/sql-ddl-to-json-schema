@@ -17,7 +17,6 @@ P_SET -> %K_SET __ (
   ):+ S_EOS
   {% d => {
     return {
-      id: 'P_SET',
-      def: null
+      id: 'P_SET'
     }
   }%}

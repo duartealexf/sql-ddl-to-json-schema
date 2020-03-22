@@ -160,7 +160,7 @@ O_ALTER_TABLE_SPEC -> (
          */
 
         if (d[5] && ['index', 'key'].includes(d[5].toLowerCase())) {
-          d[5] = null;
+          d[5] = undefined;
         }
 
         return {
@@ -184,7 +184,7 @@ O_ALTER_TABLE_SPEC -> (
          */
 
         if (d[4] && ['index', 'key'].includes(d[4].toLowerCase())) {
-          d[4] = null;
+          d[4] = undefined;
         }
 
         return {
@@ -207,7 +207,7 @@ O_ALTER_TABLE_SPEC -> (
          */
 
         if (d[4] && ['index', 'key'].includes(d[4].toLowerCase())) {
-          d[4] = null;
+          d[4] = undefined;
         }
 
         return {
@@ -292,7 +292,7 @@ O_ALTER_TABLE_SPEC -> (
         const obj: any = {
           action: 'changeColumn',
           column: d[3],
-          newName: null,
+          newName: undefined,
           datatype: d[5],
           columnDefinition: d[6],
           position: d[8],

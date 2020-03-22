@@ -25,9 +25,7 @@
             {
               "id": "P_INDEX_COLUMN",
               "def": {
-                "column": "initials",
-                "length": null,
-                "sort": null
+                "column": "initials"
               }
             }
           ],
@@ -73,9 +71,7 @@
             {
               "id": "P_INDEX_COLUMN",
               "def": {
-                "column": "name",
-                "length": null,
-                "sort": null
+                "column": "name"
               }
             }
           ],
@@ -109,9 +105,7 @@
             {
               "id": "P_INDEX_COLUMN",
               "def": {
-                "column": "name",
-                "length": null,
-                "sort": null
+                "column": "name"
               }
             }
           ],
@@ -139,9 +133,7 @@
             {
               "id": "P_INDEX_COLUMN",
               "def": {
-                "column": "name",
-                "length": null,
-                "sort": null
+                "column": "name"
               }
             }
           ],

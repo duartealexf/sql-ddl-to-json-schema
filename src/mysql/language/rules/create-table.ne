@@ -160,13 +160,13 @@ O_CREATE_TABLE_CREATE_DEFINITION -> (
          */
 
         if (d[3] && ['index', 'key'].includes(d[3].toLowerCase())) {
-          d[3] = null;
+          d[3] = undefined;
         }
 
         return {
           uniqueKey: {
             name: d[3],
-            index: d[4],
+            index: d[4] ?? undefined,
             columns: [d[8]].concat(d[9] ?? []),
             options: d[12]
           }
@@ -184,7 +184,7 @@ O_CREATE_TABLE_CREATE_DEFINITION -> (
          */
 
         if (d[2] && ['index', 'key'].includes(d[2].toLowerCase())) {
-          d[2] = null;
+          d[2] = undefined;
         }
 
         return {
@@ -207,7 +207,7 @@ O_CREATE_TABLE_CREATE_DEFINITION -> (
          */
 
         if (d[2] && ['index', 'key'].includes(d[2].toLowerCase())) {
-          d[2] = null;
+          d[2] = undefined;
         }
 
         return {

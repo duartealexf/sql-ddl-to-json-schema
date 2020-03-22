@@ -45,7 +45,7 @@ export class AlterTable implements RuleHandler {
    *
    * @param name Table name.
    */
-  getTable(name: string): TableModelInterface | null {
+  getTable(name: string): TableModelInterface | undefined {
     return this.database.getTable(name);
   }
 
@@ -282,7 +282,7 @@ export class AlterTable implements RuleHandler {
       return;
     }
 
-    let position: O_POSITION | null;
+    let position: O_POSITION | undefined;
 
     if (json.position) {
       if (json.position.after) {

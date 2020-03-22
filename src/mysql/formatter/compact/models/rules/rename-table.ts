@@ -13,8 +13,8 @@ export class RenameTable implements RuleHandler {
    *
    * @param name Table name.
    */
-  getTable(name: string): TableModelInterface | null {
-    return this.database.getTable(name);
+  getTable(name: string): TableModelInterface | undefined {
+    return this.database.getTable(name) ?? undefined;
   }
 
   /**

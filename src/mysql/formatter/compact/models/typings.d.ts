@@ -51,7 +51,7 @@ export interface DatabaseModelInterface extends DatabaseInterface {
   tables: TableModelInterface[];
   getTables(): TableModelInterface[];
   setTables(tables: TableModelInterface[]): void;
-  getTable(name: string): TableModelInterface | null;
+  getTable(name: string): TableModelInterface | undefined;
   pushTable(table: TableModelInterface): void;
 }
 
@@ -69,7 +69,7 @@ export interface TableModelInterface
   uniqueKeys?: UniqueKeyModelInterface[];
   indexes?: IndexModelInterface[];
   primaryKey?: PrimaryKeyModelInterface;
-  getTable(name: string): TableModelInterface | null;
+  getTable(name: string): TableModelInterface | undefined;
   getTables(): TableModelInterface[];
   setDatabase(database: DatabaseModelInterface): void;
   renameTo(newName: string): void;
@@ -77,7 +77,7 @@ export interface TableModelInterface
   extractColumnKeys(column: ColumnModelInterface): void;
   moveColumn(column: ColumnModelInterface, position: O_POSITION): boolean;
   renameColumn(column: ColumnModelInterface, newName: string): boolean;
-  getColumnPosition(column: ColumnModelInterface): O_POSITION | null;
+  getColumnPosition(column: ColumnModelInterface): O_POSITION | undefined;
   dropPrimaryKey(): void;
   dropColumn(column: ColumnModelInterface): void;
   dropIndexByInstance(
@@ -95,14 +95,14 @@ export interface TableModelInterface
     | IndexModelInterface
     | FulltextIndexModelInterface
     | SpatialIndexModelInterface
-    | null;
+    | undefined;
   getIndexTypeByInstance(
     index:
       | UniqueKeyModelInterface
       | IndexModelInterface
       | FulltextIndexModelInterface
       | SpatialIndexModelInterface,
-  ): IndexPropertyKey | null;
+  ): IndexPropertyKey | undefined;
   getColumn(name: string): ColumnModelInterface | undefined;
   getForeignKey(name: string): ForeignKeyModelInterface | undefined;
   hasForeignKey(name: string): boolean;
@@ -124,9 +124,9 @@ export interface ColumnModelInterface
   isPrimaryKey(): boolean;
   isUniqueKey(): boolean;
   isForeignKey(): boolean;
-  extractPrimaryKey(): PrimaryKeyModelInterface | null;
-  extractForeignKey(): ForeignKeyModelInterface | null;
-  extractUniqueKey(): UniqueKeyModelInterface | null;
+  extractPrimaryKey(): PrimaryKeyModelInterface | undefined;
+  extractForeignKey(): ForeignKeyModelInterface | undefined;
+  extractUniqueKey(): UniqueKeyModelInterface | undefined;
 }
 
 export interface TableOptionsModelInterface
@@ -255,7 +255,7 @@ export interface IndexOptionsModelInterface
 
 export interface RuleHandler {
   database: DatabaseModelInterface;
-  getTable(name: string): TableModelInterface | null;
+  getTable(name: string): TableModelInterface | undefined;
   setDatabase(database: DatabaseModelInterface): void;
   handleDef(json: STATEMENT): void;
 }

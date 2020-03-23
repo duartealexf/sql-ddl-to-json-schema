@@ -3,7 +3,7 @@
     "target": "es6",
     "module": "commonjs",
     "moduleResolution": "node",
-    "sourceMap": true,
+    "sourceMap": false,
     "outDir": "lib",
     "declarationDir": "typings",
     "lib": ["es5", "es6", "es7"],

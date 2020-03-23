@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [4.0.1](https://github.com/duartealexf/sql-ddl-to-json-schema/compare/v3.1.2...v5.0.0) (2020-03-23)
+
+### Bug Fixes
+
+* Fix package release build.
+
 ## [4.0.0](https://github.com/duartealexf/sql-ddl-to-json-schema/compare/v3.1.2...v4.0.0) (2020-03-22)
 
 ### ⚠ BREAKING CHANGES

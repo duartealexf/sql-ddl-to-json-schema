@@ -14,3 +14,4 @@ test
 .travis.yml
 ROADMAP.md
 tsconfig.json
+.nyc_output

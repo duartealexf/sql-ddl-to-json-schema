@@ -63,8 +63,8 @@
     "@types/winston": "^2.4.4",
     "@typescript-eslint/eslint-plugin": "^2.24.0",
     "@typescript-eslint/parser": "^2.24.0",
-    "ava": "^2",
-    "commitizen": "^3.1.2",
+    "ava": "^3.10.1",
+    "commitizen": "^4.1.2",
     "cz-conventional-changelog": "^2.1.0",
     "eslint": "^6.3.0",
     "eslint-config-airbnb-base": "^14.1.0",
@@ -101,6 +101,6 @@
     "ext": "ne,ts"
   },
   "engines": {
-    "node": ">=8.6.0 <=13"
+    "node": ">=8.6.0 <=14"
   }
 }

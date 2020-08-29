@@ -711,6 +711,7 @@
           "sort": "asc"
         }
       ],
+      "name": "pk_id",
       "options": {
         "keyBlockSize": 1024,
         "indexType": "hash",

@@ -455,6 +455,7 @@
           "length": 100
         }
       ],
+      "name": "pk_id",
       "options": {
         "keyBlockSize": 512,
         "indexType": "hash",
@@ -744,6 +745,7 @@
           "sort": "asc"
         }
       ],
+      "name": "pk_id",
       "options": {
         "keyBlockSize": 1024,
         "indexType": "hash",

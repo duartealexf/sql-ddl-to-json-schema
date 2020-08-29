@@ -8,9 +8,7 @@
       "type": "node",
       "request": "launch",
       "name": "Debug Compilation",
-      "args": [
-        "lib/mysql/parser/grammar.ne"
-      ],
+      "args": ["lib/mysql/parser/grammar.ne"],
       "program": "${workspaceFolder}/node_modules/nearley/bin/nearleyc.js"
     },
     {
@@ -20,16 +18,8 @@
       "env": {
         "DEBUG": "*"
       },
-      "args": [
-        "${file}"
-      ],
+      "args": ["${file}"],
       "program": "${workspaceFolder}/node_modules/ava/profile.js"
-    },
-    {
-      "type": "node",
-      "request": "launch",
-      "name": "Debug Example",
-      "program": "${workspaceFolder}/src/mysql/example.js"
     },
     {
       "type": "node",
@@ -38,9 +28,7 @@
       "env": {
         "DRY_UPDATE": "1"
       },
-      "args": [
-        "${file}"
-      ],
+      "args": ["${file}"],
       "program": "${workspaceFolder}/node_modules/ava/profile.js"
     }
   ]

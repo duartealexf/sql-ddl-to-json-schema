@@ -1,6 +1,43 @@
-# Change Log
+# Changelog
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
+
+## [4.0.3](https://github.com/duartealexf/sql-ddl-to-json-schema/compare/v4.0.2...v4.0.3) (2020-07-19)
+
+* Add Node 14 to engines and CI tests
+
+## [4.0.2](https://github.com/duartealexf/sql-ddl-to-json-schema/compare/v4.0.1...v4.0.2) (2020-07-19)
+
+* Vulnerability fixes
+
+## [4.0.1](https://github.com/duartealexf/sql-ddl-to-json-schema/compare/v4.0.0...v4.0.1) (2020-03-23)
+
+### Bug Fixes
+
+* Fix package release build.
+
+## [4.0.0](https://github.com/duartealexf/sql-ddl-to-json-schema/compare/v3.1.2...v4.0.0) (2020-03-22)
+
+### ⚠ BREAKING CHANGES
+
+* Removed `toJSONSchemaFiles` method from parser, as it caused build issues in Angular.
+* Changed export to named export (non-default). Now to import it, use braces, as in `import { Parser } from 'sql-ddl-to-json-schema'`.
+* The parsed format does not contain null values anymore. Instead, the values that used to be null are not mentioned at all in parsed JSON format.
+
+### Bug Fixes
+
+* Fix Angular compatibility. ([29c640f](https://github.com/duartealexf/sql-ddl-to-json-schema/commit/29c640f1983e316bc14f5cedbe54bc063ef562c1)), closes [#47]
+
+### Features
+
+* Add typing definitions.
+
+<a name="3.1.3"></a>
+## [3.1.3](https://github.com/duartealexf/sql-ddl-to-json-schema/compare/v3.1.2...v3.1.3) (2020-03-11)
+
+### Bug Fixes
+
+* Fix circular dependency warnings when building on Angular. ([838ee63](https://github.com/duartealexf/sql-ddl-to-json-schema/commit/838ee63)), co-authored-by: yanmengfei <yanmengfei@inspur.com>
 
 <a name="3.1.2"></a>
 ## [3.1.2](https://github.com/duartealexf/sql-ddl-to-json-schema/compare/v3.1.1...v3.1.2) (2019-05-05)
@@ -9,8 +46,6 @@ All notable changes to this project will be documented in this file. See [standa
 ### Bug Fixes
 
 * Fix unsigned in JSON Schema output. ([10a430f](https://github.com/duartealexf/sql-ddl-to-json-schema/commit/10a430f))
-
-
 
 <a name="3.1.1"></a>
 ## [3.1.1](https://github.com/duartealexf/sql-ddl-to-json-schema/compare/v3.1.0...v3.1.1) (2019-05-05)

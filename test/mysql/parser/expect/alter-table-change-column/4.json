@@ -16,7 +16,6 @@
                   "def": {
                     "action": "changeColumn",
                     "column": "name",
-                    "newName": null,
                     "datatype": {
                       "id": "O_DATATYPE",
                       "def": {

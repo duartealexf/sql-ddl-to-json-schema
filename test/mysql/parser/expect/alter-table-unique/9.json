@@ -21,9 +21,7 @@
                       {
                         "id": "P_INDEX_COLUMN",
                         "def": {
-                          "column": "id",
-                          "length": null,
-                          "sort": null
+                          "column": "id"
                         }
                       }
                     ],

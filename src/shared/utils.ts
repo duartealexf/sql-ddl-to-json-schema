@@ -18,8 +18,8 @@ export function stringArrayToMapping<T>(
   transformKey: TransformerFunction<string>,
   transformValue: TransformerFunction<T>,
 ): TMap<T> {
-  transformKey = transformKey ?? ((k: string) => k);
-  transformValue = transformValue ?? ((v: string) => v);
+  transformKey = transformKey ? transformKey : ((k: string) => k);
+  transformValue = transformValue ? transformValue : ((v: any) => v);
 
   return array.reduce((obj, elem) => {
     obj[transformKey(elem)] = transformValue(elem);

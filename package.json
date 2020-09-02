@@ -64,7 +64,7 @@
     "@typescript-eslint/eslint-plugin": "^2.24.0",
     "@typescript-eslint/parser": "^2.24.0",
     "ava": "^3.10.1",
-    "commitizen": "^4.1.2",
+    "commitizen": "^4.2.1",
     "cz-conventional-changelog": "^2.1.0",
     "eslint": "^6.3.0",
     "eslint-config-airbnb-base": "^14.1.0",

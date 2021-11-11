@@ -15,5 +15,6 @@
     "emitDecoratorMetadata": true,
     "baseUrl": "./src"
   },
-  "include": ["src"]
+  "include": ["src"],
+  "exclude": ["**/__snapshots__/**"]
 }

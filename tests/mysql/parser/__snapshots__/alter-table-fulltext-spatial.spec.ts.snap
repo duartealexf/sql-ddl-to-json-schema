@@ -1,0 +1,1129 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Parser: Should alter table adding fulltext index with one column and options. 1`] = `
+{
+  "id": "MAIN",
+  "def": [
+    {
+      "id": "P_DDS",
+      "def": {
+        "id": "P_ALTER_TABLE",
+        "def": {
+          "table": "people",
+          "specs": [
+            {
+              "id": "P_ALTER_TABLE_SPECS",
+              "def": {
+                "spec": {
+                  "id": "O_ALTER_TABLE_SPEC",
+                  "def": {
+                    "action": "addFulltextIndex",
+                    "name": "fti_id",
+                    "columns": [
+                      {
+                        "id": "P_INDEX_COLUMN",
+                        "def": {
+                          "column": "id"
+                        }
+                      }
+                    ],
+                    "options": [
+                      {
+                        "id": "O_INDEX_OPTION",
+                        "def": {
+                          "keyBlockSize": 1024
+                        }
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          ]
+        }
+      }
+    }
+  ]
+}
+`;
+
+exports[`Parser: Should alter table adding fulltext index with one column. 1`] = `
+{
+  "id": "MAIN",
+  "def": [
+    {
+      "id": "P_DDS",
+      "def": {
+        "id": "P_ALTER_TABLE",
+        "def": {
+          "table": "people",
+          "specs": [
+            {
+              "id": "P_ALTER_TABLE_SPECS",
+              "def": {
+                "spec": {
+                  "id": "O_ALTER_TABLE_SPEC",
+                  "def": {
+                    "action": "addFulltextIndex",
+                    "name": null,
+                    "columns": [
+                      {
+                        "id": "P_INDEX_COLUMN",
+                        "def": {
+                          "column": "id"
+                        }
+                      }
+                    ],
+                    "options": []
+                  }
+                }
+              }
+            }
+          ]
+        }
+      }
+    }
+  ]
+}
+`;
+
+exports[`Parser: Should alter table adding fulltext index with one column. 2`] = `
+{
+  "id": "MAIN",
+  "def": [
+    {
+      "id": "P_DDS",
+      "def": {
+        "id": "P_ALTER_TABLE",
+        "def": {
+          "table": "people",
+          "specs": [
+            {
+              "id": "P_ALTER_TABLE_SPECS",
+              "def": {
+                "spec": {
+                  "id": "O_ALTER_TABLE_SPEC",
+                  "def": {
+                    "action": "addFulltextIndex",
+                    "name": null,
+                    "columns": [
+                      {
+                        "id": "P_INDEX_COLUMN",
+                        "def": {
+                          "column": "id"
+                        }
+                      }
+                    ],
+                    "options": []
+                  }
+                }
+              }
+            }
+          ]
+        }
+      }
+    }
+  ]
+}
+`;
+
+exports[`Parser: Should alter table adding fulltext index with two columns and options. 1`] = `
+{
+  "id": "MAIN",
+  "def": [
+    {
+      "id": "P_DDS",
+      "def": {
+        "id": "P_ALTER_TABLE",
+        "def": {
+          "table": "people",
+          "specs": [
+            {
+              "id": "P_ALTER_TABLE_SPECS",
+              "def": {
+                "spec": {
+                  "id": "O_ALTER_TABLE_SPEC",
+                  "def": {
+                    "action": "addFulltextIndex",
+                    "name": "fti_id",
+                    "columns": [
+                      {
+                        "id": "P_INDEX_COLUMN",
+                        "def": {
+                          "column": "id",
+                          "length": 2,
+                          "sort": "asc"
+                        }
+                      },
+                      {
+                        "id": "P_INDEX_COLUMN",
+                        "def": {
+                          "column": "o_id"
+                        }
+                      }
+                    ],
+                    "options": [
+                      {
+                        "id": "O_INDEX_OPTION",
+                        "def": {
+                          "keyBlockSize": 1024
+                        }
+                      },
+                      {
+                        "id": "O_INDEX_OPTION",
+                        "def": {
+                          "comment": "test"
+                        }
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          ]
+        }
+      }
+    }
+  ]
+}
+`;
+
+exports[`Parser: Should alter table adding fulltext key with one column and options. 1`] = `
+{
+  "id": "MAIN",
+  "def": [
+    {
+      "id": "P_DDS",
+      "def": {
+        "id": "P_ALTER_TABLE",
+        "def": {
+          "table": "people",
+          "specs": [
+            {
+              "id": "P_ALTER_TABLE_SPECS",
+              "def": {
+                "spec": {
+                  "id": "O_ALTER_TABLE_SPEC",
+                  "def": {
+                    "action": "addFulltextIndex",
+                    "name": "ftk_id",
+                    "columns": [
+                      {
+                        "id": "P_INDEX_COLUMN",
+                        "def": {
+                          "column": "id"
+                        }
+                      }
+                    ],
+                    "options": [
+                      {
+                        "id": "O_INDEX_OPTION",
+                        "def": {
+                          "keyBlockSize": 1024
+                        }
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          ]
+        }
+      }
+    }
+  ]
+}
+`;
+
+exports[`Parser: Should alter table adding fulltext key with one column and options. 2`] = `
+{
+  "id": "MAIN",
+  "def": [
+    {
+      "id": "P_DDS",
+      "def": {
+        "id": "P_ALTER_TABLE",
+        "def": {
+          "table": "people",
+          "specs": [
+            {
+              "id": "P_ALTER_TABLE_SPECS",
+              "def": {
+                "spec": {
+                  "id": "O_ALTER_TABLE_SPEC",
+                  "def": {
+                    "action": "addFulltextIndex",
+                    "name": "ftk_id",
+                    "columns": [
+                      {
+                        "id": "P_INDEX_COLUMN",
+                        "def": {
+                          "column": "id"
+                        }
+                      }
+                    ],
+                    "options": [
+                      {
+                        "id": "O_INDEX_OPTION",
+                        "def": {
+                          "keyBlockSize": 1024
+                        }
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          ]
+        }
+      }
+    }
+  ]
+}
+`;
+
+exports[`Parser: Should alter table adding fulltext key with one column. 1`] = `
+{
+  "id": "MAIN",
+  "def": [
+    {
+      "id": "P_DDS",
+      "def": {
+        "id": "P_ALTER_TABLE",
+        "def": {
+          "table": "people",
+          "specs": [
+            {
+              "id": "P_ALTER_TABLE_SPECS",
+              "def": {
+                "spec": {
+                  "id": "O_ALTER_TABLE_SPEC",
+                  "def": {
+                    "action": "addFulltextIndex",
+                    "name": null,
+                    "columns": [
+                      {
+                        "id": "P_INDEX_COLUMN",
+                        "def": {
+                          "column": "id"
+                        }
+                      }
+                    ],
+                    "options": []
+                  }
+                }
+              }
+            }
+          ]
+        }
+      }
+    }
+  ]
+}
+`;
+
+exports[`Parser: Should alter table adding fulltext key with one column. 2`] = `
+{
+  "id": "MAIN",
+  "def": [
+    {
+      "id": "P_DDS",
+      "def": {
+        "id": "P_ALTER_TABLE",
+        "def": {
+          "table": "people",
+          "specs": [
+            {
+              "id": "P_ALTER_TABLE_SPECS",
+              "def": {
+                "spec": {
+                  "id": "O_ALTER_TABLE_SPEC",
+                  "def": {
+                    "action": "addFulltextIndex",
+                    "name": null,
+                    "columns": [
+                      {
+                        "id": "P_INDEX_COLUMN",
+                        "def": {
+                          "column": "id"
+                        }
+                      }
+                    ],
+                    "options": []
+                  }
+                }
+              }
+            }
+          ]
+        }
+      }
+    }
+  ]
+}
+`;
+
+exports[`Parser: Should alter table adding fulltext key with one column. 3`] = `
+{
+  "id": "MAIN",
+  "def": [
+    {
+      "id": "P_DDS",
+      "def": {
+        "id": "P_ALTER_TABLE",
+        "def": {
+          "table": "people",
+          "specs": [
+            {
+              "id": "P_ALTER_TABLE_SPECS",
+              "def": {
+                "spec": {
+                  "id": "O_ALTER_TABLE_SPEC",
+                  "def": {
+                    "action": "addFulltextIndex",
+                    "name": null,
+                    "columns": [
+                      {
+                        "id": "P_INDEX_COLUMN",
+                        "def": {
+                          "column": "id"
+                        }
+                      }
+                    ],
+                    "options": []
+                  }
+                }
+              }
+            }
+          ]
+        }
+      }
+    }
+  ]
+}
+`;
+
+exports[`Parser: Should alter table adding fulltext key with one column. 4`] = `
+{
+  "id": "MAIN",
+  "def": [
+    {
+      "id": "P_DDS",
+      "def": {
+        "id": "P_ALTER_TABLE",
+        "def": {
+          "table": "people",
+          "specs": [
+            {
+              "id": "P_ALTER_TABLE_SPECS",
+              "def": {
+                "spec": {
+                  "id": "O_ALTER_TABLE_SPEC",
+                  "def": {
+                    "action": "addFulltextIndex",
+                    "name": null,
+                    "columns": [
+                      {
+                        "id": "P_INDEX_COLUMN",
+                        "def": {
+                          "column": "id"
+                        }
+                      }
+                    ],
+                    "options": []
+                  }
+                }
+              }
+            }
+          ]
+        }
+      }
+    }
+  ]
+}
+`;
+
+exports[`Parser: Should alter table adding fulltext key with two columns and options. 1`] = `
+{
+  "id": "MAIN",
+  "def": [
+    {
+      "id": "P_DDS",
+      "def": {
+        "id": "P_ALTER_TABLE",
+        "def": {
+          "table": "people",
+          "specs": [
+            {
+              "id": "P_ALTER_TABLE_SPECS",
+              "def": {
+                "spec": {
+                  "id": "O_ALTER_TABLE_SPEC",
+                  "def": {
+                    "action": "addFulltextIndex",
+                    "name": "ftk_id",
+                    "columns": [
+                      {
+                        "id": "P_INDEX_COLUMN",
+                        "def": {
+                          "column": "id",
+                          "length": 2,
+                          "sort": "asc"
+                        }
+                      },
+                      {
+                        "id": "P_INDEX_COLUMN",
+                        "def": {
+                          "column": "o_id"
+                        }
+                      }
+                    ],
+                    "options": [
+                      {
+                        "id": "O_INDEX_OPTION",
+                        "def": {
+                          "keyBlockSize": 1024
+                        }
+                      },
+                      {
+                        "id": "O_INDEX_OPTION",
+                        "def": {
+                          "comment": "test"
+                        }
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          ]
+        }
+      }
+    }
+  ]
+}
+`;
+
+exports[`Parser: Should alter table adding fulltext key with two columns and options. 2`] = `
+{
+  "id": "MAIN",
+  "def": [
+    {
+      "id": "P_DDS",
+      "def": {
+        "id": "P_ALTER_TABLE",
+        "def": {
+          "table": "people",
+          "specs": [
+            {
+              "id": "P_ALTER_TABLE_SPECS",
+              "def": {
+                "spec": {
+                  "id": "O_ALTER_TABLE_SPEC",
+                  "def": {
+                    "action": "addFulltextIndex",
+                    "name": "ftk_id",
+                    "columns": [
+                      {
+                        "id": "P_INDEX_COLUMN",
+                        "def": {
+                          "column": "id",
+                          "length": 2,
+                          "sort": "asc"
+                        }
+                      },
+                      {
+                        "id": "P_INDEX_COLUMN",
+                        "def": {
+                          "column": "o_id"
+                        }
+                      }
+                    ],
+                    "options": [
+                      {
+                        "id": "O_INDEX_OPTION",
+                        "def": {
+                          "keyBlockSize": 1024
+                        }
+                      },
+                      {
+                        "id": "O_INDEX_OPTION",
+                        "def": {
+                          "comment": "test"
+                        }
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          ]
+        }
+      }
+    }
+  ]
+}
+`;
+
+exports[`Parser: Should alter table adding spatial index with one column and options. 1`] = `
+{
+  "id": "MAIN",
+  "def": [
+    {
+      "id": "P_DDS",
+      "def": {
+        "id": "P_ALTER_TABLE",
+        "def": {
+          "table": "people",
+          "specs": [
+            {
+              "id": "P_ALTER_TABLE_SPECS",
+              "def": {
+                "spec": {
+                  "id": "O_ALTER_TABLE_SPEC",
+                  "def": {
+                    "action": "addSpatialIndex",
+                    "name": "si_id",
+                    "columns": [
+                      {
+                        "id": "P_INDEX_COLUMN",
+                        "def": {
+                          "column": "id"
+                        }
+                      }
+                    ],
+                    "options": [
+                      {
+                        "id": "O_INDEX_OPTION",
+                        "def": {
+                          "keyBlockSize": 1024
+                        }
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          ]
+        }
+      }
+    }
+  ]
+}
+`;
+
+exports[`Parser: Should alter table adding spatial index with one column. 1`] = `
+{
+  "id": "MAIN",
+  "def": [
+    {
+      "id": "P_DDS",
+      "def": {
+        "id": "P_ALTER_TABLE",
+        "def": {
+          "table": "people",
+          "specs": [
+            {
+              "id": "P_ALTER_TABLE_SPECS",
+              "def": {
+                "spec": {
+                  "id": "O_ALTER_TABLE_SPEC",
+                  "def": {
+                    "action": "addSpatialIndex",
+                    "name": null,
+                    "columns": [
+                      {
+                        "id": "P_INDEX_COLUMN",
+                        "def": {
+                          "column": "id"
+                        }
+                      }
+                    ],
+                    "options": []
+                  }
+                }
+              }
+            }
+          ]
+        }
+      }
+    }
+  ]
+}
+`;
+
+exports[`Parser: Should alter table adding spatial index with one column. 2`] = `
+{
+  "id": "MAIN",
+  "def": [
+    {
+      "id": "P_DDS",
+      "def": {
+        "id": "P_ALTER_TABLE",
+        "def": {
+          "table": "people",
+          "specs": [
+            {
+              "id": "P_ALTER_TABLE_SPECS",
+              "def": {
+                "spec": {
+                  "id": "O_ALTER_TABLE_SPEC",
+                  "def": {
+                    "action": "addSpatialIndex",
+                    "name": null,
+                    "columns": [
+                      {
+                        "id": "P_INDEX_COLUMN",
+                        "def": {
+                          "column": "id"
+                        }
+                      }
+                    ],
+                    "options": []
+                  }
+                }
+              }
+            }
+          ]
+        }
+      }
+    }
+  ]
+}
+`;
+
+exports[`Parser: Should alter table adding spatial index with two columns and options. 1`] = `
+{
+  "id": "MAIN",
+  "def": [
+    {
+      "id": "P_DDS",
+      "def": {
+        "id": "P_ALTER_TABLE",
+        "def": {
+          "table": "people",
+          "specs": [
+            {
+              "id": "P_ALTER_TABLE_SPECS",
+              "def": {
+                "spec": {
+                  "id": "O_ALTER_TABLE_SPEC",
+                  "def": {
+                    "action": "addSpatialIndex",
+                    "name": "si_id",
+                    "columns": [
+                      {
+                        "id": "P_INDEX_COLUMN",
+                        "def": {
+                          "column": "id",
+                          "length": 2,
+                          "sort": "asc"
+                        }
+                      },
+                      {
+                        "id": "P_INDEX_COLUMN",
+                        "def": {
+                          "column": "o_id"
+                        }
+                      }
+                    ],
+                    "options": [
+                      {
+                        "id": "O_INDEX_OPTION",
+                        "def": {
+                          "keyBlockSize": 1024
+                        }
+                      },
+                      {
+                        "id": "O_INDEX_OPTION",
+                        "def": {
+                          "comment": "test"
+                        }
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          ]
+        }
+      }
+    }
+  ]
+}
+`;
+
+exports[`Parser: Should alter table adding spatial key with one column and options. 1`] = `
+{
+  "id": "MAIN",
+  "def": [
+    {
+      "id": "P_DDS",
+      "def": {
+        "id": "P_ALTER_TABLE",
+        "def": {
+          "table": "people",
+          "specs": [
+            {
+              "id": "P_ALTER_TABLE_SPECS",
+              "def": {
+                "spec": {
+                  "id": "O_ALTER_TABLE_SPEC",
+                  "def": {
+                    "action": "addSpatialIndex",
+                    "name": "sk_id",
+                    "columns": [
+                      {
+                        "id": "P_INDEX_COLUMN",
+                        "def": {
+                          "column": "id"
+                        }
+                      }
+                    ],
+                    "options": [
+                      {
+                        "id": "O_INDEX_OPTION",
+                        "def": {
+                          "keyBlockSize": 1024
+                        }
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          ]
+        }
+      }
+    }
+  ]
+}
+`;
+
+exports[`Parser: Should alter table adding spatial key with one column and options. 2`] = `
+{
+  "id": "MAIN",
+  "def": [
+    {
+      "id": "P_DDS",
+      "def": {
+        "id": "P_ALTER_TABLE",
+        "def": {
+          "table": "people",
+          "specs": [
+            {
+              "id": "P_ALTER_TABLE_SPECS",
+              "def": {
+                "spec": {
+                  "id": "O_ALTER_TABLE_SPEC",
+                  "def": {
+                    "action": "addSpatialIndex",
+                    "name": "sk_id",
+                    "columns": [
+                      {
+                        "id": "P_INDEX_COLUMN",
+                        "def": {
+                          "column": "id"
+                        }
+                      }
+                    ],
+                    "options": [
+                      {
+                        "id": "O_INDEX_OPTION",
+                        "def": {
+                          "keyBlockSize": 1024
+                        }
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          ]
+        }
+      }
+    }
+  ]
+}
+`;
+
+exports[`Parser: Should alter table adding spatial key with one column. 1`] = `
+{
+  "id": "MAIN",
+  "def": [
+    {
+      "id": "P_DDS",
+      "def": {
+        "id": "P_ALTER_TABLE",
+        "def": {
+          "table": "people",
+          "specs": [
+            {
+              "id": "P_ALTER_TABLE_SPECS",
+              "def": {
+                "spec": {
+                  "id": "O_ALTER_TABLE_SPEC",
+                  "def": {
+                    "action": "addSpatialIndex",
+                    "name": null,
+                    "columns": [
+                      {
+                        "id": "P_INDEX_COLUMN",
+                        "def": {
+                          "column": "id"
+                        }
+                      }
+                    ],
+                    "options": []
+                  }
+                }
+              }
+            }
+          ]
+        }
+      }
+    }
+  ]
+}
+`;
+
+exports[`Parser: Should alter table adding spatial key with one column. 2`] = `
+{
+  "id": "MAIN",
+  "def": [
+    {
+      "id": "P_DDS",
+      "def": {
+        "id": "P_ALTER_TABLE",
+        "def": {
+          "table": "people",
+          "specs": [
+            {
+              "id": "P_ALTER_TABLE_SPECS",
+              "def": {
+                "spec": {
+                  "id": "O_ALTER_TABLE_SPEC",
+                  "def": {
+                    "action": "addSpatialIndex",
+                    "name": null,
+                    "columns": [
+                      {
+                        "id": "P_INDEX_COLUMN",
+                        "def": {
+                          "column": "id"
+                        }
+                      }
+                    ],
+                    "options": []
+                  }
+                }
+              }
+            }
+          ]
+        }
+      }
+    }
+  ]
+}
+`;
+
+exports[`Parser: Should alter table adding spatial key with one column. 3`] = `
+{
+  "id": "MAIN",
+  "def": [
+    {
+      "id": "P_DDS",
+      "def": {
+        "id": "P_ALTER_TABLE",
+        "def": {
+          "table": "people",
+          "specs": [
+            {
+              "id": "P_ALTER_TABLE_SPECS",
+              "def": {
+                "spec": {
+                  "id": "O_ALTER_TABLE_SPEC",
+                  "def": {
+                    "action": "addSpatialIndex",
+                    "name": null,
+                    "columns": [
+                      {
+                        "id": "P_INDEX_COLUMN",
+                        "def": {
+                          "column": "id"
+                        }
+                      }
+                    ],
+                    "options": []
+                  }
+                }
+              }
+            }
+          ]
+        }
+      }
+    }
+  ]
+}
+`;
+
+exports[`Parser: Should alter table adding spatial key with one column. 4`] = `
+{
+  "id": "MAIN",
+  "def": [
+    {
+      "id": "P_DDS",
+      "def": {
+        "id": "P_ALTER_TABLE",
+        "def": {
+          "table": "people",
+          "specs": [
+            {
+              "id": "P_ALTER_TABLE_SPECS",
+              "def": {
+                "spec": {
+                  "id": "O_ALTER_TABLE_SPEC",
+                  "def": {
+                    "action": "addSpatialIndex",
+                    "name": null,
+                    "columns": [
+                      {
+                        "id": "P_INDEX_COLUMN",
+                        "def": {
+                          "column": "id"
+                        }
+                      }
+                    ],
+                    "options": []
+                  }
+                }
+              }
+            }
+          ]
+        }
+      }
+    }
+  ]
+}
+`;
+
+exports[`Parser: Should alter table adding spatial key with two columns and options. 1`] = `
+{
+  "id": "MAIN",
+  "def": [
+    {
+      "id": "P_DDS",
+      "def": {
+        "id": "P_ALTER_TABLE",
+        "def": {
+          "table": "people",
+          "specs": [
+            {
+              "id": "P_ALTER_TABLE_SPECS",
+              "def": {
+                "spec": {
+                  "id": "O_ALTER_TABLE_SPEC",
+                  "def": {
+                    "action": "addSpatialIndex",
+                    "name": "sk_id",
+                    "columns": [
+                      {
+                        "id": "P_INDEX_COLUMN",
+                        "def": {
+                          "column": "id",
+                          "length": 2,
+                          "sort": "asc"
+                        }
+                      },
+                      {
+                        "id": "P_INDEX_COLUMN",
+                        "def": {
+                          "column": "o_id"
+                        }
+                      }
+                    ],
+                    "options": [
+                      {
+                        "id": "O_INDEX_OPTION",
+                        "def": {
+                          "keyBlockSize": 1024
+                        }
+                      },
+                      {
+                        "id": "O_INDEX_OPTION",
+                        "def": {
+                          "comment": "test"
+                        }
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          ]
+        }
+      }
+    }
+  ]
+}
+`;
+
+exports[`Parser: Should alter table adding spatial key with two columns and options. 2`] = `
+{
+  "id": "MAIN",
+  "def": [
+    {
+      "id": "P_DDS",
+      "def": {
+        "id": "P_ALTER_TABLE",
+        "def": {
+          "table": "people",
+          "specs": [
+            {
+              "id": "P_ALTER_TABLE_SPECS",
+              "def": {
+                "spec": {
+                  "id": "O_ALTER_TABLE_SPEC",
+                  "def": {
+                    "action": "addSpatialIndex",
+                    "name": "sk_id",
+                    "columns": [
+                      {
+                        "id": "P_INDEX_COLUMN",
+                        "def": {
+                          "column": "id",
+                          "length": 2,
+                          "sort": "asc"
+                        }
+                      },
+                      {
+                        "id": "P_INDEX_COLUMN",
+                        "def": {
+                          "column": "o_id"
+                        }
+                      }
+                    ],
+                    "options": [
+                      {
+                        "id": "O_INDEX_OPTION",
+                        "def": {
+                          "keyBlockSize": 1024
+                        }
+                      },
+                      {
+                        "id": "O_INDEX_OPTION",
+                        "def": {
+                          "comment": "test"
+                        }
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          ]
+        }
+      }
+    }
+  ]
+}
+`;

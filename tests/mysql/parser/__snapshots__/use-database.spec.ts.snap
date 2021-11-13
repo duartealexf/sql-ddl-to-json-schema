@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Parser: Should use test database 1`] = `
+{
+  "id": "MAIN",
+  "def": [
+    {
+      "id": "P_DDS",
+      "def": {
+        "id": "P_USE_DB",
+        "def": {
+          "database": "test"
+        }
+      }
+    },
+    {
+      "id": "P_DDS",
+      "def": {
+        "id": "P_USE_DB",
+        "def": {
+          "database": "another_test"
+        }
+      }
+    }
+  ]
+}
+`;

@@ -23,21 +23,17 @@
   "scripts": {
     "standard-version": "standard-version",
     "ts-node": "ts-node",
-    "nodemon": "nodemon",
-    "ava": "ava",
     "eslint": "eslint",
     "tsc": "tsc --build tsconfig.json",
     "nearleyc": "node_modules/nearley/bin/nearleyc.js",
-    "pretest": "ln -sfn ../ node_modules/sql-ddl-to-json-schema",
-    "test": "npm run ava",
-    "test:watch": "npm run nodemon -- -w lib -w test --exec 'npm run test'",
-    "test:update": "DRY_UPDATE=1 npm run test",
+    "test": "jest --passWithNoTests --no-cache --testTimeout=30000",
+    "test:watch": "npm run test -- --runInBand --watchAll --testTimeout=30000",
     "prebuild:mysql": "npm run ts-node -- tasks/mysql/prebuild.ts",
     "postbuild:mysql": "npm run ts-node -- tasks/mysql/postbuild.ts",
     "build:mysql": "nearleyc src/mysql/language/grammar.ne -o src/mysql/language/grammar.ts",
     "build": "npm run build:mysql && tsc",
     "build:watch": "npm run nodemon -- -w src --exec 'npm run build'",
-    "lint": "eslint src/**/*.ts tasks/**/*.ts",
+    "lint": "eslint {src,tasks,tests}/**/*.ts --fix",
     "prerelease": "npm run lint && npm run build",
     "release": "standard-version && git push --follow-tags && npm publish"
   },
@@ -53,17 +49,18 @@
   "dependencies": {
     "@types/moo": "0.5.5",
     "@types/nearley": "2.11.2",
+    "@types/stringify-object": "^4.0.0",
     "json-schema": "0.2.5",
     "moo": "0.5.1",
     "nearley": "2.20.1"
   },
   "devDependencies": {
     "@types/fs-extra": "^8.1.2",
+    "@types/jest": "^27.0.2",
     "@types/node": "^13.13.52",
     "@types/winston": "^2.4.4",
     "@typescript-eslint/eslint-plugin": "^2.34.0",
     "@typescript-eslint/parser": "^2.34.0",
-    "ava": "^3.15.0",
     "commitizen": "^4.2.4",
     "cz-conventional-changelog": "^2.1.0",
     "eslint": "^6.3.0",
@@ -73,10 +70,14 @@
     "eslint-plugin-import": "^2.25.3",
     "eslint-plugin-prettier": "^3.4.1",
     "fs-extra": "^5.0.0",
+    "jest": "^27.3.1",
+    "jest-snapshot": "^27.3.1",
     "nodemon": "^2.0.15",
-    "nyc": "^15.1.0",
     "prettier": "^1.18.2",
+    "pretty-format": "^27.3.1",
     "standard-version": "^8.0.2",
+    "supports-color": "^9.0.2",
+    "ts-jest": "^27.0.7",
     "ts-node": "^8.10.2",
     "typescript": "^3.9.10",
     "winston": "^3.3.3"
@@ -86,11 +87,6 @@
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog"
     }
-  },
-  "ava": {
-    "files": [
-      "test/**/*.spec.js"
-    ]
   },
   "nodemonConfig": {
     "delay": "1000",

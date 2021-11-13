@@ -34,8 +34,9 @@
     "build": "npm run build:mysql && tsc",
     "build:watch": "npm run nodemon -- -w src --exec 'npm run build'",
     "lint": "eslint {src,tasks,tests}/**/*.ts --fix",
+    "version": "standard-version && git push --follow-tags",
     "prerelease": "npm run lint && npm run build",
-    "release": "standard-version && git push --follow-tags && npm publish"
+    "release": "npm publish"
   },
   "repository": {
     "type": "git",

@@ -15,9 +15,7 @@
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
     "forceConsistentCasingInFileNames": true,
-    "rootDirs": ["src", "tests"],
     "baseUrl": "./src"
   },
-  "include": ["./src", "./tests/"],
-  "exclude": ["**/__snapshots__/**"]
+  "include": ["./src"]
 }

@@ -1,0 +1,1102 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Parser: Should alter column default value. 1`] = `
+{
+  "id": "MAIN",
+  "def": [
+    {
+      "id": "P_DDS",
+      "def": {
+        "id": "P_ALTER_TABLE",
+        "def": {
+          "table": "people",
+          "specs": [
+            {
+              "id": "P_ALTER_TABLE_SPECS",
+              "def": {
+                "spec": {
+                  "id": "O_ALTER_TABLE_SPEC",
+                  "def": {
+                    "action": "setDefaultColumnValue",
+                    "column": "age",
+                    "value": 18
+                  }
+                }
+              }
+            }
+          ]
+        }
+      }
+    }
+  ]
+}
+`;
+
+exports[`Parser: Should alter column default value. 2`] = `
+{
+  "id": "MAIN",
+  "def": [
+    {
+      "id": "P_DDS",
+      "def": {
+        "id": "P_ALTER_TABLE",
+        "def": {
+          "table": "people",
+          "specs": [
+            {
+              "id": "P_ALTER_TABLE_SPECS",
+              "def": {
+                "spec": {
+                  "id": "O_ALTER_TABLE_SPEC",
+                  "def": {
+                    "action": "setDefaultColumnValue",
+                    "column": "age",
+                    "value": 18
+                  }
+                }
+              }
+            }
+          ]
+        }
+      }
+    }
+  ]
+}
+`;
+
+exports[`Parser: Should alter table adding period for system_time. 1`] = `
+{
+  "id": "MAIN",
+  "def": [
+    {
+      "id": "P_DDS",
+      "def": {
+        "id": "P_ALTER_TABLE",
+        "def": {
+          "table": "test",
+          "specs": [
+            {
+              "id": "P_ALTER_TABLE_SPECS",
+              "def": {
+                "spec": {
+                  "id": "O_ALTER_TABLE_SPEC",
+                  "def": {
+                    "action": "addPeriodForSystemTime",
+                    "startColumnName": "test1",
+                    "endColumnName": "test2"
+                  }
+                }
+              }
+            }
+          ]
+        }
+      }
+    }
+  ]
+}
+`;
+
+exports[`Parser: Should alter table algorithm, with online, ignore and wait keywords. 1`] = `
+{
+  "id": "MAIN",
+  "def": [
+    {
+      "id": "P_DDS",
+      "def": {
+        "id": "P_ALTER_TABLE",
+        "def": {
+          "table": "people",
+          "specs": [
+            {
+              "id": "P_ALTER_TABLE_SPECS",
+              "def": {
+                "spec": {
+                  "id": "O_ALTER_TABLE_SPEC",
+                  "def": {
+                    "action": "changeAlgorithm",
+                    "algorithm": "default"
+                  }
+                }
+              }
+            }
+          ]
+        }
+      }
+    }
+  ]
+}
+`;
+
+exports[`Parser: Should alter table algorithm, with online, ignore and wait keywords. 2`] = `
+{
+  "id": "MAIN",
+  "def": [
+    {
+      "id": "P_DDS",
+      "def": {
+        "id": "P_ALTER_TABLE",
+        "def": {
+          "table": "people",
+          "specs": [
+            {
+              "id": "P_ALTER_TABLE_SPECS",
+              "def": {
+                "spec": {
+                  "id": "O_ALTER_TABLE_SPEC",
+                  "def": {
+                    "action": "changeAlgorithm",
+                    "algorithm": "default"
+                  }
+                }
+              }
+            }
+          ]
+        }
+      }
+    }
+  ]
+}
+`;
+
+exports[`Parser: Should alter table algorithm, with online, ignore and wait keywords. 3`] = `
+{
+  "id": "MAIN",
+  "def": [
+    {
+      "id": "P_DDS",
+      "def": {
+        "id": "P_ALTER_TABLE",
+        "def": {
+          "table": "people",
+          "specs": [
+            {
+              "id": "P_ALTER_TABLE_SPECS",
+              "def": {
+                "spec": {
+                  "id": "O_ALTER_TABLE_SPEC",
+                  "def": {
+                    "action": "changeAlgorithm",
+                    "algorithm": "default"
+                  }
+                }
+              }
+            }
+          ]
+        }
+      }
+    }
+  ]
+}
+`;
+
+exports[`Parser: Should alter table converting to character set and collation. 1`] = `
+{
+  "id": "MAIN",
+  "def": [
+    {
+      "id": "P_DDS",
+      "def": {
+        "id": "P_ALTER_TABLE",
+        "def": {
+          "table": "people",
+          "specs": [
+            {
+              "id": "P_ALTER_TABLE_SPECS",
+              "def": {
+                "spec": {
+                  "id": "O_ALTER_TABLE_SPEC",
+                  "def": {
+                    "action": "convertToCharacterSet",
+                    "charset": "utf8",
+                    "collate": "utf8_general_ci"
+                  }
+                }
+              }
+            }
+          ]
+        }
+      }
+    }
+  ]
+}
+`;
+
+exports[`Parser: Should alter table converting to character set. 1`] = `
+{
+  "id": "MAIN",
+  "def": [
+    {
+      "id": "P_DDS",
+      "def": {
+        "id": "P_ALTER_TABLE",
+        "def": {
+          "table": "people",
+          "specs": [
+            {
+              "id": "P_ALTER_TABLE_SPECS",
+              "def": {
+                "spec": {
+                  "id": "O_ALTER_TABLE_SPEC",
+                  "def": {
+                    "action": "convertToCharacterSet",
+                    "charset": "utf8",
+                    "collate": null
+                  }
+                }
+              }
+            }
+          ]
+        }
+      }
+    }
+  ]
+}
+`;
+
+exports[`Parser: Should alter table default character set and collation. 1`] = `
+{
+  "id": "MAIN",
+  "def": [
+    {
+      "id": "P_DDS",
+      "def": {
+        "id": "P_ALTER_TABLE",
+        "def": {
+          "table": "people",
+          "specs": [
+            {
+              "id": "P_ALTER_TABLE_SPECS",
+              "def": {
+                "tableOptions": {
+                  "id": "P_CREATE_TABLE_OPTIONS",
+                  "def": [
+                    {
+                      "id": "O_CREATE_TABLE_OPTION",
+                      "def": {
+                        "charset": "utf8"
+                      }
+                    },
+                    {
+                      "id": "O_CREATE_TABLE_OPTION",
+                      "def": {
+                        "collation": "utf8_general_ci"
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          ]
+        }
+      }
+    }
+  ]
+}
+`;
+
+exports[`Parser: Should alter table default character set and collation. 2`] = `
+{
+  "id": "MAIN",
+  "def": [
+    {
+      "id": "P_DDS",
+      "def": {
+        "id": "P_ALTER_TABLE",
+        "def": {
+          "table": "people",
+          "specs": [
+            {
+              "id": "P_ALTER_TABLE_SPECS",
+              "def": {
+                "tableOptions": {
+                  "id": "P_CREATE_TABLE_OPTIONS",
+                  "def": [
+                    {
+                      "id": "O_CREATE_TABLE_OPTION",
+                      "def": {
+                        "charset": "utf8"
+                      }
+                    },
+                    {
+                      "id": "O_CREATE_TABLE_OPTION",
+                      "def": {
+                        "collation": "utf8_general_ci"
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          ]
+        }
+      }
+    }
+  ]
+}
+`;
+
+exports[`Parser: Should alter table default character set and collation. 3`] = `
+{
+  "id": "MAIN",
+  "def": [
+    {
+      "id": "P_DDS",
+      "def": {
+        "id": "P_ALTER_TABLE",
+        "def": {
+          "table": "people",
+          "specs": [
+            {
+              "id": "P_ALTER_TABLE_SPECS",
+              "def": {
+                "tableOptions": {
+                  "id": "P_CREATE_TABLE_OPTIONS",
+                  "def": [
+                    {
+                      "id": "O_CREATE_TABLE_OPTION",
+                      "def": {
+                        "charset": "utf8"
+                      }
+                    },
+                    {
+                      "id": "O_CREATE_TABLE_OPTION",
+                      "def": {
+                        "collation": "utf8_general_ci"
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          ]
+        }
+      }
+    }
+  ]
+}
+`;
+
+exports[`Parser: Should alter table default character set. 1`] = `
+{
+  "id": "MAIN",
+  "def": [
+    {
+      "id": "P_DDS",
+      "def": {
+        "id": "P_ALTER_TABLE",
+        "def": {
+          "table": "people",
+          "specs": [
+            {
+              "id": "P_ALTER_TABLE_SPECS",
+              "def": {
+                "tableOptions": {
+                  "id": "P_CREATE_TABLE_OPTIONS",
+                  "def": [
+                    {
+                      "id": "O_CREATE_TABLE_OPTION",
+                      "def": {
+                        "charset": "utf8"
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          ]
+        }
+      }
+    }
+  ]
+}
+`;
+
+exports[`Parser: Should alter table default character set. 2`] = `
+{
+  "id": "MAIN",
+  "def": [
+    {
+      "id": "P_DDS",
+      "def": {
+        "id": "P_ALTER_TABLE",
+        "def": {
+          "table": "people",
+          "specs": [
+            {
+              "id": "P_ALTER_TABLE_SPECS",
+              "def": {
+                "tableOptions": {
+                  "id": "P_CREATE_TABLE_OPTIONS",
+                  "def": [
+                    {
+                      "id": "O_CREATE_TABLE_OPTION",
+                      "def": {
+                        "charset": "utf8"
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          ]
+        }
+      }
+    }
+  ]
+}
+`;
+
+exports[`Parser: Should alter table default character set. 3`] = `
+{
+  "id": "MAIN",
+  "def": [
+    {
+      "id": "P_DDS",
+      "def": {
+        "id": "P_ALTER_TABLE",
+        "def": {
+          "table": "people",
+          "specs": [
+            {
+              "id": "P_ALTER_TABLE_SPECS",
+              "def": {
+                "tableOptions": {
+                  "id": "P_CREATE_TABLE_OPTIONS",
+                  "def": [
+                    {
+                      "id": "O_CREATE_TABLE_OPTION",
+                      "def": {
+                        "charset": "utf8"
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          ]
+        }
+      }
+    }
+  ]
+}
+`;
+
+exports[`Parser: Should alter table lock. 1`] = `
+{
+  "id": "MAIN",
+  "def": [
+    {
+      "id": "P_DDS",
+      "def": {
+        "id": "P_ALTER_TABLE",
+        "def": {
+          "table": "people",
+          "specs": [
+            {
+              "id": "P_ALTER_TABLE_SPECS",
+              "def": {
+                "spec": {
+                  "id": "O_ALTER_TABLE_SPEC",
+                  "def": {
+                    "action": "changeLock",
+                    "lock": "default"
+                  }
+                }
+              }
+            }
+          ]
+        }
+      }
+    }
+  ]
+}
+`;
+
+exports[`Parser: Should alter table lock. 2`] = `
+{
+  "id": "MAIN",
+  "def": [
+    {
+      "id": "P_DDS",
+      "def": {
+        "id": "P_ALTER_TABLE",
+        "def": {
+          "table": "people",
+          "specs": [
+            {
+              "id": "P_ALTER_TABLE_SPECS",
+              "def": {
+                "spec": {
+                  "id": "O_ALTER_TABLE_SPEC",
+                  "def": {
+                    "action": "changeLock",
+                    "lock": "default"
+                  }
+                }
+              }
+            }
+          ]
+        }
+      }
+    }
+  ]
+}
+`;
+
+exports[`Parser: Should alter table lock. 3`] = `
+{
+  "id": "MAIN",
+  "def": [
+    {
+      "id": "P_DDS",
+      "def": {
+        "id": "P_ALTER_TABLE",
+        "def": {
+          "table": "people",
+          "specs": [
+            {
+              "id": "P_ALTER_TABLE_SPECS",
+              "def": {
+                "spec": {
+                  "id": "O_ALTER_TABLE_SPEC",
+                  "def": {
+                    "action": "changeLock",
+                    "lock": "default"
+                  }
+                }
+              }
+            }
+          ]
+        }
+      }
+    }
+  ]
+}
+`;
+
+exports[`Parser: Should alter table ordering by one column. 1`] = `
+{
+  "id": "MAIN",
+  "def": [
+    {
+      "id": "P_DDS",
+      "def": {
+        "id": "P_ALTER_TABLE",
+        "def": {
+          "table": "people",
+          "specs": [
+            {
+              "id": "P_ALTER_TABLE_SPECS",
+              "def": {
+                "spec": {
+                  "id": "O_ALTER_TABLE_SPEC",
+                  "def": {
+                    "action": "orderBy",
+                    "columns": [
+                      "id"
+                    ]
+                  }
+                }
+              }
+            }
+          ]
+        }
+      }
+    }
+  ]
+}
+`;
+
+exports[`Parser: Should alter table ordering by several columns. 1`] = `
+{
+  "id": "MAIN",
+  "def": [
+    {
+      "id": "P_DDS",
+      "def": {
+        "id": "P_ALTER_TABLE",
+        "def": {
+          "table": "people",
+          "specs": [
+            {
+              "id": "P_ALTER_TABLE_SPECS",
+              "def": {
+                "spec": {
+                  "id": "O_ALTER_TABLE_SPEC",
+                  "def": {
+                    "action": "orderBy",
+                    "columns": [
+                      "id",
+                      "initials",
+                      "name",
+                      "fullname",
+                      "family"
+                    ]
+                  }
+                }
+              }
+            }
+          ]
+        }
+      }
+    }
+  ]
+}
+`;
+
+exports[`Parser: Should drop column default value. 1`] = `
+{
+  "id": "MAIN",
+  "def": [
+    {
+      "id": "P_DDS",
+      "def": {
+        "id": "P_ALTER_TABLE",
+        "def": {
+          "table": "people",
+          "specs": [
+            {
+              "id": "P_ALTER_TABLE_SPECS",
+              "def": {
+                "spec": {
+                  "id": "O_ALTER_TABLE_SPEC",
+                  "def": {
+                    "action": "dropDefaultColumnValue",
+                    "column": "name"
+                  }
+                }
+              }
+            }
+          ]
+        }
+      }
+    }
+  ]
+}
+`;
+
+exports[`Parser: Should drop column default value. 2`] = `
+{
+  "id": "MAIN",
+  "def": [
+    {
+      "id": "P_DDS",
+      "def": {
+        "id": "P_ALTER_TABLE",
+        "def": {
+          "table": "people",
+          "specs": [
+            {
+              "id": "P_ALTER_TABLE_SPECS",
+              "def": {
+                "spec": {
+                  "id": "O_ALTER_TABLE_SPEC",
+                  "def": {
+                    "action": "dropDefaultColumnValue",
+                    "column": "name"
+                  }
+                }
+              }
+            }
+          ]
+        }
+      }
+    }
+  ]
+}
+`;
+
+exports[`Parser: Should run one alter table statement with only one option. 1`] = `
+{
+  "id": "MAIN",
+  "def": [
+    {
+      "id": "P_DDS",
+      "def": {
+        "id": "P_ALTER_TABLE",
+        "def": {
+          "table": "people",
+          "specs": [
+            {
+              "id": "P_ALTER_TABLE_SPECS",
+              "def": {
+                "tableOptions": {
+                  "id": "P_CREATE_TABLE_OPTIONS",
+                  "def": [
+                    {
+                      "id": "O_CREATE_TABLE_OPTION",
+                      "def": {
+                        "comment": "test"
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          ]
+        }
+      }
+    }
+  ]
+}
+`;
+
+exports[`Parser: Should run one alter table statement with several alter table specs and options. 1`] = `
+{
+  "id": "MAIN",
+  "def": [
+    {
+      "id": "P_DDS",
+      "def": {
+        "id": "P_ALTER_TABLE",
+        "def": {
+          "table": "people",
+          "specs": [
+            {
+              "id": "P_ALTER_TABLE_SPECS",
+              "def": {
+                "tableOptions": {
+                  "id": "P_CREATE_TABLE_OPTIONS",
+                  "def": [
+                    {
+                      "id": "O_CREATE_TABLE_OPTION",
+                      "def": {
+                        "comment": "test"
+                      }
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "id": "P_ALTER_TABLE_SPECS",
+              "def": {
+                "spec": {
+                  "id": "O_ALTER_TABLE_SPEC",
+                  "def": {
+                    "action": "enableKeys"
+                  }
+                }
+              }
+            },
+            {
+              "id": "P_ALTER_TABLE_SPECS",
+              "def": {
+                "spec": {
+                  "id": "O_ALTER_TABLE_SPEC",
+                  "def": {
+                    "action": "disableKeys"
+                  }
+                }
+              }
+            },
+            {
+              "id": "P_ALTER_TABLE_SPECS",
+              "def": {
+                "spec": {
+                  "id": "O_ALTER_TABLE_SPEC",
+                  "def": {
+                    "action": "discardTablespace"
+                  }
+                }
+              }
+            },
+            {
+              "id": "P_ALTER_TABLE_SPECS",
+              "def": {
+                "spec": {
+                  "id": "O_ALTER_TABLE_SPEC",
+                  "def": {
+                    "action": "importTablespace"
+                  }
+                }
+              }
+            },
+            {
+              "id": "P_ALTER_TABLE_SPECS",
+              "def": {
+                "spec": {
+                  "id": "O_ALTER_TABLE_SPEC",
+                  "def": {
+                    "action": "force"
+                  }
+                }
+              }
+            },
+            {
+              "id": "P_ALTER_TABLE_SPECS",
+              "def": {
+                "tableOptions": {
+                  "id": "P_CREATE_TABLE_OPTIONS",
+                  "def": [
+                    {
+                      "id": "O_CREATE_TABLE_OPTION",
+                      "def": {
+                        "comment": "another test"
+                      }
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "id": "P_ALTER_TABLE_SPECS",
+              "def": {
+                "spec": {
+                  "id": "O_ALTER_TABLE_SPEC",
+                  "def": {
+                    "action": "withValidation"
+                  }
+                }
+              }
+            },
+            {
+              "id": "P_ALTER_TABLE_SPECS",
+              "def": {
+                "spec": {
+                  "id": "O_ALTER_TABLE_SPEC",
+                  "def": {
+                    "action": "withoutValidation"
+                  }
+                }
+              }
+            },
+            {
+              "id": "P_ALTER_TABLE_SPECS",
+              "def": {
+                "spec": {
+                  "id": "O_ALTER_TABLE_SPEC",
+                  "def": {
+                    "action": "rename",
+                    "newName": "persons"
+                  }
+                }
+              }
+            },
+            {
+              "id": "P_ALTER_TABLE_SPECS",
+              "def": {
+                "spec": {
+                  "id": "O_ALTER_TABLE_SPEC",
+                  "def": {
+                    "action": "rename",
+                    "newName": "persons"
+                  }
+                }
+              }
+            }
+          ]
+        }
+      }
+    }
+  ]
+}
+`;
+
+exports[`Parser: Should run several simple alter table statements. 1`] = `
+{
+  "id": "MAIN",
+  "def": [
+    {
+      "id": "P_DDS",
+      "def": {
+        "id": "P_ALTER_TABLE",
+        "def": {
+          "table": "people",
+          "specs": [
+            {
+              "id": "P_ALTER_TABLE_SPECS",
+              "def": {
+                "spec": {
+                  "id": "O_ALTER_TABLE_SPEC",
+                  "def": {
+                    "action": "enableKeys"
+                  }
+                }
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "P_DDS",
+      "def": {
+        "id": "P_ALTER_TABLE",
+        "def": {
+          "table": "people",
+          "specs": [
+            {
+              "id": "P_ALTER_TABLE_SPECS",
+              "def": {
+                "spec": {
+                  "id": "O_ALTER_TABLE_SPEC",
+                  "def": {
+                    "action": "disableKeys"
+                  }
+                }
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "P_DDS",
+      "def": {
+        "id": "P_ALTER_TABLE",
+        "def": {
+          "table": "people",
+          "specs": [
+            {
+              "id": "P_ALTER_TABLE_SPECS",
+              "def": {
+                "spec": {
+                  "id": "O_ALTER_TABLE_SPEC",
+                  "def": {
+                    "action": "discardTablespace"
+                  }
+                }
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "P_DDS",
+      "def": {
+        "id": "P_ALTER_TABLE",
+        "def": {
+          "table": "people",
+          "specs": [
+            {
+              "id": "P_ALTER_TABLE_SPECS",
+              "def": {
+                "spec": {
+                  "id": "O_ALTER_TABLE_SPEC",
+                  "def": {
+                    "action": "importTablespace"
+                  }
+                }
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "P_DDS",
+      "def": {
+        "id": "P_ALTER_TABLE",
+        "def": {
+          "table": "people",
+          "specs": [
+            {
+              "id": "P_ALTER_TABLE_SPECS",
+              "def": {
+                "spec": {
+                  "id": "O_ALTER_TABLE_SPEC",
+                  "def": {
+                    "action": "force"
+                  }
+                }
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "P_DDS",
+      "def": {
+        "id": "P_ALTER_TABLE",
+        "def": {
+          "table": "people",
+          "specs": [
+            {
+              "id": "P_ALTER_TABLE_SPECS",
+              "def": {
+                "spec": {
+                  "id": "O_ALTER_TABLE_SPEC",
+                  "def": {
+                    "action": "withValidation"
+                  }
+                }
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "P_DDS",
+      "def": {
+        "id": "P_ALTER_TABLE",
+        "def": {
+          "table": "people",
+          "specs": [
+            {
+              "id": "P_ALTER_TABLE_SPECS",
+              "def": {
+                "spec": {
+                  "id": "O_ALTER_TABLE_SPEC",
+                  "def": {
+                    "action": "withoutValidation"
+                  }
+                }
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "P_DDS",
+      "def": {
+        "id": "P_ALTER_TABLE",
+        "def": {
+          "table": "people",
+          "specs": [
+            {
+              "id": "P_ALTER_TABLE_SPECS",
+              "def": {
+                "spec": {
+                  "id": "O_ALTER_TABLE_SPEC",
+                  "def": {
+                    "action": "rename",
+                    "newName": "persons"
+                  }
+                }
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "P_DDS",
+      "def": {
+        "id": "P_ALTER_TABLE",
+        "def": {
+          "table": "people",
+          "specs": [
+            {
+              "id": "P_ALTER_TABLE_SPECS",
+              "def": {
+                "spec": {
+                  "id": "O_ALTER_TABLE_SPEC",
+                  "def": {
+                    "action": "rename",
+                    "newName": "persons"
+                  }
+                }
+              }
+            }
+          ]
+        }
+      }
+    }
+  ]
+}
+`;

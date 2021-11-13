@@ -1,6 +1,6 @@
 # SQL DDL to JSON Schema converter
 
-[![Build Status](https://travis-ci.org/duartealexf/sql-ddl-to-json-schema.svg?branch=master)](https://travis-ci.org/duartealexf/sql-ddl-to-json-schema)
+[![Tests](https://github.com/duartealexf/sql-ddl-to-json-schema/actions/workflows/run-tests.yaml/badge.svg)](https://github.com/duartealexf/sql-ddl-to-json-schema/actions/workflows/run-tests.yaml)
 [![npm](https://img.shields.io/npm/v/sql-ddl-to-json-schema.svg)](https://img.shields.io/npm/v/sql-ddl-to-json-schema.svg)
 [![node](https://img.shields.io/node/v/sql-ddl-to-json-schema.svg)](https://img.shields.io/node/v/sql-ddl-to-json-schema.svg)
 [![license](https://img.shields.io/npm/l/sql-ddl-to-json-schema.svg)](https://img.shields.io/npm/l/sql-ddl-to-json-schema.svg)

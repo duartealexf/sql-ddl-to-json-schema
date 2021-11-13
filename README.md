@@ -225,14 +225,12 @@ const options = {};
 /**
  * Get the JSON Schema if you need to modify it...
  */
-const jsonSchemaDocuments = parser.feed(sql)
-  .toJsonSchemaArray(options);
+const jsonSchemaDocuments = parser.feed(sql).toJsonSchemaArray(options);
 
 /**
  * Or explore the compact JSON format...
  */
-const compactJsonTablesArray = parser.feed(sql)
-  .toCompactJson(parsedJsonFormat);
+const compactJsonTablesArray = parser.feed(sql).toCompactJson(parser.results);
 ```
 
 ### Step by step

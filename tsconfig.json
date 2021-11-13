@@ -10,11 +10,14 @@
     "declaration": true,
     "strict": true,
     "esModuleInterop": true,
+    "types": ["node", "jest"],
     "allowSyntheticDefaultImports": true,
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
+    "forceConsistentCasingInFileNames": true,
+    "rootDirs": ["src", "tests"],
     "baseUrl": "./src"
   },
-  "include": ["src"],
+  "include": ["./src", "./tests/"],
   "exclude": ["**/__snapshots__/**"]
 }

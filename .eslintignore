@@ -4,3 +4,5 @@
 /test
 
 grammar.ts
+__snapshots__
+jest.config.js

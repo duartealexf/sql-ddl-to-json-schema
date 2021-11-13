@@ -1,0 +1,338 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Parser: Should alter table adding one column (with parenthesis as if it was more than one). 1`] = `
+{
+  "id": "MAIN",
+  "def": [
+    {
+      "id": "P_DDS",
+      "def": {
+        "id": "P_ALTER_TABLE",
+        "def": {
+          "table": "people",
+          "specs": [
+            {
+              "id": "P_ALTER_TABLE_SPECS",
+              "def": {
+                "spec": {
+                  "id": "O_ALTER_TABLE_SPEC",
+                  "def": {
+                    "action": "addColumns",
+                    "columns": [
+                      {
+                        "name": "status",
+                        "datatype": {
+                          "id": "O_DATATYPE",
+                          "def": {
+                            "id": "O_BOOLEAN_DATATYPE",
+                            "def": {
+                              "datatype": "boolean"
+                            }
+                          }
+                        },
+                        "columnDefinition": []
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          ]
+        }
+      }
+    }
+  ]
+}
+`;
+
+exports[`Parser: Should alter table adding one column with one option and position. 1`] = `
+{
+  "id": "MAIN",
+  "def": [
+    {
+      "id": "P_DDS",
+      "def": {
+        "id": "P_ALTER_TABLE",
+        "def": {
+          "table": "people",
+          "specs": [
+            {
+              "id": "P_ALTER_TABLE_SPECS",
+              "def": {
+                "spec": {
+                  "id": "O_ALTER_TABLE_SPEC",
+                  "def": {
+                    "action": "addColumn",
+                    "name": "uid",
+                    "datatype": {
+                      "id": "O_DATATYPE",
+                      "def": {
+                        "id": "O_INTEGER_DATATYPE",
+                        "def": {
+                          "datatype": "int",
+                          "width": 10
+                        }
+                      }
+                    },
+                    "columnDefinition": [
+                      {
+                        "id": "O_COLUMN_DEFINITION",
+                        "def": {
+                          "unsigned": true
+                        }
+                      }
+                    ],
+                    "position": {
+                      "after": "name"
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
+      }
+    }
+  ]
+}
+`;
+
+exports[`Parser: Should alter table adding one column with options and position. 1`] = `
+{
+  "id": "MAIN",
+  "def": [
+    {
+      "id": "P_DDS",
+      "def": {
+        "id": "P_ALTER_TABLE",
+        "def": {
+          "table": "people",
+          "specs": [
+            {
+              "id": "P_ALTER_TABLE_SPECS",
+              "def": {
+                "spec": {
+                  "id": "O_ALTER_TABLE_SPEC",
+                  "def": {
+                    "action": "addColumn",
+                    "name": "uid",
+                    "datatype": {
+                      "id": "O_DATATYPE",
+                      "def": {
+                        "id": "O_INTEGER_DATATYPE",
+                        "def": {
+                          "datatype": "int",
+                          "width": 10
+                        }
+                      }
+                    },
+                    "columnDefinition": [
+                      {
+                        "id": "O_COLUMN_DEFINITION",
+                        "def": {
+                          "unsigned": true
+                        }
+                      },
+                      {
+                        "id": "O_COLUMN_DEFINITION",
+                        "def": {
+                          "zerofill": true
+                        }
+                      }
+                    ],
+                    "position": {
+                      "after": "name"
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
+      }
+    }
+  ]
+}
+`;
+
+exports[`Parser: Should alter table adding one column with position. 1`] = `
+{
+  "id": "MAIN",
+  "def": [
+    {
+      "id": "P_DDS",
+      "def": {
+        "id": "P_ALTER_TABLE",
+        "def": {
+          "table": "people",
+          "specs": [
+            {
+              "id": "P_ALTER_TABLE_SPECS",
+              "def": {
+                "spec": {
+                  "id": "O_ALTER_TABLE_SPEC",
+                  "def": {
+                    "action": "addColumn",
+                    "name": "uid",
+                    "datatype": {
+                      "id": "O_DATATYPE",
+                      "def": {
+                        "id": "O_INTEGER_DATATYPE",
+                        "def": {
+                          "datatype": "int",
+                          "width": 10
+                        }
+                      }
+                    },
+                    "columnDefinition": [],
+                    "position": {
+                      "after": null
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
+      }
+    }
+  ]
+}
+`;
+
+exports[`Parser: Should alter table adding one column. 1`] = `
+{
+  "id": "MAIN",
+  "def": [
+    {
+      "id": "P_DDS",
+      "def": {
+        "id": "P_ALTER_TABLE",
+        "def": {
+          "table": "people",
+          "specs": [
+            {
+              "id": "P_ALTER_TABLE_SPECS",
+              "def": {
+                "spec": {
+                  "id": "O_ALTER_TABLE_SPEC",
+                  "def": {
+                    "action": "addColumn",
+                    "name": "uid",
+                    "datatype": {
+                      "id": "O_DATATYPE",
+                      "def": {
+                        "id": "O_INTEGER_DATATYPE",
+                        "def": {
+                          "datatype": "int",
+                          "width": 10
+                        }
+                      }
+                    },
+                    "columnDefinition": [],
+                    "position": null
+                  }
+                }
+              }
+            }
+          ]
+        }
+      }
+    }
+  ]
+}
+`;
+
+exports[`Parser: Should alter table adding three columns. 1`] = `
+{
+  "id": "MAIN",
+  "def": [
+    {
+      "id": "P_DDS",
+      "def": {
+        "id": "P_ALTER_TABLE",
+        "def": {
+          "table": "people",
+          "specs": [
+            {
+              "id": "P_ALTER_TABLE_SPECS",
+              "def": {
+                "spec": {
+                  "id": "O_ALTER_TABLE_SPEC",
+                  "def": {
+                    "action": "addColumns",
+                    "columns": [
+                      {
+                        "name": "uid",
+                        "datatype": {
+                          "id": "O_DATATYPE",
+                          "def": {
+                            "id": "O_INTEGER_DATATYPE",
+                            "def": {
+                              "datatype": "int",
+                              "width": 10
+                            }
+                          }
+                        },
+                        "columnDefinition": [
+                          {
+                            "id": "O_COLUMN_DEFINITION",
+                            "def": {
+                              "unsigned": true
+                            }
+                          },
+                          {
+                            "id": "O_COLUMN_DEFINITION",
+                            "def": {
+                              "nullable": false
+                            }
+                          }
+                        ]
+                      },
+                      {
+                        "name": "sid",
+                        "datatype": {
+                          "id": "O_DATATYPE",
+                          "def": {
+                            "id": "O_INTEGER_DATATYPE",
+                            "def": {
+                              "datatype": "int",
+                              "width": 10
+                            }
+                          }
+                        },
+                        "columnDefinition": [
+                          {
+                            "id": "O_COLUMN_DEFINITION",
+                            "def": {
+                              "unsigned": true
+                            }
+                          }
+                        ]
+                      },
+                      {
+                        "name": "initials",
+                        "datatype": {
+                          "id": "O_DATATYPE",
+                          "def": {
+                            "id": "O_VARIABLE_STRING_DATATYPE",
+                            "def": {
+                              "datatype": "char",
+                              "length": 5
+                            }
+                          }
+                        },
+                        "columnDefinition": []
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          ]
+        }
+      }
+    }
+  ]
+}
+`;

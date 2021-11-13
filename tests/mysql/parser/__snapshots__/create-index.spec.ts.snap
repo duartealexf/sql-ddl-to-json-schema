@@ -1,0 +1,149 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Parser: Should create test index with all different options. 1`] = `
+{
+  "id": "MAIN",
+  "def": [
+    {
+      "id": "P_DDS",
+      "def": {
+        "id": "P_CREATE_INDEX",
+        "def": {
+          "name": "test",
+          "type": "UNIQUE INDEX",
+          "index": {
+            "id": "P_INDEX_TYPE",
+            "def": "BTREE"
+          },
+          "table": "people",
+          "columns": [
+            {
+              "id": "P_INDEX_COLUMN",
+              "def": {
+                "column": "name",
+                "length": 20,
+                "sort": "asc"
+              }
+            },
+            {
+              "id": "P_INDEX_COLUMN",
+              "def": {
+                "column": "initials"
+              }
+            }
+          ],
+          "options": [
+            {
+              "id": "O_INDEX_OPTION",
+              "def": {
+                "keyBlockSize": 20
+              }
+            },
+            {
+              "id": "O_INDEX_OPTION",
+              "def": {
+                "comment": "test"
+              }
+            },
+            {
+              "id": "P_INDEX_ALGORITHM_OPTION",
+              "def": {
+                "algorithm": "DEFAULT"
+              }
+            },
+            {
+              "id": "P_LOCK_OPTION",
+              "def": {
+                "lock": "DEFAULT"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "P_DDS",
+      "def": {
+        "id": "P_CREATE_INDEX",
+        "def": {
+          "name": "test",
+          "type": "fulltext index",
+          "index": null,
+          "table": "people",
+          "columns": [
+            {
+              "id": "P_INDEX_COLUMN",
+              "def": {
+                "column": "name"
+              }
+            }
+          ],
+          "options": [
+            {
+              "id": "P_INDEX_ALGORITHM_OPTION",
+              "def": {
+                "algorithm": "inplace"
+              }
+            },
+            {
+              "id": "P_LOCK_OPTION",
+              "def": {
+                "lock": "none"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "P_DDS",
+      "def": {
+        "id": "P_CREATE_INDEX",
+        "def": {
+          "name": "test",
+          "type": "spatial index",
+          "index": null,
+          "table": "people",
+          "columns": [
+            {
+              "id": "P_INDEX_COLUMN",
+              "def": {
+                "column": "name"
+              }
+            }
+          ],
+          "options": [
+            {
+              "id": "P_INDEX_ALGORITHM_OPTION",
+              "def": {
+                "algorithm": "copy"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "P_DDS",
+      "def": {
+        "id": "P_CREATE_INDEX",
+        "def": {
+          "name": "test",
+          "type": "index",
+          "index": null,
+          "table": "people",
+          "columns": [
+            {
+              "id": "P_INDEX_COLUMN",
+              "def": {
+                "column": "name"
+              }
+            }
+          ],
+          "options": []
+        }
+      }
+    }
+  ]
+}
+`;

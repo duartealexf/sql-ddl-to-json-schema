@@ -35,7 +35,7 @@
     "build:watch": "npm run nodemon -- -w src --exec 'npm run build'",
     "lint": "eslint {src,tasks,tests}/**/*.ts --fix",
     "version": "standard-version && git push --follow-tags",
-    "prerelease": "npm run lint && npm run build",
+    "prerelease": "npm run build",
     "release": "npm publish"
   },
   "repository": {

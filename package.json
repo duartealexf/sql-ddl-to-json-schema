@@ -51,7 +51,7 @@
     "@types/moo": "0.5.5",
     "@types/nearley": "2.11.2",
     "@types/stringify-object": "^4.0.0",
-    "json-schema": "0.2.5",
+    "json-schema": "0.4.0",
     "moo": "0.5.1",
     "nearley": "2.20.1"
   },

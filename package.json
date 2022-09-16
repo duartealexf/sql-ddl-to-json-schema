@@ -21,6 +21,7 @@
     "Alexandre Duarte <duartealexf@gmail.com> (https://github.com/duartealexf)"
   ],
   "scripts": {
+    "nodemon": "nodemon",
     "standard-version": "standard-version",
     "ts-node": "ts-node",
     "eslint": "eslint",

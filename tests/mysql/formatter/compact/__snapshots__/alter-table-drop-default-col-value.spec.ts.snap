@@ -43,6 +43,17 @@ exports[`Compact formatter: Alter table drop default column value should not alt
         }
       },
       {
+        "name": "binarynickname",
+        "type": {
+          "datatype": "varchar",
+          "length": 20,
+          "binaryCollation": true
+        },
+        "options": {
+          "nullable": false
+        }
+      },
+      {
         "name": "ssn",
         "type": {
           "datatype": "int",
@@ -861,6 +872,17 @@ exports[`Compact formatter: Should alter table, dropping default column value. 1
         },
         "options": {
           "nullable": true
+        }
+      },
+      {
+        "name": "binarynickname",
+        "type": {
+          "datatype": "varchar",
+          "length": 20,
+          "binaryCollation": true
+        },
+        "options": {
+          "nullable": false
         }
       },
       {

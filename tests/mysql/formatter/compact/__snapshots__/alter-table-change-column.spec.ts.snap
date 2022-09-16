@@ -44,6 +44,17 @@ exports[`Compact formatter: Alter table change column should ignore duplicate un
         }
       },
       {
+        "name": "binarynickname",
+        "type": {
+          "datatype": "varchar",
+          "length": 20,
+          "binaryCollation": true
+        },
+        "options": {
+          "nullable": false
+        }
+      },
+      {
         "name": "ssn",
         "type": {
           "datatype": "int",
@@ -863,6 +874,17 @@ exports[`Compact formatter: Alter table change column should ignore foreign key 
         "options": {
           "nullable": true,
           "default": "J"
+        }
+      },
+      {
+        "name": "binarynickname",
+        "type": {
+          "datatype": "varchar",
+          "length": 20,
+          "binaryCollation": true
+        },
+        "options": {
+          "nullable": false
         }
       },
       {
@@ -1690,6 +1712,17 @@ exports[`Compact formatter: Alter table change column should not change a column
         }
       },
       {
+        "name": "binarynickname",
+        "type": {
+          "datatype": "varchar",
+          "length": 20,
+          "binaryCollation": true
+        },
+        "options": {
+          "nullable": false
+        }
+      },
+      {
         "name": "ssn",
         "type": {
           "datatype": "int",
@@ -2509,6 +2542,17 @@ exports[`Compact formatter: Alter table change column should not change a column
         "options": {
           "nullable": true,
           "default": "J"
+        }
+      },
+      {
+        "name": "binarynickname",
+        "type": {
+          "datatype": "varchar",
+          "length": 20,
+          "binaryCollation": true
+        },
+        "options": {
+          "nullable": false
         }
       },
       {
@@ -3334,6 +3378,17 @@ exports[`Compact formatter: Alter table change column should not change a column
         }
       },
       {
+        "name": "binarynickname",
+        "type": {
+          "datatype": "varchar",
+          "length": 20,
+          "binaryCollation": true
+        },
+        "options": {
+          "nullable": false
+        }
+      },
+      {
         "name": "ssn",
         "type": {
           "datatype": "int",
@@ -4153,6 +4208,17 @@ exports[`Compact formatter: Alter table change column should not change column a
         "options": {
           "nullable": true,
           "default": "J"
+        }
+      },
+      {
+        "name": "binarynickname",
+        "type": {
+          "datatype": "varchar",
+          "length": 20,
+          "binaryCollation": true
+        },
+        "options": {
+          "nullable": false
         }
       },
       {
@@ -4978,6 +5044,17 @@ exports[`Compact formatter: Alter table change column should not change unexisti
         }
       },
       {
+        "name": "binarynickname",
+        "type": {
+          "datatype": "varchar",
+          "length": 20,
+          "binaryCollation": true
+        },
+        "options": {
+          "nullable": false
+        }
+      },
+      {
         "name": "ssn",
         "type": {
           "datatype": "int",
@@ -5797,6 +5874,17 @@ exports[`Compact formatter: Alter table change column should rename foreign key 
         "options": {
           "nullable": true,
           "default": "J"
+        }
+      },
+      {
+        "name": "binarynickname",
+        "type": {
+          "datatype": "varchar",
+          "length": 20,
+          "binaryCollation": true
+        },
+        "options": {
+          "nullable": false
         }
       },
       {
@@ -6622,6 +6710,17 @@ exports[`Compact formatter: Alter table change column should rename fulltext ind
         }
       },
       {
+        "name": "binarynickname",
+        "type": {
+          "datatype": "varchar",
+          "length": 20,
+          "binaryCollation": true
+        },
+        "options": {
+          "nullable": false
+        }
+      },
+      {
         "name": "ssn",
         "type": {
           "datatype": "int",
@@ -7441,6 +7540,17 @@ exports[`Compact formatter: Alter table change column should rename index column
         "options": {
           "nullable": true,
           "default": "J"
+        }
+      },
+      {
+        "name": "binarynickname",
+        "type": {
+          "datatype": "varchar",
+          "length": 20,
+          "binaryCollation": true
+        },
+        "options": {
+          "nullable": false
         }
       },
       {
@@ -8266,6 +8376,17 @@ exports[`Compact formatter: Alter table change column should rename primary and 
         }
       },
       {
+        "name": "binarynickname",
+        "type": {
+          "datatype": "varchar",
+          "length": 20,
+          "binaryCollation": true
+        },
+        "options": {
+          "nullable": false
+        }
+      },
+      {
         "name": "ssn",
         "type": {
           "datatype": "int",
@@ -9088,6 +9209,17 @@ exports[`Compact formatter: Alter table change column should rename spatial inde
         }
       },
       {
+        "name": "binarynickname",
+        "type": {
+          "datatype": "varchar",
+          "length": 20,
+          "binaryCollation": true
+        },
+        "options": {
+          "nullable": false
+        }
+      },
+      {
         "name": "ssn",
         "type": {
           "datatype": "int",
@@ -9907,6 +10039,17 @@ exports[`Compact formatter: Alter table change column should rename unique key c
         "options": {
           "nullable": true,
           "default": "J"
+        }
+      },
+      {
+        "name": "binarynickname",
+        "type": {
+          "datatype": "varchar",
+          "length": 20,
+          "binaryCollation": true
+        },
+        "options": {
+          "nullable": false
         }
       },
       {
@@ -10745,6 +10888,17 @@ exports[`Compact formatter: Compact formatter: Should alter table, changing colu
         "options": {
           "nullable": true,
           "default": "J"
+        }
+      },
+      {
+        "name": "binarynickname",
+        "type": {
+          "datatype": "varchar",
+          "length": 20,
+          "binaryCollation": true
+        },
+        "options": {
+          "nullable": false
         }
       },
       {

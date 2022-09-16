@@ -44,6 +44,17 @@ exports[`Compact formatter: Should drop a table. 1`] = `
         }
       },
       {
+        "name": "binarynickname",
+        "type": {
+          "datatype": "varchar",
+          "length": 20,
+          "binaryCollation": true
+        },
+        "options": {
+          "nullable": false
+        }
+      },
+      {
         "name": "ssn",
         "type": {
           "datatype": "int",
@@ -560,6 +571,17 @@ exports[`Compact formatter: Should not drop table being referenced by foreign ke
         "options": {
           "nullable": true,
           "default": "J"
+        }
+      },
+      {
+        "name": "binarynickname",
+        "type": {
+          "datatype": "varchar",
+          "length": 20,
+          "binaryCollation": true
+        },
+        "options": {
+          "nullable": false
         }
       },
       {

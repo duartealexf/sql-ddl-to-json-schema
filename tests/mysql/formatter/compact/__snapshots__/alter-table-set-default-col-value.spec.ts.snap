@@ -44,6 +44,17 @@ exports[`Compact formatter: Should alter table, renaming it. 1`] = `
         }
       },
       {
+        "name": "binarynickname",
+        "type": {
+          "datatype": "varchar",
+          "length": 20,
+          "binaryCollation": true
+        },
+        "options": {
+          "nullable": false
+        }
+      },
+      {
         "name": "ssn",
         "type": {
           "datatype": "int",
@@ -864,6 +875,17 @@ exports[`Compact formatter: Should not set default value for unknown column. 1`]
         "options": {
           "nullable": true,
           "default": "JJ"
+        }
+      },
+      {
+        "name": "binarynickname",
+        "type": {
+          "datatype": "varchar",
+          "length": 20,
+          "binaryCollation": true
+        },
+        "options": {
+          "nullable": false
         }
       },
       {

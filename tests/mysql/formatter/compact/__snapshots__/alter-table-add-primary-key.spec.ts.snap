@@ -44,6 +44,17 @@ exports[`Compact formatter: Alter table add pk should not add primary key for un
         }
       },
       {
+        "name": "binarynickname",
+        "type": {
+          "datatype": "varchar",
+          "length": 20,
+          "binaryCollation": true
+        },
+        "options": {
+          "nullable": false
+        }
+      },
+      {
         "name": "ssn",
         "type": {
           "datatype": "int",
@@ -887,6 +898,17 @@ exports[`Compact formatter: Alter table add pk should not overwrite existing pri
         }
       },
       {
+        "name": "binarynickname",
+        "type": {
+          "datatype": "varchar",
+          "length": 20,
+          "binaryCollation": true
+        },
+        "options": {
+          "nullable": false
+        }
+      },
+      {
         "name": "ssn",
         "type": {
           "datatype": "int",
@@ -1727,6 +1749,17 @@ exports[`Compact formatter: Should alter table, adding primary key. 1`] = `
         "options": {
           "nullable": true,
           "default": "J"
+        }
+      },
+      {
+        "name": "binarynickname",
+        "type": {
+          "datatype": "varchar",
+          "length": 20,
+          "binaryCollation": true
+        },
+        "options": {
+          "nullable": false
         }
       },
       {

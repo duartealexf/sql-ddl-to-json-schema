@@ -44,6 +44,17 @@ exports[`Compact formatter: Should create spatial index. 1`] = `
         }
       },
       {
+        "name": "binarynickname",
+        "type": {
+          "datatype": "varchar",
+          "length": 20,
+          "binaryCollation": true
+        },
+        "options": {
+          "nullable": false
+        }
+      },
+      {
         "name": "ssn",
         "type": {
           "datatype": "int",
@@ -883,6 +894,17 @@ exports[`Compact formatter: Should not create spatial index for unknown column. 
         "options": {
           "nullable": true,
           "default": "J"
+        }
+      },
+      {
+        "name": "binarynickname",
+        "type": {
+          "datatype": "varchar",
+          "length": 20,
+          "binaryCollation": true
+        },
+        "options": {
+          "nullable": false
         }
       },
       {

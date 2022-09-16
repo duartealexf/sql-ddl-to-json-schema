@@ -11,7 +11,8 @@ exports[`JSON Schema formatter: should format tables correctly, with ref. 1`] = 
     "type": "object",
     "required": [
       "id",
-      "name"
+      "name",
+      "binarynickname"
     ],
     "definitions": {
       "id": {
@@ -30,6 +31,10 @@ exports[`JSON Schema formatter: should format tables correctly, with ref. 1`] = 
         "type": "string",
         "maxLength": 20,
         "default": "J"
+      },
+      "binarynickname": {
+        "type": "string",
+        "maxLength": 20
       },
       "ssn": {
         "type": "integer",
@@ -109,6 +114,9 @@ exports[`JSON Schema formatter: should format tables correctly, with ref. 1`] = 
       },
       "nickname": {
         "$ref": "#/definitions/nickname"
+      },
+      "binarynickname": {
+        "$ref": "#/definitions/binarynickname"
       },
       "ssn": {
         "$ref": "#/definitions/ssn"
@@ -456,7 +464,8 @@ exports[`JSON Schema formatter: should format tables correctly, without ref. 1`]
     "type": "object",
     "required": [
       "id",
-      "name"
+      "name",
+      "binarynickname"
     ],
     "properties": {
       "id": {
@@ -475,6 +484,10 @@ exports[`JSON Schema formatter: should format tables correctly, without ref. 1`]
         "type": "string",
         "maxLength": 20,
         "default": "J"
+      },
+      "binarynickname": {
+        "type": "string",
+        "maxLength": 20
       },
       "ssn": {
         "type": "integer",

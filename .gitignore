@@ -28,5 +28,6 @@ coverage.*
 .history
 
 /typings
+/playground
 
 coverage

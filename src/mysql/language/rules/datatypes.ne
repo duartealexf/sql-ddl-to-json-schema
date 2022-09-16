@@ -217,7 +217,17 @@ O_VARIABLE_STRING_DATATYPE -> (
           length: d[1] ?? 1
         }
       }%}
-  | ( %K_VARCHAR {% id %} | %K_VARBINARY {% id %} )
+  | ( %K_VARCHAR {% id %} )
+    ( _ %S_LPARENS _ %S_NUMBER _ %S_RPARENS {% d => d[3].value %} )
+    ( _ %K_BINARY {% d => d[1].value %} ):?
+      {% d => {
+        return {
+          datatype: d[0].value,
+          length: d[1],
+          ...(d[2] ? {binaryCollation: true} : {})
+        }
+      }%}
+  | ( %K_VARBINARY {% id %} )
     ( _ %S_LPARENS _ %S_NUMBER _ %S_RPARENS {% d => d[3].value %} )
       {% d => {
         return {

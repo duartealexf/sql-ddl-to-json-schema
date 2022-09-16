@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [4.0.7](https://github.com/duartealexf/sql-ddl-to-json-schema/compare/v4.0.6...v4.0.7) (2022-09-16)
+
+
+### Bug Fixes
+
+* add binary collation support ([a89e50f](https://github.com/duartealexf/sql-ddl-to-json-schema/commit/a89e50f08fac191ec3e931e84ad265610dc8ec6a))
+
 ### [4.0.6](https://github.com/duartealexf/sql-ddl-to-json-schema/compare/v4.0.5...v4.0.6) (2021-11-13)
 
 ### [4.0.5](https://github.com/duartealexf/sql-ddl-to-json-schema/compare/v4.0.3...v4.0.5) (2021-11-13)

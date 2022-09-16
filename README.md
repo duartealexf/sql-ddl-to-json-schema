@@ -359,10 +359,6 @@ Valid to all SQL dialects:
 - Run tests: `npm run test`
 - Test and watch for changes: `npm run test:watch`
 
-The tests call SQL statements on the parser and test the JSON result (whatever the format) against a JSON file in a folder called `expect`, for that test case. The command below updates all `expect` files to whatever is being parsed in the test cases. This is useful when there is a change in the parser that affects many files and changes JSON result in them. Run the script to update the expected parse result in the file:
-
-`npm run test:update`
-
 #### Visual Studio Code
 
 Debug launch config is versioned in this repository.

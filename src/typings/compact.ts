@@ -122,6 +122,10 @@ export interface DatatypeInterface {
    * Values for enum and set datatypes.
    */
   values?: string[];
+  /**
+   * Whether the collation is binary.
+   */
+  binaryCollation?: boolean;
 }
 
 export interface ColumnReferenceInterface {

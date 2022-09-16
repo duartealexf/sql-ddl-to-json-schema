@@ -21,6 +21,8 @@ export class Datatype implements DatatypeModelInterface {
 
   values?: string[];
 
+  binaryCollation?: boolean;
+
   /**
    * Creates a datatype from a JSON def.
    *
@@ -153,7 +155,6 @@ export class Datatype implements DatatypeModelInterface {
     return 0;
   }
 
-
   /**
    * JSON casting of this object calls this method.
    */
@@ -179,6 +180,9 @@ export class Datatype implements DatatypeModelInterface {
     }
     if (isDefined(this.values)) {
       json.values = this.values;
+    }
+    if (isDefined(this.binaryCollation)) {
+      json.binaryCollation = this.binaryCollation;
     }
 
     return json;

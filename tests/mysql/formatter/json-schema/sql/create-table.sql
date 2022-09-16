@@ -5,6 +5,7 @@ CREATE TABLE person (
   id INT(10) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT KEY COMMENT 'primary key test',
   name TEXT NOT NULL DEFAULT 'Jane "Doe" O`neil' character set utf8 collate utf8_general_ci,
   nickname VARCHAR(20) DEFAULT 'J',
+  binarynickname VARCHAR(20) binary NOT NULL,
   ssn SMALLINT UNIQUE INVISIBLE WITH SYSTEM VERSIONING,
   height NUMERIC DEFAULT NULL,
   weight NUMERIC(3),

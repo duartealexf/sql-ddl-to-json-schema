@@ -9,14 +9,15 @@ jobs:
     strategy:
       matrix:
         node:
-          - "10"
-          - "11"
-          - "12"
-          - "13"
-          - "14"
-          - "15"
-          - "16"
-          - "17"
+          - '10'
+          - '11'
+          - '12'
+          - '13'
+          - '14'
+          - '15'
+          - '16'
+          - '17'
+          - '18'
     steps:
       - name: Checkout
         uses: actions/checkout@v2

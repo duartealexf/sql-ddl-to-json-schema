@@ -44,6 +44,17 @@ exports[`Compact formatter: Alter table drop column should not drop unexisting c
         }
       },
       {
+        "name": "binarynickname",
+        "type": {
+          "datatype": "varchar",
+          "length": 20,
+          "binaryCollation": true
+        },
+        "options": {
+          "nullable": false
+        }
+      },
+      {
         "name": "height",
         "type": {
           "datatype": "decimal",
@@ -674,6 +685,17 @@ exports[`Compact formatter: Should alter table, dropping column. 1`] = `
         "options": {
           "nullable": true,
           "default": "J"
+        }
+      },
+      {
+        "name": "binarynickname",
+        "type": {
+          "datatype": "varchar",
+          "length": 20,
+          "binaryCollation": true
+        },
+        "options": {
+          "nullable": false
         }
       },
       {

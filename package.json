@@ -21,6 +21,7 @@
     "Alexandre Duarte <duartealexf@gmail.com> (https://github.com/duartealexf)"
   ],
   "scripts": {
+    "nodemon": "nodemon",
     "standard-version": "standard-version",
     "ts-node": "ts-node",
     "eslint": "eslint",
@@ -51,7 +52,7 @@
     "@types/moo": "0.5.5",
     "@types/nearley": "2.11.2",
     "@types/stringify-object": "^4.0.0",
-    "json-schema": "0.2.5",
+    "json-schema": "^0.4.0",
     "moo": "0.5.1",
     "nearley": "2.20.1"
   },
@@ -76,7 +77,7 @@
     "nodemon": "^2.0.15",
     "prettier": "^1.18.2",
     "pretty-format": "^27.3.1",
-    "standard-version": "^8.0.2",
+    "standard-version": "^9.5.0",
     "supports-color": "^9.0.2",
     "ts-jest": "^27.0.7",
     "ts-node": "^8.10.2",
@@ -98,6 +99,6 @@
     "ext": "ne,ts"
   },
   "engines": {
-    "node": ">=8.6.0 <=17"
+    "node": ">=8.6.0 <=18"
   }
 }

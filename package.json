@@ -49,9 +49,6 @@
     "url": "https://github.com/duartealexf/sql-ddl-to-json-schema/issues"
   },
   "dependencies": {
-    "@types/moo": "0.5.5",
-    "@types/nearley": "2.11.2",
-    "@types/stringify-object": "^4.0.0",
     "json-schema": "^0.4.0",
     "moo": "0.5.1",
     "nearley": "2.20.1"
@@ -59,7 +56,10 @@
   "devDependencies": {
     "@types/fs-extra": "^8.1.2",
     "@types/jest": "^27.0.2",
+    "@types/moo": "0.5.5",
+    "@types/nearley": "2.11.2",
     "@types/node": "^13.13.52",
+    "@types/stringify-object": "^4.0.0",
     "@types/winston": "^2.4.4",
     "@typescript-eslint/eslint-plugin": "^2.34.0",
     "@typescript-eslint/parser": "^2.34.0",

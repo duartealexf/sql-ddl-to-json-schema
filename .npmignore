@@ -17,3 +17,4 @@ ROADMAP.md
 tsconfig.json
 jest.config.js
 .nyc_output
+playground

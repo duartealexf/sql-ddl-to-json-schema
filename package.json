@@ -1,6 +1,6 @@
 {
   "name": "sql-ddl-to-json-schema",
-  "version": "4.0.9",
+  "version": "4.0.10",
   "description": "Parse and convert SQL DDL statements to a JSON Schema.",
   "keywords": [
     "parse",

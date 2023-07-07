@@ -22,6 +22,7 @@ const keywords = stringArrayToMapping<RegExp>(
     'ENCRYPTION_KEY_ID',
     'CURRENT_TIMESTAMP',
     'STATS_PERSISTENT',
+    'UNIQUEIDENTIFIER',
     'DELAY_KEY_WRITE',
     'MULTILINESTRING',
     'LOCALTIMESTAMP',

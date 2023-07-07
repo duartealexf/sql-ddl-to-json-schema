@@ -223,14 +223,15 @@ ALTER TABLE users ADD UNIQUE KEY unq_nick (nickname);
 const options = {};
 
 /**
- * Get the JSON Schema if you need to modify it...
- */
-const jsonSchemaDocuments = parser.feed(sql).toJsonSchemaArray(options);
-
-/**
- * Or explore the compact JSON format...
+ * Explore the compact JSON format...
  */
 const compactJsonTablesArray = parser.feed(sql).toCompactJson(parser.results);
+
+/**
+ * Or get the JSON Schema if you need to modify it...
+ */
+const jsonSchemaDocuments = parser.feed(sql).toJsonSchemaArray(options, compactJsonTablesArray);
+
 ```
 
 ### Step by step

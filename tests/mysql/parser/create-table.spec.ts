@@ -25,6 +25,8 @@ run(getParsedFormat, {
         has_cat BOOL invisible with system versioning,
         has_fish BOOLEAN invisible without system versioning,
         soul_id INT invisible,
+        unique_id1 UUID,
+        unique_id2 uniqueidentifier,
         birthtime TIME,
         birthdate DATE,
         initials CHAR(5) CHARACTER SET utf8,

@@ -458,6 +458,25 @@ exports[`Compact formatter: Should drop a table. 1`] = `
         }
       },
       {
+        "name": "unique_id1",
+        "type": {
+          "datatype": "uuid"
+        },
+        "options": {
+          "nullable": false
+        }
+      },
+      {
+        "name": "unique_id2",
+        "type": {
+          "datatype": "uuid"
+        },
+        "options": {
+          "nullable": true,
+          "default": "uuid()"
+        }
+      },
+      {
         "name": "object",
         "type": {
           "datatype": "json"
@@ -995,6 +1014,25 @@ exports[`Compact formatter: Should not drop table being referenced by foreign ke
         },
         "options": {
           "nullable": true
+        }
+      },
+      {
+        "name": "unique_id1",
+        "type": {
+          "datatype": "uuid"
+        },
+        "options": {
+          "nullable": false
+        }
+      },
+      {
+        "name": "unique_id2",
+        "type": {
+          "datatype": "uuid"
+        },
+        "options": {
+          "nullable": true,
+          "default": "uuid()"
         }
       },
       {

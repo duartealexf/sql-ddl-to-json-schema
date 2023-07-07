@@ -54,6 +54,8 @@
     intelligent SET('N'),
     shape POLYGON,
     pattern MULTIPOLYGON,
+    unique_id1 uuid NOT NULL,
+    unique_id2 UNIQUEIDENTIFIER DEFAULT uuid(),
     object JSON,
     INDEX i_dimensions USING BTREE (height, weight(2) asc) COMMENT 'good boy',
     KEY i_birth (birth(5) desc) USING BTREE

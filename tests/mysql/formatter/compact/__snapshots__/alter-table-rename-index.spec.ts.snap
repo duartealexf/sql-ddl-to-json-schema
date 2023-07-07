@@ -458,6 +458,25 @@ exports[`Compact formatter: Should alter table, renaming index. 1`] = `
         }
       },
       {
+        "name": "unique_id1",
+        "type": {
+          "datatype": "uuid"
+        },
+        "options": {
+          "nullable": false
+        }
+      },
+      {
+        "name": "unique_id2",
+        "type": {
+          "datatype": "uuid"
+        },
+        "options": {
+          "nullable": true,
+          "default": "uuid()"
+        }
+      },
+      {
         "name": "object",
         "type": {
           "datatype": "json"
@@ -1298,6 +1317,25 @@ exports[`Compact formatter: Should not rename unexisting index. 1`] = `
         },
         "options": {
           "nullable": true
+        }
+      },
+      {
+        "name": "unique_id1",
+        "type": {
+          "datatype": "uuid"
+        },
+        "options": {
+          "nullable": false
+        }
+      },
+      {
+        "name": "unique_id2",
+        "type": {
+          "datatype": "uuid"
+        },
+        "options": {
+          "nullable": true,
+          "default": "uuid()"
         }
       },
       {

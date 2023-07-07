@@ -181,7 +181,9 @@ exports[`JSON Schema formatter: should format tables correctly, with ref. 1`] = 
     "$id": "pet",
     "title": "pet",
     "type": "object",
-    "required": [],
+    "required": [
+      "unique_id1"
+    ],
     "definitions": {
       "id": {
         "type": "integer",
@@ -256,6 +258,15 @@ exports[`JSON Schema formatter: should format tables correctly, with ref. 1`] = 
       "pattern": {
         "type": "string"
       },
+      "unique_id1": {
+        "$comment": "primary key",
+        "type": "string",
+        "pattern": "^[a-f\\\\d]{8}-([a-f\\\\d]{4}-){3}[a-f\\\\d]{12}$"
+      },
+      "unique_id2": {
+        "type": "string",
+        "pattern": "^[a-f\\\\d]{8}-([a-f\\\\d]{4}-){3}[a-f\\\\d]{12}$"
+      },
       "object": {
         "type": "string"
       }
@@ -314,6 +325,12 @@ exports[`JSON Schema formatter: should format tables correctly, with ref. 1`] = 
       },
       "pattern": {
         "$ref": "#/definitions/pattern"
+      },
+      "unique_id1": {
+        "$ref": "#/definitions/unique_id1"
+      },
+      "unique_id2": {
+        "$ref": "#/definitions/unique_id2"
       },
       "object": {
         "$ref": "#/definitions/object"
@@ -576,7 +593,9 @@ exports[`JSON Schema formatter: should format tables correctly, without ref. 1`]
     "$id": "pet",
     "title": "pet",
     "type": "object",
-    "required": [],
+    "required": [
+      "unique_id1"
+    ],
     "properties": {
       "id": {
         "type": "integer",
@@ -650,6 +669,15 @@ exports[`JSON Schema formatter: should format tables correctly, without ref. 1`]
       },
       "pattern": {
         "type": "string"
+      },
+      "unique_id1": {
+        "$comment": "primary key",
+        "type": "string",
+        "pattern": "^[a-f\\\\d]{8}-([a-f\\\\d]{4}-){3}[a-f\\\\d]{12}$"
+      },
+      "unique_id2": {
+        "type": "string",
+        "pattern": "^[a-f\\\\d]{8}-([a-f\\\\d]{4}-){3}[a-f\\\\d]{12}$"
       },
       "object": {
         "type": "string"

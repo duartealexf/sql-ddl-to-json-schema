@@ -458,6 +458,25 @@ exports[`Compact formatter: Alter table change column should ignore duplicate un
         }
       },
       {
+        "name": "unique_id1",
+        "type": {
+          "datatype": "uuid"
+        },
+        "options": {
+          "nullable": false
+        }
+      },
+      {
+        "name": "unique_id2",
+        "type": {
+          "datatype": "uuid"
+        },
+        "options": {
+          "nullable": true,
+          "default": "uuid()"
+        }
+      },
+      {
         "name": "object",
         "type": {
           "datatype": "json"
@@ -1300,6 +1319,25 @@ exports[`Compact formatter: Alter table change column should ignore foreign key 
         },
         "options": {
           "nullable": true
+        }
+      },
+      {
+        "name": "unique_id1",
+        "type": {
+          "datatype": "uuid"
+        },
+        "options": {
+          "nullable": false
+        }
+      },
+      {
+        "name": "unique_id2",
+        "type": {
+          "datatype": "uuid"
+        },
+        "options": {
+          "nullable": true,
+          "default": "uuid()"
         }
       },
       {
@@ -2146,6 +2184,25 @@ exports[`Compact formatter: Alter table change column should not change a column
         }
       },
       {
+        "name": "unique_id1",
+        "type": {
+          "datatype": "uuid"
+        },
+        "options": {
+          "nullable": false
+        }
+      },
+      {
+        "name": "unique_id2",
+        "type": {
+          "datatype": "uuid"
+        },
+        "options": {
+          "nullable": true,
+          "default": "uuid()"
+        }
+      },
+      {
         "name": "object",
         "type": {
           "datatype": "json"
@@ -2986,6 +3043,25 @@ exports[`Compact formatter: Alter table change column should not change a column
         },
         "options": {
           "nullable": true
+        }
+      },
+      {
+        "name": "unique_id1",
+        "type": {
+          "datatype": "uuid"
+        },
+        "options": {
+          "nullable": false
+        }
+      },
+      {
+        "name": "unique_id2",
+        "type": {
+          "datatype": "uuid"
+        },
+        "options": {
+          "nullable": true,
+          "default": "uuid()"
         }
       },
       {
@@ -3832,6 +3908,25 @@ exports[`Compact formatter: Alter table change column should not change a column
         }
       },
       {
+        "name": "unique_id1",
+        "type": {
+          "datatype": "uuid"
+        },
+        "options": {
+          "nullable": false
+        }
+      },
+      {
+        "name": "unique_id2",
+        "type": {
+          "datatype": "uuid"
+        },
+        "options": {
+          "nullable": true,
+          "default": "uuid()"
+        }
+      },
+      {
         "name": "object",
         "type": {
           "datatype": "json"
@@ -4672,6 +4767,25 @@ exports[`Compact formatter: Alter table change column should not change column a
         },
         "options": {
           "nullable": true
+        }
+      },
+      {
+        "name": "unique_id1",
+        "type": {
+          "datatype": "uuid"
+        },
+        "options": {
+          "nullable": false
+        }
+      },
+      {
+        "name": "unique_id2",
+        "type": {
+          "datatype": "uuid"
+        },
+        "options": {
+          "nullable": true,
+          "default": "uuid()"
         }
       },
       {
@@ -5518,6 +5632,25 @@ exports[`Compact formatter: Alter table change column should not change unexisti
         }
       },
       {
+        "name": "unique_id1",
+        "type": {
+          "datatype": "uuid"
+        },
+        "options": {
+          "nullable": false
+        }
+      },
+      {
+        "name": "unique_id2",
+        "type": {
+          "datatype": "uuid"
+        },
+        "options": {
+          "nullable": true,
+          "default": "uuid()"
+        }
+      },
+      {
         "name": "object",
         "type": {
           "datatype": "json"
@@ -6358,6 +6491,25 @@ exports[`Compact formatter: Alter table change column should rename foreign key 
         },
         "options": {
           "nullable": true
+        }
+      },
+      {
+        "name": "unique_id1",
+        "type": {
+          "datatype": "uuid"
+        },
+        "options": {
+          "nullable": false
+        }
+      },
+      {
+        "name": "unique_id2",
+        "type": {
+          "datatype": "uuid"
+        },
+        "options": {
+          "nullable": true,
+          "default": "uuid()"
         }
       },
       {
@@ -7204,6 +7356,25 @@ exports[`Compact formatter: Alter table change column should rename fulltext ind
         }
       },
       {
+        "name": "unique_id1",
+        "type": {
+          "datatype": "uuid"
+        },
+        "options": {
+          "nullable": false
+        }
+      },
+      {
+        "name": "unique_id2",
+        "type": {
+          "datatype": "uuid"
+        },
+        "options": {
+          "nullable": true,
+          "default": "uuid()"
+        }
+      },
+      {
         "name": "object",
         "type": {
           "datatype": "json"
@@ -8044,6 +8215,25 @@ exports[`Compact formatter: Alter table change column should rename index column
         },
         "options": {
           "nullable": true
+        }
+      },
+      {
+        "name": "unique_id1",
+        "type": {
+          "datatype": "uuid"
+        },
+        "options": {
+          "nullable": false
+        }
+      },
+      {
+        "name": "unique_id2",
+        "type": {
+          "datatype": "uuid"
+        },
+        "options": {
+          "nullable": true,
+          "default": "uuid()"
         }
       },
       {
@@ -8890,6 +9080,25 @@ exports[`Compact formatter: Alter table change column should rename primary and 
         }
       },
       {
+        "name": "unique_id1",
+        "type": {
+          "datatype": "uuid"
+        },
+        "options": {
+          "nullable": false
+        }
+      },
+      {
+        "name": "unique_id2",
+        "type": {
+          "datatype": "uuid"
+        },
+        "options": {
+          "nullable": true,
+          "default": "uuid()"
+        }
+      },
+      {
         "name": "object",
         "type": {
           "datatype": "json"
@@ -9733,6 +9942,25 @@ exports[`Compact formatter: Alter table change column should rename spatial inde
         }
       },
       {
+        "name": "unique_id1",
+        "type": {
+          "datatype": "uuid"
+        },
+        "options": {
+          "nullable": false
+        }
+      },
+      {
+        "name": "unique_id2",
+        "type": {
+          "datatype": "uuid"
+        },
+        "options": {
+          "nullable": true,
+          "default": "uuid()"
+        }
+      },
+      {
         "name": "object",
         "type": {
           "datatype": "json"
@@ -10573,6 +10801,25 @@ exports[`Compact formatter: Alter table change column should rename unique key c
         },
         "options": {
           "nullable": true
+        }
+      },
+      {
+        "name": "unique_id1",
+        "type": {
+          "datatype": "uuid"
+        },
+        "options": {
+          "nullable": false
+        }
+      },
+      {
+        "name": "unique_id2",
+        "type": {
+          "datatype": "uuid"
+        },
+        "options": {
+          "nullable": true,
+          "default": "uuid()"
         }
       },
       {
@@ -11430,6 +11677,25 @@ exports[`Compact formatter: Compact formatter: Should alter table, changing colu
         },
         "options": {
           "nullable": true
+        }
+      },
+      {
+        "name": "unique_id1",
+        "type": {
+          "datatype": "uuid"
+        },
+        "options": {
+          "nullable": false
+        }
+      },
+      {
+        "name": "unique_id2",
+        "type": {
+          "datatype": "uuid"
+        },
+        "options": {
+          "nullable": true,
+          "default": "uuid()"
         }
       },
       {

@@ -64,25 +64,31 @@ export class Column {
      */
     if (this.isPrimaryKey === true) {
       json.$comment = 'primary key';
-      type.minimum = 1;
+
+      if (type.type === 'integer' || type.type === 'number') {
+        type.minimum = 1;
+      }
     }
 
     if (isDefined(this.comment)) {
       json.description = this.comment;
     }
 
-    Object.getOwnPropertyNames(type)
-      .forEach((key: string) => {
-        const value = type[key as keyof JSONSchema7];
-        const number = isNumber(value);
+    Object.getOwnPropertyNames(type).forEach((key: string) => {
+      const value = type[key as keyof JSONSchema7];
+      const number = isNumber(value);
 
-        if ((number && Number.isFinite(value as never)) || !number) {
-          setProperty(json, key, value);
-        }
-      });
+      if ((number && Number.isFinite(value as never)) || !number) {
+        setProperty(json, key, value);
+      }
+    });
 
     if (typeof this.default !== 'undefined') {
       json.default = this.default;
+    }
+
+    if (this.datatype.datatype === 'uuid') {
+      delete json.default;
     }
 
     return json;

@@ -218,6 +218,11 @@ export class Datatype {
        */
       const options = (this.values as string[]).join('|');
       json.pattern = `^(${options})(,(${options}))*$`;
+    } else if (this.datatype === 'uuid') {
+      /**
+       * Use pattern validation for UUID.
+       */
+      json.pattern = '^[a-f\\d]{8}-([a-f\\d]{4}-){3}[a-f\\d]{12}$';
     }
 
     return json;

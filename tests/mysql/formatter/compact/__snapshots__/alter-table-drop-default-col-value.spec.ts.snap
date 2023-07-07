@@ -457,6 +457,25 @@ exports[`Compact formatter: Alter table drop default column value should not alt
         }
       },
       {
+        "name": "unique_id1",
+        "type": {
+          "datatype": "uuid"
+        },
+        "options": {
+          "nullable": false
+        }
+      },
+      {
+        "name": "unique_id2",
+        "type": {
+          "datatype": "uuid"
+        },
+        "options": {
+          "nullable": true,
+          "default": "uuid()"
+        }
+      },
+      {
         "name": "object",
         "type": {
           "datatype": "json"
@@ -1296,6 +1315,25 @@ exports[`Compact formatter: Should alter table, dropping default column value. 1
         },
         "options": {
           "nullable": true
+        }
+      },
+      {
+        "name": "unique_id1",
+        "type": {
+          "datatype": "uuid"
+        },
+        "options": {
+          "nullable": false
+        }
+      },
+      {
+        "name": "unique_id2",
+        "type": {
+          "datatype": "uuid"
+        },
+        "options": {
+          "nullable": true,
+          "default": "uuid()"
         }
       },
       {

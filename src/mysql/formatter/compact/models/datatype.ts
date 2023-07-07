@@ -101,6 +101,9 @@ export class Datatype implements DatatypeModelInterface {
     if (lowerTerm === 'nchar') {
       return 'char';
     }
+    if (lowerTerm === 'uniqueidentifier') {
+      return 'uuid';
+    }
     return lowerTerm;
   }
 
@@ -125,6 +128,7 @@ export class Datatype implements DatatypeModelInterface {
         'timestamp',
         'year',
         'json',
+        'uuid',
       ].includes(this.datatype)
     ) {
       return 0;

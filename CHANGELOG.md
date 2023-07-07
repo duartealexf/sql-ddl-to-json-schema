@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [4.1.0](https://github.com/duartealexf/sql-ddl-to-json-schema/compare/v4.0.10...v4.1.0) (2023-07-07)
+
+
+### Features
+
+* add support for nvarchar mysql datatype ([7697b5c](https://github.com/duartealexf/sql-ddl-to-json-schema/commit/7697b5c801dfade07f9f0868460c5c8823f60c39))
+* add support for uuid and uniqueidentifier types ([d8c4cc5](https://github.com/duartealexf/sql-ddl-to-json-schema/commit/d8c4cc53f584e62df7386e5409e3e5bf2a2d9b66))
+
 ### [4.0.10](https://github.com/duartealexf/sql-ddl-to-json-schema/compare/v4.0.9...v4.0.10) (2023-05-30)
 
 ### [4.0.9](https://github.com/duartealexf/sql-ddl-to-json-schema/compare/v4.0.8...v4.0.9) (2023-02-13)

@@ -15,6 +15,7 @@ O_DATATYPE -> (
   | O_FIXED_STRING_DATATYPE     {% id %}
   | O_ENUM_DATATYPE             {% id %}
   | O_SET_DATATYPE              {% id %}
+  | O_UUID_DATATYPE             {% id %}
   | O_SPATIAL_DATATYPE          {% id %}
   | O_JSON_DATATYPE             {% id %}
 )
@@ -206,6 +207,7 @@ O_VARIABLE_STRING_DATATYPE -> (
     (
         %K_NCHAR {% d => d[0].value %}
       | %K_NATIONAL __ %K_CHAR {% d => d[0].value + ' ' + d[2].value %}
+      | %K_NVARCHAR {% d => d[0].value %}
       | %K_CHARACTER {% d => d[0].value %}
       | %K_CHAR {% d => d[0].value %}
       | %K_BINARY {% d => d[0].value %}
@@ -313,6 +315,23 @@ O_SET_DATATYPE ->
       def: {
         datatype: d[0].value,
         values: d[1],
+      }
+    }
+  }%}
+
+
+# =============================================================
+# UUID type
+#
+# https://mariadb.com/kb/en/uuid-data-type/
+
+O_UUID_DATATYPE ->
+  ( %K_UUID {% id %} | %K_UNIQUEIDENTIFIER {% id %} )
+  {% d => {
+    return {
+      id: 'O_UUID_DATATYPE',
+      def: {
+        datatype: d[0].value,
       }
     }
   }%}

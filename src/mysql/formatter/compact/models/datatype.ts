@@ -92,11 +92,17 @@ export class Datatype implements DatatypeModelInterface {
     if (lowerTerm === 'national char') {
       return 'char';
     }
+    if (lowerTerm === 'nvarchar') {
+      return 'varchar';
+    }
     if (lowerTerm === 'character') {
       return 'char';
     }
     if (lowerTerm === 'nchar') {
       return 'char';
+    }
+    if (lowerTerm === 'uniqueidentifier') {
+      return 'uuid';
     }
     return lowerTerm;
   }
@@ -122,6 +128,7 @@ export class Datatype implements DatatypeModelInterface {
         'timestamp',
         'year',
         'json',
+        'uuid',
       ].includes(this.datatype)
     ) {
       return 0;
@@ -148,7 +155,9 @@ export class Datatype implements DatatypeModelInterface {
     /**
      * Indexable datatypes.
      */
-    if (['blob', 'text', 'char', 'binary', 'varchar', 'varbinary'].includes(this.datatype)) {
+    if (
+      ['blob', 'text', 'char', 'binary', 'varchar', 'nvarchar', 'varbinary'].includes(this.datatype)
+    ) {
       return this.length as number;
     }
 

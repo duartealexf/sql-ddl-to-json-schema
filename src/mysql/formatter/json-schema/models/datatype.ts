@@ -3,7 +3,6 @@ import { JSONSchema7TypeName, JSONSchema7 } from 'json-schema';
 import { DatatypeInterface } from '../../../../typings';
 import { isDefined } from '../../../../shared/utils';
 
-
 /**
  * Data type.
  */
@@ -166,9 +165,9 @@ export class Datatype {
        * of double datatype depend on hardware so they are not added here.
        */
       json.maximum = Number(
-        `${'9'.repeat((this.digits as number) - (this.decimals as number))
-        }.${
-          '9'.repeat(this.decimals as number)}`,
+        `${'9'.repeat((this.digits as number) - (this.decimals as number))}.${'9'.repeat(
+          this.decimals as number,
+        )}`,
       );
 
       if (this.isUnsigned) {
@@ -203,6 +202,7 @@ export class Datatype {
       this.datatype === 'char' ||
       this.datatype === 'binary' ||
       this.datatype === 'varchar' ||
+      this.datatype === 'nvarchar' ||
       this.datatype === 'varbinary' ||
       this.datatype === 'text'
     ) {
@@ -218,6 +218,11 @@ export class Datatype {
        */
       const options = (this.values as string[]).join('|');
       json.pattern = `^(${options})(,(${options}))*$`;
+    } else if (this.datatype === 'uuid') {
+      /**
+       * Use pattern validation for UUID.
+       */
+      json.pattern = '^[a-f\\d]{8}-([a-f\\d]{4}-){3}[a-f\\d]{12}$';
     }
 
     return json;

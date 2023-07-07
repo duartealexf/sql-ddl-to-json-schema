@@ -1622,6 +1622,46 @@ exports[`Parser: Should create test table with all types and options of columns.
                   "id": "O_CREATE_TABLE_CREATE_DEFINITION",
                   "def": {
                     "column": {
+                      "name": "unique_id1",
+                      "def": {
+                        "datatype": {
+                          "id": "O_DATATYPE",
+                          "def": {
+                            "id": "O_UUID_DATATYPE",
+                            "def": {
+                              "datatype": "UUID"
+                            }
+                          }
+                        },
+                        "columnDefinition": []
+                      }
+                    }
+                  }
+                },
+                {
+                  "id": "O_CREATE_TABLE_CREATE_DEFINITION",
+                  "def": {
+                    "column": {
+                      "name": "unique_id2",
+                      "def": {
+                        "datatype": {
+                          "id": "O_DATATYPE",
+                          "def": {
+                            "id": "O_UUID_DATATYPE",
+                            "def": {
+                              "datatype": "uniqueidentifier"
+                            }
+                          }
+                        },
+                        "columnDefinition": []
+                      }
+                    }
+                  }
+                },
+                {
+                  "id": "O_CREATE_TABLE_CREATE_DEFINITION",
+                  "def": {
+                    "column": {
                       "name": "birthtime",
                       "def": {
                         "datatype": {
@@ -1700,6 +1740,27 @@ exports[`Parser: Should create test table with all types and options of columns.
                             "id": "O_VARIABLE_STRING_DATATYPE",
                             "def": {
                               "datatype": "NATIONAL CHAR",
+                              "length": 5
+                            }
+                          }
+                        },
+                        "columnDefinition": []
+                      }
+                    }
+                  }
+                },
+                {
+                  "id": "O_CREATE_TABLE_CREATE_DEFINITION",
+                  "def": {
+                    "column": {
+                      "name": "initials",
+                      "def": {
+                        "datatype": {
+                          "id": "O_DATATYPE",
+                          "def": {
+                            "id": "O_VARIABLE_STRING_DATATYPE",
+                            "def": {
+                              "datatype": "NVARCHAR",
                               "length": 5
                             }
                           }

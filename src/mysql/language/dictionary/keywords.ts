@@ -22,6 +22,7 @@ const keywords = stringArrayToMapping<RegExp>(
     'ENCRYPTION_KEY_ID',
     'CURRENT_TIMESTAMP',
     'STATS_PERSISTENT',
+    'UNIQUEIDENTIFIER',
     'DELAY_KEY_WRITE',
     'MULTILINESTRING',
     'LOCALTIMESTAMP',
@@ -92,6 +93,7 @@ const keywords = stringArrayToMapping<RegExp>(
     'RESTRICT',
     'LONGTEXT',
     'SMALLINT',
+    'NVARCHAR',
     'CONVERT',
     'SPATIAL',
     'INPLACE',
@@ -227,13 +229,13 @@ const keywords = stringArrayToMapping<RegExp>(
    * Make case insensitive regexp from a keyword.
    * Example: WORD -> /[Ww][Oo][Rr][Dd]/
    */
-  (str: string) => new RegExp(`\\b${
-    str.split('')
-      .reduce((acc: string, char: string) => {
+  (str: string) =>
+    new RegExp(
+      `\\b${str.split('').reduce((acc: string, char: string) => {
         acc += `[${char.toUpperCase()}${char.toLowerCase()}]`;
         return acc;
-      }, '')
-  }\\b`),
+      }, '')}\\b`,
+    ),
 );
 
 export default keywords;

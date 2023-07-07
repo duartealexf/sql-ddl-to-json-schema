@@ -153,6 +153,16 @@ exports[`Compact formatter: Alter table add columns should not add autoincrement
         }
       },
       {
+        "name": "nsuffix",
+        "type": {
+          "datatype": "varchar",
+          "length": 3
+        },
+        "options": {
+          "nullable": true
+        }
+      },
+      {
         "name": "sequence",
         "type": {
           "datatype": "varbinary",
@@ -469,6 +479,25 @@ exports[`Compact formatter: Alter table add columns should not add autoincrement
         },
         "options": {
           "nullable": true
+        }
+      },
+      {
+        "name": "unique_id1",
+        "type": {
+          "datatype": "uuid"
+        },
+        "options": {
+          "nullable": false
+        }
+      },
+      {
+        "name": "unique_id2",
+        "type": {
+          "datatype": "uuid"
+        },
+        "options": {
+          "nullable": true,
+          "default": "uuid()"
         }
       },
       {
@@ -1010,6 +1039,16 @@ exports[`Compact formatter: Alter table add columns should not add autoincrement
         }
       },
       {
+        "name": "nsuffix",
+        "type": {
+          "datatype": "varchar",
+          "length": 3
+        },
+        "options": {
+          "nullable": true
+        }
+      },
+      {
         "name": "sequence",
         "type": {
           "datatype": "varbinary",
@@ -1326,6 +1365,25 @@ exports[`Compact formatter: Alter table add columns should not add autoincrement
         },
         "options": {
           "nullable": true
+        }
+      },
+      {
+        "name": "unique_id1",
+        "type": {
+          "datatype": "uuid"
+        },
+        "options": {
+          "nullable": false
+        }
+      },
+      {
+        "name": "unique_id2",
+        "type": {
+          "datatype": "uuid"
+        },
+        "options": {
+          "nullable": true,
+          "default": "uuid()"
         }
       },
       {
@@ -1878,6 +1936,16 @@ exports[`Compact formatter: Alter table add columns should not add column with d
         }
       },
       {
+        "name": "nsuffix",
+        "type": {
+          "datatype": "varchar",
+          "length": 3
+        },
+        "options": {
+          "nullable": true
+        }
+      },
+      {
         "name": "sequence",
         "type": {
           "datatype": "varbinary",
@@ -2194,6 +2262,25 @@ exports[`Compact formatter: Alter table add columns should not add column with d
         },
         "options": {
           "nullable": true
+        }
+      },
+      {
+        "name": "unique_id1",
+        "type": {
+          "datatype": "uuid"
+        },
+        "options": {
+          "nullable": false
+        }
+      },
+      {
+        "name": "unique_id2",
+        "type": {
+          "datatype": "uuid"
+        },
+        "options": {
+          "nullable": true,
+          "default": "uuid()"
         }
       },
       {
@@ -2735,6 +2822,16 @@ exports[`Compact formatter: Should alter table, adding columns. 1`] = `
         }
       },
       {
+        "name": "nsuffix",
+        "type": {
+          "datatype": "varchar",
+          "length": 3
+        },
+        "options": {
+          "nullable": true
+        }
+      },
+      {
         "name": "sequence",
         "type": {
           "datatype": "varbinary",
@@ -3051,6 +3148,25 @@ exports[`Compact formatter: Should alter table, adding columns. 1`] = `
         },
         "options": {
           "nullable": true
+        }
+      },
+      {
+        "name": "unique_id1",
+        "type": {
+          "datatype": "uuid"
+        },
+        "options": {
+          "nullable": false
+        }
+      },
+      {
+        "name": "unique_id2",
+        "type": {
+          "datatype": "uuid"
+        },
+        "options": {
+          "nullable": true,
+          "default": "uuid()"
         }
       },
       {

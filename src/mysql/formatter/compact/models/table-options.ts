@@ -1,9 +1,11 @@
-import { TableOptionsInterface, P_CREATE_TABLE_OPTIONS, O_CREATE_TABLE_OPTION } from '../../../../typings';
+import {
+  TableOptionsInterface,
+  P_CREATE_TABLE_OPTIONS,
+  O_CREATE_TABLE_OPTION,
+} from '../../../../typings';
 import { isString, isDefined } from '../../../../shared/utils';
 
-import {
-  TableOptionsModelInterface,
-} from './typings';
+import { TableOptionsModelInterface } from './typings';
 
 /**
  * Class to represent table options as parsed from SQL.

@@ -153,6 +153,16 @@ exports[`Compact formatter: Should alter table, dropping primary key. 1`] = `
         }
       },
       {
+        "name": "nsuffix",
+        "type": {
+          "datatype": "varchar",
+          "length": 3
+        },
+        "options": {
+          "nullable": true
+        }
+      },
+      {
         "name": "sequence",
         "type": {
           "datatype": "varbinary",
@@ -966,6 +976,16 @@ exports[`Compact formatter: Should not drop primary key containing an autoincrem
         "options": {
           "nullable": true,
           "format": "fixed"
+        }
+      },
+      {
+        "name": "nsuffix",
+        "type": {
+          "datatype": "varchar",
+          "length": 3
+        },
+        "options": {
+          "nullable": true
         }
       },
       {

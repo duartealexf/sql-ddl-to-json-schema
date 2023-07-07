@@ -153,6 +153,16 @@ exports[`Compact formatter: Should create 3 tables with all datatypes, options a
         }
       },
       {
+        "name": "nsuffix",
+        "type": {
+          "datatype": "varchar",
+          "length": 3
+        },
+        "options": {
+          "nullable": true
+        }
+      },
+      {
         "name": "sequence",
         "type": {
           "datatype": "varbinary",

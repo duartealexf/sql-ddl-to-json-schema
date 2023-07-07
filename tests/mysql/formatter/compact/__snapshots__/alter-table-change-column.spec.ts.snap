@@ -153,6 +153,16 @@ exports[`Compact formatter: Alter table change column should ignore duplicate un
         }
       },
       {
+        "name": "nsuffix",
+        "type": {
+          "datatype": "varchar",
+          "length": 3
+        },
+        "options": {
+          "nullable": true
+        }
+      },
+      {
         "name": "sequence",
         "type": {
           "datatype": "varbinary",
@@ -983,6 +993,16 @@ exports[`Compact formatter: Alter table change column should ignore foreign key 
         "options": {
           "nullable": true,
           "format": "fixed"
+        }
+      },
+      {
+        "name": "nsuffix",
+        "type": {
+          "datatype": "varchar",
+          "length": 3
+        },
+        "options": {
+          "nullable": true
         }
       },
       {
@@ -1821,6 +1841,16 @@ exports[`Compact formatter: Alter table change column should not change a column
         }
       },
       {
+        "name": "nsuffix",
+        "type": {
+          "datatype": "varchar",
+          "length": 3
+        },
+        "options": {
+          "nullable": true
+        }
+      },
+      {
         "name": "sequence",
         "type": {
           "datatype": "varbinary",
@@ -2651,6 +2681,16 @@ exports[`Compact formatter: Alter table change column should not change a column
         "options": {
           "nullable": true,
           "format": "fixed"
+        }
+      },
+      {
+        "name": "nsuffix",
+        "type": {
+          "datatype": "varchar",
+          "length": 3
+        },
+        "options": {
+          "nullable": true
         }
       },
       {
@@ -3487,6 +3527,16 @@ exports[`Compact formatter: Alter table change column should not change a column
         }
       },
       {
+        "name": "nsuffix",
+        "type": {
+          "datatype": "varchar",
+          "length": 3
+        },
+        "options": {
+          "nullable": true
+        }
+      },
+      {
         "name": "sequence",
         "type": {
           "datatype": "varbinary",
@@ -4317,6 +4367,16 @@ exports[`Compact formatter: Alter table change column should not change column a
         "options": {
           "nullable": true,
           "format": "fixed"
+        }
+      },
+      {
+        "name": "nsuffix",
+        "type": {
+          "datatype": "varchar",
+          "length": 3
+        },
+        "options": {
+          "nullable": true
         }
       },
       {
@@ -5153,6 +5213,16 @@ exports[`Compact formatter: Alter table change column should not change unexisti
         }
       },
       {
+        "name": "nsuffix",
+        "type": {
+          "datatype": "varchar",
+          "length": 3
+        },
+        "options": {
+          "nullable": true
+        }
+      },
+      {
         "name": "sequence",
         "type": {
           "datatype": "varbinary",
@@ -5983,6 +6053,16 @@ exports[`Compact formatter: Alter table change column should rename foreign key 
         "options": {
           "nullable": true,
           "format": "fixed"
+        }
+      },
+      {
+        "name": "nsuffix",
+        "type": {
+          "datatype": "varchar",
+          "length": 3
+        },
+        "options": {
+          "nullable": true
         }
       },
       {
@@ -6819,6 +6899,16 @@ exports[`Compact formatter: Alter table change column should rename fulltext ind
         }
       },
       {
+        "name": "nsuffix",
+        "type": {
+          "datatype": "varchar",
+          "length": 3
+        },
+        "options": {
+          "nullable": true
+        }
+      },
+      {
         "name": "sequence",
         "type": {
           "datatype": "varbinary",
@@ -7649,6 +7739,16 @@ exports[`Compact formatter: Alter table change column should rename index column
         "options": {
           "nullable": true,
           "format": "fixed"
+        }
+      },
+      {
+        "name": "nsuffix",
+        "type": {
+          "datatype": "varchar",
+          "length": 3
+        },
+        "options": {
+          "nullable": true
         }
       },
       {
@@ -8485,6 +8585,16 @@ exports[`Compact formatter: Alter table change column should rename primary and 
         }
       },
       {
+        "name": "nsuffix",
+        "type": {
+          "datatype": "varchar",
+          "length": 3
+        },
+        "options": {
+          "nullable": true
+        }
+      },
+      {
         "name": "sequence",
         "type": {
           "datatype": "varbinary",
@@ -9315,6 +9425,16 @@ exports[`Compact formatter: Alter table change column should rename spatial inde
         "options": {
           "nullable": true,
           "format": "fixed"
+        }
+      },
+      {
+        "name": "nsuffix",
+        "type": {
+          "datatype": "varchar",
+          "length": 3
+        },
+        "options": {
+          "nullable": true
         }
       },
       {
@@ -10151,6 +10271,16 @@ exports[`Compact formatter: Alter table change column should rename unique key c
         }
       },
       {
+        "name": "nsuffix",
+        "type": {
+          "datatype": "varchar",
+          "length": 3
+        },
+        "options": {
+          "nullable": true
+        }
+      },
+      {
         "name": "sequence",
         "type": {
           "datatype": "varbinary",
@@ -10975,6 +11105,16 @@ exports[`Compact formatter: Compact formatter: Should alter table, changing colu
         "options": {
           "nullable": true,
           "format": "fixed"
+        }
+      },
+      {
+        "name": "nsuffix",
+        "type": {
+          "datatype": "varchar",
+          "length": 3
+        },
+        "options": {
+          "nullable": true
         }
       },
       {

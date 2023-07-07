@@ -92,6 +92,9 @@ export class Datatype implements DatatypeModelInterface {
     if (lowerTerm === 'national char') {
       return 'char';
     }
+    if (lowerTerm === 'nvarchar') {
+      return 'varchar';
+    }
     if (lowerTerm === 'character') {
       return 'char';
     }
@@ -148,7 +151,9 @@ export class Datatype implements DatatypeModelInterface {
     /**
      * Indexable datatypes.
      */
-    if (['blob', 'text', 'char', 'binary', 'varchar', 'varbinary'].includes(this.datatype)) {
+    if (
+      ['blob', 'text', 'char', 'binary', 'varchar', 'nvarchar', 'varbinary'].includes(this.datatype)
+    ) {
       return this.length as number;
     }
 

@@ -152,6 +152,16 @@ exports[`Compact formatter: Alter table drop default column value should not alt
         }
       },
       {
+        "name": "nsuffix",
+        "type": {
+          "datatype": "varchar",
+          "length": 3
+        },
+        "options": {
+          "nullable": true
+        }
+      },
+      {
         "name": "sequence",
         "type": {
           "datatype": "varbinary",
@@ -981,6 +991,16 @@ exports[`Compact formatter: Should alter table, dropping default column value. 1
         "options": {
           "nullable": true,
           "format": "fixed"
+        }
+      },
+      {
+        "name": "nsuffix",
+        "type": {
+          "datatype": "varchar",
+          "length": 3
+        },
+        "options": {
+          "nullable": true
         }
       },
       {

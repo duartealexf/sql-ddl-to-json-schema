@@ -131,6 +131,16 @@ exports[`Compact formatter: Alter table drop column should not drop unexisting c
         }
       },
       {
+        "name": "nsuffix",
+        "type": {
+          "datatype": "varchar",
+          "length": 3
+        },
+        "options": {
+          "nullable": true
+        }
+      },
+      {
         "name": "sequence",
         "type": {
           "datatype": "varbinary",
@@ -772,6 +782,16 @@ exports[`Compact formatter: Should alter table, dropping column. 1`] = `
         "options": {
           "nullable": true,
           "format": "fixed"
+        }
+      },
+      {
+        "name": "nsuffix",
+        "type": {
+          "datatype": "varchar",
+          "length": 3
+        },
+        "options": {
+          "nullable": true
         }
       },
       {

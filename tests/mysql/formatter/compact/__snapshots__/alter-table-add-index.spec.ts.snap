@@ -153,6 +153,16 @@ exports[`Compact formatter: Alter table add index should not add key or index fo
         }
       },
       {
+        "name": "nsuffix",
+        "type": {
+          "datatype": "varchar",
+          "length": 3
+        },
+        "options": {
+          "nullable": true
+        }
+      },
+      {
         "name": "sequence",
         "type": {
           "datatype": "varbinary",
@@ -1021,6 +1031,16 @@ exports[`Compact formatter: Alter table add index should not add key or index fo
         "options": {
           "nullable": true,
           "format": "fixed"
+        }
+      },
+      {
+        "name": "nsuffix",
+        "type": {
+          "datatype": "varchar",
+          "length": 3
+        },
+        "options": {
+          "nullable": true
         }
       },
       {
@@ -1895,6 +1915,16 @@ exports[`Compact formatter: Alter table add index should not add key or index wi
         }
       },
       {
+        "name": "nsuffix",
+        "type": {
+          "datatype": "varchar",
+          "length": 3
+        },
+        "options": {
+          "nullable": true
+        }
+      },
+      {
         "name": "sequence",
         "type": {
           "datatype": "varbinary",
@@ -2763,6 +2793,16 @@ exports[`Compact formatter: Should alter table, adding index. 1`] = `
         "options": {
           "nullable": true,
           "format": "fixed"
+        }
+      },
+      {
+        "name": "nsuffix",
+        "type": {
+          "datatype": "varchar",
+          "length": 3
+        },
+        "options": {
+          "nullable": true
         }
       },
       {

@@ -1720,6 +1720,27 @@ exports[`Parser: Should create test table with all types and options of columns.
                           "def": {
                             "id": "O_VARIABLE_STRING_DATATYPE",
                             "def": {
+                              "datatype": "NVARCHAR",
+                              "length": 5
+                            }
+                          }
+                        },
+                        "columnDefinition": []
+                      }
+                    }
+                  }
+                },
+                {
+                  "id": "O_CREATE_TABLE_CREATE_DEFINITION",
+                  "def": {
+                    "column": {
+                      "name": "initials",
+                      "def": {
+                        "datatype": {
+                          "id": "O_DATATYPE",
+                          "def": {
+                            "id": "O_VARIABLE_STRING_DATATYPE",
+                            "def": {
                               "datatype": "NCHAR",
                               "length": 5
                             }

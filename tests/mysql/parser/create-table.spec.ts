@@ -29,6 +29,7 @@ run(getParsedFormat, {
         birthdate DATE,
         initials CHAR(5) CHARACTER SET utf8,
         initials NATIONAL CHAR(5),
+        initials NVARCHAR(5),
         initials NCHAR(5),
         initials CHARACTER(5),
         created_at DATETIME(3),

@@ -76,6 +76,10 @@ exports[`JSON Schema formatter: should format tables correctly, with ref. 1`] = 
         "type": "string",
         "maxLength": 1
       },
+      "nsuffix": {
+        "type": "string",
+        "maxLength": 3
+      },
       "sequence": {
         "type": "string",
         "maxLength": 20
@@ -144,6 +148,9 @@ exports[`JSON Schema formatter: should format tables correctly, with ref. 1`] = 
       },
       "suffix": {
         "$ref": "#/definitions/suffix"
+      },
+      "nsuffix": {
+        "$ref": "#/definitions/nsuffix"
       },
       "sequence": {
         "$ref": "#/definitions/sequence"
@@ -528,6 +535,10 @@ exports[`JSON Schema formatter: should format tables correctly, without ref. 1`]
       "suffix": {
         "type": "string",
         "maxLength": 1
+      },
+      "nsuffix": {
+        "type": "string",
+        "maxLength": 3
       },
       "sequence": {
         "type": "string",

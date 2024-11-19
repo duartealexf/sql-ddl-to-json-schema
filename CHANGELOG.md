@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [4.1.1](https://github.com/duartealexf/sql-ddl-to-json-schema/compare/v4.1.0...v4.1.1) (2024-11-19)
+
+
+### Bug Fixes
+
+* fix alter last column ([023eb4c](https://github.com/duartealexf/sql-ddl-to-json-schema/commit/023eb4c15951dae912967566169fcc5a8b73aa1f))
+* fix alter last column (Merge pull request [#98](https://github.com/duartealexf/sql-ddl-to-json-schema/issues/98) from duartealexf/staging) ([7f24844](https://github.com/duartealexf/sql-ddl-to-json-schema/commit/7f2484493f658c653ae10a6aa6b9ee22873943ae))
+
 ## [4.1.0](https://github.com/duartealexf/sql-ddl-to-json-schema/compare/v4.0.10...v4.1.0) (2023-07-07)
 
 

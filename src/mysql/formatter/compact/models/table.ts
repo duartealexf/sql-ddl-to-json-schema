@@ -124,7 +124,10 @@ export class Table implements TableModelInterface {
    * @param json JSON format parsed from SQL.
    * @param tables Already existing tables.
    */
-  static fromAlikeDef(json: P_CREATE_TABLE_LIKE, tables: TableModelInterface[] = []): Table | undefined {
+  static fromAlikeDef(
+    json: P_CREATE_TABLE_LIKE,
+    tables: TableModelInterface[] = [],
+  ): Table | undefined {
     if (json.id === 'P_CREATE_TABLE_LIKE') {
       const def = json.def;
 
@@ -427,7 +430,7 @@ export class Table implements TableModelInterface {
    *
    * @param column Column.
    */
-  getColumnPosition(column: ColumnModelInterface): O_POSITION | undefined {
+  getColumnPosition(column: ColumnModelInterface): O_POSITION {
     const index = (this.columns ?? []).indexOf(column);
 
     /**
@@ -436,19 +439,12 @@ export class Table implements TableModelInterface {
     if (index === 0) {
       return { after: null };
     }
-    if (index + 1 === (this.columns ?? []).length) {
-      /**
-       * Last column.
-       */
-    } else {
-      /**
-       * Somewhere in the middle.
-       */
-      const refColumn = (this.columns ?? [])[index - 1];
-      return { after: refColumn.name };
-    }
 
-    return undefined;
+    /**
+     * Elsewhere.
+     */
+    const refColumn = (this.columns ?? [])[index - 1];
+    return { after: refColumn.name };
   }
 
   /**

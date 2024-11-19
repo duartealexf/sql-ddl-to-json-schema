@@ -94,4 +94,10 @@ run(getCompactFormat, {
       sql.concat(['ALTER TABLE person CHANGE COLUMN size size INT(8) AUTO_INCREMENT;']).join(''),
     ],
   },
+
+  'Compact formatter: Alter table change column should change last column.': {
+    queries: [
+      sql.concat(['ALTER TABLE person CHANGE COLUMN pattern pattern VARCHAR(128);']).join(''),
+    ],
+  },
 });

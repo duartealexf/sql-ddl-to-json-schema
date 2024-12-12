@@ -148,14 +148,18 @@ export class Datatype {
       /**
        * Set minimum and maximum for int.
        */
-      const width = 2 ** (8 * (this.width as number));
+      // fix: see link: https://dev.mysql.com/doc/refman/5.7/en/integer-types.html
+      // const width = 2 ** (8 * (this.width as number));
 
       if (this.isUnsigned) {
         json.minimum = 0;
-        json.maximum = width;
+        // 4294967295
+        json.maximum = 2 ** 32 - 1;
       } else {
-        json.minimum = 0 - width / 2;
-        json.maximum = 0 - json.minimum - 1;
+        // -2147483648
+        json.minimum = -1 * 2 ** 31;
+        // 2147483647
+        json.maximum = 2 ** 31 - 1;
       }
     } else if (this.datatype === 'decimal' || this.datatype === 'float') {
       /**

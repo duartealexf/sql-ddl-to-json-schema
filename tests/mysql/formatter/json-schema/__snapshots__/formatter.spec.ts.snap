@@ -20,7 +20,7 @@ exports[`JSON Schema formatter: should format tables correctly, with ref. 1`] = 
         "description": "primary key test",
         "type": "integer",
         "minimum": 1,
-        "maximum": 1.2089258196146292e+24
+        "maximum": 4294967295
       },
       "name": {
         "type": "string",
@@ -38,8 +38,8 @@ exports[`JSON Schema formatter: should format tables correctly, with ref. 1`] = 
       },
       "ssn": {
         "type": "integer",
-        "minimum": -32768,
-        "maximum": 32767
+        "minimum": -2147483648,
+        "maximum": 2147483647
       },
       "height": {
         "type": "number",
@@ -187,8 +187,8 @@ exports[`JSON Schema formatter: should format tables correctly, with ref. 1`] = 
     "definitions": {
       "id": {
         "type": "integer",
-        "minimum": -9223372036854776000,
-        "maximum": 9223372036854776000
+        "minimum": -2147483648,
+        "maximum": 2147483647
       },
       "species": {
         "type": "string",
@@ -196,8 +196,8 @@ exports[`JSON Schema formatter: should format tables correctly, with ref. 1`] = 
       },
       "owner_id": {
         "type": "integer",
-        "minimum": -8388608,
-        "maximum": 8388607
+        "minimum": -2147483648,
+        "maximum": 2147483647
       },
       "height_unsigned": {
         "type": "number",
@@ -355,8 +355,8 @@ exports[`JSON Schema formatter: should format tables correctly, with ref. 1`] = 
       },
       "pet_id": {
         "type": "integer",
-        "minimum": -128,
-        "maximum": 127
+        "minimum": -2147483648,
+        "maximum": 2147483647
       },
       "coordx": {
         "type": "number",
@@ -497,7 +497,7 @@ exports[`JSON Schema formatter: should format tables correctly, without ref. 1`]
         "description": "primary key test",
         "type": "integer",
         "minimum": 1,
-        "maximum": 1.2089258196146292e+24
+        "maximum": 4294967295
       },
       "name": {
         "type": "string",
@@ -515,8 +515,8 @@ exports[`JSON Schema formatter: should format tables correctly, without ref. 1`]
       },
       "ssn": {
         "type": "integer",
-        "minimum": -32768,
-        "maximum": 32767
+        "minimum": -2147483648,
+        "maximum": 2147483647
       },
       "height": {
         "type": "number",
@@ -599,8 +599,8 @@ exports[`JSON Schema formatter: should format tables correctly, without ref. 1`]
     "properties": {
       "id": {
         "type": "integer",
-        "minimum": -9223372036854776000,
-        "maximum": 9223372036854776000
+        "minimum": -2147483648,
+        "maximum": 2147483647
       },
       "species": {
         "type": "string",
@@ -608,8 +608,8 @@ exports[`JSON Schema formatter: should format tables correctly, without ref. 1`]
       },
       "owner_id": {
         "type": "integer",
-        "minimum": -8388608,
-        "maximum": 8388607
+        "minimum": -2147483648,
+        "maximum": 2147483647
       },
       "height_unsigned": {
         "type": "number",
@@ -702,8 +702,8 @@ exports[`JSON Schema formatter: should format tables correctly, without ref. 1`]
       },
       "pet_id": {
         "type": "integer",
-        "minimum": -128,
-        "maximum": 127
+        "minimum": -2147483648,
+        "maximum": 2147483647
       },
       "coordx": {
         "type": "number",

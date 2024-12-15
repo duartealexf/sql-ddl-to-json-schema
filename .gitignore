@@ -32,3 +32,4 @@ coverage.*
 /playground
 
 coverage
+jest-feature.config.js

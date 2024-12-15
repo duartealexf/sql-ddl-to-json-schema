@@ -144,22 +144,47 @@ export class Datatype {
       type: Datatype.filterDatatype(this.datatype as string),
     };
 
-    if (this.datatype === 'int') {
+    /**
+     * bigint: javascript can not hold the 64 bits number, we store it in string
+     * it should be validated
+     */
+    if (this.datatype === 'int' && this.width === 8) {
+      json.type = 'string';
+
+      // @ts-ignore
+      json['x-bigint-string'] = true;
+
+      const width = BigInt(2) ** BigInt(8 * (this.width as number));
+
+      if (this.isUnsigned) {
+        json.pattern = '^(?:0|[1-9][0-9]*)$';
+        // @ts-ignore
+        json['x-bigint-minimum'] = '0';
+        // @ts-ignore
+        json[['x-bigint-maximum']] = (BigInt(width) - BigInt(1)).toString();
+      } else {
+        json.pattern = '^-?(?:0|[1-9][0-9]*)$';
+        // @ts-ignore
+        json['x-bigint-minimum'] = (BigInt(-1) * (BigInt(width) / BigInt(2))).toString();
+        // @ts-ignore
+        json['x-bigint-maximum'] = (BigInt(width) / BigInt(2) - BigInt(1)).toString();
+      }
+    } else if (this.datatype === 'int') {
       /**
        * Set minimum and maximum for int.
        */
       // fix: see link: https://dev.mysql.com/doc/refman/5.7/en/integer-types.html
-      // const width = 2 ** (8 * (this.width as number));
+      const width = 2 ** (8 * (this.width as number));
 
       if (this.isUnsigned) {
         json.minimum = 0;
         // 4294967295
-        json.maximum = 2 ** 32 - 1;
+        json.maximum = width - 1;
       } else {
         // -2147483648
-        json.minimum = -1 * 2 ** 31;
+        json.minimum = -1 * (width / 2);
         // 2147483647
-        json.maximum = 2 ** 31 - 1;
+        json.maximum = width / 2 - 1;
       }
     } else if (this.datatype === 'decimal' || this.datatype === 'float') {
       /**

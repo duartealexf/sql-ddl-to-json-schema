@@ -37,9 +37,68 @@ exports[`JSON Schema formatter: should format tables correctly, with ref. 1`] = 
         "maxLength": 20
       },
       "ssn": {
+        "description": "SMALLINT",
+        "type": "integer",
+        "minimum": -32768,
+        "maximum": 32767
+      },
+      "ssn1": {
+        "description": "SMALLINT UNSIGNED",
+        "type": "integer",
+        "minimum": 0,
+        "maximum": 65535
+      },
+      "ssn2": {
+        "description": "TINYINT",
+        "type": "integer",
+        "minimum": -128,
+        "maximum": 127
+      },
+      "ssn3": {
+        "description": "TINYINT UNSIGNED",
+        "type": "integer",
+        "minimum": 0,
+        "maximum": 255
+      },
+      "ssn4": {
+        "description": "INT",
         "type": "integer",
         "minimum": -2147483648,
         "maximum": 2147483647
+      },
+      "ssn5": {
+        "description": "INT UNSIGNED",
+        "type": "integer",
+        "minimum": 0,
+        "maximum": 4294967295
+      },
+      "ssn6": {
+        "description": "MEDIUMINT",
+        "type": "integer",
+        "minimum": -8388608,
+        "maximum": 8388607
+      },
+      "ssn7": {
+        "description": "MEDIUMINT UNSIGNED",
+        "type": "integer",
+        "minimum": 0,
+        "maximum": 16777215
+      },
+      "ssn8": {
+        "description": "BIGINT",
+        "type": "string",
+        "x-bigint-string": true,
+        "pattern": "^-?(?:0|[1-9][0-9]*)$",
+        "x-bigint-minimum": "-9223372036854775808",
+        "x-bigint-maximum": "9223372036854775807"
+      },
+      "ssn9": {
+        "description": "BIGINT UNSIGNED",
+        "type": "string",
+        "x-bigint-string": true,
+        "pattern": "^(?:0|[1-9][0-9]*)$",
+        "x-bigint-minimum": "0",
+        "x-bigint-maximum": "18446744073709551615"
       },
       "height": {
         "type": "number",
@@ -125,6 +184,33 @@ exports[`JSON Schema formatter: should format tables correctly, with ref. 1`] = 
       "ssn": {
         "$ref": "#/definitions/ssn"
       },
+      "ssn1": {
+        "$ref": "#/definitions/ssn1"
+      },
+      "ssn2": {
+        "$ref": "#/definitions/ssn2"
+      },
+      "ssn3": {
+        "$ref": "#/definitions/ssn3"
+      },
+      "ssn4": {
+        "$ref": "#/definitions/ssn4"
+      },
+      "ssn5": {
+        "$ref": "#/definitions/ssn5"
+      },
+      "ssn6": {
+        "$ref": "#/definitions/ssn6"
+      },
+      "ssn7": {
+        "$ref": "#/definitions/ssn7"
+      },
+      "ssn8": {
+        "$ref": "#/definitions/ssn8"
+      },
+      "ssn9": {
+        "$ref": "#/definitions/ssn9"
+      },
       "height": {
         "$ref": "#/definitions/height"
       },
@@ -186,9 +272,11 @@ exports[`JSON Schema formatter: should format tables correctly, with ref. 1`] = 
     ],
     "definitions": {
       "id": {
-        "type": "integer",
-        "minimum": -2147483648,
-        "maximum": 2147483647
+        "type": "string",
+        "x-bigint-string": true,
+        "pattern": "^-?(?:0|[1-9][0-9]*)$",
+        "x-bigint-minimum": "-9223372036854775808",
+        "x-bigint-maximum": "9223372036854775807"
       },
       "species": {
         "type": "string",
@@ -196,8 +284,8 @@ exports[`JSON Schema formatter: should format tables correctly, with ref. 1`] = 
       },
       "owner_id": {
         "type": "integer",
-        "minimum": -2147483648,
-        "maximum": 2147483647
+        "minimum": -8388608,
+        "maximum": 8388607
       },
       "height_unsigned": {
         "type": "number",
@@ -355,8 +443,8 @@ exports[`JSON Schema formatter: should format tables correctly, with ref. 1`] = 
       },
       "pet_id": {
         "type": "integer",
-        "minimum": -2147483648,
-        "maximum": 2147483647
+        "minimum": -128,
+        "maximum": 127
       },
       "coordx": {
         "type": "number",
@@ -514,9 +602,68 @@ exports[`JSON Schema formatter: should format tables correctly, without ref. 1`]
         "maxLength": 20
       },
       "ssn": {
+        "description": "SMALLINT",
+        "type": "integer",
+        "minimum": -32768,
+        "maximum": 32767
+      },
+      "ssn1": {
+        "description": "SMALLINT UNSIGNED",
+        "type": "integer",
+        "minimum": 0,
+        "maximum": 65535
+      },
+      "ssn2": {
+        "description": "TINYINT",
+        "type": "integer",
+        "minimum": -128,
+        "maximum": 127
+      },
+      "ssn3": {
+        "description": "TINYINT UNSIGNED",
+        "type": "integer",
+        "minimum": 0,
+        "maximum": 255
+      },
+      "ssn4": {
+        "description": "INT",
         "type": "integer",
         "minimum": -2147483648,
         "maximum": 2147483647
+      },
+      "ssn5": {
+        "description": "INT UNSIGNED",
+        "type": "integer",
+        "minimum": 0,
+        "maximum": 4294967295
+      },
+      "ssn6": {
+        "description": "MEDIUMINT",
+        "type": "integer",
+        "minimum": -8388608,
+        "maximum": 8388607
+      },
+      "ssn7": {
+        "description": "MEDIUMINT UNSIGNED",
+        "type": "integer",
+        "minimum": 0,
+        "maximum": 16777215
+      },
+      "ssn8": {
+        "description": "BIGINT",
+        "type": "string",
+        "x-bigint-string": true,
+        "pattern": "^-?(?:0|[1-9][0-9]*)$",
+        "x-bigint-minimum": "-9223372036854775808",
+        "x-bigint-maximum": "9223372036854775807"
+      },
+      "ssn9": {
+        "description": "BIGINT UNSIGNED",
+        "type": "string",
+        "x-bigint-string": true,
+        "pattern": "^(?:0|[1-9][0-9]*)$",
+        "x-bigint-minimum": "0",
+        "x-bigint-maximum": "18446744073709551615"
       },
       "height": {
         "type": "number",
@@ -598,9 +745,11 @@ exports[`JSON Schema formatter: should format tables correctly, without ref. 1`]
     ],
     "properties": {
       "id": {
-        "type": "integer",
-        "minimum": -2147483648,
-        "maximum": 2147483647
+        "type": "string",
+        "x-bigint-string": true,
+        "pattern": "^-?(?:0|[1-9][0-9]*)$",
+        "x-bigint-minimum": "-9223372036854775808",
+        "x-bigint-maximum": "9223372036854775807"
       },
       "species": {
         "type": "string",
@@ -608,8 +757,8 @@ exports[`JSON Schema formatter: should format tables correctly, without ref. 1`]
       },
       "owner_id": {
         "type": "integer",
-        "minimum": -2147483648,
-        "maximum": 2147483647
+        "minimum": -8388608,
+        "maximum": 8388607
       },
       "height_unsigned": {
         "type": "number",
@@ -702,8 +851,8 @@ exports[`JSON Schema formatter: should format tables correctly, without ref. 1`]
       },
       "pet_id": {
         "type": "integer",
-        "minimum": -2147483648,
-        "maximum": 2147483647
+        "minimum": -128,
+        "maximum": 127
       },
       "coordx": {
         "type": "number",

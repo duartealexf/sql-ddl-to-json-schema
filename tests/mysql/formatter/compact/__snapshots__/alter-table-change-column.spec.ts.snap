@@ -9,7 +9,7 @@ exports[`Compact formatter: Alter table change column should change last column.
         "name": "id",
         "type": {
           "datatype": "int",
-          "width": 10
+          "width": 4
         },
         "options": {
           "unsigned": true,
@@ -63,6 +63,110 @@ exports[`Compact formatter: Alter table change column should change last column.
         "options": {
           "nullable": true,
           "invisibleWithSystemVersioning": true
+        }
+      },
+      {
+        "name": "ssn1",
+        "type": {
+          "datatype": "int",
+          "width": 2
+        },
+        "options": {
+          "unsigned": true,
+          "nullable": true,
+          "comment": "SMALLINT UNSIGNED"
+        }
+      },
+      {
+        "name": "ssn2",
+        "type": {
+          "datatype": "int",
+          "width": 1
+        },
+        "options": {
+          "nullable": true,
+          "comment": "TINYINT"
+        }
+      },
+      {
+        "name": "ssn3",
+        "type": {
+          "datatype": "int",
+          "width": 1
+        },
+        "options": {
+          "unsigned": true,
+          "nullable": true,
+          "comment": "TINYINT UNSIGNED"
+        }
+      },
+      {
+        "name": "ssn4",
+        "type": {
+          "datatype": "int",
+          "width": 4
+        },
+        "options": {
+          "nullable": true,
+          "comment": "INT"
+        }
+      },
+      {
+        "name": "ssn5",
+        "type": {
+          "datatype": "int",
+          "width": 4
+        },
+        "options": {
+          "unsigned": true,
+          "nullable": true,
+          "comment": "INT UNSIGNED"
+        }
+      },
+      {
+        "name": "ssn6",
+        "type": {
+          "datatype": "int",
+          "width": 3
+        },
+        "options": {
+          "nullable": true,
+          "comment": "MEDIUMINT"
+        }
+      },
+      {
+        "name": "ssn7",
+        "type": {
+          "datatype": "int",
+          "width": 3
+        },
+        "options": {
+          "unsigned": true,
+          "nullable": true,
+          "comment": "MEDIUMINT UNSIGNED"
+        }
+      },
+      {
+        "name": "ssn8",
+        "type": {
+          "datatype": "int",
+          "width": 8
+        },
+        "options": {
+          "nullable": true,
+          "comment": "BIGINT"
+        }
+      },
+      {
+        "name": "ssn9",
+        "type": {
+          "datatype": "int",
+          "width": 8
+        },
+        "options": {
+          "unsigned": true,
+          "nullable": true,
+          "comment": "BIGINT UNSIGNED"
         }
       },
       {
@@ -872,7 +976,7 @@ exports[`Compact formatter: Alter table change column should ignore duplicate un
         "name": "id",
         "type": {
           "datatype": "int",
-          "width": 10
+          "width": 4
         },
         "options": {
           "unsigned": true,
@@ -926,6 +1030,110 @@ exports[`Compact formatter: Alter table change column should ignore duplicate un
         "options": {
           "nullable": true,
           "invisibleWithSystemVersioning": true
+        }
+      },
+      {
+        "name": "ssn1",
+        "type": {
+          "datatype": "int",
+          "width": 2
+        },
+        "options": {
+          "unsigned": true,
+          "nullable": true,
+          "comment": "SMALLINT UNSIGNED"
+        }
+      },
+      {
+        "name": "ssn2",
+        "type": {
+          "datatype": "int",
+          "width": 1
+        },
+        "options": {
+          "nullable": true,
+          "comment": "TINYINT"
+        }
+      },
+      {
+        "name": "ssn3",
+        "type": {
+          "datatype": "int",
+          "width": 1
+        },
+        "options": {
+          "unsigned": true,
+          "nullable": true,
+          "comment": "TINYINT UNSIGNED"
+        }
+      },
+      {
+        "name": "ssn4",
+        "type": {
+          "datatype": "int",
+          "width": 4
+        },
+        "options": {
+          "nullable": true,
+          "comment": "INT"
+        }
+      },
+      {
+        "name": "ssn5",
+        "type": {
+          "datatype": "int",
+          "width": 4
+        },
+        "options": {
+          "unsigned": true,
+          "nullable": true,
+          "comment": "INT UNSIGNED"
+        }
+      },
+      {
+        "name": "ssn6",
+        "type": {
+          "datatype": "int",
+          "width": 3
+        },
+        "options": {
+          "nullable": true,
+          "comment": "MEDIUMINT"
+        }
+      },
+      {
+        "name": "ssn7",
+        "type": {
+          "datatype": "int",
+          "width": 3
+        },
+        "options": {
+          "unsigned": true,
+          "nullable": true,
+          "comment": "MEDIUMINT UNSIGNED"
+        }
+      },
+      {
+        "name": "ssn8",
+        "type": {
+          "datatype": "int",
+          "width": 8
+        },
+        "options": {
+          "nullable": true,
+          "comment": "BIGINT"
+        }
+      },
+      {
+        "name": "ssn9",
+        "type": {
+          "datatype": "int",
+          "width": 8
+        },
+        "options": {
+          "unsigned": true,
+          "nullable": true,
+          "comment": "BIGINT UNSIGNED"
         }
       },
       {
@@ -1734,7 +1942,7 @@ exports[`Compact formatter: Alter table change column should ignore foreign key 
         "name": "id",
         "type": {
           "datatype": "int",
-          "width": 10
+          "width": 4
         },
         "options": {
           "unsigned": true,
@@ -1788,6 +1996,110 @@ exports[`Compact formatter: Alter table change column should ignore foreign key 
         "options": {
           "nullable": true,
           "invisibleWithSystemVersioning": true
+        }
+      },
+      {
+        "name": "ssn1",
+        "type": {
+          "datatype": "int",
+          "width": 2
+        },
+        "options": {
+          "unsigned": true,
+          "nullable": true,
+          "comment": "SMALLINT UNSIGNED"
+        }
+      },
+      {
+        "name": "ssn2",
+        "type": {
+          "datatype": "int",
+          "width": 1
+        },
+        "options": {
+          "nullable": true,
+          "comment": "TINYINT"
+        }
+      },
+      {
+        "name": "ssn3",
+        "type": {
+          "datatype": "int",
+          "width": 1
+        },
+        "options": {
+          "unsigned": true,
+          "nullable": true,
+          "comment": "TINYINT UNSIGNED"
+        }
+      },
+      {
+        "name": "ssn4",
+        "type": {
+          "datatype": "int",
+          "width": 4
+        },
+        "options": {
+          "nullable": true,
+          "comment": "INT"
+        }
+      },
+      {
+        "name": "ssn5",
+        "type": {
+          "datatype": "int",
+          "width": 4
+        },
+        "options": {
+          "unsigned": true,
+          "nullable": true,
+          "comment": "INT UNSIGNED"
+        }
+      },
+      {
+        "name": "ssn6",
+        "type": {
+          "datatype": "int",
+          "width": 3
+        },
+        "options": {
+          "nullable": true,
+          "comment": "MEDIUMINT"
+        }
+      },
+      {
+        "name": "ssn7",
+        "type": {
+          "datatype": "int",
+          "width": 3
+        },
+        "options": {
+          "unsigned": true,
+          "nullable": true,
+          "comment": "MEDIUMINT UNSIGNED"
+        }
+      },
+      {
+        "name": "ssn8",
+        "type": {
+          "datatype": "int",
+          "width": 8
+        },
+        "options": {
+          "nullable": true,
+          "comment": "BIGINT"
+        }
+      },
+      {
+        "name": "ssn9",
+        "type": {
+          "datatype": "int",
+          "width": 8
+        },
+        "options": {
+          "unsigned": true,
+          "nullable": true,
+          "comment": "BIGINT UNSIGNED"
         }
       },
       {
@@ -2598,7 +2910,7 @@ exports[`Compact formatter: Alter table change column should not change a column
         "name": "id",
         "type": {
           "datatype": "int",
-          "width": 10
+          "width": 4
         },
         "options": {
           "unsigned": true,
@@ -2652,6 +2964,110 @@ exports[`Compact formatter: Alter table change column should not change a column
         "options": {
           "nullable": true,
           "invisibleWithSystemVersioning": true
+        }
+      },
+      {
+        "name": "ssn1",
+        "type": {
+          "datatype": "int",
+          "width": 2
+        },
+        "options": {
+          "unsigned": true,
+          "nullable": true,
+          "comment": "SMALLINT UNSIGNED"
+        }
+      },
+      {
+        "name": "ssn2",
+        "type": {
+          "datatype": "int",
+          "width": 1
+        },
+        "options": {
+          "nullable": true,
+          "comment": "TINYINT"
+        }
+      },
+      {
+        "name": "ssn3",
+        "type": {
+          "datatype": "int",
+          "width": 1
+        },
+        "options": {
+          "unsigned": true,
+          "nullable": true,
+          "comment": "TINYINT UNSIGNED"
+        }
+      },
+      {
+        "name": "ssn4",
+        "type": {
+          "datatype": "int",
+          "width": 4
+        },
+        "options": {
+          "nullable": true,
+          "comment": "INT"
+        }
+      },
+      {
+        "name": "ssn5",
+        "type": {
+          "datatype": "int",
+          "width": 4
+        },
+        "options": {
+          "unsigned": true,
+          "nullable": true,
+          "comment": "INT UNSIGNED"
+        }
+      },
+      {
+        "name": "ssn6",
+        "type": {
+          "datatype": "int",
+          "width": 3
+        },
+        "options": {
+          "nullable": true,
+          "comment": "MEDIUMINT"
+        }
+      },
+      {
+        "name": "ssn7",
+        "type": {
+          "datatype": "int",
+          "width": 3
+        },
+        "options": {
+          "unsigned": true,
+          "nullable": true,
+          "comment": "MEDIUMINT UNSIGNED"
+        }
+      },
+      {
+        "name": "ssn8",
+        "type": {
+          "datatype": "int",
+          "width": 8
+        },
+        "options": {
+          "nullable": true,
+          "comment": "BIGINT"
+        }
+      },
+      {
+        "name": "ssn9",
+        "type": {
+          "datatype": "int",
+          "width": 8
+        },
+        "options": {
+          "unsigned": true,
+          "nullable": true,
+          "comment": "BIGINT UNSIGNED"
         }
       },
       {
@@ -3460,7 +3876,7 @@ exports[`Compact formatter: Alter table change column should not change a column
         "name": "id",
         "type": {
           "datatype": "int",
-          "width": 10
+          "width": 4
         },
         "options": {
           "unsigned": true,
@@ -3514,6 +3930,110 @@ exports[`Compact formatter: Alter table change column should not change a column
         "options": {
           "nullable": true,
           "invisibleWithSystemVersioning": true
+        }
+      },
+      {
+        "name": "ssn1",
+        "type": {
+          "datatype": "int",
+          "width": 2
+        },
+        "options": {
+          "unsigned": true,
+          "nullable": true,
+          "comment": "SMALLINT UNSIGNED"
+        }
+      },
+      {
+        "name": "ssn2",
+        "type": {
+          "datatype": "int",
+          "width": 1
+        },
+        "options": {
+          "nullable": true,
+          "comment": "TINYINT"
+        }
+      },
+      {
+        "name": "ssn3",
+        "type": {
+          "datatype": "int",
+          "width": 1
+        },
+        "options": {
+          "unsigned": true,
+          "nullable": true,
+          "comment": "TINYINT UNSIGNED"
+        }
+      },
+      {
+        "name": "ssn4",
+        "type": {
+          "datatype": "int",
+          "width": 4
+        },
+        "options": {
+          "nullable": true,
+          "comment": "INT"
+        }
+      },
+      {
+        "name": "ssn5",
+        "type": {
+          "datatype": "int",
+          "width": 4
+        },
+        "options": {
+          "unsigned": true,
+          "nullable": true,
+          "comment": "INT UNSIGNED"
+        }
+      },
+      {
+        "name": "ssn6",
+        "type": {
+          "datatype": "int",
+          "width": 3
+        },
+        "options": {
+          "nullable": true,
+          "comment": "MEDIUMINT"
+        }
+      },
+      {
+        "name": "ssn7",
+        "type": {
+          "datatype": "int",
+          "width": 3
+        },
+        "options": {
+          "unsigned": true,
+          "nullable": true,
+          "comment": "MEDIUMINT UNSIGNED"
+        }
+      },
+      {
+        "name": "ssn8",
+        "type": {
+          "datatype": "int",
+          "width": 8
+        },
+        "options": {
+          "nullable": true,
+          "comment": "BIGINT"
+        }
+      },
+      {
+        "name": "ssn9",
+        "type": {
+          "datatype": "int",
+          "width": 8
+        },
+        "options": {
+          "unsigned": true,
+          "nullable": true,
+          "comment": "BIGINT UNSIGNED"
         }
       },
       {
@@ -4322,7 +4842,7 @@ exports[`Compact formatter: Alter table change column should not change a column
         "name": "id",
         "type": {
           "datatype": "int",
-          "width": 10
+          "width": 4
         },
         "options": {
           "unsigned": true,
@@ -4376,6 +4896,110 @@ exports[`Compact formatter: Alter table change column should not change a column
         "options": {
           "nullable": true,
           "invisibleWithSystemVersioning": true
+        }
+      },
+      {
+        "name": "ssn1",
+        "type": {
+          "datatype": "int",
+          "width": 2
+        },
+        "options": {
+          "unsigned": true,
+          "nullable": true,
+          "comment": "SMALLINT UNSIGNED"
+        }
+      },
+      {
+        "name": "ssn2",
+        "type": {
+          "datatype": "int",
+          "width": 1
+        },
+        "options": {
+          "nullable": true,
+          "comment": "TINYINT"
+        }
+      },
+      {
+        "name": "ssn3",
+        "type": {
+          "datatype": "int",
+          "width": 1
+        },
+        "options": {
+          "unsigned": true,
+          "nullable": true,
+          "comment": "TINYINT UNSIGNED"
+        }
+      },
+      {
+        "name": "ssn4",
+        "type": {
+          "datatype": "int",
+          "width": 4
+        },
+        "options": {
+          "nullable": true,
+          "comment": "INT"
+        }
+      },
+      {
+        "name": "ssn5",
+        "type": {
+          "datatype": "int",
+          "width": 4
+        },
+        "options": {
+          "unsigned": true,
+          "nullable": true,
+          "comment": "INT UNSIGNED"
+        }
+      },
+      {
+        "name": "ssn6",
+        "type": {
+          "datatype": "int",
+          "width": 3
+        },
+        "options": {
+          "nullable": true,
+          "comment": "MEDIUMINT"
+        }
+      },
+      {
+        "name": "ssn7",
+        "type": {
+          "datatype": "int",
+          "width": 3
+        },
+        "options": {
+          "unsigned": true,
+          "nullable": true,
+          "comment": "MEDIUMINT UNSIGNED"
+        }
+      },
+      {
+        "name": "ssn8",
+        "type": {
+          "datatype": "int",
+          "width": 8
+        },
+        "options": {
+          "nullable": true,
+          "comment": "BIGINT"
+        }
+      },
+      {
+        "name": "ssn9",
+        "type": {
+          "datatype": "int",
+          "width": 8
+        },
+        "options": {
+          "unsigned": true,
+          "nullable": true,
+          "comment": "BIGINT UNSIGNED"
         }
       },
       {
@@ -5184,7 +5808,7 @@ exports[`Compact formatter: Alter table change column should not change column a
         "name": "id",
         "type": {
           "datatype": "int",
-          "width": 10
+          "width": 4
         },
         "options": {
           "unsigned": true,
@@ -5238,6 +5862,110 @@ exports[`Compact formatter: Alter table change column should not change column a
         "options": {
           "nullable": true,
           "invisibleWithSystemVersioning": true
+        }
+      },
+      {
+        "name": "ssn1",
+        "type": {
+          "datatype": "int",
+          "width": 2
+        },
+        "options": {
+          "unsigned": true,
+          "nullable": true,
+          "comment": "SMALLINT UNSIGNED"
+        }
+      },
+      {
+        "name": "ssn2",
+        "type": {
+          "datatype": "int",
+          "width": 1
+        },
+        "options": {
+          "nullable": true,
+          "comment": "TINYINT"
+        }
+      },
+      {
+        "name": "ssn3",
+        "type": {
+          "datatype": "int",
+          "width": 1
+        },
+        "options": {
+          "unsigned": true,
+          "nullable": true,
+          "comment": "TINYINT UNSIGNED"
+        }
+      },
+      {
+        "name": "ssn4",
+        "type": {
+          "datatype": "int",
+          "width": 4
+        },
+        "options": {
+          "nullable": true,
+          "comment": "INT"
+        }
+      },
+      {
+        "name": "ssn5",
+        "type": {
+          "datatype": "int",
+          "width": 4
+        },
+        "options": {
+          "unsigned": true,
+          "nullable": true,
+          "comment": "INT UNSIGNED"
+        }
+      },
+      {
+        "name": "ssn6",
+        "type": {
+          "datatype": "int",
+          "width": 3
+        },
+        "options": {
+          "nullable": true,
+          "comment": "MEDIUMINT"
+        }
+      },
+      {
+        "name": "ssn7",
+        "type": {
+          "datatype": "int",
+          "width": 3
+        },
+        "options": {
+          "unsigned": true,
+          "nullable": true,
+          "comment": "MEDIUMINT UNSIGNED"
+        }
+      },
+      {
+        "name": "ssn8",
+        "type": {
+          "datatype": "int",
+          "width": 8
+        },
+        "options": {
+          "nullable": true,
+          "comment": "BIGINT"
+        }
+      },
+      {
+        "name": "ssn9",
+        "type": {
+          "datatype": "int",
+          "width": 8
+        },
+        "options": {
+          "unsigned": true,
+          "nullable": true,
+          "comment": "BIGINT UNSIGNED"
         }
       },
       {
@@ -6046,7 +6774,7 @@ exports[`Compact formatter: Alter table change column should not change unexisti
         "name": "id",
         "type": {
           "datatype": "int",
-          "width": 10
+          "width": 4
         },
         "options": {
           "unsigned": true,
@@ -6100,6 +6828,110 @@ exports[`Compact formatter: Alter table change column should not change unexisti
         "options": {
           "nullable": true,
           "invisibleWithSystemVersioning": true
+        }
+      },
+      {
+        "name": "ssn1",
+        "type": {
+          "datatype": "int",
+          "width": 2
+        },
+        "options": {
+          "unsigned": true,
+          "nullable": true,
+          "comment": "SMALLINT UNSIGNED"
+        }
+      },
+      {
+        "name": "ssn2",
+        "type": {
+          "datatype": "int",
+          "width": 1
+        },
+        "options": {
+          "nullable": true,
+          "comment": "TINYINT"
+        }
+      },
+      {
+        "name": "ssn3",
+        "type": {
+          "datatype": "int",
+          "width": 1
+        },
+        "options": {
+          "unsigned": true,
+          "nullable": true,
+          "comment": "TINYINT UNSIGNED"
+        }
+      },
+      {
+        "name": "ssn4",
+        "type": {
+          "datatype": "int",
+          "width": 4
+        },
+        "options": {
+          "nullable": true,
+          "comment": "INT"
+        }
+      },
+      {
+        "name": "ssn5",
+        "type": {
+          "datatype": "int",
+          "width": 4
+        },
+        "options": {
+          "unsigned": true,
+          "nullable": true,
+          "comment": "INT UNSIGNED"
+        }
+      },
+      {
+        "name": "ssn6",
+        "type": {
+          "datatype": "int",
+          "width": 3
+        },
+        "options": {
+          "nullable": true,
+          "comment": "MEDIUMINT"
+        }
+      },
+      {
+        "name": "ssn7",
+        "type": {
+          "datatype": "int",
+          "width": 3
+        },
+        "options": {
+          "unsigned": true,
+          "nullable": true,
+          "comment": "MEDIUMINT UNSIGNED"
+        }
+      },
+      {
+        "name": "ssn8",
+        "type": {
+          "datatype": "int",
+          "width": 8
+        },
+        "options": {
+          "nullable": true,
+          "comment": "BIGINT"
+        }
+      },
+      {
+        "name": "ssn9",
+        "type": {
+          "datatype": "int",
+          "width": 8
+        },
+        "options": {
+          "unsigned": true,
+          "nullable": true,
+          "comment": "BIGINT UNSIGNED"
         }
       },
       {
@@ -6908,7 +7740,7 @@ exports[`Compact formatter: Alter table change column should rename foreign key 
         "name": "id",
         "type": {
           "datatype": "int",
-          "width": 10
+          "width": 4
         },
         "options": {
           "unsigned": true,
@@ -6962,6 +7794,110 @@ exports[`Compact formatter: Alter table change column should rename foreign key 
         "options": {
           "nullable": true,
           "invisibleWithSystemVersioning": true
+        }
+      },
+      {
+        "name": "ssn1",
+        "type": {
+          "datatype": "int",
+          "width": 2
+        },
+        "options": {
+          "unsigned": true,
+          "nullable": true,
+          "comment": "SMALLINT UNSIGNED"
+        }
+      },
+      {
+        "name": "ssn2",
+        "type": {
+          "datatype": "int",
+          "width": 1
+        },
+        "options": {
+          "nullable": true,
+          "comment": "TINYINT"
+        }
+      },
+      {
+        "name": "ssn3",
+        "type": {
+          "datatype": "int",
+          "width": 1
+        },
+        "options": {
+          "unsigned": true,
+          "nullable": true,
+          "comment": "TINYINT UNSIGNED"
+        }
+      },
+      {
+        "name": "ssn4",
+        "type": {
+          "datatype": "int",
+          "width": 4
+        },
+        "options": {
+          "nullable": true,
+          "comment": "INT"
+        }
+      },
+      {
+        "name": "ssn5",
+        "type": {
+          "datatype": "int",
+          "width": 4
+        },
+        "options": {
+          "unsigned": true,
+          "nullable": true,
+          "comment": "INT UNSIGNED"
+        }
+      },
+      {
+        "name": "ssn6",
+        "type": {
+          "datatype": "int",
+          "width": 3
+        },
+        "options": {
+          "nullable": true,
+          "comment": "MEDIUMINT"
+        }
+      },
+      {
+        "name": "ssn7",
+        "type": {
+          "datatype": "int",
+          "width": 3
+        },
+        "options": {
+          "unsigned": true,
+          "nullable": true,
+          "comment": "MEDIUMINT UNSIGNED"
+        }
+      },
+      {
+        "name": "ssn8",
+        "type": {
+          "datatype": "int",
+          "width": 8
+        },
+        "options": {
+          "nullable": true,
+          "comment": "BIGINT"
+        }
+      },
+      {
+        "name": "ssn9",
+        "type": {
+          "datatype": "int",
+          "width": 8
+        },
+        "options": {
+          "unsigned": true,
+          "nullable": true,
+          "comment": "BIGINT UNSIGNED"
         }
       },
       {
@@ -7770,7 +8706,7 @@ exports[`Compact formatter: Alter table change column should rename fulltext ind
         "name": "id",
         "type": {
           "datatype": "int",
-          "width": 10
+          "width": 4
         },
         "options": {
           "unsigned": true,
@@ -7824,6 +8760,110 @@ exports[`Compact formatter: Alter table change column should rename fulltext ind
         "options": {
           "nullable": true,
           "invisibleWithSystemVersioning": true
+        }
+      },
+      {
+        "name": "ssn1",
+        "type": {
+          "datatype": "int",
+          "width": 2
+        },
+        "options": {
+          "unsigned": true,
+          "nullable": true,
+          "comment": "SMALLINT UNSIGNED"
+        }
+      },
+      {
+        "name": "ssn2",
+        "type": {
+          "datatype": "int",
+          "width": 1
+        },
+        "options": {
+          "nullable": true,
+          "comment": "TINYINT"
+        }
+      },
+      {
+        "name": "ssn3",
+        "type": {
+          "datatype": "int",
+          "width": 1
+        },
+        "options": {
+          "unsigned": true,
+          "nullable": true,
+          "comment": "TINYINT UNSIGNED"
+        }
+      },
+      {
+        "name": "ssn4",
+        "type": {
+          "datatype": "int",
+          "width": 4
+        },
+        "options": {
+          "nullable": true,
+          "comment": "INT"
+        }
+      },
+      {
+        "name": "ssn5",
+        "type": {
+          "datatype": "int",
+          "width": 4
+        },
+        "options": {
+          "unsigned": true,
+          "nullable": true,
+          "comment": "INT UNSIGNED"
+        }
+      },
+      {
+        "name": "ssn6",
+        "type": {
+          "datatype": "int",
+          "width": 3
+        },
+        "options": {
+          "nullable": true,
+          "comment": "MEDIUMINT"
+        }
+      },
+      {
+        "name": "ssn7",
+        "type": {
+          "datatype": "int",
+          "width": 3
+        },
+        "options": {
+          "unsigned": true,
+          "nullable": true,
+          "comment": "MEDIUMINT UNSIGNED"
+        }
+      },
+      {
+        "name": "ssn8",
+        "type": {
+          "datatype": "int",
+          "width": 8
+        },
+        "options": {
+          "nullable": true,
+          "comment": "BIGINT"
+        }
+      },
+      {
+        "name": "ssn9",
+        "type": {
+          "datatype": "int",
+          "width": 8
+        },
+        "options": {
+          "unsigned": true,
+          "nullable": true,
+          "comment": "BIGINT UNSIGNED"
         }
       },
       {
@@ -8632,7 +9672,7 @@ exports[`Compact formatter: Alter table change column should rename index column
         "name": "id",
         "type": {
           "datatype": "int",
-          "width": 10
+          "width": 4
         },
         "options": {
           "unsigned": true,
@@ -8686,6 +9726,110 @@ exports[`Compact formatter: Alter table change column should rename index column
         "options": {
           "nullable": true,
           "invisibleWithSystemVersioning": true
+        }
+      },
+      {
+        "name": "ssn1",
+        "type": {
+          "datatype": "int",
+          "width": 2
+        },
+        "options": {
+          "unsigned": true,
+          "nullable": true,
+          "comment": "SMALLINT UNSIGNED"
+        }
+      },
+      {
+        "name": "ssn2",
+        "type": {
+          "datatype": "int",
+          "width": 1
+        },
+        "options": {
+          "nullable": true,
+          "comment": "TINYINT"
+        }
+      },
+      {
+        "name": "ssn3",
+        "type": {
+          "datatype": "int",
+          "width": 1
+        },
+        "options": {
+          "unsigned": true,
+          "nullable": true,
+          "comment": "TINYINT UNSIGNED"
+        }
+      },
+      {
+        "name": "ssn4",
+        "type": {
+          "datatype": "int",
+          "width": 4
+        },
+        "options": {
+          "nullable": true,
+          "comment": "INT"
+        }
+      },
+      {
+        "name": "ssn5",
+        "type": {
+          "datatype": "int",
+          "width": 4
+        },
+        "options": {
+          "unsigned": true,
+          "nullable": true,
+          "comment": "INT UNSIGNED"
+        }
+      },
+      {
+        "name": "ssn6",
+        "type": {
+          "datatype": "int",
+          "width": 3
+        },
+        "options": {
+          "nullable": true,
+          "comment": "MEDIUMINT"
+        }
+      },
+      {
+        "name": "ssn7",
+        "type": {
+          "datatype": "int",
+          "width": 3
+        },
+        "options": {
+          "unsigned": true,
+          "nullable": true,
+          "comment": "MEDIUMINT UNSIGNED"
+        }
+      },
+      {
+        "name": "ssn8",
+        "type": {
+          "datatype": "int",
+          "width": 8
+        },
+        "options": {
+          "nullable": true,
+          "comment": "BIGINT"
+        }
+      },
+      {
+        "name": "ssn9",
+        "type": {
+          "datatype": "int",
+          "width": 8
+        },
+        "options": {
+          "unsigned": true,
+          "nullable": true,
+          "comment": "BIGINT UNSIGNED"
         }
       },
       {
@@ -9494,7 +10638,7 @@ exports[`Compact formatter: Alter table change column should rename primary and 
         "name": "code",
         "type": {
           "datatype": "int",
-          "width": 10
+          "width": 4
         },
         "options": {
           "unsigned": true,
@@ -9548,6 +10692,110 @@ exports[`Compact formatter: Alter table change column should rename primary and 
         "options": {
           "nullable": true,
           "invisibleWithSystemVersioning": true
+        }
+      },
+      {
+        "name": "ssn1",
+        "type": {
+          "datatype": "int",
+          "width": 2
+        },
+        "options": {
+          "unsigned": true,
+          "nullable": true,
+          "comment": "SMALLINT UNSIGNED"
+        }
+      },
+      {
+        "name": "ssn2",
+        "type": {
+          "datatype": "int",
+          "width": 1
+        },
+        "options": {
+          "nullable": true,
+          "comment": "TINYINT"
+        }
+      },
+      {
+        "name": "ssn3",
+        "type": {
+          "datatype": "int",
+          "width": 1
+        },
+        "options": {
+          "unsigned": true,
+          "nullable": true,
+          "comment": "TINYINT UNSIGNED"
+        }
+      },
+      {
+        "name": "ssn4",
+        "type": {
+          "datatype": "int",
+          "width": 4
+        },
+        "options": {
+          "nullable": true,
+          "comment": "INT"
+        }
+      },
+      {
+        "name": "ssn5",
+        "type": {
+          "datatype": "int",
+          "width": 4
+        },
+        "options": {
+          "unsigned": true,
+          "nullable": true,
+          "comment": "INT UNSIGNED"
+        }
+      },
+      {
+        "name": "ssn6",
+        "type": {
+          "datatype": "int",
+          "width": 3
+        },
+        "options": {
+          "nullable": true,
+          "comment": "MEDIUMINT"
+        }
+      },
+      {
+        "name": "ssn7",
+        "type": {
+          "datatype": "int",
+          "width": 3
+        },
+        "options": {
+          "unsigned": true,
+          "nullable": true,
+          "comment": "MEDIUMINT UNSIGNED"
+        }
+      },
+      {
+        "name": "ssn8",
+        "type": {
+          "datatype": "int",
+          "width": 8
+        },
+        "options": {
+          "nullable": true,
+          "comment": "BIGINT"
+        }
+      },
+      {
+        "name": "ssn9",
+        "type": {
+          "datatype": "int",
+          "width": 8
+        },
+        "options": {
+          "unsigned": true,
+          "nullable": true,
+          "comment": "BIGINT UNSIGNED"
         }
       },
       {
@@ -10356,7 +11604,7 @@ exports[`Compact formatter: Alter table change column should rename spatial inde
         "name": "id",
         "type": {
           "datatype": "int",
-          "width": 10
+          "width": 4
         },
         "options": {
           "unsigned": true,
@@ -10410,6 +11658,110 @@ exports[`Compact formatter: Alter table change column should rename spatial inde
         "options": {
           "nullable": true,
           "invisibleWithSystemVersioning": true
+        }
+      },
+      {
+        "name": "ssn1",
+        "type": {
+          "datatype": "int",
+          "width": 2
+        },
+        "options": {
+          "unsigned": true,
+          "nullable": true,
+          "comment": "SMALLINT UNSIGNED"
+        }
+      },
+      {
+        "name": "ssn2",
+        "type": {
+          "datatype": "int",
+          "width": 1
+        },
+        "options": {
+          "nullable": true,
+          "comment": "TINYINT"
+        }
+      },
+      {
+        "name": "ssn3",
+        "type": {
+          "datatype": "int",
+          "width": 1
+        },
+        "options": {
+          "unsigned": true,
+          "nullable": true,
+          "comment": "TINYINT UNSIGNED"
+        }
+      },
+      {
+        "name": "ssn4",
+        "type": {
+          "datatype": "int",
+          "width": 4
+        },
+        "options": {
+          "nullable": true,
+          "comment": "INT"
+        }
+      },
+      {
+        "name": "ssn5",
+        "type": {
+          "datatype": "int",
+          "width": 4
+        },
+        "options": {
+          "unsigned": true,
+          "nullable": true,
+          "comment": "INT UNSIGNED"
+        }
+      },
+      {
+        "name": "ssn6",
+        "type": {
+          "datatype": "int",
+          "width": 3
+        },
+        "options": {
+          "nullable": true,
+          "comment": "MEDIUMINT"
+        }
+      },
+      {
+        "name": "ssn7",
+        "type": {
+          "datatype": "int",
+          "width": 3
+        },
+        "options": {
+          "unsigned": true,
+          "nullable": true,
+          "comment": "MEDIUMINT UNSIGNED"
+        }
+      },
+      {
+        "name": "ssn8",
+        "type": {
+          "datatype": "int",
+          "width": 8
+        },
+        "options": {
+          "nullable": true,
+          "comment": "BIGINT"
+        }
+      },
+      {
+        "name": "ssn9",
+        "type": {
+          "datatype": "int",
+          "width": 8
+        },
+        "options": {
+          "unsigned": true,
+          "nullable": true,
+          "comment": "BIGINT UNSIGNED"
         }
       },
       {
@@ -11218,7 +12570,7 @@ exports[`Compact formatter: Alter table change column should rename unique key c
         "name": "id",
         "type": {
           "datatype": "int",
-          "width": 10
+          "width": 4
         },
         "options": {
           "unsigned": true,
@@ -11272,6 +12624,110 @@ exports[`Compact formatter: Alter table change column should rename unique key c
         "options": {
           "nullable": true,
           "invisibleWithSystemVersioning": true
+        }
+      },
+      {
+        "name": "ssn1",
+        "type": {
+          "datatype": "int",
+          "width": 2
+        },
+        "options": {
+          "unsigned": true,
+          "nullable": true,
+          "comment": "SMALLINT UNSIGNED"
+        }
+      },
+      {
+        "name": "ssn2",
+        "type": {
+          "datatype": "int",
+          "width": 1
+        },
+        "options": {
+          "nullable": true,
+          "comment": "TINYINT"
+        }
+      },
+      {
+        "name": "ssn3",
+        "type": {
+          "datatype": "int",
+          "width": 1
+        },
+        "options": {
+          "unsigned": true,
+          "nullable": true,
+          "comment": "TINYINT UNSIGNED"
+        }
+      },
+      {
+        "name": "ssn4",
+        "type": {
+          "datatype": "int",
+          "width": 4
+        },
+        "options": {
+          "nullable": true,
+          "comment": "INT"
+        }
+      },
+      {
+        "name": "ssn5",
+        "type": {
+          "datatype": "int",
+          "width": 4
+        },
+        "options": {
+          "unsigned": true,
+          "nullable": true,
+          "comment": "INT UNSIGNED"
+        }
+      },
+      {
+        "name": "ssn6",
+        "type": {
+          "datatype": "int",
+          "width": 3
+        },
+        "options": {
+          "nullable": true,
+          "comment": "MEDIUMINT"
+        }
+      },
+      {
+        "name": "ssn7",
+        "type": {
+          "datatype": "int",
+          "width": 3
+        },
+        "options": {
+          "unsigned": true,
+          "nullable": true,
+          "comment": "MEDIUMINT UNSIGNED"
+        }
+      },
+      {
+        "name": "ssn8",
+        "type": {
+          "datatype": "int",
+          "width": 8
+        },
+        "options": {
+          "nullable": true,
+          "comment": "BIGINT"
+        }
+      },
+      {
+        "name": "ssn9",
+        "type": {
+          "datatype": "int",
+          "width": 8
+        },
+        "options": {
+          "unsigned": true,
+          "nullable": true,
+          "comment": "BIGINT UNSIGNED"
         }
       },
       {
@@ -12096,7 +13552,7 @@ exports[`Compact formatter: Compact formatter: Should alter table, changing colu
         "name": "id",
         "type": {
           "datatype": "int",
-          "width": 10
+          "width": 4
         },
         "options": {
           "unsigned": true,
@@ -12150,6 +13606,110 @@ exports[`Compact formatter: Compact formatter: Should alter table, changing colu
         "options": {
           "nullable": true,
           "invisibleWithSystemVersioning": true
+        }
+      },
+      {
+        "name": "ssn1",
+        "type": {
+          "datatype": "int",
+          "width": 2
+        },
+        "options": {
+          "unsigned": true,
+          "nullable": true,
+          "comment": "SMALLINT UNSIGNED"
+        }
+      },
+      {
+        "name": "ssn2",
+        "type": {
+          "datatype": "int",
+          "width": 1
+        },
+        "options": {
+          "nullable": true,
+          "comment": "TINYINT"
+        }
+      },
+      {
+        "name": "ssn3",
+        "type": {
+          "datatype": "int",
+          "width": 1
+        },
+        "options": {
+          "unsigned": true,
+          "nullable": true,
+          "comment": "TINYINT UNSIGNED"
+        }
+      },
+      {
+        "name": "ssn4",
+        "type": {
+          "datatype": "int",
+          "width": 4
+        },
+        "options": {
+          "nullable": true,
+          "comment": "INT"
+        }
+      },
+      {
+        "name": "ssn5",
+        "type": {
+          "datatype": "int",
+          "width": 4
+        },
+        "options": {
+          "unsigned": true,
+          "nullable": true,
+          "comment": "INT UNSIGNED"
+        }
+      },
+      {
+        "name": "ssn6",
+        "type": {
+          "datatype": "int",
+          "width": 3
+        },
+        "options": {
+          "nullable": true,
+          "comment": "MEDIUMINT"
+        }
+      },
+      {
+        "name": "ssn7",
+        "type": {
+          "datatype": "int",
+          "width": 3
+        },
+        "options": {
+          "unsigned": true,
+          "nullable": true,
+          "comment": "MEDIUMINT UNSIGNED"
+        }
+      },
+      {
+        "name": "ssn8",
+        "type": {
+          "datatype": "int",
+          "width": 8
+        },
+        "options": {
+          "nullable": true,
+          "comment": "BIGINT"
+        }
+      },
+      {
+        "name": "ssn9",
+        "type": {
+          "datatype": "int",
+          "width": 8
+        },
+        "options": {
+          "unsigned": true,
+          "nullable": true,
+          "comment": "BIGINT UNSIGNED"
         }
       },
       {

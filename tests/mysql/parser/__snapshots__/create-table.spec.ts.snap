@@ -1015,7 +1015,8 @@ exports[`Parser: Should create test table with all types and options of columns.
                             "id": "O_INTEGER_DATATYPE",
                             "def": {
                               "datatype": "INT",
-                              "width": 10
+                              "width": 4,
+                              "displayWidth": 10
                             }
                           }
                         },
@@ -1061,7 +1062,8 @@ exports[`Parser: Should create test table with all types and options of columns.
                             "id": "O_INTEGER_DATATYPE",
                             "def": {
                               "datatype": "SMALLINT",
-                              "width": 2
+                              "width": 2,
+                              "displayWidth": 0
                             }
                           }
                         },
@@ -1104,6 +1106,353 @@ exports[`Parser: Should create test table with all types and options of columns.
                             "id": "O_COLUMN_DEFINITION",
                             "def": {
                               "unique": true
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  }
+                },
+                {
+                  "id": "O_CREATE_TABLE_CREATE_DEFINITION",
+                  "def": {
+                    "column": {
+                      "name": "ssn1",
+                      "def": {
+                        "datatype": {
+                          "id": "O_DATATYPE",
+                          "def": {
+                            "id": "O_INTEGER_DATATYPE",
+                            "def": {
+                              "datatype": "SMALLINT",
+                              "width": 2,
+                              "displayWidth": 0
+                            }
+                          }
+                        },
+                        "columnDefinition": [
+                          {
+                            "id": "O_COLUMN_DEFINITION",
+                            "def": {
+                              "unsigned": true
+                            }
+                          },
+                          {
+                            "id": "O_COLUMN_DEFINITION",
+                            "def": {
+                              "nullable": true
+                            }
+                          },
+                          {
+                            "id": "O_COLUMN_DEFINITION",
+                            "def": {
+                              "comment": "SMALLINT UNSIGNED"
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  }
+                },
+                {
+                  "id": "O_CREATE_TABLE_CREATE_DEFINITION",
+                  "def": {
+                    "column": {
+                      "name": "ssn2",
+                      "def": {
+                        "datatype": {
+                          "id": "O_DATATYPE",
+                          "def": {
+                            "id": "O_INTEGER_DATATYPE",
+                            "def": {
+                              "datatype": "TINYINT",
+                              "width": 1,
+                              "displayWidth": 0
+                            }
+                          }
+                        },
+                        "columnDefinition": [
+                          {
+                            "id": "O_COLUMN_DEFINITION",
+                            "def": {
+                              "nullable": true
+                            }
+                          },
+                          {
+                            "id": "O_COLUMN_DEFINITION",
+                            "def": {
+                              "comment": "TINYINT"
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  }
+                },
+                {
+                  "id": "O_CREATE_TABLE_CREATE_DEFINITION",
+                  "def": {
+                    "column": {
+                      "name": "ssn3",
+                      "def": {
+                        "datatype": {
+                          "id": "O_DATATYPE",
+                          "def": {
+                            "id": "O_INTEGER_DATATYPE",
+                            "def": {
+                              "datatype": "TINYINT",
+                              "width": 1,
+                              "displayWidth": 0
+                            }
+                          }
+                        },
+                        "columnDefinition": [
+                          {
+                            "id": "O_COLUMN_DEFINITION",
+                            "def": {
+                              "unsigned": true
+                            }
+                          },
+                          {
+                            "id": "O_COLUMN_DEFINITION",
+                            "def": {
+                              "nullable": true
+                            }
+                          },
+                          {
+                            "id": "O_COLUMN_DEFINITION",
+                            "def": {
+                              "comment": "TINYINT UNSIGNED"
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  }
+                },
+                {
+                  "id": "O_CREATE_TABLE_CREATE_DEFINITION",
+                  "def": {
+                    "column": {
+                      "name": "ssn4",
+                      "def": {
+                        "datatype": {
+                          "id": "O_DATATYPE",
+                          "def": {
+                            "id": "O_INTEGER_DATATYPE",
+                            "def": {
+                              "datatype": "INT",
+                              "width": 4,
+                              "displayWidth": 0
+                            }
+                          }
+                        },
+                        "columnDefinition": [
+                          {
+                            "id": "O_COLUMN_DEFINITION",
+                            "def": {
+                              "nullable": true
+                            }
+                          },
+                          {
+                            "id": "O_COLUMN_DEFINITION",
+                            "def": {
+                              "comment": "INT"
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  }
+                },
+                {
+                  "id": "O_CREATE_TABLE_CREATE_DEFINITION",
+                  "def": {
+                    "column": {
+                      "name": "ssn5",
+                      "def": {
+                        "datatype": {
+                          "id": "O_DATATYPE",
+                          "def": {
+                            "id": "O_INTEGER_DATATYPE",
+                            "def": {
+                              "datatype": "INT",
+                              "width": 4,
+                              "displayWidth": 0
+                            }
+                          }
+                        },
+                        "columnDefinition": [
+                          {
+                            "id": "O_COLUMN_DEFINITION",
+                            "def": {
+                              "unsigned": true
+                            }
+                          },
+                          {
+                            "id": "O_COLUMN_DEFINITION",
+                            "def": {
+                              "nullable": true
+                            }
+                          },
+                          {
+                            "id": "O_COLUMN_DEFINITION",
+                            "def": {
+                              "comment": "INT UNSIGNED"
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  }
+                },
+                {
+                  "id": "O_CREATE_TABLE_CREATE_DEFINITION",
+                  "def": {
+                    "column": {
+                      "name": "ssn6",
+                      "def": {
+                        "datatype": {
+                          "id": "O_DATATYPE",
+                          "def": {
+                            "id": "O_INTEGER_DATATYPE",
+                            "def": {
+                              "datatype": "MEDIUMINT",
+                              "width": 3,
+                              "displayWidth": 0
+                            }
+                          }
+                        },
+                        "columnDefinition": [
+                          {
+                            "id": "O_COLUMN_DEFINITION",
+                            "def": {
+                              "nullable": true
+                            }
+                          },
+                          {
+                            "id": "O_COLUMN_DEFINITION",
+                            "def": {
+                              "comment": "MEDIUMINT"
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  }
+                },
+                {
+                  "id": "O_CREATE_TABLE_CREATE_DEFINITION",
+                  "def": {
+                    "column": {
+                      "name": "ssn7",
+                      "def": {
+                        "datatype": {
+                          "id": "O_DATATYPE",
+                          "def": {
+                            "id": "O_INTEGER_DATATYPE",
+                            "def": {
+                              "datatype": "MEDIUMINT",
+                              "width": 3,
+                              "displayWidth": 0
+                            }
+                          }
+                        },
+                        "columnDefinition": [
+                          {
+                            "id": "O_COLUMN_DEFINITION",
+                            "def": {
+                              "unsigned": true
+                            }
+                          },
+                          {
+                            "id": "O_COLUMN_DEFINITION",
+                            "def": {
+                              "nullable": true
+                            }
+                          },
+                          {
+                            "id": "O_COLUMN_DEFINITION",
+                            "def": {
+                              "comment": "MEDIUMINT UNSIGNED"
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  }
+                },
+                {
+                  "id": "O_CREATE_TABLE_CREATE_DEFINITION",
+                  "def": {
+                    "column": {
+                      "name": "ssn8",
+                      "def": {
+                        "datatype": {
+                          "id": "O_DATATYPE",
+                          "def": {
+                            "id": "O_INTEGER_DATATYPE",
+                            "def": {
+                              "datatype": "BIGINT",
+                              "width": 8,
+                              "displayWidth": 0,
+                              "isBigInt": true
+                            }
+                          }
+                        },
+                        "columnDefinition": [
+                          {
+                            "id": "O_COLUMN_DEFINITION",
+                            "def": {
+                              "nullable": true
+                            }
+                          },
+                          {
+                            "id": "O_COLUMN_DEFINITION",
+                            "def": {
+                              "comment": "BIGINT"
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  }
+                },
+                {
+                  "id": "O_CREATE_TABLE_CREATE_DEFINITION",
+                  "def": {
+                    "column": {
+                      "name": "ssn9",
+                      "def": {
+                        "datatype": {
+                          "id": "O_DATATYPE",
+                          "def": {
+                            "id": "O_INTEGER_DATATYPE",
+                            "def": {
+                              "datatype": "BIGINT",
+                              "width": 8,
+                              "displayWidth": 60,
+                              "isBigInt": true
+                            }
+                          }
+                        },
+                        "columnDefinition": [
+                          {
+                            "id": "O_COLUMN_DEFINITION",
+                            "def": {
+                              "unsigned": true
+                            }
+                          },
+                          {
+                            "id": "O_COLUMN_DEFINITION",
+                            "def": {
+                              "nullable": true
+                            }
+                          },
+                          {
+                            "id": "O_COLUMN_DEFINITION",
+                            "def": {
+                              "comment": "BIGINT UNSIGNED"
                             }
                           }
                         ]
@@ -1419,7 +1768,8 @@ exports[`Parser: Should create test table with all types and options of columns.
                             "id": "O_INTEGER_DATATYPE",
                             "def": {
                               "datatype": "INTEGER",
-                              "width": 4
+                              "width": 4,
+                              "displayWidth": 0
                             }
                           }
                         },
@@ -1464,7 +1814,8 @@ exports[`Parser: Should create test table with all types and options of columns.
                             "id": "O_INTEGER_DATATYPE",
                             "def": {
                               "datatype": "INTEGER",
-                              "width": 4
+                              "width": 4,
+                              "displayWidth": 0
                             }
                           }
                         },
@@ -1506,7 +1857,8 @@ exports[`Parser: Should create test table with all types and options of columns.
                             "id": "O_INTEGER_DATATYPE",
                             "def": {
                               "datatype": "INTEGER",
-                              "width": 4
+                              "width": 4,
+                              "displayWidth": 0
                             }
                           }
                         },
@@ -1602,7 +1954,8 @@ exports[`Parser: Should create test table with all types and options of columns.
                             "id": "O_INTEGER_DATATYPE",
                             "def": {
                               "datatype": "INT",
-                              "width": 4
+                              "width": 4,
+                              "displayWidth": 0
                             }
                           }
                         },

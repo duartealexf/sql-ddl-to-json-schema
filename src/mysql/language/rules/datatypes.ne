@@ -52,7 +52,6 @@ O_INTEGER_DATATYPE ->
         def: {
           datatype: d[0].datatype,
           // fix: always set the number width with given width
-          // the width is 8 bits: 2 ** 8
           // src: width: d[1] ? d[1] : d[0].width
           // current:
           width: d[0].width,

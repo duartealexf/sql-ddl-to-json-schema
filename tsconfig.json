@@ -1,12 +1,12 @@
 {
   "compilerOptions": {
-    "target": "es6",
+    "target": "esnext",
     "module": "commonjs",
     "moduleResolution": "node",
     "sourceMap": false,
     "outDir": "lib",
     "declarationDir": "typings",
-    "lib": ["es5", "es6", "es7"],
+    "lib": ["es5", "es6", "es7", "ESNext"],
     "declaration": true,
     "strict": true,
     "esModuleInterop": true,

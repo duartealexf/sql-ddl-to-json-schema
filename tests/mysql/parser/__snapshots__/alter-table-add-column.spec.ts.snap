@@ -70,7 +70,8 @@ exports[`Parser: Should alter table adding one column with one option and positi
                         "id": "O_INTEGER_DATATYPE",
                         "def": {
                           "datatype": "int",
-                          "width": 10
+                          "width": 4,
+                          "displayWidth": 10
                         }
                       }
                     },
@@ -122,7 +123,8 @@ exports[`Parser: Should alter table adding one column with options and position.
                         "id": "O_INTEGER_DATATYPE",
                         "def": {
                           "datatype": "int",
-                          "width": 10
+                          "width": 4,
+                          "displayWidth": 10
                         }
                       }
                     },
@@ -180,7 +182,8 @@ exports[`Parser: Should alter table adding one column with position. 1`] = `
                         "id": "O_INTEGER_DATATYPE",
                         "def": {
                           "datatype": "int",
-                          "width": 10
+                          "width": 4,
+                          "displayWidth": 10
                         }
                       }
                     },
@@ -225,7 +228,8 @@ exports[`Parser: Should alter table adding one column. 1`] = `
                         "id": "O_INTEGER_DATATYPE",
                         "def": {
                           "datatype": "int",
-                          "width": 10
+                          "width": 4,
+                          "displayWidth": 10
                         }
                       }
                     },
@@ -270,7 +274,8 @@ exports[`Parser: Should alter table adding three columns. 1`] = `
                             "id": "O_INTEGER_DATATYPE",
                             "def": {
                               "datatype": "int",
-                              "width": 10
+                              "width": 4,
+                              "displayWidth": 10
                             }
                           }
                         },
@@ -297,7 +302,8 @@ exports[`Parser: Should alter table adding three columns. 1`] = `
                             "id": "O_INTEGER_DATATYPE",
                             "def": {
                               "datatype": "int",
-                              "width": 10
+                              "width": 4,
+                              "displayWidth": 10
                             }
                           }
                         },

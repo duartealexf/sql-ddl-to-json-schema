@@ -9,7 +9,7 @@ exports[`Compact formatter: Alter table add index should not add key or index fo
         "name": "id",
         "type": {
           "datatype": "int",
-          "width": 10
+          "width": 4
         },
         "options": {
           "unsigned": true,
@@ -63,6 +63,110 @@ exports[`Compact formatter: Alter table add index should not add key or index fo
         "options": {
           "nullable": true,
           "invisibleWithSystemVersioning": true
+        }
+      },
+      {
+        "name": "ssn1",
+        "type": {
+          "datatype": "int",
+          "width": 2
+        },
+        "options": {
+          "unsigned": true,
+          "nullable": true,
+          "comment": "SMALLINT UNSIGNED"
+        }
+      },
+      {
+        "name": "ssn2",
+        "type": {
+          "datatype": "int",
+          "width": 1
+        },
+        "options": {
+          "nullable": true,
+          "comment": "TINYINT"
+        }
+      },
+      {
+        "name": "ssn3",
+        "type": {
+          "datatype": "int",
+          "width": 1
+        },
+        "options": {
+          "unsigned": true,
+          "nullable": true,
+          "comment": "TINYINT UNSIGNED"
+        }
+      },
+      {
+        "name": "ssn4",
+        "type": {
+          "datatype": "int",
+          "width": 4
+        },
+        "options": {
+          "nullable": true,
+          "comment": "INT"
+        }
+      },
+      {
+        "name": "ssn5",
+        "type": {
+          "datatype": "int",
+          "width": 4
+        },
+        "options": {
+          "unsigned": true,
+          "nullable": true,
+          "comment": "INT UNSIGNED"
+        }
+      },
+      {
+        "name": "ssn6",
+        "type": {
+          "datatype": "int",
+          "width": 3
+        },
+        "options": {
+          "nullable": true,
+          "comment": "MEDIUMINT"
+        }
+      },
+      {
+        "name": "ssn7",
+        "type": {
+          "datatype": "int",
+          "width": 3
+        },
+        "options": {
+          "unsigned": true,
+          "nullable": true,
+          "comment": "MEDIUMINT UNSIGNED"
+        }
+      },
+      {
+        "name": "ssn8",
+        "type": {
+          "datatype": "int",
+          "width": 8
+        },
+        "options": {
+          "nullable": true,
+          "comment": "BIGINT"
+        }
+      },
+      {
+        "name": "ssn9",
+        "type": {
+          "datatype": "int",
+          "width": 8
+        },
+        "options": {
+          "unsigned": true,
+          "nullable": true,
+          "comment": "BIGINT UNSIGNED"
         }
       },
       {
@@ -909,7 +1013,7 @@ exports[`Compact formatter: Alter table add index should not add key or index fo
         "name": "id",
         "type": {
           "datatype": "int",
-          "width": 10
+          "width": 4
         },
         "options": {
           "unsigned": true,
@@ -963,6 +1067,110 @@ exports[`Compact formatter: Alter table add index should not add key or index fo
         "options": {
           "nullable": true,
           "invisibleWithSystemVersioning": true
+        }
+      },
+      {
+        "name": "ssn1",
+        "type": {
+          "datatype": "int",
+          "width": 2
+        },
+        "options": {
+          "unsigned": true,
+          "nullable": true,
+          "comment": "SMALLINT UNSIGNED"
+        }
+      },
+      {
+        "name": "ssn2",
+        "type": {
+          "datatype": "int",
+          "width": 1
+        },
+        "options": {
+          "nullable": true,
+          "comment": "TINYINT"
+        }
+      },
+      {
+        "name": "ssn3",
+        "type": {
+          "datatype": "int",
+          "width": 1
+        },
+        "options": {
+          "unsigned": true,
+          "nullable": true,
+          "comment": "TINYINT UNSIGNED"
+        }
+      },
+      {
+        "name": "ssn4",
+        "type": {
+          "datatype": "int",
+          "width": 4
+        },
+        "options": {
+          "nullable": true,
+          "comment": "INT"
+        }
+      },
+      {
+        "name": "ssn5",
+        "type": {
+          "datatype": "int",
+          "width": 4
+        },
+        "options": {
+          "unsigned": true,
+          "nullable": true,
+          "comment": "INT UNSIGNED"
+        }
+      },
+      {
+        "name": "ssn6",
+        "type": {
+          "datatype": "int",
+          "width": 3
+        },
+        "options": {
+          "nullable": true,
+          "comment": "MEDIUMINT"
+        }
+      },
+      {
+        "name": "ssn7",
+        "type": {
+          "datatype": "int",
+          "width": 3
+        },
+        "options": {
+          "unsigned": true,
+          "nullable": true,
+          "comment": "MEDIUMINT UNSIGNED"
+        }
+      },
+      {
+        "name": "ssn8",
+        "type": {
+          "datatype": "int",
+          "width": 8
+        },
+        "options": {
+          "nullable": true,
+          "comment": "BIGINT"
+        }
+      },
+      {
+        "name": "ssn9",
+        "type": {
+          "datatype": "int",
+          "width": 8
+        },
+        "options": {
+          "unsigned": true,
+          "nullable": true,
+          "comment": "BIGINT UNSIGNED"
         }
       },
       {
@@ -1809,7 +2017,7 @@ exports[`Compact formatter: Alter table add index should not add key or index wi
         "name": "id",
         "type": {
           "datatype": "int",
-          "width": 10
+          "width": 4
         },
         "options": {
           "unsigned": true,
@@ -1863,6 +2071,110 @@ exports[`Compact formatter: Alter table add index should not add key or index wi
         "options": {
           "nullable": true,
           "invisibleWithSystemVersioning": true
+        }
+      },
+      {
+        "name": "ssn1",
+        "type": {
+          "datatype": "int",
+          "width": 2
+        },
+        "options": {
+          "unsigned": true,
+          "nullable": true,
+          "comment": "SMALLINT UNSIGNED"
+        }
+      },
+      {
+        "name": "ssn2",
+        "type": {
+          "datatype": "int",
+          "width": 1
+        },
+        "options": {
+          "nullable": true,
+          "comment": "TINYINT"
+        }
+      },
+      {
+        "name": "ssn3",
+        "type": {
+          "datatype": "int",
+          "width": 1
+        },
+        "options": {
+          "unsigned": true,
+          "nullable": true,
+          "comment": "TINYINT UNSIGNED"
+        }
+      },
+      {
+        "name": "ssn4",
+        "type": {
+          "datatype": "int",
+          "width": 4
+        },
+        "options": {
+          "nullable": true,
+          "comment": "INT"
+        }
+      },
+      {
+        "name": "ssn5",
+        "type": {
+          "datatype": "int",
+          "width": 4
+        },
+        "options": {
+          "unsigned": true,
+          "nullable": true,
+          "comment": "INT UNSIGNED"
+        }
+      },
+      {
+        "name": "ssn6",
+        "type": {
+          "datatype": "int",
+          "width": 3
+        },
+        "options": {
+          "nullable": true,
+          "comment": "MEDIUMINT"
+        }
+      },
+      {
+        "name": "ssn7",
+        "type": {
+          "datatype": "int",
+          "width": 3
+        },
+        "options": {
+          "unsigned": true,
+          "nullable": true,
+          "comment": "MEDIUMINT UNSIGNED"
+        }
+      },
+      {
+        "name": "ssn8",
+        "type": {
+          "datatype": "int",
+          "width": 8
+        },
+        "options": {
+          "nullable": true,
+          "comment": "BIGINT"
+        }
+      },
+      {
+        "name": "ssn9",
+        "type": {
+          "datatype": "int",
+          "width": 8
+        },
+        "options": {
+          "unsigned": true,
+          "nullable": true,
+          "comment": "BIGINT UNSIGNED"
         }
       },
       {
@@ -2709,7 +3021,7 @@ exports[`Compact formatter: Should alter table, adding index. 1`] = `
         "name": "id",
         "type": {
           "datatype": "int",
-          "width": 10
+          "width": 4
         },
         "options": {
           "unsigned": true,
@@ -2763,6 +3075,110 @@ exports[`Compact formatter: Should alter table, adding index. 1`] = `
         "options": {
           "nullable": true,
           "invisibleWithSystemVersioning": true
+        }
+      },
+      {
+        "name": "ssn1",
+        "type": {
+          "datatype": "int",
+          "width": 2
+        },
+        "options": {
+          "unsigned": true,
+          "nullable": true,
+          "comment": "SMALLINT UNSIGNED"
+        }
+      },
+      {
+        "name": "ssn2",
+        "type": {
+          "datatype": "int",
+          "width": 1
+        },
+        "options": {
+          "nullable": true,
+          "comment": "TINYINT"
+        }
+      },
+      {
+        "name": "ssn3",
+        "type": {
+          "datatype": "int",
+          "width": 1
+        },
+        "options": {
+          "unsigned": true,
+          "nullable": true,
+          "comment": "TINYINT UNSIGNED"
+        }
+      },
+      {
+        "name": "ssn4",
+        "type": {
+          "datatype": "int",
+          "width": 4
+        },
+        "options": {
+          "nullable": true,
+          "comment": "INT"
+        }
+      },
+      {
+        "name": "ssn5",
+        "type": {
+          "datatype": "int",
+          "width": 4
+        },
+        "options": {
+          "unsigned": true,
+          "nullable": true,
+          "comment": "INT UNSIGNED"
+        }
+      },
+      {
+        "name": "ssn6",
+        "type": {
+          "datatype": "int",
+          "width": 3
+        },
+        "options": {
+          "nullable": true,
+          "comment": "MEDIUMINT"
+        }
+      },
+      {
+        "name": "ssn7",
+        "type": {
+          "datatype": "int",
+          "width": 3
+        },
+        "options": {
+          "unsigned": true,
+          "nullable": true,
+          "comment": "MEDIUMINT UNSIGNED"
+        }
+      },
+      {
+        "name": "ssn8",
+        "type": {
+          "datatype": "int",
+          "width": 8
+        },
+        "options": {
+          "nullable": true,
+          "comment": "BIGINT"
+        }
+      },
+      {
+        "name": "ssn9",
+        "type": {
+          "datatype": "int",
+          "width": 8
+        },
+        "options": {
+          "unsigned": true,
+          "nullable": true,
+          "comment": "BIGINT UNSIGNED"
         }
       },
       {

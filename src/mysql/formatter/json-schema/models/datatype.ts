@@ -144,18 +144,38 @@ export class Datatype {
       type: Datatype.filterDatatype(this.datatype as string),
     };
 
-    if (this.datatype === 'int') {
+    /**
+     * bigint with 'x-bigint' in jsonschema, which should be validated
+     */
+    if (this.datatype === 'int' && this.width === 8) {
+      // @ts-ignore
+      json['x-bigint'] = true;
+
+      const max = BigInt(2) ** BigInt(8 * (this.width as number));
+
+      if (this.isUnsigned) {
+        // @ts-ignore
+        json['x-bigint-minimum'] = '0';
+        // @ts-ignore
+        json['x-bigint-maximum'] = (max - BigInt(1)).toString();
+      } else {
+        // @ts-ignore
+        json['x-bigint-minimum'] = (BigInt(-1) * (max / BigInt(2))).toString();
+        // @ts-ignore
+        json['x-bigint-maximum'] = (max / BigInt(2) - BigInt(1)).toString();
+      }
+    } else if (this.datatype === 'int') {
       /**
        * Set minimum and maximum for int.
        */
-      const width = 2 ** (8 * (this.width as number));
+      const max = 2 ** (8 * (this.width as number));
 
       if (this.isUnsigned) {
         json.minimum = 0;
-        json.maximum = width;
+        json.maximum = max - 1;
       } else {
-        json.minimum = 0 - width / 2;
-        json.maximum = 0 - json.minimum - 1;
+        json.minimum = -1 * (max / 2);
+        json.maximum = max / 2 - 1;
       }
     } else if (this.datatype === 'decimal' || this.datatype === 'float') {
       /**

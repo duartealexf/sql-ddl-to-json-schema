@@ -86,17 +86,15 @@ exports[`JSON Schema formatter: should format tables correctly, with ref. 1`] = 
       },
       "ssn8": {
         "description": "BIGINT",
-        "type": "string",
-        "x-bigint-string": true,
-        "pattern": "^-?(?:0|[1-9][0-9]*)$",
+        "type": "integer",
+        "x-bigint": true,
         "x-bigint-minimum": "-9223372036854775808",
         "x-bigint-maximum": "9223372036854775807"
       },
       "ssn9": {
         "description": "BIGINT UNSIGNED",
-        "type": "string",
-        "x-bigint-string": true,
-        "pattern": "^(?:0|[1-9][0-9]*)$",
+        "type": "integer",
+        "x-bigint": true,
         "x-bigint-minimum": "0",
         "x-bigint-maximum": "18446744073709551615"
       },
@@ -272,9 +270,8 @@ exports[`JSON Schema formatter: should format tables correctly, with ref. 1`] = 
     ],
     "definitions": {
       "id": {
-        "type": "string",
-        "x-bigint-string": true,
-        "pattern": "^-?(?:0|[1-9][0-9]*)$",
+        "type": "integer",
+        "x-bigint": true,
         "x-bigint-minimum": "-9223372036854775808",
         "x-bigint-maximum": "9223372036854775807"
       },
@@ -651,17 +648,15 @@ exports[`JSON Schema formatter: should format tables correctly, without ref. 1`]
       },
       "ssn8": {
         "description": "BIGINT",
-        "type": "string",
-        "x-bigint-string": true,
-        "pattern": "^-?(?:0|[1-9][0-9]*)$",
+        "type": "integer",
+        "x-bigint": true,
         "x-bigint-minimum": "-9223372036854775808",
         "x-bigint-maximum": "9223372036854775807"
       },
       "ssn9": {
         "description": "BIGINT UNSIGNED",
-        "type": "string",
-        "x-bigint-string": true,
-        "pattern": "^(?:0|[1-9][0-9]*)$",
+        "type": "integer",
+        "x-bigint": true,
         "x-bigint-minimum": "0",
         "x-bigint-maximum": "18446744073709551615"
       },
@@ -745,9 +740,8 @@ exports[`JSON Schema formatter: should format tables correctly, without ref. 1`]
     ],
     "properties": {
       "id": {
-        "type": "string",
-        "x-bigint-string": true,
-        "pattern": "^-?(?:0|[1-9][0-9]*)$",
+        "type": "integer",
+        "x-bigint": true,
         "x-bigint-minimum": "-9223372036854775808",
         "x-bigint-maximum": "9223372036854775807"
       },

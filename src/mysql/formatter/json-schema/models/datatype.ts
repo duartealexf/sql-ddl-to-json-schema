@@ -154,7 +154,6 @@ export class Datatype {
       const max = BigInt(2) ** BigInt(8 * (this.width as number));
 
       if (this.isUnsigned) {
-        // json.pattern = '^(?:0|[1-9][0-9]*)$';
         // @ts-ignore
         json['x-bigint-minimum'] = '0';
         // @ts-ignore

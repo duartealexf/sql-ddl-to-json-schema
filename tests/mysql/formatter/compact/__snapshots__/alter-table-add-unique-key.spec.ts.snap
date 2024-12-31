@@ -9,7 +9,7 @@ exports[`Compact formatter: Alter table add unique key should not add key or ind
         "name": "id",
         "type": {
           "datatype": "int",
-          "width": 10
+          "displayWidth": 10
         },
         "options": {
           "unsigned": true,
@@ -57,12 +57,107 @@ exports[`Compact formatter: Alter table add unique key should not add key or ind
       {
         "name": "ssn",
         "type": {
-          "datatype": "int",
-          "width": 2
+          "datatype": "smallint"
         },
         "options": {
           "nullable": true,
           "invisibleWithSystemVersioning": true
+        }
+      },
+      {
+        "name": "ssn1",
+        "type": {
+          "datatype": "smallint"
+        },
+        "options": {
+          "unsigned": true,
+          "nullable": true,
+          "comment": "SMALLINT UNSIGNED"
+        }
+      },
+      {
+        "name": "ssn2",
+        "type": {
+          "datatype": "tinyint"
+        },
+        "options": {
+          "nullable": true,
+          "comment": "TINYINT"
+        }
+      },
+      {
+        "name": "ssn3",
+        "type": {
+          "datatype": "tinyint"
+        },
+        "options": {
+          "unsigned": true,
+          "nullable": true,
+          "comment": "TINYINT UNSIGNED"
+        }
+      },
+      {
+        "name": "ssn4",
+        "type": {
+          "datatype": "int"
+        },
+        "options": {
+          "nullable": true,
+          "comment": "INT"
+        }
+      },
+      {
+        "name": "ssn5",
+        "type": {
+          "datatype": "int"
+        },
+        "options": {
+          "unsigned": true,
+          "nullable": true,
+          "comment": "INT UNSIGNED"
+        }
+      },
+      {
+        "name": "ssn6",
+        "type": {
+          "datatype": "mediumint"
+        },
+        "options": {
+          "nullable": true,
+          "comment": "MEDIUMINT"
+        }
+      },
+      {
+        "name": "ssn7",
+        "type": {
+          "datatype": "mediumint"
+        },
+        "options": {
+          "unsigned": true,
+          "nullable": true,
+          "comment": "MEDIUMINT UNSIGNED"
+        }
+      },
+      {
+        "name": "ssn8",
+        "type": {
+          "datatype": "bigint"
+        },
+        "options": {
+          "nullable": true,
+          "comment": "BIGINT"
+        }
+      },
+      {
+        "name": "ssn9",
+        "type": {
+          "datatype": "bigint",
+          "displayWidth": 60
+        },
+        "options": {
+          "unsigned": true,
+          "nullable": true,
+          "comment": "BIGINT UNSIGNED"
         }
       },
       {
@@ -295,8 +390,7 @@ exports[`Compact formatter: Alter table add unique key should not add key or ind
       {
         "name": "id",
         "type": {
-          "datatype": "int",
-          "width": 8
+          "datatype": "bigint"
         },
         "options": {
           "nullable": true
@@ -315,8 +409,7 @@ exports[`Compact formatter: Alter table add unique key should not add key or ind
       {
         "name": "owner_id",
         "type": {
-          "datatype": "int",
-          "width": 3
+          "datatype": "mediumint"
         },
         "options": {
           "nullable": true
@@ -599,8 +692,7 @@ exports[`Compact formatter: Alter table add unique key should not add key or ind
       {
         "name": "id",
         "type": {
-          "datatype": "int",
-          "width": 4
+          "datatype": "int"
         },
         "options": {
           "nullable": false
@@ -609,8 +701,7 @@ exports[`Compact formatter: Alter table add unique key should not add key or ind
       {
         "name": "pet_id",
         "type": {
-          "datatype": "int",
-          "width": 1
+          "datatype": "tinyint"
         },
         "options": {
           "nullable": true
@@ -908,7 +999,7 @@ exports[`Compact formatter: Alter table add unique key should not add key or ind
         "name": "id",
         "type": {
           "datatype": "int",
-          "width": 10
+          "displayWidth": 10
         },
         "options": {
           "unsigned": true,
@@ -956,12 +1047,107 @@ exports[`Compact formatter: Alter table add unique key should not add key or ind
       {
         "name": "ssn",
         "type": {
-          "datatype": "int",
-          "width": 2
+          "datatype": "smallint"
         },
         "options": {
           "nullable": true,
           "invisibleWithSystemVersioning": true
+        }
+      },
+      {
+        "name": "ssn1",
+        "type": {
+          "datatype": "smallint"
+        },
+        "options": {
+          "unsigned": true,
+          "nullable": true,
+          "comment": "SMALLINT UNSIGNED"
+        }
+      },
+      {
+        "name": "ssn2",
+        "type": {
+          "datatype": "tinyint"
+        },
+        "options": {
+          "nullable": true,
+          "comment": "TINYINT"
+        }
+      },
+      {
+        "name": "ssn3",
+        "type": {
+          "datatype": "tinyint"
+        },
+        "options": {
+          "unsigned": true,
+          "nullable": true,
+          "comment": "TINYINT UNSIGNED"
+        }
+      },
+      {
+        "name": "ssn4",
+        "type": {
+          "datatype": "int"
+        },
+        "options": {
+          "nullable": true,
+          "comment": "INT"
+        }
+      },
+      {
+        "name": "ssn5",
+        "type": {
+          "datatype": "int"
+        },
+        "options": {
+          "unsigned": true,
+          "nullable": true,
+          "comment": "INT UNSIGNED"
+        }
+      },
+      {
+        "name": "ssn6",
+        "type": {
+          "datatype": "mediumint"
+        },
+        "options": {
+          "nullable": true,
+          "comment": "MEDIUMINT"
+        }
+      },
+      {
+        "name": "ssn7",
+        "type": {
+          "datatype": "mediumint"
+        },
+        "options": {
+          "unsigned": true,
+          "nullable": true,
+          "comment": "MEDIUMINT UNSIGNED"
+        }
+      },
+      {
+        "name": "ssn8",
+        "type": {
+          "datatype": "bigint"
+        },
+        "options": {
+          "nullable": true,
+          "comment": "BIGINT"
+        }
+      },
+      {
+        "name": "ssn9",
+        "type": {
+          "datatype": "bigint",
+          "displayWidth": 60
+        },
+        "options": {
+          "unsigned": true,
+          "nullable": true,
+          "comment": "BIGINT UNSIGNED"
         }
       },
       {
@@ -1194,8 +1380,7 @@ exports[`Compact formatter: Alter table add unique key should not add key or ind
       {
         "name": "id",
         "type": {
-          "datatype": "int",
-          "width": 8
+          "datatype": "bigint"
         },
         "options": {
           "nullable": true
@@ -1214,8 +1399,7 @@ exports[`Compact formatter: Alter table add unique key should not add key or ind
       {
         "name": "owner_id",
         "type": {
-          "datatype": "int",
-          "width": 3
+          "datatype": "mediumint"
         },
         "options": {
           "nullable": true
@@ -1498,8 +1682,7 @@ exports[`Compact formatter: Alter table add unique key should not add key or ind
       {
         "name": "id",
         "type": {
-          "datatype": "int",
-          "width": 4
+          "datatype": "int"
         },
         "options": {
           "nullable": false
@@ -1508,8 +1691,7 @@ exports[`Compact formatter: Alter table add unique key should not add key or ind
       {
         "name": "pet_id",
         "type": {
-          "datatype": "int",
-          "width": 1
+          "datatype": "tinyint"
         },
         "options": {
           "nullable": true
@@ -1807,7 +1989,7 @@ exports[`Compact formatter: Should alter table, adding unique key. 1`] = `
         "name": "id",
         "type": {
           "datatype": "int",
-          "width": 10
+          "displayWidth": 10
         },
         "options": {
           "unsigned": true,
@@ -1855,12 +2037,107 @@ exports[`Compact formatter: Should alter table, adding unique key. 1`] = `
       {
         "name": "ssn",
         "type": {
-          "datatype": "int",
-          "width": 2
+          "datatype": "smallint"
         },
         "options": {
           "nullable": true,
           "invisibleWithSystemVersioning": true
+        }
+      },
+      {
+        "name": "ssn1",
+        "type": {
+          "datatype": "smallint"
+        },
+        "options": {
+          "unsigned": true,
+          "nullable": true,
+          "comment": "SMALLINT UNSIGNED"
+        }
+      },
+      {
+        "name": "ssn2",
+        "type": {
+          "datatype": "tinyint"
+        },
+        "options": {
+          "nullable": true,
+          "comment": "TINYINT"
+        }
+      },
+      {
+        "name": "ssn3",
+        "type": {
+          "datatype": "tinyint"
+        },
+        "options": {
+          "unsigned": true,
+          "nullable": true,
+          "comment": "TINYINT UNSIGNED"
+        }
+      },
+      {
+        "name": "ssn4",
+        "type": {
+          "datatype": "int"
+        },
+        "options": {
+          "nullable": true,
+          "comment": "INT"
+        }
+      },
+      {
+        "name": "ssn5",
+        "type": {
+          "datatype": "int"
+        },
+        "options": {
+          "unsigned": true,
+          "nullable": true,
+          "comment": "INT UNSIGNED"
+        }
+      },
+      {
+        "name": "ssn6",
+        "type": {
+          "datatype": "mediumint"
+        },
+        "options": {
+          "nullable": true,
+          "comment": "MEDIUMINT"
+        }
+      },
+      {
+        "name": "ssn7",
+        "type": {
+          "datatype": "mediumint"
+        },
+        "options": {
+          "unsigned": true,
+          "nullable": true,
+          "comment": "MEDIUMINT UNSIGNED"
+        }
+      },
+      {
+        "name": "ssn8",
+        "type": {
+          "datatype": "bigint"
+        },
+        "options": {
+          "nullable": true,
+          "comment": "BIGINT"
+        }
+      },
+      {
+        "name": "ssn9",
+        "type": {
+          "datatype": "bigint",
+          "displayWidth": 60
+        },
+        "options": {
+          "unsigned": true,
+          "nullable": true,
+          "comment": "BIGINT UNSIGNED"
         }
       },
       {
@@ -2093,8 +2370,7 @@ exports[`Compact formatter: Should alter table, adding unique key. 1`] = `
       {
         "name": "id",
         "type": {
-          "datatype": "int",
-          "width": 8
+          "datatype": "bigint"
         },
         "options": {
           "nullable": true
@@ -2113,8 +2389,7 @@ exports[`Compact formatter: Should alter table, adding unique key. 1`] = `
       {
         "name": "owner_id",
         "type": {
-          "datatype": "int",
-          "width": 3
+          "datatype": "mediumint"
         },
         "options": {
           "nullable": true
@@ -2397,8 +2672,7 @@ exports[`Compact formatter: Should alter table, adding unique key. 1`] = `
       {
         "name": "id",
         "type": {
-          "datatype": "int",
-          "width": 4
+          "datatype": "int"
         },
         "options": {
           "nullable": false
@@ -2407,8 +2681,7 @@ exports[`Compact formatter: Should alter table, adding unique key. 1`] = `
       {
         "name": "pet_id",
         "type": {
-          "datatype": "int",
-          "width": 1
+          "datatype": "tinyint"
         },
         "options": {
           "nullable": true

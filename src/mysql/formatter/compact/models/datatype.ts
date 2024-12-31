@@ -9,7 +9,7 @@ import { DatatypeModelInterface } from './typings';
 export class Datatype implements DatatypeModelInterface {
   datatype!: string;
 
-  width?: number;
+  displayWidth?: number;
 
   digits?: number;
 
@@ -51,18 +51,6 @@ export class Datatype implements DatatypeModelInterface {
     const lowerTerm = term.toLowerCase();
 
     if (lowerTerm === 'integer') {
-      return 'int';
-    }
-    if (lowerTerm === 'tinyint') {
-      return 'int';
-    }
-    if (lowerTerm === 'smallint') {
-      return 'int';
-    }
-    if (lowerTerm === 'mediumint') {
-      return 'int';
-    }
-    if (lowerTerm === 'bigint') {
       return 'int';
     }
     if (lowerTerm === 'numeric') {
@@ -116,7 +104,11 @@ export class Datatype implements DatatypeModelInterface {
      */
     if (
       [
+        'tinyint',
+        'smallint',
+        'mediumint',
         'int',
+        'bigint',
         'decimal',
         'float',
         'double',
@@ -172,8 +164,8 @@ export class Datatype implements DatatypeModelInterface {
       datatype: this.datatype,
     };
 
-    if (isDefined(this.width)) {
-      json.width = this.width;
+    if (isDefined(this.displayWidth)) {
+      json.displayWidth = this.displayWidth;
     }
     if (isDefined(this.digits)) {
       json.digits = this.digits;
@@ -205,8 +197,8 @@ export class Datatype implements DatatypeModelInterface {
 
     datatype.datatype = this.datatype;
 
-    if (isDefined(this.width)) {
-      datatype.width = this.width;
+    if (isDefined(this.displayWidth)) {
+      datatype.displayWidth = this.displayWidth;
     }
     if (isDefined(this.digits)) {
       datatype.digits = this.digits;

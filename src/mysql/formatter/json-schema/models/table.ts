@@ -117,6 +117,7 @@ export class Table {
      */
     if (options.useRef === false) {
       json.properties = json.definitions;
+      // @ts-ignore
       delete json.definitions;
     }
 

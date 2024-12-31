@@ -87,16 +87,14 @@ exports[`JSON Schema formatter: should format tables correctly, with ref. 1`] = 
       "ssn8": {
         "description": "BIGINT",
         "type": "integer",
-        "x-bigint": true,
-        "x-bigint-minimum": "-9223372036854775808",
-        "x-bigint-maximum": "9223372036854775807"
+        "minimum": -9007199254740991,
+        "maximum": 9007199254740991
       },
       "ssn9": {
         "description": "BIGINT UNSIGNED",
         "type": "integer",
-        "x-bigint": true,
-        "x-bigint-minimum": "0",
-        "x-bigint-maximum": "18446744073709551615"
+        "minimum": 0,
+        "maximum": 9007199254740991
       },
       "height": {
         "type": "number",
@@ -271,9 +269,8 @@ exports[`JSON Schema formatter: should format tables correctly, with ref. 1`] = 
     "definitions": {
       "id": {
         "type": "integer",
-        "x-bigint": true,
-        "x-bigint-minimum": "-9223372036854775808",
-        "x-bigint-maximum": "9223372036854775807"
+        "minimum": -9007199254740991,
+        "maximum": 9007199254740991
       },
       "species": {
         "type": "string",
@@ -649,16 +646,14 @@ exports[`JSON Schema formatter: should format tables correctly, without ref. 1`]
       "ssn8": {
         "description": "BIGINT",
         "type": "integer",
-        "x-bigint": true,
-        "x-bigint-minimum": "-9223372036854775808",
-        "x-bigint-maximum": "9223372036854775807"
+        "minimum": -9007199254740991,
+        "maximum": 9007199254740991
       },
       "ssn9": {
         "description": "BIGINT UNSIGNED",
         "type": "integer",
-        "x-bigint": true,
-        "x-bigint-minimum": "0",
-        "x-bigint-maximum": "18446744073709551615"
+        "minimum": 0,
+        "maximum": 9007199254740991
       },
       "height": {
         "type": "number",
@@ -741,9 +736,8 @@ exports[`JSON Schema formatter: should format tables correctly, without ref. 1`]
     "properties": {
       "id": {
         "type": "integer",
-        "x-bigint": true,
-        "x-bigint-minimum": "-9223372036854775808",
-        "x-bigint-maximum": "9223372036854775807"
+        "minimum": -9007199254740991,
+        "maximum": 9007199254740991
       },
       "species": {
         "type": "string",

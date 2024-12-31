@@ -9,7 +9,7 @@ exports[`Compact formatter: Alter table add foreign key should not add key for u
         "name": "id",
         "type": {
           "datatype": "int",
-          "width": 4
+          "displayWidth": 10
         },
         "options": {
           "unsigned": true,
@@ -57,8 +57,7 @@ exports[`Compact formatter: Alter table add foreign key should not add key for u
       {
         "name": "ssn",
         "type": {
-          "datatype": "int",
-          "width": 2
+          "datatype": "smallint"
         },
         "options": {
           "nullable": true,
@@ -68,8 +67,7 @@ exports[`Compact formatter: Alter table add foreign key should not add key for u
       {
         "name": "ssn1",
         "type": {
-          "datatype": "int",
-          "width": 2
+          "datatype": "smallint"
         },
         "options": {
           "unsigned": true,
@@ -80,8 +78,7 @@ exports[`Compact formatter: Alter table add foreign key should not add key for u
       {
         "name": "ssn2",
         "type": {
-          "datatype": "int",
-          "width": 1
+          "datatype": "tinyint"
         },
         "options": {
           "nullable": true,
@@ -91,8 +88,7 @@ exports[`Compact formatter: Alter table add foreign key should not add key for u
       {
         "name": "ssn3",
         "type": {
-          "datatype": "int",
-          "width": 1
+          "datatype": "tinyint"
         },
         "options": {
           "unsigned": true,
@@ -103,8 +99,7 @@ exports[`Compact formatter: Alter table add foreign key should not add key for u
       {
         "name": "ssn4",
         "type": {
-          "datatype": "int",
-          "width": 4
+          "datatype": "int"
         },
         "options": {
           "nullable": true,
@@ -114,8 +109,7 @@ exports[`Compact formatter: Alter table add foreign key should not add key for u
       {
         "name": "ssn5",
         "type": {
-          "datatype": "int",
-          "width": 4
+          "datatype": "int"
         },
         "options": {
           "unsigned": true,
@@ -126,8 +120,7 @@ exports[`Compact formatter: Alter table add foreign key should not add key for u
       {
         "name": "ssn6",
         "type": {
-          "datatype": "int",
-          "width": 3
+          "datatype": "mediumint"
         },
         "options": {
           "nullable": true,
@@ -137,8 +130,7 @@ exports[`Compact formatter: Alter table add foreign key should not add key for u
       {
         "name": "ssn7",
         "type": {
-          "datatype": "int",
-          "width": 3
+          "datatype": "mediumint"
         },
         "options": {
           "unsigned": true,
@@ -149,8 +141,7 @@ exports[`Compact formatter: Alter table add foreign key should not add key for u
       {
         "name": "ssn8",
         "type": {
-          "datatype": "int",
-          "width": 8
+          "datatype": "bigint"
         },
         "options": {
           "nullable": true,
@@ -160,8 +151,8 @@ exports[`Compact formatter: Alter table add foreign key should not add key for u
       {
         "name": "ssn9",
         "type": {
-          "datatype": "int",
-          "width": 8
+          "datatype": "bigint",
+          "displayWidth": 60
         },
         "options": {
           "unsigned": true,
@@ -417,8 +408,7 @@ exports[`Compact formatter: Alter table add foreign key should not add key for u
       {
         "name": "id",
         "type": {
-          "datatype": "int",
-          "width": 8
+          "datatype": "bigint"
         },
         "options": {
           "nullable": true
@@ -437,8 +427,7 @@ exports[`Compact formatter: Alter table add foreign key should not add key for u
       {
         "name": "owner_id",
         "type": {
-          "datatype": "int",
-          "width": 3
+          "datatype": "mediumint"
         },
         "options": {
           "nullable": true
@@ -754,8 +743,7 @@ exports[`Compact formatter: Alter table add foreign key should not add key for u
       {
         "name": "id",
         "type": {
-          "datatype": "int",
-          "width": 4
+          "datatype": "int"
         },
         "options": {
           "nullable": false
@@ -764,8 +752,7 @@ exports[`Compact formatter: Alter table add foreign key should not add key for u
       {
         "name": "pet_id",
         "type": {
-          "datatype": "int",
-          "width": 1
+          "datatype": "tinyint"
         },
         "options": {
           "nullable": true
@@ -1063,7 +1050,7 @@ exports[`Compact formatter: Alter table add foreign key should not add key or in
         "name": "id",
         "type": {
           "datatype": "int",
-          "width": 4
+          "displayWidth": 10
         },
         "options": {
           "unsigned": true,
@@ -1111,8 +1098,7 @@ exports[`Compact formatter: Alter table add foreign key should not add key or in
       {
         "name": "ssn",
         "type": {
-          "datatype": "int",
-          "width": 2
+          "datatype": "smallint"
         },
         "options": {
           "nullable": true,
@@ -1122,8 +1108,7 @@ exports[`Compact formatter: Alter table add foreign key should not add key or in
       {
         "name": "ssn1",
         "type": {
-          "datatype": "int",
-          "width": 2
+          "datatype": "smallint"
         },
         "options": {
           "unsigned": true,
@@ -1134,8 +1119,7 @@ exports[`Compact formatter: Alter table add foreign key should not add key or in
       {
         "name": "ssn2",
         "type": {
-          "datatype": "int",
-          "width": 1
+          "datatype": "tinyint"
         },
         "options": {
           "nullable": true,
@@ -1145,8 +1129,7 @@ exports[`Compact formatter: Alter table add foreign key should not add key or in
       {
         "name": "ssn3",
         "type": {
-          "datatype": "int",
-          "width": 1
+          "datatype": "tinyint"
         },
         "options": {
           "unsigned": true,
@@ -1157,8 +1140,7 @@ exports[`Compact formatter: Alter table add foreign key should not add key or in
       {
         "name": "ssn4",
         "type": {
-          "datatype": "int",
-          "width": 4
+          "datatype": "int"
         },
         "options": {
           "nullable": true,
@@ -1168,8 +1150,7 @@ exports[`Compact formatter: Alter table add foreign key should not add key or in
       {
         "name": "ssn5",
         "type": {
-          "datatype": "int",
-          "width": 4
+          "datatype": "int"
         },
         "options": {
           "unsigned": true,
@@ -1180,8 +1161,7 @@ exports[`Compact formatter: Alter table add foreign key should not add key or in
       {
         "name": "ssn6",
         "type": {
-          "datatype": "int",
-          "width": 3
+          "datatype": "mediumint"
         },
         "options": {
           "nullable": true,
@@ -1191,8 +1171,7 @@ exports[`Compact formatter: Alter table add foreign key should not add key or in
       {
         "name": "ssn7",
         "type": {
-          "datatype": "int",
-          "width": 3
+          "datatype": "mediumint"
         },
         "options": {
           "unsigned": true,
@@ -1203,8 +1182,7 @@ exports[`Compact formatter: Alter table add foreign key should not add key or in
       {
         "name": "ssn8",
         "type": {
-          "datatype": "int",
-          "width": 8
+          "datatype": "bigint"
         },
         "options": {
           "nullable": true,
@@ -1214,8 +1192,8 @@ exports[`Compact formatter: Alter table add foreign key should not add key or in
       {
         "name": "ssn9",
         "type": {
-          "datatype": "int",
-          "width": 8
+          "datatype": "bigint",
+          "displayWidth": 60
         },
         "options": {
           "unsigned": true,
@@ -1471,8 +1449,7 @@ exports[`Compact formatter: Alter table add foreign key should not add key or in
       {
         "name": "id",
         "type": {
-          "datatype": "int",
-          "width": 8
+          "datatype": "bigint"
         },
         "options": {
           "nullable": true
@@ -1491,8 +1468,7 @@ exports[`Compact formatter: Alter table add foreign key should not add key or in
       {
         "name": "owner_id",
         "type": {
-          "datatype": "int",
-          "width": 3
+          "datatype": "mediumint"
         },
         "options": {
           "nullable": true
@@ -1808,8 +1784,7 @@ exports[`Compact formatter: Alter table add foreign key should not add key or in
       {
         "name": "id",
         "type": {
-          "datatype": "int",
-          "width": 4
+          "datatype": "int"
         },
         "options": {
           "nullable": false
@@ -1818,8 +1793,7 @@ exports[`Compact formatter: Alter table add foreign key should not add key or in
       {
         "name": "pet_id",
         "type": {
-          "datatype": "int",
-          "width": 1
+          "datatype": "tinyint"
         },
         "options": {
           "nullable": true
@@ -2117,7 +2091,7 @@ exports[`Compact formatter: Alter table add foreign key should not add key refer
         "name": "id",
         "type": {
           "datatype": "int",
-          "width": 4
+          "displayWidth": 10
         },
         "options": {
           "unsigned": true,
@@ -2165,8 +2139,7 @@ exports[`Compact formatter: Alter table add foreign key should not add key refer
       {
         "name": "ssn",
         "type": {
-          "datatype": "int",
-          "width": 2
+          "datatype": "smallint"
         },
         "options": {
           "nullable": true,
@@ -2176,8 +2149,7 @@ exports[`Compact formatter: Alter table add foreign key should not add key refer
       {
         "name": "ssn1",
         "type": {
-          "datatype": "int",
-          "width": 2
+          "datatype": "smallint"
         },
         "options": {
           "unsigned": true,
@@ -2188,8 +2160,7 @@ exports[`Compact formatter: Alter table add foreign key should not add key refer
       {
         "name": "ssn2",
         "type": {
-          "datatype": "int",
-          "width": 1
+          "datatype": "tinyint"
         },
         "options": {
           "nullable": true,
@@ -2199,8 +2170,7 @@ exports[`Compact formatter: Alter table add foreign key should not add key refer
       {
         "name": "ssn3",
         "type": {
-          "datatype": "int",
-          "width": 1
+          "datatype": "tinyint"
         },
         "options": {
           "unsigned": true,
@@ -2211,8 +2181,7 @@ exports[`Compact formatter: Alter table add foreign key should not add key refer
       {
         "name": "ssn4",
         "type": {
-          "datatype": "int",
-          "width": 4
+          "datatype": "int"
         },
         "options": {
           "nullable": true,
@@ -2222,8 +2191,7 @@ exports[`Compact formatter: Alter table add foreign key should not add key refer
       {
         "name": "ssn5",
         "type": {
-          "datatype": "int",
-          "width": 4
+          "datatype": "int"
         },
         "options": {
           "unsigned": true,
@@ -2234,8 +2202,7 @@ exports[`Compact formatter: Alter table add foreign key should not add key refer
       {
         "name": "ssn6",
         "type": {
-          "datatype": "int",
-          "width": 3
+          "datatype": "mediumint"
         },
         "options": {
           "nullable": true,
@@ -2245,8 +2212,7 @@ exports[`Compact formatter: Alter table add foreign key should not add key refer
       {
         "name": "ssn7",
         "type": {
-          "datatype": "int",
-          "width": 3
+          "datatype": "mediumint"
         },
         "options": {
           "unsigned": true,
@@ -2257,8 +2223,7 @@ exports[`Compact formatter: Alter table add foreign key should not add key refer
       {
         "name": "ssn8",
         "type": {
-          "datatype": "int",
-          "width": 8
+          "datatype": "bigint"
         },
         "options": {
           "nullable": true,
@@ -2268,8 +2233,8 @@ exports[`Compact formatter: Alter table add foreign key should not add key refer
       {
         "name": "ssn9",
         "type": {
-          "datatype": "int",
-          "width": 8
+          "datatype": "bigint",
+          "displayWidth": 60
         },
         "options": {
           "unsigned": true,
@@ -2525,8 +2490,7 @@ exports[`Compact formatter: Alter table add foreign key should not add key refer
       {
         "name": "id",
         "type": {
-          "datatype": "int",
-          "width": 8
+          "datatype": "bigint"
         },
         "options": {
           "nullable": true
@@ -2545,8 +2509,7 @@ exports[`Compact formatter: Alter table add foreign key should not add key refer
       {
         "name": "owner_id",
         "type": {
-          "datatype": "int",
-          "width": 3
+          "datatype": "mediumint"
         },
         "options": {
           "nullable": true
@@ -2862,8 +2825,7 @@ exports[`Compact formatter: Alter table add foreign key should not add key refer
       {
         "name": "id",
         "type": {
-          "datatype": "int",
-          "width": 4
+          "datatype": "int"
         },
         "options": {
           "nullable": false
@@ -2872,8 +2834,7 @@ exports[`Compact formatter: Alter table add foreign key should not add key refer
       {
         "name": "pet_id",
         "type": {
-          "datatype": "int",
-          "width": 1
+          "datatype": "tinyint"
         },
         "options": {
           "nullable": true
@@ -3171,7 +3132,7 @@ exports[`Compact formatter: Alter table add foreign key should not add key refer
         "name": "id",
         "type": {
           "datatype": "int",
-          "width": 4
+          "displayWidth": 10
         },
         "options": {
           "unsigned": true,
@@ -3219,8 +3180,7 @@ exports[`Compact formatter: Alter table add foreign key should not add key refer
       {
         "name": "ssn",
         "type": {
-          "datatype": "int",
-          "width": 2
+          "datatype": "smallint"
         },
         "options": {
           "nullable": true,
@@ -3230,8 +3190,7 @@ exports[`Compact formatter: Alter table add foreign key should not add key refer
       {
         "name": "ssn1",
         "type": {
-          "datatype": "int",
-          "width": 2
+          "datatype": "smallint"
         },
         "options": {
           "unsigned": true,
@@ -3242,8 +3201,7 @@ exports[`Compact formatter: Alter table add foreign key should not add key refer
       {
         "name": "ssn2",
         "type": {
-          "datatype": "int",
-          "width": 1
+          "datatype": "tinyint"
         },
         "options": {
           "nullable": true,
@@ -3253,8 +3211,7 @@ exports[`Compact formatter: Alter table add foreign key should not add key refer
       {
         "name": "ssn3",
         "type": {
-          "datatype": "int",
-          "width": 1
+          "datatype": "tinyint"
         },
         "options": {
           "unsigned": true,
@@ -3265,8 +3222,7 @@ exports[`Compact formatter: Alter table add foreign key should not add key refer
       {
         "name": "ssn4",
         "type": {
-          "datatype": "int",
-          "width": 4
+          "datatype": "int"
         },
         "options": {
           "nullable": true,
@@ -3276,8 +3232,7 @@ exports[`Compact formatter: Alter table add foreign key should not add key refer
       {
         "name": "ssn5",
         "type": {
-          "datatype": "int",
-          "width": 4
+          "datatype": "int"
         },
         "options": {
           "unsigned": true,
@@ -3288,8 +3243,7 @@ exports[`Compact formatter: Alter table add foreign key should not add key refer
       {
         "name": "ssn6",
         "type": {
-          "datatype": "int",
-          "width": 3
+          "datatype": "mediumint"
         },
         "options": {
           "nullable": true,
@@ -3299,8 +3253,7 @@ exports[`Compact formatter: Alter table add foreign key should not add key refer
       {
         "name": "ssn7",
         "type": {
-          "datatype": "int",
-          "width": 3
+          "datatype": "mediumint"
         },
         "options": {
           "unsigned": true,
@@ -3311,8 +3264,7 @@ exports[`Compact formatter: Alter table add foreign key should not add key refer
       {
         "name": "ssn8",
         "type": {
-          "datatype": "int",
-          "width": 8
+          "datatype": "bigint"
         },
         "options": {
           "nullable": true,
@@ -3322,8 +3274,8 @@ exports[`Compact formatter: Alter table add foreign key should not add key refer
       {
         "name": "ssn9",
         "type": {
-          "datatype": "int",
-          "width": 8
+          "datatype": "bigint",
+          "displayWidth": 60
         },
         "options": {
           "unsigned": true,
@@ -3579,8 +3531,7 @@ exports[`Compact formatter: Alter table add foreign key should not add key refer
       {
         "name": "id",
         "type": {
-          "datatype": "int",
-          "width": 8
+          "datatype": "bigint"
         },
         "options": {
           "nullable": true
@@ -3599,8 +3550,7 @@ exports[`Compact formatter: Alter table add foreign key should not add key refer
       {
         "name": "owner_id",
         "type": {
-          "datatype": "int",
-          "width": 3
+          "datatype": "mediumint"
         },
         "options": {
           "nullable": true
@@ -3916,8 +3866,7 @@ exports[`Compact formatter: Alter table add foreign key should not add key refer
       {
         "name": "id",
         "type": {
-          "datatype": "int",
-          "width": 4
+          "datatype": "int"
         },
         "options": {
           "nullable": false
@@ -3926,8 +3875,7 @@ exports[`Compact formatter: Alter table add foreign key should not add key refer
       {
         "name": "pet_id",
         "type": {
-          "datatype": "int",
-          "width": 1
+          "datatype": "tinyint"
         },
         "options": {
           "nullable": true
@@ -4225,7 +4173,7 @@ exports[`Compact formatter: Should alter table, adding foreign keys. 1`] = `
         "name": "id",
         "type": {
           "datatype": "int",
-          "width": 4
+          "displayWidth": 10
         },
         "options": {
           "unsigned": true,
@@ -4273,8 +4221,7 @@ exports[`Compact formatter: Should alter table, adding foreign keys. 1`] = `
       {
         "name": "ssn",
         "type": {
-          "datatype": "int",
-          "width": 2
+          "datatype": "smallint"
         },
         "options": {
           "nullable": true,
@@ -4284,8 +4231,7 @@ exports[`Compact formatter: Should alter table, adding foreign keys. 1`] = `
       {
         "name": "ssn1",
         "type": {
-          "datatype": "int",
-          "width": 2
+          "datatype": "smallint"
         },
         "options": {
           "unsigned": true,
@@ -4296,8 +4242,7 @@ exports[`Compact formatter: Should alter table, adding foreign keys. 1`] = `
       {
         "name": "ssn2",
         "type": {
-          "datatype": "int",
-          "width": 1
+          "datatype": "tinyint"
         },
         "options": {
           "nullable": true,
@@ -4307,8 +4252,7 @@ exports[`Compact formatter: Should alter table, adding foreign keys. 1`] = `
       {
         "name": "ssn3",
         "type": {
-          "datatype": "int",
-          "width": 1
+          "datatype": "tinyint"
         },
         "options": {
           "unsigned": true,
@@ -4319,8 +4263,7 @@ exports[`Compact formatter: Should alter table, adding foreign keys. 1`] = `
       {
         "name": "ssn4",
         "type": {
-          "datatype": "int",
-          "width": 4
+          "datatype": "int"
         },
         "options": {
           "nullable": true,
@@ -4330,8 +4273,7 @@ exports[`Compact formatter: Should alter table, adding foreign keys. 1`] = `
       {
         "name": "ssn5",
         "type": {
-          "datatype": "int",
-          "width": 4
+          "datatype": "int"
         },
         "options": {
           "unsigned": true,
@@ -4342,8 +4284,7 @@ exports[`Compact formatter: Should alter table, adding foreign keys. 1`] = `
       {
         "name": "ssn6",
         "type": {
-          "datatype": "int",
-          "width": 3
+          "datatype": "mediumint"
         },
         "options": {
           "nullable": true,
@@ -4353,8 +4294,7 @@ exports[`Compact formatter: Should alter table, adding foreign keys. 1`] = `
       {
         "name": "ssn7",
         "type": {
-          "datatype": "int",
-          "width": 3
+          "datatype": "mediumint"
         },
         "options": {
           "unsigned": true,
@@ -4365,8 +4305,7 @@ exports[`Compact formatter: Should alter table, adding foreign keys. 1`] = `
       {
         "name": "ssn8",
         "type": {
-          "datatype": "int",
-          "width": 8
+          "datatype": "bigint"
         },
         "options": {
           "nullable": true,
@@ -4376,8 +4315,8 @@ exports[`Compact formatter: Should alter table, adding foreign keys. 1`] = `
       {
         "name": "ssn9",
         "type": {
-          "datatype": "int",
-          "width": 8
+          "datatype": "bigint",
+          "displayWidth": 60
         },
         "options": {
           "unsigned": true,
@@ -4633,8 +4572,7 @@ exports[`Compact formatter: Should alter table, adding foreign keys. 1`] = `
       {
         "name": "id",
         "type": {
-          "datatype": "int",
-          "width": 8
+          "datatype": "bigint"
         },
         "options": {
           "nullable": true
@@ -4653,8 +4591,7 @@ exports[`Compact formatter: Should alter table, adding foreign keys. 1`] = `
       {
         "name": "owner_id",
         "type": {
-          "datatype": "int",
-          "width": 3
+          "datatype": "mediumint"
         },
         "options": {
           "nullable": true
@@ -4970,8 +4907,7 @@ exports[`Compact formatter: Should alter table, adding foreign keys. 1`] = `
       {
         "name": "id",
         "type": {
-          "datatype": "int",
-          "width": 4
+          "datatype": "int"
         },
         "options": {
           "nullable": false
@@ -4980,8 +4916,7 @@ exports[`Compact formatter: Should alter table, adding foreign keys. 1`] = `
       {
         "name": "pet_id",
         "type": {
-          "datatype": "int",
-          "width": 1
+          "datatype": "tinyint"
         },
         "options": {
           "nullable": true

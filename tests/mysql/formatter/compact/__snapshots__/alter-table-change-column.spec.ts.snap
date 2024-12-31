@@ -9,7 +9,7 @@ exports[`Compact formatter: Alter table change column should change last column.
         "name": "id",
         "type": {
           "datatype": "int",
-          "width": 4
+          "displayWidth": 10
         },
         "options": {
           "unsigned": true,
@@ -57,8 +57,7 @@ exports[`Compact formatter: Alter table change column should change last column.
       {
         "name": "ssn",
         "type": {
-          "datatype": "int",
-          "width": 2
+          "datatype": "smallint"
         },
         "options": {
           "nullable": true,
@@ -68,8 +67,7 @@ exports[`Compact formatter: Alter table change column should change last column.
       {
         "name": "ssn1",
         "type": {
-          "datatype": "int",
-          "width": 2
+          "datatype": "smallint"
         },
         "options": {
           "unsigned": true,
@@ -80,8 +78,7 @@ exports[`Compact formatter: Alter table change column should change last column.
       {
         "name": "ssn2",
         "type": {
-          "datatype": "int",
-          "width": 1
+          "datatype": "tinyint"
         },
         "options": {
           "nullable": true,
@@ -91,8 +88,7 @@ exports[`Compact formatter: Alter table change column should change last column.
       {
         "name": "ssn3",
         "type": {
-          "datatype": "int",
-          "width": 1
+          "datatype": "tinyint"
         },
         "options": {
           "unsigned": true,
@@ -103,8 +99,7 @@ exports[`Compact formatter: Alter table change column should change last column.
       {
         "name": "ssn4",
         "type": {
-          "datatype": "int",
-          "width": 4
+          "datatype": "int"
         },
         "options": {
           "nullable": true,
@@ -114,8 +109,7 @@ exports[`Compact formatter: Alter table change column should change last column.
       {
         "name": "ssn5",
         "type": {
-          "datatype": "int",
-          "width": 4
+          "datatype": "int"
         },
         "options": {
           "unsigned": true,
@@ -126,8 +120,7 @@ exports[`Compact formatter: Alter table change column should change last column.
       {
         "name": "ssn6",
         "type": {
-          "datatype": "int",
-          "width": 3
+          "datatype": "mediumint"
         },
         "options": {
           "nullable": true,
@@ -137,8 +130,7 @@ exports[`Compact formatter: Alter table change column should change last column.
       {
         "name": "ssn7",
         "type": {
-          "datatype": "int",
-          "width": 3
+          "datatype": "mediumint"
         },
         "options": {
           "unsigned": true,
@@ -149,8 +141,7 @@ exports[`Compact formatter: Alter table change column should change last column.
       {
         "name": "ssn8",
         "type": {
-          "datatype": "int",
-          "width": 8
+          "datatype": "bigint"
         },
         "options": {
           "nullable": true,
@@ -160,8 +151,8 @@ exports[`Compact formatter: Alter table change column should change last column.
       {
         "name": "ssn9",
         "type": {
-          "datatype": "int",
-          "width": 8
+          "datatype": "bigint",
+          "displayWidth": 60
         },
         "options": {
           "unsigned": true,
@@ -400,8 +391,7 @@ exports[`Compact formatter: Alter table change column should change last column.
       {
         "name": "id",
         "type": {
-          "datatype": "int",
-          "width": 8
+          "datatype": "bigint"
         },
         "options": {
           "nullable": true
@@ -420,8 +410,7 @@ exports[`Compact formatter: Alter table change column should change last column.
       {
         "name": "owner_id",
         "type": {
-          "datatype": "int",
-          "width": 3
+          "datatype": "mediumint"
         },
         "options": {
           "nullable": true
@@ -667,8 +656,7 @@ exports[`Compact formatter: Alter table change column should change last column.
       {
         "name": "id",
         "type": {
-          "datatype": "int",
-          "width": 4
+          "datatype": "int"
         },
         "options": {
           "nullable": false
@@ -677,8 +665,7 @@ exports[`Compact formatter: Alter table change column should change last column.
       {
         "name": "pet_id",
         "type": {
-          "datatype": "int",
-          "width": 1
+          "datatype": "tinyint"
         },
         "options": {
           "nullable": true
@@ -976,7 +963,7 @@ exports[`Compact formatter: Alter table change column should ignore duplicate un
         "name": "id",
         "type": {
           "datatype": "int",
-          "width": 4
+          "displayWidth": 10
         },
         "options": {
           "unsigned": true,
@@ -1024,8 +1011,7 @@ exports[`Compact formatter: Alter table change column should ignore duplicate un
       {
         "name": "ssn",
         "type": {
-          "datatype": "int",
-          "width": 2
+          "datatype": "smallint"
         },
         "options": {
           "nullable": true,
@@ -1035,8 +1021,7 @@ exports[`Compact formatter: Alter table change column should ignore duplicate un
       {
         "name": "ssn1",
         "type": {
-          "datatype": "int",
-          "width": 2
+          "datatype": "smallint"
         },
         "options": {
           "unsigned": true,
@@ -1047,8 +1032,7 @@ exports[`Compact formatter: Alter table change column should ignore duplicate un
       {
         "name": "ssn2",
         "type": {
-          "datatype": "int",
-          "width": 1
+          "datatype": "tinyint"
         },
         "options": {
           "nullable": true,
@@ -1058,8 +1042,7 @@ exports[`Compact formatter: Alter table change column should ignore duplicate un
       {
         "name": "ssn3",
         "type": {
-          "datatype": "int",
-          "width": 1
+          "datatype": "tinyint"
         },
         "options": {
           "unsigned": true,
@@ -1070,8 +1053,7 @@ exports[`Compact formatter: Alter table change column should ignore duplicate un
       {
         "name": "ssn4",
         "type": {
-          "datatype": "int",
-          "width": 4
+          "datatype": "int"
         },
         "options": {
           "nullable": true,
@@ -1081,8 +1063,7 @@ exports[`Compact formatter: Alter table change column should ignore duplicate un
       {
         "name": "ssn5",
         "type": {
-          "datatype": "int",
-          "width": 4
+          "datatype": "int"
         },
         "options": {
           "unsigned": true,
@@ -1093,8 +1074,7 @@ exports[`Compact formatter: Alter table change column should ignore duplicate un
       {
         "name": "ssn6",
         "type": {
-          "datatype": "int",
-          "width": 3
+          "datatype": "mediumint"
         },
         "options": {
           "nullable": true,
@@ -1104,8 +1084,7 @@ exports[`Compact formatter: Alter table change column should ignore duplicate un
       {
         "name": "ssn7",
         "type": {
-          "datatype": "int",
-          "width": 3
+          "datatype": "mediumint"
         },
         "options": {
           "unsigned": true,
@@ -1116,8 +1095,7 @@ exports[`Compact formatter: Alter table change column should ignore duplicate un
       {
         "name": "ssn8",
         "type": {
-          "datatype": "int",
-          "width": 8
+          "datatype": "bigint"
         },
         "options": {
           "nullable": true,
@@ -1127,8 +1105,8 @@ exports[`Compact formatter: Alter table change column should ignore duplicate un
       {
         "name": "ssn9",
         "type": {
-          "datatype": "int",
-          "width": 8
+          "datatype": "bigint",
+          "displayWidth": 60
         },
         "options": {
           "unsigned": true,
@@ -1366,8 +1344,7 @@ exports[`Compact formatter: Alter table change column should ignore duplicate un
       {
         "name": "id",
         "type": {
-          "datatype": "int",
-          "width": 8
+          "datatype": "bigint"
         },
         "options": {
           "nullable": true
@@ -1386,8 +1363,7 @@ exports[`Compact formatter: Alter table change column should ignore duplicate un
       {
         "name": "owner_id",
         "type": {
-          "datatype": "int",
-          "width": 3
+          "datatype": "mediumint"
         },
         "options": {
           "nullable": true
@@ -1633,8 +1609,7 @@ exports[`Compact formatter: Alter table change column should ignore duplicate un
       {
         "name": "id",
         "type": {
-          "datatype": "int",
-          "width": 4
+          "datatype": "int"
         },
         "options": {
           "nullable": false
@@ -1643,8 +1618,7 @@ exports[`Compact formatter: Alter table change column should ignore duplicate un
       {
         "name": "pet_id",
         "type": {
-          "datatype": "int",
-          "width": 1
+          "datatype": "tinyint"
         },
         "options": {
           "nullable": true
@@ -1942,7 +1916,7 @@ exports[`Compact formatter: Alter table change column should ignore foreign key 
         "name": "id",
         "type": {
           "datatype": "int",
-          "width": 4
+          "displayWidth": 10
         },
         "options": {
           "unsigned": true,
@@ -1990,8 +1964,7 @@ exports[`Compact formatter: Alter table change column should ignore foreign key 
       {
         "name": "ssn",
         "type": {
-          "datatype": "int",
-          "width": 2
+          "datatype": "smallint"
         },
         "options": {
           "nullable": true,
@@ -2001,8 +1974,7 @@ exports[`Compact formatter: Alter table change column should ignore foreign key 
       {
         "name": "ssn1",
         "type": {
-          "datatype": "int",
-          "width": 2
+          "datatype": "smallint"
         },
         "options": {
           "unsigned": true,
@@ -2013,8 +1985,7 @@ exports[`Compact formatter: Alter table change column should ignore foreign key 
       {
         "name": "ssn2",
         "type": {
-          "datatype": "int",
-          "width": 1
+          "datatype": "tinyint"
         },
         "options": {
           "nullable": true,
@@ -2024,8 +1995,7 @@ exports[`Compact formatter: Alter table change column should ignore foreign key 
       {
         "name": "ssn3",
         "type": {
-          "datatype": "int",
-          "width": 1
+          "datatype": "tinyint"
         },
         "options": {
           "unsigned": true,
@@ -2036,8 +2006,7 @@ exports[`Compact formatter: Alter table change column should ignore foreign key 
       {
         "name": "ssn4",
         "type": {
-          "datatype": "int",
-          "width": 4
+          "datatype": "int"
         },
         "options": {
           "nullable": true,
@@ -2047,8 +2016,7 @@ exports[`Compact formatter: Alter table change column should ignore foreign key 
       {
         "name": "ssn5",
         "type": {
-          "datatype": "int",
-          "width": 4
+          "datatype": "int"
         },
         "options": {
           "unsigned": true,
@@ -2059,8 +2027,7 @@ exports[`Compact formatter: Alter table change column should ignore foreign key 
       {
         "name": "ssn6",
         "type": {
-          "datatype": "int",
-          "width": 3
+          "datatype": "mediumint"
         },
         "options": {
           "nullable": true,
@@ -2070,8 +2037,7 @@ exports[`Compact formatter: Alter table change column should ignore foreign key 
       {
         "name": "ssn7",
         "type": {
-          "datatype": "int",
-          "width": 3
+          "datatype": "mediumint"
         },
         "options": {
           "unsigned": true,
@@ -2082,8 +2048,7 @@ exports[`Compact formatter: Alter table change column should ignore foreign key 
       {
         "name": "ssn8",
         "type": {
-          "datatype": "int",
-          "width": 8
+          "datatype": "bigint"
         },
         "options": {
           "nullable": true,
@@ -2093,8 +2058,8 @@ exports[`Compact formatter: Alter table change column should ignore foreign key 
       {
         "name": "ssn9",
         "type": {
-          "datatype": "int",
-          "width": 8
+          "datatype": "bigint",
+          "displayWidth": 60
         },
         "options": {
           "unsigned": true,
@@ -2334,8 +2299,7 @@ exports[`Compact formatter: Alter table change column should ignore foreign key 
       {
         "name": "id",
         "type": {
-          "datatype": "int",
-          "width": 8
+          "datatype": "bigint"
         },
         "options": {
           "nullable": true
@@ -2354,8 +2318,7 @@ exports[`Compact formatter: Alter table change column should ignore foreign key 
       {
         "name": "owner_id",
         "type": {
-          "datatype": "int",
-          "width": 3
+          "datatype": "mediumint"
         },
         "options": {
           "nullable": true
@@ -2601,8 +2564,7 @@ exports[`Compact formatter: Alter table change column should ignore foreign key 
       {
         "name": "id",
         "type": {
-          "datatype": "int",
-          "width": 4
+          "datatype": "int"
         },
         "options": {
           "nullable": false
@@ -2611,8 +2573,7 @@ exports[`Compact formatter: Alter table change column should ignore foreign key 
       {
         "name": "pet_id",
         "type": {
-          "datatype": "int",
-          "width": 1
+          "datatype": "tinyint"
         },
         "options": {
           "nullable": true
@@ -2910,7 +2871,7 @@ exports[`Compact formatter: Alter table change column should not change a column
         "name": "id",
         "type": {
           "datatype": "int",
-          "width": 4
+          "displayWidth": 10
         },
         "options": {
           "unsigned": true,
@@ -2958,8 +2919,7 @@ exports[`Compact formatter: Alter table change column should not change a column
       {
         "name": "ssn",
         "type": {
-          "datatype": "int",
-          "width": 2
+          "datatype": "smallint"
         },
         "options": {
           "nullable": true,
@@ -2969,8 +2929,7 @@ exports[`Compact formatter: Alter table change column should not change a column
       {
         "name": "ssn1",
         "type": {
-          "datatype": "int",
-          "width": 2
+          "datatype": "smallint"
         },
         "options": {
           "unsigned": true,
@@ -2981,8 +2940,7 @@ exports[`Compact formatter: Alter table change column should not change a column
       {
         "name": "ssn2",
         "type": {
-          "datatype": "int",
-          "width": 1
+          "datatype": "tinyint"
         },
         "options": {
           "nullable": true,
@@ -2992,8 +2950,7 @@ exports[`Compact formatter: Alter table change column should not change a column
       {
         "name": "ssn3",
         "type": {
-          "datatype": "int",
-          "width": 1
+          "datatype": "tinyint"
         },
         "options": {
           "unsigned": true,
@@ -3004,8 +2961,7 @@ exports[`Compact formatter: Alter table change column should not change a column
       {
         "name": "ssn4",
         "type": {
-          "datatype": "int",
-          "width": 4
+          "datatype": "int"
         },
         "options": {
           "nullable": true,
@@ -3015,8 +2971,7 @@ exports[`Compact formatter: Alter table change column should not change a column
       {
         "name": "ssn5",
         "type": {
-          "datatype": "int",
-          "width": 4
+          "datatype": "int"
         },
         "options": {
           "unsigned": true,
@@ -3027,8 +2982,7 @@ exports[`Compact formatter: Alter table change column should not change a column
       {
         "name": "ssn6",
         "type": {
-          "datatype": "int",
-          "width": 3
+          "datatype": "mediumint"
         },
         "options": {
           "nullable": true,
@@ -3038,8 +2992,7 @@ exports[`Compact formatter: Alter table change column should not change a column
       {
         "name": "ssn7",
         "type": {
-          "datatype": "int",
-          "width": 3
+          "datatype": "mediumint"
         },
         "options": {
           "unsigned": true,
@@ -3050,8 +3003,7 @@ exports[`Compact formatter: Alter table change column should not change a column
       {
         "name": "ssn8",
         "type": {
-          "datatype": "int",
-          "width": 8
+          "datatype": "bigint"
         },
         "options": {
           "nullable": true,
@@ -3061,8 +3013,8 @@ exports[`Compact formatter: Alter table change column should not change a column
       {
         "name": "ssn9",
         "type": {
-          "datatype": "int",
-          "width": 8
+          "datatype": "bigint",
+          "displayWidth": 60
         },
         "options": {
           "unsigned": true,
@@ -3300,8 +3252,7 @@ exports[`Compact formatter: Alter table change column should not change a column
       {
         "name": "id",
         "type": {
-          "datatype": "int",
-          "width": 8
+          "datatype": "bigint"
         },
         "options": {
           "nullable": true
@@ -3320,8 +3271,7 @@ exports[`Compact formatter: Alter table change column should not change a column
       {
         "name": "owner_id",
         "type": {
-          "datatype": "int",
-          "width": 3
+          "datatype": "mediumint"
         },
         "options": {
           "nullable": true
@@ -3567,8 +3517,7 @@ exports[`Compact formatter: Alter table change column should not change a column
       {
         "name": "id",
         "type": {
-          "datatype": "int",
-          "width": 4
+          "datatype": "int"
         },
         "options": {
           "nullable": false
@@ -3577,8 +3526,7 @@ exports[`Compact formatter: Alter table change column should not change a column
       {
         "name": "pet_id",
         "type": {
-          "datatype": "int",
-          "width": 1
+          "datatype": "tinyint"
         },
         "options": {
           "nullable": true
@@ -3876,7 +3824,7 @@ exports[`Compact formatter: Alter table change column should not change a column
         "name": "id",
         "type": {
           "datatype": "int",
-          "width": 4
+          "displayWidth": 10
         },
         "options": {
           "unsigned": true,
@@ -3924,8 +3872,7 @@ exports[`Compact formatter: Alter table change column should not change a column
       {
         "name": "ssn",
         "type": {
-          "datatype": "int",
-          "width": 2
+          "datatype": "smallint"
         },
         "options": {
           "nullable": true,
@@ -3935,8 +3882,7 @@ exports[`Compact formatter: Alter table change column should not change a column
       {
         "name": "ssn1",
         "type": {
-          "datatype": "int",
-          "width": 2
+          "datatype": "smallint"
         },
         "options": {
           "unsigned": true,
@@ -3947,8 +3893,7 @@ exports[`Compact formatter: Alter table change column should not change a column
       {
         "name": "ssn2",
         "type": {
-          "datatype": "int",
-          "width": 1
+          "datatype": "tinyint"
         },
         "options": {
           "nullable": true,
@@ -3958,8 +3903,7 @@ exports[`Compact formatter: Alter table change column should not change a column
       {
         "name": "ssn3",
         "type": {
-          "datatype": "int",
-          "width": 1
+          "datatype": "tinyint"
         },
         "options": {
           "unsigned": true,
@@ -3970,8 +3914,7 @@ exports[`Compact formatter: Alter table change column should not change a column
       {
         "name": "ssn4",
         "type": {
-          "datatype": "int",
-          "width": 4
+          "datatype": "int"
         },
         "options": {
           "nullable": true,
@@ -3981,8 +3924,7 @@ exports[`Compact formatter: Alter table change column should not change a column
       {
         "name": "ssn5",
         "type": {
-          "datatype": "int",
-          "width": 4
+          "datatype": "int"
         },
         "options": {
           "unsigned": true,
@@ -3993,8 +3935,7 @@ exports[`Compact formatter: Alter table change column should not change a column
       {
         "name": "ssn6",
         "type": {
-          "datatype": "int",
-          "width": 3
+          "datatype": "mediumint"
         },
         "options": {
           "nullable": true,
@@ -4004,8 +3945,7 @@ exports[`Compact formatter: Alter table change column should not change a column
       {
         "name": "ssn7",
         "type": {
-          "datatype": "int",
-          "width": 3
+          "datatype": "mediumint"
         },
         "options": {
           "unsigned": true,
@@ -4016,8 +3956,7 @@ exports[`Compact formatter: Alter table change column should not change a column
       {
         "name": "ssn8",
         "type": {
-          "datatype": "int",
-          "width": 8
+          "datatype": "bigint"
         },
         "options": {
           "nullable": true,
@@ -4027,8 +3966,8 @@ exports[`Compact formatter: Alter table change column should not change a column
       {
         "name": "ssn9",
         "type": {
-          "datatype": "int",
-          "width": 8
+          "datatype": "bigint",
+          "displayWidth": 60
         },
         "options": {
           "unsigned": true,
@@ -4266,8 +4205,7 @@ exports[`Compact formatter: Alter table change column should not change a column
       {
         "name": "id",
         "type": {
-          "datatype": "int",
-          "width": 8
+          "datatype": "bigint"
         },
         "options": {
           "nullable": true
@@ -4286,8 +4224,7 @@ exports[`Compact formatter: Alter table change column should not change a column
       {
         "name": "owner_id",
         "type": {
-          "datatype": "int",
-          "width": 3
+          "datatype": "mediumint"
         },
         "options": {
           "nullable": true
@@ -4533,8 +4470,7 @@ exports[`Compact formatter: Alter table change column should not change a column
       {
         "name": "id",
         "type": {
-          "datatype": "int",
-          "width": 4
+          "datatype": "int"
         },
         "options": {
           "nullable": false
@@ -4543,8 +4479,7 @@ exports[`Compact formatter: Alter table change column should not change a column
       {
         "name": "pet_id",
         "type": {
-          "datatype": "int",
-          "width": 1
+          "datatype": "tinyint"
         },
         "options": {
           "nullable": true
@@ -4842,7 +4777,7 @@ exports[`Compact formatter: Alter table change column should not change a column
         "name": "id",
         "type": {
           "datatype": "int",
-          "width": 4
+          "displayWidth": 10
         },
         "options": {
           "unsigned": true,
@@ -4890,8 +4825,7 @@ exports[`Compact formatter: Alter table change column should not change a column
       {
         "name": "ssn",
         "type": {
-          "datatype": "int",
-          "width": 2
+          "datatype": "smallint"
         },
         "options": {
           "nullable": true,
@@ -4901,8 +4835,7 @@ exports[`Compact formatter: Alter table change column should not change a column
       {
         "name": "ssn1",
         "type": {
-          "datatype": "int",
-          "width": 2
+          "datatype": "smallint"
         },
         "options": {
           "unsigned": true,
@@ -4913,8 +4846,7 @@ exports[`Compact formatter: Alter table change column should not change a column
       {
         "name": "ssn2",
         "type": {
-          "datatype": "int",
-          "width": 1
+          "datatype": "tinyint"
         },
         "options": {
           "nullable": true,
@@ -4924,8 +4856,7 @@ exports[`Compact formatter: Alter table change column should not change a column
       {
         "name": "ssn3",
         "type": {
-          "datatype": "int",
-          "width": 1
+          "datatype": "tinyint"
         },
         "options": {
           "unsigned": true,
@@ -4936,8 +4867,7 @@ exports[`Compact formatter: Alter table change column should not change a column
       {
         "name": "ssn4",
         "type": {
-          "datatype": "int",
-          "width": 4
+          "datatype": "int"
         },
         "options": {
           "nullable": true,
@@ -4947,8 +4877,7 @@ exports[`Compact formatter: Alter table change column should not change a column
       {
         "name": "ssn5",
         "type": {
-          "datatype": "int",
-          "width": 4
+          "datatype": "int"
         },
         "options": {
           "unsigned": true,
@@ -4959,8 +4888,7 @@ exports[`Compact formatter: Alter table change column should not change a column
       {
         "name": "ssn6",
         "type": {
-          "datatype": "int",
-          "width": 3
+          "datatype": "mediumint"
         },
         "options": {
           "nullable": true,
@@ -4970,8 +4898,7 @@ exports[`Compact formatter: Alter table change column should not change a column
       {
         "name": "ssn7",
         "type": {
-          "datatype": "int",
-          "width": 3
+          "datatype": "mediumint"
         },
         "options": {
           "unsigned": true,
@@ -4982,8 +4909,7 @@ exports[`Compact formatter: Alter table change column should not change a column
       {
         "name": "ssn8",
         "type": {
-          "datatype": "int",
-          "width": 8
+          "datatype": "bigint"
         },
         "options": {
           "nullable": true,
@@ -4993,8 +4919,8 @@ exports[`Compact formatter: Alter table change column should not change a column
       {
         "name": "ssn9",
         "type": {
-          "datatype": "int",
-          "width": 8
+          "datatype": "bigint",
+          "displayWidth": 60
         },
         "options": {
           "unsigned": true,
@@ -5232,8 +5158,7 @@ exports[`Compact formatter: Alter table change column should not change a column
       {
         "name": "id",
         "type": {
-          "datatype": "int",
-          "width": 8
+          "datatype": "bigint"
         },
         "options": {
           "nullable": true
@@ -5252,8 +5177,7 @@ exports[`Compact formatter: Alter table change column should not change a column
       {
         "name": "owner_id",
         "type": {
-          "datatype": "int",
-          "width": 3
+          "datatype": "mediumint"
         },
         "options": {
           "nullable": true
@@ -5499,8 +5423,7 @@ exports[`Compact formatter: Alter table change column should not change a column
       {
         "name": "id",
         "type": {
-          "datatype": "int",
-          "width": 4
+          "datatype": "int"
         },
         "options": {
           "nullable": false
@@ -5509,8 +5432,7 @@ exports[`Compact formatter: Alter table change column should not change a column
       {
         "name": "pet_id",
         "type": {
-          "datatype": "int",
-          "width": 1
+          "datatype": "tinyint"
         },
         "options": {
           "nullable": true
@@ -5808,7 +5730,7 @@ exports[`Compact formatter: Alter table change column should not change column a
         "name": "id",
         "type": {
           "datatype": "int",
-          "width": 4
+          "displayWidth": 10
         },
         "options": {
           "unsigned": true,
@@ -5856,8 +5778,7 @@ exports[`Compact formatter: Alter table change column should not change column a
       {
         "name": "ssn",
         "type": {
-          "datatype": "int",
-          "width": 2
+          "datatype": "smallint"
         },
         "options": {
           "nullable": true,
@@ -5867,8 +5788,7 @@ exports[`Compact formatter: Alter table change column should not change column a
       {
         "name": "ssn1",
         "type": {
-          "datatype": "int",
-          "width": 2
+          "datatype": "smallint"
         },
         "options": {
           "unsigned": true,
@@ -5879,8 +5799,7 @@ exports[`Compact formatter: Alter table change column should not change column a
       {
         "name": "ssn2",
         "type": {
-          "datatype": "int",
-          "width": 1
+          "datatype": "tinyint"
         },
         "options": {
           "nullable": true,
@@ -5890,8 +5809,7 @@ exports[`Compact formatter: Alter table change column should not change column a
       {
         "name": "ssn3",
         "type": {
-          "datatype": "int",
-          "width": 1
+          "datatype": "tinyint"
         },
         "options": {
           "unsigned": true,
@@ -5902,8 +5820,7 @@ exports[`Compact formatter: Alter table change column should not change column a
       {
         "name": "ssn4",
         "type": {
-          "datatype": "int",
-          "width": 4
+          "datatype": "int"
         },
         "options": {
           "nullable": true,
@@ -5913,8 +5830,7 @@ exports[`Compact formatter: Alter table change column should not change column a
       {
         "name": "ssn5",
         "type": {
-          "datatype": "int",
-          "width": 4
+          "datatype": "int"
         },
         "options": {
           "unsigned": true,
@@ -5925,8 +5841,7 @@ exports[`Compact formatter: Alter table change column should not change column a
       {
         "name": "ssn6",
         "type": {
-          "datatype": "int",
-          "width": 3
+          "datatype": "mediumint"
         },
         "options": {
           "nullable": true,
@@ -5936,8 +5851,7 @@ exports[`Compact formatter: Alter table change column should not change column a
       {
         "name": "ssn7",
         "type": {
-          "datatype": "int",
-          "width": 3
+          "datatype": "mediumint"
         },
         "options": {
           "unsigned": true,
@@ -5948,8 +5862,7 @@ exports[`Compact formatter: Alter table change column should not change column a
       {
         "name": "ssn8",
         "type": {
-          "datatype": "int",
-          "width": 8
+          "datatype": "bigint"
         },
         "options": {
           "nullable": true,
@@ -5959,8 +5872,8 @@ exports[`Compact formatter: Alter table change column should not change column a
       {
         "name": "ssn9",
         "type": {
-          "datatype": "int",
-          "width": 8
+          "datatype": "bigint",
+          "displayWidth": 60
         },
         "options": {
           "unsigned": true,
@@ -6198,8 +6111,7 @@ exports[`Compact formatter: Alter table change column should not change column a
       {
         "name": "id",
         "type": {
-          "datatype": "int",
-          "width": 8
+          "datatype": "bigint"
         },
         "options": {
           "nullable": true
@@ -6218,8 +6130,7 @@ exports[`Compact formatter: Alter table change column should not change column a
       {
         "name": "owner_id",
         "type": {
-          "datatype": "int",
-          "width": 3
+          "datatype": "mediumint"
         },
         "options": {
           "nullable": true
@@ -6465,8 +6376,7 @@ exports[`Compact formatter: Alter table change column should not change column a
       {
         "name": "id",
         "type": {
-          "datatype": "int",
-          "width": 4
+          "datatype": "int"
         },
         "options": {
           "nullable": false
@@ -6475,8 +6385,7 @@ exports[`Compact formatter: Alter table change column should not change column a
       {
         "name": "pet_id",
         "type": {
-          "datatype": "int",
-          "width": 1
+          "datatype": "tinyint"
         },
         "options": {
           "nullable": true
@@ -6774,7 +6683,7 @@ exports[`Compact formatter: Alter table change column should not change unexisti
         "name": "id",
         "type": {
           "datatype": "int",
-          "width": 4
+          "displayWidth": 10
         },
         "options": {
           "unsigned": true,
@@ -6822,8 +6731,7 @@ exports[`Compact formatter: Alter table change column should not change unexisti
       {
         "name": "ssn",
         "type": {
-          "datatype": "int",
-          "width": 2
+          "datatype": "smallint"
         },
         "options": {
           "nullable": true,
@@ -6833,8 +6741,7 @@ exports[`Compact formatter: Alter table change column should not change unexisti
       {
         "name": "ssn1",
         "type": {
-          "datatype": "int",
-          "width": 2
+          "datatype": "smallint"
         },
         "options": {
           "unsigned": true,
@@ -6845,8 +6752,7 @@ exports[`Compact formatter: Alter table change column should not change unexisti
       {
         "name": "ssn2",
         "type": {
-          "datatype": "int",
-          "width": 1
+          "datatype": "tinyint"
         },
         "options": {
           "nullable": true,
@@ -6856,8 +6762,7 @@ exports[`Compact formatter: Alter table change column should not change unexisti
       {
         "name": "ssn3",
         "type": {
-          "datatype": "int",
-          "width": 1
+          "datatype": "tinyint"
         },
         "options": {
           "unsigned": true,
@@ -6868,8 +6773,7 @@ exports[`Compact formatter: Alter table change column should not change unexisti
       {
         "name": "ssn4",
         "type": {
-          "datatype": "int",
-          "width": 4
+          "datatype": "int"
         },
         "options": {
           "nullable": true,
@@ -6879,8 +6783,7 @@ exports[`Compact formatter: Alter table change column should not change unexisti
       {
         "name": "ssn5",
         "type": {
-          "datatype": "int",
-          "width": 4
+          "datatype": "int"
         },
         "options": {
           "unsigned": true,
@@ -6891,8 +6794,7 @@ exports[`Compact formatter: Alter table change column should not change unexisti
       {
         "name": "ssn6",
         "type": {
-          "datatype": "int",
-          "width": 3
+          "datatype": "mediumint"
         },
         "options": {
           "nullable": true,
@@ -6902,8 +6804,7 @@ exports[`Compact formatter: Alter table change column should not change unexisti
       {
         "name": "ssn7",
         "type": {
-          "datatype": "int",
-          "width": 3
+          "datatype": "mediumint"
         },
         "options": {
           "unsigned": true,
@@ -6914,8 +6815,7 @@ exports[`Compact formatter: Alter table change column should not change unexisti
       {
         "name": "ssn8",
         "type": {
-          "datatype": "int",
-          "width": 8
+          "datatype": "bigint"
         },
         "options": {
           "nullable": true,
@@ -6925,8 +6825,8 @@ exports[`Compact formatter: Alter table change column should not change unexisti
       {
         "name": "ssn9",
         "type": {
-          "datatype": "int",
-          "width": 8
+          "datatype": "bigint",
+          "displayWidth": 60
         },
         "options": {
           "unsigned": true,
@@ -7164,8 +7064,7 @@ exports[`Compact formatter: Alter table change column should not change unexisti
       {
         "name": "id",
         "type": {
-          "datatype": "int",
-          "width": 8
+          "datatype": "bigint"
         },
         "options": {
           "nullable": true
@@ -7184,8 +7083,7 @@ exports[`Compact formatter: Alter table change column should not change unexisti
       {
         "name": "owner_id",
         "type": {
-          "datatype": "int",
-          "width": 3
+          "datatype": "mediumint"
         },
         "options": {
           "nullable": true
@@ -7431,8 +7329,7 @@ exports[`Compact formatter: Alter table change column should not change unexisti
       {
         "name": "id",
         "type": {
-          "datatype": "int",
-          "width": 4
+          "datatype": "int"
         },
         "options": {
           "nullable": false
@@ -7441,8 +7338,7 @@ exports[`Compact formatter: Alter table change column should not change unexisti
       {
         "name": "pet_id",
         "type": {
-          "datatype": "int",
-          "width": 1
+          "datatype": "tinyint"
         },
         "options": {
           "nullable": true
@@ -7740,7 +7636,7 @@ exports[`Compact formatter: Alter table change column should rename foreign key 
         "name": "id",
         "type": {
           "datatype": "int",
-          "width": 4
+          "displayWidth": 10
         },
         "options": {
           "unsigned": true,
@@ -7788,8 +7684,7 @@ exports[`Compact formatter: Alter table change column should rename foreign key 
       {
         "name": "ssn",
         "type": {
-          "datatype": "int",
-          "width": 2
+          "datatype": "smallint"
         },
         "options": {
           "nullable": true,
@@ -7799,8 +7694,7 @@ exports[`Compact formatter: Alter table change column should rename foreign key 
       {
         "name": "ssn1",
         "type": {
-          "datatype": "int",
-          "width": 2
+          "datatype": "smallint"
         },
         "options": {
           "unsigned": true,
@@ -7811,8 +7705,7 @@ exports[`Compact formatter: Alter table change column should rename foreign key 
       {
         "name": "ssn2",
         "type": {
-          "datatype": "int",
-          "width": 1
+          "datatype": "tinyint"
         },
         "options": {
           "nullable": true,
@@ -7822,8 +7715,7 @@ exports[`Compact formatter: Alter table change column should rename foreign key 
       {
         "name": "ssn3",
         "type": {
-          "datatype": "int",
-          "width": 1
+          "datatype": "tinyint"
         },
         "options": {
           "unsigned": true,
@@ -7834,8 +7726,7 @@ exports[`Compact formatter: Alter table change column should rename foreign key 
       {
         "name": "ssn4",
         "type": {
-          "datatype": "int",
-          "width": 4
+          "datatype": "int"
         },
         "options": {
           "nullable": true,
@@ -7845,8 +7736,7 @@ exports[`Compact formatter: Alter table change column should rename foreign key 
       {
         "name": "ssn5",
         "type": {
-          "datatype": "int",
-          "width": 4
+          "datatype": "int"
         },
         "options": {
           "unsigned": true,
@@ -7857,8 +7747,7 @@ exports[`Compact formatter: Alter table change column should rename foreign key 
       {
         "name": "ssn6",
         "type": {
-          "datatype": "int",
-          "width": 3
+          "datatype": "mediumint"
         },
         "options": {
           "nullable": true,
@@ -7868,8 +7757,7 @@ exports[`Compact formatter: Alter table change column should rename foreign key 
       {
         "name": "ssn7",
         "type": {
-          "datatype": "int",
-          "width": 3
+          "datatype": "mediumint"
         },
         "options": {
           "unsigned": true,
@@ -7880,8 +7768,7 @@ exports[`Compact formatter: Alter table change column should rename foreign key 
       {
         "name": "ssn8",
         "type": {
-          "datatype": "int",
-          "width": 8
+          "datatype": "bigint"
         },
         "options": {
           "nullable": true,
@@ -7891,8 +7778,8 @@ exports[`Compact formatter: Alter table change column should rename foreign key 
       {
         "name": "ssn9",
         "type": {
-          "datatype": "int",
-          "width": 8
+          "datatype": "bigint",
+          "displayWidth": 60
         },
         "options": {
           "unsigned": true,
@@ -8130,8 +8017,7 @@ exports[`Compact formatter: Alter table change column should rename foreign key 
       {
         "name": "id",
         "type": {
-          "datatype": "int",
-          "width": 8
+          "datatype": "bigint"
         },
         "options": {
           "nullable": true
@@ -8150,8 +8036,7 @@ exports[`Compact formatter: Alter table change column should rename foreign key 
       {
         "name": "owner_id",
         "type": {
-          "datatype": "int",
-          "width": 3
+          "datatype": "mediumint"
         },
         "options": {
           "nullable": true
@@ -8397,8 +8282,7 @@ exports[`Compact formatter: Alter table change column should rename foreign key 
       {
         "name": "id",
         "type": {
-          "datatype": "int",
-          "width": 4
+          "datatype": "int"
         },
         "options": {
           "nullable": false
@@ -8407,8 +8291,7 @@ exports[`Compact formatter: Alter table change column should rename foreign key 
       {
         "name": "pet_id",
         "type": {
-          "datatype": "int",
-          "width": 1
+          "datatype": "tinyint"
         },
         "options": {
           "nullable": true
@@ -8706,7 +8589,7 @@ exports[`Compact formatter: Alter table change column should rename fulltext ind
         "name": "id",
         "type": {
           "datatype": "int",
-          "width": 4
+          "displayWidth": 10
         },
         "options": {
           "unsigned": true,
@@ -8754,8 +8637,7 @@ exports[`Compact formatter: Alter table change column should rename fulltext ind
       {
         "name": "ssn",
         "type": {
-          "datatype": "int",
-          "width": 2
+          "datatype": "smallint"
         },
         "options": {
           "nullable": true,
@@ -8765,8 +8647,7 @@ exports[`Compact formatter: Alter table change column should rename fulltext ind
       {
         "name": "ssn1",
         "type": {
-          "datatype": "int",
-          "width": 2
+          "datatype": "smallint"
         },
         "options": {
           "unsigned": true,
@@ -8777,8 +8658,7 @@ exports[`Compact formatter: Alter table change column should rename fulltext ind
       {
         "name": "ssn2",
         "type": {
-          "datatype": "int",
-          "width": 1
+          "datatype": "tinyint"
         },
         "options": {
           "nullable": true,
@@ -8788,8 +8668,7 @@ exports[`Compact formatter: Alter table change column should rename fulltext ind
       {
         "name": "ssn3",
         "type": {
-          "datatype": "int",
-          "width": 1
+          "datatype": "tinyint"
         },
         "options": {
           "unsigned": true,
@@ -8800,8 +8679,7 @@ exports[`Compact formatter: Alter table change column should rename fulltext ind
       {
         "name": "ssn4",
         "type": {
-          "datatype": "int",
-          "width": 4
+          "datatype": "int"
         },
         "options": {
           "nullable": true,
@@ -8811,8 +8689,7 @@ exports[`Compact formatter: Alter table change column should rename fulltext ind
       {
         "name": "ssn5",
         "type": {
-          "datatype": "int",
-          "width": 4
+          "datatype": "int"
         },
         "options": {
           "unsigned": true,
@@ -8823,8 +8700,7 @@ exports[`Compact formatter: Alter table change column should rename fulltext ind
       {
         "name": "ssn6",
         "type": {
-          "datatype": "int",
-          "width": 3
+          "datatype": "mediumint"
         },
         "options": {
           "nullable": true,
@@ -8834,8 +8710,7 @@ exports[`Compact formatter: Alter table change column should rename fulltext ind
       {
         "name": "ssn7",
         "type": {
-          "datatype": "int",
-          "width": 3
+          "datatype": "mediumint"
         },
         "options": {
           "unsigned": true,
@@ -8846,8 +8721,7 @@ exports[`Compact formatter: Alter table change column should rename fulltext ind
       {
         "name": "ssn8",
         "type": {
-          "datatype": "int",
-          "width": 8
+          "datatype": "bigint"
         },
         "options": {
           "nullable": true,
@@ -8857,8 +8731,8 @@ exports[`Compact formatter: Alter table change column should rename fulltext ind
       {
         "name": "ssn9",
         "type": {
-          "datatype": "int",
-          "width": 8
+          "datatype": "bigint",
+          "displayWidth": 60
         },
         "options": {
           "unsigned": true,
@@ -9096,8 +8970,7 @@ exports[`Compact formatter: Alter table change column should rename fulltext ind
       {
         "name": "id",
         "type": {
-          "datatype": "int",
-          "width": 8
+          "datatype": "bigint"
         },
         "options": {
           "nullable": true
@@ -9116,8 +8989,7 @@ exports[`Compact formatter: Alter table change column should rename fulltext ind
       {
         "name": "owner_id",
         "type": {
-          "datatype": "int",
-          "width": 3
+          "datatype": "mediumint"
         },
         "options": {
           "nullable": true
@@ -9363,8 +9235,7 @@ exports[`Compact formatter: Alter table change column should rename fulltext ind
       {
         "name": "id",
         "type": {
-          "datatype": "int",
-          "width": 4
+          "datatype": "int"
         },
         "options": {
           "nullable": false
@@ -9373,8 +9244,7 @@ exports[`Compact formatter: Alter table change column should rename fulltext ind
       {
         "name": "pet_id",
         "type": {
-          "datatype": "int",
-          "width": 1
+          "datatype": "tinyint"
         },
         "options": {
           "nullable": true
@@ -9672,7 +9542,7 @@ exports[`Compact formatter: Alter table change column should rename index column
         "name": "id",
         "type": {
           "datatype": "int",
-          "width": 4
+          "displayWidth": 10
         },
         "options": {
           "unsigned": true,
@@ -9720,8 +9590,7 @@ exports[`Compact formatter: Alter table change column should rename index column
       {
         "name": "ssn",
         "type": {
-          "datatype": "int",
-          "width": 2
+          "datatype": "smallint"
         },
         "options": {
           "nullable": true,
@@ -9731,8 +9600,7 @@ exports[`Compact formatter: Alter table change column should rename index column
       {
         "name": "ssn1",
         "type": {
-          "datatype": "int",
-          "width": 2
+          "datatype": "smallint"
         },
         "options": {
           "unsigned": true,
@@ -9743,8 +9611,7 @@ exports[`Compact formatter: Alter table change column should rename index column
       {
         "name": "ssn2",
         "type": {
-          "datatype": "int",
-          "width": 1
+          "datatype": "tinyint"
         },
         "options": {
           "nullable": true,
@@ -9754,8 +9621,7 @@ exports[`Compact formatter: Alter table change column should rename index column
       {
         "name": "ssn3",
         "type": {
-          "datatype": "int",
-          "width": 1
+          "datatype": "tinyint"
         },
         "options": {
           "unsigned": true,
@@ -9766,8 +9632,7 @@ exports[`Compact formatter: Alter table change column should rename index column
       {
         "name": "ssn4",
         "type": {
-          "datatype": "int",
-          "width": 4
+          "datatype": "int"
         },
         "options": {
           "nullable": true,
@@ -9777,8 +9642,7 @@ exports[`Compact formatter: Alter table change column should rename index column
       {
         "name": "ssn5",
         "type": {
-          "datatype": "int",
-          "width": 4
+          "datatype": "int"
         },
         "options": {
           "unsigned": true,
@@ -9789,8 +9653,7 @@ exports[`Compact formatter: Alter table change column should rename index column
       {
         "name": "ssn6",
         "type": {
-          "datatype": "int",
-          "width": 3
+          "datatype": "mediumint"
         },
         "options": {
           "nullable": true,
@@ -9800,8 +9663,7 @@ exports[`Compact formatter: Alter table change column should rename index column
       {
         "name": "ssn7",
         "type": {
-          "datatype": "int",
-          "width": 3
+          "datatype": "mediumint"
         },
         "options": {
           "unsigned": true,
@@ -9812,8 +9674,7 @@ exports[`Compact formatter: Alter table change column should rename index column
       {
         "name": "ssn8",
         "type": {
-          "datatype": "int",
-          "width": 8
+          "datatype": "bigint"
         },
         "options": {
           "nullable": true,
@@ -9823,8 +9684,8 @@ exports[`Compact formatter: Alter table change column should rename index column
       {
         "name": "ssn9",
         "type": {
-          "datatype": "int",
-          "width": 8
+          "datatype": "bigint",
+          "displayWidth": 60
         },
         "options": {
           "unsigned": true,
@@ -10062,8 +9923,7 @@ exports[`Compact formatter: Alter table change column should rename index column
       {
         "name": "id",
         "type": {
-          "datatype": "int",
-          "width": 8
+          "datatype": "bigint"
         },
         "options": {
           "nullable": true
@@ -10082,8 +9942,7 @@ exports[`Compact formatter: Alter table change column should rename index column
       {
         "name": "owner_id",
         "type": {
-          "datatype": "int",
-          "width": 3
+          "datatype": "mediumint"
         },
         "options": {
           "nullable": true
@@ -10329,8 +10188,7 @@ exports[`Compact formatter: Alter table change column should rename index column
       {
         "name": "id",
         "type": {
-          "datatype": "int",
-          "width": 4
+          "datatype": "int"
         },
         "options": {
           "nullable": false
@@ -10339,8 +10197,7 @@ exports[`Compact formatter: Alter table change column should rename index column
       {
         "name": "pet_id",
         "type": {
-          "datatype": "int",
-          "width": 1
+          "datatype": "tinyint"
         },
         "options": {
           "nullable": true
@@ -10638,7 +10495,7 @@ exports[`Compact formatter: Alter table change column should rename primary and 
         "name": "code",
         "type": {
           "datatype": "int",
-          "width": 4
+          "displayWidth": 10
         },
         "options": {
           "unsigned": true,
@@ -10686,8 +10543,7 @@ exports[`Compact formatter: Alter table change column should rename primary and 
       {
         "name": "ssn",
         "type": {
-          "datatype": "int",
-          "width": 2
+          "datatype": "smallint"
         },
         "options": {
           "nullable": true,
@@ -10697,8 +10553,7 @@ exports[`Compact formatter: Alter table change column should rename primary and 
       {
         "name": "ssn1",
         "type": {
-          "datatype": "int",
-          "width": 2
+          "datatype": "smallint"
         },
         "options": {
           "unsigned": true,
@@ -10709,8 +10564,7 @@ exports[`Compact formatter: Alter table change column should rename primary and 
       {
         "name": "ssn2",
         "type": {
-          "datatype": "int",
-          "width": 1
+          "datatype": "tinyint"
         },
         "options": {
           "nullable": true,
@@ -10720,8 +10574,7 @@ exports[`Compact formatter: Alter table change column should rename primary and 
       {
         "name": "ssn3",
         "type": {
-          "datatype": "int",
-          "width": 1
+          "datatype": "tinyint"
         },
         "options": {
           "unsigned": true,
@@ -10732,8 +10585,7 @@ exports[`Compact formatter: Alter table change column should rename primary and 
       {
         "name": "ssn4",
         "type": {
-          "datatype": "int",
-          "width": 4
+          "datatype": "int"
         },
         "options": {
           "nullable": true,
@@ -10743,8 +10595,7 @@ exports[`Compact formatter: Alter table change column should rename primary and 
       {
         "name": "ssn5",
         "type": {
-          "datatype": "int",
-          "width": 4
+          "datatype": "int"
         },
         "options": {
           "unsigned": true,
@@ -10755,8 +10606,7 @@ exports[`Compact formatter: Alter table change column should rename primary and 
       {
         "name": "ssn6",
         "type": {
-          "datatype": "int",
-          "width": 3
+          "datatype": "mediumint"
         },
         "options": {
           "nullable": true,
@@ -10766,8 +10616,7 @@ exports[`Compact formatter: Alter table change column should rename primary and 
       {
         "name": "ssn7",
         "type": {
-          "datatype": "int",
-          "width": 3
+          "datatype": "mediumint"
         },
         "options": {
           "unsigned": true,
@@ -10778,8 +10627,7 @@ exports[`Compact formatter: Alter table change column should rename primary and 
       {
         "name": "ssn8",
         "type": {
-          "datatype": "int",
-          "width": 8
+          "datatype": "bigint"
         },
         "options": {
           "nullable": true,
@@ -10789,8 +10637,8 @@ exports[`Compact formatter: Alter table change column should rename primary and 
       {
         "name": "ssn9",
         "type": {
-          "datatype": "int",
-          "width": 8
+          "datatype": "bigint",
+          "displayWidth": 60
         },
         "options": {
           "unsigned": true,
@@ -11028,8 +10876,7 @@ exports[`Compact formatter: Alter table change column should rename primary and 
       {
         "name": "id",
         "type": {
-          "datatype": "int",
-          "width": 8
+          "datatype": "bigint"
         },
         "options": {
           "nullable": true
@@ -11048,8 +10895,7 @@ exports[`Compact formatter: Alter table change column should rename primary and 
       {
         "name": "owner_id",
         "type": {
-          "datatype": "int",
-          "width": 3
+          "datatype": "mediumint"
         },
         "options": {
           "nullable": true
@@ -11295,8 +11141,7 @@ exports[`Compact formatter: Alter table change column should rename primary and 
       {
         "name": "id",
         "type": {
-          "datatype": "int",
-          "width": 4
+          "datatype": "int"
         },
         "options": {
           "nullable": false
@@ -11305,8 +11150,7 @@ exports[`Compact formatter: Alter table change column should rename primary and 
       {
         "name": "pet_id",
         "type": {
-          "datatype": "int",
-          "width": 1
+          "datatype": "tinyint"
         },
         "options": {
           "nullable": true
@@ -11604,7 +11448,7 @@ exports[`Compact formatter: Alter table change column should rename spatial inde
         "name": "id",
         "type": {
           "datatype": "int",
-          "width": 4
+          "displayWidth": 10
         },
         "options": {
           "unsigned": true,
@@ -11652,8 +11496,7 @@ exports[`Compact formatter: Alter table change column should rename spatial inde
       {
         "name": "ssn",
         "type": {
-          "datatype": "int",
-          "width": 2
+          "datatype": "smallint"
         },
         "options": {
           "nullable": true,
@@ -11663,8 +11506,7 @@ exports[`Compact formatter: Alter table change column should rename spatial inde
       {
         "name": "ssn1",
         "type": {
-          "datatype": "int",
-          "width": 2
+          "datatype": "smallint"
         },
         "options": {
           "unsigned": true,
@@ -11675,8 +11517,7 @@ exports[`Compact formatter: Alter table change column should rename spatial inde
       {
         "name": "ssn2",
         "type": {
-          "datatype": "int",
-          "width": 1
+          "datatype": "tinyint"
         },
         "options": {
           "nullable": true,
@@ -11686,8 +11527,7 @@ exports[`Compact formatter: Alter table change column should rename spatial inde
       {
         "name": "ssn3",
         "type": {
-          "datatype": "int",
-          "width": 1
+          "datatype": "tinyint"
         },
         "options": {
           "unsigned": true,
@@ -11698,8 +11538,7 @@ exports[`Compact formatter: Alter table change column should rename spatial inde
       {
         "name": "ssn4",
         "type": {
-          "datatype": "int",
-          "width": 4
+          "datatype": "int"
         },
         "options": {
           "nullable": true,
@@ -11709,8 +11548,7 @@ exports[`Compact formatter: Alter table change column should rename spatial inde
       {
         "name": "ssn5",
         "type": {
-          "datatype": "int",
-          "width": 4
+          "datatype": "int"
         },
         "options": {
           "unsigned": true,
@@ -11721,8 +11559,7 @@ exports[`Compact formatter: Alter table change column should rename spatial inde
       {
         "name": "ssn6",
         "type": {
-          "datatype": "int",
-          "width": 3
+          "datatype": "mediumint"
         },
         "options": {
           "nullable": true,
@@ -11732,8 +11569,7 @@ exports[`Compact formatter: Alter table change column should rename spatial inde
       {
         "name": "ssn7",
         "type": {
-          "datatype": "int",
-          "width": 3
+          "datatype": "mediumint"
         },
         "options": {
           "unsigned": true,
@@ -11744,8 +11580,7 @@ exports[`Compact formatter: Alter table change column should rename spatial inde
       {
         "name": "ssn8",
         "type": {
-          "datatype": "int",
-          "width": 8
+          "datatype": "bigint"
         },
         "options": {
           "nullable": true,
@@ -11755,8 +11590,8 @@ exports[`Compact formatter: Alter table change column should rename spatial inde
       {
         "name": "ssn9",
         "type": {
-          "datatype": "int",
-          "width": 8
+          "datatype": "bigint",
+          "displayWidth": 60
         },
         "options": {
           "unsigned": true,
@@ -11994,8 +11829,7 @@ exports[`Compact formatter: Alter table change column should rename spatial inde
       {
         "name": "id",
         "type": {
-          "datatype": "int",
-          "width": 8
+          "datatype": "bigint"
         },
         "options": {
           "nullable": true
@@ -12014,8 +11848,7 @@ exports[`Compact formatter: Alter table change column should rename spatial inde
       {
         "name": "owner_id",
         "type": {
-          "datatype": "int",
-          "width": 3
+          "datatype": "mediumint"
         },
         "options": {
           "nullable": true
@@ -12261,8 +12094,7 @@ exports[`Compact formatter: Alter table change column should rename spatial inde
       {
         "name": "id",
         "type": {
-          "datatype": "int",
-          "width": 4
+          "datatype": "int"
         },
         "options": {
           "nullable": false
@@ -12271,8 +12103,7 @@ exports[`Compact formatter: Alter table change column should rename spatial inde
       {
         "name": "pet_id",
         "type": {
-          "datatype": "int",
-          "width": 1
+          "datatype": "tinyint"
         },
         "options": {
           "nullable": true
@@ -12570,7 +12401,7 @@ exports[`Compact formatter: Alter table change column should rename unique key c
         "name": "id",
         "type": {
           "datatype": "int",
-          "width": 4
+          "displayWidth": 10
         },
         "options": {
           "unsigned": true,
@@ -12618,8 +12449,7 @@ exports[`Compact formatter: Alter table change column should rename unique key c
       {
         "name": "ssn",
         "type": {
-          "datatype": "int",
-          "width": 2
+          "datatype": "smallint"
         },
         "options": {
           "nullable": true,
@@ -12629,8 +12459,7 @@ exports[`Compact formatter: Alter table change column should rename unique key c
       {
         "name": "ssn1",
         "type": {
-          "datatype": "int",
-          "width": 2
+          "datatype": "smallint"
         },
         "options": {
           "unsigned": true,
@@ -12641,8 +12470,7 @@ exports[`Compact formatter: Alter table change column should rename unique key c
       {
         "name": "ssn2",
         "type": {
-          "datatype": "int",
-          "width": 1
+          "datatype": "tinyint"
         },
         "options": {
           "nullable": true,
@@ -12652,8 +12480,7 @@ exports[`Compact formatter: Alter table change column should rename unique key c
       {
         "name": "ssn3",
         "type": {
-          "datatype": "int",
-          "width": 1
+          "datatype": "tinyint"
         },
         "options": {
           "unsigned": true,
@@ -12664,8 +12491,7 @@ exports[`Compact formatter: Alter table change column should rename unique key c
       {
         "name": "ssn4",
         "type": {
-          "datatype": "int",
-          "width": 4
+          "datatype": "int"
         },
         "options": {
           "nullable": true,
@@ -12675,8 +12501,7 @@ exports[`Compact formatter: Alter table change column should rename unique key c
       {
         "name": "ssn5",
         "type": {
-          "datatype": "int",
-          "width": 4
+          "datatype": "int"
         },
         "options": {
           "unsigned": true,
@@ -12687,8 +12512,7 @@ exports[`Compact formatter: Alter table change column should rename unique key c
       {
         "name": "ssn6",
         "type": {
-          "datatype": "int",
-          "width": 3
+          "datatype": "mediumint"
         },
         "options": {
           "nullable": true,
@@ -12698,8 +12522,7 @@ exports[`Compact formatter: Alter table change column should rename unique key c
       {
         "name": "ssn7",
         "type": {
-          "datatype": "int",
-          "width": 3
+          "datatype": "mediumint"
         },
         "options": {
           "unsigned": true,
@@ -12710,8 +12533,7 @@ exports[`Compact formatter: Alter table change column should rename unique key c
       {
         "name": "ssn8",
         "type": {
-          "datatype": "int",
-          "width": 8
+          "datatype": "bigint"
         },
         "options": {
           "nullable": true,
@@ -12721,8 +12543,8 @@ exports[`Compact formatter: Alter table change column should rename unique key c
       {
         "name": "ssn9",
         "type": {
-          "datatype": "int",
-          "width": 8
+          "datatype": "bigint",
+          "displayWidth": 60
         },
         "options": {
           "unsigned": true,
@@ -12960,8 +12782,7 @@ exports[`Compact formatter: Alter table change column should rename unique key c
       {
         "name": "id",
         "type": {
-          "datatype": "int",
-          "width": 8
+          "datatype": "bigint"
         },
         "options": {
           "nullable": true
@@ -12980,8 +12801,7 @@ exports[`Compact formatter: Alter table change column should rename unique key c
       {
         "name": "owner_id",
         "type": {
-          "datatype": "int",
-          "width": 3
+          "datatype": "mediumint"
         },
         "options": {
           "nullable": true
@@ -13227,8 +13047,7 @@ exports[`Compact formatter: Alter table change column should rename unique key c
       {
         "name": "id",
         "type": {
-          "datatype": "int",
-          "width": 4
+          "datatype": "int"
         },
         "options": {
           "nullable": false
@@ -13237,8 +13056,7 @@ exports[`Compact formatter: Alter table change column should rename unique key c
       {
         "name": "pet_id",
         "type": {
-          "datatype": "int",
-          "width": 1
+          "datatype": "tinyint"
         },
         "options": {
           "nullable": true
@@ -13535,8 +13353,7 @@ exports[`Compact formatter: Compact formatter: Should alter table, changing colu
       {
         "name": "size",
         "type": {
-          "datatype": "int",
-          "width": 1
+          "datatype": "tinyint"
         },
         "options": {
           "unsigned": true,
@@ -13552,7 +13369,7 @@ exports[`Compact formatter: Compact formatter: Should alter table, changing colu
         "name": "id",
         "type": {
           "datatype": "int",
-          "width": 4
+          "displayWidth": 10
         },
         "options": {
           "unsigned": true,
@@ -13600,8 +13417,7 @@ exports[`Compact formatter: Compact formatter: Should alter table, changing colu
       {
         "name": "ssn",
         "type": {
-          "datatype": "int",
-          "width": 2
+          "datatype": "smallint"
         },
         "options": {
           "nullable": true,
@@ -13611,8 +13427,7 @@ exports[`Compact formatter: Compact formatter: Should alter table, changing colu
       {
         "name": "ssn1",
         "type": {
-          "datatype": "int",
-          "width": 2
+          "datatype": "smallint"
         },
         "options": {
           "unsigned": true,
@@ -13623,8 +13438,7 @@ exports[`Compact formatter: Compact formatter: Should alter table, changing colu
       {
         "name": "ssn2",
         "type": {
-          "datatype": "int",
-          "width": 1
+          "datatype": "tinyint"
         },
         "options": {
           "nullable": true,
@@ -13634,8 +13448,7 @@ exports[`Compact formatter: Compact formatter: Should alter table, changing colu
       {
         "name": "ssn3",
         "type": {
-          "datatype": "int",
-          "width": 1
+          "datatype": "tinyint"
         },
         "options": {
           "unsigned": true,
@@ -13646,8 +13459,7 @@ exports[`Compact formatter: Compact formatter: Should alter table, changing colu
       {
         "name": "ssn4",
         "type": {
-          "datatype": "int",
-          "width": 4
+          "datatype": "int"
         },
         "options": {
           "nullable": true,
@@ -13657,8 +13469,7 @@ exports[`Compact formatter: Compact formatter: Should alter table, changing colu
       {
         "name": "ssn5",
         "type": {
-          "datatype": "int",
-          "width": 4
+          "datatype": "int"
         },
         "options": {
           "unsigned": true,
@@ -13669,8 +13480,7 @@ exports[`Compact formatter: Compact formatter: Should alter table, changing colu
       {
         "name": "ssn6",
         "type": {
-          "datatype": "int",
-          "width": 3
+          "datatype": "mediumint"
         },
         "options": {
           "nullable": true,
@@ -13680,8 +13490,7 @@ exports[`Compact formatter: Compact formatter: Should alter table, changing colu
       {
         "name": "ssn7",
         "type": {
-          "datatype": "int",
-          "width": 3
+          "datatype": "mediumint"
         },
         "options": {
           "unsigned": true,
@@ -13692,8 +13501,7 @@ exports[`Compact formatter: Compact formatter: Should alter table, changing colu
       {
         "name": "ssn8",
         "type": {
-          "datatype": "int",
-          "width": 8
+          "datatype": "bigint"
         },
         "options": {
           "nullable": true,
@@ -13703,8 +13511,8 @@ exports[`Compact formatter: Compact formatter: Should alter table, changing colu
       {
         "name": "ssn9",
         "type": {
-          "datatype": "int",
-          "width": 8
+          "datatype": "bigint",
+          "displayWidth": 60
         },
         "options": {
           "unsigned": true,
@@ -13939,8 +13747,7 @@ exports[`Compact formatter: Compact formatter: Should alter table, changing colu
       {
         "name": "id",
         "type": {
-          "datatype": "int",
-          "width": 8
+          "datatype": "bigint"
         },
         "options": {
           "nullable": true
@@ -13959,8 +13766,7 @@ exports[`Compact formatter: Compact formatter: Should alter table, changing colu
       {
         "name": "owner_id",
         "type": {
-          "datatype": "int",
-          "width": 3
+          "datatype": "mediumint"
         },
         "options": {
           "nullable": true
@@ -14011,8 +13817,7 @@ exports[`Compact formatter: Compact formatter: Should alter table, changing colu
       {
         "name": "year",
         "type": {
-          "datatype": "int",
-          "width": 1
+          "datatype": "tinyint"
         },
         "options": {
           "nullable": true,
@@ -14207,8 +14012,7 @@ exports[`Compact formatter: Compact formatter: Should alter table, changing colu
       {
         "name": "id",
         "type": {
-          "datatype": "int",
-          "width": 4
+          "datatype": "int"
         },
         "options": {
           "nullable": false
@@ -14217,8 +14021,7 @@ exports[`Compact formatter: Compact formatter: Should alter table, changing colu
       {
         "name": "pet_id",
         "type": {
-          "datatype": "int",
-          "width": 1
+          "datatype": "tinyint"
         },
         "options": {
           "nullable": true

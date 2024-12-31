@@ -8,8 +8,7 @@ exports[`Compact formatter: Alter table add column should not add a column with 
       {
         "name": "test1",
         "type": {
-          "datatype": "int",
-          "width": 1
+          "datatype": "tinyint"
         },
         "options": {
           "unsigned": true,
@@ -25,7 +24,7 @@ exports[`Compact formatter: Alter table add column should not add a column with 
         "name": "id",
         "type": {
           "datatype": "int",
-          "width": 4
+          "displayWidth": 10
         },
         "options": {
           "unsigned": true,
@@ -73,8 +72,7 @@ exports[`Compact formatter: Alter table add column should not add a column with 
       {
         "name": "ssn",
         "type": {
-          "datatype": "int",
-          "width": 2
+          "datatype": "smallint"
         },
         "options": {
           "nullable": true,
@@ -84,8 +82,7 @@ exports[`Compact formatter: Alter table add column should not add a column with 
       {
         "name": "ssn1",
         "type": {
-          "datatype": "int",
-          "width": 2
+          "datatype": "smallint"
         },
         "options": {
           "unsigned": true,
@@ -96,8 +93,7 @@ exports[`Compact formatter: Alter table add column should not add a column with 
       {
         "name": "ssn2",
         "type": {
-          "datatype": "int",
-          "width": 1
+          "datatype": "tinyint"
         },
         "options": {
           "nullable": true,
@@ -107,8 +103,7 @@ exports[`Compact formatter: Alter table add column should not add a column with 
       {
         "name": "ssn3",
         "type": {
-          "datatype": "int",
-          "width": 1
+          "datatype": "tinyint"
         },
         "options": {
           "unsigned": true,
@@ -119,8 +114,7 @@ exports[`Compact formatter: Alter table add column should not add a column with 
       {
         "name": "ssn4",
         "type": {
-          "datatype": "int",
-          "width": 4
+          "datatype": "int"
         },
         "options": {
           "nullable": true,
@@ -130,8 +124,7 @@ exports[`Compact formatter: Alter table add column should not add a column with 
       {
         "name": "ssn5",
         "type": {
-          "datatype": "int",
-          "width": 4
+          "datatype": "int"
         },
         "options": {
           "unsigned": true,
@@ -142,8 +135,7 @@ exports[`Compact formatter: Alter table add column should not add a column with 
       {
         "name": "ssn6",
         "type": {
-          "datatype": "int",
-          "width": 3
+          "datatype": "mediumint"
         },
         "options": {
           "nullable": true,
@@ -153,8 +145,7 @@ exports[`Compact formatter: Alter table add column should not add a column with 
       {
         "name": "ssn7",
         "type": {
-          "datatype": "int",
-          "width": 3
+          "datatype": "mediumint"
         },
         "options": {
           "unsigned": true,
@@ -165,8 +156,7 @@ exports[`Compact formatter: Alter table add column should not add a column with 
       {
         "name": "ssn8",
         "type": {
-          "datatype": "int",
-          "width": 8
+          "datatype": "bigint"
         },
         "options": {
           "nullable": true,
@@ -176,8 +166,8 @@ exports[`Compact formatter: Alter table add column should not add a column with 
       {
         "name": "ssn9",
         "type": {
-          "datatype": "int",
-          "width": 8
+          "datatype": "bigint",
+          "displayWidth": 60
         },
         "options": {
           "unsigned": true,
@@ -447,8 +437,7 @@ exports[`Compact formatter: Alter table add column should not add a column with 
       {
         "name": "id",
         "type": {
-          "datatype": "int",
-          "width": 8
+          "datatype": "bigint"
         },
         "options": {
           "nullable": true
@@ -467,8 +456,7 @@ exports[`Compact formatter: Alter table add column should not add a column with 
       {
         "name": "owner_id",
         "type": {
-          "datatype": "int",
-          "width": 3
+          "datatype": "mediumint"
         },
         "options": {
           "nullable": true
@@ -714,8 +702,7 @@ exports[`Compact formatter: Alter table add column should not add a column with 
       {
         "name": "id",
         "type": {
-          "datatype": "int",
-          "width": 4
+          "datatype": "int"
         },
         "options": {
           "nullable": false
@@ -724,8 +711,7 @@ exports[`Compact formatter: Alter table add column should not add a column with 
       {
         "name": "pet_id",
         "type": {
-          "datatype": "int",
-          "width": 1
+          "datatype": "tinyint"
         },
         "options": {
           "nullable": true
@@ -1022,8 +1008,7 @@ exports[`Compact formatter: Should alter table, adding columns in different posi
       {
         "name": "test1",
         "type": {
-          "datatype": "int",
-          "width": 1
+          "datatype": "tinyint"
         },
         "options": {
           "unsigned": true,
@@ -1039,7 +1024,7 @@ exports[`Compact formatter: Should alter table, adding columns in different posi
         "name": "id",
         "type": {
           "datatype": "int",
-          "width": 4
+          "displayWidth": 10
         },
         "options": {
           "unsigned": true,
@@ -1087,8 +1072,7 @@ exports[`Compact formatter: Should alter table, adding columns in different posi
       {
         "name": "ssn",
         "type": {
-          "datatype": "int",
-          "width": 2
+          "datatype": "smallint"
         },
         "options": {
           "nullable": true,
@@ -1098,8 +1082,7 @@ exports[`Compact formatter: Should alter table, adding columns in different posi
       {
         "name": "ssn1",
         "type": {
-          "datatype": "int",
-          "width": 2
+          "datatype": "smallint"
         },
         "options": {
           "unsigned": true,
@@ -1110,8 +1093,7 @@ exports[`Compact formatter: Should alter table, adding columns in different posi
       {
         "name": "ssn2",
         "type": {
-          "datatype": "int",
-          "width": 1
+          "datatype": "tinyint"
         },
         "options": {
           "nullable": true,
@@ -1121,8 +1103,7 @@ exports[`Compact formatter: Should alter table, adding columns in different posi
       {
         "name": "ssn3",
         "type": {
-          "datatype": "int",
-          "width": 1
+          "datatype": "tinyint"
         },
         "options": {
           "unsigned": true,
@@ -1133,8 +1114,7 @@ exports[`Compact formatter: Should alter table, adding columns in different posi
       {
         "name": "ssn4",
         "type": {
-          "datatype": "int",
-          "width": 4
+          "datatype": "int"
         },
         "options": {
           "nullable": true,
@@ -1144,8 +1124,7 @@ exports[`Compact formatter: Should alter table, adding columns in different posi
       {
         "name": "ssn5",
         "type": {
-          "datatype": "int",
-          "width": 4
+          "datatype": "int"
         },
         "options": {
           "unsigned": true,
@@ -1156,8 +1135,7 @@ exports[`Compact formatter: Should alter table, adding columns in different posi
       {
         "name": "ssn6",
         "type": {
-          "datatype": "int",
-          "width": 3
+          "datatype": "mediumint"
         },
         "options": {
           "nullable": true,
@@ -1167,8 +1145,7 @@ exports[`Compact formatter: Should alter table, adding columns in different posi
       {
         "name": "ssn7",
         "type": {
-          "datatype": "int",
-          "width": 3
+          "datatype": "mediumint"
         },
         "options": {
           "unsigned": true,
@@ -1179,8 +1156,7 @@ exports[`Compact formatter: Should alter table, adding columns in different posi
       {
         "name": "ssn8",
         "type": {
-          "datatype": "int",
-          "width": 8
+          "datatype": "bigint"
         },
         "options": {
           "nullable": true,
@@ -1190,8 +1166,8 @@ exports[`Compact formatter: Should alter table, adding columns in different posi
       {
         "name": "ssn9",
         "type": {
-          "datatype": "int",
-          "width": 8
+          "datatype": "bigint",
+          "displayWidth": 60
         },
         "options": {
           "unsigned": true,
@@ -1461,8 +1437,7 @@ exports[`Compact formatter: Should alter table, adding columns in different posi
       {
         "name": "id",
         "type": {
-          "datatype": "int",
-          "width": 8
+          "datatype": "bigint"
         },
         "options": {
           "nullable": true
@@ -1481,8 +1456,7 @@ exports[`Compact formatter: Should alter table, adding columns in different posi
       {
         "name": "owner_id",
         "type": {
-          "datatype": "int",
-          "width": 3
+          "datatype": "mediumint"
         },
         "options": {
           "nullable": true
@@ -1728,8 +1702,7 @@ exports[`Compact formatter: Should alter table, adding columns in different posi
       {
         "name": "id",
         "type": {
-          "datatype": "int",
-          "width": 4
+          "datatype": "int"
         },
         "options": {
           "nullable": false
@@ -1738,8 +1711,7 @@ exports[`Compact formatter: Should alter table, adding columns in different posi
       {
         "name": "pet_id",
         "type": {
-          "datatype": "int",
-          "width": 1
+          "datatype": "tinyint"
         },
         "options": {
           "nullable": true

@@ -9,7 +9,7 @@ exports[`Compact formatter: Should create 3 tables with all datatypes, options a
         "name": "id",
         "type": {
           "datatype": "int",
-          "width": 4
+          "displayWidth": 10
         },
         "options": {
           "unsigned": true,
@@ -57,8 +57,7 @@ exports[`Compact formatter: Should create 3 tables with all datatypes, options a
       {
         "name": "ssn",
         "type": {
-          "datatype": "int",
-          "width": 2
+          "datatype": "smallint"
         },
         "options": {
           "nullable": true,
@@ -68,8 +67,7 @@ exports[`Compact formatter: Should create 3 tables with all datatypes, options a
       {
         "name": "ssn1",
         "type": {
-          "datatype": "int",
-          "width": 2
+          "datatype": "smallint"
         },
         "options": {
           "unsigned": true,
@@ -80,8 +78,7 @@ exports[`Compact formatter: Should create 3 tables with all datatypes, options a
       {
         "name": "ssn2",
         "type": {
-          "datatype": "int",
-          "width": 1
+          "datatype": "tinyint"
         },
         "options": {
           "nullable": true,
@@ -91,8 +88,7 @@ exports[`Compact formatter: Should create 3 tables with all datatypes, options a
       {
         "name": "ssn3",
         "type": {
-          "datatype": "int",
-          "width": 1
+          "datatype": "tinyint"
         },
         "options": {
           "unsigned": true,
@@ -103,8 +99,7 @@ exports[`Compact formatter: Should create 3 tables with all datatypes, options a
       {
         "name": "ssn4",
         "type": {
-          "datatype": "int",
-          "width": 4
+          "datatype": "int"
         },
         "options": {
           "nullable": true,
@@ -114,8 +109,7 @@ exports[`Compact formatter: Should create 3 tables with all datatypes, options a
       {
         "name": "ssn5",
         "type": {
-          "datatype": "int",
-          "width": 4
+          "datatype": "int"
         },
         "options": {
           "unsigned": true,
@@ -126,8 +120,7 @@ exports[`Compact formatter: Should create 3 tables with all datatypes, options a
       {
         "name": "ssn6",
         "type": {
-          "datatype": "int",
-          "width": 3
+          "datatype": "mediumint"
         },
         "options": {
           "nullable": true,
@@ -137,8 +130,7 @@ exports[`Compact formatter: Should create 3 tables with all datatypes, options a
       {
         "name": "ssn7",
         "type": {
-          "datatype": "int",
-          "width": 3
+          "datatype": "mediumint"
         },
         "options": {
           "unsigned": true,
@@ -149,8 +141,7 @@ exports[`Compact formatter: Should create 3 tables with all datatypes, options a
       {
         "name": "ssn8",
         "type": {
-          "datatype": "int",
-          "width": 8
+          "datatype": "bigint"
         },
         "options": {
           "nullable": true,
@@ -160,8 +151,8 @@ exports[`Compact formatter: Should create 3 tables with all datatypes, options a
       {
         "name": "ssn9",
         "type": {
-          "datatype": "int",
-          "width": 8
+          "datatype": "bigint",
+          "displayWidth": 60
         },
         "options": {
           "unsigned": true,
@@ -399,8 +390,7 @@ exports[`Compact formatter: Should create 3 tables with all datatypes, options a
       {
         "name": "id",
         "type": {
-          "datatype": "int",
-          "width": 8
+          "datatype": "bigint"
         },
         "options": {
           "nullable": true
@@ -419,8 +409,7 @@ exports[`Compact formatter: Should create 3 tables with all datatypes, options a
       {
         "name": "owner_id",
         "type": {
-          "datatype": "int",
-          "width": 3
+          "datatype": "mediumint"
         },
         "options": {
           "nullable": true
@@ -666,8 +655,7 @@ exports[`Compact formatter: Should create 3 tables with all datatypes, options a
       {
         "name": "id",
         "type": {
-          "datatype": "int",
-          "width": 4
+          "datatype": "int"
         },
         "options": {
           "nullable": false
@@ -676,8 +664,7 @@ exports[`Compact formatter: Should create 3 tables with all datatypes, options a
       {
         "name": "pet_id",
         "type": {
-          "datatype": "int",
-          "width": 1
+          "datatype": "tinyint"
         },
         "options": {
           "nullable": true

@@ -3,6 +3,29 @@ import { JSONSchema7TypeName, JSONSchema7 } from 'json-schema';
 import { DatatypeInterface } from '../../../../typings';
 import { isDefined } from '../../../../shared/utils';
 
+import {
+  TINYINT_SIGNED_MIN,
+  TINYINT_SIGNED_MAX,
+  TINYINT_UNSIGNED_MIN,
+  TINYINT_UNSIGNED_MAX,
+  SMALLINT_SIGNED_MIN,
+  SMALLINT_SIGNED_MAX,
+  SMALLINT_UNSIGNED_MIN,
+  SMALLINT_UNSIGNED_MAX,
+  MEDIUMINT_SIGNED_MIN,
+  MEDIUMINT_SIGNED_MAX,
+  MEDIUMINT_UNSIGNED_MIN,
+  MEDIUMINT_UNSIGNED_MAX,
+  INT_SIGNED_MIN,
+  INT_SIGNED_MAX,
+  INT_UNSIGNED_MIN,
+  INT_UNSIGNED_MAX,
+  BIGINT_SIGNED_MIN_1,
+  BIGINT_SIGNED_MAX_1,
+  BIGINT_UNSIGNED_MIN_1,
+  BIGINT_UNSIGNED_MAX_1,
+} from '../../../constants';
+
 /**
  * Data type.
  */
@@ -13,9 +36,9 @@ export class Datatype {
   datatype?: string;
 
   /**
-   * Width (in bytes) for integer types.
+   * Display width for integer types.
    */
-  width?: number;
+  displayWidth?: number;
 
   /**
    * Length of year type or length of a number
@@ -73,11 +96,15 @@ export class Datatype {
     if (isDefined(json.values)) {
       datatype.values = json.values;
     }
-    if (isDefined(json.width)) {
-      datatype.width = json.width;
+    if (isDefined(json.displayWidth)) {
+      datatype.displayWidth = json.displayWidth;
     }
 
     return datatype;
+  }
+
+  static isIntegerDataType(type?: string) {
+    return type && ['tinyint', 'smallint', 'mediumint', 'int', 'bigint'].includes(type);
   }
 
   /**
@@ -87,9 +114,9 @@ export class Datatype {
    */
   static filterDatatype(type: string): JSONSchema7TypeName {
     /**
-     * Filters: int, integer, tinyint, smallint, mediumint, bigint
+     * Filters: int, tinyint, smallint, mediumint, bigint
      */
-    if (type === 'int') {
+    if (Datatype.isIntegerDataType(type)) {
       return 'integer';
     }
 
@@ -119,6 +146,10 @@ export class Datatype {
     return 'string';
   }
 
+  isIntegerDataType() {
+    return Datatype.isIntegerDataType(this.datatype);
+  }
+
   /**
    * JSON casting of this object calls this method.
    * Perform some special formattings according to the datatype.
@@ -144,38 +175,45 @@ export class Datatype {
       type: Datatype.filterDatatype(this.datatype as string),
     };
 
-    /**
-     * bigint with 'x-bigint' in jsonschema, which should be validated
-     */
-    if (this.datatype === 'int' && this.width === 8) {
-      // @ts-ignore
-      json['x-bigint'] = true;
-
-      const max = BigInt(2) ** BigInt(8 * (this.width as number));
-
+    if (this.datatype === 'tinyint') {
       if (this.isUnsigned) {
-        // @ts-ignore
-        json['x-bigint-minimum'] = '0';
-        // @ts-ignore
-        json['x-bigint-maximum'] = (max - BigInt(1)).toString();
+        json.minimum = TINYINT_UNSIGNED_MIN;
+        json.maximum = TINYINT_UNSIGNED_MAX;
       } else {
-        // @ts-ignore
-        json['x-bigint-minimum'] = (BigInt(-1) * (max / BigInt(2))).toString();
-        // @ts-ignore
-        json['x-bigint-maximum'] = (max / BigInt(2) - BigInt(1)).toString();
+        json.minimum = TINYINT_SIGNED_MIN;
+        json.maximum = TINYINT_SIGNED_MAX;
+      }
+    } else if (this.datatype === 'smallint') {
+      if (this.isUnsigned) {
+        json.minimum = SMALLINT_UNSIGNED_MIN;
+        json.maximum = SMALLINT_UNSIGNED_MAX;
+      } else {
+        json.minimum = SMALLINT_SIGNED_MIN;
+        json.maximum = SMALLINT_SIGNED_MAX;
+      }
+    } else if (this.datatype === 'mediumint') {
+      if (this.isUnsigned) {
+        json.minimum = MEDIUMINT_UNSIGNED_MIN;
+        json.maximum = MEDIUMINT_UNSIGNED_MAX;
+      } else {
+        json.minimum = MEDIUMINT_SIGNED_MIN;
+        json.maximum = MEDIUMINT_SIGNED_MAX;
       }
     } else if (this.datatype === 'int') {
-      /**
-       * Set minimum and maximum for int.
-       */
-      const max = 2 ** (8 * (this.width as number));
-
       if (this.isUnsigned) {
-        json.minimum = 0;
-        json.maximum = max - 1;
+        json.minimum = INT_UNSIGNED_MIN;
+        json.maximum = INT_UNSIGNED_MAX;
       } else {
-        json.minimum = -1 * (max / 2);
-        json.maximum = max / 2 - 1;
+        json.minimum = INT_SIGNED_MIN;
+        json.maximum = INT_SIGNED_MAX;
+      }
+    } else if (this.datatype === 'bigint') {
+      if (this.isUnsigned) {
+        json.minimum = BIGINT_UNSIGNED_MIN_1;
+        json.maximum = BIGINT_UNSIGNED_MAX_1;
+      } else {
+        json.minimum = BIGINT_SIGNED_MIN_1;
+        json.maximum = BIGINT_SIGNED_MAX_1;
       }
     } else if (this.datatype === 'decimal' || this.datatype === 'float') {
       /**

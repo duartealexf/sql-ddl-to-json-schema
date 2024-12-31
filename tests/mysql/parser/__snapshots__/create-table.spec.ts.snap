@@ -1015,7 +1015,6 @@ exports[`Parser: Should create test table with all types and options of columns.
                             "id": "O_INTEGER_DATATYPE",
                             "def": {
                               "datatype": "INT",
-                              "width": 4,
                               "displayWidth": 10
                             }
                           }
@@ -1062,8 +1061,7 @@ exports[`Parser: Should create test table with all types and options of columns.
                             "id": "O_INTEGER_DATATYPE",
                             "def": {
                               "datatype": "SMALLINT",
-                              "width": 2,
-                              "displayWidth": 0
+                              "displayWidth": null
                             }
                           }
                         },
@@ -1125,8 +1123,7 @@ exports[`Parser: Should create test table with all types and options of columns.
                             "id": "O_INTEGER_DATATYPE",
                             "def": {
                               "datatype": "SMALLINT",
-                              "width": 2,
-                              "displayWidth": 0
+                              "displayWidth": null
                             }
                           }
                         },
@@ -1166,8 +1163,7 @@ exports[`Parser: Should create test table with all types and options of columns.
                             "id": "O_INTEGER_DATATYPE",
                             "def": {
                               "datatype": "TINYINT",
-                              "width": 1,
-                              "displayWidth": 0
+                              "displayWidth": null
                             }
                           }
                         },
@@ -1201,8 +1197,7 @@ exports[`Parser: Should create test table with all types and options of columns.
                             "id": "O_INTEGER_DATATYPE",
                             "def": {
                               "datatype": "TINYINT",
-                              "width": 1,
-                              "displayWidth": 0
+                              "displayWidth": null
                             }
                           }
                         },
@@ -1242,8 +1237,7 @@ exports[`Parser: Should create test table with all types and options of columns.
                             "id": "O_INTEGER_DATATYPE",
                             "def": {
                               "datatype": "INT",
-                              "width": 4,
-                              "displayWidth": 0
+                              "displayWidth": null
                             }
                           }
                         },
@@ -1277,8 +1271,7 @@ exports[`Parser: Should create test table with all types and options of columns.
                             "id": "O_INTEGER_DATATYPE",
                             "def": {
                               "datatype": "INT",
-                              "width": 4,
-                              "displayWidth": 0
+                              "displayWidth": null
                             }
                           }
                         },
@@ -1318,8 +1311,7 @@ exports[`Parser: Should create test table with all types and options of columns.
                             "id": "O_INTEGER_DATATYPE",
                             "def": {
                               "datatype": "MEDIUMINT",
-                              "width": 3,
-                              "displayWidth": 0
+                              "displayWidth": null
                             }
                           }
                         },
@@ -1353,8 +1345,7 @@ exports[`Parser: Should create test table with all types and options of columns.
                             "id": "O_INTEGER_DATATYPE",
                             "def": {
                               "datatype": "MEDIUMINT",
-                              "width": 3,
-                              "displayWidth": 0
+                              "displayWidth": null
                             }
                           }
                         },
@@ -1394,9 +1385,7 @@ exports[`Parser: Should create test table with all types and options of columns.
                             "id": "O_INTEGER_DATATYPE",
                             "def": {
                               "datatype": "BIGINT",
-                              "width": 8,
-                              "displayWidth": 0,
-                              "isBigInt": true
+                              "displayWidth": null
                             }
                           }
                         },
@@ -1430,9 +1419,7 @@ exports[`Parser: Should create test table with all types and options of columns.
                             "id": "O_INTEGER_DATATYPE",
                             "def": {
                               "datatype": "BIGINT",
-                              "width": 8,
-                              "displayWidth": 60,
-                              "isBigInt": true
+                              "displayWidth": 60
                             }
                           }
                         },
@@ -1768,8 +1755,7 @@ exports[`Parser: Should create test table with all types and options of columns.
                             "id": "O_INTEGER_DATATYPE",
                             "def": {
                               "datatype": "INTEGER",
-                              "width": 4,
-                              "displayWidth": 0
+                              "displayWidth": null
                             }
                           }
                         },
@@ -1814,8 +1800,7 @@ exports[`Parser: Should create test table with all types and options of columns.
                             "id": "O_INTEGER_DATATYPE",
                             "def": {
                               "datatype": "INTEGER",
-                              "width": 4,
-                              "displayWidth": 0
+                              "displayWidth": null
                             }
                           }
                         },
@@ -1857,8 +1842,7 @@ exports[`Parser: Should create test table with all types and options of columns.
                             "id": "O_INTEGER_DATATYPE",
                             "def": {
                               "datatype": "INTEGER",
-                              "width": 4,
-                              "displayWidth": 0
+                              "displayWidth": null
                             }
                           }
                         },
@@ -1954,8 +1938,7 @@ exports[`Parser: Should create test table with all types and options of columns.
                             "id": "O_INTEGER_DATATYPE",
                             "def": {
                               "datatype": "INT",
-                              "width": 4,
-                              "displayWidth": 0
+                              "displayWidth": null
                             }
                           }
                         },

@@ -101,7 +101,11 @@ export interface DatatypeInterface {
   /**
    * Width for integer datatypes.
    */
-  width?: number;
+  // width?: number;
+  /**
+   * Display width for int datatypes.
+   */
+  displayWidth?: number;
   /**
    * Digits for numeric non-integer and year datatypes.
    */

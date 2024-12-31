@@ -9,7 +9,7 @@ exports[`Compact formatter: Alter table add fulltext index should not add key or
         "name": "id",
         "type": {
           "datatype": "int",
-          "width": 4
+          "displayWidth": 10
         },
         "options": {
           "unsigned": true,
@@ -57,8 +57,7 @@ exports[`Compact formatter: Alter table add fulltext index should not add key or
       {
         "name": "ssn",
         "type": {
-          "datatype": "int",
-          "width": 2
+          "datatype": "smallint"
         },
         "options": {
           "nullable": true,
@@ -68,8 +67,7 @@ exports[`Compact formatter: Alter table add fulltext index should not add key or
       {
         "name": "ssn1",
         "type": {
-          "datatype": "int",
-          "width": 2
+          "datatype": "smallint"
         },
         "options": {
           "unsigned": true,
@@ -80,8 +78,7 @@ exports[`Compact formatter: Alter table add fulltext index should not add key or
       {
         "name": "ssn2",
         "type": {
-          "datatype": "int",
-          "width": 1
+          "datatype": "tinyint"
         },
         "options": {
           "nullable": true,
@@ -91,8 +88,7 @@ exports[`Compact formatter: Alter table add fulltext index should not add key or
       {
         "name": "ssn3",
         "type": {
-          "datatype": "int",
-          "width": 1
+          "datatype": "tinyint"
         },
         "options": {
           "unsigned": true,
@@ -103,8 +99,7 @@ exports[`Compact formatter: Alter table add fulltext index should not add key or
       {
         "name": "ssn4",
         "type": {
-          "datatype": "int",
-          "width": 4
+          "datatype": "int"
         },
         "options": {
           "nullable": true,
@@ -114,8 +109,7 @@ exports[`Compact formatter: Alter table add fulltext index should not add key or
       {
         "name": "ssn5",
         "type": {
-          "datatype": "int",
-          "width": 4
+          "datatype": "int"
         },
         "options": {
           "unsigned": true,
@@ -126,8 +120,7 @@ exports[`Compact formatter: Alter table add fulltext index should not add key or
       {
         "name": "ssn6",
         "type": {
-          "datatype": "int",
-          "width": 3
+          "datatype": "mediumint"
         },
         "options": {
           "nullable": true,
@@ -137,8 +130,7 @@ exports[`Compact formatter: Alter table add fulltext index should not add key or
       {
         "name": "ssn7",
         "type": {
-          "datatype": "int",
-          "width": 3
+          "datatype": "mediumint"
         },
         "options": {
           "unsigned": true,
@@ -149,8 +141,7 @@ exports[`Compact formatter: Alter table add fulltext index should not add key or
       {
         "name": "ssn8",
         "type": {
-          "datatype": "int",
-          "width": 8
+          "datatype": "bigint"
         },
         "options": {
           "nullable": true,
@@ -160,8 +151,8 @@ exports[`Compact formatter: Alter table add fulltext index should not add key or
       {
         "name": "ssn9",
         "type": {
-          "datatype": "int",
-          "width": 8
+          "datatype": "bigint",
+          "displayWidth": 60
         },
         "options": {
           "unsigned": true,
@@ -399,8 +390,7 @@ exports[`Compact formatter: Alter table add fulltext index should not add key or
       {
         "name": "id",
         "type": {
-          "datatype": "int",
-          "width": 8
+          "datatype": "bigint"
         },
         "options": {
           "nullable": true
@@ -419,8 +409,7 @@ exports[`Compact formatter: Alter table add fulltext index should not add key or
       {
         "name": "owner_id",
         "type": {
-          "datatype": "int",
-          "width": 3
+          "datatype": "mediumint"
         },
         "options": {
           "nullable": true
@@ -666,8 +655,7 @@ exports[`Compact formatter: Alter table add fulltext index should not add key or
       {
         "name": "id",
         "type": {
-          "datatype": "int",
-          "width": 4
+          "datatype": "int"
         },
         "options": {
           "nullable": false
@@ -676,8 +664,7 @@ exports[`Compact formatter: Alter table add fulltext index should not add key or
       {
         "name": "pet_id",
         "type": {
-          "datatype": "int",
-          "width": 1
+          "datatype": "tinyint"
         },
         "options": {
           "nullable": true
@@ -1004,7 +991,7 @@ exports[`Compact formatter: Alter table add fulltext index should not add key or
         "name": "id",
         "type": {
           "datatype": "int",
-          "width": 4
+          "displayWidth": 10
         },
         "options": {
           "unsigned": true,
@@ -1052,8 +1039,7 @@ exports[`Compact formatter: Alter table add fulltext index should not add key or
       {
         "name": "ssn",
         "type": {
-          "datatype": "int",
-          "width": 2
+          "datatype": "smallint"
         },
         "options": {
           "nullable": true,
@@ -1063,8 +1049,7 @@ exports[`Compact formatter: Alter table add fulltext index should not add key or
       {
         "name": "ssn1",
         "type": {
-          "datatype": "int",
-          "width": 2
+          "datatype": "smallint"
         },
         "options": {
           "unsigned": true,
@@ -1075,8 +1060,7 @@ exports[`Compact formatter: Alter table add fulltext index should not add key or
       {
         "name": "ssn2",
         "type": {
-          "datatype": "int",
-          "width": 1
+          "datatype": "tinyint"
         },
         "options": {
           "nullable": true,
@@ -1086,8 +1070,7 @@ exports[`Compact formatter: Alter table add fulltext index should not add key or
       {
         "name": "ssn3",
         "type": {
-          "datatype": "int",
-          "width": 1
+          "datatype": "tinyint"
         },
         "options": {
           "unsigned": true,
@@ -1098,8 +1081,7 @@ exports[`Compact formatter: Alter table add fulltext index should not add key or
       {
         "name": "ssn4",
         "type": {
-          "datatype": "int",
-          "width": 4
+          "datatype": "int"
         },
         "options": {
           "nullable": true,
@@ -1109,8 +1091,7 @@ exports[`Compact formatter: Alter table add fulltext index should not add key or
       {
         "name": "ssn5",
         "type": {
-          "datatype": "int",
-          "width": 4
+          "datatype": "int"
         },
         "options": {
           "unsigned": true,
@@ -1121,8 +1102,7 @@ exports[`Compact formatter: Alter table add fulltext index should not add key or
       {
         "name": "ssn6",
         "type": {
-          "datatype": "int",
-          "width": 3
+          "datatype": "mediumint"
         },
         "options": {
           "nullable": true,
@@ -1132,8 +1112,7 @@ exports[`Compact formatter: Alter table add fulltext index should not add key or
       {
         "name": "ssn7",
         "type": {
-          "datatype": "int",
-          "width": 3
+          "datatype": "mediumint"
         },
         "options": {
           "unsigned": true,
@@ -1144,8 +1123,7 @@ exports[`Compact formatter: Alter table add fulltext index should not add key or
       {
         "name": "ssn8",
         "type": {
-          "datatype": "int",
-          "width": 8
+          "datatype": "bigint"
         },
         "options": {
           "nullable": true,
@@ -1155,8 +1133,8 @@ exports[`Compact formatter: Alter table add fulltext index should not add key or
       {
         "name": "ssn9",
         "type": {
-          "datatype": "int",
-          "width": 8
+          "datatype": "bigint",
+          "displayWidth": 60
         },
         "options": {
           "unsigned": true,
@@ -1394,8 +1372,7 @@ exports[`Compact formatter: Alter table add fulltext index should not add key or
       {
         "name": "id",
         "type": {
-          "datatype": "int",
-          "width": 8
+          "datatype": "bigint"
         },
         "options": {
           "nullable": true
@@ -1414,8 +1391,7 @@ exports[`Compact formatter: Alter table add fulltext index should not add key or
       {
         "name": "owner_id",
         "type": {
-          "datatype": "int",
-          "width": 3
+          "datatype": "mediumint"
         },
         "options": {
           "nullable": true
@@ -1661,8 +1637,7 @@ exports[`Compact formatter: Alter table add fulltext index should not add key or
       {
         "name": "id",
         "type": {
-          "datatype": "int",
-          "width": 4
+          "datatype": "int"
         },
         "options": {
           "nullable": false
@@ -1671,8 +1646,7 @@ exports[`Compact formatter: Alter table add fulltext index should not add key or
       {
         "name": "pet_id",
         "type": {
-          "datatype": "int",
-          "width": 1
+          "datatype": "tinyint"
         },
         "options": {
           "nullable": true
@@ -1999,7 +1973,7 @@ exports[`Compact formatter: Alter table add fulltext index should not add key or
         "name": "id",
         "type": {
           "datatype": "int",
-          "width": 4
+          "displayWidth": 10
         },
         "options": {
           "unsigned": true,
@@ -2047,8 +2021,7 @@ exports[`Compact formatter: Alter table add fulltext index should not add key or
       {
         "name": "ssn",
         "type": {
-          "datatype": "int",
-          "width": 2
+          "datatype": "smallint"
         },
         "options": {
           "nullable": true,
@@ -2058,8 +2031,7 @@ exports[`Compact formatter: Alter table add fulltext index should not add key or
       {
         "name": "ssn1",
         "type": {
-          "datatype": "int",
-          "width": 2
+          "datatype": "smallint"
         },
         "options": {
           "unsigned": true,
@@ -2070,8 +2042,7 @@ exports[`Compact formatter: Alter table add fulltext index should not add key or
       {
         "name": "ssn2",
         "type": {
-          "datatype": "int",
-          "width": 1
+          "datatype": "tinyint"
         },
         "options": {
           "nullable": true,
@@ -2081,8 +2052,7 @@ exports[`Compact formatter: Alter table add fulltext index should not add key or
       {
         "name": "ssn3",
         "type": {
-          "datatype": "int",
-          "width": 1
+          "datatype": "tinyint"
         },
         "options": {
           "unsigned": true,
@@ -2093,8 +2063,7 @@ exports[`Compact formatter: Alter table add fulltext index should not add key or
       {
         "name": "ssn4",
         "type": {
-          "datatype": "int",
-          "width": 4
+          "datatype": "int"
         },
         "options": {
           "nullable": true,
@@ -2104,8 +2073,7 @@ exports[`Compact formatter: Alter table add fulltext index should not add key or
       {
         "name": "ssn5",
         "type": {
-          "datatype": "int",
-          "width": 4
+          "datatype": "int"
         },
         "options": {
           "unsigned": true,
@@ -2116,8 +2084,7 @@ exports[`Compact formatter: Alter table add fulltext index should not add key or
       {
         "name": "ssn6",
         "type": {
-          "datatype": "int",
-          "width": 3
+          "datatype": "mediumint"
         },
         "options": {
           "nullable": true,
@@ -2127,8 +2094,7 @@ exports[`Compact formatter: Alter table add fulltext index should not add key or
       {
         "name": "ssn7",
         "type": {
-          "datatype": "int",
-          "width": 3
+          "datatype": "mediumint"
         },
         "options": {
           "unsigned": true,
@@ -2139,8 +2105,7 @@ exports[`Compact formatter: Alter table add fulltext index should not add key or
       {
         "name": "ssn8",
         "type": {
-          "datatype": "int",
-          "width": 8
+          "datatype": "bigint"
         },
         "options": {
           "nullable": true,
@@ -2150,8 +2115,8 @@ exports[`Compact formatter: Alter table add fulltext index should not add key or
       {
         "name": "ssn9",
         "type": {
-          "datatype": "int",
-          "width": 8
+          "datatype": "bigint",
+          "displayWidth": 60
         },
         "options": {
           "unsigned": true,
@@ -2389,8 +2354,7 @@ exports[`Compact formatter: Alter table add fulltext index should not add key or
       {
         "name": "id",
         "type": {
-          "datatype": "int",
-          "width": 8
+          "datatype": "bigint"
         },
         "options": {
           "nullable": true
@@ -2409,8 +2373,7 @@ exports[`Compact formatter: Alter table add fulltext index should not add key or
       {
         "name": "owner_id",
         "type": {
-          "datatype": "int",
-          "width": 3
+          "datatype": "mediumint"
         },
         "options": {
           "nullable": true
@@ -2656,8 +2619,7 @@ exports[`Compact formatter: Alter table add fulltext index should not add key or
       {
         "name": "id",
         "type": {
-          "datatype": "int",
-          "width": 4
+          "datatype": "int"
         },
         "options": {
           "nullable": false
@@ -2666,8 +2628,7 @@ exports[`Compact formatter: Alter table add fulltext index should not add key or
       {
         "name": "pet_id",
         "type": {
-          "datatype": "int",
-          "width": 1
+          "datatype": "tinyint"
         },
         "options": {
           "nullable": true
@@ -2994,7 +2955,7 @@ exports[`Compact formatter: Should alter table, adding fulltext index. 1`] = `
         "name": "id",
         "type": {
           "datatype": "int",
-          "width": 4
+          "displayWidth": 10
         },
         "options": {
           "unsigned": true,
@@ -3042,8 +3003,7 @@ exports[`Compact formatter: Should alter table, adding fulltext index. 1`] = `
       {
         "name": "ssn",
         "type": {
-          "datatype": "int",
-          "width": 2
+          "datatype": "smallint"
         },
         "options": {
           "nullable": true,
@@ -3053,8 +3013,7 @@ exports[`Compact formatter: Should alter table, adding fulltext index. 1`] = `
       {
         "name": "ssn1",
         "type": {
-          "datatype": "int",
-          "width": 2
+          "datatype": "smallint"
         },
         "options": {
           "unsigned": true,
@@ -3065,8 +3024,7 @@ exports[`Compact formatter: Should alter table, adding fulltext index. 1`] = `
       {
         "name": "ssn2",
         "type": {
-          "datatype": "int",
-          "width": 1
+          "datatype": "tinyint"
         },
         "options": {
           "nullable": true,
@@ -3076,8 +3034,7 @@ exports[`Compact formatter: Should alter table, adding fulltext index. 1`] = `
       {
         "name": "ssn3",
         "type": {
-          "datatype": "int",
-          "width": 1
+          "datatype": "tinyint"
         },
         "options": {
           "unsigned": true,
@@ -3088,8 +3045,7 @@ exports[`Compact formatter: Should alter table, adding fulltext index. 1`] = `
       {
         "name": "ssn4",
         "type": {
-          "datatype": "int",
-          "width": 4
+          "datatype": "int"
         },
         "options": {
           "nullable": true,
@@ -3099,8 +3055,7 @@ exports[`Compact formatter: Should alter table, adding fulltext index. 1`] = `
       {
         "name": "ssn5",
         "type": {
-          "datatype": "int",
-          "width": 4
+          "datatype": "int"
         },
         "options": {
           "unsigned": true,
@@ -3111,8 +3066,7 @@ exports[`Compact formatter: Should alter table, adding fulltext index. 1`] = `
       {
         "name": "ssn6",
         "type": {
-          "datatype": "int",
-          "width": 3
+          "datatype": "mediumint"
         },
         "options": {
           "nullable": true,
@@ -3122,8 +3076,7 @@ exports[`Compact formatter: Should alter table, adding fulltext index. 1`] = `
       {
         "name": "ssn7",
         "type": {
-          "datatype": "int",
-          "width": 3
+          "datatype": "mediumint"
         },
         "options": {
           "unsigned": true,
@@ -3134,8 +3087,7 @@ exports[`Compact formatter: Should alter table, adding fulltext index. 1`] = `
       {
         "name": "ssn8",
         "type": {
-          "datatype": "int",
-          "width": 8
+          "datatype": "bigint"
         },
         "options": {
           "nullable": true,
@@ -3145,8 +3097,8 @@ exports[`Compact formatter: Should alter table, adding fulltext index. 1`] = `
       {
         "name": "ssn9",
         "type": {
-          "datatype": "int",
-          "width": 8
+          "datatype": "bigint",
+          "displayWidth": 60
         },
         "options": {
           "unsigned": true,
@@ -3384,8 +3336,7 @@ exports[`Compact formatter: Should alter table, adding fulltext index. 1`] = `
       {
         "name": "id",
         "type": {
-          "datatype": "int",
-          "width": 8
+          "datatype": "bigint"
         },
         "options": {
           "nullable": true
@@ -3404,8 +3355,7 @@ exports[`Compact formatter: Should alter table, adding fulltext index. 1`] = `
       {
         "name": "owner_id",
         "type": {
-          "datatype": "int",
-          "width": 3
+          "datatype": "mediumint"
         },
         "options": {
           "nullable": true
@@ -3651,8 +3601,7 @@ exports[`Compact formatter: Should alter table, adding fulltext index. 1`] = `
       {
         "name": "id",
         "type": {
-          "datatype": "int",
-          "width": 4
+          "datatype": "int"
         },
         "options": {
           "nullable": false
@@ -3661,8 +3610,7 @@ exports[`Compact formatter: Should alter table, adding fulltext index. 1`] = `
       {
         "name": "pet_id",
         "type": {
-          "datatype": "int",
-          "width": 1
+          "datatype": "tinyint"
         },
         "options": {
           "nullable": true

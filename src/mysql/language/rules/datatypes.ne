@@ -31,18 +31,14 @@ O_DATATYPE -> (
 #
 # https://mariadb.com/kb/en/data-types-numeric-data-types/
 
-# =============================================================
-# description width ?= 1 * 8 -> 1 width: 1 byte
-# e.g. int: 2 ** 32 => 2 ** (4(width) * 8)
-
 O_INTEGER_DATATYPE ->
   (
-      %K_INT        {% d => { return { datatype: d[0].value, width: 4 }} %}
-    | %K_INTEGER    {% d => { return { datatype: d[0].value, width: 4 }} %}
-    | %K_TINYINT    {% d => { return { datatype: d[0].value, width: 1 }} %}
-    | %K_SMALLINT   {% d => { return { datatype: d[0].value, width: 2 }} %}
-    | %K_MEDIUMINT  {% d => { return { datatype: d[0].value, width: 3 }} %}
-    | %K_BIGINT     {% d => { return { datatype: d[0].value, width: 8, isBigInt: true }} %}
+      %K_INT        {% d => { return { datatype: d[0].value }} %}
+    | %K_INTEGER    {% d => { return { datatype: d[0].value }} %}
+    | %K_TINYINT    {% d => { return { datatype: d[0].value }} %}
+    | %K_SMALLINT   {% d => { return { datatype: d[0].value }} %}
+    | %K_MEDIUMINT  {% d => { return { datatype: d[0].value }} %}
+    | %K_BIGINT     {% d => { return { datatype: d[0].value }} %}
   )
   ( _ %S_LPARENS _ %S_NUMBER _ %S_RPARENS {% d => d[3].value %} ):?
 
@@ -51,15 +47,7 @@ O_INTEGER_DATATYPE ->
         id: 'O_INTEGER_DATATYPE',
         def: {
           datatype: d[0].datatype,
-          // fix: always set the number width with given width
-          // src: width: d[1] ? d[1] : d[0].width
-          // current:
-          width: d[0].width,
-          // fix: the given number in parens should not treated as measure with its max number
-          // add this extra attribute to keep the display width
-          displayWidth: d[1] ? d[1] : 0,
-          // fix: javascript can not hold the bigint types
-          isBigInt: d[0].isBigInt
+          displayWidth: d[1]
         }
       }
     }%}

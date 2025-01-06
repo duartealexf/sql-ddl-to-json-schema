@@ -37,8 +37,7 @@
     "lint": "eslint {src,tasks,tests}/**/*.ts --fix",
     "version": "standard-version && git push --follow-tags",
     "prerelease": "npm run build",
-    "release": "npm publish",
-    "test:feat": "npm run test -- --config './jest-feature.config.js'"
+    "release": "npm publish"
   },
   "repository": {
     "type": "git",

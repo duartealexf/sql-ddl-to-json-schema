@@ -99,10 +99,6 @@ export interface PrimaryKeyInterface {
 export interface DatatypeInterface {
   datatype: string;
   /**
-   * Width for integer datatypes.
-   */
-  // width?: number;
-  /**
    * Display width for int datatypes.
    */
   displayWidth?: number;

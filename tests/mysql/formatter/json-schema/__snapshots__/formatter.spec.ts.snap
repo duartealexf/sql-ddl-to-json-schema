@@ -42,60 +42,6 @@ exports[`JSON Schema formatter: should format tables correctly, with ref. 1`] = 
         "minimum": -32768,
         "maximum": 32767
       },
-      "ssn1": {
-        "description": "SMALLINT UNSIGNED",
-        "type": "integer",
-        "minimum": 0,
-        "maximum": 65535
-      },
-      "ssn2": {
-        "description": "TINYINT",
-        "type": "integer",
-        "minimum": -128,
-        "maximum": 127
-      },
-      "ssn3": {
-        "description": "TINYINT UNSIGNED",
-        "type": "integer",
-        "minimum": 0,
-        "maximum": 255
-      },
-      "ssn4": {
-        "description": "INT",
-        "type": "integer",
-        "minimum": -2147483648,
-        "maximum": 2147483647
-      },
-      "ssn5": {
-        "description": "INT UNSIGNED",
-        "type": "integer",
-        "minimum": 0,
-        "maximum": 4294967295
-      },
-      "ssn6": {
-        "description": "MEDIUMINT",
-        "type": "integer",
-        "minimum": -8388608,
-        "maximum": 8388607
-      },
-      "ssn7": {
-        "description": "MEDIUMINT UNSIGNED",
-        "type": "integer",
-        "minimum": 0,
-        "maximum": 16777215
-      },
-      "ssn8": {
-        "description": "BIGINT",
-        "type": "integer",
-        "minimum": -9007199254740991,
-        "maximum": 9007199254740991
-      },
-      "ssn9": {
-        "description": "BIGINT UNSIGNED",
-        "type": "integer",
-        "minimum": 0,
-        "maximum": 9007199254740991
-      },
       "height": {
         "type": "number",
         "maximum": 9999999999,
@@ -179,33 +125,6 @@ exports[`JSON Schema formatter: should format tables correctly, with ref. 1`] = 
       },
       "ssn": {
         "$ref": "#/definitions/ssn"
-      },
-      "ssn1": {
-        "$ref": "#/definitions/ssn1"
-      },
-      "ssn2": {
-        "$ref": "#/definitions/ssn2"
-      },
-      "ssn3": {
-        "$ref": "#/definitions/ssn3"
-      },
-      "ssn4": {
-        "$ref": "#/definitions/ssn4"
-      },
-      "ssn5": {
-        "$ref": "#/definitions/ssn5"
-      },
-      "ssn6": {
-        "$ref": "#/definitions/ssn6"
-      },
-      "ssn7": {
-        "$ref": "#/definitions/ssn7"
-      },
-      "ssn8": {
-        "$ref": "#/definitions/ssn8"
-      },
-      "ssn9": {
-        "$ref": "#/definitions/ssn9"
       },
       "height": {
         "$ref": "#/definitions/height"
@@ -600,60 +519,6 @@ exports[`JSON Schema formatter: should format tables correctly, without ref. 1`]
         "type": "integer",
         "minimum": -32768,
         "maximum": 32767
-      },
-      "ssn1": {
-        "description": "SMALLINT UNSIGNED",
-        "type": "integer",
-        "minimum": 0,
-        "maximum": 65535
-      },
-      "ssn2": {
-        "description": "TINYINT",
-        "type": "integer",
-        "minimum": -128,
-        "maximum": 127
-      },
-      "ssn3": {
-        "description": "TINYINT UNSIGNED",
-        "type": "integer",
-        "minimum": 0,
-        "maximum": 255
-      },
-      "ssn4": {
-        "description": "INT",
-        "type": "integer",
-        "minimum": -2147483648,
-        "maximum": 2147483647
-      },
-      "ssn5": {
-        "description": "INT UNSIGNED",
-        "type": "integer",
-        "minimum": 0,
-        "maximum": 4294967295
-      },
-      "ssn6": {
-        "description": "MEDIUMINT",
-        "type": "integer",
-        "minimum": -8388608,
-        "maximum": 8388607
-      },
-      "ssn7": {
-        "description": "MEDIUMINT UNSIGNED",
-        "type": "integer",
-        "minimum": 0,
-        "maximum": 16777215
-      },
-      "ssn8": {
-        "description": "BIGINT",
-        "type": "integer",
-        "minimum": -9007199254740991,
-        "maximum": 9007199254740991
-      },
-      "ssn9": {
-        "description": "BIGINT UNSIGNED",
-        "type": "integer",
-        "minimum": 0,
-        "maximum": 9007199254740991
       },
       "height": {
         "type": "number",

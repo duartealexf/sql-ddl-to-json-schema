@@ -146,10 +146,6 @@ export class Datatype {
     return 'string';
   }
 
-  isIntegerDataType() {
-    return Datatype.isIntegerDataType(this.datatype);
-  }
-
   /**
    * JSON casting of this object calls this method.
    * Perform some special formattings according to the datatype.

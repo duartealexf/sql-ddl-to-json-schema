@@ -2,12 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
-## [4.2.0](https://github.com/duartealexf/sql-ddl-to-json-schema/compare/v4.1.1...v4.2.0) (2025-01-13)
+## [5.0.0](https://github.com/duartealexf/sql-ddl-to-json-schema/compare/v4.1.1...v5.0.0) (2025-01-13)
 
+### Breaking changes
+
+- Minimum node version is now 14.
+- Compact JSON format: width has been renamed to displayWidth, values are now different.
+- Compact JSON format: int datatypes ('tinyint', 'smallint', 'mediumint', 'int', 'bigint') names are preserved.
+- JSON Schema format: minimum and maximum values of some integer types have been changed.
 
 ### Features
 
-* **package.json:** version 4.2.0 ([980132b](https://github.com/duartealexf/sql-ddl-to-json-schema/commit/980132b755b73ddd388c5d8ba38594217a5b0da9))
 * **package.json:** version 5.0.0 ([483b6a9](https://github.com/duartealexf/sql-ddl-to-json-schema/commit/483b6a9e77daccf689eada9f81ba8decda1fd846))
 * update int datatypes with compact json and jsonschema ([f26b9f0](https://github.com/duartealexf/sql-ddl-to-json-schema/commit/f26b9f0bfd81e079fc3a629e82dc61bf946d9770))
 

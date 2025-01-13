@@ -103,8 +103,8 @@ export class Datatype {
     return datatype;
   }
 
-  static isIntegerDataType(type?: string) {
-    return type && ['tinyint', 'smallint', 'mediumint', 'int', 'bigint'].includes(type);
+  static isIntegerDataType(type?: string): boolean | undefined {
+    return ['tinyint', 'smallint', 'mediumint', 'int', 'bigint'].includes(type ?? '');
   }
 
   /**

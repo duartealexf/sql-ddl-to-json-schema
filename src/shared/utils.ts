@@ -15,8 +15,8 @@ import { TransformerFunction, TMap, AnyMap } from '../typings/utils';
  */
 export function stringArrayToMapping<T>(
   array: string[] = [],
-  transformKey: TransformerFunction<string> = ((k: string) => k),
-  transformValue: TransformerFunction<T> = ((v: any) => v),
+  transformKey: TransformerFunction<string> = (k: string) => k,
+  transformValue: TransformerFunction<T> = (v: any) => v,
 ): TMap<T> {
   return array.reduce((obj, elem) => {
     obj[transformKey(elem)] = transformValue(elem);

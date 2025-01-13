@@ -53,7 +53,11 @@ It parses and delivers an **array of JSON Schema documents** (one for each parse
     "title": "users",
     "description": "All system users",
     "type": "object",
-    "required": ["id", "nickname", "created_at"],
+    "required": [
+      "id",
+      "nickname",
+      "created_at"
+    ],
     "definitions": {
       "id": {
         "$comment": "primary key",
@@ -69,7 +73,8 @@ It parses and delivers an **array of JSON Schema documents** (one for each parse
         "type": "string"
       },
       "created_at": {
-        "type": "string"
+        "type": "string",
+        "default": "CURRENT_TIMESTAMP"
       },
       "updated_at": {
         "type": "string"
@@ -107,7 +112,7 @@ And an array of tables in a compact JSON format:
         "name": "id",
         "type": {
           "datatype": "int",
-          "width": 11
+          "displayWidth": 11
         },
         "options": {
           "nullable": false,
@@ -167,10 +172,10 @@ And an array of tables in a compact JSON format:
       {
         "columns": [
           {
-            "column": "nickname"
+            "column": "nickname",
+            "length": 255
           }
-        ],
-        "name": "unq_nick"
+        ]
       }
     ],
     "options": {

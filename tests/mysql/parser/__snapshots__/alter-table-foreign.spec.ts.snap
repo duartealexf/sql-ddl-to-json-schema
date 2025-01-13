@@ -1,462 +1,506 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Parser: Should alter table adding foreign key with one column. 1`] = `
-{
-  "id": "MAIN",
-  "def": [
-    {
-      "id": "P_DDS",
-      "def": {
-        "id": "P_ALTER_TABLE",
+ParsedQuerySerializer {
+  "parsed": {
+    "def": [
+      {
         "def": {
-          "table": "people",
-          "specs": [
-            {
-              "id": "P_ALTER_TABLE_SPECS",
-              "def": {
-                "spec": {
-                  "id": "O_ALTER_TABLE_SPEC",
-                  "def": {
-                    "action": "addForeignKey",
-                    "name": "xyz",
-                    "columns": [
-                      {
-                        "id": "P_INDEX_COLUMN",
+          "def": {
+            "specs": [
+              {
+                "def": {
+                  "spec": {
+                    "def": {
+                      "action": "addForeignKey",
+                      "columns": [
+                        {
+                          "def": {
+                            "column": "o_id",
+                            "length": undefined,
+                            "sort": undefined,
+                          },
+                          "id": "P_INDEX_COLUMN",
+                        },
+                      ],
+                      "name": "xyz",
+                      "reference": {
                         "def": {
-                          "column": "o_id"
-                        }
-                      }
-                    ],
-                    "reference": {
-                      "id": "P_COLUMN_REFERENCE",
-                      "def": {
-                        "table": "other",
-                        "columns": [
-                          {
-                            "id": "P_INDEX_COLUMN",
-                            "def": {
-                              "column": "id"
-                            }
-                          }
-                        ],
-                        "match": null,
-                        "on": []
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          ]
-        }
-      }
-    }
-  ]
+                          "columns": [
+                            {
+                              "def": {
+                                "column": "id",
+                                "length": undefined,
+                                "sort": undefined,
+                              },
+                              "id": "P_INDEX_COLUMN",
+                            },
+                          ],
+                          "match": null,
+                          "on": [],
+                          "table": "other",
+                        },
+                        "id": "P_COLUMN_REFERENCE",
+                      },
+                    },
+                    "id": "O_ALTER_TABLE_SPEC",
+                  },
+                },
+                "id": "P_ALTER_TABLE_SPECS",
+              },
+            ],
+            "table": "people",
+          },
+          "id": "P_ALTER_TABLE",
+        },
+        "id": "P_DDS",
+      },
+    ],
+    "id": "MAIN",
+  },
 }
 `;
 
 exports[`Parser: Should alter table adding foreign key with two columns, and match. 1`] = `
-{
-  "id": "MAIN",
-  "def": [
-    {
-      "id": "P_DDS",
-      "def": {
-        "id": "P_ALTER_TABLE",
+ParsedQuerySerializer {
+  "parsed": {
+    "def": [
+      {
         "def": {
-          "table": "people",
-          "specs": [
-            {
-              "id": "P_ALTER_TABLE_SPECS",
-              "def": {
-                "spec": {
-                  "id": "O_ALTER_TABLE_SPEC",
-                  "def": {
-                    "action": "addForeignKey",
-                    "name": "xyz",
-                    "columns": [
-                      {
-                        "id": "P_INDEX_COLUMN",
-                        "def": {
-                          "column": "ax_id",
-                          "length": 20,
-                          "sort": "asc"
-                        }
-                      },
-                      {
-                        "id": "P_INDEX_COLUMN",
-                        "def": {
-                          "column": "ay_id"
-                        }
-                      }
-                    ],
-                    "reference": {
-                      "id": "P_COLUMN_REFERENCE",
-                      "def": {
-                        "table": "other",
-                        "columns": [
-                          {
-                            "id": "P_INDEX_COLUMN",
-                            "def": {
-                              "column": "xid",
-                              "length": 10,
-                              "sort": "desc"
-                            }
+          "def": {
+            "specs": [
+              {
+                "def": {
+                  "spec": {
+                    "def": {
+                      "action": "addForeignKey",
+                      "columns": [
+                        {
+                          "def": {
+                            "column": "ax_id",
+                            "length": 20,
+                            "sort": "asc",
                           },
-                          {
-                            "id": "P_INDEX_COLUMN",
-                            "def": {
-                              "column": "yid"
-                            }
-                          }
-                        ],
-                        "match": "full",
-                        "on": []
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          ]
-        }
-      }
-    }
-  ]
+                          "id": "P_INDEX_COLUMN",
+                        },
+                        {
+                          "def": {
+                            "column": "ay_id",
+                            "length": undefined,
+                            "sort": undefined,
+                          },
+                          "id": "P_INDEX_COLUMN",
+                        },
+                      ],
+                      "name": "xyz",
+                      "reference": {
+                        "def": {
+                          "columns": [
+                            {
+                              "def": {
+                                "column": "xid",
+                                "length": 10,
+                                "sort": "desc",
+                              },
+                              "id": "P_INDEX_COLUMN",
+                            },
+                            {
+                              "def": {
+                                "column": "yid",
+                                "length": undefined,
+                                "sort": undefined,
+                              },
+                              "id": "P_INDEX_COLUMN",
+                            },
+                          ],
+                          "match": "full",
+                          "on": [],
+                          "table": "other",
+                        },
+                        "id": "P_COLUMN_REFERENCE",
+                      },
+                    },
+                    "id": "O_ALTER_TABLE_SPEC",
+                  },
+                },
+                "id": "P_ALTER_TABLE_SPECS",
+              },
+            ],
+            "table": "people",
+          },
+          "id": "P_ALTER_TABLE",
+        },
+        "id": "P_DDS",
+      },
+    ],
+    "id": "MAIN",
+  },
 }
 `;
 
 exports[`Parser: Should alter table adding foreign key with two columns, match and trigger. 1`] = `
-{
-  "id": "MAIN",
-  "def": [
-    {
-      "id": "P_DDS",
-      "def": {
-        "id": "P_ALTER_TABLE",
+ParsedQuerySerializer {
+  "parsed": {
+    "def": [
+      {
         "def": {
-          "table": "people",
-          "specs": [
-            {
-              "id": "P_ALTER_TABLE_SPECS",
-              "def": {
-                "spec": {
-                  "id": "O_ALTER_TABLE_SPEC",
-                  "def": {
-                    "action": "addForeignKey",
-                    "name": "xyz",
-                    "columns": [
-                      {
-                        "id": "P_INDEX_COLUMN",
+          "def": {
+            "specs": [
+              {
+                "def": {
+                  "spec": {
+                    "def": {
+                      "action": "addForeignKey",
+                      "columns": [
+                        {
+                          "def": {
+                            "column": "ax_id",
+                            "length": 20,
+                            "sort": "asc",
+                          },
+                          "id": "P_INDEX_COLUMN",
+                        },
+                        {
+                          "def": {
+                            "column": "ay_id",
+                            "length": undefined,
+                            "sort": undefined,
+                          },
+                          "id": "P_INDEX_COLUMN",
+                        },
+                      ],
+                      "name": "xyz",
+                      "reference": {
                         "def": {
-                          "column": "ax_id",
-                          "length": 20,
-                          "sort": "asc"
-                        }
+                          "columns": [
+                            {
+                              "def": {
+                                "column": "xid",
+                                "length": 10,
+                                "sort": "desc",
+                              },
+                              "id": "P_INDEX_COLUMN",
+                            },
+                            {
+                              "def": {
+                                "column": "yid",
+                                "length": undefined,
+                                "sort": undefined,
+                              },
+                              "id": "P_INDEX_COLUMN",
+                            },
+                          ],
+                          "match": "full",
+                          "on": [
+                            {
+                              "action": "set null",
+                              "trigger": "delete",
+                            },
+                            {
+                              "action": "no action",
+                              "trigger": "update",
+                            },
+                            {
+                              "action": "cascade",
+                              "trigger": "delete",
+                            },
+                          ],
+                          "table": "other",
+                        },
+                        "id": "P_COLUMN_REFERENCE",
                       },
-                      {
-                        "id": "P_INDEX_COLUMN",
-                        "def": {
-                          "column": "ay_id"
-                        }
-                      }
-                    ],
-                    "reference": {
-                      "id": "P_COLUMN_REFERENCE",
-                      "def": {
-                        "table": "other",
-                        "columns": [
-                          {
-                            "id": "P_INDEX_COLUMN",
-                            "def": {
-                              "column": "xid",
-                              "length": 10,
-                              "sort": "desc"
-                            }
-                          },
-                          {
-                            "id": "P_INDEX_COLUMN",
-                            "def": {
-                              "column": "yid"
-                            }
-                          }
-                        ],
-                        "match": "full",
-                        "on": [
-                          {
-                            "trigger": "delete",
-                            "action": "set null"
-                          },
-                          {
-                            "trigger": "update",
-                            "action": "no action"
-                          },
-                          {
-                            "trigger": "delete",
-                            "action": "cascade"
-                          }
-                        ]
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          ]
-        }
-      }
-    }
-  ]
+                    },
+                    "id": "O_ALTER_TABLE_SPEC",
+                  },
+                },
+                "id": "P_ALTER_TABLE_SPECS",
+              },
+            ],
+            "table": "people",
+          },
+          "id": "P_ALTER_TABLE",
+        },
+        "id": "P_DDS",
+      },
+    ],
+    "id": "MAIN",
+  },
 }
 `;
 
 exports[`Parser: Should alter table adding foreign key with unnamed constraint and key. 1`] = `
-{
-  "id": "MAIN",
-  "def": [
-    {
-      "id": "P_DDS",
-      "def": {
-        "id": "P_ALTER_TABLE",
+ParsedQuerySerializer {
+  "parsed": {
+    "def": [
+      {
         "def": {
-          "table": "people",
-          "specs": [
-            {
-              "id": "P_ALTER_TABLE_SPECS",
-              "def": {
-                "spec": {
-                  "id": "O_ALTER_TABLE_SPEC",
-                  "def": {
-                    "action": "addForeignKey",
-                    "name": null,
-                    "columns": [
-                      {
-                        "id": "P_INDEX_COLUMN",
+          "def": {
+            "specs": [
+              {
+                "def": {
+                  "spec": {
+                    "def": {
+                      "action": "addForeignKey",
+                      "columns": [
+                        {
+                          "def": {
+                            "column": "o_id",
+                            "length": undefined,
+                            "sort": undefined,
+                          },
+                          "id": "P_INDEX_COLUMN",
+                        },
+                      ],
+                      "name": null,
+                      "reference": {
                         "def": {
-                          "column": "o_id"
-                        }
-                      }
-                    ],
-                    "reference": {
-                      "id": "P_COLUMN_REFERENCE",
-                      "def": {
-                        "table": "other",
-                        "columns": [
-                          {
-                            "id": "P_INDEX_COLUMN",
-                            "def": {
-                              "column": "id"
-                            }
-                          }
-                        ],
-                        "match": null,
-                        "on": []
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          ]
-        }
-      }
-    }
-  ]
+                          "columns": [
+                            {
+                              "def": {
+                                "column": "id",
+                                "length": undefined,
+                                "sort": undefined,
+                              },
+                              "id": "P_INDEX_COLUMN",
+                            },
+                          ],
+                          "match": null,
+                          "on": [],
+                          "table": "other",
+                        },
+                        "id": "P_COLUMN_REFERENCE",
+                      },
+                    },
+                    "id": "O_ALTER_TABLE_SPEC",
+                  },
+                },
+                "id": "P_ALTER_TABLE_SPECS",
+              },
+            ],
+            "table": "people",
+          },
+          "id": "P_ALTER_TABLE",
+        },
+        "id": "P_DDS",
+      },
+    ],
+    "id": "MAIN",
+  },
 }
 `;
 
 exports[`Parser: Should alter table adding foreign key with unnamed constraint. 1`] = `
-{
-  "id": "MAIN",
-  "def": [
-    {
-      "id": "P_DDS",
-      "def": {
-        "id": "P_ALTER_TABLE",
+ParsedQuerySerializer {
+  "parsed": {
+    "def": [
+      {
         "def": {
-          "table": "people",
-          "specs": [
-            {
-              "id": "P_ALTER_TABLE_SPECS",
-              "def": {
-                "spec": {
-                  "id": "O_ALTER_TABLE_SPEC",
-                  "def": {
-                    "action": "addForeignKey",
-                    "name": null,
-                    "columns": [
-                      {
-                        "id": "P_INDEX_COLUMN",
+          "def": {
+            "specs": [
+              {
+                "def": {
+                  "spec": {
+                    "def": {
+                      "action": "addForeignKey",
+                      "columns": [
+                        {
+                          "def": {
+                            "column": "o_id",
+                            "length": undefined,
+                            "sort": undefined,
+                          },
+                          "id": "P_INDEX_COLUMN",
+                        },
+                      ],
+                      "name": null,
+                      "reference": {
                         "def": {
-                          "column": "o_id"
-                        }
-                      }
-                    ],
-                    "reference": {
-                      "id": "P_COLUMN_REFERENCE",
-                      "def": {
-                        "table": "other",
-                        "columns": [
-                          {
-                            "id": "P_INDEX_COLUMN",
-                            "def": {
-                              "column": "id"
-                            }
-                          }
-                        ],
-                        "match": null,
-                        "on": []
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          ]
-        }
-      }
-    }
-  ]
+                          "columns": [
+                            {
+                              "def": {
+                                "column": "id",
+                                "length": undefined,
+                                "sort": undefined,
+                              },
+                              "id": "P_INDEX_COLUMN",
+                            },
+                          ],
+                          "match": null,
+                          "on": [],
+                          "table": "other",
+                        },
+                        "id": "P_COLUMN_REFERENCE",
+                      },
+                    },
+                    "id": "O_ALTER_TABLE_SPEC",
+                  },
+                },
+                "id": "P_ALTER_TABLE_SPECS",
+              },
+            ],
+            "table": "people",
+          },
+          "id": "P_ALTER_TABLE",
+        },
+        "id": "P_DDS",
+      },
+    ],
+    "id": "MAIN",
+  },
 }
 `;
 
 exports[`Parser: Should alter table adding foreign key with unnamed constraint. 2`] = `
-{
-  "id": "MAIN",
-  "def": [
-    {
-      "id": "P_DDS",
-      "def": {
-        "id": "P_ALTER_TABLE",
+ParsedQuerySerializer {
+  "parsed": {
+    "def": [
+      {
         "def": {
-          "table": "people",
-          "specs": [
-            {
-              "id": "P_ALTER_TABLE_SPECS",
-              "def": {
-                "spec": {
-                  "id": "O_ALTER_TABLE_SPEC",
-                  "def": {
-                    "action": "addForeignKey",
-                    "name": null,
-                    "columns": [
-                      {
-                        "id": "P_INDEX_COLUMN",
+          "def": {
+            "specs": [
+              {
+                "def": {
+                  "spec": {
+                    "def": {
+                      "action": "addForeignKey",
+                      "columns": [
+                        {
+                          "def": {
+                            "column": "o_id",
+                            "length": undefined,
+                            "sort": undefined,
+                          },
+                          "id": "P_INDEX_COLUMN",
+                        },
+                      ],
+                      "name": null,
+                      "reference": {
                         "def": {
-                          "column": "o_id"
-                        }
-                      }
-                    ],
-                    "reference": {
-                      "id": "P_COLUMN_REFERENCE",
-                      "def": {
-                        "table": "other",
-                        "columns": [
-                          {
-                            "id": "P_INDEX_COLUMN",
-                            "def": {
-                              "column": "id"
-                            }
-                          }
-                        ],
-                        "match": null,
-                        "on": []
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          ]
-        }
-      }
-    }
-  ]
+                          "columns": [
+                            {
+                              "def": {
+                                "column": "id",
+                                "length": undefined,
+                                "sort": undefined,
+                              },
+                              "id": "P_INDEX_COLUMN",
+                            },
+                          ],
+                          "match": null,
+                          "on": [],
+                          "table": "other",
+                        },
+                        "id": "P_COLUMN_REFERENCE",
+                      },
+                    },
+                    "id": "O_ALTER_TABLE_SPEC",
+                  },
+                },
+                "id": "P_ALTER_TABLE_SPECS",
+              },
+            ],
+            "table": "people",
+          },
+          "id": "P_ALTER_TABLE",
+        },
+        "id": "P_DDS",
+      },
+    ],
+    "id": "MAIN",
+  },
 }
 `;
 
 exports[`Parser: Should alter table adding foreign key with unnamed key. 1`] = `
-{
-  "id": "MAIN",
-  "def": [
-    {
-      "id": "P_DDS",
-      "def": {
-        "id": "P_ALTER_TABLE",
+ParsedQuerySerializer {
+  "parsed": {
+    "def": [
+      {
         "def": {
-          "table": "people",
-          "specs": [
-            {
-              "id": "P_ALTER_TABLE_SPECS",
-              "def": {
-                "spec": {
-                  "id": "O_ALTER_TABLE_SPEC",
-                  "def": {
-                    "action": "addForeignKey",
-                    "name": "xyz",
-                    "columns": [
-                      {
-                        "id": "P_INDEX_COLUMN",
+          "def": {
+            "specs": [
+              {
+                "def": {
+                  "spec": {
+                    "def": {
+                      "action": "addForeignKey",
+                      "columns": [
+                        {
+                          "def": {
+                            "column": "o_id",
+                            "length": undefined,
+                            "sort": undefined,
+                          },
+                          "id": "P_INDEX_COLUMN",
+                        },
+                      ],
+                      "name": "xyz",
+                      "reference": {
                         "def": {
-                          "column": "o_id"
-                        }
-                      }
-                    ],
-                    "reference": {
-                      "id": "P_COLUMN_REFERENCE",
-                      "def": {
-                        "table": "other",
-                        "columns": [
-                          {
-                            "id": "P_INDEX_COLUMN",
-                            "def": {
-                              "column": "id"
-                            }
-                          }
-                        ],
-                        "match": null,
-                        "on": []
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          ]
-        }
-      }
-    }
-  ]
+                          "columns": [
+                            {
+                              "def": {
+                                "column": "id",
+                                "length": undefined,
+                                "sort": undefined,
+                              },
+                              "id": "P_INDEX_COLUMN",
+                            },
+                          ],
+                          "match": null,
+                          "on": [],
+                          "table": "other",
+                        },
+                        "id": "P_COLUMN_REFERENCE",
+                      },
+                    },
+                    "id": "O_ALTER_TABLE_SPEC",
+                  },
+                },
+                "id": "P_ALTER_TABLE_SPECS",
+              },
+            ],
+            "table": "people",
+          },
+          "id": "P_ALTER_TABLE",
+        },
+        "id": "P_DDS",
+      },
+    ],
+    "id": "MAIN",
+  },
 }
 `;
 
 exports[`Parser: Should alter table dropping foreign key. 1`] = `
-{
-  "id": "MAIN",
-  "def": [
-    {
-      "id": "P_DDS",
-      "def": {
-        "id": "P_ALTER_TABLE",
+ParsedQuerySerializer {
+  "parsed": {
+    "def": [
+      {
         "def": {
-          "table": "people",
-          "specs": [
-            {
-              "id": "P_ALTER_TABLE_SPECS",
-              "def": {
-                "spec": {
-                  "id": "O_ALTER_TABLE_SPEC",
-                  "def": {
-                    "action": "dropForeignKey",
-                    "key": "fk_oid"
-                  }
-                }
-              }
-            }
-          ]
-        }
-      }
-    }
-  ]
+          "def": {
+            "specs": [
+              {
+                "def": {
+                  "spec": {
+                    "def": {
+                      "action": "dropForeignKey",
+                      "key": "fk_oid",
+                    },
+                    "id": "O_ALTER_TABLE_SPEC",
+                  },
+                },
+                "id": "P_ALTER_TABLE_SPECS",
+              },
+            ],
+            "table": "people",
+          },
+          "id": "P_ALTER_TABLE",
+        },
+        "id": "P_DDS",
+      },
+    ],
+    "id": "MAIN",
+  },
 }
 `;

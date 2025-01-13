@@ -171,7 +171,8 @@ describe('Parser', () => {
         parser.results;
         done.fail('Should have thrown error');
       } catch (e) {
-        expect((e.message.match(/\d+/) || [])[0]).toStrictEqual('9');
+        const error = e as Error;
+        expect((error.message.match(/\d+/) || [])[0]).toStrictEqual('9');
       }
 
       parser.feed(
@@ -191,7 +192,8 @@ describe('Parser', () => {
         parser.results;
         done.fail('Should have thrown error');
       } catch (e) {
-        expect((e.message.match(/\d+/) || [])[0]).toStrictEqual('3');
+        const error = e as Error;
+        expect((error.message.match(/\d+/) || [])[0]).toStrictEqual('3');
       }
 
       parser.feed('CREATE TABLE A (A bool);\n\r\r\n');
@@ -202,8 +204,9 @@ describe('Parser', () => {
         parser.results;
         done.fail('Should have thrown error');
       } catch (e) {
+        const error = e as Error;
         // should be actually '5', but nearley or lexer gives wrong number as it does not count \r.
-        expect((e.message.match(/\d+/) || [])[0]).toStrictEqual('4');
+        expect((error.message.match(/\d+/) || [])[0]).toStrictEqual('4');
       }
 
       done();

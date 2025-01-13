@@ -4,9 +4,4 @@ module.exports = {
   testEnvironment: 'node',
   coveragePathIgnorePatterns: ['/tests/'],
   watchPathIgnorePatterns: ['__snapshots__'],
-  globals: {
-    'ts-jest': {
-      tsconfig: '<rootDir>/tsconfig.json',
-    },
-  },
 };

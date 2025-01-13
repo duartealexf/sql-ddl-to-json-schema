@@ -1,194 +1,208 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Parser: Should drop index with algorithm option. 1`] = `
-{
-  "id": "MAIN",
-  "def": [
-    {
-      "id": "P_DDS",
-      "def": {
-        "id": "P_DROP_INDEX",
+ParsedQuerySerializer {
+  "parsed": {
+    "def": [
+      {
         "def": {
-          "index": "i_oid",
-          "table": "people",
-          "options": [
-            {
-              "id": "P_INDEX_ALGORITHM_OPTION",
-              "def": {
-                "algorithm": "default"
-              }
-            },
-            {
-              "id": "P_LOCK_OPTION",
-              "def": {
-                "lock": "none"
-              }
-            }
-          ]
-        }
-      }
-    }
-  ]
+          "def": {
+            "index": "i_oid",
+            "options": [
+              {
+                "def": {
+                  "algorithm": "default",
+                },
+                "id": "P_INDEX_ALGORITHM_OPTION",
+              },
+              {
+                "def": {
+                  "lock": "none",
+                },
+                "id": "P_LOCK_OPTION",
+              },
+            ],
+            "table": "people",
+          },
+          "id": "P_DROP_INDEX",
+        },
+        "id": "P_DDS",
+      },
+    ],
+    "id": "MAIN",
+  },
 }
 `;
 
 exports[`Parser: Should drop index with algorithm option. 2`] = `
-{
-  "id": "MAIN",
-  "def": [
-    {
-      "id": "P_DDS",
-      "def": {
-        "id": "P_DROP_INDEX",
+ParsedQuerySerializer {
+  "parsed": {
+    "def": [
+      {
         "def": {
-          "index": "i_oid",
-          "table": "people",
-          "options": [
-            {
-              "id": "P_INDEX_ALGORITHM_OPTION",
-              "def": {
-                "algorithm": "default"
-              }
-            },
-            {
-              "id": "P_LOCK_OPTION",
-              "def": {
-                "lock": "none"
-              }
-            }
-          ]
-        }
-      }
-    }
-  ]
+          "def": {
+            "index": "i_oid",
+            "options": [
+              {
+                "def": {
+                  "algorithm": "default",
+                },
+                "id": "P_INDEX_ALGORITHM_OPTION",
+              },
+              {
+                "def": {
+                  "lock": "none",
+                },
+                "id": "P_LOCK_OPTION",
+              },
+            ],
+            "table": "people",
+          },
+          "id": "P_DROP_INDEX",
+        },
+        "id": "P_DDS",
+      },
+    ],
+    "id": "MAIN",
+  },
 }
 `;
 
 exports[`Parser: Should drop index with algorithm option. 3`] = `
-{
-  "id": "MAIN",
-  "def": [
-    {
-      "id": "P_DDS",
-      "def": {
-        "id": "P_DROP_INDEX",
+ParsedQuerySerializer {
+  "parsed": {
+    "def": [
+      {
         "def": {
-          "index": "i_oid",
-          "table": "people",
-          "options": [
-            {
-              "id": "P_INDEX_ALGORITHM_OPTION",
-              "def": {
-                "algorithm": "default"
-              }
-            },
-            {
-              "id": "P_LOCK_OPTION",
-              "def": {
-                "lock": "none"
-              }
-            }
-          ]
-        }
-      }
-    }
-  ]
+          "def": {
+            "index": "i_oid",
+            "options": [
+              {
+                "def": {
+                  "algorithm": "default",
+                },
+                "id": "P_INDEX_ALGORITHM_OPTION",
+              },
+              {
+                "def": {
+                  "lock": "none",
+                },
+                "id": "P_LOCK_OPTION",
+              },
+            ],
+            "table": "people",
+          },
+          "id": "P_DROP_INDEX",
+        },
+        "id": "P_DDS",
+      },
+    ],
+    "id": "MAIN",
+  },
 }
 `;
 
 exports[`Parser: Should drop index with lock option 1`] = `
-{
-  "id": "MAIN",
-  "def": [
-    {
-      "id": "P_DDS",
-      "def": {
-        "id": "P_DROP_INDEX",
+ParsedQuerySerializer {
+  "parsed": {
+    "def": [
+      {
         "def": {
-          "index": "i_oid",
-          "table": "people",
-          "options": [
-            {
-              "id": "P_LOCK_OPTION",
-              "def": {
-                "lock": "default"
-              }
-            }
-          ]
-        }
-      }
-    }
-  ]
+          "def": {
+            "index": "i_oid",
+            "options": [
+              {
+                "def": {
+                  "lock": "default",
+                },
+                "id": "P_LOCK_OPTION",
+              },
+            ],
+            "table": "people",
+          },
+          "id": "P_DROP_INDEX",
+        },
+        "id": "P_DDS",
+      },
+    ],
+    "id": "MAIN",
+  },
 }
 `;
 
 exports[`Parser: Should drop index with lock option 2`] = `
-{
-  "id": "MAIN",
-  "def": [
-    {
-      "id": "P_DDS",
-      "def": {
-        "id": "P_DROP_INDEX",
+ParsedQuerySerializer {
+  "parsed": {
+    "def": [
+      {
         "def": {
-          "index": "i_oid",
-          "table": "people",
-          "options": [
-            {
-              "id": "P_LOCK_OPTION",
-              "def": {
-                "lock": "default"
-              }
-            }
-          ]
-        }
-      }
-    }
-  ]
+          "def": {
+            "index": "i_oid",
+            "options": [
+              {
+                "def": {
+                  "lock": "default",
+                },
+                "id": "P_LOCK_OPTION",
+              },
+            ],
+            "table": "people",
+          },
+          "id": "P_DROP_INDEX",
+        },
+        "id": "P_DDS",
+      },
+    ],
+    "id": "MAIN",
+  },
 }
 `;
 
 exports[`Parser: Should drop index with lock option 3`] = `
-{
-  "id": "MAIN",
-  "def": [
-    {
-      "id": "P_DDS",
-      "def": {
-        "id": "P_DROP_INDEX",
+ParsedQuerySerializer {
+  "parsed": {
+    "def": [
+      {
         "def": {
-          "index": "i_oid",
-          "table": "people",
-          "options": [
-            {
-              "id": "P_LOCK_OPTION",
-              "def": {
-                "lock": "default"
-              }
-            }
-          ]
-        }
-      }
-    }
-  ]
+          "def": {
+            "index": "i_oid",
+            "options": [
+              {
+                "def": {
+                  "lock": "default",
+                },
+                "id": "P_LOCK_OPTION",
+              },
+            ],
+            "table": "people",
+          },
+          "id": "P_DROP_INDEX",
+        },
+        "id": "P_DDS",
+      },
+    ],
+    "id": "MAIN",
+  },
 }
 `;
 
 exports[`Parser: Should drop index. 1`] = `
-{
-  "id": "MAIN",
-  "def": [
-    {
-      "id": "P_DDS",
-      "def": {
-        "id": "P_DROP_INDEX",
+ParsedQuerySerializer {
+  "parsed": {
+    "def": [
+      {
         "def": {
-          "index": "i_oid",
-          "table": "people",
-          "options": []
-        }
-      }
-    }
-  ]
+          "def": {
+            "index": "i_oid",
+            "options": [],
+            "table": "people",
+          },
+          "id": "P_DROP_INDEX",
+        },
+        "id": "P_DDS",
+      },
+    ],
+    "id": "MAIN",
+  },
 }
 `;

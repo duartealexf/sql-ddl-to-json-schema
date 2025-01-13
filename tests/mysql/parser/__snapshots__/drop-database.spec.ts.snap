@@ -1,61 +1,69 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Parser: Should drop test database 1`] = `
-{
-  "id": "MAIN",
-  "def": [
-    {
-      "id": "P_DDS",
-      "def": {
-        "id": "P_DROP_DB",
-        "def": "test"
-      }
-    }
-  ]
+ParsedQuerySerializer {
+  "parsed": {
+    "def": [
+      {
+        "def": {
+          "def": "test",
+          "id": "P_DROP_DB",
+        },
+        "id": "P_DDS",
+      },
+    ],
+    "id": "MAIN",
+  },
 }
 `;
 
 exports[`Parser: Should drop test database 2`] = `
-{
-  "id": "MAIN",
-  "def": [
-    {
-      "id": "P_DDS",
-      "def": {
-        "id": "P_DROP_DB",
-        "def": "test"
-      }
-    }
-  ]
+ParsedQuerySerializer {
+  "parsed": {
+    "def": [
+      {
+        "def": {
+          "def": "test",
+          "id": "P_DROP_DB",
+        },
+        "id": "P_DDS",
+      },
+    ],
+    "id": "MAIN",
+  },
 }
 `;
 
 exports[`Parser: Should drop test database 3`] = `
-{
-  "id": "MAIN",
-  "def": [
-    {
-      "id": "P_DDS",
-      "def": {
-        "id": "P_DROP_DB",
-        "def": "test"
-      }
-    }
-  ]
+ParsedQuerySerializer {
+  "parsed": {
+    "def": [
+      {
+        "def": {
+          "def": "test",
+          "id": "P_DROP_DB",
+        },
+        "id": "P_DDS",
+      },
+    ],
+    "id": "MAIN",
+  },
 }
 `;
 
 exports[`Parser: Should drop test database 4`] = `
-{
-  "id": "MAIN",
-  "def": [
-    {
-      "id": "P_DDS",
-      "def": {
-        "id": "P_DROP_DB",
-        "def": "test"
-      }
-    }
-  ]
+ParsedQuerySerializer {
+  "parsed": {
+    "def": [
+      {
+        "def": {
+          "def": "test",
+          "id": "P_DROP_DB",
+        },
+        "id": "P_DDS",
+      },
+    ],
+    "id": "MAIN",
+  },
 }
 `;

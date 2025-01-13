@@ -1,845 +1,847 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Compact formatter: Should drop a unique index. 1`] = `
-[
-  {
-    "name": "person",
-    "columns": [
-      {
-        "name": "id",
-        "type": {
-          "datatype": "int",
-          "displayWidth": 10
-        },
-        "options": {
-          "unsigned": true,
-          "zerofill": true,
-          "nullable": false,
-          "autoincrement": true,
-          "comment": "primary key test"
-        }
-      },
-      {
-        "name": "name",
-        "type": {
-          "datatype": "text",
-          "length": 65535
-        },
-        "options": {
-          "charset": "utf8",
-          "collation": "utf8_general_ci",
-          "nullable": false,
-          "default": "Jane \\"Doe\\" O\`neil"
-        }
-      },
-      {
-        "name": "nickname",
-        "type": {
-          "datatype": "varchar",
-          "length": 20
-        },
-        "options": {
-          "nullable": true,
-          "default": "J"
-        }
-      },
-      {
-        "name": "binarynickname",
-        "type": {
-          "datatype": "varchar",
-          "length": 20,
-          "binaryCollation": true
-        },
-        "options": {
-          "nullable": false
-        }
-      },
-      {
-        "name": "ssn",
-        "type": {
-          "datatype": "smallint"
-        },
-        "options": {
-          "nullable": true,
-          "invisibleWithSystemVersioning": true
-        }
-      },
-      {
-        "name": "height",
-        "type": {
-          "datatype": "decimal",
-          "digits": 10,
-          "decimals": 0
-        },
-        "options": {
-          "nullable": true
-        }
-      },
-      {
-        "name": "weight",
-        "type": {
-          "datatype": "decimal",
-          "digits": 3,
-          "decimals": 0
-        },
-        "options": {
-          "nullable": true
-        }
-      },
-      {
-        "name": "status",
-        "type": {
-          "datatype": "bit",
-          "length": 1
-        },
-        "options": {
-          "nullable": true,
-          "invisibleWithoutSystemVersioning": true
-        }
-      },
-      {
-        "name": "dob",
-        "type": {
-          "datatype": "date",
-          "fractional": 0
-        },
-        "options": {
-          "nullable": true,
-          "invisible": true
-        }
-      },
-      {
-        "name": "tob",
-        "type": {
-          "datatype": "time",
-          "fractional": 3
-        },
-        "options": {
-          "nullable": true
-        }
-      },
-      {
-        "name": "initials",
-        "type": {
-          "datatype": "char",
-          "length": 3
-        },
-        "options": {
-          "nullable": true,
-          "format": "fixed"
-        }
-      },
-      {
-        "name": "prefix",
-        "type": {
-          "datatype": "char",
-          "length": 3
-        },
-        "options": {
-          "nullable": true,
-          "format": "fixed"
-        }
-      },
-      {
-        "name": "suffix",
-        "type": {
-          "datatype": "char",
-          "length": 1
-        },
-        "options": {
-          "nullable": true,
-          "format": "fixed"
-        }
-      },
-      {
-        "name": "nsuffix",
-        "type": {
-          "datatype": "varchar",
-          "length": 3
-        },
-        "options": {
-          "nullable": true
-        }
-      },
-      {
-        "name": "sequence",
-        "type": {
-          "datatype": "varbinary",
-          "length": 20
-        },
-        "options": {
-          "nullable": true,
-          "storage": "disk"
-        }
-      },
-      {
-        "name": "avatar",
-        "type": {
-          "datatype": "blob",
-          "length": 65535
-        },
-        "options": {
-          "nullable": true
-        }
-      },
-      {
-        "name": "motto",
-        "type": {
-          "datatype": "text",
-          "length": 50
-        },
-        "options": {
-          "nullable": true
-        }
-      },
-      {
-        "name": "history",
-        "type": {
-          "datatype": "text",
-          "length": 255
-        },
-        "options": {
-          "nullable": true
-        }
-      },
-      {
-        "name": "gender",
-        "type": {
-          "datatype": "enum",
-          "values": [
-            "M",
-            "F"
-          ]
-        },
-        "options": {
-          "nullable": true
-        }
-      },
-      {
-        "name": "shape",
-        "type": {
-          "datatype": "multipoint"
-        },
-        "options": {
-          "nullable": true
-        }
-      },
-      {
-        "name": "pattern",
-        "type": {
-          "datatype": "multilinestring"
-        },
-        "options": {
-          "nullable": true
-        }
-      }
-    ],
-    "primaryKey": {
+ParsedQuerySerializer {
+  "parsed": [
+    {
       "columns": [
         {
-          "column": "id"
-        }
-      ]
-    },
-    "uniqueKeys": [
-      {
-        "columns": [
-          {
-            "column": "ssn"
-          }
-        ]
-      }
-    ],
-    "fulltextIndexes": [
-      {
-        "columns": [
-          {
-            "column": "initials"
-          }
-        ],
-        "name": "fi_initials"
-      }
-    ],
-    "options": {
-      "autoincrement": 2,
-      "avgRowLength": 250,
-      "charset": "utf8",
-      "checksum": 1,
-      "collation": "utf8_general_ci",
-      "comment": "test table",
-      "compression": "zlib",
-      "engine": "XtraDB",
-      "insertMethod": "last",
-      "union": [
-        "pet"
-      ]
-    }
-  },
-  {
-    "name": "pet",
-    "columns": [
-      {
-        "name": "id",
-        "type": {
-          "datatype": "bigint"
-        },
-        "options": {
-          "nullable": true
-        }
-      },
-      {
-        "name": "species",
-        "type": {
-          "datatype": "varchar",
-          "length": 200
-        },
-        "options": {
-          "nullable": true
-        }
-      },
-      {
-        "name": "owner_id",
-        "type": {
-          "datatype": "mediumint"
-        },
-        "options": {
-          "nullable": true
-        }
-      },
-      {
-        "name": "height",
-        "type": {
-          "datatype": "decimal",
-          "digits": 10,
-          "decimals": 0
-        },
-        "options": {
-          "nullable": true
-        }
-      },
-      {
-        "name": "weight",
-        "type": {
-          "datatype": "decimal",
-          "digits": 4,
-          "decimals": 2
-        },
-        "options": {
-          "nullable": true
-        }
-      },
-      {
-        "name": "status",
-        "type": {
-          "datatype": "bit",
-          "length": 2
-        },
-        "options": {
-          "nullable": true
-        }
-      },
-      {
-        "name": "birth",
-        "type": {
-          "datatype": "datetime",
-          "fractional": 0
-        },
-        "options": {
-          "nullable": true
-        }
-      },
-      {
-        "name": "year",
-        "type": {
-          "datatype": "year",
-          "digits": 2
-        },
-        "options": {
-          "nullable": true
-        }
-      },
-      {
-        "name": "initial",
-        "type": {
-          "datatype": "char",
-          "length": 1
-        },
-        "options": {
-          "nullable": true
-        }
-      },
-      {
-        "name": "avatar",
-        "type": {
-          "datatype": "blob",
-          "length": 255
-        },
-        "options": {
-          "nullable": true
-        }
-      },
-      {
-        "name": "photo",
-        "type": {
-          "datatype": "blob",
-          "length": 16777215
-        },
-        "options": {
-          "nullable": true
-        }
-      },
-      {
-        "name": "history",
-        "type": {
-          "datatype": "text",
-          "length": 16777215
-        },
-        "options": {
-          "nullable": true
-        }
-      },
-      {
-        "name": "gender",
-        "type": {
-          "datatype": "set",
-          "values": [
-            "M",
-            "F"
-          ]
-        },
-        "options": {
-          "nullable": true
-        }
-      },
-      {
-        "name": "intelligent",
-        "type": {
-          "datatype": "set",
-          "values": [
-            "N"
-          ]
-        },
-        "options": {
-          "nullable": true
-        }
-      },
-      {
-        "name": "shape",
-        "type": {
-          "datatype": "polygon"
-        },
-        "options": {
-          "nullable": true
-        }
-      },
-      {
-        "name": "pattern",
-        "type": {
-          "datatype": "multipolygon"
-        },
-        "options": {
-          "nullable": true
-        }
-      },
-      {
-        "name": "unique_id1",
-        "type": {
-          "datatype": "uuid"
-        },
-        "options": {
-          "nullable": false
-        }
-      },
-      {
-        "name": "unique_id2",
-        "type": {
-          "datatype": "uuid"
-        },
-        "options": {
-          "nullable": true,
-          "default": "uuid()"
-        }
-      },
-      {
-        "name": "object",
-        "type": {
-          "datatype": "json"
-        },
-        "options": {
-          "nullable": true
-        }
-      }
-    ],
-    "foreignKeys": [
-      {
-        "columns": [
-          {
-            "column": "owner_id"
-          }
-        ],
-        "reference": {
-          "table": "person",
-          "columns": [
-            {
-              "column": "id",
-              "length": 10,
-              "sort": "asc"
-            }
-          ]
-        }
-      }
-    ],
-    "indexes": [
-      {
-        "columns": [
-          {
-            "column": "height"
+          "name": "id",
+          "options": {
+            "autoincrement": true,
+            "comment": "primary key test",
+            "nullable": false,
+            "unsigned": true,
+            "zerofill": true,
           },
-          {
-            "column": "weight",
-            "length": 2,
-            "sort": "asc"
-          }
-        ],
-        "options": {
-          "comment": "good boy"
+          "type": {
+            "datatype": "int",
+            "displayWidth": 10,
+          },
         },
-        "indexType": "btree",
-        "name": "i_dimensions"
-      },
-      {
-        "columns": [
-          {
-            "column": "birth",
-            "length": 5,
-            "sort": "desc"
-          }
-        ],
-        "options": {
-          "indexType": "btree"
-        },
-        "name": "i_birth"
-      }
-    ],
-    "options": {
-      "connection": "mysql://xyz",
-      "dataDirectory": "/data",
-      "delayKeyWrite": 0,
-      "encryption": "123456",
-      "encryptionKeyId": 2,
-      "ietfQuotes": "no",
-      "insertMethod": "first",
-      "packKeys": 0,
-      "rowFormat": "dynamic",
-      "statsAutoRecalc": 0,
-      "withSystemVersioning": true,
-      "tablespaceName": "abc",
-      "union": [
-        "house",
-        "person"
-      ]
-    }
-  },
-  {
-    "name": "house",
-    "columns": [
-      {
-        "name": "id",
-        "type": {
-          "datatype": "int"
-        },
-        "options": {
-          "nullable": false
-        }
-      },
-      {
-        "name": "pet_id",
-        "type": {
-          "datatype": "tinyint"
-        },
-        "options": {
-          "nullable": true
-        }
-      },
-      {
-        "name": "coordx",
-        "type": {
-          "datatype": "float",
-          "digits": 6,
-          "decimals": 2
-        },
-        "options": {
-          "nullable": true
-        }
-      },
-      {
-        "name": "coordy",
-        "type": {
-          "datatype": "double"
-        },
-        "options": {
-          "nullable": true
-        }
-      },
-      {
-        "name": "letter",
-        "type": {
-          "datatype": "char",
-          "length": 1
-        },
-        "options": {
-          "nullable": true
-        }
-      },
-      {
-        "name": "is_built",
-        "type": {
-          "datatype": "boolean"
-        },
-        "options": {
-          "nullable": true
-        }
-      },
-      {
-        "name": "is_apartment",
-        "type": {
-          "datatype": "boolean"
-        },
-        "options": {
-          "nullable": true
-        }
-      },
-      {
-        "name": "updated_at",
-        "type": {
-          "datatype": "timestamp",
-          "fractional": 0
-        },
-        "options": {
-          "nullable": true
-        }
-      },
-      {
-        "name": "trashed_at",
-        "type": {
-          "datatype": "timestamp",
-          "fractional": 6
-        },
-        "options": {
-          "nullable": true,
-          "default": "CURRENT_TIMESTAMP(6)",
-          "onUpdate": "CURRENT_TIMESTAMP(6)"
-        }
-      },
-      {
-        "name": "visited_at",
-        "type": {
-          "datatype": "timestamp",
-          "fractional": 0
-        },
-        "options": {
-          "nullable": true,
-          "default": "CURRENT_TIMESTAMP()"
-        }
-      },
-      {
-        "name": "year",
-        "type": {
-          "datatype": "year",
-          "digits": 4
-        },
-        "options": {
-          "nullable": true
-        }
-      },
-      {
-        "name": "sequence",
-        "type": {
-          "datatype": "binary",
-          "length": 1
-        },
-        "options": {
-          "nullable": true,
-          "default": "b'00101'"
-        }
-      },
-      {
-        "name": "photo",
-        "type": {
-          "datatype": "blob",
-          "length": 4294967295
-        },
-        "options": {
-          "nullable": true
-        }
-      },
-      {
-        "name": "history",
-        "type": {
-          "datatype": "text",
-          "length": 4294967295
-        },
-        "options": {
-          "nullable": true
-        }
-      },
-      {
-        "name": "gender",
-        "type": {
-          "datatype": "enum",
-          "values": [
-            "X"
-          ]
-        },
-        "options": {
-          "nullable": true
-        }
-      },
-      {
-        "name": "size",
-        "type": {
-          "datatype": "geometry"
-        },
-        "options": {
-          "nullable": true
-        }
-      },
-      {
-        "name": "where",
-        "type": {
-          "datatype": "point"
-        },
-        "options": {
-          "nullable": true
-        }
-      },
-      {
-        "name": "street",
-        "type": {
-          "datatype": "linestring"
-        },
-        "options": {
-          "nullable": true
-        }
-      },
-      {
-        "name": "neighbors",
-        "type": {
-          "datatype": "multipolygon"
-        },
-        "options": {
-          "nullable": true
-        }
-      },
-      {
-        "name": "city",
-        "type": {
-          "datatype": "geometrycollection"
-        },
-        "options": {
-          "nullable": true
-        }
-      }
-    ],
-    "primaryKey": {
-      "columns": [
         {
-          "column": "id",
-          "length": 8,
-          "sort": "asc"
-        }
+          "name": "name",
+          "options": {
+            "charset": "utf8",
+            "collation": "utf8_general_ci",
+            "default": "Jane "Doe" O\`neil",
+            "nullable": false,
+          },
+          "type": {
+            "datatype": "text",
+            "length": 65535,
+          },
+        },
+        {
+          "name": "nickname",
+          "options": {
+            "default": "J",
+            "nullable": true,
+          },
+          "type": {
+            "datatype": "varchar",
+            "length": 20,
+          },
+        },
+        {
+          "name": "binarynickname",
+          "options": {
+            "nullable": false,
+          },
+          "type": {
+            "binaryCollation": true,
+            "datatype": "varchar",
+            "length": 20,
+          },
+        },
+        {
+          "name": "ssn",
+          "options": {
+            "invisibleWithSystemVersioning": true,
+            "nullable": true,
+          },
+          "type": {
+            "datatype": "smallint",
+          },
+        },
+        {
+          "name": "height",
+          "options": {
+            "nullable": true,
+          },
+          "type": {
+            "datatype": "decimal",
+            "decimals": 0,
+            "digits": 10,
+          },
+        },
+        {
+          "name": "weight",
+          "options": {
+            "nullable": true,
+          },
+          "type": {
+            "datatype": "decimal",
+            "decimals": 0,
+            "digits": 3,
+          },
+        },
+        {
+          "name": "status",
+          "options": {
+            "invisibleWithoutSystemVersioning": true,
+            "nullable": true,
+          },
+          "type": {
+            "datatype": "bit",
+            "length": 1,
+          },
+        },
+        {
+          "name": "dob",
+          "options": {
+            "invisible": true,
+            "nullable": true,
+          },
+          "type": {
+            "datatype": "date",
+            "fractional": 0,
+          },
+        },
+        {
+          "name": "tob",
+          "options": {
+            "nullable": true,
+          },
+          "type": {
+            "datatype": "time",
+            "fractional": 3,
+          },
+        },
+        {
+          "name": "initials",
+          "options": {
+            "format": "fixed",
+            "nullable": true,
+          },
+          "type": {
+            "datatype": "char",
+            "length": 3,
+          },
+        },
+        {
+          "name": "prefix",
+          "options": {
+            "format": "fixed",
+            "nullable": true,
+          },
+          "type": {
+            "datatype": "char",
+            "length": 3,
+          },
+        },
+        {
+          "name": "suffix",
+          "options": {
+            "format": "fixed",
+            "nullable": true,
+          },
+          "type": {
+            "datatype": "char",
+            "length": 1,
+          },
+        },
+        {
+          "name": "nsuffix",
+          "options": {
+            "nullable": true,
+          },
+          "type": {
+            "datatype": "varchar",
+            "length": 3,
+          },
+        },
+        {
+          "name": "sequence",
+          "options": {
+            "nullable": true,
+            "storage": "disk",
+          },
+          "type": {
+            "datatype": "varbinary",
+            "length": 20,
+          },
+        },
+        {
+          "name": "avatar",
+          "options": {
+            "nullable": true,
+          },
+          "type": {
+            "datatype": "blob",
+            "length": 65535,
+          },
+        },
+        {
+          "name": "motto",
+          "options": {
+            "nullable": true,
+          },
+          "type": {
+            "datatype": "text",
+            "length": 50,
+          },
+        },
+        {
+          "name": "history",
+          "options": {
+            "nullable": true,
+          },
+          "type": {
+            "datatype": "text",
+            "length": 255,
+          },
+        },
+        {
+          "name": "gender",
+          "options": {
+            "nullable": true,
+          },
+          "type": {
+            "datatype": "enum",
+            "values": [
+              "M",
+              "F",
+            ],
+          },
+        },
+        {
+          "name": "shape",
+          "options": {
+            "nullable": true,
+          },
+          "type": {
+            "datatype": "multipoint",
+          },
+        },
+        {
+          "name": "pattern",
+          "options": {
+            "nullable": true,
+          },
+          "type": {
+            "datatype": "multilinestring",
+          },
+        },
       ],
-      "name": "pk_id",
-      "options": {
-        "keyBlockSize": 1024,
-        "indexType": "hash",
-        "comment": "complex test",
-        "parser": "myParser"
-      },
-      "indexType": "hash"
-    },
-    "foreignKeys": [
-      {
-        "columns": [
-          {
-            "column": "size"
-          }
-        ],
-        "reference": {
-          "table": "pet",
-          "match": "full",
-          "on": [
-            {
-              "trigger": "delete",
-              "action": "set null"
-            },
-            {
-              "trigger": "update",
-              "action": "set default"
-            }
-          ],
+      "fulltextIndexes": [
+        {
           "columns": [
             {
-              "column": "height"
+              "column": "initials",
+            },
+          ],
+          "name": "fi_initials",
+        },
+      ],
+      "name": "person",
+      "options": {
+        "autoincrement": 2,
+        "avgRowLength": 250,
+        "charset": "utf8",
+        "checksum": 1,
+        "collation": "utf8_general_ci",
+        "comment": "test table",
+        "compression": "zlib",
+        "engine": "XtraDB",
+        "insertMethod": "last",
+        "union": [
+          "pet",
+        ],
+      },
+      "primaryKey": {
+        "columns": [
+          {
+            "column": "id",
+          },
+        ],
+      },
+      "uniqueKeys": [
+        {
+          "columns": [
+            {
+              "column": "ssn",
+            },
+          ],
+        },
+      ],
+    },
+    {
+      "columns": [
+        {
+          "name": "id",
+          "options": {
+            "nullable": true,
+          },
+          "type": {
+            "datatype": "bigint",
+          },
+        },
+        {
+          "name": "species",
+          "options": {
+            "nullable": true,
+          },
+          "type": {
+            "datatype": "varchar",
+            "length": 200,
+          },
+        },
+        {
+          "name": "owner_id",
+          "options": {
+            "nullable": true,
+          },
+          "type": {
+            "datatype": "mediumint",
+          },
+        },
+        {
+          "name": "height",
+          "options": {
+            "nullable": true,
+          },
+          "type": {
+            "datatype": "decimal",
+            "decimals": 0,
+            "digits": 10,
+          },
+        },
+        {
+          "name": "weight",
+          "options": {
+            "nullable": true,
+          },
+          "type": {
+            "datatype": "decimal",
+            "decimals": 2,
+            "digits": 4,
+          },
+        },
+        {
+          "name": "status",
+          "options": {
+            "nullable": true,
+          },
+          "type": {
+            "datatype": "bit",
+            "length": 2,
+          },
+        },
+        {
+          "name": "birth",
+          "options": {
+            "nullable": true,
+          },
+          "type": {
+            "datatype": "datetime",
+            "fractional": 0,
+          },
+        },
+        {
+          "name": "year",
+          "options": {
+            "nullable": true,
+          },
+          "type": {
+            "datatype": "year",
+            "digits": 2,
+          },
+        },
+        {
+          "name": "initial",
+          "options": {
+            "nullable": true,
+          },
+          "type": {
+            "datatype": "char",
+            "length": 1,
+          },
+        },
+        {
+          "name": "avatar",
+          "options": {
+            "nullable": true,
+          },
+          "type": {
+            "datatype": "blob",
+            "length": 255,
+          },
+        },
+        {
+          "name": "photo",
+          "options": {
+            "nullable": true,
+          },
+          "type": {
+            "datatype": "blob",
+            "length": 16777215,
+          },
+        },
+        {
+          "name": "history",
+          "options": {
+            "nullable": true,
+          },
+          "type": {
+            "datatype": "text",
+            "length": 16777215,
+          },
+        },
+        {
+          "name": "gender",
+          "options": {
+            "nullable": true,
+          },
+          "type": {
+            "datatype": "set",
+            "values": [
+              "M",
+              "F",
+            ],
+          },
+        },
+        {
+          "name": "intelligent",
+          "options": {
+            "nullable": true,
+          },
+          "type": {
+            "datatype": "set",
+            "values": [
+              "N",
+            ],
+          },
+        },
+        {
+          "name": "shape",
+          "options": {
+            "nullable": true,
+          },
+          "type": {
+            "datatype": "polygon",
+          },
+        },
+        {
+          "name": "pattern",
+          "options": {
+            "nullable": true,
+          },
+          "type": {
+            "datatype": "multipolygon",
+          },
+        },
+        {
+          "name": "unique_id1",
+          "options": {
+            "nullable": false,
+          },
+          "type": {
+            "datatype": "uuid",
+          },
+        },
+        {
+          "name": "unique_id2",
+          "options": {
+            "default": "uuid()",
+            "nullable": true,
+          },
+          "type": {
+            "datatype": "uuid",
+          },
+        },
+        {
+          "name": "object",
+          "options": {
+            "nullable": true,
+          },
+          "type": {
+            "datatype": "json",
+          },
+        },
+      ],
+      "foreignKeys": [
+        {
+          "columns": [
+            {
+              "column": "owner_id",
+            },
+          ],
+          "reference": {
+            "columns": [
+              {
+                "column": "id",
+                "length": 10,
+                "sort": "asc",
+              },
+            ],
+            "table": "person",
+          },
+        },
+      ],
+      "indexes": [
+        {
+          "columns": [
+            {
+              "column": "height",
             },
             {
               "column": "weight",
-              "length": 2
-            }
-          ]
-        }
-      },
-      {
-        "columns": [
-          {
-            "column": "pet_id"
-          }
-        ],
-        "reference": {
-          "table": "pet",
+              "length": 2,
+              "sort": "asc",
+            },
+          ],
+          "indexType": "btree",
+          "name": "i_dimensions",
+          "options": {
+            "comment": "good boy",
+          },
+        },
+        {
           "columns": [
             {
-              "column": "id",
-              "length": 10,
-              "sort": "asc"
-            }
-          ]
+              "column": "birth",
+              "length": 5,
+              "sort": "desc",
+            },
+          ],
+          "name": "i_birth",
+          "options": {
+            "indexType": "btree",
+          },
         },
-        "name": "fk_pet_id"
-      }
-    ],
-    "spatialIndexes": [
-      {
+      ],
+      "name": "pet",
+      "options": {
+        "connection": "mysql://xyz",
+        "dataDirectory": "/data",
+        "delayKeyWrite": 0,
+        "encryption": "123456",
+        "encryptionKeyId": 2,
+        "ietfQuotes": "no",
+        "insertMethod": "first",
+        "packKeys": 0,
+        "rowFormat": "dynamic",
+        "statsAutoRecalc": 0,
+        "tablespaceName": "abc",
+        "union": [
+          "house",
+          "person",
+        ],
+        "withSystemVersioning": true,
+      },
+    },
+    {
+      "columns": [
+        {
+          "name": "id",
+          "options": {
+            "nullable": false,
+          },
+          "type": {
+            "datatype": "int",
+          },
+        },
+        {
+          "name": "pet_id",
+          "options": {
+            "nullable": true,
+          },
+          "type": {
+            "datatype": "tinyint",
+          },
+        },
+        {
+          "name": "coordx",
+          "options": {
+            "nullable": true,
+          },
+          "type": {
+            "datatype": "float",
+            "decimals": 2,
+            "digits": 6,
+          },
+        },
+        {
+          "name": "coordy",
+          "options": {
+            "nullable": true,
+          },
+          "type": {
+            "datatype": "double",
+          },
+        },
+        {
+          "name": "letter",
+          "options": {
+            "nullable": true,
+          },
+          "type": {
+            "datatype": "char",
+            "length": 1,
+          },
+        },
+        {
+          "name": "is_built",
+          "options": {
+            "nullable": true,
+          },
+          "type": {
+            "datatype": "boolean",
+          },
+        },
+        {
+          "name": "is_apartment",
+          "options": {
+            "nullable": true,
+          },
+          "type": {
+            "datatype": "boolean",
+          },
+        },
+        {
+          "name": "updated_at",
+          "options": {
+            "nullable": true,
+          },
+          "type": {
+            "datatype": "timestamp",
+            "fractional": 0,
+          },
+        },
+        {
+          "name": "trashed_at",
+          "options": {
+            "default": "CURRENT_TIMESTAMP(6)",
+            "nullable": true,
+            "onUpdate": "CURRENT_TIMESTAMP(6)",
+          },
+          "type": {
+            "datatype": "timestamp",
+            "fractional": 6,
+          },
+        },
+        {
+          "name": "visited_at",
+          "options": {
+            "default": "CURRENT_TIMESTAMP()",
+            "nullable": true,
+          },
+          "type": {
+            "datatype": "timestamp",
+            "fractional": 0,
+          },
+        },
+        {
+          "name": "year",
+          "options": {
+            "nullable": true,
+          },
+          "type": {
+            "datatype": "year",
+            "digits": 4,
+          },
+        },
+        {
+          "name": "sequence",
+          "options": {
+            "default": "b'00101'",
+            "nullable": true,
+          },
+          "type": {
+            "datatype": "binary",
+            "length": 1,
+          },
+        },
+        {
+          "name": "photo",
+          "options": {
+            "nullable": true,
+          },
+          "type": {
+            "datatype": "blob",
+            "length": 4294967295,
+          },
+        },
+        {
+          "name": "history",
+          "options": {
+            "nullable": true,
+          },
+          "type": {
+            "datatype": "text",
+            "length": 4294967295,
+          },
+        },
+        {
+          "name": "gender",
+          "options": {
+            "nullable": true,
+          },
+          "type": {
+            "datatype": "enum",
+            "values": [
+              "X",
+            ],
+          },
+        },
+        {
+          "name": "size",
+          "options": {
+            "nullable": true,
+          },
+          "type": {
+            "datatype": "geometry",
+          },
+        },
+        {
+          "name": "where",
+          "options": {
+            "nullable": true,
+          },
+          "type": {
+            "datatype": "point",
+          },
+        },
+        {
+          "name": "street",
+          "options": {
+            "nullable": true,
+          },
+          "type": {
+            "datatype": "linestring",
+          },
+        },
+        {
+          "name": "neighbors",
+          "options": {
+            "nullable": true,
+          },
+          "type": {
+            "datatype": "multipolygon",
+          },
+        },
+        {
+          "name": "city",
+          "options": {
+            "nullable": true,
+          },
+          "type": {
+            "datatype": "geometrycollection",
+          },
+        },
+      ],
+      "foreignKeys": [
+        {
+          "columns": [
+            {
+              "column": "size",
+            },
+          ],
+          "reference": {
+            "columns": [
+              {
+                "column": "height",
+              },
+              {
+                "column": "weight",
+                "length": 2,
+              },
+            ],
+            "match": "full",
+            "on": [
+              {
+                "action": "set null",
+                "trigger": "delete",
+              },
+              {
+                "action": "set default",
+                "trigger": "update",
+              },
+            ],
+            "table": "pet",
+          },
+        },
+        {
+          "columns": [
+            {
+              "column": "pet_id",
+            },
+          ],
+          "name": "fk_pet_id",
+          "reference": {
+            "columns": [
+              {
+                "column": "id",
+                "length": 10,
+                "sort": "asc",
+              },
+            ],
+            "table": "pet",
+          },
+        },
+      ],
+      "name": "house",
+      "options": {
+        "ietfQuotes": "yes",
+        "indexDirectory": "/var/index",
+        "insertMethod": "no",
+        "keyBlockSize": 1024,
+        "maxRows": 7000000000,
+        "minRows": 1,
+        "packKeys": "default",
+        "pageChecksum": 0,
+        "password": "123"456",
+        "rowFormat": "default",
+        "statsAutoRecalc": "default",
+        "tablespaceName": "abc",
+        "tablespaceStorage": "default",
+        "transactional": 1,
+      },
+      "primaryKey": {
         "columns": [
           {
-            "column": "coordx"
+            "column": "id",
+            "length": 8,
+            "sort": "asc",
           },
-          {
-            "column": "coordy"
-          }
         ],
-        "name": "coords",
+        "indexType": "hash",
+        "name": "pk_id",
         "options": {
-          "comment": "hi neighbor"
-        }
-      }
-    ],
-    "options": {
-      "indexDirectory": "/var/index",
-      "ietfQuotes": "yes",
-      "insertMethod": "no",
-      "keyBlockSize": 1024,
-      "maxRows": 7000000000,
-      "minRows": 1,
-      "packKeys": "default",
-      "pageChecksum": 0,
-      "password": "123\\"456",
-      "rowFormat": "default",
-      "statsAutoRecalc": "default",
-      "transactional": 1,
-      "tablespaceName": "abc",
-      "tablespaceStorage": "default"
-    }
-  }
-]
+          "comment": "complex test",
+          "indexType": "hash",
+          "keyBlockSize": 1024,
+          "parser": "myParser",
+        },
+      },
+      "spatialIndexes": [
+        {
+          "columns": [
+            {
+              "column": "coordx",
+            },
+            {
+              "column": "coordy",
+            },
+          ],
+          "name": "coords",
+          "options": {
+            "comment": "hi neighbor",
+          },
+        },
+      ],
+    },
+  ],
+}
 `;

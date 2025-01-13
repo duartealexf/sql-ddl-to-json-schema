@@ -1,223 +1,247 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Parser: Should drop people table 1`] = `
-{
-  "id": "MAIN",
-  "def": [
-    {
-      "id": "P_DDS",
-      "def": {
-        "id": "P_DROP_TABLE",
-        "def": [
-          "people"
-        ]
-      }
-    }
-  ]
+ParsedQuerySerializer {
+  "parsed": {
+    "def": [
+      {
+        "def": {
+          "def": [
+            "people",
+          ],
+          "id": "P_DROP_TABLE",
+        },
+        "id": "P_DDS",
+      },
+    ],
+    "id": "MAIN",
+  },
 }
 `;
 
 exports[`Parser: Should drop people table 2`] = `
-{
-  "id": "MAIN",
-  "def": [
-    {
-      "id": "P_DDS",
-      "def": {
-        "id": "P_DROP_TABLE",
-        "def": [
-          "people"
-        ]
-      }
-    }
-  ]
+ParsedQuerySerializer {
+  "parsed": {
+    "def": [
+      {
+        "def": {
+          "def": [
+            "people",
+          ],
+          "id": "P_DROP_TABLE",
+        },
+        "id": "P_DDS",
+      },
+    ],
+    "id": "MAIN",
+  },
 }
 `;
 
 exports[`Parser: Should drop people table 3`] = `
-{
-  "id": "MAIN",
-  "def": [
-    {
-      "id": "P_DDS",
-      "def": {
-        "id": "P_DROP_TABLE",
-        "def": [
-          "people"
-        ]
-      }
-    }
-  ]
+ParsedQuerySerializer {
+  "parsed": {
+    "def": [
+      {
+        "def": {
+          "def": [
+            "people",
+          ],
+          "id": "P_DROP_TABLE",
+        },
+        "id": "P_DDS",
+      },
+    ],
+    "id": "MAIN",
+  },
 }
 `;
 
 exports[`Parser: Should drop people table 4`] = `
-{
-  "id": "MAIN",
-  "def": [
-    {
-      "id": "P_DDS",
-      "def": {
-        "id": "P_DROP_TABLE",
-        "def": [
-          "people"
-        ]
-      }
-    }
-  ]
+ParsedQuerySerializer {
+  "parsed": {
+    "def": [
+      {
+        "def": {
+          "def": [
+            "people",
+          ],
+          "id": "P_DROP_TABLE",
+        },
+        "id": "P_DDS",
+      },
+    ],
+    "id": "MAIN",
+  },
 }
 `;
 
 exports[`Parser: Should drop people table 5`] = `
-{
-  "id": "MAIN",
-  "def": [
-    {
-      "id": "P_DDS",
-      "def": {
-        "id": "P_DROP_TABLE",
-        "def": [
-          "people"
-        ]
-      }
-    }
-  ]
+ParsedQuerySerializer {
+  "parsed": {
+    "def": [
+      {
+        "def": {
+          "def": [
+            "people",
+          ],
+          "id": "P_DROP_TABLE",
+        },
+        "id": "P_DDS",
+      },
+    ],
+    "id": "MAIN",
+  },
 }
 `;
 
 exports[`Parser: Should drop people table 6`] = `
-{
-  "id": "MAIN",
-  "def": [
-    {
-      "id": "P_DDS",
-      "def": {
-        "id": "P_DROP_TABLE",
-        "def": [
-          "people"
-        ]
-      }
-    }
-  ]
+ParsedQuerySerializer {
+  "parsed": {
+    "def": [
+      {
+        "def": {
+          "def": [
+            "people",
+          ],
+          "id": "P_DROP_TABLE",
+        },
+        "id": "P_DDS",
+      },
+    ],
+    "id": "MAIN",
+  },
 }
 `;
 
 exports[`Parser: Should drop several tables 1`] = `
-{
-  "id": "MAIN",
-  "def": [
-    {
-      "id": "P_DDS",
-      "def": {
-        "id": "P_DROP_TABLE",
-        "def": [
-          "people",
-          "cars",
-          "pets",
-          "test"
-        ]
-      }
-    }
-  ]
+ParsedQuerySerializer {
+  "parsed": {
+    "def": [
+      {
+        "def": {
+          "def": [
+            "people",
+            "cars",
+            "pets",
+            "test",
+          ],
+          "id": "P_DROP_TABLE",
+        },
+        "id": "P_DDS",
+      },
+    ],
+    "id": "MAIN",
+  },
 }
 `;
 
 exports[`Parser: Should drop several tables 2`] = `
-{
-  "id": "MAIN",
-  "def": [
-    {
-      "id": "P_DDS",
-      "def": {
-        "id": "P_DROP_TABLE",
-        "def": [
-          "people",
-          "cars",
-          "pets",
-          "test"
-        ]
-      }
-    }
-  ]
+ParsedQuerySerializer {
+  "parsed": {
+    "def": [
+      {
+        "def": {
+          "def": [
+            "people",
+            "cars",
+            "pets",
+            "test",
+          ],
+          "id": "P_DROP_TABLE",
+        },
+        "id": "P_DDS",
+      },
+    ],
+    "id": "MAIN",
+  },
 }
 `;
 
 exports[`Parser: Should drop several tables 3`] = `
-{
-  "id": "MAIN",
-  "def": [
-    {
-      "id": "P_DDS",
-      "def": {
-        "id": "P_DROP_TABLE",
-        "def": [
-          "people",
-          "cars",
-          "pets",
-          "test"
-        ]
-      }
-    }
-  ]
+ParsedQuerySerializer {
+  "parsed": {
+    "def": [
+      {
+        "def": {
+          "def": [
+            "people",
+            "cars",
+            "pets",
+            "test",
+          ],
+          "id": "P_DROP_TABLE",
+        },
+        "id": "P_DDS",
+      },
+    ],
+    "id": "MAIN",
+  },
 }
 `;
 
 exports[`Parser: Should drop several tables 4`] = `
-{
-  "id": "MAIN",
-  "def": [
-    {
-      "id": "P_DDS",
-      "def": {
-        "id": "P_DROP_TABLE",
-        "def": [
-          "people",
-          "cars",
-          "pets",
-          "test"
-        ]
-      }
-    }
-  ]
+ParsedQuerySerializer {
+  "parsed": {
+    "def": [
+      {
+        "def": {
+          "def": [
+            "people",
+            "cars",
+            "pets",
+            "test",
+          ],
+          "id": "P_DROP_TABLE",
+        },
+        "id": "P_DDS",
+      },
+    ],
+    "id": "MAIN",
+  },
 }
 `;
 
 exports[`Parser: Should drop several tables 5`] = `
-{
-  "id": "MAIN",
-  "def": [
-    {
-      "id": "P_DDS",
-      "def": {
-        "id": "P_DROP_TABLE",
-        "def": [
-          "people",
-          "cars",
-          "pets",
-          "test"
-        ]
-      }
-    }
-  ]
+ParsedQuerySerializer {
+  "parsed": {
+    "def": [
+      {
+        "def": {
+          "def": [
+            "people",
+            "cars",
+            "pets",
+            "test",
+          ],
+          "id": "P_DROP_TABLE",
+        },
+        "id": "P_DDS",
+      },
+    ],
+    "id": "MAIN",
+  },
 }
 `;
 
 exports[`Parser: Should drop several tables 6`] = `
-{
-  "id": "MAIN",
-  "def": [
-    {
-      "id": "P_DDS",
-      "def": {
-        "id": "P_DROP_TABLE",
-        "def": [
-          "people",
-          "cars",
-          "pets",
-          "test"
-        ]
-      }
-    }
-  ]
+ParsedQuerySerializer {
+  "parsed": {
+    "def": [
+      {
+        "def": {
+          "def": [
+            "people",
+            "cars",
+            "pets",
+            "test",
+          ],
+          "id": "P_DROP_TABLE",
+        },
+        "id": "P_DDS",
+      },
+    ],
+    "id": "MAIN",
+  },
 }
 `;

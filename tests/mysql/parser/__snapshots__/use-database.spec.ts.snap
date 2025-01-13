@@ -1,27 +1,29 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Parser: Should use test database 1`] = `
-{
-  "id": "MAIN",
-  "def": [
-    {
-      "id": "P_DDS",
-      "def": {
-        "id": "P_USE_DB",
+ParsedQuerySerializer {
+  "parsed": {
+    "def": [
+      {
         "def": {
-          "database": "test"
-        }
-      }
-    },
-    {
-      "id": "P_DDS",
-      "def": {
-        "id": "P_USE_DB",
+          "def": {
+            "database": "test",
+          },
+          "id": "P_USE_DB",
+        },
+        "id": "P_DDS",
+      },
+      {
         "def": {
-          "database": "another_test"
-        }
-      }
-    }
-  ]
+          "def": {
+            "database": "another_test",
+          },
+          "id": "P_USE_DB",
+        },
+        "id": "P_DDS",
+      },
+    ],
+    "id": "MAIN",
+  },
 }
 `;

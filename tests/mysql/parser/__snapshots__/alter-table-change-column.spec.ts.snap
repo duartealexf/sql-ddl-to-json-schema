@@ -1,743 +1,781 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Parser: Should alter table changing column definition with option, first position. 1`] = `
-{
-  "id": "MAIN",
-  "def": [
-    {
-      "id": "P_DDS",
-      "def": {
-        "id": "P_ALTER_TABLE",
+ParsedQuerySerializer {
+  "parsed": {
+    "def": [
+      {
         "def": {
-          "table": "people",
-          "specs": [
-            {
-              "id": "P_ALTER_TABLE_SPECS",
-              "def": {
-                "spec": {
-                  "id": "O_ALTER_TABLE_SPEC",
-                  "def": {
-                    "action": "changeColumn",
-                    "column": "name",
-                    "datatype": {
-                      "id": "O_DATATYPE",
-                      "def": {
-                        "id": "O_VARIABLE_STRING_DATATYPE",
+          "def": {
+            "specs": [
+              {
+                "def": {
+                  "spec": {
+                    "def": {
+                      "action": "changeColumn",
+                      "column": "name",
+                      "columnDefinition": [
+                        {
+                          "def": {
+                            "charset": "utf8",
+                          },
+                          "id": "O_COLUMN_DEFINITION",
+                        },
+                      ],
+                      "datatype": {
                         "def": {
-                          "datatype": "varchar",
-                          "length": 255
-                        }
-                      }
+                          "def": {
+                            "datatype": "varchar",
+                            "length": 255,
+                          },
+                          "id": "O_VARIABLE_STRING_DATATYPE",
+                        },
+                        "id": "O_DATATYPE",
+                      },
+                      "newName": undefined,
+                      "position": {
+                        "after": null,
+                      },
                     },
-                    "columnDefinition": [
-                      {
-                        "id": "O_COLUMN_DEFINITION",
-                        "def": {
-                          "charset": "utf8"
-                        }
-                      }
-                    ],
-                    "position": {
-                      "after": null
-                    }
-                  }
-                }
-              }
-            }
-          ]
-        }
-      }
-    }
-  ]
+                    "id": "O_ALTER_TABLE_SPEC",
+                  },
+                },
+                "id": "P_ALTER_TABLE_SPECS",
+              },
+            ],
+            "table": "people",
+          },
+          "id": "P_ALTER_TABLE",
+        },
+        "id": "P_DDS",
+      },
+    ],
+    "id": "MAIN",
+  },
 }
 `;
 
 exports[`Parser: Should alter table changing column definition with option, first position. 2`] = `
-{
-  "id": "MAIN",
-  "def": [
-    {
-      "id": "P_DDS",
-      "def": {
-        "id": "P_ALTER_TABLE",
+ParsedQuerySerializer {
+  "parsed": {
+    "def": [
+      {
         "def": {
-          "table": "people",
-          "specs": [
-            {
-              "id": "P_ALTER_TABLE_SPECS",
-              "def": {
-                "spec": {
-                  "id": "O_ALTER_TABLE_SPEC",
-                  "def": {
-                    "action": "changeColumn",
-                    "column": "name",
-                    "datatype": {
-                      "id": "O_DATATYPE",
-                      "def": {
-                        "id": "O_VARIABLE_STRING_DATATYPE",
+          "def": {
+            "specs": [
+              {
+                "def": {
+                  "spec": {
+                    "def": {
+                      "action": "changeColumn",
+                      "column": "name",
+                      "columnDefinition": [
+                        {
+                          "def": {
+                            "charset": "utf8",
+                          },
+                          "id": "O_COLUMN_DEFINITION",
+                        },
+                      ],
+                      "datatype": {
                         "def": {
-                          "datatype": "varchar",
-                          "length": 255
-                        }
-                      }
+                          "def": {
+                            "datatype": "varchar",
+                            "length": 255,
+                          },
+                          "id": "O_VARIABLE_STRING_DATATYPE",
+                        },
+                        "id": "O_DATATYPE",
+                      },
+                      "newName": undefined,
+                      "position": {
+                        "after": null,
+                      },
                     },
-                    "columnDefinition": [
-                      {
-                        "id": "O_COLUMN_DEFINITION",
-                        "def": {
-                          "charset": "utf8"
-                        }
-                      }
-                    ],
-                    "position": {
-                      "after": null
-                    }
-                  }
-                }
-              }
-            }
-          ]
-        }
-      }
-    }
-  ]
+                    "id": "O_ALTER_TABLE_SPEC",
+                  },
+                },
+                "id": "P_ALTER_TABLE_SPECS",
+              },
+            ],
+            "table": "people",
+          },
+          "id": "P_ALTER_TABLE",
+        },
+        "id": "P_DDS",
+      },
+    ],
+    "id": "MAIN",
+  },
 }
 `;
 
 exports[`Parser: Should alter table changing column definition. 1`] = `
-{
-  "id": "MAIN",
-  "def": [
-    {
-      "id": "P_DDS",
-      "def": {
-        "id": "P_ALTER_TABLE",
+ParsedQuerySerializer {
+  "parsed": {
+    "def": [
+      {
         "def": {
-          "table": "people",
-          "specs": [
-            {
-              "id": "P_ALTER_TABLE_SPECS",
-              "def": {
-                "spec": {
-                  "id": "O_ALTER_TABLE_SPEC",
-                  "def": {
-                    "action": "changeColumn",
-                    "column": "name",
-                    "datatype": {
-                      "id": "O_DATATYPE",
-                      "def": {
-                        "id": "O_VARIABLE_STRING_DATATYPE",
+          "def": {
+            "specs": [
+              {
+                "def": {
+                  "spec": {
+                    "def": {
+                      "action": "changeColumn",
+                      "column": "name",
+                      "columnDefinition": [],
+                      "datatype": {
                         "def": {
-                          "datatype": "varchar",
-                          "length": 255
-                        }
-                      }
+                          "def": {
+                            "datatype": "varchar",
+                            "length": 255,
+                          },
+                          "id": "O_VARIABLE_STRING_DATATYPE",
+                        },
+                        "id": "O_DATATYPE",
+                      },
+                      "newName": undefined,
+                      "position": null,
                     },
-                    "columnDefinition": [],
-                    "position": null
-                  }
-                }
-              }
-            }
-          ]
-        }
-      }
-    }
-  ]
+                    "id": "O_ALTER_TABLE_SPEC",
+                  },
+                },
+                "id": "P_ALTER_TABLE_SPECS",
+              },
+            ],
+            "table": "people",
+          },
+          "id": "P_ALTER_TABLE",
+        },
+        "id": "P_DDS",
+      },
+    ],
+    "id": "MAIN",
+  },
 }
 `;
 
 exports[`Parser: Should alter table changing column definition. 2`] = `
-{
-  "id": "MAIN",
-  "def": [
-    {
-      "id": "P_DDS",
-      "def": {
-        "id": "P_ALTER_TABLE",
+ParsedQuerySerializer {
+  "parsed": {
+    "def": [
+      {
         "def": {
-          "table": "people",
-          "specs": [
-            {
-              "id": "P_ALTER_TABLE_SPECS",
-              "def": {
-                "spec": {
-                  "id": "O_ALTER_TABLE_SPEC",
-                  "def": {
-                    "action": "changeColumn",
-                    "column": "name",
-                    "datatype": {
-                      "id": "O_DATATYPE",
-                      "def": {
-                        "id": "O_VARIABLE_STRING_DATATYPE",
+          "def": {
+            "specs": [
+              {
+                "def": {
+                  "spec": {
+                    "def": {
+                      "action": "changeColumn",
+                      "column": "name",
+                      "columnDefinition": [],
+                      "datatype": {
                         "def": {
-                          "datatype": "varchar",
-                          "length": 255
-                        }
-                      }
+                          "def": {
+                            "datatype": "varchar",
+                            "length": 255,
+                          },
+                          "id": "O_VARIABLE_STRING_DATATYPE",
+                        },
+                        "id": "O_DATATYPE",
+                      },
+                      "newName": undefined,
+                      "position": null,
                     },
-                    "columnDefinition": [],
-                    "position": null
-                  }
-                }
-              }
-            }
-          ]
-        }
-      }
-    }
-  ]
+                    "id": "O_ALTER_TABLE_SPEC",
+                  },
+                },
+                "id": "P_ALTER_TABLE_SPECS",
+              },
+            ],
+            "table": "people",
+          },
+          "id": "P_ALTER_TABLE",
+        },
+        "id": "P_DDS",
+      },
+    ],
+    "id": "MAIN",
+  },
 }
 `;
 
 exports[`Parser: Should alter table changing column name and definition with option, first position. 1`] = `
-{
-  "id": "MAIN",
-  "def": [
-    {
-      "id": "P_DDS",
-      "def": {
-        "id": "P_ALTER_TABLE",
+ParsedQuerySerializer {
+  "parsed": {
+    "def": [
+      {
         "def": {
-          "table": "people",
-          "specs": [
-            {
-              "id": "P_ALTER_TABLE_SPECS",
-              "def": {
-                "spec": {
-                  "id": "O_ALTER_TABLE_SPEC",
-                  "def": {
-                    "action": "changeColumn",
-                    "column": "name",
-                    "newName": "fullname",
-                    "datatype": {
-                      "id": "O_DATATYPE",
-                      "def": {
-                        "id": "O_VARIABLE_STRING_DATATYPE",
+          "def": {
+            "specs": [
+              {
+                "def": {
+                  "spec": {
+                    "def": {
+                      "action": "changeColumn",
+                      "column": "name",
+                      "columnDefinition": [
+                        {
+                          "def": {
+                            "charset": "utf8",
+                          },
+                          "id": "O_COLUMN_DEFINITION",
+                        },
+                      ],
+                      "datatype": {
                         "def": {
-                          "datatype": "varchar",
-                          "length": 255
-                        }
-                      }
+                          "def": {
+                            "datatype": "varchar",
+                            "length": 255,
+                          },
+                          "id": "O_VARIABLE_STRING_DATATYPE",
+                        },
+                        "id": "O_DATATYPE",
+                      },
+                      "newName": "fullname",
+                      "position": {
+                        "after": null,
+                      },
                     },
-                    "columnDefinition": [
-                      {
-                        "id": "O_COLUMN_DEFINITION",
-                        "def": {
-                          "charset": "utf8"
-                        }
-                      }
-                    ],
-                    "position": {
-                      "after": null
-                    }
-                  }
-                }
-              }
-            }
-          ]
-        }
-      }
-    }
-  ]
+                    "id": "O_ALTER_TABLE_SPEC",
+                  },
+                },
+                "id": "P_ALTER_TABLE_SPECS",
+              },
+            ],
+            "table": "people",
+          },
+          "id": "P_ALTER_TABLE",
+        },
+        "id": "P_DDS",
+      },
+    ],
+    "id": "MAIN",
+  },
 }
 `;
 
 exports[`Parser: Should alter table changing column name and definition with option, first position. 2`] = `
-{
-  "id": "MAIN",
-  "def": [
-    {
-      "id": "P_DDS",
-      "def": {
-        "id": "P_ALTER_TABLE",
+ParsedQuerySerializer {
+  "parsed": {
+    "def": [
+      {
         "def": {
-          "table": "people",
-          "specs": [
-            {
-              "id": "P_ALTER_TABLE_SPECS",
-              "def": {
-                "spec": {
-                  "id": "O_ALTER_TABLE_SPEC",
-                  "def": {
-                    "action": "changeColumn",
-                    "column": "name",
-                    "newName": "fullname",
-                    "datatype": {
-                      "id": "O_DATATYPE",
-                      "def": {
-                        "id": "O_VARIABLE_STRING_DATATYPE",
+          "def": {
+            "specs": [
+              {
+                "def": {
+                  "spec": {
+                    "def": {
+                      "action": "changeColumn",
+                      "column": "name",
+                      "columnDefinition": [
+                        {
+                          "def": {
+                            "charset": "utf8",
+                          },
+                          "id": "O_COLUMN_DEFINITION",
+                        },
+                      ],
+                      "datatype": {
                         "def": {
-                          "datatype": "varchar",
-                          "length": 255
-                        }
-                      }
+                          "def": {
+                            "datatype": "varchar",
+                            "length": 255,
+                          },
+                          "id": "O_VARIABLE_STRING_DATATYPE",
+                        },
+                        "id": "O_DATATYPE",
+                      },
+                      "newName": "fullname",
+                      "position": {
+                        "after": null,
+                      },
                     },
-                    "columnDefinition": [
-                      {
-                        "id": "O_COLUMN_DEFINITION",
-                        "def": {
-                          "charset": "utf8"
-                        }
-                      }
-                    ],
-                    "position": {
-                      "after": null
-                    }
-                  }
-                }
-              }
-            }
-          ]
-        }
-      }
-    }
-  ]
+                    "id": "O_ALTER_TABLE_SPEC",
+                  },
+                },
+                "id": "P_ALTER_TABLE_SPECS",
+              },
+            ],
+            "table": "people",
+          },
+          "id": "P_ALTER_TABLE",
+        },
+        "id": "P_DDS",
+      },
+    ],
+    "id": "MAIN",
+  },
 }
 `;
 
 exports[`Parser: Should alter table changing column name and definition with options and position after another column. 1`] = `
-{
-  "id": "MAIN",
-  "def": [
-    {
-      "id": "P_DDS",
-      "def": {
-        "id": "P_ALTER_TABLE",
+ParsedQuerySerializer {
+  "parsed": {
+    "def": [
+      {
         "def": {
-          "table": "people",
-          "specs": [
-            {
-              "id": "P_ALTER_TABLE_SPECS",
-              "def": {
-                "spec": {
-                  "id": "O_ALTER_TABLE_SPEC",
-                  "def": {
-                    "action": "changeColumn",
-                    "column": "name",
-                    "newName": "fullname",
-                    "datatype": {
-                      "id": "O_DATATYPE",
-                      "def": {
-                        "id": "O_VARIABLE_STRING_DATATYPE",
+          "def": {
+            "specs": [
+              {
+                "def": {
+                  "spec": {
+                    "def": {
+                      "action": "changeColumn",
+                      "column": "name",
+                      "columnDefinition": [
+                        {
+                          "def": {
+                            "charset": "utf8",
+                          },
+                          "id": "O_COLUMN_DEFINITION",
+                        },
+                        {
+                          "def": {
+                            "default": "John Smith",
+                          },
+                          "id": "O_COLUMN_DEFINITION",
+                        },
+                      ],
+                      "datatype": {
                         "def": {
-                          "datatype": "varchar",
-                          "length": 255
-                        }
-                      }
-                    },
-                    "columnDefinition": [
-                      {
-                        "id": "O_COLUMN_DEFINITION",
-                        "def": {
-                          "charset": "utf8"
-                        }
+                          "def": {
+                            "datatype": "varchar",
+                            "length": 255,
+                          },
+                          "id": "O_VARIABLE_STRING_DATATYPE",
+                        },
+                        "id": "O_DATATYPE",
                       },
-                      {
-                        "id": "O_COLUMN_DEFINITION",
-                        "def": {
-                          "default": "John Smith"
-                        }
-                      }
-                    ],
-                    "position": {
-                      "after": "ssn"
-                    }
-                  }
-                }
-              }
-            }
-          ]
-        }
-      }
-    }
-  ]
+                      "newName": "fullname",
+                      "position": {
+                        "after": "ssn",
+                      },
+                    },
+                    "id": "O_ALTER_TABLE_SPEC",
+                  },
+                },
+                "id": "P_ALTER_TABLE_SPECS",
+              },
+            ],
+            "table": "people",
+          },
+          "id": "P_ALTER_TABLE",
+        },
+        "id": "P_DDS",
+      },
+    ],
+    "id": "MAIN",
+  },
 }
 `;
 
 exports[`Parser: Should alter table changing column name and definition with options and position after another column. 2`] = `
-{
-  "id": "MAIN",
-  "def": [
-    {
-      "id": "P_DDS",
-      "def": {
-        "id": "P_ALTER_TABLE",
+ParsedQuerySerializer {
+  "parsed": {
+    "def": [
+      {
         "def": {
-          "table": "people",
-          "specs": [
-            {
-              "id": "P_ALTER_TABLE_SPECS",
-              "def": {
-                "spec": {
-                  "id": "O_ALTER_TABLE_SPEC",
-                  "def": {
-                    "action": "changeColumn",
-                    "column": "name",
-                    "newName": "fullname",
-                    "datatype": {
-                      "id": "O_DATATYPE",
-                      "def": {
-                        "id": "O_VARIABLE_STRING_DATATYPE",
+          "def": {
+            "specs": [
+              {
+                "def": {
+                  "spec": {
+                    "def": {
+                      "action": "changeColumn",
+                      "column": "name",
+                      "columnDefinition": [
+                        {
+                          "def": {
+                            "charset": "utf8",
+                          },
+                          "id": "O_COLUMN_DEFINITION",
+                        },
+                        {
+                          "def": {
+                            "default": "John Smith",
+                          },
+                          "id": "O_COLUMN_DEFINITION",
+                        },
+                      ],
+                      "datatype": {
                         "def": {
-                          "datatype": "varchar",
-                          "length": 255
-                        }
-                      }
-                    },
-                    "columnDefinition": [
-                      {
-                        "id": "O_COLUMN_DEFINITION",
-                        "def": {
-                          "charset": "utf8"
-                        }
+                          "def": {
+                            "datatype": "varchar",
+                            "length": 255,
+                          },
+                          "id": "O_VARIABLE_STRING_DATATYPE",
+                        },
+                        "id": "O_DATATYPE",
                       },
-                      {
-                        "id": "O_COLUMN_DEFINITION",
-                        "def": {
-                          "default": "John Smith"
-                        }
-                      }
-                    ],
-                    "position": {
-                      "after": "ssn"
-                    }
-                  }
-                }
-              }
-            }
-          ]
-        }
-      }
-    }
-  ]
+                      "newName": "fullname",
+                      "position": {
+                        "after": "ssn",
+                      },
+                    },
+                    "id": "O_ALTER_TABLE_SPEC",
+                  },
+                },
+                "id": "P_ALTER_TABLE_SPECS",
+              },
+            ],
+            "table": "people",
+          },
+          "id": "P_ALTER_TABLE",
+        },
+        "id": "P_DDS",
+      },
+    ],
+    "id": "MAIN",
+  },
 }
 `;
 
 exports[`Parser: Should alter table changing column name and definition. 1`] = `
-{
-  "id": "MAIN",
-  "def": [
-    {
-      "id": "P_DDS",
-      "def": {
-        "id": "P_ALTER_TABLE",
+ParsedQuerySerializer {
+  "parsed": {
+    "def": [
+      {
         "def": {
-          "table": "people",
-          "specs": [
-            {
-              "id": "P_ALTER_TABLE_SPECS",
-              "def": {
-                "spec": {
-                  "id": "O_ALTER_TABLE_SPEC",
-                  "def": {
-                    "action": "changeColumn",
-                    "column": "name",
-                    "newName": "fullname",
-                    "datatype": {
-                      "id": "O_DATATYPE",
-                      "def": {
-                        "id": "O_VARIABLE_STRING_DATATYPE",
+          "def": {
+            "specs": [
+              {
+                "def": {
+                  "spec": {
+                    "def": {
+                      "action": "changeColumn",
+                      "column": "name",
+                      "columnDefinition": [],
+                      "datatype": {
                         "def": {
-                          "datatype": "varchar",
-                          "length": 255
-                        }
-                      }
+                          "def": {
+                            "datatype": "varchar",
+                            "length": 255,
+                          },
+                          "id": "O_VARIABLE_STRING_DATATYPE",
+                        },
+                        "id": "O_DATATYPE",
+                      },
+                      "newName": "fullname",
+                      "position": null,
                     },
-                    "columnDefinition": [],
-                    "position": null
-                  }
-                }
-              }
-            }
-          ]
-        }
-      }
-    }
-  ]
+                    "id": "O_ALTER_TABLE_SPEC",
+                  },
+                },
+                "id": "P_ALTER_TABLE_SPECS",
+              },
+            ],
+            "table": "people",
+          },
+          "id": "P_ALTER_TABLE",
+        },
+        "id": "P_DDS",
+      },
+    ],
+    "id": "MAIN",
+  },
 }
 `;
 
 exports[`Parser: Should alter table changing column name and definition. 2`] = `
-{
-  "id": "MAIN",
-  "def": [
-    {
-      "id": "P_DDS",
-      "def": {
-        "id": "P_ALTER_TABLE",
+ParsedQuerySerializer {
+  "parsed": {
+    "def": [
+      {
         "def": {
-          "table": "people",
-          "specs": [
-            {
-              "id": "P_ALTER_TABLE_SPECS",
-              "def": {
-                "spec": {
-                  "id": "O_ALTER_TABLE_SPEC",
-                  "def": {
-                    "action": "changeColumn",
-                    "column": "name",
-                    "newName": "fullname",
-                    "datatype": {
-                      "id": "O_DATATYPE",
-                      "def": {
-                        "id": "O_VARIABLE_STRING_DATATYPE",
+          "def": {
+            "specs": [
+              {
+                "def": {
+                  "spec": {
+                    "def": {
+                      "action": "changeColumn",
+                      "column": "name",
+                      "columnDefinition": [],
+                      "datatype": {
                         "def": {
-                          "datatype": "varchar",
-                          "length": 255
-                        }
-                      }
+                          "def": {
+                            "datatype": "varchar",
+                            "length": 255,
+                          },
+                          "id": "O_VARIABLE_STRING_DATATYPE",
+                        },
+                        "id": "O_DATATYPE",
+                      },
+                      "newName": "fullname",
+                      "position": null,
                     },
-                    "columnDefinition": [],
-                    "position": null
-                  }
-                }
-              }
-            }
-          ]
-        }
-      }
-    }
-  ]
+                    "id": "O_ALTER_TABLE_SPEC",
+                  },
+                },
+                "id": "P_ALTER_TABLE_SPECS",
+              },
+            ],
+            "table": "people",
+          },
+          "id": "P_ALTER_TABLE",
+        },
+        "id": "P_DDS",
+      },
+    ],
+    "id": "MAIN",
+  },
 }
 `;
 
 exports[`Parser: Should alter table dropping column. 1`] = `
-{
-  "id": "MAIN",
-  "def": [
-    {
-      "id": "P_DDS",
-      "def": {
-        "id": "P_ALTER_TABLE",
+ParsedQuerySerializer {
+  "parsed": {
+    "def": [
+      {
         "def": {
-          "table": "people",
-          "specs": [
-            {
-              "id": "P_ALTER_TABLE_SPECS",
-              "def": {
-                "spec": {
-                  "id": "O_ALTER_TABLE_SPEC",
-                  "def": {
-                    "action": "dropColumn",
-                    "column": "middle_name"
-                  }
-                }
-              }
-            }
-          ]
-        }
-      }
-    }
-  ]
+          "def": {
+            "specs": [
+              {
+                "def": {
+                  "spec": {
+                    "def": {
+                      "action": "dropColumn",
+                      "column": "middle_name",
+                    },
+                    "id": "O_ALTER_TABLE_SPEC",
+                  },
+                },
+                "id": "P_ALTER_TABLE_SPECS",
+              },
+            ],
+            "table": "people",
+          },
+          "id": "P_ALTER_TABLE",
+        },
+        "id": "P_DDS",
+      },
+    ],
+    "id": "MAIN",
+  },
 }
 `;
 
 exports[`Parser: Should alter table dropping column. 2`] = `
-{
-  "id": "MAIN",
-  "def": [
-    {
-      "id": "P_DDS",
-      "def": {
-        "id": "P_ALTER_TABLE",
+ParsedQuerySerializer {
+  "parsed": {
+    "def": [
+      {
         "def": {
-          "table": "people",
-          "specs": [
-            {
-              "id": "P_ALTER_TABLE_SPECS",
-              "def": {
-                "spec": {
-                  "id": "O_ALTER_TABLE_SPEC",
-                  "def": {
-                    "action": "dropColumn",
-                    "column": "middle_name"
-                  }
-                }
-              }
-            }
-          ]
-        }
-      }
-    }
-  ]
+          "def": {
+            "specs": [
+              {
+                "def": {
+                  "spec": {
+                    "def": {
+                      "action": "dropColumn",
+                      "column": "middle_name",
+                    },
+                    "id": "O_ALTER_TABLE_SPEC",
+                  },
+                },
+                "id": "P_ALTER_TABLE_SPECS",
+              },
+            ],
+            "table": "people",
+          },
+          "id": "P_ALTER_TABLE",
+        },
+        "id": "P_DDS",
+      },
+    ],
+    "id": "MAIN",
+  },
 }
 `;
 
 exports[`Parser: Should alter table dropping column. 3`] = `
-{
-  "id": "MAIN",
-  "def": [
-    {
-      "id": "P_DDS",
-      "def": {
-        "id": "P_ALTER_TABLE",
+ParsedQuerySerializer {
+  "parsed": {
+    "def": [
+      {
         "def": {
-          "table": "people",
-          "specs": [
-            {
-              "id": "P_ALTER_TABLE_SPECS",
-              "def": {
-                "spec": {
-                  "id": "O_ALTER_TABLE_SPEC",
-                  "def": {
-                    "action": "dropColumn",
-                    "column": "middle_name"
-                  }
-                }
-              }
-            }
-          ]
-        }
-      }
-    }
-  ]
+          "def": {
+            "specs": [
+              {
+                "def": {
+                  "spec": {
+                    "def": {
+                      "action": "dropColumn",
+                      "column": "middle_name",
+                    },
+                    "id": "O_ALTER_TABLE_SPEC",
+                  },
+                },
+                "id": "P_ALTER_TABLE_SPECS",
+              },
+            ],
+            "table": "people",
+          },
+          "id": "P_ALTER_TABLE",
+        },
+        "id": "P_DDS",
+      },
+    ],
+    "id": "MAIN",
+  },
 }
 `;
 
 exports[`Parser: Should alter table dropping column. 4`] = `
-{
-  "id": "MAIN",
-  "def": [
-    {
-      "id": "P_DDS",
-      "def": {
-        "id": "P_ALTER_TABLE",
+ParsedQuerySerializer {
+  "parsed": {
+    "def": [
+      {
         "def": {
-          "table": "people",
-          "specs": [
-            {
-              "id": "P_ALTER_TABLE_SPECS",
-              "def": {
-                "spec": {
-                  "id": "O_ALTER_TABLE_SPEC",
-                  "def": {
-                    "action": "dropColumn",
-                    "column": "middle_name"
-                  }
-                }
-              }
-            }
-          ]
-        }
-      }
-    }
-  ]
+          "def": {
+            "specs": [
+              {
+                "def": {
+                  "spec": {
+                    "def": {
+                      "action": "dropColumn",
+                      "column": "middle_name",
+                    },
+                    "id": "O_ALTER_TABLE_SPEC",
+                  },
+                },
+                "id": "P_ALTER_TABLE_SPECS",
+              },
+            ],
+            "table": "people",
+          },
+          "id": "P_ALTER_TABLE",
+        },
+        "id": "P_DDS",
+      },
+    ],
+    "id": "MAIN",
+  },
 }
 `;
 
 exports[`Parser: Should alter table modifying column definition with options and position after another column. 1`] = `
-{
-  "id": "MAIN",
-  "def": [
-    {
-      "id": "P_DDS",
-      "def": {
-        "id": "P_ALTER_TABLE",
+ParsedQuerySerializer {
+  "parsed": {
+    "def": [
+      {
         "def": {
-          "table": "people",
-          "specs": [
-            {
-              "id": "P_ALTER_TABLE_SPECS",
-              "def": {
-                "spec": {
-                  "id": "O_ALTER_TABLE_SPEC",
-                  "def": {
-                    "action": "changeColumn",
-                    "column": "name",
-                    "datatype": {
-                      "id": "O_DATATYPE",
-                      "def": {
-                        "id": "O_VARIABLE_STRING_DATATYPE",
+          "def": {
+            "specs": [
+              {
+                "def": {
+                  "spec": {
+                    "def": {
+                      "action": "changeColumn",
+                      "column": "name",
+                      "columnDefinition": [
+                        {
+                          "def": {
+                            "charset": "utf8",
+                          },
+                          "id": "O_COLUMN_DEFINITION",
+                        },
+                        {
+                          "def": {
+                            "default": "John Smith",
+                          },
+                          "id": "O_COLUMN_DEFINITION",
+                        },
+                      ],
+                      "datatype": {
                         "def": {
-                          "datatype": "varchar",
-                          "length": 255
-                        }
-                      }
-                    },
-                    "columnDefinition": [
-                      {
-                        "id": "O_COLUMN_DEFINITION",
-                        "def": {
-                          "charset": "utf8"
-                        }
+                          "def": {
+                            "datatype": "varchar",
+                            "length": 255,
+                          },
+                          "id": "O_VARIABLE_STRING_DATATYPE",
+                        },
+                        "id": "O_DATATYPE",
                       },
-                      {
-                        "id": "O_COLUMN_DEFINITION",
-                        "def": {
-                          "default": "John Smith"
-                        }
-                      }
-                    ],
-                    "position": {
-                      "after": "ssn"
-                    }
-                  }
-                }
-              }
-            }
-          ]
-        }
-      }
-    }
-  ]
+                      "newName": undefined,
+                      "position": {
+                        "after": "ssn",
+                      },
+                    },
+                    "id": "O_ALTER_TABLE_SPEC",
+                  },
+                },
+                "id": "P_ALTER_TABLE_SPECS",
+              },
+            ],
+            "table": "people",
+          },
+          "id": "P_ALTER_TABLE",
+        },
+        "id": "P_DDS",
+      },
+    ],
+    "id": "MAIN",
+  },
 }
 `;
 
 exports[`Parser: Should alter table modifying column definition with options and position after another column. 2`] = `
-{
-  "id": "MAIN",
-  "def": [
-    {
-      "id": "P_DDS",
-      "def": {
-        "id": "P_ALTER_TABLE",
+ParsedQuerySerializer {
+  "parsed": {
+    "def": [
+      {
         "def": {
-          "table": "people",
-          "specs": [
-            {
-              "id": "P_ALTER_TABLE_SPECS",
-              "def": {
-                "spec": {
-                  "id": "O_ALTER_TABLE_SPEC",
-                  "def": {
-                    "action": "changeColumn",
-                    "column": "name",
-                    "datatype": {
-                      "id": "O_DATATYPE",
-                      "def": {
-                        "id": "O_VARIABLE_STRING_DATATYPE",
+          "def": {
+            "specs": [
+              {
+                "def": {
+                  "spec": {
+                    "def": {
+                      "action": "changeColumn",
+                      "column": "name",
+                      "columnDefinition": [
+                        {
+                          "def": {
+                            "charset": "utf8",
+                          },
+                          "id": "O_COLUMN_DEFINITION",
+                        },
+                        {
+                          "def": {
+                            "default": "John Smith",
+                          },
+                          "id": "O_COLUMN_DEFINITION",
+                        },
+                      ],
+                      "datatype": {
                         "def": {
-                          "datatype": "varchar",
-                          "length": 255
-                        }
-                      }
-                    },
-                    "columnDefinition": [
-                      {
-                        "id": "O_COLUMN_DEFINITION",
-                        "def": {
-                          "charset": "utf8"
-                        }
+                          "def": {
+                            "datatype": "varchar",
+                            "length": 255,
+                          },
+                          "id": "O_VARIABLE_STRING_DATATYPE",
+                        },
+                        "id": "O_DATATYPE",
                       },
-                      {
-                        "id": "O_COLUMN_DEFINITION",
-                        "def": {
-                          "default": "John Smith"
-                        }
-                      }
-                    ],
-                    "position": {
-                      "after": "ssn"
-                    }
-                  }
-                }
-              }
-            }
-          ]
-        }
-      }
-    }
-  ]
+                      "newName": undefined,
+                      "position": {
+                        "after": "ssn",
+                      },
+                    },
+                    "id": "O_ALTER_TABLE_SPEC",
+                  },
+                },
+                "id": "P_ALTER_TABLE_SPECS",
+              },
+            ],
+            "table": "people",
+          },
+          "id": "P_ALTER_TABLE",
+        },
+        "id": "P_DDS",
+      },
+    ],
+    "id": "MAIN",
+  },
 }
 `;

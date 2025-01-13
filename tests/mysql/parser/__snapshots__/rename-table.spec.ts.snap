@@ -1,73 +1,79 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Should rename one table. 1`] = `
-{
-  "id": "MAIN",
-  "def": [
-    {
-      "id": "P_DDS",
-      "def": {
-        "id": "P_RENAME_TABLE",
-        "def": [
-          {
-            "table": "people",
-            "newName": "persons"
-          }
-        ]
-      }
-    }
-  ]
+ParsedQuerySerializer {
+  "parsed": {
+    "def": [
+      {
+        "def": {
+          "def": [
+            {
+              "newName": "persons",
+              "table": "people",
+            },
+          ],
+          "id": "P_RENAME_TABLE",
+        },
+        "id": "P_DDS",
+      },
+    ],
+    "id": "MAIN",
+  },
 }
 `;
 
 exports[`Should rename one table. 2`] = `
-{
-  "id": "MAIN",
-  "def": [
-    {
-      "id": "P_DDS",
-      "def": {
-        "id": "P_RENAME_TABLE",
-        "def": [
-          {
-            "table": "people",
-            "newName": "persons"
-          }
-        ]
-      }
-    }
-  ]
+ParsedQuerySerializer {
+  "parsed": {
+    "def": [
+      {
+        "def": {
+          "def": [
+            {
+              "newName": "persons",
+              "table": "people",
+            },
+          ],
+          "id": "P_RENAME_TABLE",
+        },
+        "id": "P_DDS",
+      },
+    ],
+    "id": "MAIN",
+  },
 }
 `;
 
 exports[`Should rename several tables. 1`] = `
-{
-  "id": "MAIN",
-  "def": [
-    {
-      "id": "P_DDS",
-      "def": {
-        "id": "P_RENAME_TABLE",
-        "def": [
-          {
-            "table": "people",
-            "newName": "persons"
-          },
-          {
-            "table": "homes",
-            "newName": "houses"
-          },
-          {
-            "table": "cats",
-            "newName": "pets"
-          },
-          {
-            "table": "test",
-            "newName": "tests"
-          }
-        ]
-      }
-    }
-  ]
+ParsedQuerySerializer {
+  "parsed": {
+    "def": [
+      {
+        "def": {
+          "def": [
+            {
+              "newName": "persons",
+              "table": "people",
+            },
+            {
+              "newName": "houses",
+              "table": "homes",
+            },
+            {
+              "newName": "pets",
+              "table": "cats",
+            },
+            {
+              "newName": "tests",
+              "table": "test",
+            },
+          ],
+          "id": "P_RENAME_TABLE",
+        },
+        "id": "P_DDS",
+      },
+    ],
+    "id": "MAIN",
+  },
 }
 `;

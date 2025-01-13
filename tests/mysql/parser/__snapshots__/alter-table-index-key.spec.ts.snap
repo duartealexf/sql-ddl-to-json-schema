@@ -1,517 +1,557 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Parser: Should alter table adding index key with one column and option. 1`] = `
-{
-  "id": "MAIN",
-  "def": [
-    {
-      "id": "P_DDS",
-      "def": {
-        "id": "P_ALTER_TABLE",
+ParsedQuerySerializer {
+  "parsed": {
+    "def": [
+      {
         "def": {
-          "table": "people",
-          "specs": [
-            {
-              "id": "P_ALTER_TABLE_SPECS",
-              "def": {
-                "spec": {
-                  "id": "O_ALTER_TABLE_SPEC",
-                  "def": {
-                    "action": "addIndex",
-                    "name": "ik_id",
-                    "index": null,
-                    "columns": [
-                      {
-                        "id": "P_INDEX_COLUMN",
-                        "def": {
-                          "column": "id"
-                        }
-                      }
-                    ],
-                    "options": [
-                      {
-                        "id": "O_INDEX_OPTION",
-                        "def": {
-                          "keyBlockSize": 1024
-                        }
-                      }
-                    ]
-                  }
-                }
-              }
-            }
-          ]
-        }
-      }
-    }
-  ]
+          "def": {
+            "specs": [
+              {
+                "def": {
+                  "spec": {
+                    "def": {
+                      "action": "addIndex",
+                      "columns": [
+                        {
+                          "def": {
+                            "column": "id",
+                            "length": undefined,
+                            "sort": undefined,
+                          },
+                          "id": "P_INDEX_COLUMN",
+                        },
+                      ],
+                      "index": null,
+                      "name": "ik_id",
+                      "options": [
+                        {
+                          "def": {
+                            "keyBlockSize": 1024,
+                          },
+                          "id": "O_INDEX_OPTION",
+                        },
+                      ],
+                    },
+                    "id": "O_ALTER_TABLE_SPEC",
+                  },
+                },
+                "id": "P_ALTER_TABLE_SPECS",
+              },
+            ],
+            "table": "people",
+          },
+          "id": "P_ALTER_TABLE",
+        },
+        "id": "P_DDS",
+      },
+    ],
+    "id": "MAIN",
+  },
 }
 `;
 
 exports[`Parser: Should alter table adding index key with one column. 1`] = `
-{
-  "id": "MAIN",
-  "def": [
-    {
-      "id": "P_DDS",
-      "def": {
-        "id": "P_ALTER_TABLE",
+ParsedQuerySerializer {
+  "parsed": {
+    "def": [
+      {
         "def": {
-          "table": "people",
-          "specs": [
-            {
-              "id": "P_ALTER_TABLE_SPECS",
-              "def": {
-                "spec": {
-                  "id": "O_ALTER_TABLE_SPEC",
-                  "def": {
-                    "action": "addIndex",
-                    "name": "ik_id",
-                    "index": null,
-                    "columns": [
-                      {
-                        "id": "P_INDEX_COLUMN",
-                        "def": {
-                          "column": "id"
-                        }
-                      }
-                    ],
-                    "options": []
-                  }
-                }
-              }
-            }
-          ]
-        }
-      }
-    }
-  ]
+          "def": {
+            "specs": [
+              {
+                "def": {
+                  "spec": {
+                    "def": {
+                      "action": "addIndex",
+                      "columns": [
+                        {
+                          "def": {
+                            "column": "id",
+                            "length": undefined,
+                            "sort": undefined,
+                          },
+                          "id": "P_INDEX_COLUMN",
+                        },
+                      ],
+                      "index": null,
+                      "name": "ik_id",
+                      "options": [],
+                    },
+                    "id": "O_ALTER_TABLE_SPEC",
+                  },
+                },
+                "id": "P_ALTER_TABLE_SPECS",
+              },
+            ],
+            "table": "people",
+          },
+          "id": "P_ALTER_TABLE",
+        },
+        "id": "P_DDS",
+      },
+    ],
+    "id": "MAIN",
+  },
 }
 `;
 
 exports[`Parser: Should alter table adding index key with two columns and options. 1`] = `
-{
-  "id": "MAIN",
-  "def": [
-    {
-      "id": "P_DDS",
-      "def": {
-        "id": "P_ALTER_TABLE",
+ParsedQuerySerializer {
+  "parsed": {
+    "def": [
+      {
         "def": {
-          "table": "people",
-          "specs": [
-            {
-              "id": "P_ALTER_TABLE_SPECS",
-              "def": {
-                "spec": {
-                  "id": "O_ALTER_TABLE_SPEC",
-                  "def": {
-                    "action": "addIndex",
-                    "name": "ik_id",
-                    "index": {
-                      "id": "P_INDEX_TYPE",
-                      "def": "hash"
+          "def": {
+            "specs": [
+              {
+                "def": {
+                  "spec": {
+                    "def": {
+                      "action": "addIndex",
+                      "columns": [
+                        {
+                          "def": {
+                            "column": "id",
+                            "length": 2,
+                            "sort": "asc",
+                          },
+                          "id": "P_INDEX_COLUMN",
+                        },
+                        {
+                          "def": {
+                            "column": "o_id",
+                            "length": undefined,
+                            "sort": undefined,
+                          },
+                          "id": "P_INDEX_COLUMN",
+                        },
+                      ],
+                      "index": {
+                        "def": "hash",
+                        "id": "P_INDEX_TYPE",
+                      },
+                      "name": "ik_id",
+                      "options": [
+                        {
+                          "def": {
+                            "keyBlockSize": 1024,
+                          },
+                          "id": "O_INDEX_OPTION",
+                        },
+                        {
+                          "def": {
+                            "comment": "test",
+                          },
+                          "id": "O_INDEX_OPTION",
+                        },
+                      ],
                     },
-                    "columns": [
-                      {
-                        "id": "P_INDEX_COLUMN",
-                        "def": {
-                          "column": "id",
-                          "length": 2,
-                          "sort": "asc"
-                        }
-                      },
-                      {
-                        "id": "P_INDEX_COLUMN",
-                        "def": {
-                          "column": "o_id"
-                        }
-                      }
-                    ],
-                    "options": [
-                      {
-                        "id": "O_INDEX_OPTION",
-                        "def": {
-                          "keyBlockSize": 1024
-                        }
-                      },
-                      {
-                        "id": "O_INDEX_OPTION",
-                        "def": {
-                          "comment": "test"
-                        }
-                      }
-                    ]
-                  }
-                }
-              }
-            }
-          ]
-        }
-      }
-    }
-  ]
+                    "id": "O_ALTER_TABLE_SPEC",
+                  },
+                },
+                "id": "P_ALTER_TABLE_SPECS",
+              },
+            ],
+            "table": "people",
+          },
+          "id": "P_ALTER_TABLE",
+        },
+        "id": "P_DDS",
+      },
+    ],
+    "id": "MAIN",
+  },
 }
 `;
 
 exports[`Parser: Should alter table adding key with one column and option. 1`] = `
-{
-  "id": "MAIN",
-  "def": [
-    {
-      "id": "P_DDS",
-      "def": {
-        "id": "P_ALTER_TABLE",
+ParsedQuerySerializer {
+  "parsed": {
+    "def": [
+      {
         "def": {
-          "table": "people",
-          "specs": [
-            {
-              "id": "P_ALTER_TABLE_SPECS",
-              "def": {
-                "spec": {
-                  "id": "O_ALTER_TABLE_SPEC",
-                  "def": {
-                    "action": "addIndex",
-                    "name": "ik_id",
-                    "index": null,
-                    "columns": [
-                      {
-                        "id": "P_INDEX_COLUMN",
-                        "def": {
-                          "column": "id"
-                        }
-                      }
-                    ],
-                    "options": [
-                      {
-                        "id": "O_INDEX_OPTION",
-                        "def": {
-                          "keyBlockSize": 1024
-                        }
-                      }
-                    ]
-                  }
-                }
-              }
-            }
-          ]
-        }
-      }
-    }
-  ]
+          "def": {
+            "specs": [
+              {
+                "def": {
+                  "spec": {
+                    "def": {
+                      "action": "addIndex",
+                      "columns": [
+                        {
+                          "def": {
+                            "column": "id",
+                            "length": undefined,
+                            "sort": undefined,
+                          },
+                          "id": "P_INDEX_COLUMN",
+                        },
+                      ],
+                      "index": null,
+                      "name": "ik_id",
+                      "options": [
+                        {
+                          "def": {
+                            "keyBlockSize": 1024,
+                          },
+                          "id": "O_INDEX_OPTION",
+                        },
+                      ],
+                    },
+                    "id": "O_ALTER_TABLE_SPEC",
+                  },
+                },
+                "id": "P_ALTER_TABLE_SPECS",
+              },
+            ],
+            "table": "people",
+          },
+          "id": "P_ALTER_TABLE",
+        },
+        "id": "P_DDS",
+      },
+    ],
+    "id": "MAIN",
+  },
 }
 `;
 
 exports[`Parser: Should alter table adding key with one column. 1`] = `
-{
-  "id": "MAIN",
-  "def": [
-    {
-      "id": "P_DDS",
-      "def": {
-        "id": "P_ALTER_TABLE",
+ParsedQuerySerializer {
+  "parsed": {
+    "def": [
+      {
         "def": {
-          "table": "people",
-          "specs": [
-            {
-              "id": "P_ALTER_TABLE_SPECS",
-              "def": {
-                "spec": {
-                  "id": "O_ALTER_TABLE_SPEC",
-                  "def": {
-                    "action": "addIndex",
-                    "name": "ik_id",
-                    "index": null,
-                    "columns": [
-                      {
-                        "id": "P_INDEX_COLUMN",
-                        "def": {
-                          "column": "id"
-                        }
-                      }
-                    ],
-                    "options": []
-                  }
-                }
-              }
-            }
-          ]
-        }
-      }
-    }
-  ]
+          "def": {
+            "specs": [
+              {
+                "def": {
+                  "spec": {
+                    "def": {
+                      "action": "addIndex",
+                      "columns": [
+                        {
+                          "def": {
+                            "column": "id",
+                            "length": undefined,
+                            "sort": undefined,
+                          },
+                          "id": "P_INDEX_COLUMN",
+                        },
+                      ],
+                      "index": null,
+                      "name": "ik_id",
+                      "options": [],
+                    },
+                    "id": "O_ALTER_TABLE_SPEC",
+                  },
+                },
+                "id": "P_ALTER_TABLE_SPECS",
+              },
+            ],
+            "table": "people",
+          },
+          "id": "P_ALTER_TABLE",
+        },
+        "id": "P_DDS",
+      },
+    ],
+    "id": "MAIN",
+  },
 }
 `;
 
 exports[`Parser: Should alter table adding key with two columns and options. 1`] = `
-{
-  "id": "MAIN",
-  "def": [
-    {
-      "id": "P_DDS",
-      "def": {
-        "id": "P_ALTER_TABLE",
+ParsedQuerySerializer {
+  "parsed": {
+    "def": [
+      {
         "def": {
-          "table": "people",
-          "specs": [
-            {
-              "id": "P_ALTER_TABLE_SPECS",
-              "def": {
-                "spec": {
-                  "id": "O_ALTER_TABLE_SPEC",
-                  "def": {
-                    "action": "addIndex",
-                    "name": "ik_id",
-                    "index": {
-                      "id": "P_INDEX_TYPE",
-                      "def": "hash"
+          "def": {
+            "specs": [
+              {
+                "def": {
+                  "spec": {
+                    "def": {
+                      "action": "addIndex",
+                      "columns": [
+                        {
+                          "def": {
+                            "column": "id",
+                            "length": 2,
+                            "sort": "asc",
+                          },
+                          "id": "P_INDEX_COLUMN",
+                        },
+                        {
+                          "def": {
+                            "column": "o_id",
+                            "length": undefined,
+                            "sort": undefined,
+                          },
+                          "id": "P_INDEX_COLUMN",
+                        },
+                      ],
+                      "index": {
+                        "def": "hash",
+                        "id": "P_INDEX_TYPE",
+                      },
+                      "name": "ik_id",
+                      "options": [
+                        {
+                          "def": {
+                            "keyBlockSize": 1024,
+                          },
+                          "id": "O_INDEX_OPTION",
+                        },
+                        {
+                          "def": {
+                            "comment": "test",
+                          },
+                          "id": "O_INDEX_OPTION",
+                        },
+                      ],
                     },
-                    "columns": [
-                      {
-                        "id": "P_INDEX_COLUMN",
-                        "def": {
-                          "column": "id",
-                          "length": 2,
-                          "sort": "asc"
-                        }
-                      },
-                      {
-                        "id": "P_INDEX_COLUMN",
-                        "def": {
-                          "column": "o_id"
-                        }
-                      }
-                    ],
-                    "options": [
-                      {
-                        "id": "O_INDEX_OPTION",
-                        "def": {
-                          "keyBlockSize": 1024
-                        }
-                      },
-                      {
-                        "id": "O_INDEX_OPTION",
-                        "def": {
-                          "comment": "test"
-                        }
-                      }
-                    ]
-                  }
-                }
-              }
-            }
-          ]
-        }
-      }
-    }
-  ]
+                    "id": "O_ALTER_TABLE_SPEC",
+                  },
+                },
+                "id": "P_ALTER_TABLE_SPECS",
+              },
+            ],
+            "table": "people",
+          },
+          "id": "P_ALTER_TABLE",
+        },
+        "id": "P_DDS",
+      },
+    ],
+    "id": "MAIN",
+  },
 }
 `;
 
 exports[`Parser: Should alter table adding unnamed index key. 1`] = `
-{
-  "id": "MAIN",
-  "def": [
-    {
-      "id": "P_DDS",
-      "def": {
-        "id": "P_ALTER_TABLE",
+ParsedQuerySerializer {
+  "parsed": {
+    "def": [
+      {
         "def": {
-          "table": "people",
-          "specs": [
-            {
-              "id": "P_ALTER_TABLE_SPECS",
-              "def": {
-                "spec": {
-                  "id": "O_ALTER_TABLE_SPEC",
-                  "def": {
-                    "action": "addIndex",
-                    "name": null,
-                    "index": null,
-                    "columns": [
-                      {
-                        "id": "P_INDEX_COLUMN",
-                        "def": {
-                          "column": "id"
-                        }
-                      }
-                    ],
-                    "options": []
-                  }
-                }
-              }
-            }
-          ]
-        }
-      }
-    }
-  ]
+          "def": {
+            "specs": [
+              {
+                "def": {
+                  "spec": {
+                    "def": {
+                      "action": "addIndex",
+                      "columns": [
+                        {
+                          "def": {
+                            "column": "id",
+                            "length": undefined,
+                            "sort": undefined,
+                          },
+                          "id": "P_INDEX_COLUMN",
+                        },
+                      ],
+                      "index": null,
+                      "name": null,
+                      "options": [],
+                    },
+                    "id": "O_ALTER_TABLE_SPEC",
+                  },
+                },
+                "id": "P_ALTER_TABLE_SPECS",
+              },
+            ],
+            "table": "people",
+          },
+          "id": "P_ALTER_TABLE",
+        },
+        "id": "P_DDS",
+      },
+    ],
+    "id": "MAIN",
+  },
 }
 `;
 
 exports[`Parser: Should alter table adding unnamed key. 1`] = `
-{
-  "id": "MAIN",
-  "def": [
-    {
-      "id": "P_DDS",
-      "def": {
-        "id": "P_ALTER_TABLE",
+ParsedQuerySerializer {
+  "parsed": {
+    "def": [
+      {
         "def": {
-          "table": "people",
-          "specs": [
-            {
-              "id": "P_ALTER_TABLE_SPECS",
-              "def": {
-                "spec": {
-                  "id": "O_ALTER_TABLE_SPEC",
-                  "def": {
-                    "action": "addIndex",
-                    "name": null,
-                    "index": null,
-                    "columns": [
-                      {
-                        "id": "P_INDEX_COLUMN",
-                        "def": {
-                          "column": "id"
-                        }
-                      }
-                    ],
-                    "options": []
-                  }
-                }
-              }
-            }
-          ]
-        }
-      }
-    }
-  ]
+          "def": {
+            "specs": [
+              {
+                "def": {
+                  "spec": {
+                    "def": {
+                      "action": "addIndex",
+                      "columns": [
+                        {
+                          "def": {
+                            "column": "id",
+                            "length": undefined,
+                            "sort": undefined,
+                          },
+                          "id": "P_INDEX_COLUMN",
+                        },
+                      ],
+                      "index": null,
+                      "name": null,
+                      "options": [],
+                    },
+                    "id": "O_ALTER_TABLE_SPEC",
+                  },
+                },
+                "id": "P_ALTER_TABLE_SPECS",
+              },
+            ],
+            "table": "people",
+          },
+          "id": "P_ALTER_TABLE",
+        },
+        "id": "P_DDS",
+      },
+    ],
+    "id": "MAIN",
+  },
 }
 `;
 
 exports[`Parser: Should alter table dropping index. 1`] = `
-{
-  "id": "MAIN",
-  "def": [
-    {
-      "id": "P_DDS",
-      "def": {
-        "id": "P_ALTER_TABLE",
+ParsedQuerySerializer {
+  "parsed": {
+    "def": [
+      {
         "def": {
-          "table": "people",
-          "specs": [
-            {
-              "id": "P_ALTER_TABLE_SPECS",
-              "def": {
-                "spec": {
-                  "id": "O_ALTER_TABLE_SPEC",
-                  "def": {
-                    "action": "dropIndex",
-                    "index": "i_oid"
-                  }
-                }
-              }
-            }
-          ]
-        }
-      }
-    }
-  ]
+          "def": {
+            "specs": [
+              {
+                "def": {
+                  "spec": {
+                    "def": {
+                      "action": "dropIndex",
+                      "index": "i_oid",
+                    },
+                    "id": "O_ALTER_TABLE_SPEC",
+                  },
+                },
+                "id": "P_ALTER_TABLE_SPECS",
+              },
+            ],
+            "table": "people",
+          },
+          "id": "P_ALTER_TABLE",
+        },
+        "id": "P_DDS",
+      },
+    ],
+    "id": "MAIN",
+  },
 }
 `;
 
 exports[`Parser: Should alter table dropping key. 1`] = `
-{
-  "id": "MAIN",
-  "def": [
-    {
-      "id": "P_DDS",
-      "def": {
-        "id": "P_ALTER_TABLE",
+ParsedQuerySerializer {
+  "parsed": {
+    "def": [
+      {
         "def": {
-          "table": "people",
-          "specs": [
-            {
-              "id": "P_ALTER_TABLE_SPECS",
-              "def": {
-                "spec": {
-                  "id": "O_ALTER_TABLE_SPEC",
-                  "def": {
-                    "action": "dropIndex",
-                    "index": "k_oid"
-                  }
-                }
-              }
-            }
-          ]
-        }
-      }
-    }
-  ]
+          "def": {
+            "specs": [
+              {
+                "def": {
+                  "spec": {
+                    "def": {
+                      "action": "dropIndex",
+                      "index": "k_oid",
+                    },
+                    "id": "O_ALTER_TABLE_SPEC",
+                  },
+                },
+                "id": "P_ALTER_TABLE_SPECS",
+              },
+            ],
+            "table": "people",
+          },
+          "id": "P_ALTER_TABLE",
+        },
+        "id": "P_DDS",
+      },
+    ],
+    "id": "MAIN",
+  },
 }
 `;
 
 exports[`Parser: Should alter table renaming index. 1`] = `
-{
-  "id": "MAIN",
-  "def": [
-    {
-      "id": "P_DDS",
-      "def": {
-        "id": "P_ALTER_TABLE",
+ParsedQuerySerializer {
+  "parsed": {
+    "def": [
+      {
         "def": {
-          "table": "people",
-          "specs": [
-            {
-              "id": "P_ALTER_TABLE_SPECS",
-              "def": {
-                "spec": {
-                  "id": "O_ALTER_TABLE_SPEC",
-                  "def": {
-                    "action": "renameIndex",
-                    "index": "i_oid",
-                    "newName": "ii_oid"
-                  }
-                }
-              }
-            }
-          ]
-        }
-      }
-    }
-  ]
+          "def": {
+            "specs": [
+              {
+                "def": {
+                  "spec": {
+                    "def": {
+                      "action": "renameIndex",
+                      "index": "i_oid",
+                      "newName": "ii_oid",
+                    },
+                    "id": "O_ALTER_TABLE_SPEC",
+                  },
+                },
+                "id": "P_ALTER_TABLE_SPECS",
+              },
+            ],
+            "table": "people",
+          },
+          "id": "P_ALTER_TABLE",
+        },
+        "id": "P_DDS",
+      },
+    ],
+    "id": "MAIN",
+  },
 }
 `;
 
 exports[`Parser: Should alter table renaming key. 1`] = `
-{
-  "id": "MAIN",
-  "def": [
-    {
-      "id": "P_DDS",
-      "def": {
-        "id": "P_ALTER_TABLE",
+ParsedQuerySerializer {
+  "parsed": {
+    "def": [
+      {
         "def": {
-          "table": "people",
-          "specs": [
-            {
-              "id": "P_ALTER_TABLE_SPECS",
-              "def": {
-                "spec": {
-                  "id": "O_ALTER_TABLE_SPEC",
-                  "def": {
-                    "action": "renameIndex",
-                    "index": "k_oid",
-                    "newName": "kk_oid"
-                  }
-                }
-              }
-            }
-          ]
-        }
-      }
-    }
-  ]
+          "def": {
+            "specs": [
+              {
+                "def": {
+                  "spec": {
+                    "def": {
+                      "action": "renameIndex",
+                      "index": "k_oid",
+                      "newName": "kk_oid",
+                    },
+                    "id": "O_ALTER_TABLE_SPEC",
+                  },
+                },
+                "id": "P_ALTER_TABLE_SPECS",
+              },
+            ],
+            "table": "people",
+          },
+          "id": "P_ALTER_TABLE",
+        },
+        "id": "P_DDS",
+      },
+    ],
+    "id": "MAIN",
+  },
 }
 `;

@@ -161,15 +161,16 @@ export class Parser {
         this.resetParser();
       }
     } catch (e) {
+      const error = e as Error;
       /**
        * Apply line count correction.
        */
-      if (e.message && isString(e.message)) {
-        const matches = e.message.match(/at line (\d+)/);
+      if (error.message && isString(error.message)) {
+        const matches = error.message.match(/at line (\d+)/);
         if (matches && Array.isArray(matches) && matches.length > 1) {
           const errorLine = Number(matches[1]);
           const newCount = lineCount + errorLine - 1;
-          e.message = e.message.replace(/\d+/, newCount);
+          error.message = error.message.replace(/\d+/, newCount.toString());
         }
       }
 
@@ -182,7 +183,7 @@ export class Parser {
       this.escaped = false;
       this.quoted = '';
 
-      throw e;
+      throw error;
     }
 
     /**

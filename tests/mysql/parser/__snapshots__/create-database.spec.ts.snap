@@ -1,465 +1,503 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Parser: Should create test database 1`] = `
-{
-  "id": "MAIN",
-  "def": [
-    {
-      "id": "P_DDS",
-      "def": {
-        "id": "P_CREATE_DB",
+ParsedQuerySerializer {
+  "parsed": {
+    "def": [
+      {
         "def": {
-          "database": "test",
-          "meta": []
-        }
-      }
-    }
-  ]
+          "def": {
+            "database": "test",
+            "meta": [],
+          },
+          "id": "P_CREATE_DB",
+        },
+        "id": "P_DDS",
+      },
+    ],
+    "id": "MAIN",
+  },
 }
 `;
 
 exports[`Parser: Should create test database 2`] = `
-{
-  "id": "MAIN",
-  "def": [
-    {
-      "id": "P_DDS",
-      "def": {
-        "id": "P_CREATE_DB",
+ParsedQuerySerializer {
+  "parsed": {
+    "def": [
+      {
         "def": {
-          "database": "test",
-          "meta": []
-        }
-      }
-    }
-  ]
+          "def": {
+            "database": "test",
+            "meta": [],
+          },
+          "id": "P_CREATE_DB",
+        },
+        "id": "P_DDS",
+      },
+    ],
+    "id": "MAIN",
+  },
 }
 `;
 
 exports[`Parser: Should create test database 3`] = `
-{
-  "id": "MAIN",
-  "def": [
-    {
-      "id": "P_DDS",
-      "def": {
-        "id": "P_CREATE_DB",
+ParsedQuerySerializer {
+  "parsed": {
+    "def": [
+      {
         "def": {
-          "database": "test",
-          "meta": []
-        }
-      }
-    }
-  ]
+          "def": {
+            "database": "test",
+            "meta": [],
+          },
+          "id": "P_CREATE_DB",
+        },
+        "id": "P_DDS",
+      },
+    ],
+    "id": "MAIN",
+  },
 }
 `;
 
 exports[`Parser: Should create test database 4`] = `
-{
-  "id": "MAIN",
-  "def": [
-    {
-      "id": "P_DDS",
-      "def": {
-        "id": "P_CREATE_DB",
+ParsedQuerySerializer {
+  "parsed": {
+    "def": [
+      {
         "def": {
-          "database": "test",
-          "meta": []
-        }
-      }
-    }
-  ]
+          "def": {
+            "database": "test",
+            "meta": [],
+          },
+          "id": "P_CREATE_DB",
+        },
+        "id": "P_DDS",
+      },
+    ],
+    "id": "MAIN",
+  },
 }
 `;
 
 exports[`Parser: Should create test database 5`] = `
-{
-  "id": "MAIN",
-  "def": [
-    {
-      "id": "P_DDS",
-      "def": {
-        "id": "P_CREATE_DB",
+ParsedQuerySerializer {
+  "parsed": {
+    "def": [
+      {
         "def": {
-          "database": "test",
-          "meta": []
-        }
-      }
-    }
-  ]
+          "def": {
+            "database": "test",
+            "meta": [],
+          },
+          "id": "P_CREATE_DB",
+        },
+        "id": "P_DDS",
+      },
+    ],
+    "id": "MAIN",
+  },
 }
 `;
 
 exports[`Parser: Should create test database even when having two collate options. 1`] = `
-{
-  "id": "MAIN",
-  "def": [
-    {
-      "id": "P_DDS",
-      "def": {
-        "id": "P_CREATE_DB",
+ParsedQuerySerializer {
+  "parsed": {
+    "def": [
+      {
         "def": {
-          "database": "test",
-          "meta": [
-            {
-              "id": "O_CREATE_DB_SPEC",
-              "def": {
-                "collation": "utf8_cirylic_ci"
-              }
-            },
-            {
-              "id": "O_CREATE_DB_SPEC",
-              "def": {
-                "charset": "utf8"
-              }
-            },
-            {
-              "id": "O_CREATE_DB_SPEC",
-              "def": {
-                "collation": "utf8_general_ci"
-              }
-            }
-          ]
-        }
-      }
-    }
-  ]
+          "def": {
+            "database": "test",
+            "meta": [
+              {
+                "def": {
+                  "collation": "utf8_cirylic_ci",
+                },
+                "id": "O_CREATE_DB_SPEC",
+              },
+              {
+                "def": {
+                  "charset": "utf8",
+                },
+                "id": "O_CREATE_DB_SPEC",
+              },
+              {
+                "def": {
+                  "collation": "utf8_general_ci",
+                },
+                "id": "O_CREATE_DB_SPEC",
+              },
+            ],
+          },
+          "id": "P_CREATE_DB",
+        },
+        "id": "P_DDS",
+      },
+    ],
+    "id": "MAIN",
+  },
 }
 `;
 
 exports[`Parser: Should create test database with charset utf8 1`] = `
-{
-  "id": "MAIN",
-  "def": [
-    {
-      "id": "P_DDS",
-      "def": {
-        "id": "P_CREATE_DB",
+ParsedQuerySerializer {
+  "parsed": {
+    "def": [
+      {
         "def": {
-          "database": "test",
-          "meta": [
-            {
-              "id": "O_CREATE_DB_SPEC",
-              "def": {
-                "charset": "utf8"
-              }
-            }
-          ]
-        }
-      }
-    }
-  ]
+          "def": {
+            "database": "test",
+            "meta": [
+              {
+                "def": {
+                  "charset": "utf8",
+                },
+                "id": "O_CREATE_DB_SPEC",
+              },
+            ],
+          },
+          "id": "P_CREATE_DB",
+        },
+        "id": "P_DDS",
+      },
+    ],
+    "id": "MAIN",
+  },
 }
 `;
 
 exports[`Parser: Should create test database with charset utf8 2`] = `
-{
-  "id": "MAIN",
-  "def": [
-    {
-      "id": "P_DDS",
-      "def": {
-        "id": "P_CREATE_DB",
+ParsedQuerySerializer {
+  "parsed": {
+    "def": [
+      {
         "def": {
-          "database": "test",
-          "meta": [
-            {
-              "id": "O_CREATE_DB_SPEC",
-              "def": {
-                "charset": "utf8"
-              }
-            }
-          ]
-        }
-      }
-    }
-  ]
+          "def": {
+            "database": "test",
+            "meta": [
+              {
+                "def": {
+                  "charset": "utf8",
+                },
+                "id": "O_CREATE_DB_SPEC",
+              },
+            ],
+          },
+          "id": "P_CREATE_DB",
+        },
+        "id": "P_DDS",
+      },
+    ],
+    "id": "MAIN",
+  },
 }
 `;
 
 exports[`Parser: Should create test database with charset utf8 3`] = `
-{
-  "id": "MAIN",
-  "def": [
-    {
-      "id": "P_DDS",
-      "def": {
-        "id": "P_CREATE_DB",
+ParsedQuerySerializer {
+  "parsed": {
+    "def": [
+      {
         "def": {
-          "database": "test",
-          "meta": [
-            {
-              "id": "O_CREATE_DB_SPEC",
-              "def": {
-                "charset": "utf8"
-              }
-            }
-          ]
-        }
-      }
-    }
-  ]
+          "def": {
+            "database": "test",
+            "meta": [
+              {
+                "def": {
+                  "charset": "utf8",
+                },
+                "id": "O_CREATE_DB_SPEC",
+              },
+            ],
+          },
+          "id": "P_CREATE_DB",
+        },
+        "id": "P_DDS",
+      },
+    ],
+    "id": "MAIN",
+  },
 }
 `;
 
 exports[`Parser: Should create test database with charset utf8 4`] = `
-{
-  "id": "MAIN",
-  "def": [
-    {
-      "id": "P_DDS",
-      "def": {
-        "id": "P_CREATE_DB",
+ParsedQuerySerializer {
+  "parsed": {
+    "def": [
+      {
         "def": {
-          "database": "test",
-          "meta": [
-            {
-              "id": "O_CREATE_DB_SPEC",
-              "def": {
-                "charset": "utf8"
-              }
-            }
-          ]
-        }
-      }
-    }
-  ]
+          "def": {
+            "database": "test",
+            "meta": [
+              {
+                "def": {
+                  "charset": "utf8",
+                },
+                "id": "O_CREATE_DB_SPEC",
+              },
+            ],
+          },
+          "id": "P_CREATE_DB",
+        },
+        "id": "P_DDS",
+      },
+    ],
+    "id": "MAIN",
+  },
 }
 `;
 
 exports[`Parser: Should create test database with charset utf8 5`] = `
-{
-  "id": "MAIN",
-  "def": [
-    {
-      "id": "P_DDS",
-      "def": {
-        "id": "P_CREATE_DB",
+ParsedQuerySerializer {
+  "parsed": {
+    "def": [
+      {
         "def": {
-          "database": "test",
-          "meta": [
-            {
-              "id": "O_CREATE_DB_SPEC",
-              "def": {
-                "charset": "utf8"
-              }
-            }
-          ]
-        }
-      }
-    }
-  ]
+          "def": {
+            "database": "test",
+            "meta": [
+              {
+                "def": {
+                  "charset": "utf8",
+                },
+                "id": "O_CREATE_DB_SPEC",
+              },
+            ],
+          },
+          "id": "P_CREATE_DB",
+        },
+        "id": "P_DDS",
+      },
+    ],
+    "id": "MAIN",
+  },
 }
 `;
 
 exports[`Parser: Should create test database with charset utf8 6`] = `
-{
-  "id": "MAIN",
-  "def": [
-    {
-      "id": "P_DDS",
-      "def": {
-        "id": "P_CREATE_DB",
+ParsedQuerySerializer {
+  "parsed": {
+    "def": [
+      {
         "def": {
-          "database": "test",
-          "meta": [
-            {
-              "id": "O_CREATE_DB_SPEC",
-              "def": {
-                "charset": "utf8"
-              }
-            }
-          ]
-        }
-      }
-    }
-  ]
+          "def": {
+            "database": "test",
+            "meta": [
+              {
+                "def": {
+                  "charset": "utf8",
+                },
+                "id": "O_CREATE_DB_SPEC",
+              },
+            ],
+          },
+          "id": "P_CREATE_DB",
+        },
+        "id": "P_DDS",
+      },
+    ],
+    "id": "MAIN",
+  },
 }
 `;
 
 exports[`Parser: Should create test database with charset utf8 7`] = `
-{
-  "id": "MAIN",
-  "def": [
-    {
-      "id": "P_DDS",
-      "def": {
-        "id": "P_CREATE_DB",
+ParsedQuerySerializer {
+  "parsed": {
+    "def": [
+      {
         "def": {
-          "database": "test",
-          "meta": [
-            {
-              "id": "O_CREATE_DB_SPEC",
-              "def": {
-                "charset": "utf8"
-              }
-            }
-          ]
-        }
-      }
-    }
-  ]
+          "def": {
+            "database": "test",
+            "meta": [
+              {
+                "def": {
+                  "charset": "utf8",
+                },
+                "id": "O_CREATE_DB_SPEC",
+              },
+            ],
+          },
+          "id": "P_CREATE_DB",
+        },
+        "id": "P_DDS",
+      },
+    ],
+    "id": "MAIN",
+  },
 }
 `;
 
 exports[`Parser: Should create test database with charset utf8 and collation utf8_general_ci 1`] = `
-{
-  "id": "MAIN",
-  "def": [
-    {
-      "id": "P_DDS",
-      "def": {
-        "id": "P_CREATE_DB",
+ParsedQuerySerializer {
+  "parsed": {
+    "def": [
+      {
         "def": {
-          "database": "test",
-          "meta": [
-            {
-              "id": "O_CREATE_DB_SPEC",
-              "def": {
-                "charset": "utf8"
-              }
-            },
-            {
-              "id": "O_CREATE_DB_SPEC",
-              "def": {
-                "collation": "utf8_general_ci"
-              }
-            }
-          ]
-        }
-      }
-    }
-  ]
+          "def": {
+            "database": "test",
+            "meta": [
+              {
+                "def": {
+                  "charset": "utf8",
+                },
+                "id": "O_CREATE_DB_SPEC",
+              },
+              {
+                "def": {
+                  "collation": "utf8_general_ci",
+                },
+                "id": "O_CREATE_DB_SPEC",
+              },
+            ],
+          },
+          "id": "P_CREATE_DB",
+        },
+        "id": "P_DDS",
+      },
+    ],
+    "id": "MAIN",
+  },
 }
 `;
 
 exports[`Parser: Should create test database with collation utf8_general_ci 1`] = `
-{
-  "id": "MAIN",
-  "def": [
-    {
-      "id": "P_DDS",
-      "def": {
-        "id": "P_CREATE_DB",
+ParsedQuerySerializer {
+  "parsed": {
+    "def": [
+      {
         "def": {
-          "database": "test",
-          "meta": [
-            {
-              "id": "O_CREATE_DB_SPEC",
-              "def": {
-                "collation": "utf8_general_ci"
-              }
-            }
-          ]
-        }
-      }
-    }
-  ]
+          "def": {
+            "database": "test",
+            "meta": [
+              {
+                "def": {
+                  "collation": "utf8_general_ci",
+                },
+                "id": "O_CREATE_DB_SPEC",
+              },
+            ],
+          },
+          "id": "P_CREATE_DB",
+        },
+        "id": "P_DDS",
+      },
+    ],
+    "id": "MAIN",
+  },
 }
 `;
 
 exports[`Parser: Should create test database with collation utf8_general_ci 2`] = `
-{
-  "id": "MAIN",
-  "def": [
-    {
-      "id": "P_DDS",
-      "def": {
-        "id": "P_CREATE_DB",
+ParsedQuerySerializer {
+  "parsed": {
+    "def": [
+      {
         "def": {
-          "database": "test",
-          "meta": [
-            {
-              "id": "O_CREATE_DB_SPEC",
-              "def": {
-                "collation": "utf8_general_ci"
-              }
-            }
-          ]
-        }
-      }
-    }
-  ]
+          "def": {
+            "database": "test",
+            "meta": [
+              {
+                "def": {
+                  "collation": "utf8_general_ci",
+                },
+                "id": "O_CREATE_DB_SPEC",
+              },
+            ],
+          },
+          "id": "P_CREATE_DB",
+        },
+        "id": "P_DDS",
+      },
+    ],
+    "id": "MAIN",
+  },
 }
 `;
 
 exports[`Parser: Should create test database with collation utf8_general_ci 3`] = `
-{
-  "id": "MAIN",
-  "def": [
-    {
-      "id": "P_DDS",
-      "def": {
-        "id": "P_CREATE_DB",
+ParsedQuerySerializer {
+  "parsed": {
+    "def": [
+      {
         "def": {
-          "database": "test",
-          "meta": [
-            {
-              "id": "O_CREATE_DB_SPEC",
-              "def": {
-                "collation": "utf8_general_ci"
-              }
-            }
-          ]
-        }
-      }
-    }
-  ]
+          "def": {
+            "database": "test",
+            "meta": [
+              {
+                "def": {
+                  "collation": "utf8_general_ci",
+                },
+                "id": "O_CREATE_DB_SPEC",
+              },
+            ],
+          },
+          "id": "P_CREATE_DB",
+        },
+        "id": "P_DDS",
+      },
+    ],
+    "id": "MAIN",
+  },
 }
 `;
 
 exports[`Parser: Should create test database with collation utf8_general_ci 4`] = `
-{
-  "id": "MAIN",
-  "def": [
-    {
-      "id": "P_DDS",
-      "def": {
-        "id": "P_CREATE_DB",
+ParsedQuerySerializer {
+  "parsed": {
+    "def": [
+      {
         "def": {
-          "database": "test",
-          "meta": [
-            {
-              "id": "O_CREATE_DB_SPEC",
-              "def": {
-                "collation": "utf8_general_ci"
-              }
-            }
-          ]
-        }
-      }
-    }
-  ]
+          "def": {
+            "database": "test",
+            "meta": [
+              {
+                "def": {
+                  "collation": "utf8_general_ci",
+                },
+                "id": "O_CREATE_DB_SPEC",
+              },
+            ],
+          },
+          "id": "P_CREATE_DB",
+        },
+        "id": "P_DDS",
+      },
+    ],
+    "id": "MAIN",
+  },
 }
 `;
 
 exports[`Parser: Should create test database with collation utf8_general_ci and charset utf8 1`] = `
-{
-  "id": "MAIN",
-  "def": [
-    {
-      "id": "P_DDS",
-      "def": {
-        "id": "P_CREATE_DB",
+ParsedQuerySerializer {
+  "parsed": {
+    "def": [
+      {
         "def": {
-          "database": "test",
-          "meta": [
-            {
-              "id": "O_CREATE_DB_SPEC",
-              "def": {
-                "collation": "utf8_general_ci"
-              }
-            },
-            {
-              "id": "O_CREATE_DB_SPEC",
-              "def": {
-                "charset": "utf8"
-              }
-            }
-          ]
-        }
-      }
-    }
-  ]
+          "def": {
+            "database": "test",
+            "meta": [
+              {
+                "def": {
+                  "collation": "utf8_general_ci",
+                },
+                "id": "O_CREATE_DB_SPEC",
+              },
+              {
+                "def": {
+                  "charset": "utf8",
+                },
+                "id": "O_CREATE_DB_SPEC",
+              },
+            ],
+          },
+          "id": "P_CREATE_DB",
+        },
+        "id": "P_DDS",
+      },
+    ],
+    "id": "MAIN",
+  },
 }
 `;

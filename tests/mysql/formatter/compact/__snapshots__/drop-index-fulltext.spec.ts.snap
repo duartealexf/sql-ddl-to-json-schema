@@ -9,7 +9,7 @@ exports[`Compact formatter: Should drop a fulltext index. 1`] = `
         "name": "id",
         "type": {
           "datatype": "int",
-          "width": 10
+          "displayWidth": 10
         },
         "options": {
           "unsigned": true,
@@ -57,8 +57,7 @@ exports[`Compact formatter: Should drop a fulltext index. 1`] = `
       {
         "name": "ssn",
         "type": {
-          "datatype": "int",
-          "width": 2
+          "datatype": "smallint"
         },
         "options": {
           "nullable": true,
@@ -285,8 +284,7 @@ exports[`Compact formatter: Should drop a fulltext index. 1`] = `
       {
         "name": "id",
         "type": {
-          "datatype": "int",
-          "width": 8
+          "datatype": "bigint"
         },
         "options": {
           "nullable": true
@@ -305,8 +303,7 @@ exports[`Compact formatter: Should drop a fulltext index. 1`] = `
       {
         "name": "owner_id",
         "type": {
-          "datatype": "int",
-          "width": 3
+          "datatype": "mediumint"
         },
         "options": {
           "nullable": true
@@ -552,8 +549,7 @@ exports[`Compact formatter: Should drop a fulltext index. 1`] = `
       {
         "name": "id",
         "type": {
-          "datatype": "int",
-          "width": 4
+          "datatype": "int"
         },
         "options": {
           "nullable": false
@@ -562,8 +558,7 @@ exports[`Compact formatter: Should drop a fulltext index. 1`] = `
       {
         "name": "pet_id",
         "type": {
-          "datatype": "int",
-          "width": 1
+          "datatype": "tinyint"
         },
         "options": {
           "nullable": true
@@ -861,7 +856,7 @@ exports[`Compact formatter: Should not drop unknown index. 1`] = `
         "name": "id",
         "type": {
           "datatype": "int",
-          "width": 10
+          "displayWidth": 10
         },
         "options": {
           "unsigned": true,
@@ -909,8 +904,7 @@ exports[`Compact formatter: Should not drop unknown index. 1`] = `
       {
         "name": "ssn",
         "type": {
-          "datatype": "int",
-          "width": 2
+          "datatype": "smallint"
         },
         "options": {
           "nullable": true,
@@ -1137,8 +1131,7 @@ exports[`Compact formatter: Should not drop unknown index. 1`] = `
       {
         "name": "id",
         "type": {
-          "datatype": "int",
-          "width": 8
+          "datatype": "bigint"
         },
         "options": {
           "nullable": true
@@ -1157,8 +1150,7 @@ exports[`Compact formatter: Should not drop unknown index. 1`] = `
       {
         "name": "owner_id",
         "type": {
-          "datatype": "int",
-          "width": 3
+          "datatype": "mediumint"
         },
         "options": {
           "nullable": true
@@ -1404,8 +1396,7 @@ exports[`Compact formatter: Should not drop unknown index. 1`] = `
       {
         "name": "id",
         "type": {
-          "datatype": "int",
-          "width": 4
+          "datatype": "int"
         },
         "options": {
           "nullable": false
@@ -1414,8 +1405,7 @@ exports[`Compact formatter: Should not drop unknown index. 1`] = `
       {
         "name": "pet_id",
         "type": {
-          "datatype": "int",
-          "width": 1
+          "datatype": "tinyint"
         },
         "options": {
           "nullable": true

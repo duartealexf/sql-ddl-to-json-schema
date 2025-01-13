@@ -99,9 +99,9 @@ export interface PrimaryKeyInterface {
 export interface DatatypeInterface {
   datatype: string;
   /**
-   * Width for integer datatypes.
+   * Display width for int datatypes.
    */
-  width?: number;
+  displayWidth?: number;
   /**
    * Digits for numeric non-integer and year datatypes.
    */

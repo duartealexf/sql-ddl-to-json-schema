@@ -7,22 +7,23 @@
 
 Transforms SQL DDL statements into JSON format (JSON Schema and a compact format).
 
-- [Overview](#overview)
-- [Installation](#installation)
-- [Usage](#usage)
-  - [Shorthand](#shorthand)
-  - [Step by step](#step-by-step)
-- [Options for JSON Schema output](#options-for-json-schema-output)
-  - [`useRef`](#useref)
-- [Version compatibility table](#version-compatibility-table)
-- [What it is, what it is not](#what-it-is-what-it-is-not)
-- [About](#about)
-- [Contributing](#contributing)
-  - [Commiting](#commiting)
-  - [Understanding the internals](#understanding-the-internals)
-  - [Scripts at hand](#scripts-at-hand)
-    - [Visual Studio Code](#visual-studio-code)
-- [Links](#links)
+- [SQL DDL to JSON Schema converter](#sql-ddl-to-json-schema-converter)
+  - [Overview](#overview)
+  - [Installation](#installation)
+  - [Usage](#usage)
+    - [Shorthand](#shorthand)
+    - [Step by step](#step-by-step)
+  - [Options for JSON Schema output](#options-for-json-schema-output)
+    - [`useRef`](#useref)
+  - [Version compatibility table](#version-compatibility-table)
+  - [What it is, what it is not](#what-it-is-what-it-is-not)
+  - [About](#about)
+  - [Contributing](#contributing)
+    - [Commiting](#commiting)
+    - [Understanding the internals](#understanding-the-internals)
+    - [Scripts at hand](#scripts-at-hand)
+      - [Visual Studio Code](#visual-studio-code)
+  - [Links](#links)
 
 ## Overview
 
@@ -52,17 +53,13 @@ It parses and delivers an **array of JSON Schema documents** (one for each parse
     "title": "users",
     "description": "All system users",
     "type": "object",
-    "required": [
-      "id",
-      "nickname",
-      "created_at"
-    ],
+    "required": ["id", "nickname", "created_at"],
     "definitions": {
       "id": {
         "$comment": "primary key",
         "type": "integer",
         "minimum": 1,
-        "maximum": 1.5474250491067253e+26
+        "maximum": 2147483647
       },
       "nickname": {
         "type": "string",
@@ -184,7 +181,7 @@ And an array of tables in a compact JSON format:
 ]
 ```
 
-*Currently only DDL statements of MySQL and MariaDB dialects are supported.* - [Check out the roadmap](https://github.com/duartealexf/sql-ddl-to-json-schema/blob/master/ROADMAP.md)
+_Currently only DDL statements of MySQL and MariaDB dialects are supported._ - [Check out the roadmap](https://github.com/duartealexf/sql-ddl-to-json-schema/blob/master/ROADMAP.md)
 
 ## Installation
 
@@ -200,7 +197,7 @@ npm i sql-ddl-to-json-schema
 ```ts
 const { Parser } = require('sql-ddl-to-json-schema');
 // or:
-import { Parser } from 'sql-ddl-to-json-schema'
+import { Parser } from 'sql-ddl-to-json-schema';
 
 const parser = new Parser('mysql');
 
@@ -231,7 +228,6 @@ const compactJsonTablesArray = parser.feed(sql).toCompactJson(parser.results);
  * Or get the JSON Schema if you need to modify it...
  */
 const jsonSchemaDocuments = parser.feed(sql).toJsonSchemaArray(options, compactJsonTablesArray);
-
 ```
 
 ### Step by step
@@ -269,7 +265,7 @@ There are a few options when it comes to formatting the JSON Schema output:
 
 ### `useRef`
 
-Whether to add all properties to `definitions` and in `properties` only use $ref.
+Whether to add all properties to `definitions` and in `properties` only use \$ref.
 
 Default value: `true`.
 
@@ -314,26 +310,26 @@ To commit, use commitizen: `git cz` (you will need to have installed devDependen
 Folder structure:
 
 ```md
-|- lib/                   Compiled library folder, product of this project.
+|- lib/ Compiled library folder, product of this project.
 |
 |- src/
-|  |- typings/            Types used throughout project.
-|  |- shared/             Shared files used by dialects, parsers and formatters.
-|  |- mysql/
-|     |- formatter/       Formats the parsed JSON (output of parser) to other format.
-|        |- compact/      Formatter for compact JSON format.
-|        |- json-schema/  Formatter for JSON Schema format.
-|     |- language/
-|        |- dictionary/   TS files with array of keywords and symbols used in lexer.ne.
-|        |- rules/        Nearley files with grammar rules.
-|        |- lexer.ne      Entrypoint and first lines of the grammar.
+| |- typings/ Types used throughout project.
+| |- shared/ Shared files used by dialects, parsers and formatters.
+| |- mysql/
+| |- formatter/ Formats the parsed JSON (output of parser) to other format.
+| |- compact/ Formatter for compact JSON format.
+| |- json-schema/ Formatter for JSON Schema format.
+| |- language/
+| |- dictionary/ TS files with array of keywords and symbols used in lexer.ne.
+| |- rules/ Nearley files with grammar rules.
+| |- lexer.ne Entrypoint and first lines of the grammar.
 |
 |- tasks/
-|  |- mysql/
-|     |- assembly.ts      Script that concatenates all .ne files to grammar.ne to lib folder.
-|     |- formatters.ts    Script that sends a copy of formatters to lib folder.
+| |- mysql/
+| |- assembly.ts Script that concatenates all .ne files to grammar.ne to lib folder.
+| |- formatters.ts Script that sends a copy of formatters to lib folder.
 |
-|- test/                  Tests.
+|- test/ Tests.
 ```
 
 - There are naming rules for tokens in ne files, as stated in `lexer.ne`. They are prepended with:
@@ -347,7 +343,7 @@ S_ -> Symbol (not a keyword, but chars and other matches by RegExp's)
 
 ```
 
-1. The `dictionary/keywords.ts` file contains keywords, but they are prepended with K_ when used in .ne files. Take a look to make sure you understand how it is exported.
+1. The `dictionary/keywords.ts` file contains keywords, but they are prepended with K\_ when used in .ne files. Take a look to make sure you understand how it is exported.
 
 2. The compiled `grammar.ne` file comprises an assembly (concatenation) of `lexer.ne` and files in `language` folder. So don't worry about importing .ne files in other .ne files. This prevents circular dependency and grammar rules in `lexer.ne` are scoped to all files (thus not having to repeat them in every file).
 

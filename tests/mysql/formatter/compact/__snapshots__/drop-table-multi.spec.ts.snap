@@ -9,7 +9,7 @@ exports[`Compact formatter: Should drop two tables. 1`] = `
         "name": "id",
         "type": {
           "datatype": "int",
-          "width": 10
+          "displayWidth": 10
         },
         "options": {
           "unsigned": true,
@@ -57,8 +57,7 @@ exports[`Compact formatter: Should drop two tables. 1`] = `
       {
         "name": "ssn",
         "type": {
-          "datatype": "int",
-          "width": 2
+          "datatype": "smallint"
         },
         "options": {
           "nullable": true,

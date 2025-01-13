@@ -7,8 +7,8 @@ import { Column } from './column';
 type JSONSchema7 = OriginalJSONSchema7 & {
   type: string;
   required: string[];
-  definitions: NonNullable<OriginalJSONSchema7['definitions']>;
-  properties: NonNullable<OriginalJSONSchema7['properties']>;
+  definitions?: NonNullable<OriginalJSONSchema7['definitions']>;
+  properties?: NonNullable<OriginalJSONSchema7['properties']>;
 };
 
 /**
@@ -96,15 +96,21 @@ export class Table {
       const name = c.name;
       const definitions: JSONSchema7['definitions'] = {};
 
-      json.properties[name] = {
-        $ref: `#/definitions/${name}`,
+      json.properties = {
+        ...json.properties,
+        [name]: {
+          $ref: `#/definitions/${name}`,
+        },
       };
 
       Object.getOwnPropertyNames(column).forEach((key) => {
         setProperty(definitions, key, column[key as keyof typeof column]);
       });
 
-      json.definitions[name] = definitions;
+      json.definitions = {
+        ...json.definitions,
+        [name]: definitions,
+      };
 
       if (c.isNullable === false) {
         (json.required as string[]).push(name);

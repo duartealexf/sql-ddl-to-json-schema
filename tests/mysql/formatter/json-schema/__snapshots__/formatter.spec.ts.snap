@@ -20,7 +20,7 @@ exports[`JSON Schema formatter: should format tables correctly, with ref. 1`] = 
         "description": "primary key test",
         "type": "integer",
         "minimum": 1,
-        "maximum": 1.2089258196146292e+24
+        "maximum": 4294967295
       },
       "name": {
         "type": "string",
@@ -37,6 +37,7 @@ exports[`JSON Schema formatter: should format tables correctly, with ref. 1`] = 
         "maxLength": 20
       },
       "ssn": {
+        "description": "SMALLINT",
         "type": "integer",
         "minimum": -32768,
         "maximum": 32767
@@ -187,8 +188,8 @@ exports[`JSON Schema formatter: should format tables correctly, with ref. 1`] = 
     "definitions": {
       "id": {
         "type": "integer",
-        "minimum": -9223372036854776000,
-        "maximum": 9223372036854776000
+        "minimum": -9007199254740991,
+        "maximum": 9007199254740991
       },
       "species": {
         "type": "string",
@@ -497,7 +498,7 @@ exports[`JSON Schema formatter: should format tables correctly, without ref. 1`]
         "description": "primary key test",
         "type": "integer",
         "minimum": 1,
-        "maximum": 1.2089258196146292e+24
+        "maximum": 4294967295
       },
       "name": {
         "type": "string",
@@ -514,6 +515,7 @@ exports[`JSON Schema formatter: should format tables correctly, without ref. 1`]
         "maxLength": 20
       },
       "ssn": {
+        "description": "SMALLINT",
         "type": "integer",
         "minimum": -32768,
         "maximum": 32767
@@ -599,8 +601,8 @@ exports[`JSON Schema formatter: should format tables correctly, without ref. 1`]
     "properties": {
       "id": {
         "type": "integer",
-        "minimum": -9223372036854776000,
-        "maximum": 9223372036854776000
+        "minimum": -9007199254740991,
+        "maximum": 9007199254740991
       },
       "species": {
         "type": "string",

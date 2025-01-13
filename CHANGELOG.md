@@ -2,6 +2,29 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [4.2.0](https://github.com/duartealexf/sql-ddl-to-json-schema/compare/v4.1.1...v4.2.0) (2025-01-13)
+
+
+### Features
+
+* **package.json:** version 4.2.0 ([980132b](https://github.com/duartealexf/sql-ddl-to-json-schema/commit/980132b755b73ddd388c5d8ba38594217a5b0da9))
+* **package.json:** version 5.0.0 ([483b6a9](https://github.com/duartealexf/sql-ddl-to-json-schema/commit/483b6a9e77daccf689eada9f81ba8decda1fd846))
+* update int datatypes with compact json and jsonschema ([f26b9f0](https://github.com/duartealexf/sql-ddl-to-json-schema/commit/f26b9f0bfd81e079fc3a629e82dc61bf946d9770))
+
+
+### Bug Fixes
+
+* mysql formatter jsonschema definitions should be optional ([cf1d26e](https://github.com/duartealexf/sql-ddl-to-json-schema/commit/cf1d26e54eb4d06218300154fd8d11c587a6a039))
+* no change for the bigint type as integer in jsonschema ([ce57308](https://github.com/duartealexf/sql-ddl-to-json-schema/commit/ce5730880ecc3862b5aed0846f3a028d446204d5))
+* number types with wrong max and min, and add handling bigint in javascript ([2a03bec](https://github.com/duartealexf/sql-ddl-to-json-schema/commit/2a03bec629f886f0b78b5d8287444915c82a59ff))
+* remove extra feature jest configs and tests ([6483d09](https://github.com/duartealexf/sql-ddl-to-json-schema/commit/6483d09e89801cc84a88ee2549afb9bd6275258c))
+* rm tests ssn1 -> ssn9 int datatypes in sql ([7bf3485](https://github.com/duartealexf/sql-ddl-to-json-schema/commit/7bf348542af15940cc42e8be825b0ec250b05e93))
+* **src/mysql/formatter/json-schema/models/datatype.ts:** fix datatype int signed or unsigned with max and min number value ([76ccb20](https://github.com/duartealexf/sql-ddl-to-json-schema/commit/76ccb20a84a71f90374d81cb2bdd42aca55d41ad))
+* **src/mysql/formatter/json-schema/models/datatype.ts:** verbose Datatype isIntegerDataType method ([4f342e5](https://github.com/duartealexf/sql-ddl-to-json-schema/commit/4f342e5b253ad60764bb09447125c1e0a238b2e7))
+* **src/typings/compact.ts:** verbose DatatypeInterface width ([7bedfcc](https://github.com/duartealexf/sql-ddl-to-json-schema/commit/7bedfccac8422a5b2ba473920a99ad33811430dc))
+* test - reduce the changes in snapshots ([f094b8b](https://github.com/duartealexf/sql-ddl-to-json-schema/commit/f094b8b537d41b0b1d7a8011bb2789357c890fe4))
+* **tests/mysql/parser/create-table.spec.ts:**  reduce changes in snapshots ([5a17007](https://github.com/duartealexf/sql-ddl-to-json-schema/commit/5a170077146f708f932de0dcdd7ac4154247bf25))
+
 ### [4.1.1](https://github.com/duartealexf/sql-ddl-to-json-schema/compare/v4.1.0...v4.1.1) (2024-11-19)
 
 

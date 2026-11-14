@@ -33,15 +33,16 @@ run(getCompactFormat, {
     ],
   },
 
-  'Compact formatter: Alter table change column should rename primary and foreign key column reference.': {
-    queries: [
-      sql
-        .concat([
-          'ALTER TABLE person CHANGE COLUMN id code INT(10) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT COMMENT "primary key test";',
-        ])
-        .join(''),
-    ],
-  },
+  'Compact formatter: Alter table change column should rename primary and foreign key column reference.':
+    {
+      queries: [
+        sql
+          .concat([
+            'ALTER TABLE person CHANGE COLUMN id code INT(10) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT COMMENT "primary key test";',
+          ])
+          .join(''),
+      ],
+    },
 
   'Compact formatter: Alter table change column should rename fulltext index column reference.': {
     queries: [
@@ -69,31 +70,37 @@ run(getCompactFormat, {
     queries: [sql.concat(['ALTER TABLE house CHANGE COLUMN coordx x_axis FLOAT(6,2);']).join('')],
   },
 
-  'Compact formatter: Alter table change column should not change a column to autoincrement if there is another one with autoincrement in table.': {
-    queries: [
-      sql.concat(['ALTER TABLE person CHANGE COLUMN ssn int(10) AUTO_INCREMENT;']).join(''),
-    ],
-  },
+  'Compact formatter: Alter table change column should not change a column to autoincrement if there is another one with autoincrement in table.':
+    {
+      queries: [
+        sql.concat(['ALTER TABLE person CHANGE COLUMN ssn int(10) AUTO_INCREMENT;']).join(''),
+      ],
+    },
 
-  'Compact formatter: Alter table change column should not change a column, moving it after unexisting column.': {
-    queries: [sql.concat(['ALTER TABLE pet CHANGE COLUMN year year TINYINT after xyz;']).join('')],
-  },
+  'Compact formatter: Alter table change column should not change a column, moving it after unexisting column.':
+    {
+      queries: [
+        sql.concat(['ALTER TABLE pet CHANGE COLUMN year year TINYINT after xyz;']).join(''),
+      ],
+    },
 
-  'Compact formatter: Alter table change column should not change a column if it tries to add a second primary key.': {
-    queries: [
-      sql.concat(['ALTER TABLE person CHANGE COLUMN size size INT(8) primary key;']).join(''),
-    ],
-  },
+  'Compact formatter: Alter table change column should not change a column if it tries to add a second primary key.':
+    {
+      queries: [
+        sql.concat(['ALTER TABLE person CHANGE COLUMN size size INT(8) primary key;']).join(''),
+      ],
+    },
 
   'Compact formatter: Alter table change column should not change unexisting column.': {
     queries: [sql.concat(['ALTER TABLE person CHANGE COLUMN xyz abc INT(8) NOT NULL;']).join('')],
   },
 
-  'Compact formatter: Alter table change column should not change column adding a second autoincrement.': {
-    queries: [
-      sql.concat(['ALTER TABLE person CHANGE COLUMN size size INT(8) AUTO_INCREMENT;']).join(''),
-    ],
-  },
+  'Compact formatter: Alter table change column should not change column adding a second autoincrement.':
+    {
+      queries: [
+        sql.concat(['ALTER TABLE person CHANGE COLUMN size size INT(8) AUTO_INCREMENT;']).join(''),
+      ],
+    },
 
   'Compact formatter: Alter table change column should change last column.': {
     queries: [

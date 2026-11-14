@@ -54,9 +54,7 @@ export class Index implements IndexModelInterface {
    */
   static fromObject(
     json:
-      | O_CREATE_TABLE_CREATE_DEFINITION_INDEX
-      | P_CREATE_INDEX['def']
-      | O_ALTER_TABLE_SPEC_ADD_INDEX,
+      O_CREATE_TABLE_CREATE_DEFINITION_INDEX | P_CREATE_INDEX['def'] | O_ALTER_TABLE_SPEC_ADD_INDEX,
   ): Index {
     const index = new Index();
     index.columns = json.columns.map(IndexColumn.fromDef);

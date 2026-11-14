@@ -13,5 +13,3 @@ export class ParsedQuerySerializer {
     return JSON.stringify(value.parsed, null, 2);
   }
 }
-
-expect.addSnapshotSerializer(ParsedQuerySerializer);

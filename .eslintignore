@@ -1,8 +1,0 @@
-/node_modules
-/typings
-/lib
-/test
-
-grammar.ts
-__snapshots__
-jest.config.js

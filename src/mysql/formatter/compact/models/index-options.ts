@@ -1,9 +1,7 @@
 import { O_INDEX_OPTION, IndexOptionsInterface } from '../../../../typings';
 import { isDefined } from '../../../../shared/utils';
 
-import {
-  IndexOptionsModelInterface,
-} from './typings';
+import { IndexOptionsModelInterface } from './typings';
 
 /**
  * Table index options.

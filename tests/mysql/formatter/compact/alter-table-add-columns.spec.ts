@@ -15,15 +15,16 @@ run(getCompactFormat, {
     queries: [sql.join('')],
   },
 
-  'Compact formatter: Alter table add columns should not add autoincrement with a table already having autoincrement.': {
-    queries: [
-      sql
-        .concat([
-          'ALTER TABLE person ADD COLUMN test3 TINYINT UNSIGNED ZEROFILL CHARACTER SET latin1 COLLATE latin_ci NULL DEFAULT 42 AUTO_INCREMENT UNIQUE INVISIBLE WITHOUT SYSTEM VERSIONING;',
-        ])
-        .join(''),
-    ],
-  },
+  'Compact formatter: Alter table add columns should not add autoincrement with a table already having autoincrement.':
+    {
+      queries: [
+        sql
+          .concat([
+            'ALTER TABLE person ADD COLUMN test3 TINYINT UNSIGNED ZEROFILL CHARACTER SET latin1 COLLATE latin_ci NULL DEFAULT 42 AUTO_INCREMENT UNIQUE INVISIBLE WITHOUT SYSTEM VERSIONING;',
+          ])
+          .join(''),
+      ],
+    },
 
   'Compact formatter: Alter table add columns should not add column with duplicate name.': {
     queries: [
@@ -33,7 +34,8 @@ run(getCompactFormat, {
     ],
   },
 
-  'Compact formatter: Alter table add columns should not add autoincrement without it being a primary key.': {
-    queries: [sql.concat(['ALTER TABLE pet ADD COLUMN xyzabc INT(11) AUTO_INCREMENT;']).join('')],
-  },
+  'Compact formatter: Alter table add columns should not add autoincrement without it being a primary key.':
+    {
+      queries: [sql.concat(['ALTER TABLE pet ADD COLUMN xyzabc INT(11) AUTO_INCREMENT;']).join('')],
+    },
 });

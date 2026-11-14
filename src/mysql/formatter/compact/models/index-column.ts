@@ -1,9 +1,7 @@
 import { P_INDEX_COLUMN, IndexColumnInterface } from '../../../../typings';
 import { isDefined } from '../../../../shared/utils';
 
-import {
-  IndexColumnModelInterface,
-} from './typings';
+import { IndexColumnModelInterface } from './typings';
 
 /**
  * Index specification of a column.

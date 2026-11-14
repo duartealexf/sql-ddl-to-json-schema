@@ -15,7 +15,8 @@ run(getCompactFormat, {
     queries: [sql.join('')],
   },
 
-  'Compact formatter: Alter table add column should not add a column with autoincrement if there is another one with autoincrement in table.': {
-    queries: [sql.concat(['ALTER TABLE person ADD COLUMN id2 int(8) AUTO_INCREMENT;']).join('')],
-  },
+  'Compact formatter: Alter table add column should not add a column with autoincrement if there is another one with autoincrement in table.':
+    {
+      queries: [sql.concat(['ALTER TABLE person ADD COLUMN id2 int(8) AUTO_INCREMENT;']).join('')],
+    },
 });

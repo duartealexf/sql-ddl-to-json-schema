@@ -1,6 +1,3 @@
-/* eslint-disable no-loop-func */
-/* eslint-disable no-await-in-loop */
-/* eslint-disable import/no-extraneous-dependencies */
 /**
  * This script gets contents of lexer.ne, and .ne files in parser / rules,
  * folder concatenating them all to lib/mysql/grammar.ne, so it can be

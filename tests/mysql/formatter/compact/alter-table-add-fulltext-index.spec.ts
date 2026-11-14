@@ -17,11 +17,15 @@ run(getCompactFormat, {
     queries: [sql.concat(['ALTER TABLE house ADD FULLTEXT INDEX fi_history (history);']).join('')],
   },
 
-  'Compact formatter: Alter table add fulltext index should not add key or index of unexisting table.': {
-    queries: [sql.concat(['ALTER TABLE xyzabc ADD FULLTEXT INDEX fi_history (history);']).join('')],
-  },
+  'Compact formatter: Alter table add fulltext index should not add key or index of unexisting table.':
+    {
+      queries: [
+        sql.concat(['ALTER TABLE xyzabc ADD FULLTEXT INDEX fi_history (history);']).join(''),
+      ],
+    },
 
-  'Compact formatter: Alter table add fulltext index should not add key or index of unexisting table column.': {
-    queries: [sql.concat(['ALTER TABLE house ADD FULLTEXT INDEX fi_history (xyzabc);']).join('')],
-  },
+  'Compact formatter: Alter table add fulltext index should not add key or index of unexisting table column.':
+    {
+      queries: [sql.concat(['ALTER TABLE house ADD FULLTEXT INDEX fi_history (xyzabc);']).join('')],
+    },
 });

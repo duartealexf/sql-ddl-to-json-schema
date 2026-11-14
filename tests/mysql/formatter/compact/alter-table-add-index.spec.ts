@@ -22,7 +22,8 @@ run(getCompactFormat, {
     queries: [sql.concat(['ALTER TABLE abcxyz ADD INDEX idx_built (is_built);']).join('')],
   },
 
-  'Compact formatter: Alter table add index should not add key or index for unexisting table column.': {
-    queries: [sql.concat(['ALTER TABLE house ADD INDEX idx_built (abcxyz);']).join('')],
-  },
+  'Compact formatter: Alter table add index should not add key or index for unexisting table column.':
+    {
+      queries: [sql.concat(['ALTER TABLE house ADD INDEX idx_built (abcxyz);']).join('')],
+    },
 });

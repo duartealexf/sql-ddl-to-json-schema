@@ -38,8 +38,12 @@ export class Column {
         column.datatype.isUnsigned = options.unsigned;
       }
 
-      if (options.default === null || (isString(options.default) && options.default.length)) {
+      if (options.default === null || isString(options.default) || isNumber(options.default)) {
         column.default = options.default;
+
+        if (column.datatype.datatype === 'boolean') {
+          column.default = Column.toBooleanDefault(options.default);
+        }
       }
 
       if (isString(options.comment) && options.comment.length) {
@@ -50,6 +54,36 @@ export class Column {
     }
 
     return column;
+  }
+
+  /**
+   * Map a BOOLEAN column default to a JSON boolean. MySQL stores BOOLEAN as
+   * TINYINT(1), so TRUE/FALSE and 1/0 are equivalent. Other values are kept.
+   *
+   * @param value Default value from compact JSON format.
+   */
+  static toBooleanDefault(value: string | number | null): boolean | string | number | null {
+    if (isString(value)) {
+      const upper = value.toUpperCase();
+
+      if (upper === 'TRUE') {
+        return true;
+      }
+
+      if (upper === 'FALSE') {
+        return false;
+      }
+    }
+
+    if (value === 1) {
+      return true;
+    }
+
+    if (value === 0) {
+      return false;
+    }
+
+    return value;
   }
 
   /**

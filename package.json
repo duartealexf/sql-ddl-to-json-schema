@@ -97,9 +97,6 @@
   "engines": {
     "node": ">=16 <=26"
   },
-  "allowScripts": {
-    "fsevents@2.3.2": true
-  },
   "overrides": {
     "nodemon": {
       "minimatch": "^11.0.8"

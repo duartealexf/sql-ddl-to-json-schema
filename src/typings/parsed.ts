@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/class-name-casing */
-
 export type P_ALTER_TABLE_ACTION =
   | 'addColumn'
   | 'addColumns'

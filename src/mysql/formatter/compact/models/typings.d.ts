@@ -56,9 +56,7 @@ export interface DatabaseModelInterface extends DatabaseInterface {
 }
 
 export interface TableModelInterface
-  extends TableInterface,
-    ClonableInterface,
-    SerializableInterface {
+  extends TableInterface, ClonableInterface, SerializableInterface {
   name: string;
   database: DatabaseModelInterface;
   columns?: ColumnModelInterface[];
@@ -115,9 +113,7 @@ export interface TableModelInterface
 }
 
 export interface ColumnModelInterface
-  extends ColumnInterface,
-    ClonableInterface,
-    SerializableInterface {
+  extends ColumnInterface, ClonableInterface, SerializableInterface {
   type: DatatypeModelInterface;
   reference?: ColumnReferenceModelInterface;
   options?: ColumnOptionsModelInterface;
@@ -130,16 +126,12 @@ export interface ColumnModelInterface
 }
 
 export interface TableOptionsModelInterface
-  extends TableOptionsInterface,
-    ClonableInterface,
-    SerializableInterface {
+  extends TableOptionsInterface, ClonableInterface, SerializableInterface {
   mergeWith(options: TableOptionsInterface): void;
 }
 
 export interface FulltextIndexModelInterface
-  extends FulltextIndexInterface,
-    ClonableInterface,
-    SerializableInterface {
+  extends FulltextIndexInterface, ClonableInterface, SerializableInterface {
   columns: IndexColumnModelInterface[];
   options?: IndexOptionsModelInterface;
   dropColumn(name: string): boolean;
@@ -149,9 +141,7 @@ export interface FulltextIndexModelInterface
 }
 
 export interface SpatialIndexModelInterface
-  extends SpatialIndexInterface,
-    ClonableInterface,
-    SerializableInterface {
+  extends SpatialIndexInterface, ClonableInterface, SerializableInterface {
   columns: IndexColumnModelInterface[];
   options?: IndexOptionsModelInterface;
   dropColumn(name: string): boolean;
@@ -161,9 +151,7 @@ export interface SpatialIndexModelInterface
 }
 
 export interface ForeignKeyModelInterface
-  extends ForeignKeyInterface,
-    ClonableInterface,
-    SerializableInterface {
+  extends ForeignKeyInterface, ClonableInterface, SerializableInterface {
   columns: IndexColumnModelInterface[];
   reference: ColumnReferenceModelInterface;
   pushColumn(indexColumn: IndexColumnModelInterface): void;
@@ -180,9 +168,7 @@ export interface ForeignKeyModelInterface
 }
 
 export interface UniqueKeyModelInterface
-  extends UniqueKeyInterface,
-    ClonableInterface,
-    SerializableInterface {
+  extends UniqueKeyInterface, ClonableInterface, SerializableInterface {
   columns: IndexColumnModelInterface[];
   options?: IndexOptionsModelInterface;
   dropColumn(name: string): boolean;
@@ -193,9 +179,7 @@ export interface UniqueKeyModelInterface
 }
 
 export interface IndexModelInterface
-  extends IndexInterface,
-    ClonableInterface,
-    SerializableInterface {
+  extends IndexInterface, ClonableInterface, SerializableInterface {
   columns: IndexColumnModelInterface[];
   options?: IndexOptionsModelInterface;
   dropColumn(name: string): boolean;
@@ -206,9 +190,7 @@ export interface IndexModelInterface
 }
 
 export interface PrimaryKeyModelInterface
-  extends PrimaryKeyInterface,
-    ClonableInterface,
-    SerializableInterface {
+  extends PrimaryKeyInterface, ClonableInterface, SerializableInterface {
   columns?: IndexColumnModelInterface[];
   options?: IndexOptionsModelInterface;
   pushColumn(indexColumn: IndexColumnModelInterface): void;
@@ -219,39 +201,27 @@ export interface PrimaryKeyModelInterface
 }
 
 export interface DatatypeModelInterface
-  extends DatatypeInterface,
-    ClonableInterface,
-    SerializableInterface {
+  extends DatatypeInterface, ClonableInterface, SerializableInterface {
   getMaxIndexableSize(): number;
 }
 
 export interface ColumnReferenceModelInterface
-  extends ColumnReferenceInterface,
-    ClonableInterface,
-    SerializableInterface {
+  extends ColumnReferenceInterface, ClonableInterface, SerializableInterface {
   columns?: IndexColumnModelInterface[];
   on?: ColumnReferenceOnModelInterface[];
 }
 
 export interface ColumnOptionsModelInterface
-  extends ColumnOptionsInterface,
-    ClonableInterface,
-    SerializableInterface {}
+  extends ColumnOptionsInterface, ClonableInterface, SerializableInterface {}
 
 export interface IndexColumnModelInterface
-  extends IndexColumnInterface,
-    ClonableInterface,
-    SerializableInterface {}
+  extends IndexColumnInterface, ClonableInterface, SerializableInterface {}
 
 export interface ColumnReferenceOnModelInterface
-  extends ColumnReferenceOnInterface,
-    ClonableInterface,
-    SerializableInterface {}
+  extends ColumnReferenceOnInterface, ClonableInterface, SerializableInterface {}
 
 export interface IndexOptionsModelInterface
-  extends IndexOptionsInterface,
-    ClonableInterface,
-    SerializableInterface {}
+  extends IndexOptionsInterface, ClonableInterface, SerializableInterface {}
 
 export interface RuleHandler {
   database: DatabaseModelInterface;

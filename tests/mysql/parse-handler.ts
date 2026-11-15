@@ -1,5 +1,3 @@
-/* eslint-disable import/no-extraneous-dependencies */
-
 import { Parser } from '../..';
 import { JSONSchemaFormatOptions } from '../../typings/typings/json-schema';
 

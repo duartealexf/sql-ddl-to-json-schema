@@ -40,7 +40,7 @@ export class CreateIndex implements RuleHandler {
       const table = this.getTable(json.def.table);
 
       if (!table) {
-      // throw new Error(`Found "CREATE INDEX" statement to an unexisting table ${json.def.table}`);
+        // throw new Error(`Found "CREATE INDEX" statement to an unexisting table ${json.def.table}`);
         return;
       }
 

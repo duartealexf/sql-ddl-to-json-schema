@@ -18,7 +18,10 @@ run(getCompactFormat, {
     queries: [sql.concat(['ALTER TABLE pet ADD CONSTRAINT uq_birth UNIQUE KEY (birth);']).join('')],
   },
 
-  'Compact formatter: Alter table add unique key should not add key or index with for unknown table column.': {
-    queries: [sql.concat(['ALTER TABLE pet ADD CONSTRAINT abcxyz UNIQUE KEY (abcxyz);']).join('')],
-  },
+  'Compact formatter: Alter table add unique key should not add key or index with for unknown table column.':
+    {
+      queries: [
+        sql.concat(['ALTER TABLE pet ADD CONSTRAINT abcxyz UNIQUE KEY (abcxyz);']).join(''),
+      ],
+    },
 });

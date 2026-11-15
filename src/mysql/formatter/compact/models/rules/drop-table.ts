@@ -42,7 +42,9 @@ export class DropTable implements RuleHandler {
 
         let tables = this.database.getTables();
 
-        const hasReference = tables.some((t) => t.foreignKeys?.some((k) => k.referencesTable(table)));
+        const hasReference = tables.some((t) =>
+          t.foreignKeys?.some((k) => k.referencesTable(table)),
+        );
 
         if (hasReference) {
           return;

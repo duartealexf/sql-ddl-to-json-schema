@@ -9,7 +9,8 @@ run(getCompactFormat, {
     queries: [sql.join('')],
   },
 
-  'Compact formatter: Alter table drop default column value should not alter unexisting table column.': {
-    queries: [sql.concat(['ALTER TABLE person ALTER COLUMN xyzabc DROP DEFAULT;']).join('')],
-  },
+  'Compact formatter: Alter table drop default column value should not alter unexisting table column.':
+    {
+      queries: [sql.concat(['ALTER TABLE person ALTER COLUMN xyzabc DROP DEFAULT;']).join('')],
+    },
 });

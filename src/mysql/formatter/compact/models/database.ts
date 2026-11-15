@@ -101,15 +101,20 @@ export class Database implements DatabaseModelInterface {
   private static getHandler(id: string): RuleHandler | undefined {
     if (id === 'P_CREATE_TABLE') {
       return new CreateTable();
-    } if (id === 'P_CREATE_INDEX') {
+    }
+    if (id === 'P_CREATE_INDEX') {
       return new CreateIndex();
-    } if (id === 'P_ALTER_TABLE') {
+    }
+    if (id === 'P_ALTER_TABLE') {
       return new AlterTable();
-    } if (id === 'P_RENAME_TABLE') {
+    }
+    if (id === 'P_RENAME_TABLE') {
       return new RenameTable();
-    } if (id === 'P_DROP_TABLE') {
+    }
+    if (id === 'P_DROP_TABLE') {
       return new DropTable();
-    } if (id === 'P_DROP_INDEX') {
+    }
+    if (id === 'P_DROP_INDEX') {
       return new DropIndex();
     }
 

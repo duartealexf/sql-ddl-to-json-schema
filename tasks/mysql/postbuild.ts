@@ -1,4 +1,3 @@
-/* eslint-disable import/no-extraneous-dependencies */
 /**
  * This script applies a hotfix that prevents tsc build errors on compiled grammar files.
  */

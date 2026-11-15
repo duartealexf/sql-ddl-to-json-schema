@@ -179,7 +179,8 @@ export class PrimaryKey implements PrimaryKeyModelInterface {
    * @param newName New column name.
    */
   renameColumn(column: ColumnModelInterface, newName: string): void {
-    return this.columns?.filter((c) => c.column === column.name)
+    return this.columns
+      ?.filter((c) => c.column === column.name)
       .forEach((c) => {
         c.column = newName;
       });

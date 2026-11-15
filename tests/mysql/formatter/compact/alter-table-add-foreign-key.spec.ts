@@ -35,23 +35,25 @@ run(getCompactFormat, {
     ],
   },
 
-  'Compact formatter: Alter table add foreign key should not add key referencing unexiting table.': {
-    queries: [
-      sql
-        .concat([
-          'ALTER TABLE pet ADD CONSTRAINT fk_other2 FOREIGN KEY (species) REFERENCES species (id)',
-        ])
-        .join(''),
-    ],
-  },
+  'Compact formatter: Alter table add foreign key should not add key referencing unexiting table.':
+    {
+      queries: [
+        sql
+          .concat([
+            'ALTER TABLE pet ADD CONSTRAINT fk_other2 FOREIGN KEY (species) REFERENCES species (id)',
+          ])
+          .join(''),
+      ],
+    },
 
-  'Compact formatter: Alter table add foreign key should not add key referencing unexiting table column.': {
-    queries: [
-      sql
-        .concat([
-          'ALTER TABLE pet ADD CONSTRAINT fk_other3 FOREIGN KEY (species) REFERENCES person (abcxyz)',
-        ])
-        .join(''),
-    ],
-  },
+  'Compact formatter: Alter table add foreign key should not add key referencing unexiting table column.':
+    {
+      queries: [
+        sql
+          .concat([
+            'ALTER TABLE pet ADD CONSTRAINT fk_other3 FOREIGN KEY (species) REFERENCES person (abcxyz)',
+          ])
+          .join(''),
+      ],
+    },
 });

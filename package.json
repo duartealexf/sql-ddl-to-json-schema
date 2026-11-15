@@ -59,7 +59,7 @@
     "@types/jest": "^29.5.14",
     "@types/moo": "0.5.5",
     "@types/nearley": "2.11.2",
-    "@types/node": "^16.18.126",
+    "@types/node": "^18.19.130",
     "@types/stringify-object": "^4.0.0",
     "@types/winston": "^2.4.4",
     "commitizen": "^4.2.4",

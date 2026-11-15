@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [6.0.1](https://github.com/duartealexf/sql-ddl-to-json-schema/compare/v6.0.0...v6.0.1) (2026-11-15)
+
+
+### Bug Fixes
+
+* **json-schema:** keep numeric and empty-string defaults, map boolean defaults ([8c0522c](https://github.com/duartealexf/sql-ddl-to-json-schema/commit/8c0522cc8acd0031150fe5535b318d941e442de0)), closes [#113](https://github.com/duartealexf/sql-ddl-to-json-schema/issues/113)
+
 ## [6.0.0](https://github.com/duartealexf/sql-ddl-to-json-schema/compare/v5.0.0...v6.0.0) (2025-08-01)
 
 ## [5.0.0](https://github.com/duartealexf/sql-ddl-to-json-schema/compare/v4.1.1...v5.0.0) (2025-01-13)
